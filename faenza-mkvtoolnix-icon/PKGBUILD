@@ -1,0 +1,21 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=faenza-mkvtoolnix-icon
+pkgver=1.0
+pkgrel=3
+pkgdesc="A Faenza-like icon for mkvtoolnix"
+source=('http://www.deviantart.com/download/211997774/mkvtoolnix_faenza_icons_by_alucryd-d3i7uj2.zip')
+md5sums=('0d5769866f5765cb7135c8eb3b707edc')
+arch=('any')
+url="http://alucryd.deviantart.com/art/MKVToolNix-Faenza-Icons-211997774"
+license=('GPL')
+depends=('faenza-icon-theme')
+install=${pkgname}.install
+
+package() {
+	cd "${srcdir}/faenza-mkvtoolnix"
+	mkdir -p "$pkgdir/usr/share/icons"
+	cp -R Faenza "${pkgdir}/usr/share/icons/"
+	find "${pkgdir}" -type d | xargs chmod 755
+	find "${pkgdir}" -type f | xargs chmod 644
+}

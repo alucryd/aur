@@ -1,0 +1,43 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=pantheon-dock-bzr
+pkgver=724
+pkgrel=1
+pkgdesc="The dock for elementary Pantheon, built on the awesome foundation of Plank."
+arch=('i686' 'x86_64')
+url="https://launchpad.net/pantheon-dock"
+license=('GPL3')
+groups=('pantheon')
+depends=('bamf' 'libgee' 'python2' 'hicolor-icon-theme' 'libdbusmenu-gtk3')
+makedepends=('bzr' 'dbus-glib' 'intltool' 'vala' 'gnome-common')
+conflicts=('plank-bzr' 'pantheon-dock')
+provides=('pantheon-dock' 'plank-bzr')
+options=('!libtool')
+install=${pkgname}.install
+
+_bzrtrunk=lp:pantheon-dock
+_bzrmod=pantheon-dock
+
+build() {
+	msg "Connecting to Bazaar server...."
+
+	if [ -d $_bzrmod ] ; then
+		cd $_bzrmod && bzr pull $_bzrtrunk -r $pkgver && cd ..
+		msg "The local files are updated."
+	else
+		bzr branch $_bzrtrunk $_bzrmod -r $pkgver
+	fi
+
+	msg "BZR checkout done or server timeout"
+	msg "Starting make..."
+
+	cd ${_bzrmod}
+	./autogen.sh --prefix=/usr --sysconfdir=/etc
+	make
+}
+
+package() {
+	cd "${srcdir}/${_bzrmod}/"
+	make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+	sed -i 's/python/python2/' "${pkgdir}/usr/share/apport/package-hooks/source_plank.py"
+}

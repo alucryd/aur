@@ -1,0 +1,41 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=webcontracts-bzr
+pkgver=23
+pkgrel=1
+pkgdesc="This is a collection of scripts to be used with contractor and various online services."
+arch=('i686' 'x86_64')
+url="https://launchpad.net/webcontracts"
+license=('GPL3')
+groups=('pantheon')
+depends=('contractor-bzr' 'libpantheon-bzr' 'webkitgtk3' 'rest' 'json-glib')
+makedepends=('bzr' 'cmake' 'vala')
+conflicts=('webcontracts')
+provides=('webcontracts')
+install=${pkgname}.install
+
+_bzrtrunk=lp:webcontracts
+_bzrmod=webcontracts
+
+build() {
+	msg "Connecting to Bazaar server...."
+
+	if [ -d $_bzrmod ] ; then
+		cd $_bzrmod && bzr pull $_bzrtrunk -r $pkgver && cd ..
+		msg "The local files are updated."
+	else
+		bzr branch $_bzrtrunk $_bzrmod -r $pkgver
+	fi
+
+	msg "BZR checkout done or server timeout"
+	msg "Starting make..."
+
+	cd ${_bzrmod}
+	cmake . -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+	make
+}
+
+package() {
+	cd "${srcdir}/${_bzrmod}"
+	make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+}

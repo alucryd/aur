@@ -1,0 +1,26 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=noise
+pkgver=1.0
+pkgrel=beta1
+pkgdesc="The official audio player of elementary OS."
+arch=('i686' 'x86_64')
+url="https://launchpad.net/noise"
+license=('GPL3')
+groups=('pantheon')
+depends=('gstreamer0.10-base' 'taglib' 'sqlheavy-git' 'libnotify' 'libsoup' 'json-glib' 'granite' 'libgpod' 'libpeas' 'desktop-file-utils' 'libindicate')
+makedepends=('vala' 'cmake')
+install=${pkgname}.install
+source=("https://launchpad.net/${pkgname}/0.x/luna-beta1/+download/${pkgname}-${pkgver}.tar.gz")
+md5sums=('10706ca19a9b12ebc5e9aacad8271432')
+
+build() {
+	cd "${srcdir}"
+	cmake . -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF -DICON_UPDATE=OFF -DCMAKE_EXE_LINKER_FLAGS=-lm
+	make
+}
+
+package() {
+	cd "${srcdir}"
+	make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+}

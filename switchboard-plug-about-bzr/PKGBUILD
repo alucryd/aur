@@ -1,0 +1,38 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=switchboard-plug-about-bzr
+pkgver=65
+pkgrel=1
+pkgdesc="Switchboard plug to show system information."
+arch=('i686' 'x86_64')
+url="https://launchpad.net/switchboard-plug-about"
+license=('GPL3')
+groups=('pantheon')
+depends=('switchboard-bzr' 'libpantheon-bzr')
+makedepends=('bzr' 'cmake' 'vala')
+
+_bzrtrunk=lp:switchboard-plug-about
+_bzrmod=switchboard-plug-about
+
+build() {
+	msg "Connecting to Bazaar server...."
+
+	if [ -d "$_bzrmod" ] ; then
+		cd "$_bzrmod" && bzr pull "$_bzrtrunk" -r "$pkgver" && cd ..
+		msg "The local files are updated."
+	else
+		bzr branch "$_bzrtrunk" "$_bzrmod" -r "$pkgver"
+	fi
+
+	msg "BZR checkout done or server timeout"
+	msg "Starting make..."
+
+	cd "${_bzrmod}"
+	cmake . -DCMAKE_INSTALL_PREFIX=/usr
+	make
+}
+
+package() {
+	cd "${_bzrmod}"
+	make DESTDIR="${pkgdir}" install
+}

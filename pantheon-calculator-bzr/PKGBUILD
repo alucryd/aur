@@ -1,0 +1,41 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=pantheon-calculator-bzr
+pkgver=17
+pkgrel=1
+pkgdesc="A tiny, simple calculator written in GTK+ and Vala."
+arch=('i686' 'x86_64')
+url="https://launchpad.net/pantheon-calculator"
+license=('GPL3')
+groups=('pantheon')
+depends=('granite-bzr')
+makedepends=('bzr' 'vala' 'cmake')
+conflicts=('pantheon-calculator')
+install=${pkgname}.install
+
+_bzrtrunk=lp:pantheon-calculator
+_bzrmod=pantheon-calculator
+
+build() {
+	msg "Connecting to Bazaar server...."
+
+	if [ -d $_bzrmod ]; then
+		cd $_bzrmod && bzr pull $_bzrtrunk -r $pkgver && cd ..
+		msg "The local files are updated."
+	else
+		bzr branch $_bzrtrunk $_bzrmod -r $pkgver
+	fi
+
+	msg "BZR checkout done or server timeout"
+	msg "Starting make..."
+
+	cd ${_bzrmod}
+	sed -i 's|${GETTEXT_FOUND} STREQUAL "TRUE"|GETTEXT_FOUND|g' CMakeLists.txt
+	cmake . -DCMAKE_INSTALL_PREFIX=/usr
+	make
+}
+
+package() {
+	cd "${srcdir}/${_bzrmod}/"
+	make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+}

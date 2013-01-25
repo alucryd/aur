@@ -1,0 +1,3 @@
+post_install() {
+  echo "Please add 'nvidia' to the HOOKs array in /etc/mkinitcpio.conf, and 'linux-headers' (and whatever your custom kernel headers are named) to the SyncFirst array in /etc/pacman.conf to enable the automatic modules compilation."
+}

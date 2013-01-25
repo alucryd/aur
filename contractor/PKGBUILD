@@ -1,0 +1,26 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=contractor
+pkgver=0.2
+pkgrel=1
+pkgdesc="An extension service that allows apps to use the exposed functionality of registered apps. This way, apps don't have to have the functions hard coded into them."
+arch=('i686' 'x86_64')
+url="https://launchpad.net/contractor"
+license=('GPL3')
+groups=('pantheon')
+depends=('libgee')
+makedepends=('vala' 'cmake')
+conflicts=('contractor-bzr')
+source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
+md5sums=('46e9aab9880a9e6becdc20a4e076edf8')
+
+build() {
+	cd "${srcdir}"
+	cmake . -DCMAKE_INSTALL_PREFIX=/usr
+	make
+}
+
+package() {
+	cd "${srcdir}"
+	make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+}

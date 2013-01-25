@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Steam Skin Manager
+Comment=A tool for managing Steam skins.
+Exec=/usr/bin/steam-skin-gui %U
+Icon=steamskinmanager
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Settings
+MimeType=x-scheme-handler/ubuntusteamskin
+

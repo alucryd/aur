@@ -1,0 +1,27 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=wingpanel
+pkgver=0.1
+pkgrel=alpha2
+pkgdesc="Stylish top panel that holds indicators and spawns an application launcher."
+arch=('i686' 'x86_64')
+url="https://launchpad.net/wingpanel"
+license=('GPL3')
+groups=('pantheon')
+depends=('granite' 'libindicator3')
+makedepends=('vala' 'cmake')
+conflicts=('wingpanel-bzr')
+install=${pkgname}.install
+source=("https://launchpad.net/${pkgname}/0.x/${pkgver}-${pkgrel}/+download/${pkgname}-${pkgver}-${pkgrel}.tar.gz")
+md5sums=('2bbeb2c1b9adb580e246580a493e4a0d')
+
+build() {
+	cd "${srcdir}"
+	cmake . -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINS_COMPILE=OFF
+	make
+}
+
+package() {
+	cd "${srcdir}"
+	make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+}

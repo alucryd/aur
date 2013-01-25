@@ -1,0 +1,42 @@
+[Desktop Entry]
+Name=Steam - Native Borders
+Comment=Launch Steam with native borders.
+Exec=/usr/bin/steam-wb %U
+Icon=steam
+Terminal=false
+Type=Application
+Categories=Game;
+MimeType=x-scheme-handler/ubuntusteamskin
+Actions=Store;Community;Library;Servers;Screenshots;News;Settings;Friends
+
+[Desktop Action Store]
+Name=Store
+Exec=steam-wb steam://store
+
+[Desktop Action Community]
+Name=Community
+Exec=steam-wb steam://url/SteadmIDControlPage
+
+[Desktop Action Library]
+Name=Library
+Exec=steam-wb steam://open/games
+
+[Desktop Action Servers]
+Name=Servers
+Exec=steam-wb steam://open/servers
+
+[Desktop Action Screenshots]
+Name=Screenshots
+Exec=steam-wb steam://open/screenshots
+
+[Desktop Action News]
+Name=News
+Exec=steam-wb steam://open/news
+
+[Desktop Action Settings]
+Name=Settings
+Exec=steam-wb steam://open/settings
+
+[Desktop Action Friends]
+Name=Friends
+Exec=steam-wb steam://open/friends

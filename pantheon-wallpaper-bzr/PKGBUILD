@@ -1,0 +1,42 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=pantheon-wallpaper-bzr
+pkgver=33
+pkgrel=1
+pkgdesc="The elementary wallpaper drawer."
+arch=('i686' 'x86_64')
+url="https://launchpad.net/pantheon-wallpaper"
+license=('GPL3')
+groups=('pantheon')
+depends=('granite-bzr')
+makedepends=('bzr' 'vala' 'cmake')
+conflicts=('pantheon-wallpaper')
+provides=('pantheon-wallpaper')
+install=${pkgname}.install
+
+_bzrtrunk=lp:pantheon-wallpaper
+_bzrmod=pantheon-wallpaper
+
+build() {
+	msg "Connecting to Bazaar server...."
+
+	if [ -d $_bzrmod ] ; then
+		cd $_bzrmod && bzr pull $_bzrtrunk -r $pkgver && cd ..
+		msg "The local files are updated."
+	else
+		bzr branch $_bzrtrunk $_bzrmod -r $pkgver
+	fi
+
+	msg "BZR checkout done or server timeout"
+	msg "Starting make..."
+
+	cd ${_bzrmod}
+	sed -i 's|${GETTEXT_FOUND} STREQUAL "TRUE"|GETTEXT_FOUND|g' CMakeLists.txt
+	cmake . -DCMAKE_INSTALL_PREFIX=/usr
+	make
+}
+
+package() {
+	cd "${srcdir}/${_bzrmod}/"
+	make DESTDIR="${pkgdir}" install
+}

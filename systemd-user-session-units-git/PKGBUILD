@@ -1,0 +1,39 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=systemd-user-session-units-git
+pkgver=20130116
+pkgrel=1
+pkgdesc="A collection of units for the systemd user session."
+url="https://github.com/sofar/user-session-units"
+arch=('any')
+license=('GPL3')
+depends=(systemd dbus systemd-xorg-launch-helper-git)
+makedepends=('git')
+conflicts=(systemd-user-session-units)
+
+_gitroot="https://github.com/sofar/user-session-units.git"
+_gitname="user-session-units"
+
+build () {
+	cd "${srcdir}"
+
+	msg "Connecting to the GIT server..."
+	if [ -d ${_gitname} ] ; then
+		cd "${_gitname}"
+		git pull origin
+		msg "The local files are updated..."
+	else
+		git clone ${_gitroot} ${_gitname}
+		cd "${_gitname}"
+	fi
+	msg "GIT checkout done."
+
+	./autogen.sh
+	./configure --prefix=/usr
+	make
+}
+
+package() {
+	cd "${srcdir}/${_gitname}"
+	make DESTDIR="${pkgdir}" install
+}

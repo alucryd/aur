@@ -1,0 +1,49 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=aegisub-git
+pkgver=20130108
+pkgrel=1
+pkgdesc="A general-purpose subtitle editor with ASS/SSA support"
+arch=('i686' 'x86_64')
+url="http://www.aegisub.net"
+license=('GPL' 'BSD')
+depends=('ffmpegsource' 'lua51' 'wxgtk2.9' 'hunspell' 'libass' 'fftw' 'desktop-file-utils' 'hicolor-icon-theme')
+makedepends=('git' 'intltool' 'boost')
+optdepends=('libpulse: Pulseaudio backend'
+            'openal: OpenAL backend'
+            'oss: OSS backend'
+            'portaudio: Portaudio backend')
+provides=('aegisub')
+conflicts=('aegisub' 'aegisub-bin' 'aegisub-stable-svn')
+install=${pkgname}.install
+
+_gitroot="https://github.com/Aegisub/Aegisub.git"
+_gitname="Aegisub"
+
+build () {
+  cd "${srcdir}"
+  msg "Connecting to the GIT server..."
+  if [ -d ${_gitname} ] ; then
+    cd ${_gitname}
+    git pull origin
+    msg "The local files are updated..."
+  else
+    git clone ${_gitroot} ${_gitname}
+    cd ${_gitname}
+  fi
+  msg "GIT checkout done."
+  cd aegisub
+  ./autogen.sh
+  ./configure --prefix=/usr --with-wxdir=/usr/include/wx-2.9 --with-wx-config=/usr/bin/wx-config-2.9
+  make
+}
+
+package() {
+  cd "${srcdir}"/${_gitname}/aegisub
+  make DESTDIR="${pkgdir}" install
+  chmod 644 "${pkgdir}"/usr/share/icons/hicolor/scalable/apps/aegisub.svg
+  install -dm 755 "${pkgdir}"/usr/share/licenses/aegisub-git
+  install -m 644 LICENCE "${pkgdir}"/usr/share/licenses/aegisub-git/license.txt
+}
+
+# vim: ts=2 sw=2 et:

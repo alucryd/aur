@@ -1,0 +1,41 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=indicator-pantheon-session-bzr
+pkgver=241
+pkgrel=1
+pkgdesc="Pantheon fork of the session indicator."
+arch=('i686' 'x86_64')
+url="https://launchpad.net/indicator-pantheon-session"
+license=('GPL3')
+groups=('pantheon')
+depends=('libdbusmenu-gtk3' 'packagekit' 'libindicator3')
+makedepends=('bzr' 'cmake' 'intltool')
+conflicts=('indicator-pantheon-session')
+options=('!libtool')
+install=${pkgname}.install
+
+_bzrtrunk=lp:indicator-pantheon-session
+_bzrmod=indicator-pantheon-session
+
+build() {
+	msg "Connecting to Bazaar server...."
+
+	if [ -d $_bzrmod ]; then
+		cd $_bzrmod && bzr pull $_bzrtrunk -r $pkgver && cd ..
+		msg "The local files are updated."
+	else
+		bzr branch $_bzrtrunk $_bzrmod -r $pkgver
+	fi
+
+	msg "BZR checkout done or server timeout"
+	msg "Starting make..."
+
+	cd ${_bzrmod}
+	./autogen.sh --prefix=/usr --libexecdir=/usr/lib/${_bzrmod} --disable-schemas-compile --with-gtk=3
+	make
+}
+
+package() {
+	cd "${srcdir}/${_bzrmod}/"
+	make DESTDIR="${pkgdir}" install
+}

@@ -1,0 +1,58 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=firewalld-git
+pkgver=20130124
+pkgrel=1
+pkgdesc="Firewall service daemon that provides a dynamic customizable firewall with a D-BUS interface"
+arch=('any')
+url="http://fedorahosted.org/firewalld"
+license=('GPL2')
+depends=('dconf' 'python2-dbus' 'iptables' 'ebtables' 'gtk2' 'hicolor-icon-theme' 'pygtk' 'python2-slip' 'python2-decorator' 'python2-gobject')
+makedepends=('gettext' 'intltool' 'git')
+conflicts=('firewalld')
+provides=('firewalld')
+install=${pkgname}.install
+
+_gitroot="http://git.fedorahosted.org/git/firewalld.git"
+_gitname="firewalld"
+
+build () {
+  cd "${srcdir}"
+
+  msg "Connecting to the GIT server..."
+  if [ -d ${srcdir}/${_gitname} ] ; then
+    cd ${_gitname}
+    git pull origin
+    msg "The local files are updated..."
+  else
+    git clone ${_gitroot} ${_gitname}
+    cd ${_gitname}
+  fi
+  msg "GIT checkout done."
+
+# Python 2 fix
+  export PYTHON=python2
+  sed -i 's|#!/usr/bin/python|#!/usr/bin/python2|' $(grep -rl '#!/usr/bin/python' "${srcdir}")
+  sed -i 's|python|python2|g' fix_python_shebang.sh
+
+# Build
+  ./autogen.sh --prefix=/usr --sysconfdir=/etc --disable-schemas-compile
+  make
+}
+
+package() {
+  cd "${srcdir}"/${_gitname}
+  make DESTDIR="${pkgdir}" install
+
+# Fix paths
+  mv "${pkgdir}"/etc/sysconfig "${pkgdir}"/etc/conf.d
+  sed -i 's|sysconfig|conf.d|g' "${pkgdir}"/usr/lib/systemd/system/firewalld.service
+  sed -i 's|/sbin|/usr/sbin|g' "${pkgdir}"/usr/lib/python2.7/site-packages/firewall/core/{ipXtables,ebtables}.py
+
+# Fix permissions
+  find "${pkgdir}" -type d -exec chmod 755 {} +
+  find "${pkgdir}" -type f -exec chmod 644 {} +
+  chmod -R 755 "${pkgdir}"/usr/{bin,sbin}
+}
+
+# vim: ts=2 sw=2 et:

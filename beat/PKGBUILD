@@ -1,0 +1,29 @@
+# Maintainer : Alucryd <alucryd at gmail dot com>
+
+pkgname=beat
+pkgver=01
+pkgrel=11
+pkgdesc="Delta patcher for the higan emulator"
+arch=('i686' 'x86_64')
+url="http://byuu.org/programming/beat/"
+license=('GPL3')
+depends=('gtk2')
+source=("http://byuu.org/files/beat_v01.tar.xz" "beat.desktop")
+sha256sums=('0ba71b22fa405929df3b300c3b80537bc8851854b27b291d3ad812ea1c45873d'
+            'c12e60aa1c4877de06a458b2c8cc8d7ff940a0c9b397128a2dee1cb7de0329b9')
+
+build() {
+  cd "${srcdir}"/beat
+
+# Compile beat
+  make compiler=gcc platform=x link='-s -lX11' phoenix=gtk
+}
+
+package() {
+  cd "${srcdir}"
+  install -dm 755 "${pkgdir}"/usr/{bin,share/applications}
+  install -m 755 beat/beat "${pkgdir}"/usr/bin/beat
+  install -m 644 beat.desktop "${pkgdir}"/usr/share/applications/beat.desktop
+}
+
+# vim: ts=2 sw=2 et:

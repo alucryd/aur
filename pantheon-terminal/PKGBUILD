@@ -1,0 +1,26 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=pantheon-terminal
+pkgver=0.1
+pkgrel=1
+pkgdesc="The terminal of the 21st century."
+arch=('i686' 'x86_64')
+url="https://launchpad.net/pantheon-terminal"
+license=('GPL3')
+groups=('pantheon')
+depends=('vte3' 'granite' 'libnotify')
+makedepends=('vala' 'cmake')
+install=${pkgname}.install
+source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
+md5sums=('868c63b826ab7e03236297e15e6c2aa8')
+
+build() {
+	cd "${srcdir}"
+	cmake . -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+	make
+}
+
+package() {
+	cd "${srcdir}"
+	make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+}
