@@ -2,18 +2,18 @@
 
 pkgname=teamviewer8
 pkgver=8.0.16675
-pkgrel=6
+pkgrel=7
 pkgdesc="All-In-One Software for Remote Support and Online Meetings"
 arch=('i686' 'x86_64')
 url="http://www.teamviewer.com"
 license=('custom')
 install=${pkgname}.install
 
-if [ $CARCH == 'i686' ]; then
+if [[ $CARCH == 'i686' ]]; then
   source=("teamviewer_linux-${pkgver}.deb::http://www.teamviewer.com/download/version_8x/teamviewer_linux.deb")
   md5sums=('8615365b444eb3927cefbbf3dbed6ffa')
   depends=('alsa-lib' 'libsm' 'libxext' 'freetype2' 'libxtst')
-elif [ $CARCH == 'x86_64' ]; then
+elif [[ $CARCH == 'x86_64' ]]; then
   source=("teamviewer_linux_x64-${pkgver}.deb::http://www.teamviewer.com/download/version_8x/teamviewer_linux_x64.deb")
   md5sums=('4f718ad52ea9091fab4218968a3c1fd7')
   depends=('lib32-libsm' 'lib32-freetype2' 'lib32-gcc-libs' 'lib32-alsa-lib' 'lib32-libxtst' 'lib32-libxdamage')
@@ -31,7 +31,7 @@ package() {
 # Fix permissions
   find "${pkgdir}" -type d -exec chmod 755 {} +
   find "${pkgdir}" -type f -exec chmod 644 {} +
-  find "${pkgdir}" -type f -executable -exec chmod 755 {} +
+  chmod 755 "${pkgdir}"/opt/teamviewer8/tv_bin/{teamviewerd,script/{teamviewer,teamviewer_desktop,tvw*},wine/bin/*,xdg-utils/xdg*}
 
 # Install additional files and dirs
   rm "${pkgdir}"/opt/teamviewer8/tv_bin/xdg-utils/xdg-email~

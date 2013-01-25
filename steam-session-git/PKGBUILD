@@ -33,7 +33,7 @@ package() {
   cp -dpr --no-preserve=ownership steam-login/usr "${pkgdir}"/
   find "${pkgdir}" -type d -exec chmod 755 {} +
   find "${pkgdir}" -type f -exec chmod 644 {} +
-  find "${pkgdir}" -type f -executable -exec chmod 755 {} +
+  chmod 755 "${pkgdir}"/usr/bin/steam-de
 }
 
 # vim: ts=2 sw=2 et:

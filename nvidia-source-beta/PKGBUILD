@@ -5,22 +5,22 @@ pkgver=313.18
 pkgrel=2
 pkgdesc="NVIDIA kernel module source (DKMS) - BETA version"
 arch=('i686' 'x86_64')
-[ $CARCH = x86_64 ] && _arch=x86_64 && _srcname=NVIDIA-Linux-x86_64-${pkgver}-no-compat32 && md5sums=('fa17a260793a38b4b8ae367db2e03b39')
-[ $CARCH = i686 ] && _arch=x86 && _srcname=NVIDIA-Linux-x86-${pkgver} && md5sums=('780c37c28a6e06e9571cafe348b7da64')
+[[ $CARCH == i686 ]] && _arch=x86 && _pkg=NVIDIA-Linux-${_arch}-${pkgver} && md5sums=('780c37c28a6e06e9571cafe348b7da64')
+[[ $CARCH == x86_64 ]] && _arch=x86_64 && _pkg=NVIDIA-Linux-${_arch}-${pkgver}-no-compat32 && md5sums=('fa17a260793a38b4b8ae367db2e03b39')
 url="http://www.nvidia.com/"
 license=('custom')
 depends=('linux>=3.7' 'linux<3.8' "nvidia-utils-beta=${pkgver}" 'dkms')
 provides=("nvidia=${pkgver}" "nvidia-source=${pkgver}")
 conflicts=('nvidia-beta' 'nvidia-source')
-source=("http://us.download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_srcname}.run")
+source=("http://us.download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run")
 install=${pkgname}.install
 
 build() {
   cd "${srcdir}"
-  if [ -d ${_srcname} ] ; then
-    rm -rf ${_srcname}
+  if [[ -d ${_pkg} ]] ; then
+    rm -rf ${_pkg}
   fi
-  sh ${_srcname}.run --extract-only
+  sh ${_pkg}.run --extract-only
 }
 
 package() {
@@ -28,11 +28,11 @@ package() {
 
 # Install files
   install -dm 755 "${pkgdir}"/usr/{src/nvidia-${pkgver},share/licenses}
-  cp -dr --no-preserve=ownership ${_srcname}/kernel/* "${pkgdir}"/usr/src/nvidia-${pkgver}/
+  cp -dr --no-preserve=ownership ${_pkg}/kernel/* "${pkgdir}"/usr/src/nvidia-${pkgver}/
   ln -s /usr/share/licenses/nvidia "${pkgdir}"/usr/share/licenses/nvidia-source-beta
 
 # Fix permissions
-  chmod 644 "${pkgdir}"/usr/src/nvidia-${pkgver}/*[!.sh]
+  chmod 644 "${pkgdir}"/usr/src/nvidia-${pkgver}/*
   chmod 755 "${pkgdir}"/usr/src/nvidia-${pkgver}/*.sh
 }
 

@@ -23,15 +23,15 @@ _multilib=true
 _pkg32="NVIDIA-Linux-x86-${pkgver}"
 _pkg64="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"
 
-if [ $CARCH == i686 ] ; then
+if [[ $CARCH == i686 ]] ; then
   _pkg=${_pkg32}
   source+=("http://us.download.nvidia.com/XFree86/Linux-x86/${pkgver}/${_pkg}.run")
   md5sums+=('780c37c28a6e06e9571cafe348b7da64')
-elif [ $CARCH == x86_64 ] ; then
+elif [[ $CARCH == x86_64 ]] ; then
   _pkg=${_pkg64}
   source+=("http://us.download.nvidia.com/XFree86/Linux-x86_64/${pkgver}/${_pkg}.run")
   md5sums+=('fa17a260793a38b4b8ae367db2e03b39')
-  if [ $_multilib == true ] ; then
+  if [[ $_multilib == true ]] ; then
     depends+=('lib32-zlib' 'lib32-libxext' 'lib32-gcc-libs')
     conflicts+=('lib32-libgl' 'lib32-libcl' 'lib32-nvidia-utils' 'lib32-nvidia-utils-beta' 'lib32-opencl-nvidia')
     provides+=('lib32-libgl' 'lib32-libcl' "lib32-nvidia-utils=${pkgver}" "lib32-opencl-nvidia=${pkgver}")
@@ -43,24 +43,16 @@ fi
 build() {
   cd "${srcdir}"
 
-  if [ -d ${_pkg} ] ; then
+  if [[ -d ${_pkg} ]] ; then
     rm -rf ${_pkg}
   fi
   sh ${_pkg}.run --extract-only
-  if [ $_multilib == true ] ; then
-    if [ -d ${_pkg32} ] ; then
+  if [[ $_multilib == true ]] ; then
+    if [[ -d ${_pkg32} ]] ; then
       rm -rf ${_pkg32}
     fi
     sh ${_pkg32}.run --extract-only
   fi
-}
-
-create_links() {
-  while read -d '' _lib ; do
-    _soname="$(dirname "${_lib}")/$(LC_ALL=C readelf -d "${_lib}" | sed -nr 's/.*Library soname: \[(.*)\].*/\1/p')"
-    [[ -e "${_soname}" ]] || ln -s "$(basename "${_lib}")" "${_soname}"
-    [[ -e "${_soname/.[0-9]*/}" ]] || ln -s "$(basename "${_soname}")" "${_soname/.[0-9]*/}"
-  done < <(find "${pkgdir}" -type f -name '*.so*' -print0)
 }
 
 install_opencl() {
@@ -70,8 +62,6 @@ install_opencl() {
   install -Dm 755 libOpenCL.so.1.0.0 "${pkgdir}"/usr/lib/libOpenCL.so.1.0.0
   install -Dm 755 libnvidia-compiler.so.${pkgver} "${pkgdir}"/usr/lib/libnvidia-compiler.so.${pkgver}
   install -Dm 755 libnvidia-opencl.so.${pkgver} "${pkgdir}"/usr/lib/libnvidia-opencl.so.${pkgver}
-
-  create_links
 }
 
 install_opencl32() {
@@ -81,8 +71,6 @@ install_opencl32() {
   install -Dm 755 libnvidia-compiler.so.${pkgver} "${pkgdir}"/usr/lib/libnvidia-compiler.so.${pkgver}
   install -Dm 755 libnvidia-compiler.so.${pkgver} "${pkgdir}"/usr/lib32/libnvidia-compiler.so.${pkgver}
   install -Dm 755 libnvidia-opencl.so.${pkgver} "${pkgdir}"/usr/lib32/libnvidia-opencl.so.${pkgver}
-
-  create_links
 }
 
 install_utils() {
@@ -159,8 +147,6 @@ install_utils32() {
 # CUDA
   install -Dm 755 libcuda.so.${pkgver} "${pkgdir}"/usr/lib32/libcuda.so.${pkgver}
   install -Dm 755 libnvcuvid.so.${pkgver} "${pkgdir}"/usr/lib32/libnvcuvid.so.${pkgver}
-
-  create_links
 }
 
 install_source() {
@@ -168,7 +154,7 @@ install_source() {
 
   install -dm 755 "${pkgdir}"/usr/src/nvidia-${pkgver}
   cp -dr --no-preserve=ownership kernel/* "${pkgdir}"/usr/src/nvidia-${pkgver}/
-  chmod 644 "${pkgdir}"/usr/src/nvidia-${pkgver}/*[!.sh]
+  chmod 644 "${pkgdir}"/usr/src/nvidia-${pkgver}/*
   chmod 755 "${pkgdir}"/usr/src/nvidia-${pkgver}/*.sh
 }
 
@@ -181,6 +167,14 @@ install_hook() {
   install -m 644 nvidia "${pkgdir}"/usr/lib/initcpio/install/nvidia
 }
 
+create_links() {
+  while read -d '' _lib ; do
+    _soname="$(dirname "${_lib}")/$(LC_ALL=C readelf -d "${_lib}" | sed -nr 's/.*Library soname: \[(.*)\].*/\1/p')"
+    [[ -e "${_soname}" ]] || ln -s "$(basename "${_lib}")" "${_soname}"
+    [[ -e "${_soname/.[0-9]*/}" ]] || ln -s "$(basename "${_soname}")" "${_soname/.[0-9]*/}"
+  done < <(find "${pkgdir}" -type f -name '*.so*' -print0)
+}
+
 package() {
   install_opencl
   install_utils
@@ -190,6 +184,7 @@ package() {
     install_opencl32
     install_utils32
   fi
+  create_links
 }
 
 # vim: ts=2 sw=2 et:
