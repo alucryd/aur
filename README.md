@@ -1,4 +1,4 @@
-aur-nvidia-total
+aur-alucryd
 ================
 
-PKGBUILDs for All-In-One NVIDIA drivers - regular and beta versions
+PKGBUILD repository for all my AUR packages
