@@ -4,14 +4,14 @@ pkgname=ffmpegsource
 pkgver=2.17
 pkgrel=8
 pkgdesc="A libav/ffmpeg based source library and Avisynth plugin for easy frame accurate access"
-url="http://code.google.com/p/ffmpegsource/"
 arch=('x86_64' 'i686')
+url="http://code.google.com/p/ffmpegsource/"
 license=('MIT')
 depends=('ffmpeg')
+conflicts=('ffmpegsource2-svn')
+options=('!libtool')
 source=("http://ffmpegsource.googlecode.com/files/ffms-${pkgver}-src.tar.bz2")
 sha1sums=('3bbd5b5f13dce4374efdd3e2bf048436295e6771')
-conflicts=('ffmpegsource2-svn')
-options=(!libtool)
 
 build() {
   cd "${srcdir}"/ffms-$pkgver-src
@@ -29,3 +29,5 @@ package() {
   install -dm 755 "${pkgdir}"/usr/share/licenses/ffmpegsource
   install -m 644 COPYING "${pkgdir}"/usr/share/licenses/ffmpegsource/license.txt
 }
+
+# vim: ts=2 sw=2 et:

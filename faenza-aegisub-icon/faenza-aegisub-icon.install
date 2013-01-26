@@ -1,11 +1,13 @@
 post_install() {
-	gtk-update-icon-cache -ftq usr/share/icons/Faenza
+  gtk-update-icon-cache -ftq usr/share/icons/Faenza
 }
 
 post_upgrade() {
-	post_install
+  post_install
 }
 
 post_remove() {
-	post_install
+  post_install
 }
+
+# vim: ts=2 sw=2 et:

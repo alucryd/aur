@@ -4,9 +4,9 @@ pkgname=faience-themes
 pkgver=0.5.4
 pkgrel=1
 pkgdesc="Faience is a Work In Progress that include GTK3, GTK2, Metacity and Gnome-Shell themes and an icon theme based on Faenza"
+arch=('any')
 url="http://tiheum.deviantart.com/art/Gnome-Shell-Faience-255097456"
 license=('GPL3')
-arch=('any')
 optdepends=('gnome-shell: Shell Theme'
             'gtk-engine-unico: GTK3 Theme'
             'gtk-engine-murrine: GTK2 Theme'

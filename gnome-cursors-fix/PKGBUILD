@@ -10,9 +10,10 @@ license=('GPL3')
 depends=('gnome-themes-standard')
 
 package() {
-	install -dm 755 "${pkgdir}/usr/share/icons/default"
-	cd "${pkgdir}/usr/share/icons/default"
-	echo "[Icon Theme]" >> index.theme
-	echo "Inherits=Adwaita" >> index.theme
-	chmod 644 "${pkgdir}/usr/share/icons/default/index.theme"
+  install -dm 755 "${pkgdir}"/usr/share/icons/default
+  echo "[Icon Theme]" >> "${pkgdir}"/usr/share/icons/default/index.theme
+  echo "Inherits=Adwaita" >> "${pkgdir}"/usr/share/icons/default/index.theme
+  chmod 644 "${pkgdir}"/usr/share/icons/default/index.theme
 }
+
+# vim: ts=2 sw=2 et:
