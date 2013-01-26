@@ -1,37 +1,40 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=systemd-xorg-launch-helper-git
-pkgver=20130116
+pkgver=20130126
 pkgrel=1
 pkgdesc="A wrapper in C to make X.Org function as a proper systemd unit"
-url="https://github.com/sofar/user-session-units"
 arch=('i686' 'x86_64')
+url="https://github.com/sofar/user-session-units"
 license=('GPL2')
-depends=(systemd xorg-server)
+depends=('systemd' 'xorg-server')
 makedepends=('git')
-conflicts=(systemd-xorg-launch-helper)
+conflicts=('systemd-xorg-launch-helper')
 
 _gitroot="https://github.com/sofar/xorg-launch-helper.git"
 _gitname="xorg-launch-helper"
 
 build () {
-	cd "${srcdir}"
-	msg "Connecting to the GIT server..."
-	if [ -d ${_gitname} ] ; then
-		cd "${_gitname}"
-		git pull origin
-		msg "The local files are updated..."
-	else
-		git clone ${_gitroot} ${_gitname}
-		cd "${_gitname}"
-	fi
-	msg "GIT checkout done."
-	./autogen.sh
-	./configure --prefix=/usr
-	make
+  cd "${srcdir}"
+  msg "Connecting to the GIT server..."
+  if [ -d ${_gitname} ] ; then
+    cd ${_gitname}
+    git pull origin
+    msg "The local files are updated..."
+  else
+    git clone ${_gitroot} ${_gitname}
+    cd ${_gitname}
+  fi
+  msg "GIT checkout done."
+
+  ./autogen.sh
+  ./configure --prefix=/usr
+  make
 }
 
 package() {
-	cd "${srcdir}/${_gitname}"
-	make DESTDIR="${pkgdir}" install
+  cd "${srcdir}"/${_gitname}
+  make DESTDIR="${pkgdir}" install
 }
+
+# vim: ts=2 sw=2 et:

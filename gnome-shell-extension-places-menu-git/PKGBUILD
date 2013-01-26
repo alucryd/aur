@@ -2,7 +2,7 @@
 # Contributor: Bart Verhoeven <nepherte at archlinux dot us>
 
 pkgname=gnome-shell-extension-places-menu-git
-pkgver=20130116
+pkgver=20130126
 pkgrel=1
 pkgdesc="Places menu for GNOME Shell."
 arch=('any')
@@ -17,24 +17,26 @@ _gitroot="git://git.gnome.org/gnome-shell-extensions"
 _gitname="gnome-shell-extensions"
 
 build() {
-	cd "${srcdir}"
+  cd "${srcdir}"
 
-	msg "Connecting to GIT server...."
-	if [ -d ${_gitname} ] ; then
-		cd ${_gitname} && git pull origin
-		msg "The local files are updated."
-	else
-		git clone -b gnome-3-6 ${_gitroot}
-		cd ${_gitname}
-	fi
-	msg "GIT checkout done or server timeout"
+  msg "Connecting to GIT server...."
+  if [[ -d ${_gitname} ]] ; then
+    cd ${_gitname} && git pull origin
+    msg "The local files are updated."
+  else
+    git clone -b gnome-3-6 ${_gitroot}
+    cd ${_gitname}
+  fi
+  msg "GIT checkout done or server timeout"
 
-	msg "Starting make..."
-	./autogen.sh --prefix=/usr --enable-extensions="places-menu"
+  msg "Starting make..."
+  ./autogen.sh --prefix=/usr --enable-extensions="places-menu"
 }
 
 package() {
-	cd "${srcdir}/${_gitname}"
-	make DESTDIR="${pkgdir}" install
-	rm -rf "${pkgdir}/usr/share/locale"
+  cd "${srcdir}"/${_gitname}
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/share/locale
 }
+
+# vim: ts=2 sw=2 et:

@@ -1,7 +1,9 @@
 post_install() {
-	update-desktop-database -q
+  update-desktop-database -q
 }
 
 post_remove() {
-	post_install
+  post_install
 }
+
+# vim: ts=2 sw=2 et:

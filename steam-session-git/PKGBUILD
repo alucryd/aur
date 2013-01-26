@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=steam-session-git
-pkgver=20130125
+pkgver=20130126
 pkgrel=1
 pkgdesc="Launch Steam Big Picture from your login screen"
 arch=('any')
@@ -17,7 +17,7 @@ build () {
   cd "${srcdir}"
 
   msg "Connecting to the GIT server..."
-  if [ -d "${srcdir}"/${_gitname} ] ; then
+  if [[ -d ${_gitname} ]] ; then
     cd ${_gitname}
     git pull origin
     msg "The local files are updated..."
@@ -29,8 +29,11 @@ build () {
 }
 
 package() {
-  cd "${srcdir}/${_gitname}"
-  cp -dpr --no-preserve=ownership steam-login/usr "${pkgdir}"/
+  cd "${srcdir}"
+
+  cp -dr --no-preserve=ownership ${_gitname}/steam-login/usr "${pkgdir}"/
+
+# Fix permissions
   find "${pkgdir}" -type d -exec chmod 755 {} +
   find "${pkgdir}" -type f -exec chmod 644 {} +
   chmod 755 "${pkgdir}"/usr/bin/steam-de

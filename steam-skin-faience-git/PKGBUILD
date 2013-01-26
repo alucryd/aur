@@ -5,8 +5,8 @@ pkgver=20130116
 pkgrel=1
 pkgdesc="WIP Faience skin for Steam Linux (highly unusable for now)"
 arch=('any')
-license=('GPL3')
 url="https://github.com/Alucryd/steam-skin-faience"
+license=('GPL3')
 depends=('steam')
 optdepends=('steam-skin-manager: Easy skin installation')
 
@@ -14,25 +14,27 @@ _gitroot="https://github.com/Alucryd/steam-skin-faience.git"
 _gitname="steam-skin-faience"
 
 build () {
-	cd "${srcdir}"
-	msg "Connecting to the GIT server..."
-	if [[ -d ${srcdir}/${_gitname} ]] ; then
-		cd "${_gitname}"
-		git pull origin
-		msg "The local files are updated..."
-	else
-		git clone ${_gitroot} ${_gitname}
-		cd "${_gitname}"
-	fi
-	msg "GIT checkout done."
+  cd "${srcdir}"
+  msg "Connecting to the GIT server..."
+  if [[ -d ${_gitname} ]] ; then
+    cd ${_gitname}
+    git pull origin
+    msg "The local files are updated..."
+  else
+    git clone ${_gitroot} ${_gitname}
+    cd ${_gitname}
+  fi
+  msg "GIT checkout done."
 }
 
 package() {
-	cd "${srcdir}/${_gitname}"
-	mkdir -p "${pkgdir}/usr/share/steam/skins/Faience/with-buttons"
-	cp -R * "${pkgdir}/usr/share/steam/skins/Faience/with-buttons/"
+  cd "${srcdir}"
+  mkdir -p "${pkgdir}"/usr/share/steam/skins/Faience
+  cp -dr --no-preserve=ownership ${_gitname} "${pkgdir}"/usr/share/steam/skins/Faience/with-buttons
 
 # Fix permissions
-	find "${pkgdir}" -type d -print0 | xargs -0 chmod 755
-	find "${pkgdir}" -type f -print0 | xargs -0 chmod 644
+  find "${pkgdir}" -type d -exec chmod 755 {} +
+  find "${pkgdir}" -type f -exec chmod 644 {} +
 }
+
+# vim: ts=2 sw=2 et:

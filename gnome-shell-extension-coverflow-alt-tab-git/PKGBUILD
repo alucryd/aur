@@ -1,12 +1,12 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-coverflow-alt-tab-git
-pkgver=20130116
+pkgver=20130126
 pkgrel=1
 pkgdesc="Replacement of Alt-Tab, iterates through windows in a cover-flow manner."
+arch=('any')
 url="https://github.com/p91paul/gnome-shell-extensions-coverflowalttab/"
 license=('GPL')
-arch=('any')
 depends=('gnome-shell')
 makedepends=('git')
 install=gschemas.install
@@ -15,26 +15,30 @@ _gitroot="https://github.com/p91paul/gnome-shell-extensions-coverflowalttab.git"
 _gitname="gnome-shell-extensions-coverflowalttab"
 
 build () {
-	cd ${srcdir}
+  cd ${srcdir}
 
-	msg "Connecting to the GIT server..."
-	if [ -d ${srcdir}/${_gitname} ] ; then
-		cd ${_gitname}
-		git pull origin
-		msg "The local files are updated..."
-	else
-		git clone ${_gitroot} ${_gitname}
-		cd ${_gitname}
-	fi
-	msg "GIT checkout done."
+  msg "Connecting to the GIT server..."
+  if [[ -d ${_gitname} ]] ; then
+    cd ${_gitname}
+    git pull origin
+    msg "The local files are updated..."
+  else
+    git clone ${_gitroot} ${_gitname}
+    cd ${_gitname}
+  fi
+  msg "GIT checkout done."
 }
 
 package() {
-	cd "${srcdir}/${_gitname}"
-	mkdir -p "${pkgdir}/usr/share/gnome-shell/extensions/CoverflowAltTab@palatis.blogspot.com"
-	cp * ${pkgdir}/usr/share/gnome-shell/extensions/CoverflowAltTab@palatis.blogspot.com
+  cd "${srcdir}"
+
+  mkdir -p "${pkgdir}"/usr/share/gnome-shell/extensions
+  rm -rf ${_gitname}/.git*
+  cp -dr --no-preserve=ownership ${_gitname} "${pkgdir}"/usr/share/gnome-shell/extensions/CoverflowAltTab@palatis.blogspot.com
 
 # Fix permissions
-	find "${pkgdir}" -type d | xargs chmod 755
-	find "${pkgdir}" -type f | xargs chmod 644
+  find "${pkgdir}" -type d -exec chmod 755 {} +
+  find "${pkgdir}" -type f -exec chmod 644 {} +
 }
+
+# vim: ts=2 sw=2 et:

@@ -1,8 +1,8 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=wow-2-themes
-pkgver=latest
-pkgrel=5
+pkgver=20121229
+pkgrel=1
 pkgdesc="Nice looking theme collection for GTK3, GTK2, Metacity, Unity, Xfwm4, Openbox, Emerald and Chrome/Chromium"
 arch=('any')
 url="http://nale12.deviantart.com/art/WOW-2-291358379"
@@ -14,37 +14,41 @@ optdepends=('gtk-engine-unico: GTK3 themes'
             'unity: Unity theme'
             'xfwm4: Xfwm4 themes'
             'openbox: Openbox themes')
-source=(http://www.deviantart.com/download/291358379/wow_2_by_nale12-d4tgtkb.zip)
-sha256sums=('1826b0b16679633b595a4dcc44b5109ce42fa820c864b8e50c35dfe697475de8')
+source=("${pkgname}-${pkgver}.zip::http://www.deviantart.com/download/291358379/wow_2_by_nale12-d4tgtkb.zip")
+sha256sums=('91a95e4c6178a47f847f9ef86c24a74bf873a2ce9a65a1766ca7e8c2195e8039')
+
+_left=false
+_emerald=false
+_chromium=false
 
 package() {
-	cd "${srcdir}"
+  cd "${srcdir}"
 
 # Install GTK, Metacity, Unity, Xfwm4 and Openbox themes
-	mkdir -p "${pkgdir}/usr/share/themes"
-	cp -R WOW-2 "${pkgdir}/usr/share/themes/"
-	cp -R WOW-2_Dark_Toolbar "${pkgdir}/usr/share/themes/WOW-2-Dark-Toolbar"
+  mkdir -p "${pkgdir}"/usr/share/themes
+  cp -dr --no-preserve=ownership WOW-2 "${pkgdir}"/usr/share/themes/
+  cp -dr --no-preserve=ownership WOW-2_Dark_Toolbar "${pkgdir}"/usr/share/themes/WOW-2-Dark-Toolbar
 
 # Install Metacity Left Buttons
-#	cd "$srcdir/Left-Buttons-Metacity"
-#	if [ -d "$pkgdir/usr/share/themes/WOW-2" ] ; then
-#		cp -Rf metacity-1 "$pkgdir/usr/share/themes/WOW-2/"
-#	fi
-#	if [ -d "$pkgdir/usr/share/themes/WOW-2-Dark-Toolbar" ] ; then
-#		cp -Rf metacity-1 "$pkgdir/usr/share/themes/WOW-2-Dark-Toolbar/"
-#	fi
+  if [[ $_left == true ]] ; then
+    cp -drf --no-preserve=ownership Left-Buttons-Metacity/metacity-1 "${pkgdir}"/usr/share/themes/{WOW-2,WOW-2-Dark-Toolbar}/
+  fi
 
 # Install Emerald theme
-#	cd "${srcdir}"
-#	mkdir -p "${pkgdir}/usr/share/emerald/themes"
-#	cp WOW-2.emerald "${pkgdir}/usr/share/emerald/themes/WOW-2.emerald"
+  if [[ $_emerald == true ]] ; then
+    mkdir -p "${pkgdir}"/usr/share/emerald/themes
+    cp -d --no-preserve=ownership WOW-2.emerald "${pkgdir}"/usr/share/emerald/themes/
+  fi
 
 # Install Chrome/Chromium theme
-	cd "${srcdir}"
-	mkdir -p "${pkgdir}/usr/share/chromium/themes"
-	cp WOW-2.crx "${pkgdir}/usr/share/chromium/themes/WOW-2.crx"
+  if [[ $_chromium == true ]] ; then
+    mkdir -p "${pkgdir}"/usr/share/chromium/themes
+    cp -d --no-preserve=ownership WOW-2.crx "${pkgdir}"/usr/share/chromium/themes/
+  fi
 
 # Fix permissions
-	find "${pkgdir}" -type d | xargs chmod 755
-	find "${pkgdir}" -type f | xargs chmod 644
+  find "${pkgdir}" -type d -exec chmod 755 {} +
+  find "${pkgdir}" -type f -exec chmod 644 {} +
 }
+
+# vim: ts=2 sw=2 et:

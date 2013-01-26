@@ -1,12 +1,12 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-windowoverlay-icons-git
-pkgver=20130116
+pkgver=20130126
 pkgrel=1
 pkgdesc="A GNOME Shell extension to add an icon to windows in the overview"
+arch=('any')
 url="https://github.com/sustmi/gnome-shell-extensions-sustmi"
 license=('GPL3')
-arch=('any')
 depends=('gnome-shell')
 makedepends=('git')
 install=gschemas.install
@@ -15,28 +15,29 @@ _gitroot="https://github.com/sustmi/gnome-shell-extensions-sustmi.git"
 _gitname="gnome-shell-extensions-sustmi"
 
 build() {
-	cd "${srcdir}"
+  cd "${srcdir}"
 
-	msg "Connecting to the GIT server..."
-	if [ -d ${_gitname} ] ; then
-		cd ${_gitname}
-		git pull origin
-		msg "The local files are updated..."
-	else
-		git clone ${_gitroot} ${_gitname}
-		cd ${_gitname}
-	fi
-	msg "GIT checkout done."
+  msg "Connecting to the GIT server..."
+  if [[ -d ${_gitname} ]] ; then
+    cd ${_gitname}
+    git pull origin
+    msg "The local files are updated..."
+  else
+    git clone ${_gitroot} ${_gitname}
+    cd ${_gitname}
+  fi
+  msg "GIT checkout done."
 }
 
 package() {
-	cd "${srcdir}/${_gitname}"
-	mkdir -p "${pkgdir}/usr/share/gnome-shell/extensions/windowoverlay-icons@sustmidown.centrum.cz"
-	cp windowoverlay-icons/*.{css,js,json,xml} "${pkgdir}/usr/share/gnome-shell/extensions/windowoverlay-icons@sustmidown.centrum.cz/"
-	mkdir -p "${pkgdir}/usr/share/glib-2.0/schemas"
-	cp windowoverlay-icons/schemas/*.gschema.xml "${pkgdir}/usr/share/glib-2.0/schemas/"
+  cd "${srcdir}"
+  mkdir -p "${pkgdir}"/usr/share/{glib-2.0/schemas,gnome-shell/extensions/windowoverlay-icons@sustmidown.centrum.cz}
+  cp -d --no-preserve=ownership ${_gitname}/windowoverlay-icons/*.{css,js,json,xml} "${pkgdir}"/usr/share/gnome-shell/extensions/windowoverlay-icons@sustmidown.centrum.cz/
+  cp -d --no-preserve=ownership ${_gitname}/windowoverlay-icons/schemas/*.gschema.xml "${pkgdir}"/usr/share/glib-2.0/schemas/
 
 # Fix permissions
-	find "${pkgdir}" -type d | xargs chmod 755
-	find "${pkgdir}" -type f | xargs chmod 644
+  find "${pkgdir}" -type d -exec chmod 755 {} +
+  find "${pkgdir}" -type f -exec chmod 644 {} +
 }
+
+# vim: ts=2 sw=2 et:

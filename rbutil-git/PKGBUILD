@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=rbutil-git
-pkgver=20130117
+pkgver=20130126
 pkgrel=1
 pkgdesc="Rockbox Utility git version"
 arch=('i686' 'x86_64')
@@ -17,31 +17,32 @@ _gitroot="git://git.rockbox.org/rockbox"
 _gitname="rockbox"
 
 build() {
-	cd ${srcdir}
+  cd ${srcdir}
 
-	msg "Connecting to the GIT server..."
-	if [ -d ${_gitname} ] ; then
-		cd ${_gitname}
-		git pull origin
-		msg "The local files are updated..."
-	else
-		git clone ${_gitroot} ${_gitname}
-		cd ${_gitname}
-	fi
-	msg "GIT checkout done."
+  msg "Connecting to the GIT server..."
+  if [[ -d ${_gitname} ]] ; then
+    cd ${_gitname}
+    git pull origin
+    msg "The local files are updated..."
+  else
+    git clone ${_gitroot} ${_gitname}
+    cd ${_gitname}
+  fi
+  msg "GIT checkout done."
 
-	cd rbutil/rbutilqt
-	lrelease rbutilqt.pro
-	qmake
-	make
+  cd rbutil/rbutilqt
+  lrelease rbutilqt.pro
+  qmake
+  make
 }
 
 package(){
-	cd "${srcdir}"
-	install -dm 755 "${pkgdir}/usr/share/applications"
-	install -m 644 rbutil.desktop "${pkgdir}/usr/share/applications/rbutil.desktop"
-	cd ${_gitname}/rbutil/rbutilqt
-	install -dm 755 "${pkgdir}/usr/share/pixmaps"
-	install -m 644 icons/rockbox-64.png "${pkgdir}/usr/share/pixmaps/rbutil.png"
-	install -Dm 755 RockboxUtility "${pkgdir}/usr/bin/rbutil"
+  cd "${srcdir}"
+  install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,pixmaps}}
+  install -m 644 rbutil.desktop "${pkgdir}"/usr/share/applications/rbutil.desktop
+  cd ${_gitname}/rbutil/rbutilqt
+  install -m 644 icons/rockbox-64.png "${pkgdir}"/usr/share/pixmaps/rbutil.png
+  install -m 755 RockboxUtility "${pkgdir}"/usr/bin/rbutil
 }
+
+# vim: ts=2 sw=2 et:

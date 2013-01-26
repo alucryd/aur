@@ -1,37 +1,39 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=steam-skin-manager
-pkgver=2.1
+pkgver=2.3
 pkgrel=1
 pkgdesc="GUI for Steam skins management"
 arch=('i686' 'x86_64')
-license=('GPL3')
 url="http://iubuntu.cz/Steam/"
+license=('GPL3')
 depends=('steam' 'zenity')
-install=$pkgname.install
+install=${pkgname}.install
 source=('http://iubuntu.cz/Steam/steam-skin-installer.deb' 'steam-skin-manager.desktop' 'steam-wb.desktop')
-sha256sums=('24876e4caa8336357f70dbb7bb22b69ef8f6247d66fbd0c01cec797e20efbe6a'
+sha256sums=('b6854f9a7298b5fee305214387c2ee90b03da728cdd79655acbfcd785dfe08a5'
             '40471720a375c40babe90516267877b3937e1badfef39a886c69ef785c9e6d4a'
             '55c6d96cf70bc853c8aebc173484889db87213939bcace74eb2a6c66eb388f90')
 
 build() {
-	cd ${srcdir}
-	tar -xf data.tar.gz
-	rm usr/share/applications/*
-	cp *.desktop usr/share/applications/
+  cd ${srcdir}
+  tar -xf data.tar.gz
+  rm usr/share/applications/*
+  cp *.desktop usr/share/applications/
 }
 
 package() {
-	cd ${srcdir}
-	cp -R usr "${pkgdir}/"
+  cd ${srcdir}
+  cp -dr --no-preserve=ownership usr "${pkgdir}"/
 
 # Fix paths for i686
-	if  [ "$CARCH" == "i686" ]; then
-		mv "${pkgdir}/usr/lib32" "${pkgdir}/usr/lib"
-	fi
+  if  [[ ${CARCH} == i686 ]] ; then
+    mv "${pkgdir}"/usr/lib32 "${pkgdir}"/usr/lib
+  fi
 
 # Fix permissions
-	find "${pkgdir}" -type d -print0 | xargs -0 chmod 755
-	find "${pkgdir}" -type f -print0 | xargs -0 chmod 644
-	chmod 755 -R "${pkgdir}/usr/bin"
+  find "${pkgdir}" -type d -exec chmod 755 {} +
+  find "${pkgdir}" -type f -exec chmod 644 {} +
+  chmod 755 "${pkgdir}"/usr/bin/steam-{skin,skin-gui,wb}
 }
+
+# vim: ts=2 sw=2 et:
