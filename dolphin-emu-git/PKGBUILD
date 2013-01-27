@@ -8,18 +8,16 @@ pkgdesc="A GameCube / Wii / Triforce emulator - GIT version"
 arch=('i686' 'x86_64')
 url="http://www.dolphin-emu.org/"
 license=('GPL2')
-depends=('sdl' 'libxxf86vm' 'nvidia-cg-toolkit' 'glew' 'mesa' 'libgl' 'lzo2' 'wxgtk2.9')
-makedepends=('git' 'cmake' 'glproto' 'opencl-headers')
-optdepends=('ffmpeg: frame dump'
+depends=('bluez' 'lzo2' 'nvidia-cg-toolkit' 'sdl' 'sfml1.6' 'soundtouch' 'wxgtk2.9')
+makedepends=('cmake' 'git' 'glproto' 'opencl-headers')
+optdepends=('alsa-lib: ALSA backend'
+            'libpulse: PulseAudio backend'
+            'libao: AOsound backend'
+            'openal: OpenAL backend'
             'portaudio: mic support'
-            'libao: aosound backend'
-            'openal: openal backend'
-            'pulseaudio: pulseaudio backend')
+            'ffmpeg: frame dump')
 provides=('dolphin-emu')
 conflicts=('dolphin-emu' 'dolphin-emu-svn-bin' 'dolphin-emu-svn')
-source=('dolphin-emu.desktop' 'Dolphin_Logo.png')
-sha256sums=('1cf1cc034ad03cf068d39fd3bac0103dfb663695966a6846e530d8b8cb363470'
-            '4ef79175305df7bb9201931870c4bedc5eda9c94b65311973dfd41c1128784d1')
 
 _gitroot=http://code.google.com/p/dolphin-emu/
 _gitname=dolphin-emu
@@ -51,8 +49,4 @@ package() {
   cd "${srcdir}"/${_gitname}-build
 
   make DESTDIR="${pkgdir}" install
-
-  install -dm 755 "${pkgdir}"/usr/share/{applications,pixmaps}
-  install -m 644 "${srcdir}"/dolphin-emu.desktop "${pkgdir}"/usr/share/applications/dolphin-emu.desktop
-  install -m 644 "${srcdir}"/Dolphin_Logo.png "${pkgdir}"/usr/share/icons/dolphin-emu.png
 }
