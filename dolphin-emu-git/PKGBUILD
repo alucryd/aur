@@ -1,0 +1,58 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+# Contributor: Lightning <sgsdxzy at gmail dot com>
+
+pkgname=dolphin-emu-git
+pkgver=20130127
+pkgrel=1
+pkgdesc="A GameCube / Wii / Triforce emulator - GIT version"
+arch=('i686' 'x86_64')
+url="http://www.dolphin-emu.org/"
+license=('GPL2')
+depends=('sdl' 'libxxf86vm' 'nvidia-cg-toolkit' 'glew' 'mesa' 'libgl' 'lzo2' 'wxgtk2.9')
+makedepends=('git' 'cmake' 'glproto' 'opencl-headers')
+optdepends=('ffmpeg: frame dump'
+            'portaudio: mic support'
+            'libao: aosound backend'
+            'openal: openal backend'
+            'pulseaudio: pulseaudio backend')
+provides=('dolphin-emu')
+conflicts=('dolphin-emu' 'dolphin-emu-svn-bin' 'dolphin-emu-svn')
+source=('dolphin-emu.desktop' 'Dolphin_Logo.png')
+sha256sums=('1cf1cc034ad03cf068d39fd3bac0103dfb663695966a6846e530d8b8cb363470'
+            '4ef79175305df7bb9201931870c4bedc5eda9c94b65311973dfd41c1128784d1')
+
+_gitroot=http://code.google.com/p/dolphin-emu/
+_gitname=dolphin-emu
+
+build() {
+  cd "$srcdir"
+
+  msg "Connecting to GIT server...."
+  if [[ -d ${_gitname} ]] ; then
+    cd ${_gitname} && git pull origin
+    msg "The local files are updated."
+  else
+    git clone ${_gitroot} ${_gitname}
+  fi
+  msg "GIT checkout done or server timeout"
+
+  msg "Starting build..."
+  if [[ -d ${_gitname}-build ]] ; then
+    rm -rf ${_gitname}-build
+  fi
+  mkdir ${_gitname}-build
+  cd ${_gitname}-build
+
+  cmake ../${_gitname} -DCMAKE_INSTALL_PREFIX=/usr -DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.9
+  make
+
+}
+package() {
+  cd "${srcdir}"/${_gitname}-build
+
+  make DESTDIR="${pkgdir}" install
+
+  install -dm 755 "${pkgdir}"/usr/share/{applications,pixmaps}
+  install -m 644 "${srcdir}"/dolphin-emu.desktop "${pkgdir}"/usr/share/applications/dolphin-emu.desktop
+  install -m 644 "${srcdir}"/Dolphin_Logo.png "${pkgdir}"/usr/share/icons/dolphin-emu.png
+}
