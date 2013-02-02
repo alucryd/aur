@@ -2,7 +2,7 @@
 # Contributor: Lightning <sgsdxzy at gmail dot com>
 
 pkgname=dolphin-emu-git
-pkgver=20130127
+pkgver=20130202
 pkgrel=1
 pkgdesc="A GameCube / Wii / Triforce emulator - GIT version"
 arch=('i686' 'x86_64')
@@ -31,22 +31,26 @@ build() {
     msg "The local files are updated."
   else
     git clone ${_gitroot} ${_gitname}
+    cd ${_gitname}
   fi
   msg "GIT checkout done or server timeout"
 
   msg "Starting build..."
-  if [[ -d ${_gitname}-build ]] ; then
-    rm -rf ${_gitname}-build
+  if [[ -d build ]] ; then
+    rm -rf build
   fi
-  mkdir ${_gitname}-build
-  cd ${_gitname}-build
+  mkdir build
+  cd build
 
-  cmake ../${_gitname} -DCMAKE_INSTALL_PREFIX=/usr -DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.9
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.9 -DwxWidgets_wxrc_EXECUTABLE=/usr/bin/wxrc-2.9 -DSFML_INCLUDE_DIR=/usr/include/sfml1.6 -DCMAKE_CXX_FLAGS=" -I/usr/include/sfml1.6"
+  sed -i 's|-lsfml-network|-lsfml1.6-network|g' Source/Core/DolphinWX/CMakeFiles/dolphin-emu.dir/link.txt
   make
 
 }
 package() {
-  cd "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${_gitname}/build
 
   make DESTDIR="${pkgdir}" install
 }
+
+# vim: ts=2 sw=2 et:
