@@ -2,7 +2,7 @@
 # Contributor: Barthalion <aur at bpiotrowski dot pl>
 
 pkgname=vba-m
-pkgver=1.8.0.1138
+pkgver=1.8.0.1159
 pkgrel=1
 pkgdesc="A VBA fork which improves the capatibility and features of the emulator"
 arch=('i686' 'x86_64')
@@ -11,12 +11,12 @@ license=('GPL')
 depends=('desktop-file-utils' 'gtkglextmm' 'hicolor-icon-theme' 'sdl')
 makedepends=('cmake' 'nasm')
 install='vba-m.install'
-source=("http://downloads.sourceforge.net/project/vbam/VBA-M%20svn%20r1138/vbam-${pkgver}-src.tar.gz")
-sha256sums=('03fc51d400f17f45eaa38f314077e7dcdae4f4bb2193b6596a2c560b24a1a886')
+source=("http://downloads.sourceforge.net/project/vbam/vbam-src/vbam-r1159-src.tar.bz2")
+sha256sums=('0c5d53b42eb837af963226dad6d175c355991a2bd809a11dcf7d2c832e89fb52')
 
 build() {
   cd "${srcdir}"
-  cmake . -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_LINK=OFF -DENABLE_FFMPEG=OFF
+  cmake . -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_LINK=OFF
   make
 }
 

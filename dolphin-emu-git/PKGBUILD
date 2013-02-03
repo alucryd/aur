@@ -2,20 +2,20 @@
 # Contributor: Lightning <sgsdxzy at gmail dot com>
 
 pkgname=dolphin-emu-git
-pkgver=20130202
+pkgver=20130203
 pkgrel=1
 pkgdesc="A GameCube / Wii / Triforce emulator - GIT version"
 arch=('i686' 'x86_64')
 url="http://www.dolphin-emu.org/"
 license=('GPL2')
-depends=('bluez' 'lzo2' 'nvidia-cg-toolkit' 'sdl' 'sfml1.6' 'soundtouch' 'wxgtk2.9')
+depends=('bluez' 'lzo2' 'nvidia-cg-toolkit' 'sdl' 'soil' 'soundtouch' 'wxgtk2.9')
 makedepends=('cmake' 'git' 'glproto' 'opencl-headers')
 optdepends=('alsa-lib: ALSA backend'
             'libpulse: PulseAudio backend'
             'libao: AOsound backend'
             'openal: OpenAL backend'
             'portaudio: mic support'
-            'ffmpeg: frame dump')
+            'ffmpeg: AVI dump')
 provides=('dolphin-emu')
 conflicts=('dolphin-emu' 'dolphin-emu-svn-bin' 'dolphin-emu-svn')
 
@@ -42,8 +42,7 @@ build() {
   mkdir build
   cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.9 -DwxWidgets_wxrc_EXECUTABLE=/usr/bin/wxrc-2.9 -DSFML_INCLUDE_DIR=/usr/include/sfml1.6 -DCMAKE_CXX_FLAGS=" -I/usr/include/sfml1.6"
-  sed -i 's|-lsfml-network|-lsfml1.6-network|g' Source/Core/DolphinWX/CMakeFiles/dolphin-emu.dir/link.txt
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.9 -DwxWidgets_wxrc_EXECUTABLE=/usr/bin/wxrc-2.9
   make
 
 }
