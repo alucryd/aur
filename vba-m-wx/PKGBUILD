@@ -8,7 +8,7 @@ pkgdesc="A VBA fork which improves the capatibility and features of the emulator
 arch=('i686' 'x86_64')
 url="http://vba-m.com"
 license=('GPL')
-depends=('hicolor-icon-theme' 'sfml1.6' 'wxgtk')
+depends=('ffmpeg' 'hicolor-icon-theme' 'sfml1.6' 'wxgtk')
 makedepends=('cmake' 'imagemagick' 'mesa' 'zip')
 conflicts=('vba-m-gtk')
 install=${pkgname}.install
@@ -22,7 +22,7 @@ build() {
   sed -i 's|/usr/include|/usr/include/sfml1.6|' CMakeScripts/FindSFML.cmake
   sed -i 's|NAMES sfml-|NAMES sfml1.6-|' CMakeScripts/FindSFML.cmake
 
-  cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_CXX_FLAGS=" -I/usr/include/sfml1.6" -DENABLE_WX=ON -DENABLE_GTK=OFF
+  cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_CXX_FLAGS=" -I/usr/include/sfml1.6" -DENABLE_WX=ON -DENABLE_FFMPEG=ON -DENABLE_GTK=OFF
   make
 }
 
