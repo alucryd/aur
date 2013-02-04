@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=steam-skin-manager
-pkgver=3.6.1
+pkgver=3.7
 pkgrel=2
 pkgdesc="GUI for Steam skins management"
 arch=('i686' 'x86_64')
@@ -10,14 +10,14 @@ license=('GPL3')
 depends=('steam' 'qt>=4.7.0' 'qtwebkit')
 install=${pkgname}.install
 source=("${pkgname}-${pkgver}.deb::http://iubuntu.cz/Steam/steam-skin-installer.deb" 'steam-skin-manager.desktop' 'steam-wb.desktop')
-sha256sums=('221004be67336f71f77f2c9f90b9e60c4e0fc3017fb01086e9afe7f42ec543ea'
+sha256sums=('2de5b79802891c1bb5ad1c11668c03a5abd9c981623e3f5b3a4d538c94db4ef7'
             'ec6fdcdfa6eb5483fd6e996a38cd89dd9dbac70c119cd764aa25e0da6e7d04e2'
             '55c6d96cf70bc853c8aebc173484889db87213939bcace74eb2a6c66eb388f90')
 
 build() {
   cd ${srcdir}
   tar -xf data.tar.gz
-  rm usr/share/applications/*
+  rm -rf usr/share/{applications/*,icons,pixmaps/steamwb.svg,steam}
   cp *.desktop usr/share/applications/
 }
 
