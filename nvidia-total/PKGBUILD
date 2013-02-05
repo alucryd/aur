@@ -2,7 +2,7 @@
 
 pkgname=nvidia-total
 pkgver=310.32
-pkgrel=1
+pkgrel=2
 pkgdesc="NVIDIA drivers for linux: nvidia-utils + lib32-nvidia-utils + opencl-nvidia + lib32-opencl-nvidia + nvidia-source + nvidia-hook (DKMS)"
 arch=('i686' 'x86_64')
 url="http://www.nvidia.com/"
@@ -151,6 +151,7 @@ install_source() {
   cd "${srcdir}"/${_pkg}
 
   install -dm 755 "${pkgdir}"/usr/src/nvidia-${pkgver}
+  sed -i 's|-le 5|-le 6|' kernel/conftest.sh
   cp -dr --no-preserve=ownership kernel/* "${pkgdir}"/usr/src/nvidia-${pkgver}/
   chmod 644 "${pkgdir}"/usr/src/nvidia-${pkgver}/*
   chmod 755 "${pkgdir}"/usr/src/nvidia-${pkgver}/*.sh
