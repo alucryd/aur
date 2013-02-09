@@ -1,0 +1,39 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+# Contributor: Infy <eugene dot yudin at gmail dot com>
+
+pkgname=pcsxr-svn
+pkgver=82713
+pkgrel=1
+pkgdesc="A Sony PlayStation emulator based on the PCSX-df Project"
+arch=('i686' 'x86_64')
+url="http://pcsxr.codeplex.com/"
+license=('GPL')
+depends=('gtk3' 'libcdio' 'libgl' 'libxv' 'sdl')
+makedepends=('intltool' 'mesa' 'subversion')
+provides=('pcsx')
+conflicts=('pcsx-df' 'pcsxr')
+options=('!libtool')
+
+_svntrunk=https://pcsxr.svn.codeplex.com/svn/pcsxr
+_svnmod=pcsxr
+
+build() {
+  cd "${srcdir}"
+
+  if [ -d ${_svnmod}/.svn ] ; then
+    (cd ${_svnmod} && svn up -r ${pkgver})
+  else
+    svn co ${_svntrunk} --config-dir ./ -r ${pkgver} ${_svnmod}
+  fi
+  msg "SVN checkout done or server timeout"
+
+  msg "Starting make..."
+  cd ${_svnmod}
+  ./autogen.sh --prefix=/usr --enable-libcdio --enable-opengl
+  make
+}
+
+package() {
+  cd "${srcdir}"/${_svnmod}
+  make DESTDIR="${pkgdir}" install
+}
