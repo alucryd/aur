@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=steam-skin-ambiance
-pkgver=3.7
+pkgver=3.8
 pkgrel=1
 pkgdesc="Ambiance skin for Steam Linux"
 arch=('any')
@@ -10,7 +10,7 @@ license=('GPL3')
 depends=('steam')
 optdepends=('steam-skin-manager: Easy skin installation')
 source=("${pkgname}-${pkgver}.deb::http://iubuntu.cz/Steam/steam-skin-installer.deb")
-sha256sums=('2de5b79802891c1bb5ad1c11668c03a5abd9c981623e3f5b3a4d538c94db4ef7')
+sha256sums=('e85f8d2fe6492293a7096325bc86fcbccb2da91f47433a1fa2d76de7e1ca5e55')
 
 build() {
   cd ${srcdir}
