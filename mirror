@@ -1,0 +1,22 @@
+#!/bin/sh
+
+mirror() {
+  for d in "$1"/*
+  do
+  if [[ -d "$d" ]] ; then
+    if ! [[ -d ../"$d" ]] ; then
+      mkdir -p ../"$d"
+    fi
+      for f in "$d"/*
+      do
+        if ! [[ -h ../"$f" ]] ; then
+          ln -s ../../aur-alucryd/"$f" ../"$f"
+        fi
+      done
+    fi
+  done
+}
+
+for r in '[community]' '[unsupported]' '[personal]' ; do
+  mirror "$r"
+done

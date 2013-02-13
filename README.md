@@ -1,4 +1,4 @@
 aur-alucryd
 ================
 
-PKGBUILD repository for all my AUR packages
+PKGBUILD repository for all my packages
