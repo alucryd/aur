@@ -12,7 +12,8 @@ license=('custom')
 depends=('linux>=3.7' 'linux<3.8' "nvidia-utils-beta=${pkgver}" 'dkms')
 provides=("nvidia=${pkgver}" "nvidia-source=${pkgver}")
 conflicts=('nvidia-beta' 'nvidia-source')
-source=("http://us.download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run")
+source=("http://us.download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run" 'linux-3.7.7.patch')
+md5sums+=('e396280ac707cd19211c589fbe07b3d2')
 install=${pkgname}.install
 
 build() {
@@ -24,14 +25,14 @@ build() {
 }
 
 package() {
-  cd "${srcdir}"
+  cd "${srcdir}"/${_pkg}/kernel
 
-# Fix for kernel >= 3.7.6
-  sed -i 's|-le 5|-le 6|' ${_pkg}/kernel/conftest.sh
+# Fix for kernel >= 3.7.7
+  patch -Np2 -i "${srcdir}"/linux-3.7.7.patch
 
 # Install files
   install -dm 755 "${pkgdir}"/usr/{src/nvidia-${pkgver},share/licenses}
-  cp -dr --no-preserve=ownership ${_pkg}/kernel/* "${pkgdir}"/usr/src/nvidia-${pkgver}/
+  cp -dr --no-preserve=ownership * "${pkgdir}"/usr/src/nvidia-${pkgver}/
   ln -s /usr/share/licenses/nvidia "${pkgdir}"/usr/share/licenses/nvidia-source-beta
 
 # Fix permissions

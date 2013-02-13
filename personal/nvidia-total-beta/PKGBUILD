@@ -14,8 +14,8 @@ optdepends=('gtk2: nvidia-settings'
             'opencl-headers: headers necessary for OpenCL development')
 conflicts=('libgl' 'libcl' 'nvidia' 'nvidia-beta' 'nvidia-utils' 'nvidia-utils-beta' 'nvidia-source' 'nvidia-source-beta' 'nvidia-hook' 'opencl-nvidia')
 provides=('libgl' 'libcl' "nvidia=${pkgver}" "nvidia-utils=${pkgver}" "opencl-nvidia=${pkgver}")
-source=("https://raw.github.com/Alucryd/mkinitcpio-hooks/master/nvidia")
-md5sums=('00509e48257c22d11b89f32357b04c4f')
+source=("https://raw.github.com/Alucryd/mkinitcpio-hooks/master/nvidia" 'linux-3.7.7.patch')
+md5sums=('00509e48257c22d11b89f32357b04c4f' 'e396280ac707cd19211c589fbe07b3d2')
 options=('!strip')
 install=${pkgname}.install
 
@@ -150,11 +150,11 @@ install_utils32() {
 }
 
 install_source() {
-  cd "${srcdir}"/${_pkg}
+  cd "${srcdir}"/${_pkg}/kernel
 
   install -dm 755 "${pkgdir}"/usr/src/nvidia-${pkgver}
-  sed -i 's|-le 5|-le 6|' kernel/conftest.sh
-  cp -dr --no-preserve=ownership kernel/* "${pkgdir}"/usr/src/nvidia-${pkgver}/
+  patch -Np2 -i "${srcdir}"/linux-3.7.7.patch
+  cp -dr --no-preserve=ownership * "${pkgdir}"/usr/src/nvidia-${pkgver}/
   chmod 644 "${pkgdir}"/usr/src/nvidia-${pkgver}/*
   chmod 755 "${pkgdir}"/usr/src/nvidia-${pkgver}/*.sh
 }
