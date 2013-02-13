@@ -1,16 +1,16 @@
 #!/bin/bash
 
 mirror() {
-  for d in ./$1/*
+  for d in $1/*
   do
-    if [[ -d $d ]] ; then
-      if ! [[ -d ../$d ]] ; then
-        mkdir ../$d
-      fi
-      for f in ./$1/$d/*
+  if [[ -d $d ]] ; then
+    if ! [[ -d ../$d ]] ; then
+      mkdir -p ../$d
+    fi
+      for f in $d/*
       do
         if ! [[ -h ../$f ]] ; then
-          ln -s ../aur-alucryd/$f ../$f
+          ln -s ../../aur-alucryd/$f ../$f
         fi
       done
     fi
