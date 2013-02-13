@@ -2,7 +2,7 @@
 
 pkgname=nvidia-source
 pkgver=313.18
-pkgrel=1
+pkgrel=2
 pkgdesc="NVIDIA kernel module source (DKMS)"
 arch=('i686' 'x86_64')
 [[ $CARCH == i686 ]] && _arch=x86 && _pkg=NVIDIA-Linux-${_arch}-${pkgver} && md5sums=('780c37c28a6e06e9571cafe348b7da64')
@@ -25,6 +25,9 @@ build() {
 
 package() {
   cd "${srcdir}"
+
+# Fix for kernel >= 3.7.6
+  sed -i 's|-le 5|-le 6|' ${_pkg}/kernel/conftest.sh
 
 # Install files
   install -dm 755 "${pkgdir}"/usr/{src/nvidia-${pkgver},share/licenses}

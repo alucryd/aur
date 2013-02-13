@@ -1,15 +1,22 @@
 #!/bin/bash
-for d in ./*
-do
-  if [[ -d $d ]] ; then
-    if ! [[ -d ../$d ]] ; then
-      mkdir ../$d
-    fi
-    for f in $d/*
-    do
-      if ! [[ -h ../$f ]] ; then
-        ln -s ../aur-alucryd/$f ../$f
+
+mirror() {
+  for d in ./$1/*
+  do
+    if [[ -d $d ]] ; then
+      if ! [[ -d ../$d ]] ; then
+        mkdir ../$d
       fi
-    done
-  fi
+      for f in ./$1/$d/*
+      do
+        if ! [[ -h ../$f ]] ; then
+          ln -s ../aur-alucryd/$f ../$f
+        fi
+      done
+    fi
+  done
+}
+
+for r in community unsupported personal ; do
+  mirror $r
 done
