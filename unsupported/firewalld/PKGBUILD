@@ -4,7 +4,7 @@
 
 pkgname=firewalld
 pkgver=0.2.12
-pkgrel=2
+pkgrel=3
 pkgdesc="Firewall service daemon that provides a dynamic customizable firewall with a D-BUS interface"
 arch=('any')
 url="http://fedorahosted.org/firewalld"
@@ -13,11 +13,15 @@ depends=('dconf' 'iptables' 'ebtables' 'gtk2' 'hicolor-icon-theme' 'python2-slip
 makedepends=('gettext' 'intltool')
 conflicts=('firewalld-git')
 install=${pkgname}.install
-source=("http://fedorahosted.org/released/$pkgname/$pkgname-$pkgver.tar.bz2")
-sha256sums=('02da3b1660ba87056615f64714dcdcc13694e953d07fb415b1b23d57d94b3071')
+source=("http://fedorahosted.org/released/$pkgname/$pkgname-$pkgver.tar.bz2" 'default-zone.patch')
+sha256sums=('02da3b1660ba87056615f64714dcdcc13694e953d07fb415b1b23d57d94b3071'
+            'ba1dd3b6c43c934cd015754d672a45eb28cd176e9e91a7d64a124d0544e2078b')
 
 build() {
   cd "${srcdir}"/${pkgname}-${pkgver}
+
+# Default zone fix
+  patch -Np1 -i "${srcdir}"/default-zone.patch
 
 # Python 2 fix
   export PYTHON=python2
