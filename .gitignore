@@ -1,0 +1,7 @@
+*.log
+*.pkg.tar.xz
+*.src.tar.gz
+src/
+pkg/
+repos/
+.svn/
