@@ -1,0 +1,46 @@
+# $Id$
+# Maintainer: Maxime Gauduin <alucryd at gmail dot com>
+# Contributor: unikum <unikum dot pm at gmail.com>
+# Contributor: speed145a <jonathan at tagchapter dot com>
+
+pkgname=firewalld
+pkgver=0.2.12
+pkgrel=3
+pkgdesc="Firewall service daemon that provides a dynamic customizable firewall with a D-BUS interface"
+arch=('any')
+url="http://fedorahosted.org/firewalld"
+license=('GPL2')
+depends=('dconf' 'ebtables' 'gtk2' 'hicolor-icon-theme' 'iptables' 'python2-slip')
+makedepends=('gettext' 'intltool')
+conflicts=('firewalld-git')
+install=${pkgname}.install
+source=("http://fedorahosted.org/released/$pkgname/$pkgname-$pkgver.tar.bz2" 'python2.patch' 'paths.patch' 'default-zone.patch')
+sha256sums=('02da3b1660ba87056615f64714dcdcc13694e953d07fb415b1b23d57d94b3071'
+            'cb5f73c1c7622c35552d60c6e774d82cf11f4d5794238b50e02799c9f88cb558'
+            '24ebc486a14197cbcf6988d0a317d1f6e89dd22ea8ddd524223e57d99406654d'
+            '32e12e9b6e70b0ea9e0714d770dedf17b4732c563e41a35616b8106a6141146f')
+
+build() {
+  cd "${srcdir}"/${pkgname}-${pkgver}
+
+# Patches
+  patch -Np1 -i "${srcdir}"/{python2-patch,paths.patch,default-zone.patch}
+
+# Build
+  PYTHON=python2 ./autogen.sh --prefix=/usr --disable-schemas-compile
+  make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname}-${pkgver}
+
+# Install
+  make DESTDIR="${pkgdir}" install
+
+# Fix permissions
+  find "${pkgdir}" -type d -exec chmod 755 {} +
+  find "${pkgdir}" -type f -exec chmod 644 {} +
+  chmod -R 755 "${pkgdir}"/usr/{bin,sbin}
+}
+
+# vim: ts=2 sw=2 et:
