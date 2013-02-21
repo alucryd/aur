@@ -2,7 +2,7 @@
 
 pkgname=indicator-pantheon-session-bzr
 pkgver=241
-pkgrel=1
+pkgrel=2
 pkgdesc="Pantheon fork of the session indicator."
 arch=('i686' 'x86_64')
 url="https://launchpad.net/indicator-pantheon-session"
@@ -18,24 +18,25 @@ _bzrtrunk=lp:indicator-pantheon-session
 _bzrmod=indicator-pantheon-session
 
 build() {
-	msg "Connecting to Bazaar server...."
+  msg "Connecting to Bazaar server...."
 
-	if [ -d $_bzrmod ]; then
-		cd $_bzrmod && bzr pull $_bzrtrunk -r $pkgver && cd ..
-		msg "The local files are updated."
-	else
-		bzr branch $_bzrtrunk $_bzrmod -r $pkgver
-	fi
+  if [ -d $_bzrmod ]; then
+    cd $_bzrmod && bzr pull $_bzrtrunk -r $pkgver && cd ..
+    msg "The local files are updated."
+  else
+    bzr branch $_bzrtrunk $_bzrmod -r $pkgver
+  fi
 
-	msg "BZR checkout done or server timeout"
-	msg "Starting make..."
+  msg "BZR checkout done or server timeout"
+  msg "Starting make..."
 
-	cd ${_bzrmod}
-	./autogen.sh --prefix=/usr --libexecdir=/usr/lib/${_bzrmod} --disable-schemas-compile --with-gtk=3
-	make
+  cd ${_bzrmod}
+  sed -i 's|AM_CONFIG_HEADER|AC_CONFIG_HEADERS|g' configure.ac
+  ./autogen.sh --prefix=/usr --libexecdir=/usr/lib/${_bzrmod} --disable-schemas-compile --with-gtk=3
+  make
 }
 
 package() {
-	cd "${srcdir}/${_bzrmod}/"
-	make DESTDIR="${pkgdir}" install
+  cd "${srcdir}"/${_bzrmod}
+  make DESTDIR="${pkgdir}" install
 }

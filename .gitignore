@@ -4,5 +4,4 @@
 *.sig
 src/
 pkg/
-repos/
-.svn/
+community/
