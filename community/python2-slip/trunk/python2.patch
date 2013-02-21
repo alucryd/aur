@@ -1,21 +1,21 @@
---- a/python-slip-0.2.24/doc/dbus/example/example-conf-client.py
-+++ b/python-slip-0.2.24/doc/dbus/example/example-conf-client.py
+--- a/doc/dbus/example/example-conf-client.py
++++ b/doc/dbus/example/example-conf-client.py
 @@ -1,4 +1,4 @@
 -#!/usr/bin/python
 +#!/usr/bin/python2
  # -*- coding: utf-8 -*-
  
  import dbus
---- a/python-slip-0.2.24/doc/dbus/example/example-conf-mechanism.py
-+++ b/python-slip-0.2.24/doc/dbus/example/example-conf-mechanism.py
+--- a/doc/dbus/example/example-conf-mechanism.py
++++ b/doc/dbus/example/example-conf-mechanism.py
 @@ -1,4 +1,4 @@
 -#!/usr/bin/python
 +#!/usr/bin/python2
  # -*- coding: utf-8 -*-
  
  import gobject
---- a/python-slip-0.2.24/py_rules.mk
-+++ b/python-slip-0.2.24/py_rules.mk
+--- a/py_rules.mk
++++ b/py_rules.mk
 @@ -33,15 +33,15 @@ $(_SETUP_PY):	$(_SETUP_PY).in $(PKGNAME).spec
  
  py-build-ext:	$(_SETUP_PY) $(PY_SOURCES)
@@ -44,8 +44,8 @@
  	rm -f $(SETUP_PY); \
  	rm -rf build
  
---- a/python-slip-0.2.24/setup.py.in
-+++ b/python-slip-0.2.24/setup.py.in
+--- a/setup.py.in
++++ b/setup.py.in
 @@ -1,4 +1,4 @@
 -#!/usr/bin/python
 +#!/usr/bin/python2

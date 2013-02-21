@@ -1,33 +1,35 @@
-# $Id$
+# $Id: PKGBUILD 84661 2013-02-21 10:10:55Z alucryd $
 # Maintainer: Maxime Gauduin <alucryd at gmail dot com>
 # Contributor: unikum <unikum dot pm at gmail.com>
 # Contributor: speed145a <jonathan at tagchapter dot com>
 
 pkgname=firewalld
 pkgver=0.2.12
-pkgrel=3
+pkgrel=4
 pkgdesc="Firewall service daemon that provides a dynamic customizable firewall with a D-BUS interface"
 arch=('any')
 url="http://fedorahosted.org/firewalld"
 license=('GPL2')
-depends=('dconf' 'ebtables' 'gtk2' 'hicolor-icon-theme' 'iptables' 'python2-slip')
-makedepends=('gettext' 'intltool')
+depends=('ebtables' 'gtk3' 'hicolor-icon-theme' 'iptables' 'python2-slip')
+makedepends=('desktop-file-utils' 'glib2' 'intltool')
 conflicts=('firewalld-git')
 install=${pkgname}.install
-source=("http://fedorahosted.org/released/$pkgname/$pkgname-$pkgver.tar.bz2" 'python2.patch' 'paths.patch' 'default-zone.patch')
+source=("http://fedorahosted.org/released/${pkgname}/${pkgname}-${pkgver}.tar.bz2" 'default-zone.patch' 'paths.patch' 'python2.patch')
 sha256sums=('02da3b1660ba87056615f64714dcdcc13694e953d07fb415b1b23d57d94b3071'
-            'cb5f73c1c7622c35552d60c6e774d82cf11f4d5794238b50e02799c9f88cb558'
-            '24ebc486a14197cbcf6988d0a317d1f6e89dd22ea8ddd524223e57d99406654d'
-            '32e12e9b6e70b0ea9e0714d770dedf17b4732c563e41a35616b8106a6141146f')
+            '32e12e9b6e70b0ea9e0714d770dedf17b4732c563e41a35616b8106a6141146f'
+            '97b9f97b91cb188e51fbabcdde43de26abc7b17e8ee6de1c6450ca606d291754'
+            'cb5f73c1c7622c35552d60c6e774d82cf11f4d5794238b50e02799c9f88cb558')
 
 build() {
   cd "${srcdir}"/${pkgname}-${pkgver}
 
 # Patches
-  patch -Np1 -i "${srcdir}"/{python2-patch,paths.patch,default-zone.patch}
+  patch -Np1 -i "${srcdir}"/default-zone.patch
+  patch -Np1 -i "${srcdir}"/paths.patch
+  patch -Np1 -i "${srcdir}"/python2.patch
 
 # Build
-  PYTHON=python2 ./autogen.sh --prefix=/usr --disable-schemas-compile
+  PYTHON=python2 ./autogen.sh --prefix=/usr --sysconfdir=/etc --disable-schemas-compile
   make
 }
 

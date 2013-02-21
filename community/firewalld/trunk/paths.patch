@@ -58,17 +58,6 @@
  ExecStart=/usr/sbin/firewalld --nofork $FIREWALLD_ARGS
  ExecReload=/bin/kill -HUP $MAINPID
  # supress to log debug and error output also to /var/log/messages
---- a/configure
-+++ b/configure
-@@ -769,7 +769,7 @@ sbindir='${exec_prefix}/sbin'
- libexecdir='${exec_prefix}/libexec'
- datarootdir='${prefix}/share'
- datadir='${datarootdir}'
--sysconfdir='${prefix}/etc'
-+sysconfdir='/etc'
- sharedstatedir='${prefix}/com'
- localstatedir='${prefix}/var'
- includedir='${prefix}/include'
 --- a/src/firewall-offline-cmd
 +++ b/src/firewall-offline-cmd
 @@ -179,7 +179,7 @@ def _addStandardOptions(parser):
