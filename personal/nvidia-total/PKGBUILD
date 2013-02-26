@@ -2,7 +2,7 @@
 
 pkgname=nvidia-total
 pkgver=310.32
-pkgrel=2
+pkgrel=3
 pkgdesc="NVIDIA drivers for linux: nvidia-utils + lib32-nvidia-utils + opencl-nvidia + lib32-opencl-nvidia + nvidia-source + nvidia-hook (DKMS)"
 arch=('i686' 'x86_64')
 url="http://www.nvidia.com/"
@@ -14,8 +14,8 @@ optdepends=('gtk2: nvidia-settings'
             'opencl-headers: headers necessary for OpenCL development')
 conflicts=('libgl' 'libcl' 'nvidia' 'nvidia-beta' 'nvidia-utils' 'nvidia-utils-beta' 'nvidia-source' 'nvidia-source-beta' 'nvidia-hook' 'opencl-nvidia')
 provides=('libgl' 'libcl' "nvidia=${pkgver}" "nvidia-utils=${pkgver}" "opencl-nvidia=${pkgver}")
-source=("https://raw.github.com/Alucryd/mkinitcpio-hooks/master/nvidia" 'linux-3.7.7.patch')
-md5sums=('00509e48257c22d11b89f32357b04c4f' 'e396280ac707cd19211c589fbe07b3d2')
+source=("https://raw.github.com/Alucryd/mkinitcpio-hooks/master/nvidia" 'linux-3.7.patch' 'linux-3.8.patch')
+md5sums=('00509e48257c22d11b89f32357b04c4f' 'ccb7806c4051bb802c049ba10d1e6f2a' 'd83da5dfc6cad5f3730be4b0bd7dd80f')
 options=('!strip')
 install=${pkgname}.install
 
@@ -151,7 +151,8 @@ install_source() {
   cd "${srcdir}"/${_pkg}/kernel
 
   install -dm 755 "${pkgdir}"/usr/src/nvidia-${pkgver}
-  patch -Np2 -i "${srcdir}"/linux-3.7.7.patch
+  patch -Np2 -i "${srcdir}"/linux-3.7.patch
+  patch -Np2 -i "${srcdir}"/linux-3.8.patch
   cp -dr --no-preserve=ownership * "${pkgdir}"/usr/src/nvidia-${pkgver}/
   chmod 644 "${pkgdir}"/usr/src/nvidia-${pkgver}/*
   chmod 755 "${pkgdir}"/usr/src/nvidia-${pkgver}/*.sh

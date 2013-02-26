@@ -5,10 +5,10 @@ pkgver=20130218
 pkgrel=1
 pkgdesc="A general-purpose subtitle editor with ASS/SSA support"
 arch=('i686' 'x86_64')
-url="http://www.aegisub.net"
+url="http://www.aegisub.org"
 license=('GPL' 'BSD')
 depends=('ffmpegsource' 'lua51' 'wxgtk2.9' 'hunspell' 'libass' 'fftw' 'desktop-file-utils' 'hicolor-icon-theme')
-makedepends=('git' 'intltool' 'boost')
+makedepends=('git' 'intltool' 'boost' 'mesa')
 optdepends=('libpulse: Pulseaudio backend'
             'openal: OpenAL backend'
             'oss: OSS backend'

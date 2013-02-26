@@ -2,19 +2,19 @@
 # Contributor: Lightning <sgsdxzy at gmail dot com>
 
 pkgname=dolphin-emu-git
-pkgver=20130205
+pkgver=20130224
 pkgrel=1
 pkgdesc="A GameCube / Wii / Triforce emulator - GIT version"
 arch=('i686' 'x86_64')
 url="http://www.dolphin-emu.org/"
 license=('GPL2')
-depends=('bluez' 'glew' 'lzo2' 'nvidia-cg-toolkit' 'soil' 'wxgtk2.9')
+depends=('bluez' 'glew' 'lzo2' 'nvidia-cg-toolkit' 'wxgtk2.9')
 makedepends=('cmake' 'git' 'opencl-headers' 'soundtouch')
 optdepends=('alsa-lib: ALSA backend'
             'libpulse: PulseAudio backend'
             'libao: AOsound backend'
             'openal: OpenAL backend'
-            'portaudio: mic support'
+            'portaudio: Mic support'
             'ffmpeg: AVI dump')
 provides=('dolphin-emu')
 conflicts=('dolphin-emu' 'dolphin-emu-svn-bin' 'dolphin-emu-svn')
@@ -39,9 +39,8 @@ build() {
   if [[ -d build ]] ; then
     rm -rf build
   fi
-  mkdir build
-  cd build
 
+  mkdir build && cd build
   cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.9 -DwxWidgets_wxrc_EXECUTABLE=/usr/bin/wxrc-2.9
   make
 

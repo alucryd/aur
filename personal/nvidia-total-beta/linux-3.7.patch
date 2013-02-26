@@ -1,8 +1,3 @@
-the nvidia drivers are trying to test for version 2.6.6, but fail to take into
-account the first digit.  so 3.7.0+ ends up failing the test.
-
-https://bugs.gentoo.org/447566
-
 --- a/kernel/conftest.sh
 +++ b/kernel/conftest.sh
 @@ -1697,13 +1697,15 @@

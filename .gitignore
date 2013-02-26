@@ -2,7 +2,7 @@
 *.pkg.tar.xz
 *.src.tar.gz
 *.sig
+*.swp
 src/
 pkg/
-repos/
-.svn/
+community/
