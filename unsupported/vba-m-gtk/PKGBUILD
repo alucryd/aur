@@ -3,7 +3,7 @@
 
 pkgname=vba-m-gtk
 pkgver=1.8.0.1159
-pkgrel=1
+pkgrel=2
 pkgdesc="A VBA fork which improves the capatibility and features of the emulator"
 arch=('i686' 'x86_64')
 url="http://vba-m.com"
@@ -19,10 +19,10 @@ build() {
   cd "${srcdir}"
 
 # Fix SFML
-  sed -i 's|/usr/include|/usr/include/sfml1.6|' CMakeScripts/FindSFML.cmake
-  sed -i 's|NAMES sfml-|NAMES sfml1.6-|' CMakeScripts/FindSFML.cmake
+  sed -i 's|/usr/include|/usr/include/sfml-1.6|' CMakeScripts/FindSFML.cmake
+  sed -i 's|NAMES sfml-${LOWERCOMPONENT}|NAMES sfml-${LOWERCOMPONENT}-1.6|' CMakeScripts/FindSFML.cmake
 
-  cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_CXX_FLAGS=" -I/usr/include/sfml1.6"
+  cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_CXX_FLAGS=" -I/usr/include/sfml-1.6"
   make
 }
 

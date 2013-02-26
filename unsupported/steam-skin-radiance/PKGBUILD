@@ -2,7 +2,7 @@
 
 pkgname=steam-skin-radiance
 pkgver=3.9.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Radiance skin for Steam Linux"
 arch=('any')
 url="http://iubuntu.cz/Steam/"
@@ -10,7 +10,7 @@ license=('GPL3')
 depends=('steam')
 optdepends=('steam-skin-manager: Easy skin installation')
 source=("${pkgname}-${pkgver}.deb::http://iubuntu.cz/Steam/steam-skin-installer.deb")
-sha256sums=('b9a949bef4a691db593ec135d8f05f58f9cff505f11ba50edd6e68a207d74c1b')
+sha256sums=('1dfd742266ba706eda163a133c345a36080e72c105b909ef5fafcbbacbe43af3')
 
 build() {
   cd ${srcdir}
