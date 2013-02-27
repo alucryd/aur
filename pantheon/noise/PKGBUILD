@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/noise"
 license=('GPL3')
 groups=('pantheon')
-depends=('dbus-glib' 'desktop-file-utils' 'glib2' 'granite' 'gstreamer0.10-base' 'gtk3' 'json-glib' 'libgpod' 'libindicate' 'libnotify' 'libpeas' 'libsoup' 'libxml2' 'sqlheavy' 'taglib' 'zeitgeist')
+depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'json-glib' 'libgpod' 'libindicate' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib' 'zeitgeist')
 makedepends=('cmake' 'vala>=0.16')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
@@ -22,12 +22,12 @@ build() {
     rm -rf build
   fi
   mkdir build && cd build
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF -DICON_UPDATE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
   make
 }
 
 package() {
-  cd "${srcdir}"
+  cd "${srcdir}"/build
 
 # Install
   make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install

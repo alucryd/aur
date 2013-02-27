@@ -1,5 +1,6 @@
---- a/configure	2012-04-30 08:48:23.000000000 +0200
-+++ b/configure	2013-02-27 17:31:18.515330365 +0100
+diff -rupN sqlheavy-0.1.1.orig/configure sqlheavy-0.1.1/configure
+--- sqlheavy-0.1.1.orig/configure	2012-04-30 08:48:23.000000000 +0200
++++ sqlheavy-0.1.1/configure	2013-02-27 20:08:56.294226442 +0100
 @@ -12322,101 +12322,6 @@ $as_echo "yes" >&6; }
  fi
  
@@ -119,8 +120,9 @@
  
    *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
    esac
---- a/configure.ac	2012-04-30 08:40:31.000000000 +0200
-+++ b/configure.ac	2013-02-27 17:30:17.921328949 +0100
+diff -rupN sqlheavy-0.1.1.orig/configure.ac sqlheavy-0.1.1/configure.ac
+--- sqlheavy-0.1.1.orig/configure.ac	2012-04-30 08:40:31.000000000 +0200
++++ sqlheavy-0.1.1/configure.ac	2013-02-27 20:07:48.980086732 +0100
 @@ -69,11 +69,6 @@ AC_SUBST(GMODULE_LIBS)
  PKG_CHECK_MODULES(SQLITE3, sqlite3 >= $SQLITE3_REQUIRED)
  AC_SUBST(SQLITE3_CFLAGS)
@@ -141,9 +143,21 @@
 -                 utils/Makefile])
 +                 sqlheavygtk-$SQLHEAVY_API_VERSION.pc])
  AC_OUTPUT
---- a/Makefile.am	2012-04-30 08:31:00.000000000 +0200
-+++ b/Makefile.am	2013-02-27 17:29:36.174327973 +0100
+diff -rupN sqlheavy-0.1.1.orig/Makefile.am sqlheavy-0.1.1/Makefile.am
+--- sqlheavy-0.1.1.orig/Makefile.am	2012-04-30 08:31:00.000000000 +0200
++++ sqlheavy-0.1.1/Makefile.am	2013-02-27 20:07:16.363019724 +0100
 @@ -4,7 +4,6 @@ SUBDIRS = \
+ 	sqlheavy \
+ 	gtk \
+ 	examples \
+-	utils \
+ 	docs \
+ 	data \
+ 	$(NULL)
+diff -rupN sqlheavy-0.1.1.orig/Makefile.in sqlheavy-0.1.1/Makefile.in
+--- sqlheavy-0.1.1.orig/Makefile.in	2012-04-30 08:48:24.000000000 +0200
++++ sqlheavy-0.1.1/Makefile.in	2013-02-27 20:10:07.781416589 +0100
+@@ -288,7 +288,6 @@ SUBDIRS = \
  	sqlheavy \
  	gtk \
  	examples \

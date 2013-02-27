@@ -2,12 +2,12 @@
 
 pkgname=steam-skin-manager
 pkgver=3.9.1
-pkgrel=2
+pkgrel=3
 pkgdesc="GUI for Steam skins management"
 arch=('i686' 'x86_64')
 url="http://iubuntu.cz/Steam/"
 license=('GPL3')
-depends=('steam' 'qt>=4.7.0' 'qtwebkit')
+depends=('steam' 'qt4' 'qtwebkit')
 install=${pkgname}.install
 source=("${pkgname}-${pkgver}.deb::http://iubuntu.cz/Steam/steam-skin-installer.deb" 'steam-skin-manager.desktop' 'steam-wb.desktop')
 sha256sums=('1dfd742266ba706eda163a133c345a36080e72c105b909ef5fafcbbacbe43af3'
