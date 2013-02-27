@@ -1,0 +1,39 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+# Contributor : sebikul <sebikul@gmail.com>
+
+pkgname=sqlheavy
+pkgver=0.1.1
+pkgrel=4
+pkgdesc="A wrapper on top of SQLite with a GObject-based interface"
+arch=('i686' 'x86_64')
+url="https://code.google.com/p/sqlheavy/"
+license=('LGPL')
+conflicts=('sqlheavy-git')
+depends=('glib2' 'sqlite3')
+makedepends=('vala0.16')
+options=('!libtool')
+source=("https://sqlheavy.googlecode.com/files/${pkgname}-${pkgver}.tar.xz" 'query.patch' 'gen-orm.patch')
+sha256sums=('e8689f5fd4e0baf98eada2b3811262bb99877c2e8586fd21ad2a7ad3acc59031'
+            '38b365d89256c855b2dba671381f5c042de452d638b1be2ae7da693c38de77b5'
+            '35ae7db6ec7d478a52f36bb12a4ce35697652c6965bdf748452954d1194a5bf5')
+
+build() {
+  cd "${srcdir}"/${pkgname}-${pkgver}
+
+# Patch
+  rm -rf utils
+  patch -Np1 -i ${srcdir}/query.patch
+  patch -Np1 -i ${srcdir}/gen-orm.patch
+
+# Build
+  ./configure --prefix=/usr
+  make
+}
+package() {
+  cd "${srcdir}"/${pkgname}-${pkgver}
+
+# Install
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
