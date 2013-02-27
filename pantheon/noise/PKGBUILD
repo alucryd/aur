@@ -1,0 +1,34 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=noise
+pkgver=0.2
+pkgrel=1
+pkgdesc="The official audio player of elementary OS"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/noise"
+license=('GPL3')
+groups=('pantheon')
+depends=('dbus-glib' 'desktop-file-utils' 'glib2' 'granite' 'gstreamer0.10-base' 'gtk3' 'json-glib' 'libgpod' 'libindicate' 'libnotify' 'libpeas' 'libsoup' 'libxml' 'sqlheavy' 'taglib' 'zeitgeist')
+makedepends=('cmake' 'vala0.16')
+install=${pkgname}.install
+source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
+md5sums=('10706ca19a9b12ebc5e9aacad8271432')
+
+build() {
+  cd "${srcdir}"
+
+# Build
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF -DICON_UPDATE=OFF
+  make
+}
+
+package() {
+  cd "${srcdir}"
+
+# Install
+  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+}

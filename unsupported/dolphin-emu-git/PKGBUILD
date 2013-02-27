@@ -2,20 +2,15 @@
 # Contributor: Lightning <sgsdxzy at gmail dot com>
 
 pkgname=dolphin-emu-git
-pkgver=20130224
+pkgver=20130227
 pkgrel=1
 pkgdesc="A GameCube / Wii / Triforce emulator - GIT version"
 arch=('i686' 'x86_64')
 url="http://www.dolphin-emu.org/"
 license=('GPL2')
-depends=('bluez' 'glew' 'lzo2' 'nvidia-cg-toolkit' 'wxgtk2.9')
+depends=('bluez' 'ffmpeg' 'glew' 'libao' 'libpulse' 'lzo2' 'nvidia-cg-toolkit' 'openal' 'portaudio' 'wxgtk2.9')
 makedepends=('cmake' 'git' 'opencl-headers' 'soundtouch')
-optdepends=('alsa-lib: ALSA backend'
-            'libpulse: PulseAudio backend'
-            'libao: AOsound backend'
-            'openal: OpenAL backend'
-            'portaudio: Mic support'
-            'ffmpeg: AVI dump')
+optdepends=('pulseaudio: PulseAudio backend')
 provides=('dolphin-emu')
 conflicts=('dolphin-emu' 'dolphin-emu-svn-bin' 'dolphin-emu-svn')
 
@@ -23,23 +18,29 @@ _gitroot=http://code.google.com/p/dolphin-emu/
 _gitname=dolphin-emu
 
 build() {
-  cd "$srcdir"
+  cd "${srcdir}"
 
+# Clone
   msg "Connecting to GIT server...."
-  if [[ -d ${_gitname} ]] ; then
-    cd ${_gitname} && git pull origin
+
+  if [[ -d $_gitname ]]; then
+    cd $_gitname && git pull origin
     msg "The local files are updated."
   else
-    git clone ${_gitroot} ${_gitname}
-    cd ${_gitname}
+    git clone $_gitroot $_gitname
   fi
-  msg "GIT checkout done or server timeout"
 
+  msg "GIT checkout done or server timeout"
   msg "Starting build..."
-  if [[ -d build ]] ; then
+
+  rm -rf "${srcdir}"/${_gitname}-build
+  git clone "${srcdir}"/$_gitname "${srcdir}"/$_gitname-build
+  cd "${srcdir}"/$_gitname-build
+
+# Build
+  if [[ -d build ]]; then
     rm -rf build
   fi
-
   mkdir build && cd build
   cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.9 -DwxWidgets_wxrc_EXECUTABLE=/usr/bin/wxrc-2.9
   make
@@ -48,6 +49,7 @@ build() {
 package() {
   cd "${srcdir}"/${_gitname}/build
 
+# Install
   make DESTDIR="${pkgdir}" install
 }
 

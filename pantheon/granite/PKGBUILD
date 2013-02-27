@@ -1,0 +1,38 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=granite
+pkgver=0.1.1
+pkgrel=1
+pkgdesc="A development library for elementary development"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/granite"
+license=('GPL3')
+groups=('pantheon')
+depends=('gtk3' 'hicolor-icon-theme' 'libgee')
+makedepends=('cmake' 'gobject-introspection' 'vala0.16')
+conflicts=('granite-bzr')
+install=${pkgname}.install
+source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
+sha256sums=('360a030690d3db1faedf7461fe808b37ed67de7f380532673dae2242f2e7b5e5')
+
+build() {
+  cd "${srcdir}"/${pkgname}-${pkgver}
+
+# Build
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DICON_UPDATE=OFF
+  make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname}-${pkgver}/build
+
+# Install
+  make DESTDIR="${pkgdir}" install
+  mv "${pkgdir}"/usr/share/vala "${pkgdir}"/usr/share/vala-0.16
+}
+
+# vim: ts=2 sw=2 et:
