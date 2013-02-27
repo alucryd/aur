@@ -1,26 +1,36 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-terminal
-pkgver=0.1
+pkgver=0.2
 pkgrel=1
-pkgdesc="The terminal of the 21st century."
+pkgdesc="The terminal of the 21st century"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-terminal"
 license=('GPL3')
 groups=('pantheon')
-depends=('vte3' 'granite' 'libnotify')
-makedepends=('vala' 'cmake')
+depends=('granite' 'libnotify' 'vte3')
+makedepends=('cmake' 'vala')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
-md5sums=('868c63b826ab7e03236297e15e6c2aa8')
+sha256sums=('fafedd5e2cda52d397fdd9b71332183d8356bfd4955d837fc7673ed89c14efb4')
 
 build() {
-	cd "${srcdir}"
-	cmake . -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
-	make
+  cd "${srcdir}"/${pkgname}-${pkgver}
+
+# Build
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  make
 }
 
 package() {
-	cd "${srcdir}"
-	make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+  cd "${srcdir}"/${pkgname}-${pkgver}/build
+
+# Install
+  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
 }
+
+# vim: ts=2 sw=2 et:
