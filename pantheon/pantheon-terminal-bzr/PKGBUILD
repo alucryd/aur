@@ -1,21 +1,19 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
-pkgname=granite-bzr
-pkgver=529
+pkgname=pantheon-terminal-bzr
+pkgver=448
 pkgrel=1
-pkgdesc="A development library for elementary development"
+pkgdesc="The terminal of the 21st century"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/granite"
+url="https://launchpad.net/pantheon-terminal"
 license=('GPL3')
 groups=('pantheon')
-depends=('gtk3' 'hicolor-icon-theme' 'libgee')
-makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala>=0.16')
-provides=('granite')
-conflicts=('granite')
+depends=('granite-bzr' 'libnotify' 'vte3')
+makedepends=('bzr' 'cmake' 'vala')
 install=${pkgname}.install
 
-_bzrtrunk=https://code.launchpad.net/~elementary-pantheon/granite/granite
-_bzrmod=granite
+_bzrtrunk=https://code.launchpad.net/~elementary-apps/pantheon-terminal/trunk
+_bzrmod=pantheon-terminal
 
 build() {
   cd "$srcdir"
@@ -42,15 +40,15 @@ build() {
     rm -rf build
   fi
   mkdir build && cd build
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DICON_UPDATE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
   make
 }
 
 package() {
-  cd "${srcdir}"/$_bzrmod-build/build
+  cd "${srcdir}"/${_bzrmod}-build/build
 
 # Install
-  make DESTDIR="${pkgdir}" install
+  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

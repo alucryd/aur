@@ -1,24 +1,24 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
-pkgname=granite-bzr
-pkgver=529
+pkgname=noise-bzr
+pkgver=1327
 pkgrel=1
-pkgdesc="A development library for elementary development"
+pkgdesc="The official audio player of elementary OS - BZR version"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/granite"
+url="https://launchpad.net/noise"
 license=('GPL3')
 groups=('pantheon')
-depends=('gtk3' 'hicolor-icon-theme' 'libgee')
-makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala>=0.16')
-provides=('granite')
-conflicts=('granite')
+depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'json-glib' 'libgpod' 'libindicate' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy-git' 'taglib' 'zeitgeist')
+makedepends=('bzr' 'cmake' 'vala>=0.16')
+provides=('noise')
+conflicts=('noise')
 install=${pkgname}.install
 
-_bzrtrunk=https://code.launchpad.net/~elementary-pantheon/granite/granite
-_bzrmod=granite
+_bzrtrunk=https://code.launchpad.net/~elementary-apps/noise/trunk
+_bzrmod=noise
 
 build() {
-  cd "$srcdir"
+  cd "${srcdir}"
 
 # Pull
   msg "Connecting to Bazaar server...."
@@ -42,15 +42,13 @@ build() {
     rm -rf build
   fi
   mkdir build && cd build
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DICON_UPDATE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
   make
 }
 
 package() {
-  cd "${srcdir}"/$_bzrmod-build/build
+  cd "${srcdir}"/${_bzrmod}-build/build
 
 # Install
-  make DESTDIR="${pkgdir}" install
+  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
 }
-
-# vim: ts=2 sw=2 et:
