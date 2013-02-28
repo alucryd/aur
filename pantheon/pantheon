@@ -22,7 +22,6 @@ if [[ $1 == "install" ]]; then
   if [[ $2 == "" ]]; then
     install
   else
-    echo ${@#install}
     for pkg in ${@#install}; do
       echo "Installing $pkg"
       installpkg $pkg
@@ -34,7 +33,6 @@ if [[ $1 == "update" ]]; then
   if [[ $2 == "" ]]; then
     install
   else
-    echo ${@#update}
     for pkg in ${@#update}; do
       echo "Updating $pkg"
       installpkg $pkg

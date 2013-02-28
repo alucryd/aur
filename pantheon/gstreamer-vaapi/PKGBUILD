@@ -1,0 +1,35 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+# Contributor: Jesse Jaara <jesse dot jaara at gmail dot com>
+# Contributor:  Alessandro Pazzaglia  <jackdroido at gmail dot com>
+
+pkgname=gstreamer-vaapi
+pkgver=0.5.1
+pkgrel=3
+pkgdesc="A collection of VA-API based plugins for GStreamer"
+arch=('i686' 'x86_64')
+url="http://gitorious.org/vaapi/gstreamer-vaapi"
+license=('GPL2')
+depends=('gstreamer0.10-bad-plugins' 'gstreamer0.10-base-plugins' 'libva')
+makedepends=('gtk-doc')
+optdepends=('xvba-video: for AMD chipsets'
+            'libva-vdpau-driver: for nVidia chipsets'
+            'libva-intel-driver: For Intel chipsets')
+options=('!libtool')
+source=("http://www.freedesktop.org/software/vaapi/releases/${pkgname}/${pkgname}-${pkgver}.tar.bz2")
+sha256sums=('e63ad080a6604f9ac3d2a654f284e0b1d5a4491c8905ecbaa57b846fc493806d')
+
+build() {
+  cd "${srcdir}"/${pkgname}-${pkgver}
+
+# Build
+  ./configure  --prefix=/usr --disable-static
+  make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname}-${pkgver}
+
+# Install
+  make DESTDIR="${pkgdir}" install
+}
+
