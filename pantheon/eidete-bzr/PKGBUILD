@@ -1,21 +1,22 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
-pkgname=noise-bzr
-pkgver=1327
+pkgname=eidete-bzr
+pkgver=140
 pkgrel=1
-pkgdesc="The official audio player of elementary OS - BZR version"
+pkgdesc="A simple screencasting app from the elementary project"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/noise"
+url="https://launchpad.net/eidete"
 license=('GPL3')
-groups=('pantheon')
-depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'json-glib' 'libgpod' 'libindicate' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy-git' 'taglib' 'zeitgeist')
+depends=('granite-bzr' 'gstreamer0.10-base' 'libwnck3')
 makedepends=('bzr' 'cmake' 'vala>=0.16')
-provides=('noise')
-conflicts=('noise')
+optdepends=('contractor: contractor support'
+            'brasero: burn captured video to disc')
+provides=('eidete')
+conflicts=('eidete')
 install=${pkgname}.install
 
-_bzrtrunk=https://code.launchpad.net/~elementary-apps/noise/trunk
-_bzrmod=noise
+_bzrtrunk=https://code.launchpad.net/~elementary-apps/eidete/trunk
+_bzrmod=eidete
 
 build() {
   cd "${srcdir}"
@@ -42,15 +43,13 @@ build() {
     rm -rf build
   fi
   mkdir build && cd build
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_EXE_LINKER_FLAGS="-lX11"
   make
 }
 
 package() {
   cd "${srcdir}"/${_bzrmod}-build/build
-
-# Install
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

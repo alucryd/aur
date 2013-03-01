@@ -7,6 +7,7 @@ pkgdesc="A modern media player"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/audience"
 license=('GPL3')
+groups=('pantheon')
 depends=('clutter-gst1.6' 'clutter-gtk' 'desktop-file-utils' 'granite-bzr')
 makedepends=('bzr' 'cmake' 'vala0.16')
 install=${pkgname}.install
@@ -49,3 +50,5 @@ package() {
 # Install
   make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
 }
+
+# vim: ts=2 sw=2 et:

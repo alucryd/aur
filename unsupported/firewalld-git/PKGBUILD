@@ -1,17 +1,20 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=firewalld-git
-pkgver=20130124
+pkgver=20130301
 pkgrel=1
 pkgdesc="Firewall service daemon that provides a dynamic customizable firewall with a D-BUS interface"
 arch=('any')
 url="http://fedorahosted.org/firewalld"
 license=('GPL2')
-depends=('dconf' 'python2-dbus' 'iptables' 'ebtables' 'gtk2' 'hicolor-icon-theme' 'pygtk' 'python2-slip' 'python2-decorator' 'python2-gobject')
-makedepends=('gettext' 'intltool' 'git')
-conflicts=('firewalld')
+depends=('dconf' 'desktop-file-utils' 'ebtables' 'gtk3' 'hicolor-icon-theme' 'iptables' 'python2-slip')
+makedepends=('git' 'intltool')
 provides=('firewalld')
+conflicts=('firewalld')
 install=${pkgname}.install
+source=('paths.patch' 'python2.patch')
+sha256sums=('97b9f97b91cb188e51fbabcdde43de26abc7b17e8ee6de1c6450ca606d291754'
+            'cb5f73c1c7622c35552d60c6e774d82cf11f4d5794238b50e02799c9f88cb558')
 
 _gitroot="http://git.fedorahosted.org/git/firewalld.git"
 _gitname="firewalld"
@@ -19,35 +22,37 @@ _gitname="firewalld"
 build () {
   cd "${srcdir}"
 
-  msg "Connecting to the GIT server..."
-  if [ -d ${srcdir}/${_gitname} ] ; then
-    cd ${_gitname}
-    git pull origin
-    msg "The local files are updated..."
+# Clone
+  msg "Connecting to GIT server...."
+
+  if [[ -d ${_gitname} ]]; then
+    cd ${_gitname} && git pull origin
+    msg "The local files are updated."
   else
     git clone ${_gitroot} ${_gitname}
-    cd ${_gitname}
   fi
-  msg "GIT checkout done."
 
-# Python 2 fix
-  export PYTHON=python2
-  sed -i 's|#!/usr/bin/python|#!/usr/bin/python2|' $(grep -rl '#!/usr/bin/python' "${srcdir}")
-  sed -i 's|python|python2|g' fix_python_shebang.sh
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_gitname}-build
+  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${_gitname}-build
+
+# Patch
+  patch -Np1 -i "${srcdir}"/paths.patch
+  patch -Np1 -i "${srcdir}"/python2.patch
 
 # Build
-  ./autogen.sh --prefix=/usr --sysconfdir=/etc --disable-schemas-compile
+  PYTHON=python2 ./autogen.sh --prefix=/usr --sysconfdir=/etc --disable-schemas-compile
   make
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}
-  make DESTDIR="${pkgdir}" install
+  cd "${srcdir}"/${_gitname}-build
 
-# Fix paths
-  mv "${pkgdir}"/etc/sysconfig "${pkgdir}"/etc/conf.d
-  sed -i 's|sysconfig|conf.d|g' "${pkgdir}"/usr/lib/systemd/system/firewalld.service
-  sed -i 's|/sbin|/usr/sbin|g' "${pkgdir}"/usr/lib/python2.7/site-packages/firewall/core/{ipXtables,ebtables}.py
+# Install
+  make DESTDIR="${pkgdir}" install
 
 # Fix permissions
   find "${pkgdir}" -type d -exec chmod 755 {} +

@@ -1,24 +1,22 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
-pkgname=noise-bzr
-pkgver=1327
+pkgname=contractor-bzr
+pkgver=63
 pkgrel=1
-pkgdesc="The official audio player of elementary OS - BZR version"
+pkgdesc="A service for sharing data between apps"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/noise"
+url="https://launchpad.net/contractor"
 license=('GPL3')
-groups=('pantheon')
-depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'json-glib' 'libgpod' 'libindicate' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy-git' 'taglib' 'zeitgeist')
+depends=('libgee')
 makedepends=('bzr' 'cmake' 'vala>=0.16')
-provides=('noise')
-conflicts=('noise')
-install=${pkgname}.install
+provides=('contractor')
+conflicts=('contractor')
 
-_bzrtrunk=https://code.launchpad.net/~elementary-apps/noise/trunk
-_bzrmod=noise
+_bzrtrunk=https://code.launchpad.net/~mgoldhand-deactivatedaccount/contractor/master
+_bzrmod=contractor
 
 build() {
-  cd "${srcdir}"
+cd "${srcdir}"
 
 # Pull
   msg "Connecting to Bazaar server...."
@@ -42,15 +40,13 @@ build() {
     rm -rf build
   fi
   mkdir build && cd build
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
   make
 }
 
 package() {
   cd "${srcdir}"/${_bzrmod}-build/build
-
-# Install
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

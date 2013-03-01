@@ -1,18 +1,18 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
-pkgname=noise
-pkgver=0.2
-pkgrel=1
-pkgdesc="The official audio player of elementary OS"
+pkgname=cerbere
+pkgver=0.1
+pkgrel=2
+pkgdesc="A simple service to relaunch Pantheon applications such as the panel, dock, wallpaper, etc"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/noise"
-license=('GPL3')
+url="https://launchpad.net/cerbere"
+license=('GPL2')
 groups=('pantheon')
-depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'json-glib' 'libgpod' 'libindicate' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib' 'zeitgeist')
+depends=('dconf' 'libgee')
 makedepends=('cmake' 'vala>=0.16')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('14f0b75f6120fe0c2f2a8b55db9fe56727e670ee84d10c5121e45f716c6870d7')
+sha256sums=('77b37c7ccec20c3bc61cc1d2993b5d2fa995b15807a0fecb5d410925948efa98')
 
 build() {
   cd "${srcdir}"
