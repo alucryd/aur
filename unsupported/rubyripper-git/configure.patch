@@ -1,0 +1,10 @@
+--- configure.orig	2013-03-01 16:55:28.846249900 +0100
++++ configure	2013-03-01 16:55:52.262595400 +0100
+@@ -218,7 +218,6 @@ if $GTK2
+ 	makefile.puts "\t#{$INSTALL} -m 755 rubyripper_gtk2.rb $(prefix)$(DESTDIR)$(BINDIR)/rrip_gui"
+ 	makefile.puts "\t#{$INSTALL} -m 644 rubyripper.png $(prefix)$(DESTDIR)$(ICONDIR)/rubyripper.png"
+ 	makefile.puts "\t#{$INSTALL} -m 644 rubyripper.desktop $(prefix)$(DESTDIR)$(DESKTOP)/rubyripper.desktop"
+-    makefile.puts "\tgtk-update-icon-cache #{$PREFIX}#{$DESTDIR}#{$ICONDIR}"
+ end
+ 
+ if $CLI

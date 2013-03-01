@@ -1,0 +1,69 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+# Maintainer: Michael Düll <mail at akurei dot me>
+# Contributor: Wintershade <wintershade at gmail dot com>
+
+pkgname=rubyripper-git
+pkgver=20130301
+pkgrel=1
+pkgdesc="Secure audiodisc ripper"
+arch=('any')
+url="http://code.google.com/p/rubyripper/"
+license=('GPL3')
+depends=('ruby' 'cdparanoia' 'gtk2' 'hicolor-icon-theme')
+makedepends=('git')
+optdepends=('ruby-gtk2: GTK+ GUI'
+            'cd-discid: Freedb support'
+            'eject: Eject support'
+            'lame: MP3 encoding support'
+            'vorbis-tools: Ogg Vorbis encoding support'
+            'flac: FLAC encoding support'
+            'wavegain: WAV ReplayGain support'
+            'mp3gain: MP3 ReplayGain support'
+            'vorbisgain: Ogg Vorbis ReplayGain support'
+            'normalize: Normalization support'
+            'cdrdao: Advanced TOC analysis')
+provides=('rubyripper')
+conflicts=('rubyripper')
+install=${pkgname}.install
+source=('configure.patch')
+sha256sums=('f0f855ade49728cf255e8505e7bc51132ad2063ca53954ab33c8adfa6652b873')
+
+_gitroot=https://code.google.com/p/rubyripper/
+_gitname=rubyripper
+
+build() {
+cd "${srcdir}"
+
+# Clone
+  msg "Connecting to GIT server...."
+
+  if [[ -d ${_gitname} ]]; then
+    cd ${_gitname} && git pull origin && git checkout stable
+    msg "The local files are updated."
+  else
+    git clone ${_gitroot} ${_gitname}
+    cd ${_gitname} && git checkout stable
+  fi
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_gitname}-build
+  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${_gitname}-build
+
+# Patch
+  patch -N -i "${srcdir}"/configure.patch
+
+# Build
+./configure --prefix=/usr --enable-gtk2 --enable-cli --ruby=$(ruby -e 'v = RbConfig::CONFIG["vendorlibdir"] ; v["/usr"] = ""; puts v')
+  make DESTDIR="${pkgdir}" install
+}
+
+package() {
+  cd "${srcdir}"/${_gitname}-build
+
+# Install
+  make DESTDIR="${pkgdir}" install
+}
+# vim: ts=2 sw=2 et:
