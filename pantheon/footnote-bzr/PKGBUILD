@@ -1,0 +1,54 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=footnote-bzr
+pkgver=285
+pkgrel=1
+pkgdesc="A beautiful, fast, and simple note taking app in the style of elementary"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/footnote"
+license=('GPL3')
+depends=('clutter-gtk' 'granite-bzr' 'sqlheavy-git')
+makedepends=('bzr' 'cmake' 'vala>=0.16')
+install=${pkgname}.install
+
+_bzrtrunk=https://code.launchpad.net/~elementary-apps/footnote/footnote
+_bzrmod=footnote
+
+build() {
+cd "${srcdir}"
+
+# Pull
+  msg "Connecting to Bazaar server...."
+
+  if [[ -d ${_bzrmod} ]]; then
+    cd ${_bzrmod} && bzr --no-plugins pull ${_bzrtrunk} -r ${pkgver}
+    msg "The local files are updated."
+  else
+    bzr --no-plugins branch ${_bzrtrunk} ${_bzrmod} -q -r ${pkgver}
+  fi
+
+  msg "Bazaar checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_bzrmod}-build
+  cp -r "${srcdir}"/${_bzrmod} "${srcdir}"/$_bzrmod-build
+  cd "${srcdir}"/${_bzrmod}-build
+
+# Patch
+  sed -i 's|sqlheavy-0.1|sqlheavy-0.2|' CMakeLists.txt
+
+# Build
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  make
+}
+
+package() {
+  cd "${srcdir}"/${_bzrmod}-build/build
+
+# Install
+  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+}

@@ -1,0 +1,35 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=launchpad-integration-gtk3
+pkgver=0.1.56.2
+pkgrel=1
+pkgdesc="A library to integrate launchpad urls into the menus"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/launchpad-integration"
+license=('GPL3')
+depends=('hicolor-icon-theme' 'gtk3' 'python2')
+makedepends=('gobject-introspection' 'pygtk')
+options=('!libtool')
+install=${pkgname}.install
+source=("https://launchpad.net/ubuntu/raring/+source/${pkgname%-*}/${pkgver}/+files/${pkgname%-*}_${pkgver}.tar.gz")
+sha256sums=('0b6116737062b31da9ffb33594632c64ab059da7d2d790faf663cf697200ac39')
+
+build() {
+  cd "${srcdir}"/${pkgname%-*}-${pkgver}
+
+# Build
+  PYTHON=python2 ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname} --disable-static --with-gtk=3
+  make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname%-*}-${pkgver}
+
+# Install
+  make DESTDIR="${pkgdir}" install
+  install -dm 755 "${pkgdir}"/usr/lib/python2.7/site-packages
+  mv "${pkgdir}"/usr/share/launchpad-integration/launchpadintegration "${pkgdir}"/usr/lib/python2.7/site-packages/
+  rm -rf "${pkgdir}"/usr/share/launchpad-integration
+}
+
+# vim: ts=2 sw=2 et:

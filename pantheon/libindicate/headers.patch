@@ -1,0 +1,25 @@
+From d6aec317acc4233358baa52997db876788f782d8 Mon Sep 17 00:00:00 2001
+From: Alucryd <alucryd@gmail.com>
+Date: Mon, 4 Mar 2013 11:45:45 +0100
+Subject: [PATCH 2/4] headers
+
+---
+ libindicate-12.10.1/configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libindicate-12.10.1/configure.ac b/libindicate-12.10.1/configure.ac
+index ba8df8a..a5d66e8 100644
+--- a/libindicate-12.10.1/configure.ac
++++ b/libindicate-12.10.1/configure.ac
+@@ -3,7 +3,7 @@ AC_INIT(libindicate, 12.10.1, ted@canonical.com)
+ 
+ AC_PREREQ(2.53)
+ 
+-AM_CONFIG_HEADER(config.h)
++AC_CONFIG_HEADERS(config.h)
+ AM_INIT_AUTOMAKE(libindicate, 12.10.1)
+ 
+ AM_MAINTAINER_MODE
+-- 
+1.8.1.5
+

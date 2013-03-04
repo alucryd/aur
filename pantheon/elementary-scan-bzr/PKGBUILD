@@ -8,8 +8,8 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/cerbere"
 license=('GPL2')
 groups=('pantheon')
-depends=('desktop-file-utils' 'granite-bzr' 'launchpad-integration-gtk3-bzr' 'python2-scour' 'sane')
-makedepends=('bzr' 'cmake' 'gnome-common-git' 'intltool' 'simple-scan' 'vala>=0.16')
+depends=('desktop-file-utils' 'granite-bzr' 'launchpad-integration-gtk3' 'python2-scour' 'sane')
+makedepends=('bzr' 'gnome-common-git' 'intltool' 'vala>=0.16')
 provides=('simple-scan')
 conflicts=('simple-scan')
 install=${pkgname}.install

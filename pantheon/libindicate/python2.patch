@@ -1,0 +1,47 @@
+From 2766bb6289e32fd6cb364e91733ae9e68103e40c Mon Sep 17 00:00:00 2001
+From: Alucryd <alucryd@gmail.com>
+Date: Mon, 4 Mar 2013 11:48:07 +0100
+Subject: [PATCH 3/4] python2
+
+---
+ libindicate-12.10.1/configure.ac                 | 2 +-
+ libindicate-12.10.1/examples/im-client.py        | 2 +-
+ libindicate-12.10.1/examples/listen-and-print.py | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/libindicate-12.10.1/configure.ac b/libindicate-12.10.1/configure.ac
+index a5d66e8..efbb757 100644
+--- a/libindicate-12.10.1/configure.ac
++++ b/libindicate-12.10.1/configure.ac
+@@ -216,7 +216,7 @@ PKG_CHECK_MODULES([INDICATE_PYTHON], [python-$PYTHON_VERSION >= $PYTHON_REQUIRED
+ )
+ 
+ # libpyglib-2.0-python* doesn't have a pkgconfig unfortunately
+-INDICATE_PYTHON_LIBS+=" -lpyglib-2.0-python$PYTHON_VERSION"
++INDICATE_PYTHON_LIBS+=" -lpyglib-2.0-python2"
+ 
+ AC_SUBST(INDICATE_PYTHON_CFLAGS)
+ AC_SUBST(INDICATE_PYTHON_LIBS)
+diff --git a/libindicate-12.10.1/examples/im-client.py b/libindicate-12.10.1/examples/im-client.py
+index ff10014..48e7d00 100644
+--- a/libindicate-12.10.1/examples/im-client.py
++++ b/libindicate-12.10.1/examples/im-client.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/python2
+ #
+ #Copyright 2009 Canonical Ltd.
+ #
+diff --git a/libindicate-12.10.1/examples/listen-and-print.py b/libindicate-12.10.1/examples/listen-and-print.py
+index 5058599..7027498 100644
+--- a/libindicate-12.10.1/examples/listen-and-print.py
++++ b/libindicate-12.10.1/examples/listen-and-print.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/python2
+ #
+ #Copyright 2009 Canonical Ltd.
+ #
+-- 
+1.8.1.5
+
