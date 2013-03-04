@@ -1,0 +1,49 @@
+# Maintainer: Ner0
+
+pkgname=gala-bzr
+pkgver=264
+pkgrel=1
+pkgdesc="A window & compositing manager based on libmutter and designed by elementary"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/gala"
+license=('GPL3')
+groups=('pantheon')
+depends=('granite-bzr' 'mutter' 'clutter' 'clutter-gtk' 'bamf' 'libxcb' 'libxfixes' 'gtk3' 'gobject-introspection' 'gsettings-desktop-schemas' 'plank-bzr>=682')
+makedepends=('bzr' 'vala' 'cmake' 'pkg-config')
+install=$pkgname.install
+
+_bzrtrunk=lp:gala
+_bzrmod=gala
+
+build() {
+  msg "Connecting to Bazaar server...."
+
+  if [[ -d "$_bzrmod" ]]; then
+    cd "$_bzrmod" && bzr pull "$_bzrtrunk" -r $pkgver && cd ..
+    msg "The local files are updated."
+  else
+    bzr branch "$_bzrtrunk" "$_bzrmod" -r $pkgver
+  fi
+
+  msg "BZR checkout done or server timeout"
+  msg "Starting make..."
+
+  rm -rf "$_bzrmod-build"
+  cp -rf "$_bzrmod" "$_bzrmod-build"
+  cd "$_bzrmod-build"
+
+  sed -i 's|${DEPS_LIBRARIES}|${DEPS_LIBRARIES} -lm|g' CMakeLists.txt
+
+  rm -rf build/
+  mkdir build
+  cd build
+
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF -DGSETTINGS_LOCALINSTALL=OFF
+
+  make ${MAKEFLAGS}
+}
+
+package() {
+  cd "$_bzrmod-build/build"
+  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="$pkgdir/" install
+}
