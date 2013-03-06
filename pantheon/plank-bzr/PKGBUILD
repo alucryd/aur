@@ -8,8 +8,8 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/plank"
 license=('GPL3')
 groups=('pantheon')
-depends=('bamf' 'cairo' 'gdk-pixbuf2' 'glib2' 'gtk3' 'libdbusmenu-gtk3' 'libgee' 'libwnck3' 'libx11')
-makedepends=('bzr' 'gnome-common-git' 'vala>=0.18')
+depends=('bamf-bzr' 'libdbusmenu-gtk3' 'libgee')
+makedepends=('bzr' 'gnome-common-git' 'intltool'  'vala>=0.18')
 options=('!libtool')
 install=${pkgname}.install
 

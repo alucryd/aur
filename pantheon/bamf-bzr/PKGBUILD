@@ -2,19 +2,17 @@
 # Contributor: Dustin Mays <dork dot fish dot wat at gmail dot com>
 
 pkgname=bamf-bzr
-pkgver=522
+pkgver=523
 pkgrel=1
 pkgdesc="Window matching library"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/bamf"
 license=('GPL')
 depends=('dbus-glib' 'libgtop' 'libwnck3')
-makedepends=('bzr' 'gnome-common-git' 'gobject-introspection' 'vala')
+makedepends=('bzr' 'gnome-common-git' 'gobject-introspection' 'gtk-doc' 'vala')
 provides=('bamf')
 conflicts=('bamf')
 options=('!libtool')
-source=('xdg-current-desktop.patch')
-sha256sums=('8673df57480b6e033f3379d7eb20be4d5757b44e530346c933cfdb559b096215')
 
 _bzrtrunk=https://code.launchpad.net/~unity-team/bamf/trunk
 _bzrmod=bamf
@@ -38,9 +36,6 @@ cd "${srcdir}"
   rm -rf "${srcdir}"/${_bzrmod}-build
   cp -r "${srcdir}"/${_bzrmod} "${srcdir}"/$_bzrmod-build
   cd "${srcdir}"/${_bzrmod}-build
-
-# Patch
-  patch -Np1 -i "${srcdir}"/xdg-current-desktop.patch
 
 # Build
   ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname%-*} --disable-static --disable-webapps
