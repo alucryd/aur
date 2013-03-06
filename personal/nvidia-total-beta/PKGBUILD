@@ -1,8 +1,8 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=nvidia-total-beta
-pkgver=313.18
-pkgrel=3
+pkgver=313.26
+pkgrel=1
 pkgdesc="NVIDIA drivers for linux: nvidia-utils + lib32-nvidia-utils + opencl-nvidia + lib32-opencl-nvidia + nvidia-source + nvidia-hook (DKMS) - BETA version"
 arch=('i686' 'x86_64')
 url="http://www.nvidia.com/"
@@ -26,17 +26,17 @@ _pkg64="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"
 if [[ $CARCH == i686 ]] ; then
   _pkg=${_pkg32}
   source+=("http://us.download.nvidia.com/XFree86/Linux-x86/${pkgver}/${_pkg}.run")
-  md5sums+=('780c37c28a6e06e9571cafe348b7da64')
+  md5sums+=('ccb7806c4051bb802c049ba10d1e6f2a')
 elif [[ $CARCH == x86_64 ]] ; then
   _pkg=${_pkg64}
   source+=("http://us.download.nvidia.com/XFree86/Linux-x86_64/${pkgver}/${_pkg}.run")
-  md5sums+=('fa17a260793a38b4b8ae367db2e03b39')
-  if [[ $_multilib == true ]] ; then
+  md5sums+=('d83da5dfc6cad5f3730be4b0bd7dd80f')
+  if [[ ${_multilib} == true ]] ; then
     depends+=('lib32-zlib' 'lib32-libxext' 'lib32-gcc-libs')
     conflicts+=('lib32-libgl' 'lib32-libcl' 'lib32-nvidia-utils' 'lib32-nvidia-utils-beta' 'lib32-opencl-nvidia')
     provides+=('lib32-libgl' 'lib32-libcl' "lib32-nvidia-utils=${pkgver}" "lib32-opencl-nvidia=${pkgver}")
     source+=("http://us.download.nvidia.com/XFree86/Linux-x86/${pkgver}/${_pkg32}.run")
-    md5sums+=('780c37c28a6e06e9571cafe348b7da64')
+    md5sums+=('ccb7806c4051bb802c049ba10d1e6f2a')
   fi
 fi
 
