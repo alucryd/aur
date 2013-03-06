@@ -1,5 +1,7 @@
---- a/kernel/conftest.sh
-+++ b/kernel/conftest.sh
+Index: kernel/conftest.sh
+===================================================================
+--- kernel/conftest.sh.orig
++++ kernel/conftest.sh
 @@ -160,6 +160,7 @@ build_cflags() {
  
      if [ "$ARCH" = "i386" -o "$ARCH" = "x86_64" ]; then
