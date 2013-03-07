@@ -1,14 +1,14 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=noise-bzr
-pkgver=1327
+pkgver=1334
 pkgrel=1
 pkgdesc="The official audio player of elementary OS - BZR version"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/noise"
 license=('GPL3')
 groups=('pantheon')
-depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'json-glib' 'libgpod' 'libindicate' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy-git' 'taglib' 'zeitgeist')
+depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'json-glib' 'libgpod' 'libindicate-gtk3' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy-git' 'taglib' 'zeitgeist')
 makedepends=('bzr' 'cmake' 'vala>=0.16')
 provides=('noise')
 conflicts=('noise')

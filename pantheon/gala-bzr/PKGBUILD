@@ -1,49 +1,54 @@
-# Maintainer: Ner0
+# Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gala-bzr
-pkgver=264
+pkgver=296
 pkgrel=1
 pkgdesc="A window & compositing manager based on libmutter and designed by elementary"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/gala"
 license=('GPL3')
 groups=('pantheon')
-depends=('granite-bzr' 'mutter' 'clutter' 'clutter-gtk' 'bamf' 'libxcb' 'libxfixes' 'gtk3' 'gobject-introspection' 'gsettings-desktop-schemas' 'plank-bzr>=682')
-makedepends=('bzr' 'vala' 'cmake' 'pkg-config')
-install=$pkgname.install
+depends=('clutter-gtk' 'granite-bzr' 'mutter' 'plank-bzr')
+makedepends=('bzr' 'cmake' 'vala>=0.16')
+install=${pkgname}.install
 
-_bzrtrunk=lp:gala
+_bzrtrunk=https://code.launchpad.net/~gala-dev/gala/trunk
 _bzrmod=gala
 
 build() {
+  cd "${srcdir}"
+
+# Pull
   msg "Connecting to Bazaar server...."
 
-  if [[ -d "$_bzrmod" ]]; then
-    cd "$_bzrmod" && bzr pull "$_bzrtrunk" -r $pkgver && cd ..
+  if [[ -d ${_bzrmod} ]]; then
+    cd ${_bzrmod} && bzr --no-plugins pull ${_bzrtrunk} -r ${pkgver}
     msg "The local files are updated."
   else
-    bzr branch "$_bzrtrunk" "$_bzrmod" -r $pkgver
+    bzr --no-plugins branch ${_bzrtrunk} ${_bzrmod} -q -r ${pkgver}
   fi
 
-  msg "BZR checkout done or server timeout"
-  msg "Starting make..."
+  msg "Bazaar checkout done or server timeout"
+  msg "Starting build..."
 
-  rm -rf "$_bzrmod-build"
-  cp -rf "$_bzrmod" "$_bzrmod-build"
-  cd "$_bzrmod-build"
+  rm -rf "${srcdir}"/${_bzrmod}-build
+  cp -r "${srcdir}"/${_bzrmod} "${srcdir}"/$_bzrmod-build
+  cd "${srcdir}"/${_bzrmod}-build
 
-  sed -i 's|${DEPS_LIBRARIES}|${DEPS_LIBRARIES} -lm|g' CMakeLists.txt
-
-  rm -rf build/
-  mkdir build
-  cd build
-
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF -DGSETTINGS_LOCALINSTALL=OFF
-
-  make ${MAKEFLAGS}
+# Build
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF -DCMAKE_EXE_LINKER_FLAGS=-lm
+  make
 }
 
 package() {
-  cd "$_bzrmod-build/build"
-  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="$pkgdir/" install
+  cd "${srcdir}"/${_bzrmod}-build/build
+
+# Install
+  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
 }
+
+# vim: ts=2 sw=2 et:
