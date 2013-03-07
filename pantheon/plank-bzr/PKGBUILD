@@ -10,6 +10,8 @@ license=('GPL3')
 groups=('pantheon')
 depends=('bamf-bzr' 'libdbusmenu-gtk3' 'libgee')
 makedepends=('bzr' 'gnome-common-git' 'intltool'  'vala>=0.18')
+provides=('plank')
+conflicts=('plank')
 options=('!libtool')
 install=${pkgname}.install
 

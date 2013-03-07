@@ -1,0 +1,7 @@
+[1m[32m==>(B[m[1m Connecting to Bazaar server....(B[m
+Unable to obtain lock file:///media/Data/Sources/pantheon/geary-bzr/src/geary/ held by alucryd on laptop-archlinux (process #17306), acquired 12 seconds ago.
+Will continue to try until 15:47:42, unless you press Ctrl-C.
+See "bzr help break-lock" for more.
+bzr: interrupted
+
+[1m[31m==> ERROR:(B[m[1m Aborted by user! Exiting...(B[m

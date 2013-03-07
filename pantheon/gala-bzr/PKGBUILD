@@ -10,6 +10,8 @@ license=('GPL3')
 groups=('pantheon')
 depends=('clutter-gtk' 'granite-bzr' 'mutter' 'plank-bzr')
 makedepends=('bzr' 'cmake' 'vala>=0.16')
+provides=('gala')
+conflicts=('gala')
 install=${pkgname}.install
 
 _bzrtrunk=https://code.launchpad.net/~gala-dev/gala/trunk
