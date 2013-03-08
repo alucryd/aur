@@ -1,24 +1,21 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
-pkgname=noise-bzr
-pkgver=1334
+pkgname=maya-calendar-bzr
+pkgver=415
 pkgrel=1
-pkgdesc="The official audio player of elementary OS"
+pkgdesc="GCal-syncing GTK+ calendar application"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/noise"
+url="https://launchpad.net/maya"
 license=('GPL3')
-groups=('pantheon')
-depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'json-glib' 'libgpod' 'libindicate-gtk3' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy-git' 'taglib' 'zeitgeist')
+depends=('evolution-data-server' 'glib2' 'granite-bzr' 'gtk3' 'libgee')
 makedepends=('bzr' 'cmake' 'vala>=0.16')
-provides=('noise')
-conflicts=('noise')
 install=${pkgname}.install
 
-_bzrtrunk=https://code.launchpad.net/~elementary-apps/noise/trunk
-_bzrmod=noise
+_bzrtrunk=https://code.launchpad.net/~elementary-apps/maya/trunk
+_bzrmod=maya
 
 build() {
-  cd "${srcdir}"
+cd "${srcdir}"
 
 # Pull
   msg "Connecting to Bazaar server...."
@@ -37,6 +34,8 @@ build() {
   cp -r "${srcdir}"/${_bzrmod} "${srcdir}"/$_bzrmod-build
   cd "${srcdir}"/${_bzrmod}-build
 
+
+
 # Build
   if [[ -d build ]]; then
     rm -rf build
@@ -48,8 +47,6 @@ build() {
 
 package() {
   cd "${srcdir}"/${_bzrmod}-build/build
-
-# Install
   make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
 }
 
