@@ -40,9 +40,6 @@ build() {
   cp -r "${srcdir}"/${_bzrmod} "${srcdir}"/$_bzrmod-build
   cd "${srcdir}"/${_bzrmod}-build
 
-# Patch
-# sed -i 's/\(#define FM_TYPE_DIRECTORY_VIEW fm_directory_view_get_type()\)/\#define FM_DIRECTORY_TYPE_VIEW fm_directory_view_get_type()\n\1/' src/fm-directory-view.h
-
 # Build
   if [[ -d build ]]; then
     rm -rf build
