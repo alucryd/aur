@@ -1,14 +1,14 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=midori-granite-bzr
-pkgver=5845
+pkgver=5851
 pkgrel=1
 pkgdesc='Lightweight web browser based on Gtk WebKit'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/midori"
 license=('LGPL2.1')
-depends=('desktop-file-utils' 'granite-bzr' 'hicolor-icon-theme' 'libnotify' 'libunique' 'libwebkit' 'libxss' 'libzeitgeist' 'webkitgtk3')
-makedepends=('libxml2' 'intltool' 'gtk-doc' 'librsvg' 'python2' 'vala' 'gcr')
+depends=('gcr' 'granite-bzr' 'libnotify' 'libunique3' 'libxss' 'libzeitgeist' 'webkitgtk3')
+makedepends=('bzr' 'clutter-gtk' 'gtk-doc' 'intltool' 'librsvg' 'libxml2' 'python2' 'vala>=0.10')
 optdepends=('gstreamer0.10-ugly-plugins: HTML5 videos support'
             'aria2: download utility')
 options=('!emptydirs')
@@ -41,7 +41,7 @@ build() {
   sed -i -e "s|#![ ]*/usr/bin/env python$|#!/usr/bin/env python2|" wscript waf
 
 # Build
-  PYTHON=python2 ./configure --prefix=/usr --jobs=${MAKEFLAGS/-j/} --enable-addons --enable-unique --enable-nls --enable-docs --enable-apidocs
+  PYTHON=/usr/bin/python2 ./configure --prefix=/usr --jobs=${MAKEFLAGS/-j/} --enable-{addons,apidocs,docs,granite,gtk3,nls,unique}
   make
 }
 
