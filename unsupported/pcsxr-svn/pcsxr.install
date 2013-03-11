@@ -1,5 +1,0 @@
-post_install() {
-  echo "To be able to play commercial games, at least one PSX BIOS ROM has to be placed in ~/.pcsx/bios"
-}
-
-# vim ts=2 sw=2 et:

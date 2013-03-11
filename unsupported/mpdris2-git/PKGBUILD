@@ -1,44 +1,53 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname="mpdris2-git"
-pkgver=20130205
+pkgver=20130311
 pkgrel=1
 pkgdesc="MPRIS2 support for MPD"
 arch=('any')
 url="https://github.com/eonpatapon/mpDris2"
 license=('GPL3')
-depends=('mpd' 'python2-dbus' 'python2-gobject2' 'python2-mpd')
+depends=('mpd' 'python2-dbus' 'python2-mpd' 'python2-notify')
 makedepends=('git' 'intltool')
-conflicts=('mpdris2')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 
-_gitroot="https://github.com/eonpatapon/mpDris2.git"
-_gitname="mpdris2"
+_gitroot=https://github.com/eonpatapon/mpDris2.git
+_gitname=mpdris2
 
 build() {
-  cd ${srcdir}
+cd "${srcdir}"
 
-  msg "Connecting to the GIT server..."
-  if [[ -d ${_gitname} ]] ; then
-    cd ${_gitname}
-    git pull origin
-    msg "The local files are updated..."
+# Clone
+  msg "Connecting to GIT server...."
+
+  if [[ -d ${_gitname} ]]; then
+    cd ${_gitname} && git pull origin
+    msg "The local files are updated."
   else
     git clone ${_gitroot} ${_gitname}
-    cd ${_gitname}
   fi
-  msg "GIT checkout done."
 
-  ./autogen.sh
-  ./configure --prefix=/usr --sysconfdir=/etc
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_gitname}-build
+  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${_gitname}-build
+
+# Patch
+  sed -i 's|^#!.*python$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
+
+# Build
+  ./autogen.sh --prefix=/usr --sysconfdir=/etc
   make
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}
-  make DESTDIR="${pkgdir}" install
+  cd "${srcdir}"/${_gitname}-build
 
-# Python 2 fix
-  sed -i "s/python/python2/" "$pkgdir"/usr/bin/mpDris2
+# Install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

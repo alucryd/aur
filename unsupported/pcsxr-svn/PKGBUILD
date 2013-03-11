@@ -10,30 +10,42 @@ url="http://pcsxr.codeplex.com/"
 license=('GPL')
 depends=('gtk3' 'libcdio' 'libgl' 'libxv' 'sdl')
 makedepends=('intltool' 'mesa' 'subversion')
-provides=('pcsx')
-conflicts=('pcsx-df' 'pcsxr')
+provides=("${pkgname%-*}")
+conflicts=('pcsx-df' "${pkgname%-*}")
 options=('!libtool')
 
 _svntrunk=https://pcsxr.svn.codeplex.com/svn/pcsxr
 _svnmod=pcsxr
 
 build() {
-  cd "${srcdir}"
+cd "${srcdir}"
 
-  if [ -d ${_svnmod}/.svn ] ; then
+# Checkout
+  msg "Connecting to SVN server...."
+
+  if [[ -d ${_svnmod}/.svn ]]; then
     (cd ${_svnmod} && svn up -r ${pkgver})
   else
     svn co ${_svntrunk} --config-dir ./ -r ${pkgver} ${_svnmod}
   fi
-  msg "SVN checkout done or server timeout"
 
-  msg "Starting make..."
-  cd ${_svnmod}
+  msg "SVN checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_svnmod}-build
+  svn export "${srcdir}"/${_svnmod} "${srcdir}"/${_svnmod}-build
+  cd "${srcdir}"/${_svnmod}-build
+
+# Build
   ./autogen.sh --prefix=/usr --enable-libcdio --enable-opengl
   make
 }
 
 package() {
-  cd "${srcdir}"/${_svnmod}
+  cd "${srcdir}"/${_svnmod}-build
+
+# Install
   make DESTDIR="${pkgdir}" install
 }
+
+# vim: ts=2 sw=2 et:
