@@ -1,42 +1,53 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
-# Contributor: Bart Verhoeven <nepherte at archlinux dot us>
+# Contributor: Sebastian Lenz <sebastian@archusers.de>
 
-pkgname=gnome-shell-extension-places-menu-git
-pkgver=20130126
+_ext=places-menu
+pkgname=gnome-shell-extension-${_ext}-git
+pkgver=20130311
 pkgrel=1
-pkgdesc="Places menu for GNOME Shell."
+pkgdesc="Add a menu to the top panel for quickly navigating places in the system"
 arch=('any')
 url="http://live.gnome.org/GnomeShell/Extensions"
 license=('GPL' 'LGPL')
 depends=('gnome-shell-extension-common-git')
-makedepends=('git' 'gnome-common' 'intltool' 'gettext')
-conflicts=('gnome-shell-extensions-git' 'gnome-shell-extension-places-menu')
-install=gschemas.install
+makedepends=('git' 'gnome-common-git' 'intltool')
+provides=("gnome-shell-extension-${_ext}")
+conflicts=('gnome-shell-extensions-git' "gnome-shell-extension-${_ext}")
 
-_gitroot="git://git.gnome.org/gnome-shell-extensions"
-_gitname="gnome-shell-extensions"
+_gitroot=http://git.gnome.org/browse/gnome-shell-extensions
+_gitname=gnome-shell-extensions
 
 build() {
   cd "${srcdir}"
 
+# Clone
   msg "Connecting to GIT server...."
-  if [[ -d ${_gitname} ]] ; then
-    cd ${_gitname} && git pull origin
+
+  if [[ -d ${_gitname} ]]; then
+    cd ${_gitname} && git pull origin && git checkout gnome-3-6
     msg "The local files are updated."
   else
-    git clone -b gnome-3-6 ${_gitroot}
-    cd ${_gitname}
+    git clone ${_gitroot} ${_gitname}
+    cd ${_gitname} && git checkout gnome-3-6
   fi
-  msg "GIT checkout done or server timeout"
 
-  msg "Starting make..."
-  ./autogen.sh --prefix=/usr --enable-extensions="places-menu"
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_gitname}-build
+  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${_gitname}-build
+
+# Build
+  ./autogen.sh --prefix=/usr --disable-schemas-compile --enable-extensions=${_ext}
+  make
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}
+  cd "${srcdir}"/${_gitname}-build/extensions/${_ext}
+
+# Install
   make DESTDIR="${pkgdir}" install
-  rm -rf "${pkgdir}"/usr/share/locale
 }
 
 # vim: ts=2 sw=2 et:

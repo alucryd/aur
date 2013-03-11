@@ -1,40 +1,49 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-mediaplayer-git
-pkgver=20130126
+pkgver=20130311
 pkgrel=1
 pkgdesc="A mediaplayer indicator for the Gnome Shell"
 arch=('any')
 url="https://github.com/eonpatapon/gnome-shell-extensions-mediaplayer"
 license=('GPL2')
 depends=('gnome-shell')
-makedepends=('git' 'intltool' 'gnome-common')
+makedepends=('git' 'gnome-common-git' 'intltool')
 optdepends=('mpdris2-git: MPD support')
-install=gschemas.install
+install=${pkgname%-*}.install
 
-_gitroot="https://github.com/eonpatapon/gnome-shell-extensions-mediaplayer.git"
-_gitname="gnome-shell-extension-mediaplayer"
+_gitroot=https://github.com/eonpatapon/gnome-shell-extensions-mediaplayer.git
+_gitname=gnome-shell-extension-mediaplayer
 
 build() {
   cd "${srcdir}"
 
-  msg "Connecting to the GIT server..."
-  if [[ -d ${_gitname} ]] ; then
-    cd ${_gitname}
-    git pull origin
-    msg "The local files are updated..."
+# Clone
+  msg "Connecting to GIT server...."
+
+  if [[ -d ${_gitname} ]]; then
+    cd ${_gitname} && git pull origin
+    msg "The local files are updated."
   else
     git clone ${_gitroot} ${_gitname}
-    cd ${_gitname}
   fi
-  msg "GIT checkout done."
 
-  ./autogen.sh --prefix=/usr
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_gitname}-build
+  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${_gitname}-build
+
+# Build
+  ./autogen.sh --prefix=/usr --disable-schemas-compile
   make
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}
+  cd "${srcdir}"/${_gitname}-build
+
+# Install
   make DESTDIR="${pkgdir}" install
 }
 

@@ -2,9 +2,9 @@
 # Contributor: Lightning <sgsdxzy at gmail dot com>
 
 pkgname=dolphin-emu-git
-pkgver=20130227
+pkgver=20130311
 pkgrel=1
-pkgdesc="A GameCube / Wii / Triforce emulator - GIT version"
+pkgdesc="A GameCube / Wii / Triforce emulator"
 arch=('i686' 'x86_64')
 url="http://www.dolphin-emu.org/"
 license=('GPL2')
@@ -47,7 +47,7 @@ build() {
 
 }
 package() {
-  cd "${srcdir}"/${_gitname}/build
+  cd "${srcdir}"/$_gitname-build/build
 
 # Install
   make DESTDIR="${pkgdir}" install

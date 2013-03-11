@@ -1,20 +1,20 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=firewalld-git
-pkgver=20130301
+pkgver=20130311
 pkgrel=1
 pkgdesc="Firewall service daemon that provides a dynamic customizable firewall with a D-BUS interface"
 arch=('any')
 url="http://fedorahosted.org/firewalld"
 license=('GPL2')
-depends=('dconf' 'desktop-file-utils' 'ebtables' 'gtk3' 'hicolor-icon-theme' 'iptables' 'python2-slip')
+depends=('ebtables' 'gtk3' 'hicolor-icon-theme' 'iptables' 'libnotify' 'networkmanager' 'python2-slip')
 makedepends=('git' 'intltool')
+backup=('etc/conf.d/firewalld' 'etc/firewalld/firewalld.conf')
 provides=('firewalld')
 conflicts=('firewalld')
 install=${pkgname}.install
-source=('paths.patch' 'python2.patch')
-sha256sums=('97b9f97b91cb188e51fbabcdde43de26abc7b17e8ee6de1c6450ca606d291754'
-            'cb5f73c1c7622c35552d60c6e774d82cf11f4d5794238b50e02799c9f88cb558')
+source=('paths.patch')
+sha256sums=('5bbb24a6f5fb18c771e0b20b31545a1c8f32e2fe222b5188a8e27ee068bdb658')
 
 _gitroot="http://git.fedorahosted.org/git/firewalld.git"
 _gitname="firewalld"
@@ -41,7 +41,10 @@ build () {
 
 # Patch
   patch -Np1 -i "${srcdir}"/paths.patch
-  patch -Np1 -i "${srcdir}"/python2.patch
+  sed -i 's|sysconfig|conf\.d|' config/firewalld.service
+  sed -i 's|^#!.*python$|#!/usr/bin/python2|
+          s|^#!.*python -Es$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
+  sed -i 's|python|python2|g' fix_python_shebang.sh
 
 # Build
   PYTHON=python2 ./autogen.sh --prefix=/usr --sysconfdir=/etc --disable-schemas-compile
@@ -53,11 +56,6 @@ package() {
 
 # Install
   make DESTDIR="${pkgdir}" install
-
-# Fix permissions
-  find "${pkgdir}" -type d -exec chmod 755 {} +
-  find "${pkgdir}" -type f -exec chmod 644 {} +
-  chmod -R 755 "${pkgdir}"/usr/{bin,sbin}
 }
 
 # vim: ts=2 sw=2 et:

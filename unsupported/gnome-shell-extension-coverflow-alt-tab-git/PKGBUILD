@@ -1,40 +1,51 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-coverflow-alt-tab-git
-pkgver=20130126
+pkgver=20130311
 pkgrel=1
-pkgdesc="Replacement of Alt-Tab, iterates through windows in a cover-flow manner."
+pkgdesc="Replacement of Alt-Tab, iterates through windows in a cover-flow manner"
 arch=('any')
-url="https://github.com/p91paul/gnome-shell-extensions-coverflowalttab/"
+url="https://github.com/dmo60/CoverflowAltTab"
 license=('GPL')
 depends=('gnome-shell')
 makedepends=('git')
-install=gschemas.install
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+install=${pkgname%-*}.install
 
-_gitroot="https://github.com/p91paul/gnome-shell-extensions-coverflowalttab.git"
-_gitname="gnome-shell-extensions-coverflowalttab"
+_gitroot=https://github.com/dmo60/CoverflowAltTab.git
+_gitname=CoverflowAltTab
 
 build () {
-  cd ${srcdir}
+  cd "${srcdir}"
 
-  msg "Connecting to the GIT server..."
-  if [[ -d ${_gitname} ]] ; then
-    cd ${_gitname}
-    git pull origin
-    msg "The local files are updated..."
+# Clone
+  msg "Connecting to GIT server...."
+
+  if [[ -d ${_gitname} ]]; then
+    cd ${_gitname} && git pull origin
+    msg "The local files are updated."
   else
     git clone ${_gitroot} ${_gitname}
-    cd ${_gitname}
   fi
-  msg "GIT checkout done."
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_gitname}-build
+  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${_gitname}-build
 }
 
 package() {
-  cd "${srcdir}"
+  cd "${srcdir}"/${_gitname}-build
 
-  mkdir -p "${pkgdir}"/usr/share/gnome-shell/extensions
-  rm -rf ${_gitname}/.git*
-  cp -dr --no-preserve=ownership ${_gitname} "${pkgdir}"/usr/share/gnome-shell/extensions/CoverflowAltTab@palatis.blogspot.com
+# Install
+  mkdir -p "${pkgdir}"/usr/share/{glib-2.0,gnome-shell/extensions}
+  cp -dr --no-preserve=ownership CoverflowAltTab@dmo60.de "${pkgdir}"/usr/share/gnome-shell/extensions/
+  cd "${pkgdir}"/usr/share/gnome-shell/extensions/CoverflowAltTab@dmo60.de
+  rm schemas/gschemas.compiled
+  mv schemas "${pkgdir}"/usr/share/glib-2.0/
 
 # Fix permissions
   find "${pkgdir}" -type d -exec chmod 755 {} +

@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-windowoverlay-icons-git
-pkgver=20130126
+pkgver=20130311
 pkgrel=1
 pkgdesc="A GNOME Shell extension to add an icon to windows in the overview"
 arch=('any')
@@ -9,31 +9,44 @@ url="https://github.com/sustmi/gnome-shell-extensions-sustmi"
 license=('GPL3')
 depends=('gnome-shell')
 makedepends=('git')
-install=gschemas.install
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+install=${pkgname%-*}.install
 
-_gitroot="https://github.com/sustmi/gnome-shell-extensions-sustmi.git"
-_gitname="gnome-shell-extensions-sustmi"
+_gitroot=https://github.com/sustmi/gnome-shell-extensions-sustmi.git
+_gitname=gnome-shell-extensions-sustmi
 
 build() {
   cd "${srcdir}"
 
-  msg "Connecting to the GIT server..."
-  if [[ -d ${_gitname} ]] ; then
-    cd ${_gitname}
-    git pull origin
-    msg "The local files are updated..."
+# Clone
+  msg "Connecting to GIT server...."
+
+  if [[ -d ${_gitname} ]]; then
+    cd ${_gitname} && git pull origin
+    msg "The local files are updated."
   else
     git clone ${_gitroot} ${_gitname}
-    cd ${_gitname}
   fi
-  msg "GIT checkout done."
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_gitname}-build
+  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${_gitname}-build
 }
 
 package() {
-  cd "${srcdir}"
-  mkdir -p "${pkgdir}"/usr/share/{glib-2.0/schemas,gnome-shell/extensions/windowoverlay-icons@sustmidown.centrum.cz}
-  cp -d --no-preserve=ownership ${_gitname}/windowoverlay-icons/*.{css,js,json,xml} "${pkgdir}"/usr/share/gnome-shell/extensions/windowoverlay-icons@sustmidown.centrum.cz/
-  cp -d --no-preserve=ownership ${_gitname}/windowoverlay-icons/schemas/*.gschema.xml "${pkgdir}"/usr/share/glib-2.0/schemas/
+  cd "${srcdir}"/${_gitname}-build
+
+# Install
+  mkdir -p "${pkgdir}"/usr/share/{glib-2.0,gnome-shell/extensions}
+  cp -dr --no-preserve=ownership windowoverlay-icons "${pkgdir}"/usr/share/gnome-shell/extensions/windowoverlay-icons@sustmidown.centrum.cz
+  cd "${pkgdir}"/usr/share/gnome-shell/extensions/windowoverlay-icons@sustmidown.centrum.cz
+  rm -rf po schemas/gschemas.compiled
+  mv schemas "${pkgdir}"/usr/share/glib-2.0/
+  mv locale "${pkgdir}"/usr/share/
 
 # Fix permissions
   find "${pkgdir}" -type d -exec chmod 755 {} +

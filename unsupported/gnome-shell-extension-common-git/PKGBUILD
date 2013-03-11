@@ -2,40 +2,49 @@
 # Contributor: Sebastian Lenz <sebastian@archusers.de>
 
 pkgname=gnome-shell-extension-common-git
-pkgver=20130126
+pkgver=20130311
 pkgrel=1
 pkgdesc="Common files for the GNOME Shell Extensions"
 arch=('any')
 url="http://live.gnome.org/GnomeShell/Extensions"
 license=('GPL' 'LGPL')
 depends=('gnome-shell')
-makedepends=('git' 'gnome-common' 'intltool' 'gettext')
+makedepends=('git' 'gnome-common-git' 'intltool')
 provides=('gnome-shell-extension-common')
 conflicts=('gnome-shell-extension-git' 'gnome-shell-extension-common')
-install=gschemas.install
 
-_gitroot="http://git.gnome.org/browse/gnome-shell-extensions"
-_gitname="gnome-shell-extensions"
+_gitroot=http://git.gnome.org/browse/gnome-shell-extensions
+_gitname=gnome-shell-extensions
 
 build() {
   cd "${srcdir}"
 
+# Clone
   msg "Connecting to GIT server...."
-  if [[ -d ${_gitname} ]] ; then
-    cd ${_gitname} && git pull origin
+
+  if [[ -d ${_gitname} ]]; then
+    cd ${_gitname} && git pull origin && git checkout gnome-3-6
     msg "The local files are updated."
   else
-    git clone -b gnome-3-6 ${_gitroot}
-    cd ${_gitname}
+    git clone ${_gitroot} ${_gitname}
+    cd ${_gitname} && git checkout gnome-3-6
   fi
-  msg "GIT checkout done or server timeout"
 
-  msg "Starting make..."
-  ./autogen.sh --prefix=/usr --enable-extensions=""
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_gitname}-build
+  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${_gitname}-build
+
+# Build
+  ./autogen.sh --prefix=/usr --disable-schemas-compile --enable-extensions=""
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}
+  cd "${srcdir}"/${_gitname}-build
+
+# Install
   make DESTDIR="${pkgdir}" install
 }
 
