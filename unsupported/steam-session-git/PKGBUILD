@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=steam-session-git
-pkgver=20130126
+pkgver=20130311
 pkgrel=1
 pkgdesc="Launch Steam Big Picture from your login screen"
 arch=('any')
@@ -9,29 +9,38 @@ url="https://github.com/thor27/steam-login/"
 license=('GPL2')
 depends=('xfwm4' 'wmctrl')
 makedepends=('git')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 
-_gitroot="https://github.com/thor27/steam-login.git"
-_gitname="steam-login"
+_gitroot=https://github.com/thor27/steam-login.git
+_gitname=steam-login
 
 build () {
-  cd "${srcdir}"
+cd "${srcdir}"
 
-  msg "Connecting to the GIT server..."
-  if [[ -d ${_gitname} ]] ; then
-    cd ${_gitname}
-    git pull origin
-    msg "The local files are updated..."
+# Clone
+  msg "Connecting to GIT server...."
+
+  if [[ -d ${_gitname} ]]; then
+    cd ${_gitname} && git pull origin
+    msg "The local files are updated."
   else
     git clone ${_gitroot} ${_gitname}
-    cd ${_gitname}
   fi
-  msg "GIT checkout done."
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_gitname}-build
+  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${_gitname}-build
 }
 
 package() {
-  cd "${srcdir}"
+  cd "${srcdir}"/${_gitname}-build
 
-  cp -dr --no-preserve=ownership ${_gitname}/steam-login/usr "${pkgdir}"/
+# Install
+  cp -dr --no-preserve=ownership steam-login/usr "${pkgdir}"/
 
 # Fix permissions
   find "${pkgdir}" -type d -exec chmod 755 {} +

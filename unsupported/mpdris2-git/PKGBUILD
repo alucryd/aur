@@ -2,12 +2,12 @@
 
 pkgname="mpdris2-git"
 pkgver=20130311
-pkgrel=1
+pkgrel=2
 pkgdesc="MPRIS2 support for MPD"
 arch=('any')
 url="https://github.com/eonpatapon/mpDris2"
 license=('GPL3')
-depends=('mpd' 'python2-dbus' 'python2-mpd' 'python2-notify')
+depends=('mpd' 'python2-dbus' 'python2-gobject2' 'python2-mpd' 'python2-notify')
 makedepends=('git' 'intltool')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")

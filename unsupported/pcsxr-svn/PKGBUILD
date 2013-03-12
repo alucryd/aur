@@ -2,16 +2,16 @@
 # Contributor: Infy <eugene dot yudin at gmail dot com>
 
 pkgname=pcsxr-svn
-pkgver=82713
+pkgver=83441
 pkgrel=1
 pkgdesc="A Sony PlayStation emulator based on the PCSX-df Project"
 arch=('i686' 'x86_64')
 url="http://pcsxr.codeplex.com/"
 license=('GPL')
-depends=('gtk3' 'libcdio' 'libgl' 'libxv' 'sdl')
+depends=('gtk3' 'libcdio' 'libxv' 'sdl')
 makedepends=('intltool' 'mesa' 'subversion')
 provides=("${pkgname%-*}")
-conflicts=('pcsx-df' "${pkgname%-*}")
+conflicts=("${pkgname%-*}" 'pcsx-df')
 options=('!libtool')
 
 _svntrunk=https://pcsxr.svn.codeplex.com/svn/pcsxr

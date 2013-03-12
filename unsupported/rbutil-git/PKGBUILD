@@ -1,48 +1,63 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=rbutil-git
-pkgver=20130126
+pkgver=20130311
 pkgrel=1
 pkgdesc="Rockbox Utility git version"
 arch=('i686' 'x86_64')
 url="http://www.rockbox.org/twiki/bin/view/Main/RockboxUtility"
 license=("GPL")
-depends=('qt>=4.3.0' 'libusb' 'speex')
-provides=('rbutilqt' 'rbutil')
-conflicts=('rbutil-bin' 'rbutil-svn' 'rbutil')
+depends=('qt4' 'libusbx' 'speex')
+makedepends=('git')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 source=('rbutil.desktop')
 sha256sums=('539285237af16fbc60a7501963e8c2f584e58a31f2613481e6b42d21337b7a25')
 
-_gitroot="git://git.rockbox.org/rockbox"
-_gitname="rockbox"
+_gitroot=git://git.rockbox.org/rockbox
+_gitname=rockbox
 
 build() {
-  cd ${srcdir}
+cd "${srcdir}"
 
-  msg "Connecting to the GIT server..."
-  if [[ -d ${_gitname} ]] ; then
-    cd ${_gitname}
-    git pull origin
-    msg "The local files are updated..."
+# Clone
+  msg "Connecting to GIT server...."
+
+  if [[ -d ${_gitname} ]]; then
+    cd ${_gitname} && git pull origin
+    msg "The local files are updated."
   else
     git clone ${_gitroot} ${_gitname}
-    cd ${_gitname}
   fi
-  msg "GIT checkout done."
 
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_gitname}-build
+  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${_gitname}-build
+
+# Build
   cd rbutil/rbutilqt
-  lrelease rbutilqt.pro
-  qmake
+  lrelease-qt4 rbutilqt.pro
+  qmake-qt4
   make
 }
 
 package(){
-  cd "${srcdir}"
-  install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,pixmaps}}
-  install -m 644 rbutil.desktop "${pkgdir}"/usr/share/applications/rbutil.desktop
-  cd ${_gitname}/rbutil/rbutilqt
+  cd "${srcdir}"/${_gitname}-build
+
+# Install
+  cd "${srcdir}"/${_gitname}-build/rbutil/rbutilqt
+
+# Install
+  install -dm 755 "${pkgdir}"/usr/{bin,share/pixmaps}
   install -m 644 icons/rockbox-64.png "${pkgdir}"/usr/share/pixmaps/rbutil.png
   install -m 755 RockboxUtility "${pkgdir}"/usr/bin/rbutil
+
+# Desktop file
+  install -dm 755 "${pkgdir}"/usr/share/applications
+  install -m 644 "${srcdir}"/rbutil.desktop "${pkgdir}"/usr/share/applications/rbutil.desktop
 }
 
 # vim: ts=2 sw=2 et:
