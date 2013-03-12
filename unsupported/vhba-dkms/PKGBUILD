@@ -1,14 +1,14 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 # Contributor: Gustavo Alvarez <sl1pkn07 at gmail dot com>
 
-pkgname=dkms-vhba
+pkgname=vhba-dkms
 pkgver=20120422
-pkgrel=5
-pkgdesc="VHBA kernel module source (DKMS)"
+pkgrel=1
+pkgdesc="VHBA kernel module sources (DKMS)"
 arch=('any')
 url="http://cdemu.sourceforge.net/"
 license=('GPL2')
-depends=('bash' 'dkms')
+depends=('dkms')
 provides=("vhba-module=${pkgver}")
 conflicts=('vhba-module')
 install=${pkgname}.install

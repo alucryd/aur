@@ -1,0 +1,51 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+# Contributor: Anish Bhatt <anish at gatech dot edu>
+# Contributor: Jason Melton <jason dot melton at gmail dot com>
+# Contributor: Youpi <max dot flocard at gmail dot com>
+# Contributor: sl1pkn07 <sl1pkn07 at gmail dot com>
+
+pkgname=nvidia-beta-dkms
+pkgver=313.26
+pkgrel=1
+pkgdesc="NVIDIA kernel module sources (DKMS) - BETA version"
+arch=('i686' 'x86_64')
+[[ $CARCH == i686 ]] && _arch=x86 && _pkg=NVIDIA-Linux-${_arch}-${pkgver} && md5sums=('3c2f5138d0fec58b27e26c5b37d845b8')
+[[ $CARCH == x86_64 ]] && _arch=x86_64 && _pkg=NVIDIA-Linux-${_arch}-${pkgver}-no-compat32 && md5sums=('2d35124fa5a4b009f170fe893b5d07e3')
+url="http://www.nvidia.com/"
+license=('custom')
+depends=('dkms' 'linux>=3.7' 'linux<3.9' "nvidia-utils-beta=${pkgver}")
+provides=("nvidia=${pkgver}" 'nvidia-dkms')
+conflicts=('nvidia-beta')
+source=("http://us.download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run" 'linux-3.7.patch')
+md5sums+=('ccb7806c4051bb802c049ba10d1e6f2a')
+install=${pkgname}.install
+
+build() {
+  cd "${srcdir}"
+
+# Extract
+  if [[ -d ${_pkg} ]] ; then
+    rm -rf ${_pkg}
+  fi
+  sh ${_pkg}.run --extract-only
+}
+
+package() {
+  cd "${srcdir}"/${_pkg}/kernel
+
+# Patch
+  patch -Np2 -i "${srcdir}"/linux-3.7.patch
+
+# Install
+  install -dm 755 "${pkgdir}"/usr/{lib/modprobe.d,share/licenses,src/nvidia-${pkgver}}
+  cp -dr --no-preserve=ownership * "${pkgdir}"/usr/src/nvidia-${pkgver}/
+  echo "blacklist nouveau" > "${pkgdir}"/usr/lib/modprobe.d/nvidia.conf
+  ln -s /usr/share/licenses/nvidia "${pkgdir}"/usr/share/licenses/${pkgname}
+
+# Fix permissions
+  find "${pkgdir}" -type d -exec chmod 755 {} +
+  find "${pkgdir}" -type f -exec chmod 644 {} +
+  chmod 755 "${pkgdir}"/usr/src/nvidia-${pkgver}/conftest.sh
+}
+
+# vim: ts=2 sw=2 et:

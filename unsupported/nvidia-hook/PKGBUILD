@@ -2,21 +2,19 @@
 
 pkgname=nvidia-hook
 pkgver=2.2
-pkgrel=2
+pkgrel=3
 pkgdesc="mkinitcpio hook to compile the NVIDIA modules"
 url="https://github.com/Alucryd/mkinitcpio-hooks"
 arch=('any')
 license=('GPL3')
-depends=('nvidia-source')
+depends=('nvidia-dkms')
 install=${pkgname}.install
 source=("https://raw.github.com/Alucryd/mkinitcpio-hooks/master/nvidia")
 sha256sums=('d3cdc998faac6a8f835efb48b925758e5bb25cfa15e8f2f21430b46b9f880e26')
 
 package() {
   cd "${srcdir}"
-  install -dm 755 "${pkgdir}"/usr/lib/{modprobe.d,initcpio/install}
-  echo "blacklist nouveau" >> "${pkgdir}"/usr/lib/modprobe.d/nvidia.conf
-  chmod 644 "${pkgdir}"/usr/lib/modprobe.d/nvidia.conf
+  install -dm 755 "${pkgdir}"/usr/lib/initcpio/install
   sed -i "s|_arch|$CARCH|" nvidia
   install -m 644 nvidia "${pkgdir}"/usr/lib/initcpio/install/nvidia
 }
