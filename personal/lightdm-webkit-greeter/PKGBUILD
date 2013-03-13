@@ -1,0 +1,39 @@
+# $Id$
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Morfeo <morfeo89@hotmail.it>
+
+pkgname=lightdm-webkit-greeter
+pkgver=0.1.2
+pkgrel=6
+pkgdesc="Webkit greeter for LightDM"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/lightdm-webkit-greeter"
+license=('GPL3' 'LGPL3')
+depends=('gnome-themes-standard' 'lightdm' 'webkitgtk2')
+makedepends=('gnome-common' 'gnome-doc-utils' 'gobject-introspection' 'intltool')
+backup=('etc/lightdm/lightdm-webkit-greeter.conf')
+options=(!libtool)
+source=("http://launchpad.net/lightdm-webkit-greeter/trunk/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz"
+        'default-config.patch')
+sha256sums=('53d6d41127b7c4cccc239d5d98edce868f18f95c76766cd1681ef58d1678c120'
+            '7c1afa39b853ce3ab400ab29a2b8bccc2753636e0db2801dc9d5a8ff55d064f8')
+
+build() {
+  cd "${srcdir}"/${pkgname}-${pkgver}
+
+# Patch
+  patch -Np1 -i ../default-config.patch
+
+# Build
+  AUTOMAKE=automake ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/lightdm
+   make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname}-${pkgver}
+
+# Install
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
