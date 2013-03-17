@@ -1,0 +1,67 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+# Contributor: sh4nks <sh4nks7 at gmail dot com
+
+pkgname=lightdm-pantheon-greeter-bzr
+pkgver=163
+pkgrel=1
+pkgdesc="Pantheon greeter for LightDM"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/pantheon-greeter"
+license=('GPL')
+groups=('pantheon')
+depends=('clutter-gtk' 'granite-bzr' 'libindicator-gtk3' 'lightdm' 'numlockx')
+makedepends=('bzr' 'cmake' 'vala>=0.16')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+install=${pkgname%-*}.install
+source=("https://launchpad.net/~elementary-os/+archive/daily/+files/pantheon-lightdm-theme_0.1-0~13~precise1.tar.gz")
+sha256sums=('b64e1e773c49c24e468cd8c60a56bdc2221c6750af201de4a7e27a880bf20f51')
+
+_bzrtrunk=https://code.launchpad.net/~elementary-pantheon/pantheon-greeter/1.x
+_bzrmod=pantheon-greeter
+
+
+build(){
+  cd "$srcdir"
+
+# Pull
+  msg "Connecting to Bazaar server...."
+
+  if [[ -d ${_bzrmod} ]]; then
+    cd ${_bzrmod} && bzr --no-plugins pull ${_bzrtrunk} -r ${pkgver}
+    msg "The local files are updated."
+  else
+    bzr --no-plugins branch ${_bzrtrunk} ${_bzrmod} -q -r ${pkgver}
+  fi
+
+  msg "Bazaar checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "${srcdir}"/${_bzrmod}-build
+  cp -r "${srcdir}"/${_bzrmod} "${srcdir}"/$_bzrmod-build
+  cd "${srcdir}"/${_bzrmod}-build
+
+# Build
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+  CFLAGS="$CFLAGS -lm -Wno-deprecated-declarations"
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
+  make
+}
+
+package(){
+  cd "${srcdir}"/${_bzrmod}-build/build
+
+# Install
+  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+  mkdir -p "${pkgdir}"/usr/share/lightdm-webkit/themes
+  cp -dr --no-preserve=ownership "${srcdir}"/recipe*/pantheon "${pkgdir}"/usr/share/lightdm-webkit/themes/
+
+# Fix permissions
+  find "${pkgdir}" -type d -exec chmod 755 {} +
+  find "${pkgdir}" -type f -exec chmod 644 {} +
+}
+
+# vim: ts=2 sw=2 et:
