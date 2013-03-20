@@ -5,7 +5,7 @@
 pkgbase=lightdm-bzr
 pkgname=${pkgbase}
 true && pkgname=('lightdm-bzr' 'liblightdm-qt4-bzr' 'liblightdm-qt5-bzr')
-pkgver=1612
+pkgver=1616
 pkgrel=1
 
 _bzrtrunk=https://code.launchpad.net/~lightdm-team/lightdm/trunk
@@ -59,8 +59,16 @@ install=${pkgbase%-*}.install
 # Install
   make DESTDIR="${pkgdir}" install
   make DESTDIR="${pkgdir}" -C liblightdm-qt uninstall
-  install -m 755 ../xsession "${pkgdir}"/etc/lightdm/xsession
   rm -rf "${pkgdir}"/etc/init
+
+# Persistent home
+  install -dm 770 "${pkgdir}"/var/lib/lightdm
+  chmod +t "${pkgdir}"/var/lib/lightdm
+  echo 'GDK_CORE_DEVICE_EVENTS=true' > "${pkgdir}"/var/lib/lightdm/.pam_environment
+  chmod 644 "${pkgdir}"/var/lib/lightdm/.pam_environment
+
+# Session wrapper
+  install -m 755 ../xsession "${pkgdir}"/etc/lightdm/xsession
 
 # PAM
   install -m 644 ../lightdm.pam "${pkgdir}"/etc/pam.d/lightdm
@@ -126,7 +134,7 @@ source=('lightdm.service'
         'lightdm-lock-screen-before-switch.patch'
         'xsession')
 sha256sums=('2e03423cbe88c9fdc3a9684d6d14221aa6e92d105f9d1d53b08747d966c45125'
-            'ec10378992907f06a6960c4644aba2f81744fbcaf38f6bdc7c364979be3207e4'
+            'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
             '33e3c3d6e16c8d30756754ea3f31f5457c5be0343686aad287692be34958984a'
             'a89566307e1c81c24f037d854cbd472d2f94f8a4b759877a01563a332319f7d6'
