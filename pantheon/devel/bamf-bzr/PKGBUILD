@@ -2,14 +2,14 @@
 # Contributor: Dustin Mays <dork dot fish dot wat at gmail dot com>
 
 pkgname=bamf-bzr
-pkgver=523
+pkgver=524
 pkgrel=1
 pkgdesc="Window matching library"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/bamf"
 license=('GPL')
 depends=('dbus-glib' 'libgtop' 'libwnck3')
-makedepends=('bzr' 'gnome-common-git' 'gobject-introspection' 'gtk-doc' 'vala')
+makedepends=('bzr' 'gnome-common' 'gobject-introspection' 'gtk-doc' 'vala')
 provides=('bamf')
 conflicts=('bamf')
 options=('!libtool')
@@ -38,7 +38,7 @@ cd "${srcdir}"
   cd "${srcdir}"/${_bzrmod}-build
 
 # Build
-  ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname%-*} --disable-static --disable-webapps
+  AUTOMAKE=automake ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname%-*} --disable-{static,webapps}
   make
 }
 

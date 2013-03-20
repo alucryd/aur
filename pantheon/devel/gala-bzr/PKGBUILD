@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gala-bzr
-pkgver=296
+pkgver=307
 pkgrel=1
 pkgdesc="A window & compositing manager based on libmutter and designed by elementary"
 arch=('i686' 'x86_64')

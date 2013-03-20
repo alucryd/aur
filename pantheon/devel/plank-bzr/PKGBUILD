@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com> 
 
 pkgname=plank-bzr
-pkgver=758
+pkgver=767
 pkgrel=1
 pkgdesc="A stupidly simple dock from elementary"
 arch=('i686' 'x86_64')
@@ -9,7 +9,7 @@ url="https://launchpad.net/plank"
 license=('GPL3')
 groups=('pantheon')
 depends=('bamf-bzr' 'libdbusmenu-gtk3' 'libgee')
-makedepends=('bzr' 'gnome-common-git' 'intltool'  'vala>=0.18')
+makedepends=('bzr' 'gnome-common' 'intltool'  'vala>=0.18')
 provides=('plank')
 conflicts=('plank')
 options=('!libtool')
@@ -39,7 +39,7 @@ build() {
   cd "${srcdir}"/${_bzrmod}-build
 
 # Build
-  ./autogen.sh --prefix=/usr --sysconfdir=/etc
+  AUTOMAKE=automake ./autogen.sh --prefix=/usr --sysconfdir=/etc
   make
 }
 
