@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Gens/GS II
+Type=Application
+GenericName=Sega Genesis, Sega CD, and Sega 32X emulator
+Comment=Sega Genesis, Sega CD, and Sega 32X emulator
+Exec=gens-qt4
+Icon=gens-qt4
+Categories=Application;Game;Emulator;
