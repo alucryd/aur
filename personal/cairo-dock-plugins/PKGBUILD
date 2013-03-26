@@ -1,0 +1,61 @@
+# $Id$
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Tofe <chris.chapuis@gmail.com>
+# Contributor: zhuqin <zhuqin83@gmail.com>
+# Contributor: tri1976 <trile7@gmail.com>
+# Contributor: snoopy33 <snoopy33@no-log.org>
+
+pkgname=cairo-dock-plugins
+pkgver=3.2.0
+pkgrel=1
+pkgdesc="Plugins for Cairo-Dock"
+url="https://launchpad.net/cairo-dock"
+license=('GPL')
+arch=('any')
+depends=('cairo-dock')
+makedepends=('cmake' 'alsa-lib' 'fftw' 'gnome-menus' 'gvfs' 'libetpan' 'libexif' 'libical' 'libpulse' 'libxklavier' 'libxxf86vm' 'libzeitgeist' 'lm_sensors' 'python' 'ruby' 'upower' 'vala' 'vte3' 'webkitgtk3')
+optdepends=('gvfs: GVFS integration'
+            'libical: ical support'
+            'python: DBUS python integration'
+            'ruby: DBUS ruby integration'
+            'vala: DBUS vala integration'
+            'gnome-menus: GNOME Menus integration'
+            'libpulse: Impulse plugin'
+            'fftw: Impulse plugin'
+            'libxklavier: Keyboard indicator'
+            'libetpan: Mail integration'
+            'libzeitgeist: Events integration'
+            'libexif: Slider plugin'
+            'lm_sensors: Sensors plugin'
+            'vte3: Terminal plugin'
+            'webkitgtk3: Weblets support'
+            'libxxf86vm: XGamma support'
+options=('!libtool')
+source=("http://launchpad.net/cairo-dock-plug-ins/3.2/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz" 'applet-host-ias.patch')
+sha256sums=('e407e1c0d54ae37815726d0f2a66f12ec8263499df99198646bcecccfc688b5c'
+            '28be6144e9006f5c166d8f0119de1747ee2caf8e13072177a8d0dab23fd964b3')
+
+build() {
+  cd "${srcdir}"/${pkgname}-${pkgver}
+
+# Patch
+  patch -Np1 -i ../applet-host-ias.patch
+  sed -i "22 i #include <sys/types.h>" alsaMixer/src/applet-struct.h
+
+# Build
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname}-${pkgver}/build
+
+# Install
+  make DESTDIR=${pkgdir}
+}
+
+# vim: ts=2 sw=2 et:
