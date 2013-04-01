@@ -8,8 +8,8 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/audience"
 license=('GPL3')
 groups=('pantheon')
-depends=('clutter-gst' 'clutter-gtk' 'desktop-file-utils' 'granite-bzr')
-makedepends=('bzr' 'cmake' 'vala')
+depends=('clutter-gtk' 'desktop-file-utils' 'granite-bzr')
+makedepends=('bzr' 'clutter-gst' 'cmake' 'vala')
 install=${pkgname}.install
 
 _bzrtrunk=https://code.launchpad.net/~audience-members/audience/trunk
