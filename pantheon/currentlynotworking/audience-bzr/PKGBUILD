@@ -1,15 +1,15 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=audience-bzr
-pkgver=240
+pkgver=247
 pkgrel=1
 pkgdesc="A modern media player"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/audience"
 license=('GPL3')
 groups=('pantheon')
-depends=('clutter-gst1.6' 'clutter-gtk' 'desktop-file-utils' 'granite-bzr')
-makedepends=('bzr' 'cmake' 'vala0.16')
+depends=('clutter-gst' 'clutter-gtk' 'desktop-file-utils' 'granite-bzr')
+makedepends=('bzr' 'cmake' 'vala')
 install=${pkgname}.install
 
 _bzrtrunk=https://code.launchpad.net/~audience-members/audience/trunk
@@ -40,7 +40,7 @@ build() {
     rm -rf build
   fi
   mkdir build && cd build
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
   make
 }
 
