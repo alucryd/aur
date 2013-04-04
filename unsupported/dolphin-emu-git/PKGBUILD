@@ -13,13 +13,8 @@ makedepends=('cmake' 'git' 'opencl-headers')
 optdepends=('pulseaudio: PulseAudio backend')
 provides=('dolphin-emu')
 conflicts=('dolphin-emu' 'dolphin-emu-svn-bin' 'dolphin-emu-svn')
-<<<<<<< HEAD
-source=('gcc48.patch')
-sha256sums=('a5888da2b213ed73277a43e0120fa5f9857bdf57ee65ccd32914fbdce4496521')
-=======
 source=("${pkgname%-*}::git+https://code.google.com/p/dolphin-emu/")
 sha256sums=('SKIP')
->>>>>>> 0b5c1c870c4753106a37c5fabb20bed7ded6b9cc
 
 pkgver() {
   cd "${srcdir}"/${pkgname%-*}
@@ -30,13 +25,6 @@ pkgver() {
 build() {
   cd "${srcdir}"/${pkgname%-*}
 
-<<<<<<< HEAD
-# Patch
-  patch -Np1 -i ../gcc48.patch
-
-# Build
-=======
->>>>>>> 0b5c1c870c4753106a37c5fabb20bed7ded6b9cc
   if [[ -d build ]]; then
     rm -rf build
   fi
