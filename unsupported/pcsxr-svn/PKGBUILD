@@ -2,7 +2,7 @@
 # Contributor: Infy <eugene dot yudin at gmail dot com>
 
 pkgname=pcsxr-svn
-pkgver=83441
+pkgver=83929
 pkgrel=1
 pkgdesc="A Sony PlayStation emulator based on the PCSX-df Project"
 arch=('i686' 'x86_64')
@@ -13,38 +13,25 @@ makedepends=('intltool' 'mesa' 'subversion')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}" 'pcsx-df')
 options=('!libtool')
+source=("${pkgname%-*}::svn+https://pcsxr.svn.codeplex.com/svn/pcsxr")
+sha256sums=('SKIP')
 
-_svntrunk=https://pcsxr.svn.codeplex.com/svn/pcsxr
-_svnmod=pcsxr
+pkgver() {
+  cd "$SRCDEST"/${pkgname%-*}
+
+  svn info | grep Revision | sed 's|Revision: ||'
+}
 
 build() {
-cd "${srcdir}"
+  cd "${srcdir}"/${pkgname%-*}
 
-# Checkout
-  msg "Connecting to SVN server...."
-
-  if [[ -d ${_svnmod}/.svn ]]; then
-    (cd ${_svnmod} && svn up -r ${pkgver})
-  else
-    svn co ${_svntrunk} --config-dir ./ -r ${pkgver} ${_svnmod}
-  fi
-
-  msg "SVN checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_svnmod}-build
-  svn export "${srcdir}"/${_svnmod} "${srcdir}"/${_svnmod}-build
-  cd "${srcdir}"/${_svnmod}-build
-
-# Build
   ./autogen.sh --prefix=/usr --enable-libcdio --enable-opengl
   make
 }
 
 package() {
-  cd "${srcdir}"/${_svnmod}-build
+  cd "${srcdir}"/${pkgname%-*}
 
-# Install
   make DESTDIR="${pkgdir}" install
 }
 
