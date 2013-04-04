@@ -19,7 +19,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd "$SRCDEST"/${pkgname%-*}
 
-  svn info | grep Revision | sed 's|Revision: ||'
+  svnversion
 }
 
 build() {
