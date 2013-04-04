@@ -13,6 +13,8 @@ makedepends=('cmake' 'git' 'opencl-headers')
 optdepends=('pulseaudio: PulseAudio backend')
 provides=('dolphin-emu')
 conflicts=('dolphin-emu' 'dolphin-emu-svn-bin' 'dolphin-emu-svn')
+source=('gcc48.patch')
+sha256sums=('a5888da2b213ed73277a43e0120fa5f9857bdf57ee65ccd32914fbdce4496521')
 
 _gitroot=http://code.google.com/p/dolphin-emu/
 _gitname=dolphin-emu
@@ -36,6 +38,9 @@ build() {
   rm -rf "${srcdir}"/${_gitname}-build
   git clone "${srcdir}"/$_gitname "${srcdir}"/$_gitname-build
   cd "${srcdir}"/$_gitname-build
+
+# Patch
+  patch -Np1 -i ../gcc48.patch
 
 # Build
   if [[ -d build ]]; then

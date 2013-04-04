@@ -1,0 +1,38 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=pantheon-notify-bzr
+pkgver=24
+pkgrel=1
+pkgdesc="A stylish notification daemon from the elementary project"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/pantheon-notify"
+license=('GPL3')
+depends=('clutter-gtk' 'glib2' 'granite-bzr' 'gtk3' 'libwnck3')
+makedepends=('bzr' 'cmake' 'vala')
+source=("${pkgname%-*}::bzr+https://code.launchpad.net/~tombeckmann/pantheon-notify/trunk")
+md5sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  bzr revno
+}
+
+build() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname%-*}/build
+
+  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+}
+
+# vim:set ts=2 sw=2 et:
