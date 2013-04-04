@@ -1,60 +1,52 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=firewalld-git
-pkgver=20130311
+pkgver=0.3.1.597
 pkgrel=1
-pkgdesc="Firewall service daemon that provides a dynamic customizable firewall with a D-BUS interface"
+pkgdesc="A firewall daemon with D-BUS interface providing a dynamic firewall"
 arch=('any')
 url="http://fedorahosted.org/firewalld"
 license=('GPL2')
 depends=('ebtables' 'gtk3' 'hicolor-icon-theme' 'iptables' 'libnotify' 'networkmanager' 'python2-slip')
 makedepends=('git' 'intltool')
-backup=('etc/conf.d/firewalld' 'etc/firewalld/firewalld.conf')
+backup=('etc/conf.d/firewalld'
+        'etc/firewalld/firewalld.conf')
 provides=('firewalld')
 conflicts=('firewalld')
-install=${pkgname}.install
-source=('paths.patch')
-sha256sums=('5bbb24a6f5fb18c771e0b20b31545a1c8f32e2fe222b5188a8e27ee068bdb658')
+install=${pkgname%-*}.install
+source=("${pkgname%-*}::git+http://git.fedorahosted.org/git/firewalld.git"
+        'paths.patch')
+sha256sums=('SKIP'
+            'e03b2a8121218ca84ee70fa1a7e8c36ad45a9935afafa8da084cf8e29a32d0bb')
 
-_gitroot="http://git.fedorahosted.org/git/firewalld.git"
-_gitname="firewalld"
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
 
-build () {
-  cd "${srcdir}"
+  echo "$(grep Version firewalld.spec|sed 's|Version: ||').$(git rev-list --count HEAD)"
+}
 
-# Clone
-  msg "Connecting to GIT server...."
+prepare() {
+  cd "${srcdir}"/${pkgname%-*}
 
-  if [[ -d ${_gitname} ]]; then
-    cd ${_gitname} && git pull origin
-    msg "The local files are updated."
-  else
-    git clone ${_gitroot} ${_gitname}
-  fi
-
-  msg "GIT checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_gitname}-build
-  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
-  cd "${srcdir}"/${_gitname}-build
-
-# Patch
-  patch -Np1 -i "${srcdir}"/paths.patch
-  sed -i 's|sysconfig|conf\.d|' config/firewalld.service
+  patch -Np1 -i ../paths.patch
+  sed -i 's|sysconfig|conf\.d|' config/firewalld.service.in
   sed -i 's|^#!.*python$|#!/usr/bin/python2|
           s|^#!.*python -Es$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
   sed -i 's|python|python2|g' fix_python_shebang.sh
+}
 
-# Build
-  PYTHON=python2 ./autogen.sh --prefix=/usr --sysconfdir=/etc --disable-schemas-compile
+build () {
+  cd "${srcdir}"/${pkgname%-*}
+
+  export PYTHON=python2
+  ./autogen.sh
+  ./configure --prefix=/usr --sysconfdir=/etc --disable-schemas-compile
   make
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${pkgname%-*}
 
-# Install
   make DESTDIR="${pkgdir}" install
 }
 

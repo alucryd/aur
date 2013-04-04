@@ -17,25 +17,6 @@
  
  install-init: install-sysconfig
  	$(MKDIR_P) $(DESTDIR)$(sysconfdir)/rc.d/init.d
---- a/config/Makefile.in
-+++ b/config/Makefile.in
-@@ -566,12 +566,12 @@ uninstall-am: uninstall-desktopDATA uninstall-dist_dbus_policyDATA \
- all: $(desktop_DATA) $(polkit1_action_DATA) $(gsettings_SCHEMAS)
- 
- install-sysconfig:
--	$(MKDIR_P) $(DESTDIR)$(sysconfdir)/sysconfig
--	$(INSTALL_DATA) $(srcdir)/firewalld.sysconfig $(DESTDIR)$(sysconfdir)/sysconfig/firewalld
-+	$(MKDIR_P) $(DESTDIR)$(sysconfdir)/conf.d
-+	$(INSTALL_DATA) $(srcdir)/firewalld.sysconfig $(DESTDIR)$(sysconfdir)/conf.d/firewalld
- 
- uninstall-sysconfig:
--	rm -f $(DESTDIR)$(sysconfdir)/sysconfig/firewalld
--	rmdir $(DESTDIR)$(sysconfdir)/sysconfig || :
-+	rm -f $(DESTDIR)$(sysconfdir)/conf.d/firewalld
-+	rmdir $(DESTDIR)$(sysconfdir)/conf.d || :
- 
- install-init: install-sysconfig
- 	$(MKDIR_P) $(DESTDIR)$(sysconfdir)/rc.d/init.d
 --- a/src/firewall-offline-cmd
 +++ b/src/firewall-offline-cmd
 @@ -179,7 +179,7 @@ def _addStandardOptions(parser):

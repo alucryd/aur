@@ -2,7 +2,7 @@
 # Contributor: Lightning <sgsdxzy at gmail dot com>
 
 pkgname=dolphin-emu-git
-pkgver=3.5_1164
+pkgver=3.5.1173
 pkgrel=1
 pkgdesc="A GameCube / Wii / Triforce emulator"
 arch=('i686' 'x86_64')
@@ -19,7 +19,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd "${srcdir}"/${pkgname%-*}
 
-  git describe | sed 's|\(.*-.*\)\(-.*\)|\1|;s|-|_|'
+  git describe | sed 's|\(.*-.*\)\(-.*\)|\1|;s|-|.|'
 }
 
 build() {
