@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-radeon-power-profile-manager-git
-pkgver=20130311
+pkgver=20121102
 pkgrel=1
 pkgdesc="Radeon Power Profile Manager"
 arch=('any')
@@ -9,37 +9,20 @@ url="https://github.com/StuntsPT/shell-extension-radeon-power-profile-manager"
 license=('GPL2')
 depends=('gnome-shell' 'polkit' 'systemd')
 makedepends=('git')
-source=('radeon.conf')
-sha256sums=('03a5d708940bf68ee19b040e781b42d4e4144aa2ada145a5027f3939ec3e4e68')
+source=("${pkgname%-*}::git+https://github.com/StuntsPT/shell-extension-radeon-power-profile-manager.git"
+        'radeon.conf')
+sha256sums=('SKIP'
+            '03a5d708940bf68ee19b040e781b42d4e4144aa2ada145a5027f3939ec3e4e68')
 
-_gitroot=https://github.com/StuntsPT/shell-extension-radeon-power-profile-manager.git
-_gitname=shell-extension-radeon-power-profile-manager
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
 
-build() {
-  cd "${srcdir}"
-
-# Clone
-  msg "Connecting to GIT server...."
-
-  if [[ -d ${_gitname} ]]; then
-    cd ${_gitname} && git pull origin
-    msg "The local files are updated."
-  else
-    git clone ${_gitroot} ${_gitname}
-  fi
-
-  msg "GIT checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_gitname}-build
-  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
-  cd "${srcdir}"/${_gitname}-build
+  git log -1 --format="%cd" --date=short | sed 's|-||g'
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${pkgname%-*}
 
-# Install
   mkdir -p "${pkgdir}"/usr/{lib/tmpfiles.d,share/gnome-shell/extensions/RadeonPowerProfileManager@StuntsPT.github.com}
   cp -dr --no-preserve=ownership * "${pkgdir}"/usr/share/gnome-shell/extensions/RadeonPowerProfileManager@StuntsPT.github.com/
   cp --no-preserve=ownership "${srcdir}"/radeon.conf "${pkgdir}"/usr/lib/tmpfiles.d/

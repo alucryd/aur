@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-coverflow-alt-tab-git
-pkgver=20130311
+pkgver=20130405
 pkgrel=1
 pkgdesc="Replacement of Alt-Tab, iterates through windows in a cover-flow manner"
 arch=('any')
@@ -12,35 +12,18 @@ makedepends=('git')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
+source=("${pkgname%-*}::git+https://github.com/dmo60/CoverflowAltTab.git")
+sha256sums=('SKIP')
 
-_gitroot=https://github.com/dmo60/CoverflowAltTab.git
-_gitname=CoverflowAltTab
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
 
-build () {
-  cd "${srcdir}"
-
-# Clone
-  msg "Connecting to GIT server...."
-
-  if [[ -d ${_gitname} ]]; then
-    cd ${_gitname} && git pull origin
-    msg "The local files are updated."
-  else
-    git clone ${_gitroot} ${_gitname}
-  fi
-
-  msg "GIT checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_gitname}-build
-  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
-  cd "${srcdir}"/${_gitname}-build
+  git log -1 --format="%cd" --date=short | sed 's|-||g'
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${pkgname%-*}
 
-# Install
   mkdir -p "${pkgdir}"/usr/share/{glib-2.0,gnome-shell/extensions}
   cp -dr --no-preserve=ownership CoverflowAltTab@dmo60.de "${pkgdir}"/usr/share/gnome-shell/extensions/
   cd "${pkgdir}"/usr/share/gnome-shell/extensions/CoverflowAltTab@dmo60.de
