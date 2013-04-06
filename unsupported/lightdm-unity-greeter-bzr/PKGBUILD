@@ -2,13 +2,12 @@
 # Contributor: Morfeo <morfeo89 at hotmail dot it>
 
 pkgname=lightdm-unity-greeter-bzr
-pkgver=790
+pkgver=807
 pkgrel=1
 pkgdesc="The greeter (login screen) application for Unity. It is implemented as a LightDM greeter."
 arch=('i686' 'x86_64')
 url="https://launchpad.net/unity-greeter"
 license=('GPL3' 'LGPL3')
-source=()
 depends=('libindicator3' 'lightdm')
 makedepends=('bzr' 'gnome-common' 'gnome-doc-utils' 'vala>=0.15')
 provides=("${pkgname%-*}")
@@ -16,44 +15,33 @@ conflicts=("${pkgname%-*}")
 options=('!libtool')
 backup=('etc/lightdm/unity-greeter.conf')
 install=${pkgname%-*}.install
-source=('unity-greeter.conf')
-sha256sums=('ad55d4050a2e782dacf9166f029fd402fce393effa81e6a8aa5369763a0343c9')
+source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~unity-greeter-team/unity-greeter/trunk/"
+        'unity-greeter.conf')
+sha256sums=('SKIP'
+            'ad55d4050a2e782dacf9166f029fd402fce393effa81e6a8aa5369763a0343c9')
 
-_bzrtrunk="https://code.launchpad.net/~unity-greeter-team/unity-greeter/trunk"
-_bzrmod="lightdm-unity-greeter"
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  bzr revno
+}
+
+prepare() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  sed -i 's|AM_CONFIG_HEADER|AC_CONFIG_HEADERS|' configure.ac
+}
 
 build() {
-cd "${srcdir}"
+  cd "${srcdir}"/${pkgname%-*}
 
-# Pull
-  msg "Connecting to Bazaar server...."
-
-  if [[ -d ${_bzrmod} ]]; then
-    cd ${_bzrmod} && bzr --no-plugins pull ${_bzrtrunk} -r ${pkgver}
-    msg "The local files are updated."
-  else
-    bzr --no-plugins branch ${_bzrtrunk} ${_bzrmod} -q -r ${pkgver}
-  fi
-
-  msg "Bazaar checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_bzrmod}-build
-  cp -r "${srcdir}"/${_bzrmod} "${srcdir}"/$_bzrmod-build
-  cd "${srcdir}"/${_bzrmod}-build
-
-# Patch
-  sed -i 's|AM_CONFIG_HEADER|AC_CONFIG_HEADERS|' configure.ac
-
-# Build
-  AUTOMAKE=automake ./autogen.sh --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/lightdm --disable-schemas-compile
+  ./autogen.sh --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/lightdm --disable-schemas-compile
   make
 }
 
 package() {
-  cd "${srcdir}"/${_bzrmod}-build
+  cd "${srcdir}"/${pkgname%-*}
 
-# Install
   make DESTDIR="${pkgdir}" install
   install -dm 755 "${pkgdir}"/etc/lightdm/
   install -m 644 ../unity-greeter.conf "${pkgdir}"/etc/lightdm/unity-greeter.conf
