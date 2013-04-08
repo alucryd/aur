@@ -5,41 +5,29 @@
 pkgbase=lightdm-bzr
 pkgname=${pkgbase}
 true && pkgname=('lightdm-bzr' 'liblightdm-qt4-bzr' 'liblightdm-qt5-bzr')
-pkgver=1616
+pkgver=1632
 pkgrel=1
 
-_bzrtrunk=https://code.launchpad.net/~lightdm-team/lightdm/trunk
-_bzrmod=lightdm
+pkgver() {
+  cd "${srcdir}"/${pkgbase%-*}
 
-build() {
-cd "${srcdir}"
+  bzr revno
+}
 
-# Pull
-  msg "Connecting to Bazaar server...."
+prepare() {
+  cd "${srcdir}"/${pkgbase%-*}
 
-  if [[ -d ${_bzrmod} ]]; then
-    cd ${_bzrmod} && bzr --no-plugins pull ${_bzrtrunk} -r ${pkgver}
-    msg "The local files are updated."
-  else
-    bzr --no-plugins branch ${_bzrtrunk} ${_bzrmod} -q -r ${pkgver}
-  fi
-
-  msg "Bazaar checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_bzrmod}-build
-  cp -r "${srcdir}"/${_bzrmod} "${srcdir}"/$_bzrmod-build
-  cd "${srcdir}"/${_bzrmod}-build
-
-# Patch
   patch -Np1 -i ../lightdm-default-config.patch
   patch -Np1 -i ../lightdm-1.5.1-systemd_login1_power.patch
   patch -Np1 -i ../lightdm-lock-screen-before-switch.patch
+}
 
-# Build
-  AUTOMAKE=automake ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgbase%-*} --with-greeter-user=lightdm --with-greeter-session=lightdm-gtk-greeter --disable-{static,tests}
+build() {
+  cd "${srcdir}"/${pkgbase%-*}
+
+  ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgbase%-*} --with-greeter-user=lightdm --with-greeter-session=lightdm-gtk-greeter --disable-{static,tests}
   sed -i 's/@YELP_HELP_RULES@/\t@YELP_HELP_RULES@/' help/Makefile
-   make
+  make
 }
 
 package_lightdm-bzr() {
@@ -54,9 +42,8 @@ backup=('etc/apparmor.d/lightdm-guest-session'
         'etc/lightdm/users.conf')
 install=${pkgbase%-*}.install
 
-  cd "${srcdir}"/${_bzrmod}-build
+  cd "${srcdir}"/${pkgbase%-*}
 
-# Install
   make DESTDIR="${pkgdir}" install
   make DESTDIR="${pkgdir}" -C liblightdm-qt uninstall
   rm -rf "${pkgdir}"/etc/init
@@ -90,9 +77,8 @@ depends=('lightdm' 'qt4')
 provides=('liblightdm-qt4')
 conflicts=('liblightdm-qt4')
 
-  cd "${srcdir}"/${_bzrmod}-build
+  cd "${srcdir}"/${pkgbase%-*}
 
-# Install
   make DESTDIR="${pkgdir}" -C liblightdm-gobject install
   make DESTDIR="${pkgdir}" -C liblightdm-qt install
   make DESTDIR="${pkgdir}" -C liblightdm-gobject uninstall
@@ -107,9 +93,8 @@ depends=('lightdm' 'qt5-base')
 provides=('liblightdm-qt5')
 conflicts=('liblightdm-qt5')
 
-  cd "${srcdir}"/${_bzrmod}-build
+  cd "${srcdir}"/${pkgbase%-*}
 
-# Install
   make DESTDIR="${pkgdir}" -C liblightdm-gobject install
   make DESTDIR="${pkgdir}" -C liblightdm-qt install
   make DESTDIR="${pkgdir}" -C liblightdm-gobject uninstall
@@ -124,7 +109,8 @@ url="https://launchpad.net/lightdm"
 license=('GPL3' 'LGPL3')
 makedepends=('gnome-common' 'gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'qt4' 'qt5-base')
 options=('!emptydirs' '!libtool')
-source=('lightdm.service'
+source=("${pkgbase%-*}::bzr+http://bazaar.launchpad.net/~lightdm-team/lightdm/trunk/"
+        'lightdm.service'
         'lightdm.tmpfiles'
         'lightdm.pam'
         'lightdm-autologin.pam'
@@ -133,7 +119,8 @@ source=('lightdm.service'
         'lightdm-1.5.1-systemd_login1_power.patch'
         'lightdm-lock-screen-before-switch.patch'
         'xsession')
-sha256sums=('2e03423cbe88c9fdc3a9684d6d14221aa6e92d105f9d1d53b08747d966c45125'
+sha256sums=('SKIP'
+            '2e03423cbe88c9fdc3a9684d6d14221aa6e92d105f9d1d53b08747d966c45125'
             'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
             '33e3c3d6e16c8d30756754ea3f31f5457c5be0343686aad287692be34958984a'

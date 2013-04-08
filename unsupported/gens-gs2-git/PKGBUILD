@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=gens-gs2-git
-pkgver=20130321
+pkgver=2365
 pkgrel=1
 pkgdesc="A Sega Genesis / Sega CD / Sega 32X emulator"
 arch=('i686' 'x86_64')
@@ -18,54 +18,40 @@ else
 fi
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=('gens-qt4.desktop'
+source=("${pkgname%-*}::git://dusers.drexel.edu/srv/git/~korth/gens-gs-ii.git"
+        'gens-qt4.desktop'
         'gens-qt4.png')
-sha256sums=('a501f5f1fe478089de0be5904d09353ae3921241243708599a44288083162a88'
+sha256sums=('SKIP'
+            'a501f5f1fe478089de0be5904d09353ae3921241243708599a44288083162a88'
             'bb54a11ed24ea2bed912078faf027c3eeba7b1fe33a17496a834664d821b6bed')
 
-_gitroot=git://dusers.drexel.edu/srv/git/~korth/gens-gs-ii.git
-_gitname=gens-gs-ii
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  git describe | sed 's|.*-.*-\([0-9]*\)-.*|\1|'
+}
 
 build() {
-  cd "${srcdir}"
+  cd "${srcdir}"/${pkgname%-*}
 
-# Clone
-  msg "Connecting to GIT server...."
-
-  if [[ -d ${_gitname} ]]; then
-    cd ${_gitname} && git pull origin
-    msg "The local files are updated."
-  else
-    git clone ${_gitroot} ${_gitname}
-  fi
-
-  msg "GIT checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_gitname}-build
-  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
-  cd "${srcdir}"/${_gitname}-build
-
-# Multilib
   if [[ $CARCH == "x86_64" ]]; then
     export CC="gcc -m32"
     export CXX="g++ -m32"
     export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
   fi
 
-# Build
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
+
   cmake .. -DCMAKE_INSTALL_PREFIX=/usr
   make
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}-build/build
+  cd "${srcdir}"/${pkgname%-*}/build
 
-# Install
   install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,pixmaps}}
   install -m 755 src/gens-qt4/gens-qt4 "${pkgdir}"/usr/bin/gens-qt4
   install -m 644 "${srcdir}"/gens-qt4.desktop "${pkgdir}"/usr/share/applications/gens-qt4.desktop

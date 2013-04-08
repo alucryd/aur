@@ -3,51 +3,36 @@
 
 _ext=user-theme
 pkgname=gnome-shell-extension-${_ext}-git
-pkgver=20130311
+pkgver=3.6.2.3
 pkgrel=1
 pkgdesc="Load shell themes from user directory"
 arch=('any')
 url="http://live.gnome.org/GnomeShell/Extensions"
 license=('GPL' 'LGPL')
 depends=('gnome-shell-extension-common-git')
-makedepends=('git' 'gnome-common-git' 'intltool')
+makedepends=('git' 'gnome-common' 'intltool')
 provides=("gnome-shell-extension-${_ext}")
 conflicts=('gnome-shell-extensions-git' "gnome-shell-extension-${_ext}")
-install=${pkgname}.install
+install=${pkgname%-*}.install
+source=('git+http://git.gnome.org/browse/gnome-shell-extensions#branch=gnome-3-6')
+sha256sums=('SKIP')
 
-_gitroot=http://git.gnome.org/browse/gnome-shell-extensions
-_gitname=gnome-shell-extensions
+pkgver() {
+  cd "${srcdir}"/gnome-shell-extensions
+
+  git describe | sed 's|\(.*-.*\)-.*|\1|;s|-|.|'
+}
 
 build() {
-  cd "${srcdir}"
+  cd "${srcdir}"/gnome-shell-extensions
 
-# Clone
-  msg "Connecting to GIT server...."
-
-  if [[ -d ${_gitname} ]]; then
-    cd ${_gitname} && git pull origin && git checkout gnome-3-6
-    msg "The local files are updated."
-  else
-    git clone ${_gitroot} ${_gitname}
-    cd ${_gitname} && git checkout gnome-3-6
-  fi
-
-  msg "GIT checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_gitname}-build
-  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
-  cd "${srcdir}"/${_gitname}-build
-
-# Build
   ./autogen.sh --prefix=/usr --disable-schemas-compile --enable-extensions=${_ext}
   make
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}-build/extensions/${_ext}
+  cd "${srcdir}"/gnome-shell-extensions/extensions/${_ext}
 
-# Install
   make DESTDIR="${pkgdir}" install
 }
 

@@ -1,47 +1,44 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=aegisub-git
-pkgver=20130218
+pkgver=3.1.0.7566
 pkgrel=1
 pkgdesc="A general-purpose subtitle editor with ASS/SSA support"
 arch=('i686' 'x86_64')
 url="http://www.aegisub.org"
 license=('GPL' 'BSD')
-depends=('ffmpegsource' 'lua51' 'wxgtk2.9' 'hunspell' 'libass' 'fftw' 'desktop-file-utils' 'hicolor-icon-theme')
-makedepends=('git' 'intltool' 'boost' 'mesa')
+depends=('desktop-file-utils' 'ffmpegsource' 'fftw' 'hicolor-icon-theme' 'hunspell' 'libass' 'lua51' 'wxgtk2.9')
+makedepends=('boost' 'git' 'intltool' 'mesa')
 optdepends=('libpulse: Pulseaudio backend'
             'openal: OpenAL backend'
             'oss: OSS backend'
             'portaudio: Portaudio backend')
 provides=('aegisub')
 conflicts=('aegisub' 'aegisub-bin' 'aegisub-stable-svn')
-install=${pkgname}.install
+install=${pkgname%-*}.install
+source=("${pkgname%-*}::git+https://github.com/Aegisub/Aegisub.git")
+sha256sums=('SKIP')
 
-_gitroot="https://github.com/Aegisub/Aegisub.git"
-_gitname="Aegisub"
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  echo "3.1.0.$((3505 + $(git describe | sed 's|.*-\(.*\)-.*|\1|')))"
+}
 
 build () {
-  cd "${srcdir}"
-  msg "Connecting to the GIT server..."
-  if [[ -d ${_gitname} ]] ; then
-    cd ${_gitname}
-    git pull origin
-    msg "The local files are updated..."
-  else
-    git clone ${_gitroot} ${_gitname}
-    cd ${_gitname}
-  fi
-  msg "GIT checkout done."
-  cd aegisub
+  cd "${srcdir}"/${pkgname%-*}/${pkgname%-*}
+
   ./autogen.sh
   ./configure --prefix=/usr --with-wxdir=/usr/include/wx-2.9 --with-wx-config=/usr/bin/wx-config-2.9
   make
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}/aegisub
+  cd "${srcdir}"/${pkgname%-*}/${pkgname%-*}
+
   make DESTDIR="${pkgdir}" install
   chmod 644 "${pkgdir}"/usr/share/icons/hicolor/scalable/apps/aegisub.svg
+
   install -dm 755 "${pkgdir}"/usr/share/licenses/aegisub-git
   install -m 644 LICENCE "${pkgdir}"/usr/share/licenses/aegisub-git/license.txt
 }
