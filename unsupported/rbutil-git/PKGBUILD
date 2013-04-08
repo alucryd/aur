@@ -11,33 +11,14 @@ depends=('qt4' 'libusbx' 'speex')
 makedepends=('git')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=('rbutil.desktop')
-sha256sums=('539285237af16fbc60a7501963e8c2f584e58a31f2613481e6b42d21337b7a25')
-
-_gitroot=git://git.rockbox.org/rockbox
-_gitname=rockbox
+source=("${pkgname%-*}::git://git.rockbox.org/rockbox"
+        'rbutil.desktop')
+sha256sums=('SKIP'
+            '539285237af16fbc60a7501963e8c2f584e58a31f2613481e6b42d21337b7a25')
 
 build() {
-cd "${srcdir}"
+  cd "${srcdir}"/${pkgname%-*}
 
-# Clone
-  msg "Connecting to GIT server...."
-
-  if [[ -d ${_gitname} ]]; then
-    cd ${_gitname} && git pull origin
-    msg "The local files are updated."
-  else
-    git clone ${_gitroot} ${_gitname}
-  fi
-
-  msg "GIT checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_gitname}-build
-  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
-  cd "${srcdir}"/${_gitname}-build
-
-# Build
   cd rbutil/rbutilqt
   lrelease-qt4 rbutilqt.pro
   qmake-qt4
@@ -47,15 +28,10 @@ cd "${srcdir}"
 package(){
   cd "${srcdir}"/${_gitname}-build
 
-# Install
   cd "${srcdir}"/${_gitname}-build/rbutil/rbutilqt
-
-# Install
   install -dm 755 "${pkgdir}"/usr/{bin,share/pixmaps}
   install -m 644 icons/rockbox-64.png "${pkgdir}"/usr/share/pixmaps/rbutil.png
   install -m 755 RockboxUtility "${pkgdir}"/usr/bin/rbutil
-
-# Desktop file
   install -dm 755 "${pkgdir}"/usr/share/applications
   install -m 644 "${srcdir}"/rbutil.desktop "${pkgdir}"/usr/share/applications/rbutil.desktop
 }
