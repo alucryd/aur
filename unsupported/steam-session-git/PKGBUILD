@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=steam-session-git
-pkgver=20130311
+pkgver=49
 pkgrel=1
 pkgdesc="Launch Steam Big Picture from your login screen"
 arch=('any')
@@ -11,35 +11,18 @@ depends=('xfwm4' 'wmctrl')
 makedepends=('git')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
+source=("${pkgname%-*}::git+https://github.com/thor27/steam-login.git")
+sha256sums=('SKIP')
 
-_gitroot=https://github.com/thor27/steam-login.git
-_gitname=steam-login
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
 
-build () {
-cd "${srcdir}"
-
-# Clone
-  msg "Connecting to GIT server...."
-
-  if [[ -d ${_gitname} ]]; then
-    cd ${_gitname} && git pull origin
-    msg "The local files are updated."
-  else
-    git clone ${_gitroot} ${_gitname}
-  fi
-
-  msg "GIT checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_gitname}-build
-  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
-  cd "${srcdir}"/${_gitname}-build
+  git rev-list --count HEAD
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${pkgname%-*}
 
-# Install
   cp -dr --no-preserve=ownership steam-login/usr "${pkgdir}"/
 
 # Fix permissions

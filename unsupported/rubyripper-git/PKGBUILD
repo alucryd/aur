@@ -3,14 +3,14 @@
 # Contributor: Wintershade <wintershade at gmail dot com>
 
 pkgname=rubyripper-git
-pkgver=20130301
+pkgver=327
 pkgrel=1
 pkgdesc="Secure audiodisc ripper"
 arch=('any')
 url="http://code.google.com/p/rubyripper/"
 license=('GPL3')
 depends=('ruby' 'cdparanoia' 'gtk2' 'hicolor-icon-theme')
-makedepends=('git')
+makedepends=('git' 'ruby-gettext')
 optdepends=('ruby-gtk2: GTK+ GUI'
             'cd-discid: Freedb support'
             'eject: Eject support'
@@ -25,45 +25,34 @@ optdepends=('ruby-gtk2: GTK+ GUI'
 provides=('rubyripper')
 conflicts=('rubyripper')
 install=${pkgname}.install
-source=('configure.patch')
-sha256sums=('f0f855ade49728cf255e8505e7bc51132ad2063ca53954ab33c8adfa6652b873')
+source=("${pkgname%-*}::git+https://code.google.com/p/rubyripper/#branch=stable"
+        'configure.patch')
+sha256sums=('SKIP'
+            'f0f855ade49728cf255e8505e7bc51132ad2063ca53954ab33c8adfa6652b873')
 
-_gitroot=https://code.google.com/p/rubyripper/
-_gitname=rubyripper
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  git rev-list --count HEAD
+}
+
+prepare() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  patch -N -i "${srcdir}"/configure.patch
+}
 
 build() {
-cd "${srcdir}"
+  cd "${srcdir}"/${pkgname%-*}
 
-# Clone
-  msg "Connecting to GIT server...."
-
-  if [[ -d ${_gitname} ]]; then
-    cd ${_gitname} && git pull origin && git checkout stable
-    msg "The local files are updated."
-  else
-    git clone ${_gitroot} ${_gitname}
-    cd ${_gitname} && git checkout stable
-  fi
-
-  msg "GIT checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_gitname}-build
-  git clone "${srcdir}"/${_gitname} "${srcdir}"/${_gitname}-build
-  cd "${srcdir}"/${_gitname}-build
-
-# Patch
-  patch -N -i "${srcdir}"/configure.patch
-
-# Build
 ./configure --prefix=/usr --enable-gtk2 --enable-cli --ruby=$(ruby -e 'v = RbConfig::CONFIG["vendorlibdir"] ; v["/usr"] = ""; puts v')
-  make DESTDIR="${pkgdir}" install
+  make DESTDIR="${pkgdir}"
 }
 
 package() {
-  cd "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${pkgname%-*}
 
-# Install
   make DESTDIR="${pkgdir}" install
 }
+
 # vim: ts=2 sw=2 et:

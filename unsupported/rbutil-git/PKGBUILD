@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=rbutil-git
-pkgver=20130311
+pkgver=31457
 pkgrel=1
 pkgdesc="Rockbox Utility git version"
 arch=('i686' 'x86_64')
@@ -16,19 +16,23 @@ source=("${pkgname%-*}::git://git.rockbox.org/rockbox"
 sha256sums=('SKIP'
             '539285237af16fbc60a7501963e8c2f584e58a31f2613481e6b42d21337b7a25')
 
-build() {
+pkgver() {
   cd "${srcdir}"/${pkgname%-*}
 
-  cd rbutil/rbutilqt
+  git rev-list --count HEAD
+}
+
+build() {
+  cd "${srcdir}"/${pkgname%-*}/${pkgname%-*}/${pkgname%-*}qt
+
   lrelease-qt4 rbutilqt.pro
   qmake-qt4
   make
 }
 
 package(){
-  cd "${srcdir}"/${_gitname}-build
+  cd "${srcdir}"/${pkgname%-*}/${pkgname%-*}/${pkgname%-*}qt
 
-  cd "${srcdir}"/${_gitname}-build/rbutil/rbutilqt
   install -dm 755 "${pkgdir}"/usr/{bin,share/pixmaps}
   install -m 644 icons/rockbox-64.png "${pkgdir}"/usr/share/pixmaps/rbutil.png
   install -m 755 RockboxUtility "${pkgdir}"/usr/bin/rbutil
