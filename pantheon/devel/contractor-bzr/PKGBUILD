@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=contractor-bzr
-pkgver=63
+pkgver=105
 pkgrel=1
 pkgdesc="A service for sharing data between apps"
 arch=('i686' 'x86_64')
@@ -11,41 +11,30 @@ depends=('libgee')
 makedepends=('bzr' 'cmake' 'vala>=0.16')
 provides=('contractor')
 conflicts=('contractor')
+source=("bzr+lp:${pkgname%-*}")
+sha256sums=('SKIP')
 
-_bzrtrunk=https://code.launchpad.net/~mgoldhand-deactivatedaccount/contractor/master
-_bzrmod=contractor
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  bzr revno
+}
 
 build() {
-cd "${srcdir}"
+  cd "${srcdir}"/${pkgname%-*}
 
-# Pull
-  msg "Connecting to Bazaar server...."
-
-  if [[ -d ${_bzrmod} ]]; then
-    cd ${_bzrmod} && bzr --no-plugins pull ${_bzrtrunk} -r ${pkgver}
-    msg "The local files are updated."
-  else
-    bzr --no-plugins branch ${_bzrtrunk} ${_bzrmod} -q -r ${pkgver}
-  fi
-
-  msg "Bazaar checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_bzrmod}-build
-  cp -r "${srcdir}"/${_bzrmod} "${srcdir}"/$_bzrmod-build
-  cd "${srcdir}"/${_bzrmod}-build
-
-# Build
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
+
   cmake .. -DCMAKE_INSTALL_PREFIX=/usr
   make
 }
 
 package() {
-  cd "${srcdir}"/${_bzrmod}-build/build
+  cd "${srcdir}"/${pkgname%-*}/build
+
   make DESTDIR="${pkgdir}" install
 }
 

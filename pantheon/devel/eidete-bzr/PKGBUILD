@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=eidete-bzr
-pkgver=140
+pkgver=144
 pkgrel=1
 pkgdesc="A simple screencasting app from the elementary project"
 arch=('i686' 'x86_64')
@@ -13,42 +13,31 @@ optdepends=('contractor: contractor support'
             'brasero: burn captured video to disc')
 provides=('eidete')
 conflicts=('eidete')
-install=${pkgname}.install
+install=${pkgname%-*}.install
+source=("bzr+lp:${pkgname%-*}")
+sha256sums=('SKIP')
 
-_bzrtrunk=https://code.launchpad.net/~elementary-apps/eidete/trunk
-_bzrmod=eidete
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  bzr revno
+}
 
 build() {
-  cd "${srcdir}"
+  cd "${srcdir}"/${pkgname%-*}
 
-# Pull
-  msg "Connecting to Bazaar server...."
-
-  if [[ -d ${_bzrmod} ]]; then
-    cd ${_bzrmod} && bzr --no-plugins pull ${_bzrtrunk} -r ${pkgver}
-    msg "The local files are updated."
-  else
-    bzr --no-plugins branch ${_bzrtrunk} ${_bzrmod} -q -r ${pkgver}
-  fi
-
-  msg "Bazaar checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_bzrmod}-build
-  cp -r "${srcdir}"/${_bzrmod} "${srcdir}"/$_bzrmod-build
-  cd "${srcdir}"/${_bzrmod}-build
-
-# Build
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
+
   cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_EXE_LINKER_FLAGS="-lX11"
   make
 }
 
 package() {
-  cd "${srcdir}"/${_bzrmod}-build/build
+  cd "${srcdir}"/${pkgname%-*}/build
+
   make DESTDIR="${pkgdir}" install
 }
 

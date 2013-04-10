@@ -2,7 +2,7 @@
 # Contributor: Dustin Mays <dork dot fish dot wat at gmail dot com>
 
 pkgname=bamf-bzr
-pkgver=524
+pkgver=529
 pkgrel=1
 pkgdesc="Window matching library"
 arch=('i686' 'x86_64')
@@ -13,39 +13,25 @@ makedepends=('bzr' 'gnome-common' 'gobject-introspection' 'gtk-doc' 'vala')
 provides=('bamf')
 conflicts=('bamf')
 options=('!libtool')
+source=("bzr+lp:${pkgname%-*}")
+sha256sums=('SKIP')
 
-_bzrtrunk=https://code.launchpad.net/~unity-team/bamf/trunk
-_bzrmod=bamf
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  bzr revno
+}
 
 build() {
-cd "${srcdir}"
+  cd "${srcdir}"/${pkgname%-*}
 
-# Pull
-  msg "Connecting to Bazaar server...."
-
-  if [[ -d ${_bzrmod} ]]; then
-    cd ${_bzrmod} && bzr --no-plugins pull ${_bzrtrunk} -r ${pkgver}
-    msg "The local files are updated."
-  else
-    bzr --no-plugins branch ${_bzrtrunk} ${_bzrmod} -q -r ${pkgver}
-  fi
-
-  msg "Bazaar checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_bzrmod}-build
-  cp -r "${srcdir}"/${_bzrmod} "${srcdir}"/$_bzrmod-build
-  cd "${srcdir}"/${_bzrmod}-build
-
-# Build
-  AUTOMAKE=automake ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname%-*} --disable-{static,webapps}
+  ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname%-*} --disable-{static,webapps}
   make
 }
 
 package() {
-  cd "${srcdir}"/${_bzrmod}-build
+  cd "${srcdir}"/${pkgname%-*}
 
-# Install
   make DESTDIR="${pkgdir}" install
 }
 
