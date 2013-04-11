@@ -12,7 +12,7 @@ makedepends=('bzr' 'exo' 'gnome-common' 'gnome-doc-utils' 'gobject-introspection
 provides=('lightdm-gtk-greeter')
 conflicts=('lightdm-gtk2-greeter')
 backup=('etc/lightdm/lightdm-gtk-greeter.conf')
-source=('lightdm-gtk-greeter::bzr+http://bazaar.launchpad.net/~lightdm-gtk-greeter-team/lightdm-gtk-greeter/trunk/')
+source=("bzr+lp:lightdm-gtk-greeter")
 sha256sums=('SKIP')
 
 pkgver() {
