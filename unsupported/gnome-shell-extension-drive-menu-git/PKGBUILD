@@ -3,7 +3,7 @@
 
 _ext=drive-menu
 pkgname=gnome-shell-extension-${_ext}-git
-pkgver=3.6.2.3
+pkgver=3.8.0.16
 pkgrel=1
 pkgdesc="A status menu for accessing and unmounting removable devices"
 arch=('any')
@@ -13,7 +13,7 @@ depends=('gnome-shell-extension-common-git')
 makedepends=('git' 'gnome-common' 'intltool')
 provides=("gnome-shell-extension-${_ext}")
 conflicts=('gnome-shell-extensions-git' "gnome-shell-extension-${_ext}")
-source=('git+http://git.gnome.org/browse/gnome-shell-extensions#branch=gnome-3-6')
+source=('git+http://git.gnome.org/browse/gnome-shell-extensions')
 sha256sums=('SKIP')
 
 pkgver() {

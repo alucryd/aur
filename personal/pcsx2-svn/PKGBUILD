@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=pcsx2-svn
-pkgver=5604
+pkgver=5616 
 pkgrel=1
 pkgdesc="A Sony PlayStation 2 emulator"
 arch=('i686' 'x86_64')
@@ -19,34 +19,23 @@ elif [[ $CARCH == "x86_64" ]]; then
               'lib32-gtk-unico: unico gtk2 engine support')
 fi
 options=('!emptydirs')
+source=("${pkgname%-*}::svn+http://pcsx2.googlecode.com/svn/trunk/")
+sha256sums=('SKIP')
 
-_svntrunk=http://pcsx2.googlecode.com/svn/trunk/
-_svnmod=pcsx2
+pkgver() {
+  cd "${SRCDEST}"/${pkgname%-*}
+
+  svnversion | tr -d [A-z]
+}
 
 build() {
-  cd "${srcdir}"
+  cd "${srcdir}"/${pkgname%-*}
 
-# Checkout
-  msg "Connecting to SVN server...."
-
-  if [[ -d ${_svnmod}/.svn ]]; then
-    (cd ${_svnmod} && svn up -r ${pkgver})
-  else
-    svn co ${_svntrunk} --config-dir ./ -r ${pkgver} ${_svnmod}
-  fi
-
-  msg "SVN checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "${srcdir}"/${_svnmod}-build
-  svn export "${srcdir}"/${_svnmod} "${srcdir}"/${_svnmod}-build
-  cd "${srcdir}"/${_svnmod}-build
-
-# Build
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
+
   if [[ $CARCH == "i686" ]]; then
     cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug -DPACKAGE_MODE=TRUE -DXDG_STD=TRUE -DGLSL_API=TRUE -DREBUILD_SHADER=TRUE -DPLUGIN_DIR=/usr/lib/pcsx2 -DGAMEINDEX_DIR=/usr/share/pcsx2 -DGLSL_SHADER_DIR=/usr/share/pcsx2
   elif [[ $CARCH == "x86_64" ]]; then
@@ -55,13 +44,13 @@ build() {
     export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
     cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug -DPACKAGE_MODE=TRUE -DXDG_STD=TRUE -DGLSL_API=TRUE -DREBUILD_SHADER=TRUE -DPLUGIN_DIR=/usr/lib32/pcsx2 -DGAMEINDEX_DIR=/usr/share/pcsx2 -DGLSL_SHADER_DIR=/usr/share/pcsx2 -DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config32 -DwxWidgets_wxrc_EXECUTABLE=/usr/bin/wxrc32 -DCMAKE_LIBRARY_PATH=/usr/lib32
   fi
+
   make
 }
 
 package() {
-  cd "${srcdir}"/${_svnmod}-build/build
+  cd "${srcdir}"/${pkgname%-*}/build
 
-# Install
   make DESTDIR="${pkgdir}" install
 }
 

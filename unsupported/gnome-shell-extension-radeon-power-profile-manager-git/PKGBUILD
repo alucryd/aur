@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-radeon-power-profile-manager-git
-pkgver=20121102
+pkgver=33
 pkgrel=1
 pkgdesc="Radeon Power Profile Manager"
 arch=('any')
@@ -17,7 +17,7 @@ sha256sums=('SKIP'
 pkgver() {
   cd "${srcdir}"/${pkgname%-*}
 
-  git log -1 --format="%cd" --date=short | sed 's|-||g'
+  git rev-list --count HEAD
 }
 
 package() {
