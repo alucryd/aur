@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-coverflow-alt-tab-git
-pkgver=20130405
+pkgver=66
 pkgrel=1
 pkgdesc="Replacement of Alt-Tab, iterates through windows in a cover-flow manner"
 arch=('any')
@@ -18,7 +18,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd "${srcdir}"/${pkgname%-*}
 
-  git log -1 --format="%cd" --date=short | sed 's|-||g'
+  git rev-list --count HEAD
 }
 
 package() {

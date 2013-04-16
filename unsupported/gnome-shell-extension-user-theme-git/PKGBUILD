@@ -3,7 +3,7 @@
 
 _ext=user-theme
 pkgname=gnome-shell-extension-${_ext}-git
-pkgver=3.6.2.3
+pkgver=3.8.0.16
 pkgrel=1
 pkgdesc="Load shell themes from user directory"
 arch=('any')
@@ -14,7 +14,7 @@ makedepends=('git' 'gnome-common' 'intltool')
 provides=("gnome-shell-extension-${_ext}")
 conflicts=('gnome-shell-extensions-git' "gnome-shell-extension-${_ext}")
 install=${pkgname%-*}.install
-source=('git+http://git.gnome.org/browse/gnome-shell-extensions#branch=gnome-3-6')
+source=('git+http://git.gnome.org/browse/gnome-shell-extensions')
 sha256sums=('SKIP')
 
 pkgver() {
