@@ -2,7 +2,7 @@
 
 pkgname=noise
 pkgver=0.2
-pkgrel=2
+pkgrel=3
 pkgdesc="The official audio player of elementary OS"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/noise"
@@ -15,21 +15,20 @@ source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${p
 sha256sums=('f5cbf73f36ad68e6a491cdc72a4e4a9d68bbdc7e3e66ee205cdcf33bd48f66a4')
 
 build() {
-  cd "${srcdir}"
+  cd "${srcdir}"/${pkgname}-${pkgver}
 
-# Build
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
+
   cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
   make
 }
 
 package() {
-  cd "${srcdir}"/build
+  cd "${srcdir}"/${pkgname}-${pkgver}/build
 
-# Install
   make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
 }
 

@@ -5,7 +5,7 @@
 pkgbase=lightdm-bzr
 pkgname=${pkgbase}
 true && pkgname=('lightdm-bzr' 'liblightdm-qt4-bzr' 'liblightdm-qt5-bzr')
-pkgver=1632
+pkgver=1644
 pkgrel=1
 
 pkgver() {
@@ -18,15 +18,14 @@ prepare() {
   cd "${srcdir}"/${pkgbase%-*}
 
   patch -Np1 -i ../lightdm-default-config.patch
-  patch -Np1 -i ../lightdm-1.5.1-systemd_login1_power.patch
   patch -Np1 -i ../lightdm-lock-screen-before-switch.patch
+  sed -i 's/MOC5 --qt=qt5/MOC5/' configure.ac
 }
 
 build() {
   cd "${srcdir}"/${pkgbase%-*}
 
   ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgbase%-*} --with-greeter-user=lightdm --with-greeter-session=lightdm-gtk-greeter --disable-{static,tests}
-  sed -i 's/@YELP_HELP_RULES@/\t@YELP_HELP_RULES@/' help/Makefile
   make
 }
 
@@ -107,7 +106,7 @@ pkgdesc="A lightweight display manager"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/lightdm"
 license=('GPL3' 'LGPL3')
-makedepends=('gnome-common' 'gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'qt4' 'qt5-base')
+makedepends=('gnome-common' 'gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'qt4' 'qt5-base' 'yelp-tools')
 options=('!emptydirs' '!libtool')
 source=("${pkgbase%-*}::bzr+http://bazaar.launchpad.net/~lightdm-team/lightdm/trunk/"
         'lightdm.service'
@@ -116,7 +115,6 @@ source=("${pkgbase%-*}::bzr+http://bazaar.launchpad.net/~lightdm-team/lightdm/tr
         'lightdm-autologin.pam'
         'lightdm.rules'
         'lightdm-default-config.patch'
-        'lightdm-1.5.1-systemd_login1_power.patch'
         'lightdm-lock-screen-before-switch.patch'
         'xsession')
 sha256sums=('SKIP'
@@ -126,7 +124,6 @@ sha256sums=('SKIP'
             '33e3c3d6e16c8d30756754ea3f31f5457c5be0343686aad287692be34958984a'
             'a89566307e1c81c24f037d854cbd472d2f94f8a4b759877a01563a332319f7d6'
             '6d5a754f41e9c7e52c51d2ff018b926ddaabb807e9a0b88c4a7bde1acffa3b1c'
-            '8c8432294d361475293852f45673bc042eb252dbc58a17445fd10e5e874dc608'
             '4793eaee5915f5c519f569a4cd9158822d4c57c8b6e405895d2eddf82fa00822'
             '7fb85a1b54406032a922e8fd6f45d869fcfe5681df630e74e8e50c040b786ee4')
 
