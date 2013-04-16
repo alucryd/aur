@@ -1,0 +1,23 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=bbswitch-hook
+pkgver=1.0
+pkgrel=1
+pkgdesc="mkinitcpio hook to compile the bbswitch module"
+url="https://github.com/Alucryd/mkinitcpio-hooks"
+arch=('any')
+license=('GPL3')
+depends=('bbswitch-dkms')
+install=${pkgname}.install
+source=("https://raw.github.com/Alucryd/mkinitcpio-hooks/master/bbswitch")
+sha256sums=('9134827a9deab3ef787738976141b8ff573fd2b67681d61870c01f66c657bdae')
+
+package() {
+  cd "${srcdir}"
+
+  install -dm 755 "${pkgdir}"/usr/lib/initcpio/install
+  sed -i "s|_arch|$CARCH|" bbswitch
+  install -m 644 bbswitch "${pkgdir}"/usr/lib/initcpio/install/bbswitch
+}
+
+# vim: ts=2 sw=2 et:
