@@ -14,7 +14,7 @@ makedepends=('bzr' 'cmake' 'sqlite3' 'vala>=0.12')
 provides=('lingo-dictionnary')
 conflicts=('lingo-dictionnary')
 install=${pkgname}.install
-source=("${pkgname%-*}::bzr+https://code.launchpad.net/~elementary-apps/lingo-dictionary/lingo")
+source=("${pkgname%-*}::bzr+lp:lingo")
 sha256sums=('SKIP')
 
 build() {
