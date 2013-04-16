@@ -1,14 +1,14 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=granite-bzr
-pkgver=556
+pkgver=558
 pkgrel=1
 pkgdesc="A development library for elementary development"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/granite"
 license=('GPL3')
 groups=('pantheon')
-depends=('gtk3' 'hicolor-icon-theme' 'libgee')
+depends=('gtk3' 'hicolor-icon-theme' 'libgee06')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala>=0.16')
 provides=('granite')
 conflicts=('granite')
