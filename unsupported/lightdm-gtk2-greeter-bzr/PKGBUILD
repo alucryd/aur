@@ -10,9 +10,9 @@ license=('GPL3' 'LGPL3')
 depends=('gtk3' 'lightdm')
 makedepends=('bzr' 'exo' 'gnome-common' 'gnome-doc-utils' 'gobject-introspection' 'intltool')
 provides=('lightdm-gtk-greeter')
-conflicts=('lightdm-gtk3-greeter')
+conflicts=('lightdm-gtk-greeter')
 backup=('etc/lightdm/lightdm-gtk-greeter.conf')
-source=('lightdm-gtk-greeter::bzr+http://bazaar.launchpad.net/~lightdm-gtk-greeter-team/lightdm-gtk-greeter/trunk/')
+source=('bzr+lp:lightdm-gtk-greeter')
 sha256sums=('SKIP')
 
 pkgver() {
