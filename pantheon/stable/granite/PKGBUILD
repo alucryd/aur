@@ -11,7 +11,7 @@ groups=('pantheon')
 depends=('gtk3' 'hicolor-icon-theme' 'libgee')
 makedepends=('cmake' 'gobject-introspection' 'vala>=0.16')
 install=${pkgname}.install
-source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
+source=("https://launchpad.net/${pkgname}/0.1/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
 sha256sums=('360a030690d3db1faedf7461fe808b37ed67de7f380532673dae2242f2e7b5e5')
 
 build() {

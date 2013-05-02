@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=granite-bzr
-pkgver=558
+pkgver=561
 pkgrel=1
 pkgdesc="A development library for elementary development"
 arch=('i686' 'x86_64')

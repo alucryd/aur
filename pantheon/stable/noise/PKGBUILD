@@ -2,13 +2,13 @@
 
 pkgname=noise
 pkgver=0.2
-pkgrel=3
+pkgrel=4
 pkgdesc="The official audio player of elementary OS"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/noise"
 license=('GPL3')
 groups=('pantheon')
-depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'json-glib' 'libgpod' 'libindicate' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib' 'zeitgeist')
+depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'json-glib' 'libgpod' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib' 'zeitgeist')
 makedepends=('cmake' 'vala>=0.16')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
