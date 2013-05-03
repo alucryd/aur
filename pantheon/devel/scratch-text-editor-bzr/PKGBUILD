@@ -1,0 +1,47 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=scratch-text-editor-bzr
+pkgver=1027
+pkgrel=1
+pkgdesc="A text editor written in Vala"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/scratch"
+license=('GPL3')
+groups=('pantheon')
+depends=('gconf' 'granite-bzr' 'gtk3' 'gtksourceview3' 'gtkspell3' 'libgee' 'libpeas' 'libsoup' 'pantheon-files-bzr' 'python2-chardet' 'vte3' 'webkitgtk3' 'zeitgeist')
+makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
+install=${pkgname%-*}.install
+source=('bzr+lp:scratch')
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}"/${pkgname%%-*}
+
+  bzr revno
+}
+
+prepare() {
+  cd "${srcdir}"/${pkgname%%-*}
+
+  sed -i 's/gtkspell-3.0/gtkspell3-3.0/' plugins/spell/CMakeLists.txt
+}
+
+build() {
+  cd "${srcdir}"/${pkgname%%-*}
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname%%-*}/build
+
+  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
