@@ -9,7 +9,7 @@ url="https://launchpad.net/gala"
 license=('GPL3')
 groups=('pantheon')
 depends=('clutter-gtk' 'granite-bzr' 'mutter' 'plank-bzr')
-makedepends=('bzr' 'cmake' 'vala>=0.16')
+makedepends=('bzr' 'cmake' 'vala')
 provides=('gala')
 conflicts=('gala')
 install=${pkgname%-*}.install

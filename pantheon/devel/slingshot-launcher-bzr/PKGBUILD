@@ -1,0 +1,41 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=slingshot-launcher-bzr
+pkgver=349
+pkgrel=1
+pkgdesc="Slingshot application launcher"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/slingshot"
+license=('GPL3')
+groups=('pantheon')
+depends=('gnome-menus2' 'granite-bzr' 'gtk3' 'libgee06' 'libunity' 'libwnck3' 'zeitgeist')
+makedepends=('bzr' 'cmake' 'vala')
+install=${pkgname%-*}.install
+source=('bzr+lp:slingshot')
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}"/${pkgname%%-*}
+
+  bzr revno
+}
+
+build() {
+  cd "${srcdir}"/${pkgname%%-*}
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname%%-*}/build
+
+  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+}
+
+# vim: ts=2 sw=2 et:
