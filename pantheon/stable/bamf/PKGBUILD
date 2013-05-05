@@ -3,25 +3,29 @@
 
 pkgname=bamf
 pkgver=0.3.6
-pkgrel=1
-pkgdesc="Window matching library"
+pkgrel=2
+pkgdesc="Application matching framework"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/bamf"
 license=('GPL')
 depends=('dbus-glib' 'libgtop' 'libwnck3')
 makedepends=('gobject-introspection' 'vala')
 options=('!libtool')
-source=("http://launchpad.net/${pkgname}/${pkgver%.*}/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz" 'xdg-current-desktop.patch')
+source=("http://launchpad.net/${pkgname}/${pkgver%.*}/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz"
+        'xdg-current-desktop.patch')
 sha256sums=('df7c7e3635329e0bc702941ec9b0d026b773017e85eb6c62c9a2af9f8957aa7a'
             '8673df57480b6e033f3379d7eb20be4d5757b44e530346c933cfdb559b096215')
+
+prepare() {
+  cd "${srcdir}"/${pkgname}-${pkgver}
+
+  patch -Np1 -i ../xdg-current-desktop.patch
+  sed -i 's/--c-include/-include/' lib/libbamf/Makefile.in
+}
 
 build() {
   cd "${srcdir}"/${pkgname}-${pkgver}
 
-# Patch
-  patch -Np1 -i "$srcdir/xdg-current-desktop.patch"
-
-# Build
   ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname} --disable-static --disable-webapps
   make
 }
@@ -29,7 +33,6 @@ build() {
 package() {
   cd "${srcdir}"/${pkgbase}-${pkgver}
 
-# Install
   make DESTDIR="${pkgdir}" install
 }
 

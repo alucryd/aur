@@ -2,16 +2,16 @@
 # Contributor: Dustin Mays <dork dot fish dot wat at gmail dot com>
 
 pkgname=bamf-bzr
-pkgver=529
+pkgver=534
 pkgrel=1
-pkgdesc="Window matching library"
+pkgdesc="Application matching framework"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/bamf"
 license=('GPL')
 depends=('dbus-glib' 'libgtop' 'libwnck3')
 makedepends=('bzr' 'gnome-common' 'gobject-introspection' 'gtk-doc' 'vala')
-provides=('bamf')
-conflicts=('bamf')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 options=('!libtool')
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
@@ -26,6 +26,7 @@ build() {
   cd "${srcdir}"/${pkgname%-*}
 
   ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname%-*} --disable-{static,webapps}
+  sed -i 's/-Werror=implicit-function-declaration //g' $(grep -rl "\-Werror=implicit\-function\-declaration")
   make
 }
 
