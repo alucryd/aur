@@ -10,28 +10,28 @@ url="https://launchpad.net/bamf"
 license=('GPL')
 depends=('dbus-glib' 'libgtop' 'libwnck3')
 makedepends=('bzr' 'gnome-common' 'gobject-introspection' 'gtk-doc' 'vala')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
+provides=('bamf')
+conflicts=('bamf')
 options=('!libtool')
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:bamf')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd "${srcdir}"/bamf
 
   bzr revno
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd "${srcdir}"/bamf
 
-  ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname%-*} --disable-{static,webapps}
-  sed -i 's/-Werror=implicit-function-declaration //g' $(grep -rl "\-Werror=implicit\-function\-declaration")
+  ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/bamf --disable-{static,webapps}
+  sed -i 's/ \-Werror=implicit\-function\-declaration//g' $(grep -rl '-Werror=implicit-function-declaration')
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd "${srcdir}"/bamf
 
   make DESTDIR="${pkgdir}" install
 }

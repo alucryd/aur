@@ -20,13 +20,14 @@ prepare() {
   cd "${srcdir}"/${pkgname}-${pkgver}
 
   patch -Np1 -i ../xdg-current-desktop.patch
-  sed -i 's/--c-include/-include/' lib/libbamf/Makefile.in
+  sed -i 's/\-\-c\-include/\-\-include/' lib/libbamf/Makefile.in
+  sed -i '/g_type_init ();/d' $(grep -rl 'g_type_init ();')
 }
 
 build() {
   cd "${srcdir}"/${pkgname}-${pkgver}
 
-  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname} --disable-static --disable-webapps
+  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname} --disable-{static,webapps}
   make
 }
 
