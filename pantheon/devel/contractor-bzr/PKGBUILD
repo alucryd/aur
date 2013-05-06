@@ -1,16 +1,16 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=contractor-bzr
-pkgver=105
+pkgver=115
 pkgrel=1
 pkgdesc="A service for sharing data between apps"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/contractor"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
-depends=('libgee')
-makedepends=('bzr' 'cmake' 'vala>=0.16')
-provides=('contractor')
-conflicts=('contractor')
+depends=('glib2')
+makedepends=('bzr' 'cmake' 'vala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 

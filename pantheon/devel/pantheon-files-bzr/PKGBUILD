@@ -5,18 +5,18 @@ pkgver=1164
 pkgrel=1
 pkgdesc="The file manager of the Pantheon desktop"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/pantheon-files"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 groups=('pantheon')
-depends=('dbus-glib' 'gconf' 'desktop-file-utils' 'granite-bzr' 'libnotify')
+depends=('gconf' 'desktop-file-utils' 'granite-bzr' 'libnotify')
 makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala>=0.16')
 optdepends=('contractor-bzr: Plugins integration'
-            'pantheon-files-plugin-dropbox-bzr: Dropbox integration'
+            "${pkgname%-*}-plugin-dropbox-bzr: Dropbox integration"
             'tumbler: Thumbnails generation')
-provides=('pantheon-files')
-conflicts=('marlin-bin' 'marlin-bzr' 'files-bzr' 'pantheon-files')
+provides=("${pkgname%-*}")
+conflicts=('marlin-bin' 'marlin-bzr' 'files-bzr' "${pkgname%-*}")
 install=${pkgname%-*}.install
-source=('bzr+lp:pantheon-files')
+source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {

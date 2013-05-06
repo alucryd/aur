@@ -5,31 +5,30 @@ pkgver=0.1.56.2
 pkgrel=1
 pkgdesc="A library to integrate launchpad urls into the menus"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/launchpad-integration"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
-depends=('hicolor-icon-theme' 'gtk3' 'python2')
-makedepends=('gobject-introspection' 'pygtk')
+depends=('hicolor-icon-theme' 'gtk3' 'pygtk')
+makedepends=('bzr' 'gobject-introspection')
 options=('!libtool')
-install=${pkgname}.install
-source=("https://launchpad.net/ubuntu/raring/+source/${pkgname%-*}/${pkgver}/+files/${pkgname%-*}_${pkgver}.tar.gz")
-sha256sums=('0b6116737062b31da9ffb33594632c64ab059da7d2d790faf663cf697200ac39')
+install=${pkgname%-*}.install
+source=("bzr+lp:${pkgname%-*}#revision=189")
+sha256sums=('SKIP')
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}-${pkgver}
+  cd "${srcdir}"/${pkgname%-*}
 
-# Build
-  PYTHON=python2 ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname} --disable-static --with-gtk=3
+  export PYTHON=python2
+  ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname%-*} --disable-static --with-gtk=3
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}-${pkgver}
+  cd "${srcdir}"/${pkgname%-*}
 
-# Install
   make DESTDIR="${pkgdir}" install
-  install -dm 755 "${pkgdir}"/usr/lib/python2.7/site-packages
-  mv "${pkgdir}"/usr/share/launchpad-integration/launchpadintegration "${pkgdir}"/usr/lib/python2.7/site-packages/
-  rm -rf "${pkgdir}"/usr/share/launchpad-integration
+
+# Fix permissions
+  chmod 644 "${pkgdir}"/usr/share/launchpad-integration/launchpadintegration/*
 }
 
 # vim: ts=2 sw=2 et:

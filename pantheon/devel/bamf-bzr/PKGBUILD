@@ -6,32 +6,39 @@ pkgver=534
 pkgrel=1
 pkgdesc="Application matching framework"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/bamf"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL')
 depends=('dbus-glib' 'libgtop' 'libwnck3')
 makedepends=('bzr' 'gnome-common' 'gobject-introspection' 'gtk-doc' 'vala')
-provides=('bamf')
-conflicts=('bamf')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 options=('!libtool')
-source=('bzr+lp:bamf')
-sha256sums=('SKIP')
+source=("bzr+lp:${pkgname%-*}"
+        'bamf-matcher.patch')
+sha256sums=('SKIP'
+            'c6e338adf43992cd9838e33b871cf9f554a21a3eb7e6afe0588c68c5f7c71967')
 
 pkgver() {
-  cd "${srcdir}"/bamf
+  cd "${srcdir}"/${pkgname%-*}
 
   bzr revno
 }
 
-build() {
-  cd "${srcdir}"/bamf
+prepare() {
+  cd "${srcdir}"/${pkgname%-*}
 
-  ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/bamf --disable-{static,webapps}
-  sed -i 's/ \-Werror=implicit\-function\-declaration//g' $(grep -rl '-Werror=implicit-function-declaration')
+  patch -Np1 -i ../bamf-matcher.patch
+}
+
+build() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname%-*} --disable-{static,webapps}
   make
 }
 
 package() {
-  cd "${srcdir}"/bamf
+  cd "${srcdir}"/${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
 }

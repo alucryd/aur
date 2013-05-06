@@ -3,16 +3,14 @@
 pkgname=eidete-bzr
 pkgver=144
 pkgrel=1
-pkgdesc="A simple screencasting app from the elementary project"
+pkgdesc="Simple screencaster for the elementary project"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/eidete"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('granite-bzr' 'gstreamer0.10-base' 'libwnck3')
-makedepends=('bzr' 'cmake' 'vala>=0.16')
-optdepends=('contractor: contractor support'
-            'brasero: burn captured video to disc')
-provides=('eidete')
-conflicts=('eidete')
+makedepends=('bzr' 'cmake' 'vala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
@@ -38,7 +36,7 @@ build() {
 package() {
   cd "${srcdir}"/${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" install
+  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

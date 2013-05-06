@@ -1,17 +1,16 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=elementary-scan-bzr
-pkgver=606
+pkgver=607
 pkgrel=1
 pkgdesc="Simple Scanning Utility"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/cerbere"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL2')
-groups=('pantheon')
-depends=('desktop-file-utils' 'granite-bzr' 'launchpad-integration-gtk3' 'python2-scour' 'sane')
-makedepends=('bzr' 'gnome-common' 'intltool' 'vala>=0.16')
-provides=('simple-scan')
-conflicts=('simple-scan')
+depends=('granite-bzr' 'launchpad-integration-gtk3' 'sane' 'scour')
+makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
+provides=("${pkgname%-*}" 'simple-scan')
+conflicts=("${pkgname%-*}" 'simple-scan')
 install=${pkgname%-*}.install
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')

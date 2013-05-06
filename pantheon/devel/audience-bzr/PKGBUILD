@@ -5,13 +5,12 @@ pkgver=271
 pkgrel=1
 pkgdesc="A modern media player"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/audience"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
-groups=('pantheon')
-depends=('clutter-gtk' 'desktop-file-utils' 'granite-bzr')
+depends=('clutter-gtk' 'desktop-file-utils' 'granite-bzr' 'gst-plugins-base-libs')
 makedepends=('bzr' 'clutter-gst' 'cmake' 'vala')
 install=${pkgname%-*}.install
-source=('bzr+lp:audience')
+source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {

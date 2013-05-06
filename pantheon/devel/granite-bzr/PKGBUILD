@@ -3,15 +3,14 @@
 pkgname=granite-bzr
 pkgver=561
 pkgrel=1
-pkgdesc="A development library for elementary development"
+pkgdesc="An extension of GTK+ libraries"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/granite"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
-groups=('pantheon')
 depends=('gtk3' 'hicolor-icon-theme' 'libgee06')
-makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala>=0.16')
-provides=('granite')
-conflicts=('granite')
+makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
