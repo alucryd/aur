@@ -10,8 +10,10 @@ license=('GPL3')
 groups=('pantheon')
 depends=('gtksourceview3' 'libpeas' 'pantheon-files-bzr' 'python2-chardet' 'vte3' 'webkitgtk3' 'libzeitgeist')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
-source=('bzr+lp:scratch')
+source=("bzr+lp:${pkgname%%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
