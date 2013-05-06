@@ -1,15 +1,15 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
-# Maintainer: Michael Düll <mail at akurei dot me>
+# Contributor: Michael Düll <mail at akurei dot me>
 # Contributor: Wintershade <wintershade at gmail dot com>
 
 pkgname=rubyripper-git
 pkgver=327
-pkgrel=1
+pkgrel=2
 pkgdesc="Secure audiodisc ripper"
 arch=('any')
 url="http://code.google.com/p/rubyripper/"
 license=('GPL3')
-depends=('ruby' 'cdparanoia' 'gtk2' 'hicolor-icon-theme')
+depends=('cdparanoia' 'gtk2' 'hicolor-icon-theme' 'ruby-iconv')
 makedepends=('git' 'ruby-gettext')
 optdepends=('ruby-gtk2: GTK+ GUI'
             'cd-discid: Freedb support'

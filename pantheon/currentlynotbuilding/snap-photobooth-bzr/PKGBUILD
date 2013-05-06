@@ -1,0 +1,41 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=snap-photobooth-bzr
+pkgver=148
+pkgrel=1
+pkgdesc="Snap webcam viewer"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/snap-elementary"
+license=('GPL3')
+groups=('pantheon')
+depends=('cheese' 'clutter-gst' 'clutter-gtk' 'gnome-desktop2' 'granite-bzr' 'gstreamer0.10-base-plugins' 'gtk3')
+makedepends=('bzr' 'cmake' 'vala')
+#install=${pkgname%-*}.install
+source=('bzr+lp:snap-elementary')
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}"/snap-elementary
+
+  bzr revno
+}
+
+build() {
+  cd "${srcdir}"/snap-elementary
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  make
+}
+
+package() {
+  cd "${srcdir}"/snap-elementary/build
+
+  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+}
+
+# vim: ts=2 sw=2 et:
