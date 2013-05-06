@@ -2,7 +2,7 @@
 
 pkgname=wow-2-themes
 pkgver=20121229
-pkgrel=2
+pkgrel=3
 pkgdesc="Nice looking theme collection for GTK3, GTK2, Metacity, Unity, Xfwm4, Openbox, Emerald and Chrome/Chromium"
 arch=('any')
 url="http://nale12.deviantart.com/art/WOW-2-291358379"
@@ -14,8 +14,8 @@ optdepends=('gtk-engine-unico: GTK3 themes'
             'unity: Unity theme'
             'xfwm4: Xfwm4 themes'
             'openbox: Openbox themes')
-source=("${pkgname}-${pkgver}.zip::http://www.deviantart.com/download/291358379/wow_2_by_nale12-d4tgtkb.zip")
-sha256sums=('3fdc5f071df093afebd27d3de69e8059b7ec3b9f7a37e9dadcabad902b150738')
+source=("${pkgname}-${pkgver}.zip::http://fc05.deviantart.net/fs71/f/2013/022/3/d/wow_2_by_nale12-d4tgtkb.zip")
+sha256sums=('91a95e4c6178a47f847f9ef86c24a74bf873a2ce9a65a1766ca7e8c2195e8039')
 
 _left=false
 _emerald=false
