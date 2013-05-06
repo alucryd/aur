@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gala-bzr
-pkgver=322
+pkgver=323
 pkgrel=1
 pkgdesc="A window & compositing manager based on libmutter and designed by elementary"
 arch=('i686' 'x86_64')
@@ -10,8 +10,8 @@ license=('GPL3')
 groups=('pantheon')
 depends=('clutter-gtk' 'granite-bzr' 'mutter' 'plank-bzr')
 makedepends=('bzr' 'cmake' 'vala')
-provides=('gala')
-conflicts=('gala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')

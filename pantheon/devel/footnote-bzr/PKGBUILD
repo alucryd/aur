@@ -3,12 +3,14 @@
 pkgname=footnote-bzr
 pkgver=287
 pkgrel=1
-pkgdesc="A beautiful, fast, and simple note taking app in the style of elementary"
+pkgdesc="Take note in elementary style"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/footnote"
 license=('GPL3')
-depends=('clutter-gtk' 'granite-bzr' 'sqlheavy-git')
-makedepends=('bzr' 'cmake' 'vala>=0.16')
+depends=('clutter-gtk' 'granite-bzr' 'sqlheavy')
+makedepends=('bzr' 'cmake' 'vala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
@@ -17,12 +19,6 @@ pkgver() {
   cd "${srcdir}"/${pkgname%-*}
 
   bzr revno
-}
-
-prepare() {
-  cd "${srcdir}"/${pkgname%-*}
-
-  sed -i 's|sqlheavy-0.1|sqlheavy-0.2|' CMakeLists.txt
 }
 
 build() {
