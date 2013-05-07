@@ -1,0 +1,41 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=midori-granite
+pkgver=0.5.0
+pkgrel=1
+pkgdesc='Lightweight web browser based on Gtk WebKit'
+arch=('i686' 'x86_64')
+url="http://twotoasts.de/index.php/midori/"
+license=('LGPL2.1')
+depends=('gcr' 'granite-bzr' 'libnotify' 'libunique3' 'libxss' 'libzeitgeist' 'webkitgtk3')
+makedepends=('clutter-gtk' 'gtk-doc' 'intltool' 'librsvg' 'libxml2' 'python2' 'vala')
+optdepends=('gstreamer0.10-ugly-plugins: HTML5 videos support'
+            'aria2: Download utility')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+options=('!emptydirs')
+install=${pkgname}.install
+source=("http://archive.xfce.org/src/apps/${pkgname%%-*}/${pkgver%.?}/${pkgname%%-*}-${pkgver}.tar.bz2")
+sha256sums=('d280c19bb135f2b644a67d9f34d1ec1c148ceb14b5de11ce6c23f64c15be5df0')
+
+prepare() {
+  cd "${srcdir}"/${pkgname%%-*}-${pkgver}
+
+  sed -i 's|^#!.*python$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
+}
+
+build() {
+  cd "${srcdir}"/${pkgname%%-*}-${pkgver}
+
+  export PYTHON=/usr/bin/python2
+  ./configure --prefix=/usr --jobs=${MAKEFLAGS/-j/} --enable-{addons,apidocs,docs,granite,gtk3,nls,unique}
+  make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname%%-*}-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim:set ts=2 sw=2 et:

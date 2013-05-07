@@ -2,7 +2,7 @@
 # Contributor: Sebastian Lenz <sebastian@archusers.de>
 
 pkgname=gnome-shell-extension-common-git
-pkgver=3.8.0.16
+pkgver=3.8.1.7
 pkgrel=1
 pkgdesc="Common files for the GNOME Shell Extensions"
 arch=('any')
@@ -12,7 +12,7 @@ depends=('gnome-shell')
 makedepends=('git' 'gnome-common' 'intltool')
 provides=('gnome-shell-extension-common')
 conflicts=('gnome-shell-extension-git' 'gnome-shell-extension-common')
-source=('git+http://git.gnome.org/browse/gnome-shell-extensions')
+source=('git+http://git.gnome.org/browse/gnome-shell-extensions#branch=gnome-3-8')
 sha256sums=('SKIP')
 
 pkgver() {

@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/plank"
 license=('GPL3')
 groups=('pantheon')
-depends=('bamf-bzr' 'hicolor-icon-theme' 'libdbusmenu-gtk3' 'libgee')
+depends=('bamf-bzr' 'hicolor-icon-theme' 'libdbusmenu-gtk3' 'libgee06')
 makedepends=('bzr' 'gnome-common' 'intltool')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
@@ -32,7 +32,7 @@ prepare() {
 build() {
   cd "${srcdir}"/${pkgname%-*}
 
-  ./autogen.sh --prefix=/usr --sysconfdir=/etc
+  ./autogen.sh --prefix=/usr --sysconfdir=/etc --disable-gee-0.8
   make
 }
 

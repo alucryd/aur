@@ -10,11 +10,11 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/lingo-dictionary"
 license=('GPL3')
 depends=('granite-bzr' 'json-glib' 'libsoup')
-makedepends=('bzr' 'cmake' 'sqlite3' 'vala>=0.12')
-provides=('lingo-dictionnary')
-conflicts=('lingo-dictionnary')
+makedepends=('bzr' 'cmake' 'sqlite3' 'vala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 install=${pkgname}.install
-source=("${pkgname%-*}::bzr+lp:lingo")
+source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~elementary-apps/lingo-dictionary/lingo/")
 sha256sums=('SKIP')
 
 build() {

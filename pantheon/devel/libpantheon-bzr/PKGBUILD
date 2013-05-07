@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/libpantheon"
 license=('GPL3')
 depends=('gtk3')
-makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala>=0.16')
+makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=("bzr+lp:${pkgname%-*}")

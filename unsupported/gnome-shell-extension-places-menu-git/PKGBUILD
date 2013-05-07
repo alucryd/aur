@@ -3,7 +3,7 @@
 
 _ext=places-menu
 pkgname=gnome-shell-extension-${_ext}-git
-pkgver=3.8.0.16
+pkgver=3.8.1.7
 pkgrel=1
 pkgdesc="Add a menu to the top panel for quickly navigating places in the system"
 arch=('any')
@@ -13,7 +13,7 @@ depends=('gnome-shell-extension-common-git')
 makedepends=('git' 'gnome-common' 'intltool')
 provides=("gnome-shell-extension-${_ext}")
 conflicts=('gnome-shell-extensions-git' "gnome-shell-extension-${_ext}")
-source=('git+http://git.gnome.org/browse/gnome-shell-extensions')
+source=('git+http://git.gnome.org/browse/gnome-shell-extensions#branch=gnome-3-8')
 sha256sums=('SKIP')
 
 pkgver() {

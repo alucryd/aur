@@ -8,13 +8,12 @@ pkgdesc="Pantheon greeter for LightDM"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-greeter"
 license=('GPL')
-groups=('pantheon')
-depends=('clutter-gtk' 'granite-bzr' 'libindicator-gtk3' 'lightdm' 'numlockx')
-makedepends=('bzr' 'cmake' 'vala>=0.16')
+depends=('clutter-gtk' 'granite-bzr' 'libindicator-gtk3' 'lightdm')
+makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
-source=("${pkgname%-*}::bzr+https://code.launchpad.net/~elementary-pantheon/pantheon-greeter/1.x")
+source=("${pkgname%-*}::bzr+lp:pantheon-greeter")
 sha256sums=('SKIP')
 
 build(){
@@ -25,7 +24,6 @@ build(){
   fi
   mkdir build && cd build
 
-  export CFLAGS="$CFLAGS -lm -Wno-deprecated-declarations"
   cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
   make
 }
@@ -34,6 +32,12 @@ package(){
   cd "$srcdir"/${pkgname%-*}/build
 
   make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+  install -dm 755 "${pkgdir}"/usr/sbin
+  mv "${pkgdir}"/usr/{share/xgreeters,sbin}/pantheon-greeter
+  sed -i 's|share/xgreeters|sbin|
+          s|pantheon-greeter|lightdm-pantheon-greeter|g
+          /en_US/d' "${pkgdir}"/usr/share/xgreeters/pantheon-greeter.desktop
+  mv "${pkgdir}"/usr/share/xgreeters/{,lightdm-}pantheon-greeter.desktop
 }
 
 # vim: ts=2 sw=2 et:
