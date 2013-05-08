@@ -63,7 +63,7 @@ diff -rupN SFML-1.6.orig/src/SFML/Graphics/GraphicsContext.hpp SFML-1.6/src/SFML
 diff -rupN SFML-1.6.orig/src/SFML/Graphics/ImageLoader.cpp SFML-1.6/src/SFML/Graphics/ImageLoader.cpp
 --- SFML-1.6.orig/src/SFML/Graphics/ImageLoader.cpp	2010-01-27 15:00:05.000000000 +0100
 +++ SFML-1.6/src/SFML/Graphics/ImageLoader.cpp	2013-02-19 14:48:28.967943931 +0100
-@@ -28,11 +28,11 @@
+@@ -28,11 +28,12 @@
  #include <SFML/Graphics/ImageLoader.hpp>
  extern "C"
  {
@@ -76,6 +76,7 @@ diff -rupN SFML-1.6.orig/src/SFML/Graphics/ImageLoader.cpp SFML-1.6/src/SFML/Gra
 -#include <SFML/Graphics/SOIL/SOIL.h>
 +#include <png.h>
 +#include <SOIL/SOIL.h>
++#include <cstring>
  #include <iostream>
  
  

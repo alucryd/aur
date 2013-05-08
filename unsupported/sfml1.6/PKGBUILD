@@ -5,21 +5,26 @@
 
 pkgname=sfml1.6
 pkgver=1.6
-pkgrel=4
+pkgrel=5
 pkgdesc="A simple, fast, cross-platform, and object-oriented multimedia API"
 arch=('i686' 'x86_64')
 url="http://www.sfml-dev.org/"
 license=('zlib')
 depends=('glew' 'libjpeg' 'libpng' 'libsndfile' 'openal')
 makedepends=('mesa' 'soil')
-source=("http://downloads.sourceforge.net/sfml/SFML-${pkgver}-sdk-linux-64.tar.gz" 'various-fixes.patch')
+source=("http://downloads.sourceforge.net/sfml/SFML-${pkgver}-sdk-linux-64.tar.gz"
+        'various-fixes.patch')
 sha256sums=('05bdc32286ab2ec8cb1ccdafe53f31830284e09e11ebfc3ab3836c99a0d9654b'
-            'caec8c7cd9ea502fbc86421ea882088519a7748f5bdf0d589cb3b32c4232390f')
+            'b2eccdbe4b37001b83e2ea830b111842276f421caf09d1475b3b1d8e10fb34b2')
+
+prepare() {
+  cd "${srcdir}/SFML-${pkgver}"
+
+  patch -Np1 -i ../various-fixes.patch
+}
 
 build() {
   cd "${srcdir}/SFML-${pkgver}"
-
-  patch -Np1 -i "${srcdir}"/various-fixes.patch
 
   make
 }

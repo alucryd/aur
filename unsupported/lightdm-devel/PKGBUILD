@@ -1,11 +1,12 @@
-# Maintainer: Morfeo <morfeo89 at hotmail dot it>
-# Contributor: Alucryd <alucryd at gmail dot com>
+# Maintainer: Alucryd <alucryd at gmail dot com>
+# Contributor: padfoot <padfoot@exemail.com.au>
+# Contributor: Morfeo <morfeo89 at hotmail dot it>
 
 pkgbase=lightdm-devel
 pkgname=${pkgbase}
 true && pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
 pkgver=1.7.0
-pkgrel=1
+pkgrel=2
 
 prepare() {
   cd "${srcdir}"/${pkgbase%-*}-${pkgver}
