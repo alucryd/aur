@@ -1,17 +1,19 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
+# Contributor: flamelab <panosfilip@gmail.com>
 
 pkgname=slingshot-launcher-bzr
-pkgver=349
+pkgver=351
 pkgrel=1
 pkgdesc="Slingshot application launcher"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/slingshot"
 license=('GPL3')
-groups=('pantheon')
-depends=('gnome-menus2' 'granite-bzr' 'gtk3' 'libgee06' 'libunity' 'libwnck3' 'zeitgeist')
+depends=('gnome-menus2' 'granite-bzr' 'libunity' 'libwnck3' 'libzeitgeist')
 makedepends=('bzr' 'cmake' 'vala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
-source=('bzr+lp:slingshot')
+source=("bzr+lp:${pkgname%%-*}")
 sha256sums=('SKIP')
 
 pkgver() {

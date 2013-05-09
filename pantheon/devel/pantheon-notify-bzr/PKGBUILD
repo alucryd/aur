@@ -1,15 +1,16 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
+# Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-notify-bzr
-pkgver=24
+pkgver=25
 pkgrel=1
-pkgdesc="A stylish notification daemon from the elementary project"
+pkgdesc="Stylish and standard-compliant notification daemon"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-notify"
 license=('GPL3')
-depends=('clutter-gtk' 'glib2' 'granite-bzr' 'gtk3' 'libwnck3')
+depends=('clutter-gtk' 'granite-bzr' 'libwnck3')
 makedepends=('bzr' 'cmake' 'vala')
-source=("${pkgname%-*}::bzr+https://code.launchpad.net/~tombeckmann/pantheon-notify/trunk")
+source=("bzr+lp:${pkgname%-*}")
 md5sums=('SKIP')
 
 pkgver() {

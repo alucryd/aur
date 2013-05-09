@@ -1,7 +1,8 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
+# Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=scratch-text-editor-bzr
-pkgver=1036
+pkgver=1041
 pkgrel=1
 pkgdesc="A text editor written in Vala"
 arch=('i686' 'x86_64')
@@ -46,6 +47,7 @@ package() {
   cd "${srcdir}"/${pkgname%%-*}/build
 
   make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+  chmod +x "${pkgdir}"/usr/share/scratch/scripts/*.py
 }
 
 # vim: ts=2 sw=2 et:

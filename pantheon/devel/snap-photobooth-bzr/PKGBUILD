@@ -8,20 +8,27 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/snap-elementary"
 license=('GPL3')
 groups=('pantheon')
-depends=('cheese' 'clutter-gst' 'clutter-gtk' 'gnome-desktop2' 'granite-bzr' 'gstreamer0.10-base-plugins' 'gtk3')
+depends=('cheese' 'granite-bzr' 'gstreamer0.10-base-plugins')
 makedepends=('bzr' 'cmake' 'vala')
-#install=${pkgname%-*}.install
-source=('bzr+lp:snap-elementary')
+install=${pkgname%-*}.install
+source=("${pkgname%-*}::bzr+lp:snap-elementary")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/snap-elementary
+  cd "${srcdir}"/${pkgname%-*}
 
   bzr revno
 }
 
+prepare() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  sed -i 's|libgnome-desktop/gnome-desktop-utils.h,||g
+          s|libgnome-desktop/gnome-rr-labeler.h,||g' vapi/gnome-desktop-3.0.vapi
+}
+
 build() {
-  cd "${srcdir}"/snap-elementary
+  cd "${srcdir}"/${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
@@ -33,7 +40,7 @@ build() {
 }
 
 package() {
-  cd "${srcdir}"/snap-elementary/build
+  cd "${srcdir}"/${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
 }

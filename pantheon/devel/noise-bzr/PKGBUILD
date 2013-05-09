@@ -1,7 +1,8 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
+# Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=noise-bzr
-pkgver=1409
+pkgver=1412
 pkgrel=1
 pkgdesc="Simple, fast, and good looking music player"
 arch=('i686' 'x86_64')
