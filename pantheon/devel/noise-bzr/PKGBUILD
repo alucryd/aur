@@ -2,14 +2,14 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=noise-bzr
-pkgver=1412
+pkgver=1413
 pkgrel=1
 pkgdesc="Simple, fast, and good looking music player"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 groups=('pantheon')
-depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'libgpod' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib' 'zeitgeist')
+depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'libgpod' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")

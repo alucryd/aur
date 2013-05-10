@@ -1,16 +1,18 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
-pkgname=maya-calendar-bzr
-pkgver=440
+pkgname=pantheon-wallpaper-bzr
+pkgver=33
 pkgrel=1
-pkgdesc="GCal-syncing GTK+ calendar application"
+pkgdesc="The elementary wallpaper drawer"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/maya"
+url="https://launchpad.net/pantheon-wallpaper"
 license=('GPL3')
-depends=('evolution-data-server' 'glib2' 'granite-bzr' 'gtk3' 'libgee06')
+depends=('granite-bzr')
 makedepends=('bzr' 'cmake' 'vala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
-source=("${pkgname%-*}::bzr+lp:${pkgname%%-*}")
+source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -27,14 +29,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
   make
 }
 
 package() {
   cd "${srcdir}"/${pkgname%-*}/build
 
-  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

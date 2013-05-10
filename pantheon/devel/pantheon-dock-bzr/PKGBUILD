@@ -1,19 +1,17 @@
 # Maintainer: Alucryd <alucryd at gmail dot com> 
-# Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
-# Contributor: dcelasun <dcelasun@gmail.com>
 
-pkgname=plank-bzr
-pkgver=820
+pkgname=pantheon-dock-bzr
+pkgver=822
 pkgrel=1
-pkgdesc="Elegant, simple, clean dock"
+pkgdesc="The dock for elementary Pantheon, built on the awesome foundation of Plank"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/plank"
+url="https://launchpad.net/pantheon-dock"
 license=('GPL3')
 groups=('pantheon')
 depends=('bamf-bzr' 'hicolor-icon-theme' 'libdbusmenu-gtk3' 'libgee06')
 makedepends=('bzr' 'gnome-common' 'intltool')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
+provides=("${pkgname%-*}" 'plank')
+conflicts=("${pkgname%-*}" 'plank')
 options=('!libtool')
 install=${pkgname%-*}.install
 source=("bzr+lp:${pkgname%-*}")

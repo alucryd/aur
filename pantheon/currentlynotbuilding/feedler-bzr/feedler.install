@@ -1,0 +1,21 @@
+post_install() {
+  glib-compile-schemas usr/share/glib-2.0/schemas/
+  gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
+  echo "==> "
+  echo "==> To import your Google Reader feeds in Feedler"
+  echo "==> go to http://www.google.com/reader/settings?display=import"
+  echo "==> and download Your subscriptions as OPML."
+  echo "==> "
+}
+
+post_upgrade()
+{
+  glib-compile-schemas usr/share/glib-2.0/schemas/
+  gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
+}
+
+post_remove()
+{
+  glib-compile-schemas usr/share/glib-2.0/schemas/
+  gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
+}

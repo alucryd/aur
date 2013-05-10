@@ -1,0 +1,34 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=cerbere
+pkgver=0.1
+pkgrel=3
+pkgdesc="A service to relaunch Pantheon apps"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/cerbere"
+license=('GPL2')
+groups=('pantheon')
+depends=('dconf' 'libgee06')
+makedepends=('cmake' 'vala')
+install=${pkgname}.install
+source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
+sha256sums=('77b37c7ccec20c3bc61cc1d2993b5d2fa995b15807a0fecb5d410925948efa98')
+
+build() {
+  cd "${srcdir}"
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  make
+}
+
+package() {
+  cd "${srcdir}"/build
+
+  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:

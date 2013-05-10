@@ -1,18 +1,18 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
-pkgname=noise
+pkgname=pantheon-terminal
 pkgver=0.2
-pkgrel=5
-pkgdesc="Simple, fast, and good looking music player"
+pkgrel=1
+pkgdesc="A modern terminal from elementary project"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/noise"
+url="https://launchpad.net/pantheon-terminal"
 license=('GPL3')
 groups=('pantheon')
-depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'libgpod' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib')
+depends=('granite-bzr' 'libnotify' 'vte3')
 makedepends=('cmake' 'vala')
 install=${pkgname}.install
-source=("https://launchpad.net/${pkgname}/0.x/luna-beta2/+download/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('f5cbf73f36ad68e6a491cdc72a4e4a9d68bbdc7e3e66ee205cdcf33bd48f66a4')
+source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
+sha256sums=('fafedd5e2cda52d397fdd9b71332183d8356bfd4955d837fc7673ed89c14efb4')
 
 build() {
   cd "${srcdir}"/${pkgname}-${pkgver}
@@ -21,7 +21,6 @@ build() {
     rm -rf build
   fi
   mkdir build && cd build
-
   cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
   make
 }
