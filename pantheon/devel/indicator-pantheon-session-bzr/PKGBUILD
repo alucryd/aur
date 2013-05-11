@@ -1,0 +1,45 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=indicator-pantheon-session-bzr
+pkgver=241
+pkgrel=3
+pkgdesc="Pantheon fork of the session indicator"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/indicator-pantheon-session"
+license=('GPL3')
+depends=('libdbusmenu-gtk3' 'libindicator3' 'packagekit')
+makedepends=('bzr' 'cmake' 'intltool')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+options=('!libtool')
+install=${pkgname%-*}.install
+source=("bzr+lp:${pkgname%-*}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  bzr revno
+}
+
+prepare() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  sed -i 's|AM_CONFIG_HEADER|AC_CONFIG_HEADERS|g' configure.ac
+  sed -i '/g_type_init();/d' $(grep -rl 'g_type_init();')
+}
+
+build() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  ./autogen.sh --prefix=/usr --libexecdir=/usr/lib/${pkgname%-*} --disable-schemas-compile --with-gtk=3
+  make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
