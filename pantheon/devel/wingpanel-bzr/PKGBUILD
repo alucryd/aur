@@ -1,19 +1,21 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
+# Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
+# Contributor: flamelab <panosfilip@gmail.com>
 
-pkgname=gala-bzr
-pkgver=329
+pkgname=wingpanel-bzr
+pkgver=133
 pkgrel=1
-pkgdesc="Pantheon Window Manager"
+pkgdesc="A super sexy space-saving top panel"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/gala"
+url="https://launchpad.net/wingpanel"
 license=('GPL3')
-groups=('pantheon')
-depends=('clutter-gtk' 'granite-bzr' 'mutter' 'plank-bzr')
+depends=('granite-bzr' 'libindicator3')
+optdepends=('indicator-pantheon-session-bzr: Pantheon session indicator')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
-source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~gala-dev/gala/trunk/")
+source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -30,7 +32,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF -DCMAKE_EXE_LINKER_FLAGS=-lm
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
   make
 }
 

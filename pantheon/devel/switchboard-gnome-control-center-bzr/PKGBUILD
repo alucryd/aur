@@ -1,19 +1,15 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
-# Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
-pkgname=contractor-bzr
-pkgver=115
+pkgname=switchboard-gnome-control-center-bzr
+pkgver=41
 pkgrel=1
-pkgdesc="A service for sharing data between apps"
+pkgdesc="Gnome Control Center plug for Switchboard"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/contractor"
-license=('GPL3')
-depends=('glib2')
+url="https://code.launchpad.net/~elementary-apps/pantheon-plugs/dynamic-gcc-plug"
+license=(GPL)
+depends=('gnome-desktop' 'libpantheon-bzr')
 makedepends=('bzr' 'cmake' 'vala')
-optdepends=('webcontracts-bzr: Contracts for web services')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("bzr+lp:${pkgname%-*}")
+source=("${pkgname%-*}::bzr+lp:~elementary-apps/pantheon-plugs/dynamic-gcc-plug")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -37,7 +33,7 @@ build() {
 package() {
   cd "${srcdir}"/${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" install
+  make DESTDIR="$pkgdir/" install
 }
 
 # vim: ts=2 sw=2 et:

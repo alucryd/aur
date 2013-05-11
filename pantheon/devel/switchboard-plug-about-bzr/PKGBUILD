@@ -3,7 +3,7 @@
 pkgname=switchboard-plug-about-bzr
 pkgver=86
 pkgrel=1
-pkgdesc="Switchboard plug to show system information."
+pkgdesc="About plug for Switchboard"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/switchboard-plug-about"
 license=('GPL3')

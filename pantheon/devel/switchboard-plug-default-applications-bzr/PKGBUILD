@@ -3,7 +3,7 @@
 pkgname=switchboard-plug-default-applications-bzr
 pkgver=52
 pkgrel=1
-pkgdesc="Switchboard plug to choose preferred applications"
+pkgdesc="Deafult Applications plug for Switchboard"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/switchboard-plug-default-applications"
 license=('GPL3')

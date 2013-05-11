@@ -1,0 +1,35 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=wingpanel
+pkgver=0.1
+pkgrel=1
+pkgdesc="A super sexy space-saving top panel"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/wingpanel"
+license=('GPL3')
+depends=('granite-bzr' 'libindicator3')
+optdepends=('indicator-pantheon-session-bzr: Pantheon session indicator')
+makedepends=('bzr' 'cmake' 'vala')
+install=${pkgname}.install
+source=("https://launchpad.net/${pkgname}/0.x/${pkgver}-alpha2/+download/${pkgname}-${pkgver}-alpha2.tar.gz")
+sha256sums=('fe6b7bed3a7564027e6a4049f9cf9da91d047194a03a6ee9f8389d43c741c2f3')
+
+build() {
+  cd "${srcdir}"
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  make
+}
+
+package() {
+  cd "${srcdir}"/build
+
+  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:

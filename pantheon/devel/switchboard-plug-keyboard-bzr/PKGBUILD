@@ -1,18 +1,14 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
-# Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
-pkgname=contractor-bzr
-pkgver=115
+pkgname=switchboard-plug-keyboard-bzr
+pkgver=56
 pkgrel=1
-pkgdesc="A service for sharing data between apps"
+pkgdesc="Keyboard plug for Switchboard"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/contractor"
+url="https://launchpad.net/switchboard-plug-power"
 license=('GPL3')
-depends=('glib2')
+depends=('switchboard-bzr' 'libpantheon-bzr')
 makedepends=('bzr' 'cmake' 'vala')
-optdepends=('webcontracts-bzr: Contracts for web services')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 

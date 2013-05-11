@@ -1,0 +1,56 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=pantheon-session-bzr
+pkgver=55
+pkgrel=1
+pkgdesc="Session Manager for Pantheon"
+arch=('any')
+url="https://code.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-settings"
+license=('GPL3')
+depends=('cerbere-bzr' 'gala-bzr' 'gnome-session' 'gnome-settings-daemon' 'pantheon-files-bzr' 'pantheon-wallpaper-bzr' 'plank-bzr' 'slingshot-launcher-bzr' 'wingpanel-bzr')
+makedepends=('bzr')
+source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/pantheon-xsession-settings")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  bzr revno
+}
+
+prepare() {
+  cd "${srcdir}"/${pkgname%-*}
+
+# sed -i 's|env python|env python2|g' waf wscript
+}
+
+build() {
+  cd "${srcdir}"/${pkgname%-*}
+
+# ./waf configure --prefix=/usr
+# ./waf build
+}
+
+package() {
+  cd "${srcdir}"/${pkgname%-*}
+
+# ./waf install -f --destdir="${pkgdir}"
+# sed -i 's|wm=compiz|wm=gala|g' "${pkgdir}/usr/share/pantheon-session/pantheon.session"
+
+  mkdir -p "${pkgdir}/etc/xdg"
+  mkdir -p "${pkgdir}/usr/share/xsessions"
+  mkdir -p "${pkgdir}/usr/share/gnome-session/sessions"
+  mkdir "${pkgdir}/usr/share/pantheon"
+  mv autostart "${pkgdir}/etc/xdg/"
+  mv debian/pantheon.desktop "${pkgdir}/usr/share/xsessions/"
+  mv debian/pantheon.session "${pkgdir}/usr/share/gnome-session/sessions/"
+  mv gconf "${pkgdir}/usr/share/GConf"
+  mv unity-greeter "${pkgdir}/usr/share/"
+  mv applications "${pkgdir}/usr/share/pantheon/"
+
+# Fix permissions
+  find "${pkgdir}" -type d | xargs chmod 755
+  find "${pkgdir}" -type f | xargs chmod 644
+}
+
+# vim: ts=2 sw=2 et:
