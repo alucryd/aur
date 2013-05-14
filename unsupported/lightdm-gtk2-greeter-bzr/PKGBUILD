@@ -1,7 +1,7 @@
 # Maintainer: Alucryd  <alucryd at gmail dot com>
 
 pkgname=lightdm-gtk2-greeter-bzr
-pkgver=92
+pkgver=114
 pkgrel=1
 pkgdesc="GTK+ greeter for LightDM"
 arch=('i686' 'x86_64')
@@ -24,7 +24,7 @@ pkgver() {
 build() {
   cd "${srcdir}"/lightdm-gtk-greeter
 
-  ./autogen.sh --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/lightdm --disable-static --with-gtk2
+  ./autogen.sh --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc --libexecdir=/usr/lib/lightdm --disable-static --with-gtk2
   make
 }
 

@@ -5,7 +5,7 @@
 pkgbase=lightdm-bzr
 pkgname=${pkgbase}
 true && pkgname=('lightdm-bzr' 'liblightdm-qt4-bzr' 'liblightdm-qt5-bzr')
-pkgver=1644
+pkgver=1664
 pkgrel=1
 
 pkgver() {
@@ -25,7 +25,7 @@ prepare() {
 build() {
   cd "${srcdir}"/${pkgbase%-*}
 
-  ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgbase%-*} --with-greeter-user=lightdm --with-greeter-session=lightdm-gtk-greeter --disable-{static,tests}
+  ./autogen.sh --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgbase%-*} --with-greeter-user=lightdm --with-greeter-session=lightdm-gtk-greeter --disable-{static,tests}
   make
 }
 
@@ -108,7 +108,7 @@ url="https://launchpad.net/lightdm"
 license=('GPL3' 'LGPL3')
 makedepends=('gnome-common' 'gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'qt4' 'qt5-base' 'yelp-tools')
 options=('!emptydirs' '!libtool')
-source=("${pkgbase%-*}::bzr+http://bazaar.launchpad.net/~lightdm-team/lightdm/trunk/"
+source=("bzr+lp:${pkgbase%-*}"
         'lightdm.service'
         'lightdm.tmpfiles'
         'lightdm.pam'
@@ -118,7 +118,7 @@ source=("${pkgbase%-*}::bzr+http://bazaar.launchpad.net/~lightdm-team/lightdm/tr
         'lightdm-lock-screen-before-switch.patch'
         'xsession')
 sha256sums=('SKIP'
-            '2e03423cbe88c9fdc3a9684d6d14221aa6e92d105f9d1d53b08747d966c45125'
+            '3daf2f7e1b751415eab9b2aa92d78d8e00c3447a77fa31f7e75863136286a86f'
             'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
             '33e3c3d6e16c8d30756754ea3f31f5457c5be0343686aad287692be34958984a'
