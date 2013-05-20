@@ -1,0 +1,49 @@
+# Maintainer: 謝致邦 <Yeking@Red54.com>
+# Contributor: Alucryd <alucryd at gmail dot com>
+
+pkgname=android-tools-git
+pkgver=4.2_r2.439
+pkgrel=1
+pkgdesc="Android Platform Tools (adb, fastboot)"
+arch=('i686' 'x86_64' 'armv7h')
+url="http://developer.android.com/sdk/index.html"
+license=('Apache')
+depends=('openssl')
+makedepends=('git')
+provides=("${pkgname%-*}" 'adb' 'fastboot')
+conflicts=("${pkgname%-*}" 'adb' 'fastboot')
+source=("git+https://android.googlesource.com/platform/system/core"
+        "git+https://android.googlesource.com/platform/system/extras"
+        "git+https://android.googlesource.com/platform/external/libselinux"
+        'adbMakefile'
+        'fastbootMakefile')
+md5sums=('SKIP'
+         'SKIP'
+         'SKIP'
+         '887d868e544330ef850334961685cab3'
+         'cd1a1a9d16b523119245bfe17120d73b')
+
+pkgver() {
+  cd "${srcdir}"/core
+
+  git describe | sed 's/.*-.*-\(.*-.*\)-.*/\1/; s/-/./'
+}
+
+build() {
+  cd "${srcdir}"/core/adb
+  mv ../../adbMakefile makefile
+  make
+
+  cd "${srcdir}"/core/fastboot
+  mv ../../fastbootMakefile makefile
+  make
+}
+
+package(){
+  cd "${srcdir}"/core
+
+  install -Dm 755 adb/adb "${pkgdir}"/usr/bin/adb
+  install -Dm 755 fastboot/fastboot "${pkgdir}"/usr/bin/fastboot
+}
+
+# vim: ts=2 sw=2 et:
