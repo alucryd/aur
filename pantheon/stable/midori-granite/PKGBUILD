@@ -2,7 +2,7 @@
 
 pkgname=midori-granite
 pkgver=0.5.2
-pkgrel=1
+pkgrel=2
 pkgdesc='Lightweight web browser based on Gtk WebKit'
 arch=('i686' 'x86_64')
 url="http://twotoasts.de/index.php/midori/"
@@ -27,8 +27,10 @@ prepare() {
 build() {
   cd "${srcdir}"/${pkgname%%-*}-${pkgver}
 
+  _jobs="--jobs=$(echo $MAKEFLAGS | sed 's/.*-j\([0-9]*\).*/\1/')"
+
   export PYTHON=/usr/bin/python2
-  ./configure --prefix=/usr --jobs=${MAKEFLAGS/-j/} --enable-{addons,apidocs,docs,granite,gtk3,nls,unique}
+  ./configure --prefix=/usr $_jobs --enable-{addons,apidocs,docs,granite,gtk3,nls,unique}
   make
 }
 
