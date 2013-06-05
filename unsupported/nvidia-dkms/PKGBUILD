@@ -5,7 +5,7 @@
 
 pkgname=nvidia-dkms
 pkgver=319.23
-pkgrel=1
+pkgrel=2
 pkgdesc="NVIDIA kernel module sources (DKMS)"
 arch=('i686' 'x86_64')
 [[ $CARCH == i686 ]] && _arch=x86 && _pkg=NVIDIA-Linux-${_arch}-${pkgver} && md5sums=('cbdca80e11b643aa46bded82abe43754')
@@ -17,10 +17,12 @@ optdepends=('linux-headers: build the module against Arch kernel'
             'linux-lts-headers: build the module against LTS Arch kernel')
 provides=("nvidia=${pkgver}")
 conflicts=('nvidia')
-source=("http://us.download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run")
+source=("http://us.download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run"
+        'linux310.patch')
+md5sums+=('c61091da43ee311335e87d21b469cb83')
 install=${pkgname}.install
 
-build() {
+prepare() {
   cd "${srcdir}"
 
   if [[ -d ${_pkg} ]] ; then
@@ -28,6 +30,9 @@ build() {
   fi
 
   sh ${_pkg}.run --extract-only
+
+  cd ${_pkg}
+  patch -Np1 -i ../linux310.patch
 }
 
 package() {
