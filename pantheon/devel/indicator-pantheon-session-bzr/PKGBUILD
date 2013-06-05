@@ -2,13 +2,13 @@
 
 pkgname=indicator-pantheon-session-bzr
 pkgver=241
-pkgrel=3
+pkgrel=4
 pkgdesc="Pantheon fork of the session indicator"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/indicator-pantheon-session"
 license=('GPL3')
 depends=('libdbusmenu-gtk3' 'libindicator3' 'packagekit')
-makedepends=('bzr' 'cmake' 'intltool')
+makedepends=('bzr' 'cmake' 'gnome-common' 'intltool')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 options=('!libtool')

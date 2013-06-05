@@ -2,13 +2,13 @@
 # Contributor: dorkfish <dork dot fish dot wat at gmail dot com>
 
 pkgname=bamf-bzr
-pkgver=535
+pkgver=537
 pkgrel=1
 pkgdesc="Application matching framework"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/bamf"
 license=('GPL')
-depends=('dbus-glib' 'libgtop' 'libwnck3')
+depends=('dbus-glib' 'libgtop' 'libwnck3' 'python2-lxml')
 makedepends=('bzr' 'gnome-common' 'gobject-introspection' 'gtk-doc' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
@@ -28,11 +28,13 @@ prepare() {
   cd "${srcdir}"/${pkgname%-*}
 
   patch -Np1 -i ../bamf-matcher.patch
+  sed -i 's|^#!.*python$|#!/usr/bin/python2|' tests/gtester2xunit.py
 }
 
 build() {
   cd "${srcdir}"/${pkgname%-*}
 
+  export PYTHON=/usr/bin/python2
   ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname%-*} --disable-{static,webapps}
   make
 }
