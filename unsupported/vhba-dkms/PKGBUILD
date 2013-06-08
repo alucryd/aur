@@ -2,8 +2,8 @@
 # Contributor: Gustavo Alvarez <sl1pkn07 at gmail dot com>
 
 pkgname=vhba-dkms
-pkgver=20120422
-pkgrel=2
+pkgver=20130607
+pkgrel=1
 pkgdesc="VHBA kernel module sources (DKMS)"
 arch=('any')
 url="http://cdemu.sourceforge.net/"
@@ -15,7 +15,7 @@ provides=("vhba-module=${pkgver}")
 conflicts=('vhba-module')
 install=${pkgname}.install
 source=("http://downloads.sourceforge.net/cdemu/vhba-module-${pkgver}.tar.bz2" 'dkms.conf' '60-vhba.rules')
-sha256sums=('23d968aa841af25579238bb75d0f8a8e73c2562d7205d22a5af63ef681e53f81'
+sha256sums=('d2c4919d2904a8f880e2730250f7ed6e3143575d5c4de6b88a97c2228aa2a185'
             'a663db5183d0c7e2d830d33d56aeaaeded2f3d13d72f602bca6c74549c7696ae'
             '554bc9a4c609c77c359a609689cf33e36257bb06d429badb30e5be81640034f1')
 
