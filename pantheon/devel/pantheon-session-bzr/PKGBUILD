@@ -1,15 +1,15 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-session-bzr
-pkgver=55
+pkgver=57
 pkgrel=1
 pkgdesc="Session Manager for Pantheon"
 arch=('any')
-url="https://code.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-settings"
+url="https://code.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-settings-luna"
 license=('GPL3')
 depends=('cerbere-bzr' 'gala-bzr' 'gnome-session' 'gnome-settings-daemon' 'pantheon-files-bzr' 'pantheon-wallpaper-bzr' 'plank-bzr' 'slingshot-launcher-bzr' 'wingpanel-bzr')
 makedepends=('bzr')
-source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/pantheon-xsession-settings")
+source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/pantheon-xsession-settings-luna")
 sha256sums=('SKIP')
 
 pkgver() {
