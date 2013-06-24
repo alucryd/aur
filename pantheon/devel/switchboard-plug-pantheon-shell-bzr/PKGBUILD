@@ -1,13 +1,13 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=switchboard-plug-pantheon-shell-bzr
-pkgver=126
+pkgver=161
 pkgrel=1
 pkgdesc="Pantheon Shell plug for Switchboard"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/switchboard-plug-pantheon-shell"
 license=('GPL3')
-depends=('libpantheon-bzr')
+depends=('granite-bzr' 'libpantheon-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
