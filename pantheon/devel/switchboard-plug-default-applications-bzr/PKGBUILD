@@ -1,13 +1,13 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=switchboard-plug-default-applications-bzr
-pkgver=52
+pkgver=59
 pkgrel=1
 pkgdesc="Deafult Applications plug for Switchboard"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/switchboard-plug-default-applications"
 license=('GPL3')
-depends=('libpantheon-bzr')
+depends=('libpantheon-bzr' 'switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')

@@ -1,13 +1,13 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=switchboard-plug-keyboard-bzr
-pkgver=56
+pkgver=77
 pkgrel=1
 pkgdesc="Keyboard plug for Switchboard"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/switchboard-plug-power"
 license=('GPL3')
-depends=('switchboard-bzr' 'libpantheon-bzr')
+depends=('libpantheon-bzr' 'switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')

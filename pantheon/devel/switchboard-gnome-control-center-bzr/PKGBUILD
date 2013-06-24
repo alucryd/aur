@@ -1,13 +1,13 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=switchboard-gnome-control-center-bzr
-pkgver=41
+pkgver=42
 pkgrel=1
 pkgdesc="Gnome Control Center plug for Switchboard"
 arch=('i686' 'x86_64')
 url="https://code.launchpad.net/~elementary-apps/pantheon-plugs/dynamic-gcc-plug"
 license=(GPL)
-depends=('gnome-desktop' 'libpantheon-bzr')
+depends=('gnome-desktop' 'libpantheon-bzr' 'switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 source=("${pkgname%-*}::bzr+lp:~elementary-apps/pantheon-plugs/dynamic-gcc-plug")
 sha256sums=('SKIP')
