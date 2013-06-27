@@ -1,0 +1,37 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: L42y <423300 at gmail dot com>
+# Contributor: teddy_beer_maniac <teddy_beer_maniac at wp dot pl>
+
+pkgname=gnome-common-git
+pkgver=3.7.4.3
+pkgrel=1
+pkgdesc="Common development macros for GNOME"
+arch=('any')
+url="http://www.gnome.org"
+license=('GPL')
+makedepends=('git')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("git://git.gnome.org/${pkgname%-*}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  git describe | sed 's/-/./; s/-.*$//'
+}
+
+build() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  ./autogen.sh --prefix=/usr
+  make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
