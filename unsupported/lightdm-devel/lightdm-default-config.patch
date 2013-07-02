@@ -16,9 +16,9 @@ diff -rupN lightdm-1.5.1.orig/data/lightdm.conf lightdm-1.5.1/data/lightdm.conf
  #guest-session=UNIMPLEMENTED
 -#session-wrapper=lightdm-session
 +session-wrapper=/etc/lightdm/xsession
+ #greeter-wrapper=
  #display-setup-script=
  #greeter-setup-script=
- #session-setup-script=
 @@ -86,6 +86,7 @@
  #autologin-user=
  #autologin-user-timeout=0
