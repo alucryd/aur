@@ -3,7 +3,7 @@
 
 _ext=user-theme
 pkgname=gnome-shell-extension-${_ext}-git
-pkgver=3.8.1.7
+pkgver=3.8.3.1.real.2
 pkgrel=1
 pkgdesc="Load shell themes from user directory"
 arch=('any')
@@ -20,7 +20,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd "${srcdir}"/gnome-shell-extensions
 
-  git describe | sed 's|\(.*-.*\)-.*|\1|;s|-|.|'
+  git describe | sed 's|\(.*-.*\)-.*|\1|;s|-|.|g'
 }
 
 build() {

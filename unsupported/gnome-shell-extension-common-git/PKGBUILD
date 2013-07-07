@@ -2,7 +2,7 @@
 # Contributor: Sebastian Lenz <sebastian@archusers.de>
 
 pkgname=gnome-shell-extension-common-git
-pkgver=3.8.1.7
+pkgver=3.8.3.1.real.2
 pkgrel=1
 pkgdesc="Common files for the GNOME Shell Extensions"
 arch=('any')
@@ -18,7 +18,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd "${srcdir}"/gnome-shell-extensions
 
-  git describe | sed 's|\(.*-.*\)-.*|\1|;s|-|.|'
+  git describe | sed 's|\(.*-.*\)-.*|\1|;s|-|.|g'
 }
 
 build() {
