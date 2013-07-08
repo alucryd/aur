@@ -1,13 +1,13 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname="mpdris2-git"
-pkgver=0.4.1
+pkgver=0.4.7
 pkgrel=1
 pkgdesc="MPRIS2 support for MPD"
 arch=('any')
 url="https://github.com/eonpatapon/mpDris2"
 license=('GPL3')
-depends=('mpd' 'python2-dbus' 'python2-gobject2' 'python2-mpd' 'python2-notify')
+depends=('python2-dbus' 'python2-gobject2' 'python2-mpd' 'python2-notify')
 makedepends=('git' 'intltool')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
