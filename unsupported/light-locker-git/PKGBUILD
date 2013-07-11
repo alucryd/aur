@@ -1,0 +1,36 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=light-locker-git
+pkgver=0.1.0.6
+pkgrel=1
+pkgdesc="A simple locker forked from gnome-screensaver"
+arch=('i686' 'x86_64')
+url="https://github.com/the-cavalry/light-locker"
+license=('GPL2')
+depends=('dbus-glib' 'gtk3' 'lightdm')
+makedepends=('git' 'gnome-common' 'intltool')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("git+${url}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  git describe | sed 's/v//; s/-/./; s/-.*//'
+}
+
+build () {
+  cd "${srcdir}"/${pkgname%-*}
+
+  ./autogen.sh --prefix=/usr
+  make
+}
+
+package() {
+  cd "${srcdir}"/${pkgname%-*}
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
