@@ -2,22 +2,20 @@
 # Contributor: Mathieu Clabaut <mathieu dot clabaut at gmail dot com>
 
 pkgname=taskjuggler3
-pkgver=3.4.0
-pkgrel=2
+pkgver=3.5.0
+pkgrel=1
 pkgdesc="Project Management Software"
 arch=('any')
 url="http://www.taskjuggler.org"
 license=('GPL')
-depends=('ruby-mail>=2.2.15' 'ruby-term-ansicolor>=1.0.7')
+depends=('ruby-mail>=2.4.3' 'ruby-term-ansicolor>=1.0.7')
 makedepends=('rubygems')
 optdepends=('ruby-rspec>=2.5.0: Taskjuggler rspec test suite')
 source=("http://gems.rubyforge.org/gems/${pkgname%?}-${pkgver}.gem")
-sha256sums=('0486d0844a5b34cb74f9eb92f8e0f3c127c805aa5770ffd7b61ce73157b2179e')
+sha256sums=('42f2e81470be9b2486fc074ba6ff04180258f462fed5c46cba871b7518cd0465')
 noextract=("${pkgname%?}-$pkgver.gem")
 
 package() {
-  cd "${srcdir}"
-
 # Install GEM
   local _gemdir="$(ruby -rubygems -e 'puts Gem.default_dir')"
   gem install --no-user-install --ignore-dependencies -i "${pkgdir}"${_gemdir} ${pkgname%?}-${pkgver}.gem
