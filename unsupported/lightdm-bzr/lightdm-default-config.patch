@@ -11,14 +11,14 @@ diff -rupN lightdm-1.5.1.orig/data/lightdm.conf lightdm-1.5.1/data/lightdm.conf
  #xsessions-directory=/usr/share/xsessions
  #remote-sessions-directory=/usr/share/lightdm/remote-sessions
 @@ -77,7 +77,7 @@
- #user-session=default
- #allow-guest=true
- #guest-session=UNIMPLEMENTED
--#session-wrapper=lightdm-session
-+session-wrapper=/etc/lightdm/xsession
- #display-setup-script=
- #greeter-setup-script=
- #session-setup-script=
+ # user-session = Session to load for users
+ # allow-guest = True if guest login is allowed
+ # guest-session = Session to load for guests (overrides user-session)
+-# session-wrapper = Wrapper script to run session with
++session-wrapper = /etc/lightdm/xsession # Wrapper script to run session with
+ # greeter-wrapper = Wrapper script to run greeter with
+ # display-setup-script = Script to run when starting a greeter session (runs as root)
+ # greeter-setup-script = Script to run when starting a greeter (runs as root)
 @@ -86,6 +86,7 @@
  #autologin-user=
  #autologin-user-timeout=0
