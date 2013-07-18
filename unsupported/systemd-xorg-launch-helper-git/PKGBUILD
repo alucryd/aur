@@ -1,27 +1,27 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=systemd-xorg-launch-helper-git
-pkgver=26
+pkgver=28
 pkgrel=1
 pkgdesc="A wrapper in C to make X.Org function as a proper systemd unit"
 arch=('i686' 'x86_64')
-url="https://github.com/sofar/user-session-units"
+url="https://github.com/sofar/xorg-launch-helper"
 license=('GPL2')
 depends=('systemd' 'xorg-server')
 makedepends=('git')
 provides=('xorg-launch-helper')
 conflicts=('xorg-launch-helper')
-source=('xorg-launch-helper::git+https://github.com/sofar/xorg-launch-helper.git')
+source=('git+https://github.com/sofar/xorg-launch-helper.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/xorg-launch-helper
+  cd xorg-launch-helper
 
   git rev-list --count HEAD
 }
 
 build () {
-  cd "${srcdir}"/xorg-launch-helper
+  cd xorg-launch-helper
 
   ./autogen.sh
   ./configure --prefix=/usr
@@ -29,7 +29,7 @@ build () {
 }
 
 package() {
-  cd "${srcdir}"/xorg-launch-helper
+  cd xorg-launch-helper
 
   make DESTDIR="${pkgdir}" install
 }
