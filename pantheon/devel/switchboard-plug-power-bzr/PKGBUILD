@@ -1,25 +1,25 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=switchboard-plug-power-bzr
-pkgver=68
+pkgver=72
 pkgrel=1
 pkgdesc="Power plug for Switchboard"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/switchboard-plug-power"
 license=('GPL3')
-depends=('libpantheon-bzr' 'switchboard-bzr')
+depends=('libpantheon-bzr' 'switchboard')
 makedepends=('bzr' 'cmake' 'vala')
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
@@ -31,7 +31,7 @@ build() {
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}/build
+  cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" install
 }

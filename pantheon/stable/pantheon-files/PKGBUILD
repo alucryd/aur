@@ -1,33 +1,33 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-files
-pkgver=0.1
+pkgver=0.1.1
 pkgrel=1
 pkgdesc="Files is a simple, powerful, sexy file manager for the Pantheon desktop."
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-files"
 license=('GPL3')
-depends=('gconf' 'desktop-file-utils' 'granite-bzr' 'libnotify' 'libunity')
+depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
 makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala')
 conflicts=('marlin-bin' 'marlin-bzr')
 install=${pkgname}.install
-source=("https://launchpad.net/${pkgname}/0.x/luna-beta1/+download/${pkgname}-${pkgver}-luna-beta1.tar.gz")
-sha256sums=('1d4bbf8a891039d08ac0ebaeb6313eac5b57c60823cf9aee6ca3eaa1a4f4a000')
+source=("https://launchpad.net/${pkgname}/1.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
+sha256sums=('e4ca68d4f94c6f2bd725ca2058b0bd560eeb5eb196e3883bb964a4e8b64f0e34')
 
 build() {
-  cd "${srcdir}"
+  cd ${pkgname}-${pkgver}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF -DICON_UPDATE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
   make
 }
 
 package() {
-  cd "${srcdir}"/build
+  cd ${pkgname}-${pkgver}/build
 
   make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
 }

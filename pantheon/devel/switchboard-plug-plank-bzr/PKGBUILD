@@ -1,15 +1,15 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
-pkgname=switchboard-plug-pantheon-shell-bzr
-pkgver=165
+pkgname=switchboard-plug-plank-bzr
+pkgver=14
 pkgrel=1
-pkgdesc="Pantheon Shell plug for Switchboard"
+pkgdesc="Plank plug for Switchboard"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/switchboard-plug-pantheon-shell"
+url="https://code.launchpad.net/~elementary-pantheon/pantheon-plugs/plank-plug"
 license=('GPL3')
-depends=('libpantheon-bzr' 'switchboard')
+depends=('libpantheon-bzr' 'plank' 'switchboard')
 makedepends=('bzr' 'cmake' 'vala')
-source=("bzr+lp:${pkgname%-*}")
+source=("${pkgname%-*}::bzr+lp:~elementary-pantheon/pantheon-plugs/plank-plug")
 sha256sums=('SKIP')
 
 pkgver() {

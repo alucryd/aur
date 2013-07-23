@@ -2,8 +2,8 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 # Contributor: dserban <dserban01@yahoo.com>
 
-pkgname=switchboard-bzr
-pkgver=382
+pkgname=switchboard
+pkgver=1.0.1
 pkgrel=1
 pkgdesc="Modular desktop settings hub"
 arch=('i686' 'x86_64')
@@ -15,19 +15,11 @@ optdepends=('switchboard-plug-about-bzr: About plug'
             'switchboard-plug-default-applications-bzr: Default applications plug'
             'switchboard-plug-pantheon-shell-bzr: Pantheon Shell plug'
             'switchboard-plug-power-bzr: Power plug')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("bzr+lp:${pkgname%-*}")
+source=("https://launchpad.net/${pkgname}/1.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.bz2")
 sha256sums=('SKIP')
 
-pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
-
-  bzr revno
-}
-
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname}-${pkgver}
 
   if [[ -d build ]]; then
     rm -rf build
@@ -39,7 +31,7 @@ build() {
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}/build
+  cd ${pkgname}-${pkgver}/build
 
   make DESTDIR="$pkgdir/" install
 }

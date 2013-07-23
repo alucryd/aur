@@ -1,15 +1,15 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-files-bzr
-pkgver=1164
+pkgver=1271
 pkgrel=1
 pkgdesc="The file manager of the Pantheon desktop"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-files"
 license=('GPL3')
 groups=('pantheon')
-depends=('gconf' 'desktop-file-utils' 'granite-bzr' 'libnotify')
-makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala>=0.16')
+depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
+makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala')
 optdepends=('contractor-bzr: Plugins integration'
             "${pkgname%-*}-plugin-dropbox-bzr: Dropbox integration"
             'tumbler: Thumbnails generation')
@@ -20,27 +20,27 @@ source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF -DICON_UPDATE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}/build
+  cd ${pkgname%-*}/build
 
   make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
 }
 
-# vim:set ts=2 sw=2 et:
+# vim: ts=2 sw=2 et:

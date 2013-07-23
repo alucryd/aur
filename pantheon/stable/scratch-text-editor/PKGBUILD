@@ -1,8 +1,8 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
-pkgname=scratch-text-editor-bzr
-pkgver=1149
+pkgname=scratch-text-editor
+pkgver=2.0
 pkgrel=1
 pkgdesc="A text editor written in Vala"
 arch=('i686' 'x86_64')
@@ -12,17 +12,9 @@ groups=('pantheon')
 depends=('gtksourceview3' 'libpeas' 'pantheon-files' 'python2-chardet' 'vte3' 'webkitgtk3' 'libzeitgeist')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
 optdepends=('zeitgeist: Zeitgeist support')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-install=${pkgname%-*}.install
-source=("bzr+lp:${pkgname%%-*}")
-sha256sums=('SKIP')
-
-pkgver() {
-  cd "${srcdir}"/${pkgname%%-*}
-
-  bzr revno
-}
+install=${pkgname}.install
+source=("https://launchpad.net/${pkgname%%-*}/2.x/2.0/+download/${pkgname%%-*}-${pkgver}.tar.gz")
+sha256sums=('7b07b58de56f20e815930e45934653a93248b452ca6667a848a603233969a9b6')
 
 prepare() {
   cd ${pkgname%%-*}

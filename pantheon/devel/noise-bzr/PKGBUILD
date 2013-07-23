@@ -2,14 +2,14 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=noise-bzr
-pkgver=1413
+pkgver=1501
 pkgrel=1
 pkgdesc="Simple, fast, and good looking music player"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 groups=('pantheon')
-depends=('desktop-file-utils' 'granite-bzr' 'gstreamer0.10-base' 'libgpod' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib')
+depends=('desktop-file-utils' 'granite' 'gstreamer0.10-base' 'libgpod' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
@@ -18,13 +18,13 @@ source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
@@ -36,7 +36,7 @@ build() {
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}/build
+  cd ${pkgname%-*}/build
 
   make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
 }

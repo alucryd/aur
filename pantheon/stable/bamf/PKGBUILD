@@ -2,8 +2,8 @@
 # Contributor: Balló György <ballogyor+arch at gmail dot com>
 
 pkgname=bamf
-pkgver=0.3.6
-pkgrel=2
+pkgver=0.4.0
+pkgrel=1
 pkgdesc="Application matching framework"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/bamf"
@@ -12,27 +12,25 @@ depends=('dbus-glib' 'libgtop' 'libwnck3')
 makedepends=('gobject-introspection' 'vala')
 options=('!libtool')
 source=("http://launchpad.net/${pkgname}/${pkgver%.*}/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz"
-        'xdg-current-desktop.patch')
-sha256sums=('df7c7e3635329e0bc702941ec9b0d026b773017e85eb6c62c9a2af9f8957aa7a'
-            '8673df57480b6e033f3379d7eb20be4d5757b44e530346c933cfdb559b096215')
+        'bamf-matcher.patch')
+sha256sums=('65d05e0173336a8548bf5f67a940b46f02eb000bf7dc60a05b13fb9ccd7aade4'
+            'f55e92d0a99e1b1ab005a4b39d9d6b62e64d447353c20a92b1bb822a7aafa35c')
 
 prepare() {
-  cd "${srcdir}"/${pkgname}-${pkgver}
+  cd ${pkgname}-${pkgver}
 
-  patch -Np1 -i ../xdg-current-desktop.patch
-  sed -i 's/\-\-c\-include/\-\-include/' lib/libbamf/Makefile.in
-  sed -i '/g_type_init ();/d' $(grep -rl 'g_type_init ();')
+  patch -Np1 -i ../bamf-matcher.patch
 }
 
 build() {
-  cd "${srcdir}"/${pkgname}-${pkgver}
+  cd ${pkgname}-${pkgver}
 
   ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname} --disable-{static,webapps}
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgbase}-${pkgver}
+  cd ${pkgbase}-${pkgver}
 
   make DESTDIR="${pkgdir}" install
 }

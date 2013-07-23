@@ -1,21 +1,21 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-terminal
-pkgver=0.2
+pkgver=0.2.1
 pkgrel=1
 pkgdesc="A modern terminal from elementary project"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-terminal"
 license=('GPL3')
 groups=('pantheon')
-depends=('granite-bzr' 'libnotify' 'vte3')
+depends=('granite' 'libnotify' 'vte3')
 makedepends=('cmake' 'vala')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('fafedd5e2cda52d397fdd9b71332183d8356bfd4955d837fc7673ed89c14efb4')
+sha256sums=('d4f46c4d420e6613aed20ba0934b3ebff643e3bbe3cc2f93455f255e4757c358')
 
 build() {
-  cd "${srcdir}"/${pkgname}-${pkgver}
+  cd ${pkgname}-${pkgver}
 
   if [[ -d build ]]; then
     rm -rf build
@@ -26,7 +26,7 @@ build() {
 }
 
 package() {
-  cd "${srcdir}"/${pkgname}-${pkgver}/build
+  cd ${pkgname}-${pkgver}/build
 
   make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
 }
