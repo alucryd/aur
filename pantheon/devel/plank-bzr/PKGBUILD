@@ -3,15 +3,15 @@
 # Contributor: dcelasun <dcelasun@gmail.com>
 
 pkgname=plank-bzr
-pkgver=820
+pkgver=854
 pkgrel=1
 pkgdesc="Elegant, simple, clean dock"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/plank"
 license=('GPL3')
 groups=('pantheon')
-depends=('bamf-bzr' 'hicolor-icon-theme' 'libdbusmenu-gtk3' 'libgee06')
-makedepends=('bzr' 'gnome-common' 'intltool')
+depends=('bamf' 'hicolor-icon-theme' 'libdbusmenu-gtk3' 'libgee06')
+makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 options=('!libtool')
