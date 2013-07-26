@@ -24,8 +24,7 @@ pkgver() {
 build() {
   cd ${pkgname%-*}
 
-  make CFLAGS="$CFLAGS"
-  make CFLAGS="$CFLAGS" btrfs-select-super
+  make CFLAGS="$CFLAGS" all btrfs-select-super
 }
 
 package() {
