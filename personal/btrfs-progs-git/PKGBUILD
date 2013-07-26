@@ -12,8 +12,12 @@ makedepends=('git')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 options=('!staticlibs')
-source=("git://git.kernel.org/pub/scm/linux/kernel/git/mason/btrfs-progs.git")
-md5sums=("SKIP")
+source=("git://git.kernel.org/pub/scm/linux/kernel/git/mason/${pkgname%-*}.git"
+        'initcpio-install-btrfs'
+        'initcpio-hook-btrfs')
+sha256sums=('SKIP'
+            'bbe60b35d1b1e2efc1308a8f54f1fdc6808240a81c5f5b4d75321b7ee86e41f4'
+            '35efeee8590d6d60c711ae9cdc918e4841ab61d10cb02359e65e36ebff95ffc5')
 
 pkgver() {
   cd ${pkgname%-*}
@@ -30,11 +34,17 @@ build() {
 package() {
   cd ${pkgname%-*}
 
-  make prefix="$pkgdir"/usr install
+  make prefix="${pkgdir}"/usr install
   install -m 755 {,"${pkgdir}"/usr/bin/}btrfs-select-super
 
+# Fix manpages
   mkdir -p "${pkgdir}"/usr/share
-  mv "$pkgdir"/usr/man "$pkgdir"/usr/share/
+  mv "${pkgdir}"/usr/man "${pkgdir}"/usr/share/
+
+# mkinitcpio hooks
+  install -dm 755 "${pkgdir}"/usr/lib/initcpio/{install,hooks}
+  install -m 644 ../initcpio-install-btrfs "${pkgdir}"/usr/lib/initcpio/install/btrfs
+  install -m 644 ../initcpio-hook-btrfs "${pkgdir}"/usr/lib/initcpio/hooks/btrfs
 }
 
 # vim: ts=2 sw=2 et:
