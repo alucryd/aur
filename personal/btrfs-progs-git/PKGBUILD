@@ -1,0 +1,41 @@
+# Maintainer: Alucryd <alucryd at gmail dot com>
+
+pkgname=btrfs-progs-git
+pkgver=0.20rc1.358
+pkgrel=1
+pkgdesc="Btrfs filesystem utilities"
+arch=("i686" "x86_64")
+url="http://btrfs.wiki.kernel.org"
+license=('GPL')
+depends=('glibc' 'e2fsprogs' 'lzo2')
+makedepends=('git')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+options=('!staticlibs')
+source=("git://git.kernel.org/pub/scm/linux/kernel/git/mason/btrfs-progs.git")
+md5sums=("SKIP")
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  git describe --tags | sed 's/v//; s/-//; s/-/./; s/-.*//'
+}
+
+build() {
+  cd ${pkgname%-*}
+
+  make CFLAGS="$CFLAGS"
+  make CFLAGS="$CFLAGS" btrfs-select-super
+}
+
+package() {
+  cd ${pkgname%-*}
+
+  make prefix="$pkgdir"/usr install
+  install -m 755 {,"${pkgdir}"/usr/bin/}btrfs-select-super
+
+  mkdir -p "${pkgdir}"/usr/share
+  mv "$pkgdir"/usr/man "$pkgdir"/usr/share/
+}
+
+# vim: ts=2 sw=2 et:
