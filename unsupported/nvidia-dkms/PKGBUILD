@@ -4,8 +4,8 @@
 # Contributor: Atilla ÖNTAŞ <tarakbumba at gmail dot com>
 
 pkgname=nvidia-dkms
-pkgver=319.32
-pkgrel=4
+pkgver=325.15
+pkgrel=1
 pkgdesc="NVIDIA kernel module sources (DKMS)"
 arch=('i686' 'x86_64')
 [[ $CARCH == i686 ]] && _arch=x86 && _pkg=NVIDIA-Linux-${_arch}-${pkgver} && md5sums=('528fc538584de6446384b9cec3099d6c')
@@ -13,42 +13,39 @@ arch=('i686' 'x86_64')
 url="http://www.nvidia.com/"
 license=('custom')
 depends=('dkms' "nvidia-utils=${pkgver}")
-optdepends=('linux-headers: build the module against Arch kernel'
-            'linux-lts-headers: build the module against LTS Arch kernel')
+optdepends=('linux-headers: Build the module against Arch kernel'
+            'linux-lts-headers: Build the module against LTS Arch kernel')
 provides=("nvidia=${pkgver}")
 conflicts=('nvidia')
-source=("http://us.download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run"
-        'linux310.patch')
-md5sums+=('c61091da43ee311335e87d21b469cb83')
+source=("http://us.download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run")
 install=${pkgname}.install
 
 prepare() {
-  cd "${srcdir}"
-
   if [[ -d ${_pkg} ]] ; then
     rm -rf ${_pkg}
   fi
 
   sh ${_pkg}.run --extract-only
-
-  cd ${_pkg}
-  patch -Np1 -i ../linux310.patch
 }
 
 package() {
-  cd "${srcdir}"/${_pkg}/kernel
+  cd ${_pkg}
 
-  install -dm 755 "${pkgdir}"/usr/{lib/modprobe.d,share/licenses,src/nvidia-${pkgver}}
-  cp -dr --no-preserve=ownership * "${pkgdir}"/usr/src/nvidia-${pkgver}/
+  mkdir -p "${pkgdir}"/usr/src
+  cp -dr --no-preserve=ownership kernel "${pkgdir}"/usr/src/nvidia-${pkgver}
+
+# Blacklist nouveau driver
+  mkdir -p "${pkgdir}"/usr/lib/modprobe.d
   echo "blacklist nouveau" > "${pkgdir}"/usr/lib/modprobe.d/nvidia.conf
-  ln -s /usr/share/licenses/nvidia "${pkgdir}"/usr/share/licenses/${pkgname}
 
 # Fix permissions
   find "${pkgdir}" -type d -exec chmod 755 {} +
   find "${pkgdir}" -type f -exec chmod 644 {} +
   chmod 755 "${pkgdir}"/usr/src/nvidia-${pkgver}/conftest.sh
+
+# License
+  install -dm 755 "${pkgdir}"/usr/share/licenses
+  ln -s nvidia "${pkgdir}"/usr/share/licenses/${pkgname}
 }
 
 # vim: ts=2 sw=2 et:
-md5sums=('d181d856768868823df3bda4607a5315'
-         '221cafe264f5f4d76e543781b07ac954')
