@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-terminal
-pkgver=0.2.1
+pkgver=0.2.3
 pkgrel=1
 pkgdesc="A modern terminal from elementary project"
 arch=('i686' 'x86_64')
@@ -12,7 +12,7 @@ depends=('granite' 'libnotify' 'vte3')
 makedepends=('cmake' 'vala')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('d4f46c4d420e6613aed20ba0934b3ebff643e3bbe3cc2f93455f255e4757c358')
+sha256sums=('867fb5f4071780616df0a237b305470dc23a6663476c0b154244264ef6eaa0ae')
 
 build() {
   cd ${pkgname}-${pkgver}

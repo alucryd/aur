@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-files
-pkgver=0.1.1
+pkgver=0.1.2
 pkgrel=1
 pkgdesc="Files is a simple, powerful, sexy file manager for the Pantheon desktop."
 arch=('i686' 'x86_64')
@@ -11,8 +11,8 @@ depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
 makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala')
 conflicts=('marlin-bin' 'marlin-bzr')
 install=${pkgname}.install
-source=("https://launchpad.net/${pkgname}/1.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('e4ca68d4f94c6f2bd725ca2058b0bd560eeb5eb196e3883bb964a4e8b64f0e34')
+source=("https://launchpad.net/${pkgname}/trunk/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
+sha256sums=('3d7dbb2b8a0b6dc8a2bac34acb235c8899663b0db83cb66850dd4e5c683998e6')
 
 build() {
   cd ${pkgname}-${pkgver}
