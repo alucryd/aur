@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=granite
-pkgver=0.2.1
+pkgver=0.2.2
 pkgrel=1
 pkgdesc="An extension of GTK+ libraries"
 arch=('i686' 'x86_64')
@@ -12,7 +12,7 @@ depends=('gtk3' 'hicolor-icon-theme' 'libgee06')
 makedepends=('cmake' 'gobject-introspection' 'vala')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname}/${pkgver%\.?}/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('4e9a97488c04b2c3eadcb4b8251c8938a9637820b1989449e55490f42a2ac92c')
+sha256sums=('341f94cd8c2af60fc072fb8602e1406bccd77189aad76424b172c3ce08c173cc')
 
 build() {
   cd ${pkgname}-${pkgver}

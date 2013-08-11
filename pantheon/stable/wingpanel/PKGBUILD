@@ -2,14 +2,14 @@
 
 pkgname=wingpanel
 pkgver=0.2.3
-pkgrel=1
+pkgrel=2
 pkgdesc="A super sexy space-saving top panel"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/wingpanel"
 license=('GPL3')
 depends=('granite' 'libindicator3')
 optdepends=('indicator-pantheon-session-bzr: Pantheon session indicator')
-makedepends=('bzr' 'cmake' 'vala')
+makedepends=('cmake' 'vala')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
 sha256sums=('064c4ac11c330cd084d96a1497cd2dc38d488afd9410b3ae484d2ed73f749ee3')
