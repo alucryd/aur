@@ -1,0 +1,22 @@
+--- a/aegisub/src/utils.cpp.orig	2013-08-13 01:21:55.195093800 +0200
++++ b/aegisub/src/utils.cpp	2013-08-13 01:22:45.746888400 +0200
+@@ -121,8 +121,7 @@ void RestartAegisub() {
+ 	config::opt->Flush();
+ 
+ #if defined(__WXMSW__)
+-	wxStandardPaths stand;
+-	wxExecute("\"" + stand.GetExecutablePath() + "\"");
++	wxExecute("\"" + wxStandardPaths::Get().GetExecutablePath() + "\"");
+ #elif defined(__WXMAC__)
+ 	std::string bundle_path = agi::util::OSX_GetBundlePath();
+ 	std::string helper_path = agi::util::OSX_GetBundleAuxillaryExecutablePath("restart-helper");
+@@ -132,8 +131,7 @@ void RestartAegisub() {
+ 	LOG_I("util/restart/exec") << exec;
+ 	wxExecute(exec);
+ #else
+-	wxStandardPaths stand;
+-	wxExecute(stand.GetExecutablePath());
++	wxExecute(wxStandardPaths::Get().GetExecutablePath());
+ #endif
+ }
+ 
