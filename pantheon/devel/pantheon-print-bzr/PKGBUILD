@@ -1,40 +1,40 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-print-bzr
-pkgver=7
+pkgver=8
 pkgrel=1
 pkgdesc="A small utility used to print documents that allows the user to set the preferences"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-print"
 license=('GPL3')
 groups=('pantheon')
-depends=('contractor-bzr' 'gtk3')
-makedepends=('bzr' 'vala' 'cmake')
+depends=('contractor' 'gtk3')
+makedepends=('bzr' 'cmake' 'vala0.16')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}/build
+  cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" install
 }

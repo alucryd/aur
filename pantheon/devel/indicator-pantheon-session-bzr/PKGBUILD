@@ -2,12 +2,12 @@
 
 pkgname=indicator-pantheon-session-bzr
 pkgver=241
-pkgrel=4
+pkgrel=5
 pkgdesc="Pantheon fork of the session indicator"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/indicator-pantheon-session"
 license=('GPL3')
-depends=('libdbusmenu-gtk3' 'libindicator3' 'packagekit')
+depends=('libdbusmenu-gtk3' 'libindicator3')
 makedepends=('bzr' 'cmake' 'gnome-common' 'intltool')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
@@ -17,27 +17,27 @@ source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 prepare() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   sed -i 's|AM_CONFIG_HEADER|AC_CONFIG_HEADERS|g' configure.ac
   sed -i '/g_type_init();/d' $(grep -rl 'g_type_init();')
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
-  ./autogen.sh --prefix=/usr --libexecdir=/usr/lib/${pkgname%-*} --disable-schemas-compile --with-gtk=3
+  ./autogen.sh --prefix=/usr --libexecdir=/usr/lib/${pkgname%-*} --disable-{apt,schemas-compile,static} --with-gtk=3
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
 }

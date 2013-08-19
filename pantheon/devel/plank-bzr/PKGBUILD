@@ -3,15 +3,14 @@
 # Contributor: dcelasun <dcelasun@gmail.com>
 
 pkgname=plank-bzr
-pkgver=856
+pkgver=859
 pkgrel=1
 pkgdesc="Elegant, simple, clean dock"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/plank"
 license=('GPL3')
-groups=('pantheon')
 depends=('bamf' 'hicolor-icon-theme' 'libdbusmenu-gtk3' 'libgee06')
-makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
+makedepends=('bzr' 'gnome-common' 'intltool' 'vala0.16')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 options=('!libtool')
@@ -20,28 +19,30 @@ source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 prepare() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   sed -i 's|^#!.*python$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
+  export VALAC=/usr/bin/valac-0.16
+  export VAPIGEN=/usr/bin/vapigen-0.16
   ./autogen.sh --prefix=/usr --sysconfdir=/etc --disable-gee-0.8
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
-  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
 }
 
 # vim: ts=2 sw=2 et:

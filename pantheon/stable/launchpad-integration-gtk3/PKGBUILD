@@ -15,7 +15,7 @@ source=("bzr+lp:${pkgname%-*}#revision=189")
 sha256sums=('SKIP')
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   export PYTHON=python2
   ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname%-*} --disable-static --with-gtk=3
@@ -23,7 +23,7 @@ build() {
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
 

@@ -7,8 +7,8 @@ pkgdesc="A tiny, simple calculator written in GTK+ and Vala"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-calculator"
 license=('GPL3')
-depends=('granite-bzr')
-makedepends=('bzr' 'vala' 'cmake')
+depends=('granite')
+makedepends=('bzr' 'cmake' 'vala0.16')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
@@ -16,27 +16,27 @@ source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}/build
+  cd ${pkgname%-*}/build
 
-  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
 }
 
 # vim: ts=2 sw=2 et:

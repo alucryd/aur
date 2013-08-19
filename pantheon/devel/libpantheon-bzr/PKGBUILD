@@ -8,32 +8,32 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/libpantheon"
 license=('GPL3')
 depends=('gtk3')
-makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
+makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala0.16')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}/build
+  cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" install
 }

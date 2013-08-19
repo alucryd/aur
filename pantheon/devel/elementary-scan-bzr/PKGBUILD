@@ -7,8 +7,8 @@ pkgdesc="Simple Scanning Utility"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/elementary-scan"
 license=('GPL2')
-depends=('granite-bzr' 'launchpad-integration-gtk3' 'sane' 'scour')
-makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
+depends=('granite' 'launchpad-integration-gtk3' 'sane' 'scour')
+makedepends=('bzr' 'gnome-common' 'intltool' 'vala0.16')
 provides=("${pkgname%-*}" 'simple-scan')
 conflicts=("${pkgname%-*}" 'simple-scan')
 install=${pkgname%-*}.install
@@ -16,20 +16,21 @@ source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
+  export VALAC=/usr/bin/valac-0.16
   ./autogen.sh --prefix=/usr
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
 }

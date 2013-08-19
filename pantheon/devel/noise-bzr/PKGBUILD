@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=noise-bzr
-pkgver=1501
+pkgver=1519
 pkgrel=1
 pkgdesc="Simple, fast, and good looking music player"
 arch=('i686' 'x86_64')
@@ -38,7 +38,7 @@ build() {
 package() {
   cd ${pkgname%-*}/build
 
-  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
 }
 
 # vim: ts=2 sw=2 et:

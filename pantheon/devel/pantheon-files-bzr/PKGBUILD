@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-files-bzr
-pkgver=1295
+pkgver=1305
 pkgrel=1
 pkgdesc="The file manager of the Pantheon desktop"
 arch=('i686' 'x86_64')
@@ -9,12 +9,12 @@ url="https://launchpad.net/pantheon-files"
 license=('GPL3')
 groups=('pantheon')
 depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
-makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala')
+makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala0.16')
 optdepends=('contractor-bzr: Plugins integration'
             "${pkgname%-*}-plugin-dropbox-bzr: Dropbox integration"
             'tumbler: Thumbnails generation')
 provides=("${pkgname%-*}")
-conflicts=('marlin-bin' 'marlin-bzr' 'files-bzr' "${pkgname%-*}")
+conflicts=('marlin-bin' 'marlin-bzr' "${pkgname%-*}")
 install=${pkgname%-*}.install
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
@@ -33,14 +33,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
   make
 }
 
 package() {
   cd ${pkgname%-*}/build
 
-  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
 }
 
 # vim: ts=2 sw=2 et:

@@ -2,14 +2,14 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=contractor-bzr
-pkgver=115
+pkgver=130
 pkgrel=1
 pkgdesc="A service for sharing data between apps"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/contractor"
 license=('GPL3')
 depends=('glib2')
-makedepends=('bzr' 'cmake' 'vala')
+makedepends=('bzr' 'cmake' 'vala0.16')
 optdepends=('webcontracts-bzr: Contracts for web services')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
@@ -17,25 +17,25 @@ source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}/build
+  cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" install
 }

@@ -9,8 +9,8 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-terminal"
 license=('GPL3')
 groups=('pantheon')
-depends=('granite-bzr' 'libnotify' 'vte3')
-makedepends=('bzr' 'cmake' 'vala')
+depends=('granite' 'libnotify' 'vte3')
+makedepends=('bzr' 'cmake' 'vala0.16')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install=${pkgname}.install
@@ -18,21 +18,21 @@ source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 build() {
-  cd "$srcdir"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
   make
 }
 
 package() {
-  cd "$srcdir"/${pkgname%-*}/build
+  cd ${pkgname%-*}/build
 
-  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
 }
 
 # vim: ts=2 sw=2 et:

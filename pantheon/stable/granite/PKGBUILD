@@ -3,13 +3,13 @@
 
 pkgname=granite
 pkgver=0.2.2
-pkgrel=1
+pkgrel=2
 pkgdesc="An extension of GTK+ libraries"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/granite"
 license=('LGPL3')
 depends=('gtk3' 'hicolor-icon-theme' 'libgee06')
-makedepends=('cmake' 'gobject-introspection' 'vala')
+makedepends=('cmake' 'gobject-introspection' 'vala0.16')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname}/${pkgver%\.?}/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
 sha256sums=('341f94cd8c2af60fc072fb8602e1406bccd77189aad76424b172c3ce08c173cc')
@@ -22,7 +22,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16
   make
 }
 

@@ -2,26 +2,28 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=audience-bzr
-pkgver=271
+pkgver=291
 pkgrel=1
 pkgdesc="A modern media player"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/audience"
 license=('GPL3')
-depends=('clutter-gtk' 'desktop-file-utils' 'granite-bzr' 'gst-plugins-base-libs')
+depends=('clutter-gtk' 'desktop-file-utils' 'granite' 'gst-plugins-base-libs')
 makedepends=('bzr' 'clutter-gst' 'cmake' 'vala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
@@ -33,7 +35,7 @@ build() {
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}/build
+  cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
 }

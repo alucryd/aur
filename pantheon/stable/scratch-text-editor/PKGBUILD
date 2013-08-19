@@ -39,7 +39,7 @@ build() {
 package() {
   cd ${pkgname%%-*}/build
 
-  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
   chmod +x "${pkgdir}"/usr/share/scratch/scripts/*.py
 }
 

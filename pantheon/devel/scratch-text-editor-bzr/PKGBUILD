@@ -2,13 +2,12 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=scratch-text-editor-bzr
-pkgver=1149
+pkgver=1190
 pkgrel=1
 pkgdesc="A text editor written in Vala"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/scratch"
 license=('GPL3')
-groups=('pantheon')
 depends=('gtksourceview3' 'libpeas' 'pantheon-files' 'python2-chardet' 'vte3' 'webkitgtk3' 'libzeitgeist')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
 optdepends=('zeitgeist: Zeitgeist support')
@@ -47,7 +46,7 @@ build() {
 package() {
   cd ${pkgname%%-*}/build
 
-  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install
+  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
   chmod +x "${pkgdir}"/usr/share/scratch/scripts/*.py
 }
 
