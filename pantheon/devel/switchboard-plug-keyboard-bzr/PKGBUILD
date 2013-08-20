@@ -1,14 +1,14 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=switchboard-plug-keyboard-bzr
-pkgver=84
+pkgver=95
 pkgrel=1
 pkgdesc="Keyboard plug for Switchboard"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/switchboard-plug-power"
 license=('GPL3')
-depends=('libpantheon-bzr' 'switchboard')
-makedepends=('bzr' 'cmake' 'vala')
+depends=('libpantheon' 'switchboard')
+makedepends=('bzr' 'cmake' 'vala0.16')
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
@@ -26,7 +26,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16
   make
 }
 

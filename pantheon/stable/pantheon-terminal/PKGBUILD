@@ -2,14 +2,13 @@
 
 pkgname=pantheon-terminal
 pkgver=0.2.3
-pkgrel=1
+pkgrel=2
 pkgdesc="A modern terminal from elementary project"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-terminal"
 license=('GPL3')
-groups=('pantheon')
 depends=('granite' 'libnotify' 'vte3')
-makedepends=('cmake' 'vala')
+makedepends=('cmake' 'vala0.16')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
 sha256sums=('867fb5f4071780616df0a237b305470dc23a6663476c0b154244264ef6eaa0ae')
@@ -21,7 +20,8 @@ build() {
     rm -rf build
   fi
   mkdir build && cd build
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
   make
 }
 

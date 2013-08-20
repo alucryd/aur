@@ -2,13 +2,13 @@
 
 pkgname=pantheon-files
 pkgver=0.1.3
-pkgrel=1
+pkgrel=2
 pkgdesc="Files is a simple, powerful, sexy file manager for the Pantheon desktop."
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-files"
 license=('GPL3')
 depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
-makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala')
+makedepends=('cmake' 'gnome-common' 'sqlite3' 'vala0.16')
 conflicts=('marlin-bin' 'marlin-bzr')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname}/${pkgver%?}x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
@@ -22,7 +22,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
   make
 }
 

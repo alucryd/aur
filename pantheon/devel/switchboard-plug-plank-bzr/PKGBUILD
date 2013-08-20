@@ -7,8 +7,8 @@ pkgdesc="Plank plug for Switchboard"
 arch=('i686' 'x86_64')
 url="https://code.launchpad.net/~elementary-pantheon/pantheon-plugs/plank-plug"
 license=('GPL3')
-depends=('libpantheon-bzr' 'plank' 'switchboard')
-makedepends=('bzr' 'cmake' 'vala')
+depends=('libpantheon' 'switchboard')
+makedepends=('bzr' 'cmake' 'vala0.16')
 source=("${pkgname%-*}::bzr+lp:~elementary-pantheon/pantheon-plugs/plank-plug")
 sha256sums=('SKIP')
 
@@ -26,7 +26,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16
   make
 }
 

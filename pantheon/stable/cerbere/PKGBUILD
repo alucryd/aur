@@ -2,14 +2,13 @@
 
 pkgname=cerbere
 pkgver=0.2
-pkgrel=1
+pkgrel=2
 pkgdesc="A service to relaunch Pantheon apps"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/cerbere"
 license=('GPL2')
-groups=('pantheon')
 depends=('dconf' 'libgee06')
-makedepends=('cmake' 'vala')
+makedepends=('cmake' 'vala0.16')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
 sha256sums=('cd0261877ef50495c7aaacffe216f9aa06e9a7d9a85444af7d5b6c17b2a245f5')
@@ -21,7 +20,8 @@ build() {
     rm -rf build
   fi
   mkdir build && cd build
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
   make
 }
 

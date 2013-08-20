@@ -2,13 +2,13 @@
 
 pkgname=slingshot-launcher
 pkgver=0.7.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Slingshot application launcher"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/slingshot"
 license=('GPL3')
-depends=('gnome-menus2' 'granite-bzr' 'libzeitgeist')
-makedepends=('vala' 'cmake')
+depends=('gnome-menus2' 'granite' 'libzeitgeist')
+makedepends=('cmake' 'vala0.16')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname%-*}/0.x/${pkgver}/+download/${pkgname%-*}-${pkgver}.tar.gz")
 sha256sums=('144d28ec330df97e479189679e67a0f797c1f7d79625245bd1995df5b64da900')
@@ -21,7 +21,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF -DCMAKE_EXE_LINKER_FLAGS="-lm"
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DCMAKE_EXE_LINKER_FLAGS="-lm" -DGSETTINGS_COMPILE=OFF
   make
 }
 

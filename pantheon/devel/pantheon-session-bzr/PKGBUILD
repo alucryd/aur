@@ -7,32 +7,32 @@ pkgdesc="Session Manager for Pantheon"
 arch=('any')
 url="https://code.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-settings-luna"
 license=('GPL3')
-depends=('cerbere-bzr' 'gala-bzr' 'gnome-session' 'gnome-settings-daemon' 'pantheon-files-bzr' 'pantheon-wallpaper-bzr' 'plank-bzr' 'slingshot-launcher-bzr' 'wingpanel-bzr')
+depends=('cerbere' 'gala-bzr' 'gnome-session' 'gnome-settings-daemon' 'pantheon-files' 'pantheon-wallpaper-bzr' 'plank' 'slingshot-launcher' 'wingpanel')
 makedepends=('bzr')
 source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/pantheon-xsession-settings-luna")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 prepare() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
 # sed -i 's|env python|env python2|g' waf wscript
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
 # ./waf configure --prefix=/usr
 # ./waf build
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
 # ./waf install -f --destdir="${pkgdir}"
 # sed -i 's|wm=compiz|wm=gala|g' "${pkgdir}/usr/share/pantheon-session/pantheon.session"
