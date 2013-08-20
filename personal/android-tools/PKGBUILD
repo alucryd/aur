@@ -1,0 +1,48 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: 謝致邦 <Yeking at Red54 dot com>
+
+pkgname=android-tools
+pkgver=4.3_r2.1
+pkgrel=1
+pkgdesc="Android platform tools (adb, fastboot)"
+arch=('i686' 'x86_64' 'armv7h')
+url="http://tools.android.com/"
+license=('Apache')
+depends=('openssl')
+makedepends=('git')
+provides=("${pkgname%-*}" 'adb' 'fastboot')
+conflicts=("${pkgname%-*}" 'adb' 'fastboot')
+source=("git+https://android.googlesource.com/platform/system/core#tag=android-${pkgver}"
+        "git+https://android.googlesource.com/platform/system/extras#tag=android-${pkgver}"
+        "git+https://android.googlesource.com/platform/external/libselinux#tag=android-${pkgver}"
+        'adbMakefile'
+        'fastbootMakefile')
+md5sums=('SKIP'
+         'SKIP'
+         'SKIP'
+         'c2d1bca0089a5b29e17dc48667553ba8'
+         'f3245414d104fc7d8a5c72f4ddffe6e4')
+
+build() {
+  cd core
+
+  for tool in adb fastboot; do
+    cd ${tool}
+    mv ../../${tool}Makefile Makefile
+    make
+    cd ..
+  done
+}
+
+package(){
+  cd core
+
+  for tool in adb fastboot; do
+    cd ${tool}
+    make DESTDIR="${pkgdir}" install
+    cd ..
+  done
+
+}
+
+# vim: ts=2 sw=2 et:

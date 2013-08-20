@@ -1,0 +1,45 @@
+update_icons() {
+  if which update-desktop-database > /dev/null 2>&1
+  then
+    update-desktop-database -q /usr/share/applications
+  fi
+  if which gtk-update-icon-cache > /dev/null 2>&1
+  then
+    gtk-update-icon-cache -q /usr/share/icons/hicolor
+  fi
+}
+
+create_xbmc_user() {
+  getent group xbmc > /dev/null || groupadd xbmc
+  getent passwd xbmc > /dev/null || useradd -m -d /var/lib/xbmc -g xbmc xbmc
+  usermod -a -G xbmc,audio,video,power,network,optical,storage,disk xbmc
+}
+
+post_install() {
+  update_icons
+  create_xbmc_user
+  echo ">> If XBMC won't start, but just segfaults, double check your X.Org config."
+  echo ">> The display depth has to be at least 24-bit, ie"
+  echo ">> set \"DefaultDepth 24\" under the \"Screen\" section of your xorg.conf file."
+  echo " "
+  echo ">> Note that this is a development version of XBMC." 
+  echo ">> If you encounter problems with XBMC don't forget to consult the official"
+  echo ">> xbmc forums found here: http://forum.xbmc.org "
+  echo ">> and report bugs to the xbmc bugtracker found here: http://trac.xbmc.org."
+  echo " "
+  echo ">> this build is a dependency - build test removal of deps, might even not"
+  echo ">> be working at all"
+  /bin/true
+}
+
+post_upgrade() {
+  update_icons
+  create_xbmc_user
+}
+
+post_remove() {
+  update_icons
+  echo "You may want to remove xbmc user and group"
+}
+
+# vim: ts=2 sw=2 et:

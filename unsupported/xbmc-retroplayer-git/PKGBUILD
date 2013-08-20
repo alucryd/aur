@@ -1,0 +1,137 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: BlackIkeEagle <ike dot devolder at gmail dot com>
+
+pkgname=xbmc-retroplayer-git
+pkgver=22766
+pkgrel=1
+pkgdesc="XBMC Media Center - GIT retroplayer branch"
+provides=('xbmc')
+conflicts=('xbmc' 'xbmc-git')
+arch=('i686' 'x86_64')
+url="https://github.com/garbear/xbmc"
+license=('GPL' 'LGPL')
+depends=('afpfs-ng' 'avahi' 'bluez-libs' 'fribidi' 'glew' 'glu' 'hicolor-icon-theme' 'jasper' 'java-runtime-headless' 'libass' 'libbluray' 'libcap' 'libcdio' 'libjpeg-turbo' 'libmad' 'libmicrohttpd' 'libmodplug' 'libmpeg2' 'libmysqlclient' 'libnfs' 'libpng' 'libpulse' 'libsamplerate' 'libssh' 'libtiff' 'libva' 'libxrandr' 'lzo2' 'mesa' 'mesa-demos' 'python2' 'rtmpdump' 'sdl_image' 'sdl_mixer' 'shairplay-git' 'smbclient' 'swig' 'taglib' 'tinyxml' 'unzip' 'xorg-xdpyinfo' 'yajl')
+makedepends=('boost' 'cmake' 'doxygen' 'git' 'gperf' 'libcec' 'libva-vdpau-driver' 'libxinerama' 'nasm' 'udisks' 'upower' 'zip')
+optdepends=('gdb: for meaningful backtraces in case of trouble - STRONGLY RECOMMENDED'
+            'libcrystalhd: Broadcom CrystalHD kernel module'
+            'libcec: support for Pulse-Eight USB-CEC adapter'
+            'libva-vdpau-driver: accelerated video playback for NVIDIA cards'
+            'xvba-video: accelerated video playback for AMD cards'
+            'lirc: remote controller support'
+            'udisks: automount external drives'
+            'upower: used to trigger suspend functionality'
+            'unrar: access compressed files without unpacking them'
+            'pulseaudio: pulseaudio support')
+install=${pkgname%%-*}.install
+source=("${pkgname%-*}::git+https://github.com/garbear/xbmc.git"
+        'xbmc.service')
+sha256sums=('SKIP'
+            '547e06f3141866cd34b1df34025517e9826992b67543af7621d954bcdfa0ba94')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  git rev-list --count HEAD
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  sed 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' -i lib/libdvd/libdvdcss/configure.ac
+  sed 's/\(#include \)<libsmbclient\.h>/\1<samba-4.0\/libsmbclient\.h>/g' -i xbmc/filesystem/{SmbFile.cpp,SMBDirectory.cpp}
+}
+
+build() {
+  cd ${pkgname%-*}
+
+# Note on external-libs:
+#   - We cannot use external python because Arch's python was built with
+#     UCS2 unicode support, whereas xbmc expects UCS4 support
+#   - According to an xbmc dev using external/system ffmpeg with xbmc is "pure stupid" :D
+
+  ./bootstrap
+
+# Configure options
+#   --enable-shared-lib           build libxbmc. helpful for tests (default is no)
+#   --enable-debug                enable debugging information (default is yes)
+#   --enable-neon                 enable neon passing to ffmpeg (default is no)
+#   --enable-optimizations        enable optimization (default is yes)
+#   --enable-gl                   enable OpenGL rendering (default is yes)
+#   --enable-gles                 enable OpenGLES rendering (default is no)
+#   --enable-sdl                  enable SDL (default is auto)
+#   --enable-vdpau                enable VDPAU decoding (default is auto)
+#   --enable-vaapi                enable VAAPI decoding (default is auto)
+#   --enable-crystalhd            enable CrystalHD decoding (default is auto)
+#   --enable-vtbdecoder           enable VTBDecoder decoding (default is auto)
+#   --enable-openmax              enable OpenMax decoding (default is auto, requires OpenGLES)
+#   --enable-tegra                enable Tegra2 arm (default is no)
+#   --enable-profiling            enable gprof profiling (default is no)
+#   --enable-joystick             enable SDL joystick support (default is yes)
+#   --enable-xrandr               enable XRandR support (default is yes)
+#   --enable-goom                 enable GOOM visualisation (default is no)
+#   --enable-rsxs                 enable really slick X screensavers (default is yes)
+#   --enable-fishbmc              enable FishBMC visualisation (default is yes)
+#   --enable-projectm             enable ProjectM visualisation (default is yes)
+#   --enable-x11                  enable x11 (default is yes) 'Linux Only'
+#   --enable-ccache               enable building with ccache feature (default is auto)
+#   --disable-alsa                disable ALSA support (only for linux/freebsd)
+#   --enable-pulse                enable PulseAudio support (default is no)
+#   --disable-ssh                 disable SSH SFTP support (default is enabled)
+#   --enable-rtmp                 enable RTMP support via librtmp (default is auto)
+#   --disable-samba               disable SAMBA support (default is enabled)
+#   --enable-nfs                  enable NFS support via libnfs (default is auto)
+#   --enable-afpclient            enable AFP support via libafpclient (default is auto)
+#   --enable-airplay              enable AirPlay support(default is auto)
+#   --enable-airtunes             enable AirTunes support(default is auto)
+#   --disable-upnp                disable UPnP support (default is enabled)
+#   --enable-ffmpeg-libvorbis     enable FFmpeg vorbis encoding (default is no)
+#   --enable-dvdcss               enable DVDCSS support (default is yes)
+#   --enable-mid                  enable MID support (default is no)
+#   --disable-hal                 disable HAL support (default is enabled if hal and hal-storage is found)
+#   --disable-avahi               disable Avahi support (default is enabled if libavahi-common and libavahi-client is found)
+#   --disable-mdnsembedded        disable mDNSEmbedded support (default is auto)
+#   --disable-non-free            disable componentents with non-compliant licenses
+#   --enable-asap-codec           enable ASAP ADPCM support
+#   --disable-mysql               disable mysql
+#   --disable-webserver           disable webserver
+#   --disable-optical-drive       disable optical drive
+#   --enable-libbluray            enable libbluray support
+#   --enable-texturepacker        enable texturepacker support (default is yes)
+#   --enable-udev                 enable udev support (default is auto)
+#   --enable-libusb               enable libusb support (default is auto)
+#   --enable-libcec               enable libcec support (default is auto)
+#   --enable-libmp3lame           enable lame mp3 encoder support (default is auto)
+#   --enable-libvorbisenc         enable vorbis encoder support (default is auto)
+#   --enable-libcap               enable libcap support (default is auto)
+#   --enable-player               enable additional players from a list of comma separated names, (default is none, choices are amlplayer, omxplayer)
+#   --enable-gtest                configure Google Test Framework (default is no)
+#   --enable-codec                enable additional codecs from a list of comma separated names, (default is none, choices are amcodec)
+#   --enable-external-libraries   enable use of all supported external libraries (default is no) 'Linux only'
+#   --enable-external-ffmpeg      enable use of external ffmpeg libraries (default is no) 'Linux only'
+
+  export PYTHON_VERSION=2
+  ./configure --prefix=/usr --exec-prefix=/usr --enable-{pulse,ffmpeg-libvorbis,libbluray,external-libraries}
+  make
+}
+
+package() {
+  cd ${pkgname%-*}
+
+  make DESTDIR="${pkgdir}" install
+
+# Python2
+  sed 's/python/python2/g' -i "${pkgdir}"/usr/bin/xbmc
+
+# Texture Packer
+  install -m 755 {tools/TexturePacker,"${pkgdir}"/usr/lib/xbmc}/TexturePacker
+
+# Licenses
+  install -dm 755 "${pkgdir}"/usr/share/licenses/${pkgname}
+  mv "${pkgdir}"/usr/share/{doc/xbmc/{LICENSE.GPL,copying.txt},licenses/${pkgname}/}
+
+# Systemd
+  install -dm 755 "${pkgdir}"/usr/lib/systemd/system
+  install -m 644 {..,"${pkgdir}"/usr/lib/systemd/system}/xbmc.service
+}
+
+# vim: ts=2 sw=2 et:
