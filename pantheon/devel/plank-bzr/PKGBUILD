@@ -3,7 +3,7 @@
 # Contributor: dcelasun <dcelasun@gmail.com>
 
 pkgname=plank-bzr
-pkgver=859
+pkgver=860
 pkgrel=1
 pkgdesc="Elegant, simple, clean dock"
 arch=('i686' 'x86_64')

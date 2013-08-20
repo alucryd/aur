@@ -1,23 +1,20 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
-# Contributor: sh4nks <sh4nks7 at gmail dot com
 
-pkgname=lightdm-pantheon-greeter-bzr
-pkgver=163
+pkgname=lightdm-pantheon-greeter
+pkgver=1.0.2
 pkgrel=1
 pkgdesc="Pantheon greeter for LightDM"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-greeter"
 license=('GPL')
 depends=('clutter-gtk' 'granite' 'libindicator3' 'lightdm')
-makedepends=('bzr' 'cmake' 'vala0.16')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-install=${pkgname%-*}.install
-source=("${pkgname%-*}::bzr+lp:pantheon-greeter")
-sha256sums=('SKIP')
+makedepends=('cmake' 'vala0.16')
+install=${pkgname}.install
+source=("https://launchpad.net/${pkgname#*-}/${pkgver%%.*}.x/${pkgver}/+download/${pkgname#*-}-${pkgver}.tgz")
+sha256sums=('28e92fa37bf4084c110f3037df70ae8d8e51db3719e639b18af8eefdfc339fb9')
 
-build(){
-  cd ${pkgname%-*}
+build() {
+  cd ${pkgname#*-}-${pkgver}
 
   if [[ -d build ]]; then
     rm -rf build
@@ -28,8 +25,8 @@ build(){
   make
 }
 
-package(){
-  cd ${pkgname%-*}/build
+package() {
+  cd ${pkgname#*-}-${pkgver}/build
 
   make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
 
