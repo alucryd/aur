@@ -4,17 +4,16 @@
 
 pkgname=plank
 pkgver=0.3.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Elegant, simple, clean dock"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/plank"
 license=('GPL3')
-groups=('pantheon')
 depends=('bamf' 'hicolor-icon-theme' 'libdbusmenu-gtk3' 'libgee06')
 makedepends=('gnome-common' 'intltool' 'vala0.16')
 options=('!libtool')
 install=${pkgname}.install
-source=("https://launchpad.net/${pkgname}/0.3/${pkgver}/+download/${pkgname}-${pkgver}.tar.xz")
+source=("https://launchpad.net/${pkgname}/1.0/${pkgver}/+download/${pkgname}-${pkgver}.tar.xz")
 sha256sums=('9b73a6ef99bdf6ef0bb07ae5a461339b3c78c5237b0363b7174f2ffc60b5b523')
 
 prepare() {
@@ -26,9 +25,9 @@ prepare() {
 build() {
   cd ${pkgname}-${pkgver}
 
-  export VALAC=/usr/bin/valac-0.16
-  export VAPIGEN=/usr/bin/vapigen-0.16
-  ./configure --prefix=/usr --sysconfdir=/etc --disable-gee-0.8
+  export VALAC='/usr/bin/valac-0.16'
+  export VAPIGEN='/usr/bin/vapigen-0.16'
+  ./configure --prefix='/usr' --sysconfdir='/etc' --disable-gee-0.8
   make
 }
 
