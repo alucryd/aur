@@ -3,7 +3,7 @@
 # Contributor: teddy_beer_maniac <teddy_beer_maniac at wp dot pl>
 
 pkgname=gnome-common-git
-pkgver=3.7.4.3
+pkgver=3.7.4.9
 pkgrel=1
 pkgdesc="Common development macros for GNOME"
 arch=('any')
@@ -16,20 +16,20 @@ source=("git://git.gnome.org/${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   git describe | sed 's/-/./; s/-.*$//'
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
-  ./autogen.sh --prefix=/usr
+  ./autogen.sh --prefix='/usr'
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
 }

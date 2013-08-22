@@ -1,25 +1,25 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-cpupower-git
-pkgver=4
+pkgver=5
 pkgrel=1
-pkgdesc="Add a button on the panel to switch between governors through cpupower"
+pkgdesc="Add a button on the panel to switch between governors with cpupower"
 arch=('any')
 url="https://github.com/Alucryd/gnome-shell-extension-cpupower"
 license=('GPL2')
 depends=('cpupower' 'gnome-shell' 'polkit')
 makedepends=('git')
-source=("${pkgname%-*}::git+https://github.com/Alucryd/gnome-shell-extension-cpupower.git")
+source=("${pkgname%-*}::git+https://github.com/alucryd/gnome-shell-extension-cpupower.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   git rev-list --count HEAD
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   mkdir -p "${pkgdir}"/usr/share/gnome-shell/extensions
   cp -dr --no-preserve=ownership cpupower@Alucryd.github.com "${pkgdir}"/usr/share/gnome-shell/extensions/

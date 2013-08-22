@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-coverflow-alt-tab-git
-pkgver=66
+pkgver=87
 pkgrel=1
 pkgdesc="Replacement of Alt-Tab, iterates through windows in a cover-flow manner"
 arch=('any')
@@ -16,13 +16,13 @@ source=("${pkgname%-*}::git+https://github.com/dmo60/CoverflowAltTab.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   git rev-list --count HEAD
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   mkdir -p "${pkgdir}"/usr/share/{glib-2.0,gnome-shell/extensions}
   cp -dr --no-preserve=ownership CoverflowAltTab@dmo60.de "${pkgdir}"/usr/share/gnome-shell/extensions/

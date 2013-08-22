@@ -1,51 +1,51 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=firewalld-git
-pkgver=0.3.1.597
+pkgver=0.3.4.824
 pkgrel=1
 pkgdesc="A firewall daemon with D-BUS interface providing a dynamic firewall"
 arch=('any')
 url="http://fedorahosted.org/firewalld"
 license=('GPL2')
 depends=('ebtables' 'gtk3' 'hicolor-icon-theme' 'iptables' 'libnotify' 'networkmanager' 'python2-slip')
-makedepends=('git' 'intltool')
+makedepends=('docbook-xsl' 'git' 'intltool')
 backup=('etc/conf.d/firewalld'
         'etc/firewalld/firewalld.conf')
 provides=('firewalld')
 conflicts=('firewalld')
 install=${pkgname%-*}.install
 source=("${pkgname%-*}::git+http://git.fedorahosted.org/git/firewalld.git"
-        'paths.patch')
+        'firewalld-paths.patch')
 sha256sums=('SKIP'
-            'e03b2a8121218ca84ee70fa1a7e8c36ad45a9935afafa8da084cf8e29a32d0bb')
+            '3fdf9cd88a959c19ca9e5d8e098cfbcbdb073db6602f6e9b0f2ddb542e5a88f8')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   echo "$(grep Version firewalld.spec|sed 's|Version: ||').$(git rev-list --count HEAD)"
 }
 
 prepare() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
-  patch -Np1 -i ../paths.patch
-  sed -i 's|sysconfig|conf\.d|' config/firewalld.service.in
+  patch -Np1 -i ../firewalld-paths.patch
+  sed -i 's/sysconfig/conf\.d/' config/firewalld.service.in
   sed -i 's|^#!.*python$|#!/usr/bin/python2|
-          s|^#!.*python -Es$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
-  sed -i 's|python|python2|g' fix_python_shebang.sh
+          s|^#!.*python -Es$|#!/usr/bin/python2|' $(grep -rl '^#!.*python$')
+  sed -i 's/python/python2/g' fix_python_shebang.sh
 }
 
 build () {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
-  export PYTHON=python2
+  export PYTHON='python2'
   ./autogen.sh
-  ./configure --prefix=/usr --sysconfdir=/etc --disable-schemas-compile
+  ./configure --prefix='/usr' --sysconfdir='/etc' --disable-schemas-compile
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
 }
