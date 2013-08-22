@@ -2,7 +2,7 @@
 # Contributor: fresh24 <pascher dot christian at gmail dot com>
 
 pkgname=egtk-bzr
-pkgver=649
+pkgver=39
 pkgrel=1
 pkgdesc="elementary GTK theme"
 arch=('i686' 'x86_64')
@@ -13,12 +13,12 @@ makedepends=('bzr')
 optdepends=('elementary-icons')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname}")
-source=("bzr+lp:${pkgname%-*}")
+source=("${pkgname%-*}::bzr+lp:${pkgname%-*}/4.x")
 sha256sums=('SKIP')
 
 pkgver() {
   cd ${pkgname%-*}
-  
+
   bzr revno
 }
 
