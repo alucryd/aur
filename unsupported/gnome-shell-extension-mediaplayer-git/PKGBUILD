@@ -1,7 +1,7 @@
-# Maintainer: Alucryd <alucryd at gmail dot com>
+# Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-mediaplayer-git
-pkgver=377
+pkgver=388
 pkgrel=1
 pkgdesc="A mediaplayer indicator for the Gnome Shell"
 arch=('any')
@@ -15,21 +15,21 @@ source=("${pkgname%-*}::git+https://github.com/eonpatapon/gnome-shell-extensions
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   git rev-list --count HEAD
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   ./autogen.sh
-  ./configure --prefix=/usr --disable-schemas-compile
+  ./configure --prefix='/usr' --disable-schemas-compile
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
 }

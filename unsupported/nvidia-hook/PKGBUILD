@@ -1,15 +1,15 @@
-# Maintainer: Alucryd <alucryd at gmail dot com>
+# Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=nvidia-hook
 pkgver=2.2
 pkgrel=3
 pkgdesc="mkinitcpio hook to compile the NVIDIA modules"
-url="https://github.com/Alucryd/mkinitcpio-hooks"
+url="https://github.com/alucryd/mkinitcpio-hooks"
 arch=('any')
 license=('GPL3')
 depends=('nvidia-dkms')
 install=${pkgname}.install
-source=("https://raw.github.com/Alucryd/mkinitcpio-hooks/master/nvidia")
+source=("https://raw.github.com/alucryd/mkinitcpio-hooks/master/nvidia")
 sha256sums=('d3cdc998faac6a8f835efb48b925758e5bb25cfa15e8f2f21430b46b9f880e26')
 
 package() {

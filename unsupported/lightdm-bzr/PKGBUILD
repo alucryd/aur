@@ -1,11 +1,11 @@
-# Maintainer: Alucryd <alucryd at gmail dot com>
+# Maintainer: alucryd <alucryd at gmail dot com>
 # Contributor: eworm <arch at eworm dot de>
 # Contributor: pisuka <tekmon at gmail dot com>
 
 pkgbase=lightdm-bzr
-pkgname=${pkgbase}
+pkgname="${pkgbase}"
 true && pkgname=('lightdm-bzr' 'liblightdm-qt4-bzr' 'liblightdm-qt5-bzr')
-pkgver=1705
+pkgver=1758
 pkgrel=1
 
 pkgver() {
@@ -26,12 +26,12 @@ prepare() {
 build() {
   cd ${pkgbase%-*}
 
-  ./autogen.sh --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgbase%-*} --with-greeter-user=lightdm --with-greeter-session=lightdm-gtk-greeter --disable-{static,tests}
+  ./autogen.sh --prefix='/usr' --sbindir='/usr/bin' --sysconfdir='/etc' --localstatedir='/var' --libexecdir="/usr/lib/${pkgbase%-*}" --with-greeter-user='lightdm' --with-greeter-session='lightdm-gtk-greeter' --disable-{static,tests}
   make
 }
 
 package_lightdm-bzr() {
-depends=('libgcrypt' 'libxklavier' 'pam')
+depends=('libgcrypt' 'libxklavier' 'pam' 'polkit' 'systemd')
 optdepends=('xorg-server-xephyr: LightDM test mode'
             'accountsservice: limit visible accounts')
 provides=('lightdm')
@@ -40,7 +40,7 @@ backup=('etc/apparmor.d/lightdm-guest-session'
         'etc/lightdm/keys.conf'
         'etc/lightdm/lightdm.conf'
         'etc/lightdm/users.conf')
-install=${pkgbase%-*}.install
+install="${pkgbase%-*}.install"
 
   cd ${pkgbase%-*}
 
@@ -62,7 +62,7 @@ install=${pkgbase%-*}.install
   install -m 644 ../lightdm-autologin.pam "${pkgdir}"/etc/pam.d/lightdm-autologin
 
 # PolicyKit
-  install -dm 700 "${pkgdir}"/usr/share/polkit-1/rules.d
+  install -dm 700 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
   install -m 644 ../lightdm.rules "${pkgdir}"/usr/share/polkit-1/rules.d/lightdm.rules
 
 # Systemd
@@ -107,7 +107,7 @@ pkgdesc="A lightweight display manager"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/lightdm"
 license=('GPL3' 'LGPL3')
-makedepends=('gnome-common' 'gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'qt4' 'qt5-base' 'yelp-tools')
+makedepends=('gnome-common' 'gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'polkit' 'qt4' 'qt5-base' 'yelp-tools')
 options=('!emptydirs' '!libtool')
 source=("bzr+lp:${pkgbase%-*}"
         'lightdm.service'

@@ -1,16 +1,16 @@
-# Maintainer: Alucryd <alucryd at gmail dot com>
+# Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=vboxhost-hook
 pkgver=1.0
 pkgrel=3
 pkgdesc="mkinitcpio hook to compile the virtualbox host modules"
-url="https://github.com/Alucryd/mkinitcpio-hooks"
+url="https://github.com/alucryd/mkinitcpio-hooks"
 arch=('any')
 license=('GPL3')
 depends=('virtualbox-host-dkms')
 conflicts=('mkinitcpio-vbox' 'virtualbox-hook')
 install=${pkgname}.install
-source=("https://raw.github.com/Alucryd/mkinitcpio-hooks/master/vboxhost")
+source=("https://raw.github.com/alucryd/mkinitcpio-hooks/master/vboxhost")
 sha256sums=('6c5e321b6dac90ca6b7c7e45c842081762d140679bf186dcb948d65eb702bd15')
 
 package() {

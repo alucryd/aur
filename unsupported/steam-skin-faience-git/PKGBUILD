@@ -1,16 +1,16 @@
-# Maintainer: Alucryd <alucryd at gmail dot com>
+# Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=steam-skin-faience-git
 pkgver=20130116
 pkgrel=1
 pkgdesc="WIP Faience skin for Steam Linux (highly unusable for now)"
 arch=('any')
-url="https://github.com/Alucryd/steam-skin-faience"
+url="https://github.com/alucryd/steam-skin-faience"
 license=('GPL3')
 depends=('steam')
 optdepends=('steam-skin-manager: Easy skin installation')
 
-_gitroot="https://github.com/Alucryd/steam-skin-faience.git"
+_gitroot="https://github.com/alucryd/steam-skin-faience.git"
 _gitname="steam-skin-faience"
 
 build () {

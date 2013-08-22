@@ -1,7 +1,7 @@
-# Maintainer: Alucryd <alucryd at gmail dot com>
+# Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extension-windowoverlay-icons-git
-pkgver=35
+pkgver=41
 pkgrel=1
 pkgdesc="A GNOME Shell extension to add an icon to windows in the overview"
 arch=('any')
@@ -16,13 +16,13 @@ source=("${pkgname%-*}::git+https://github.com/sustmi/gnome-shell-extensions-sus
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   git rev-list --count HEAD
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   mkdir -p "${pkgdir}"/usr/share/{glib-2.0,gnome-shell/extensions}
   cp -dr --no-preserve=ownership windowoverlay-icons "${pkgdir}"/usr/share/gnome-shell/extensions/windowoverlay-icons@sustmidown.centrum.cz
