@@ -2,7 +2,7 @@
 
 pkgname=vala0.16
 pkgver=0.16.1
-pkgrel=3
+pkgrel=4
 pkgdesc="Compiler for the GObject type system - 0.16 version"
 arch=('i686' 'x86_64')
 url="http://live.gnome.org/Vala"
@@ -15,23 +15,21 @@ source=("http://download.gnome.org/sources/${pkgname%0.16}/0.16/${pkgname%0.16}-
 sha256sums=('8be28ff6347feecb391220ceb4e2209d32b697278e87ed7fc6c9fb1e9345e0d8')
 
 build() {
-  cd "${srcdir}"/${pkgname%0.16}-${pkgver}
+  cd ${pkgname%0.16}-${pkgver}
 
-# Build
-  ./configure --prefix=/usr --enable-vapigen
+  ./configure --prefix='/usr' --enable-vapigen
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%0.16}-${pkgver}
+  cd ${pkgname%0.16}-${pkgver}
 
-# Install
   make DESTDIR="${pkgdir}" install
 
 # Prevent conflicts
   rm -rf "${pkgdir}"/usr/{bin/{vala,valac,vala-gen-introspect,vapicheck,vapigen},share/{man/man1/{valac.1,vala-gen-introspect.1,vapigen.1},pkgconfig/vapigen.pc,vala}}
-  mv "${pkgdir}"/usr/share/aclocal/vala.m4 "${pkgdir}"/usr/share/aclocal/vala-0.16.m4
-  mv "${pkgdir}"/usr/share/aclocal/vapigen.m4 "${pkgdir}"/usr/share/aclocal/vapigen-0.16.m4
+  mv "${pkgdir}"/usr/share/aclocal/vala{,-0.16}.m4
+  mv "${pkgdir}"/usr/share/aclocal/vapigen{,-0.16}.m4
 }
 
-# vim:set ts=2 sw=2 et:
+# vim: ts=2 sw=2 et:

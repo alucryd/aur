@@ -2,7 +2,7 @@
 
 pkgname=ciso-python
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="CISO compressor, supports ISO over 2GB"
 arch=('any')
 url="https://procfw.googlecode.com"
@@ -13,21 +13,15 @@ source=("https://procfw.googlecode.com/hg/contrib/ciso.py")
 sha256sums=('d7da07bed22f9788c483b536950db888c1b44ad58ec6ccb303d0e9b891e11cb9')
 
 prepare() {
-  cd "${srcdir}"
-
   mv ciso.py __init__.py
-  sed -i 's|^#!.*python$|#!/usr/bin/python2|' *.py
+  sed 's|^#!.*python$|#!/usr/bin/python2|' -i *.py
 }
 
 build() {
-  cd "${srcdir}"
-
   python2 -Om compileall .
 }
 
 package() {
-  cd "${srcdir}"
-
   install -dm 755  "${pkgdir}"/usr/{bin,lib/python2.7/site-packages/ciso}
   install -m 755 __init__.py* "${pkgdir}"/usr/lib/python2.7/site-packages/ciso/
   ln -s /usr/lib/python2.7/site-packages/ciso/__init__.py "${pkgdir}"/usr/bin/ciso

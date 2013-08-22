@@ -1,0 +1,10 @@
+#!/bin/sh
+
+for repo in community pantheon unsupported personal; do
+  find $repo -type l -name *.tar.xz -delete
+  find $repo -type f -name *.log -delete
+  find $repo -type d -name pkg -exec rm -rf {} +
+  find $repo -type d -name src -exec rm -rf {} +
+done
+
+# vim: ts=2 sw=2 et:

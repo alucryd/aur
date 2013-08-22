@@ -2,12 +2,12 @@
 
 pkgname=slingshot-launcher
 pkgver=0.7.2
-pkgrel=2
+pkgrel=3
 pkgdesc="Slingshot application launcher"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/slingshot"
 license=('GPL3')
-depends=('gnome-menus2' 'granite' 'libzeitgeist')
+depends=('gnome-menus2' 'granite' 'libunity' 'libwnck3' 'libzeitgeist')
 makedepends=('cmake' 'vala0.16')
 install=${pkgname}.install
 source=("https://launchpad.net/${pkgname%-*}/0.x/${pkgver}/+download/${pkgname%-*}-${pkgver}.tar.gz")

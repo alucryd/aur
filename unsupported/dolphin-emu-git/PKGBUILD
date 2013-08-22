@@ -2,13 +2,13 @@
 # Contributor: Lightning <sgsdxzy at gmail dot com>
 
 pkgname=dolphin-emu-git
-pkgver=3.5.1173
+pkgver=3.5.1861
 pkgrel=1
 pkgdesc="A GameCube / Wii / Triforce emulator"
 arch=('i686' 'x86_64')
 url="http://www.dolphin-emu.org/"
 license=('GPL2')
-depends=('bluez' 'ffmpeg' 'glew' 'libao' 'lzo2' 'openal' 'portaudio' 'soundtouch' 'wxgtk2.9')
+depends=('bluez-libs' 'ffmpeg' 'glew' 'libao' 'miniupnpc' 'openal' 'portaudio' 'sdl2' 'soundtouch' 'wxgtk2.9')
 makedepends=('cmake' 'git' 'opencl-headers')
 optdepends=('pulseaudio: PulseAudio backend')
 provides=('dolphin-emu')
@@ -17,26 +17,26 @@ source=("${pkgname%-*}::git+https://code.google.com/p/dolphin-emu/")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
-  git describe | sed 's|\(.*-.*\)-.*|\1|;s|-|.|'
+  git describe | sed 's/\(.*-.*\)-.*/\1/; s/-/./'
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.9 -DwxWidgets_wxrc_EXECUTABLE=/usr/bin/wxrc-2.9
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config-2.9' -DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc-2.9'
   make
 
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}/build
+  cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" install
 }

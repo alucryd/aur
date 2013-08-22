@@ -14,17 +14,15 @@ source=("http://downloads.sourceforge.net/sourceforge/${pkgname}/${pkgname}-${pk
 sha256sums=('bda4ff2a9e9f673018374b75b1cf6f67f5aef3025a3a08d2c9ccf15a2bb8573a')
 
 build() {
-  cd "${srcdir}"/${pkgname}-${pkgver}
+  cd ${pkgname}-${pkgver}
 
-# Build
-  ./configure --prefix=/usr
+  ./configure --prefix='/usr'
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname}-${pkgver}
+  cd ${pkgname}-${pkgver}
 
-# Install
   make DESTDIR="${pkgdir}" install
 }
 
