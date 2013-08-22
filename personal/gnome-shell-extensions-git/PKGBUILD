@@ -1,5 +1,7 @@
-# Maintainer: Alucryd <alucryd at gmail dot com>
-# Contributor: Sebastian Lenz <sebastian@archusers.de>
+# Maintainer: Diego Principe <cdprincipei at gmail dot com>
+# Contributor: Brett Lempereur <sordidpanda at gmail dot com>
+# Contributor: Flamelab <panosfilip at gmail dot com>
+# Contributor: alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extensions-git
 pkgver=3.8.3.1.real.10
@@ -12,6 +14,7 @@ depends=('gnome-shell')
 makedepends=('git' 'gnome-common' 'intltool')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
+install="${pkgname%-*}.install"
 source=("git+http://git.gnome.org/browse/${pkgname%-*}#branch=gnome-3-8")
 sha256sums=('SKIP')
 
