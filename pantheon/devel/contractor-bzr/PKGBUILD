@@ -8,13 +8,24 @@ pkgdesc="A service for sharing data between apps"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/contractor"
 license=('GPL3')
-depends=('glib2')
+depends=('glib2' 'seahorse')
 makedepends=('bzr' 'cmake' 'vala0.16')
-optdepends=('webcontracts-bzr: Contracts for web services')
+optdepends=('brasero: Burn Disc context menu entries'
+            'file-roller: Archive context menu entries'
+            'gnome-bluetooth: Bluetooth context-menu entry'
+            'inkscape: Inkscape context menu entry'
+            'seahorse: Seahorse integration'
+            'webcontracts-bzr: Contracts for web services')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("bzr+lp:${pkgname%-*}")
-sha256sums=('SKIP')
+source=("bzr+lp:${pkgname%-*}"
+        "bzr+lp:~elementary-os/${pkgname%-*}/brasero-contracts"
+        "bzr+lp:~elementary-os/${pkgname%-*}/inkscape-contracts"
+        "bzr+lp:~elementary-os/${pkgname%-*}/seahorse-contracts")
+sha256sums=('SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP')
 
 pkgver() {
   cd ${pkgname%-*}
@@ -38,6 +49,12 @@ package() {
   cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" install
+
+  for _app in brasero inkscape seahorse; do
+    install -m 644 "${srcdir}"/${_app}-contracts/*.contract "${pkgdir}"/usr/share/contractor/
+  done
+  install -dm 755 "${pkgdir}"/usr/lib/svg-contracts
+  install -m 755 {"${srcdir}"/inkscape-contracts,"${pkgdir}"/usr/lib/svg-contracts}/inkscape-export.sh
 }
 
 # vim: ts=2 sw=2 et:

@@ -8,13 +8,17 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/indicator-pantheon-session"
 license=('GPL3')
 depends=('libdbusmenu-gtk3' 'libindicator3')
-makedepends=('bzr' 'cmake' 'gnome-common' 'intltool' 'packagekit')
+makedepends=('bzr' 'cmake' 'gnome-common' 'intltool')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 options=('!libtool')
 install=${pkgname%-*}.install
-source=("bzr+lp:${pkgname%-*}")
-sha256sums=('SKIP')
+source=("bzr+lp:${pkgname%-*}"
+        'login1.patch'
+        'no-packagekit.patch')
+sha256sums=('SKIP'
+            'd5c3ee7cb3b4e9f1dd49501e666c63b05fb1f097ba53ff3168af44845f87c52a'
+            '9c859c0074bbc1942721a4138f07dc97d6ae8500a1988a4bb87a8602abd6af74')
 
 pkgver() {
   cd ${pkgname%-*}
@@ -27,6 +31,8 @@ prepare() {
 
   sed -i 's|AM_CONFIG_HEADER|AC_CONFIG_HEADERS|g' configure.ac
   sed -i '/g_type_init();/d' $(grep -rl 'g_type_init();')
+  patch -Np1 -i ../login1.patch
+  patch -Np1 -i ../no-packagekit.patch
 }
 
 build() {
