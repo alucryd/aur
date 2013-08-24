@@ -3,8 +3,10 @@
 *.src.tar.gz
 *.sig
 *.swp
+*.tar.gz
 src/
 pkg/
 srcpkg/
 log/
 community/
+*/*/*/
