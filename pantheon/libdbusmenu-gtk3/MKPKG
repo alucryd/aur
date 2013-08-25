@@ -3,7 +3,7 @@ pkgname=('libdbusmenu-gtk3')
 build () {
   local arch=$1
   shift
-  ionice -c 3 chrt -b 0 sudo ${chroot}-${arch}-build -- $* -I $repodir/${arch}/libdbusmenu*.pkg.tar.xz
+  ionice -c 3 chrt -b 0 sudo ${chroot}-${arch}-build -- $* -I ${repodir}/${arch}/libdbusmenu-^[a-z]*.pkg.tar.xz
 }
 
 # vim: ts=2 sw=2 et:
