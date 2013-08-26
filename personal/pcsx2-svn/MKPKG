@@ -1,0 +1,16 @@
+pkgname=('pcsx2-svn')
+chroot='multilib'
+
+build () {
+  local arch=$1
+  shift
+  if [[ $arch == i686 ]]; then
+    ionice -c 3 chrt -b 0 sudo extra-i686-build -- $*
+  elif [[ $arch == x86_64 ]]; then
+    ionice -c 3 chrt -b 0 sudo multilib-build -- $*
+  fi
+}
+
+check_svn $packagedir/$pkgname/${pkgname%-*}
+
+# vim: ts=2 sw=2 et:

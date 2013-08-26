@@ -22,7 +22,7 @@ optdepends=('gdb: for meaningful backtraces in case of trouble - STRONGLY RECOMM
             'upower: used to trigger suspend functionality'
             'unrar: access compressed files without unpacking them'
             'pulseaudio: pulseaudio support')
-install=${pkgname%%-*}.install
+install="${pkgname%%-*}.install"
 source=("${pkgname%-*}::git+https://github.com/garbear/xbmc.git"
         'xbmc.service')
 sha256sums=('SKIP'
@@ -110,7 +110,7 @@ build() {
 #   --enable-external-ffmpeg      enable use of external ffmpeg libraries (default is no) 'Linux only'
 
   export PYTHON_VERSION=2
-  ./configure --prefix=/usr --exec-prefix=/usr --enable-{pulse,ffmpeg-libvorbis,libbluray,external-libraries}
+  ./configure --prefix=/usr --exec-prefix=/usr --enable-{pulse,ffmpeg-libvorbis,libbluray,external-libraries} --disable-external-ffmpeg
   make
 }
 
