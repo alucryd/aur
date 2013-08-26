@@ -7,7 +7,6 @@ pkgdesc="A small utility used to print documents that allows the user to set the
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-print"
 license=('GPL3')
-groups=('pantheon')
 depends=('contractor' 'gtk3')
 makedepends=('bzr' 'cmake' 'vala0.16')
 provides=("${pkgname%-*}")

@@ -1,7 +1,0 @@
-for pkg in granite-bzr plank-bzr slingshot-launcher-bzr wingpanel-bzr pantheon-wallpaper-bzr gala-bzr cerbere-bzr; do
-  cd $pkg
-  makepkg -cfis
-  cd ..
-done
-
-# vim: ts=2 sw=2 et:

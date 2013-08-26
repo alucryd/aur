@@ -7,7 +7,6 @@ pkgdesc="Pantheon Window Manager"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/gala"
 license=('GPL3')
-groups=('pantheon')
 depends=('clutter-gtk' 'granite' 'mutter' 'plank')
 makedepends=('bzr' 'cmake' 'vala0.16')
 provides=("${pkgname%-*}")

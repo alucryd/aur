@@ -8,7 +8,6 @@ pkgdesc="A modern terminal from elementary project"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-terminal"
 license=('GPL3')
-groups=('pantheon')
 depends=('granite' 'libnotify' 'vte3')
 makedepends=('bzr' 'cmake' 'vala0.16')
 provides=("${pkgname%-*}")

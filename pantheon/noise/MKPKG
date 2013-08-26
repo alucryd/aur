@@ -1,0 +1,4 @@
+pkgname=('noise')
+builddeps=('granite')
+
+# vim: ts=2 sw=2 et:

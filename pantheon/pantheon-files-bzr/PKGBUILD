@@ -7,7 +7,6 @@ pkgdesc="The file manager of the Pantheon desktop"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-files"
 license=('GPL3')
-groups=('pantheon')
 depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
 makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala0.16')
 optdepends=('contractor-bzr: Plugins integration'
