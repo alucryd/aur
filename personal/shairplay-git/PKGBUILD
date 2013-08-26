@@ -1,0 +1,40 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: winlu <winklerlukas at gmail dot com>
+# Contributor: BlackIkeEagle <ike dot devolder at gmail dot com>
+
+pkgname=shairplay-git
+pkgver=108
+pkgrel=1
+pkgdesc='Apple airplay and raop protocol server'
+arch=('i686' 'x86_64')
+url='https://github.com/juhovh/shairplay'
+license=('GPL3')
+depends=('libao')
+makedepends=('git')
+provides=('libshairport')
+conflicts=('libshairport')
+options=('!libtool')
+source=("git://github.com/juhovh/${pkgname%-*}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  git rev-list --count HEAD
+}
+
+build() {
+  cd ${pkgname%-*}
+
+  ./autogen.sh
+  ./configure --prefix='/usr'
+  make
+}
+
+package() {
+  cd ${pkgname%-*}
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
