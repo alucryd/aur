@@ -1,43 +1,43 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=midori-granite
-pkgver=0.5.2
-pkgrel=2
+pkgver=0.5.5
+pkgrel=1
 pkgdesc='Lightweight web browser based on Gtk WebKit'
 arch=('i686' 'x86_64')
 url="http://twotoasts.de/index.php/midori/"
 license=('LGPL2.1')
-depends=('gcr' 'granite-bzr' 'libnotify' 'libunique3' 'libxss' 'libzeitgeist' 'webkitgtk3')
-makedepends=('clutter-gtk' 'gtk-doc' 'intltool' 'librsvg' 'libxml2' 'python2' 'vala')
+depends=('gcr' 'granite' 'libnotify' 'libunique3' 'libxss' 'libzeitgeist' 'webkitgtk3')
+makedepends=('clutter-gtk' 'gtk-doc' 'intltool' 'librsvg' 'libxml2' 'python2' 'vala0.16')
 optdepends=('gstreamer0.10-ugly-plugins: HTML5 videos support'
             'aria2: Download utility')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 options=('!emptydirs')
-install=${pkgname}.install
-source=("http://archive.xfce.org/src/apps/${pkgname%%-*}/${pkgver%.?}/${pkgname%%-*}-${pkgver}.tar.bz2")
-sha256sums=('a9c5cb4606e8e4967a2b980caa9ada25623c50d927a302b6bf73eeac5815c97c')
+install="${pkgname}.install"
+source=("http://www.midori-browser.org/downloads/${pkgname%-*}_${pkgver}_all_.tar.bz2")
+sha256sums=('ca69382a285222a86028abebd73fed1976735883027ff0adc094b627789bbd62')
 
 prepare() {
-  cd "${srcdir}"/${pkgname%%-*}-${pkgver}
+  cd ${pkgname%%-*}-${pkgver}
 
-  sed -i 's|^#!.*python$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
+  sed 's|^#!.*python$|#!/usr/bin/python2|' -i $(grep -rl '^#!.*python')
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%%-*}-${pkgver}
+  cd ${pkgname%%-*}-${pkgver}
 
-  _jobs="--jobs=$(echo $MAKEFLAGS | sed 's/.*-j\([0-9]*\).*/\1/')"
-
-  export PYTHON=/usr/bin/python2
-  ./configure --prefix=/usr $_jobs --enable-{addons,apidocs,docs,granite,gtk3,nls,unique}
+  export PYTHON='/usr/bin/python2'
+  export VALAC='/usr/bin/valac-0.16'
+  export VAPIGEN='/usr/bin/vapigen-0.16'
+  ./configure --prefix=/usr --jobs="$(echo $MAKEFLAGS | sed 's/.*-j\([0-9]*\).*/\1/')" --enable-{addons,apidocs,docs,granite,gtk3,nls,unique}
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%%-*}-${pkgver}
+  cd ${pkgname%%-*}-${pkgver}
 
   make DESTDIR="${pkgdir}" install
 }
 
-# vim:set ts=2 sw=2 et:
+# vim: ts=2 sw=2 et:

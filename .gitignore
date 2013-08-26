@@ -3,8 +3,9 @@
 *.src.tar.gz
 *.sig
 *.swp
-*.tar.xz
+*.tar.bz2
 *.tar.gz
+*.tar.xz
 *.tgz
 src/
 pkg/
