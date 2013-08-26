@@ -5,7 +5,7 @@
 pkgbase=lightdm-bzr
 pkgname="${pkgbase}"
 true && pkgname=('lightdm-bzr' 'liblightdm-qt4-bzr' 'liblightdm-qt5-bzr')
-pkgver=1758
+pkgver=1770
 pkgrel=1
 
 pkgver() {
@@ -39,7 +39,11 @@ conflicts=('lightdm')
 backup=('etc/apparmor.d/lightdm-guest-session'
         'etc/lightdm/keys.conf'
         'etc/lightdm/lightdm.conf'
-        'etc/lightdm/users.conf')
+        'etc/lightdm/users.conf'
+        'etc/lightdm/xsession'
+        'etc/pam.d/lightdm'
+        'etc/pam.d/lightdm-autologin'
+        'etc/pam.d/lightdm-greeter')
 install="${pkgbase%-*}.install"
 
   cd ${pkgbase%-*}
