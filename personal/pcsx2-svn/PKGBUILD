@@ -9,9 +9,9 @@ url="http://www.pcsx2.net"
 license=('GPL')
 makedepends=('cmake' 'sparsehash' 'subversion')
 if [[ $CARCH == "i686" ]]; then
-  depends=('canberra' 'glew' 'libaio' 'libjpeg-turbo' 'nvidia-cg-toolkit' 'portaudio' 'soundtouch' 'wxgtk')
+  depends=('glew' 'libaio' 'libcanberra' 'libjpeg-turbo' 'nvidia-cg-toolkit' 'portaudio' 'soundtouch' 'wxgtk')
 elif [[ $CARCH == "x86_64" ]]; then
-  depends=('lib32-libcanberra' 'lib32-glew' 'lib32-libaio' 'lib32-libjpeg-turbo' 'lib32-nvidia-cg-toolkit' 'lib32-portaudio' 'lib32-soundtouch' 'lib32-wxgtk')
+  depends=('lib32-glew' 'lib32-libaio' 'lib32-libcanberra' 'lib32-libjpeg-turbo' 'lib32-nvidia-cg-toolkit' 'lib32-portaudio' 'lib32-soundtouch' 'lib32-wxgtk')
   makedepends+=('gcc-multilib')
   optdepends=('lib32-gtk-engines: gtk2 engines support'
               'lib32-gtk-aurora-engine: aurora gtk2 engine support'

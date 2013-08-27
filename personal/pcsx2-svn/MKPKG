@@ -6,10 +6,10 @@ build () {
   if [[ $arch == i686 ]]; then
     ionice -c 3 chrt -b 0 sudo extra-i686-build -- $*
   elif [[ $arch == x86_64 ]]; then
-    ionice -c 3 chrt -b 0 sudo multilib-build -- -I $repodir/$arch/lib32-libaio-[^-]##-[^-]##-$arch.pkg.tar.xz $repodir/$arch/lib32-nvidia-cg-toolkit-[^-]##-[^-]##-$arch.pkg.tar.xz $*
+    ionice -c 3 chrt -b 0 sudo multilib-build -- -I $repodir/$arch/lib32-libaio-[^-]##-[^-]##-$arch.pkg.tar.xz -I $repodir/$arch/lib32-nvidia-cg-toolkit-[^-]##-[^-]##-$arch.pkg.tar.xz $*
   fi
 }
 
-# check_svn $packagedir/$pkgname/${pkgname%-*}
+check_svn $packagedir/$pkgname/${pkgname%-*}
 
 # vim: ts=2 sw=2 et:
