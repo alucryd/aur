@@ -10,9 +10,10 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/switchboard"
 license=('GPL3')
 depends=('granite' 'libunity')
-makedepends=('bzr' 'cmake' 'vala')
+makedepends=('bzr' 'cmake' 'vala0.16')
 optdepends=('switchboard-plug-about-bzr: About plug'
             'switchboard-plug-default-applications-bzr: Default applications plug'
+            'switchboard-plug-keyboard-bzr: Keyboard plug'
             'switchboard-plug-pantheon-shell-bzr: Pantheon Shell plug'
             'switchboard-plug-power-bzr: Power plug')
 source=("https://launchpad.net/${pkgname}/1.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.bz2")
@@ -26,7 +27,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DVALA_EXECUTABLE='/usr/bin/valac-0.16'
   make
 }
 
