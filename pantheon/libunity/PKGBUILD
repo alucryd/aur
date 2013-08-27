@@ -1,0 +1,34 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: Balló György <ballogyor+arch at gmail dot com>
+
+pkgname=libunity
+pkgver=6.12.0
+pkgrel=2
+pkgdesc="Library for instrumenting and integrating with all aspects of the Unity shell"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/libunity"
+license=('LGPL')
+depends=('dconf' 'dee' 'gtk3' 'libdbusmenu' 'libgee06')
+makedepends=('gobject-introspection' 'intltool' 'vala')
+options=('!libtool')
+install="${pkgname}.install"
+source=("http://launchpad.net/${pkgname}/6.0/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
+md5sums=('d7a4d5b1ab317b8ee23e2bae716d67da')
+
+build() {
+  cd ${pkgname}-${pkgver}
+
+  export PYTHON='/usr/bin/python2'
+  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --disable-static
+  make
+}
+
+package() {
+  cd ${pkgname}-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+
+# Install GI overrides for python 3 as well
+  install -dm 755 "${pkgdir}"/usr/lib/python3.3/site-packages/gi/overrides
+  ln -s ../../../../python2.7/site-packages/gi/overrides/Unity.py "${pkgdir}"/usr/lib/python3.3/site-packages/gi/overrides/Unity.py
+}
