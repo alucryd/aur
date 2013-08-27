@@ -8,12 +8,12 @@ pkgdesc="Library for instrumenting and integrating with all aspects of the Unity
 arch=('i686' 'x86_64')
 url="https://launchpad.net/libunity"
 license=('LGPL')
-depends=('dconf' 'dee' 'gtk3' 'libdbusmenu' 'libgee06')
+depends=('dee' 'libdbusmenu' 'libgee06')
 makedepends=('gobject-introspection' 'intltool' 'vala')
 options=('!libtool')
 install="${pkgname}.install"
 source=("http://launchpad.net/${pkgname}/6.0/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
-md5sums=('d7a4d5b1ab317b8ee23e2bae716d67da')
+sha256sums=('4d2e5dcdff0347ddd3ff488706263bf1436060565e6c1e304a1da431e8554dd9')
 
 build() {
   cd ${pkgname}-${pkgver}
@@ -32,3 +32,5 @@ package() {
   install -dm 755 "${pkgdir}"/usr/lib/python3.3/site-packages/gi/overrides
   ln -s ../../../../python2.7/site-packages/gi/overrides/Unity.py "${pkgdir}"/usr/lib/python3.3/site-packages/gi/overrides/Unity.py
 }
+
+# vim: ts=2 sw=2 et:

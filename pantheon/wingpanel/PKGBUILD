@@ -7,10 +7,12 @@ pkgdesc="A super sexy space-saving top panel"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/wingpanel"
 license=('GPL3')
-depends=('granite' 'libindicator3')
-optdepends=('indicator-pantheon-session-bzr: Pantheon session indicator')
+depends=('granite' 'libindicator-gtk3')
+optdepends=('indicator-datetime: Display date and time'
+            'indicator-pantheon-session-bzr: Pantheon session indicator'
+            'indicator-power: Battery idicator')
 makedepends=('cmake' 'vala0.16')
-install=${pkgname}.install
+install="${pkgname}.install"
 source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
 sha256sums=('064c4ac11c330cd084d96a1497cd2dc38d488afd9410b3ae484d2ed73f749ee3')
 
@@ -22,7 +24,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DVALA_EXECUTABLE='/usr/bin/valac-0.16' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
