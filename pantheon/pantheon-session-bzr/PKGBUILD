@@ -9,8 +9,10 @@ url="https://code.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-se
 license=('GPL3')
 depends=('cerbere' 'gala-bzr' 'gconf' 'gnome-keyring' 'gnome-session' 'gnome-settings-daemon' 'gnome-user-share' 'plank' 'polkit-gnome' 'slingshot-launcher' 'wingpanel' 'xdg-user-dirs-gtk')
 makedepends=('bzr')
-source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/pantheon-xsession-settings-luna")
-sha256sums=('SKIP')
+source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/pantheon-xsession-settings-luna"
+        'pantheon-session.sh')
+sha256sums=('SKIP'
+            '1e0c8e9403e52614d43ecb920e507ee1e96b1439bb20949ff814741e5e5e2284')
 
 pkgver() {
   cd ${pkgname%-*}
@@ -22,6 +24,7 @@ prepare() {
   cd ${pkgname%-*}
 
   sed 's/policykit-1/polkit/' -i autostart/polkit-gnome-authentication-agent-1-pantheon.desktop
+  sed 's|gnome-session --session=pantheon|/usr/bin/pantheon-session|' -i debian/pantheon.desktop
 
 # sed 's/env python/env python2/g' -i waf wscript
 }
@@ -39,10 +42,7 @@ package() {
 # ./waf install -f --destdir="${pkgdir}"
 # sed -i 's|wm=compiz|wm=gala|g' "${pkgdir}/usr/share/pantheon-session/pantheon.session"
 
-  mkdir -p "${pkgdir}/etc/xdg"
-  mkdir -p "${pkgdir}/usr/share/xsessions"
-  mkdir -p "${pkgdir}/usr/share/gnome-session/sessions"
-  mkdir "${pkgdir}/usr/share/pantheon"
+  mkdir -p "${pkgdir}"/{etc/xdg,usr/{bin,share/{gnome-session/sessions,pantheon,xsessions}}}
   mv autostart "${pkgdir}/etc/xdg/"
   mv debian/pantheon.desktop "${pkgdir}/usr/share/xsessions/"
   mv debian/pantheon.session "${pkgdir}/usr/share/gnome-session/sessions/"
@@ -51,8 +51,11 @@ package() {
   mv applications "${pkgdir}/usr/share/pantheon/"
 
 # Fix permissions
-  find "${pkgdir}" -type d | xargs chmod 755
-  find "${pkgdir}" -type f | xargs chmod 644
+  find "${pkgdir}" -type d -exec chmod 755 {} +
+  find "${pkgdir}" -type f -exec chmod 644 {} +
+
+# gnome-session workaround
+  install -m 755 ../pantheon-session.sh "${pkgdir}"/usr/bin/pantheon-session
 }
 
 # vim: ts=2 sw=2 et:

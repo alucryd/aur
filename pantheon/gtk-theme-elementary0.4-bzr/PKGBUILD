@@ -1,8 +1,8 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 # Contributor: fresh24 <pascher dot christian at gmail dot com>
 
-pkgname=elementary-gtk-theme4.0-bzr
-pkgver=55
+pkgname=gtk-theme-elementary4.0-bzr
+pkgver=62
 pkgrel=1
 pkgdesc="elementary GTK theme"
 arch=('i686' 'x86_64')

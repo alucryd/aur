@@ -1,0 +1,36 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+
+pkgname=elementary-icons-thirdparty-bzr
+pkgver=8
+pkgrel=1
+pkgdesc="elementary icon theme"
+arch=('any')
+url="https://launchpad.net/elementaryicons"
+license=('GPL3')
+depends=('elementary-icon-theme')
+makedepends=('bzr')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+options=('!emptydirs')
+install="${pkgname%-*}.install"
+source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~versable/elementary-community/elementary-thirdparty-icons/")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  bzr revno
+}
+
+package() {
+  cd ${pkgname%-*}
+
+  install -dm 755 "${pkgdir}"/usr/share/icons
+  for icon in icons/elementary/apps/*/xchat.svg; do
+    ln -s xchat.svg ${icon/xchat/hexchat}
+  done
+  cp -dr --no-preserve=ownership {,"${pkgdir}"/usr/share/}icons/elementary
+}
+
+# vim: ts=2 sw=2 et:
+
