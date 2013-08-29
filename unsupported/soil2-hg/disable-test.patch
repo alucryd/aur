@@ -1,0 +1,31 @@
+--- a/premake4.lua	2013-08-29 10:05:49.107181063 +0200
++++ b/premake4.lua	2013-08-29 10:06:21.026846026 +0200
+@@ -21,12 +21,6 @@ solution "SOIL2"
+ 			flags { "Optimize" }
+ 			targetname "soil2"
+ 
+-	project "soil2-test"
+-		kind "ConsoleApp"
+-		language "C++"
+-		links { "soil2-static-lib" }
+-		files { "src/test/*.cpp" }
+-
+ 		configuration "windows"
+ 			links {"gdi32","winmm","user32","glfw","glu32","opengl32"}
+ 
+@@ -41,15 +35,3 @@ solution "SOIL2"
+ 
+ 		configuration "freebsd"
+ 			links {"GL","glfw"}
+-		
+-		configuration "debug"
+-			defines { "DEBUG" }
+-			flags { "Symbols" }
+-			buildoptions{ "-Wall" }
+-			targetname "soil2-test-debug"
+-
+-		configuration "release"
+-			defines { "NDEBUG" }
+-			flags { "Optimize" }
+-			buildoptions{ "-Wall" }
+-			targetname "soil2-test-release"
