@@ -5,7 +5,7 @@
 pkgbase=lightdm-devel
 pkgname="${pkgbase}"
 true && pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
-pkgver=1.7.11
+pkgver=1.7.12
 pkgrel=1
 
 prepare() {
@@ -115,7 +115,7 @@ source=("https://launchpad.net/lightdm/1.8/${pkgver}/+download/${pkgbase%-*}-${p
         'lightdm-lock-screen-before-switch.patch'
         'xsession')
 
-sha256sums=('73f8d4f006c98817f6bf49601a682c795d809d70afe9272868762f55d7d13d7e'
+sha256sums=('b13681bc0eb4b111e3b66172739a783b3511f3cdc431f6abb2ab98746f8eef24'
             '3daf2f7e1b751415eab9b2aa92d78d8e00c3447a77fa31f7e75863136286a86f'
             'ec10378992907f06a6960c4644aba2f81744fbcaf38f6bdc7c364979be3207e4'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'

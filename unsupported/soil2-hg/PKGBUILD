@@ -2,12 +2,12 @@
 
 pkgname=soil2-hg
 pkgver=16
-pkgrel=1
+pkgrel=2
 pkgdesc="A tiny C lib primarily for uploading textures into OpenGL"
 arch=('i686' 'x86_64')
 url="https://bitbucket.org/SpartanJ/soil2"
 license=('CCPL')
-makedepends=('mesa' 'premake')
+makedepends=('mercurial' 'mesa' 'premake')
 source=("hg+https://bitbucket.org/SpartanJ/${pkgname%-*}"
         'disable-test.patch')
 sha256sums=('SKIP'
