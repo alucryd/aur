@@ -2,30 +2,23 @@
 # Contributor: Balló György <ballogyor+arch at gmail dot com>
 
 pkgname=bamf
-pkgver=0.4.0
+pkgver=0.5.0
 pkgrel=1
 pkgdesc="Application matching framework"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/bamf"
 license=('GPL')
-depends=('dbus-glib' 'libgtop' 'libwnck3')
-makedepends=('gobject-introspection' 'vala')
+depends=('libgtop' 'libwnck3')
+makedepends=('gobject-introspection' 'python2-lxml' 'vala')
 options=('!libtool')
-source=("http://launchpad.net/${pkgname}/${pkgver%.*}/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz"
-        'bamf-matcher.patch')
-sha256sums=('65d05e0173336a8548bf5f67a940b46f02eb000bf7dc60a05b13fb9ccd7aade4'
-            'f55e92d0a99e1b1ab005a4b39d9d6b62e64d447353c20a92b1bb822a7aafa35c')
-
-prepare() {
-  cd ${pkgname}-${pkgver}
-
-  patch -Np1 -i ../bamf-matcher.patch
-}
+source=("http://launchpad.net/${pkgname}/${pkgver%.*}/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
+sha256sums=('93b1acced96d32b36270cf18feb2761014ce2226814303c632448f717a8f9113')
 
 build() {
   cd ${pkgname}-${pkgver}
 
-  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/${pkgname} --disable-{static,webapps}
+  export PYTHON='/usr/bin/python2'
+  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --libexecdir="/usr/lib/${pkgname}" --disable-{static,webapps}
   make
 }
 

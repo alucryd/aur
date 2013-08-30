@@ -2,7 +2,7 @@
 # Contributor: sh4nks <sh4nks7 at gmail dot com
 
 pkgname=lightdm-pantheon-greeter-bzr
-pkgver=163
+pkgver=213
 pkgrel=1
 pkgdesc="Pantheon greeter for LightDM"
 arch=('i686' 'x86_64')
@@ -12,9 +12,15 @@ depends=('clutter-gtk' 'granite' 'libindicator3' 'lightdm')
 makedepends=('bzr' 'cmake' 'vala0.16')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-install=${pkgname%-*}.install
+install="${pkgname%-*}.install"
 source=("${pkgname%-*}::bzr+lp:pantheon-greeter")
 sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  bzr revno
+}
 
 build(){
   cd ${pkgname%-*}
@@ -37,9 +43,7 @@ package(){
   mv "${pkgdir}"/usr/{share/xgreeters/,bin/lightdm-}pantheon-greeter
   mv "${pkgdir}"/usr/share/xgreeters/{,lightdm-}pantheon-greeter.desktop
 
-  sed 's/share\/xgreeters/bin/
-       s/pantheon-greeter/lightdm-pantheon-greeter/g
-        /en_US/d' -i "${pkgdir}"/usr/share/xgreeters/lightdm-pantheon-greeter.desktop
+  sed 's/share\/xgreeters/bin/; s/pantheon-greeter/lightdm-pantheon-greeter/g; /en_US/d' -i "${pkgdir}"/usr/share/xgreeters/lightdm-pantheon-greeter.desktop
 
 }
 

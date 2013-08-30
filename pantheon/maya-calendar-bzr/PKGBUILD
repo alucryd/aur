@@ -1,38 +1,38 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=maya-calendar-bzr
-pkgver=440
+pkgver=481
 pkgrel=1
 pkgdesc="GCal-syncing GTK+ calendar application"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/maya"
 license=('GPL3')
-depends=('evolution-data-server' 'glib2' 'granite-bzr' 'gtk3' 'libgee06')
-makedepends=('bzr' 'cmake' 'vala')
-install=${pkgname%-*}.install
-source=("${pkgname%-*}::bzr+lp:${pkgname%%-*}")
+depends=('evolution-data-server' 'granite' 'libpeas')
+makedepends=('bzr' 'cmake' 'vala0.16')
+install="${pkgname%-*}.install"
+source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~tintou/maya/maya-saucy/")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}/build
+  cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
 }

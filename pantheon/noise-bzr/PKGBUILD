@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=noise-bzr
-pkgver=1521
+pkgver=1524
 pkgrel=1
 pkgdesc="Simple, fast, and good looking music player"
 arch=('i686' 'x86_64')
@@ -12,7 +12,7 @@ depends=('desktop-file-utils' 'granite' 'gstreamer0.10-base' 'libgpod' 'libnotif
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-install=${pkgname}.install
+install="${pkgname}.install"
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
@@ -30,7 +30,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

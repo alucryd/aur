@@ -1,10 +1,10 @@
-diff -rupN lightdm-1.5.1.orig/data/lightdm.conf lightdm-1.5.1/data/lightdm.conf
---- lightdm-1.5.1.orig/data/lightdm.conf	2013-03-06 03:40:10.000000000 +0100
-+++ lightdm-1.5.1/data/lightdm.conf	2013-03-12 22:59:22.494743200 +0100
+--- a/data/lightdm.conf	2013-03-06 03:40:10.000000000 +0100
++++ b/data/lightdm.conf	2013-03-12 22:59:22.494743200 +0100
 @@ -24,7 +24,7 @@
  #user-authority-in-system-dir=false
  #guest-account-script=guest-account
- #log-directory=/var/log/lightdm
+-#log-directory=/var/log/lightdm
++log-directory=/var/log/lightdm
 -#run-directory=/var/run/lightdm
 +run-directory=/run/lightdm
  #cache-directory=/var/cache/lightdm
@@ -15,7 +15,7 @@ diff -rupN lightdm-1.5.1.orig/data/lightdm.conf lightdm-1.5.1/data/lightdm.conf
  #allow-guest=true
  #guest-session=UNIMPLEMENTED
 -#session-wrapper=lightdm-session
-+session-wrapper=/etc/lightdm/xsession
++session-wrapper=/etc/lightdm/Xsession
  #greeter-wrapper=
  #display-setup-script=
  #greeter-setup-script=
@@ -27,9 +27,8 @@ diff -rupN lightdm-1.5.1.orig/data/lightdm.conf lightdm-1.5.1/data/lightdm.conf
  #exit-on-failure=false
 
  #
-diff -rupN lightdm-1.5.1.orig/data/users.conf lightdm-1.5.1/data/users.conf
---- lightdm-1.5.1.orig/data/users.conf	2013-03-06 03:40:10.000000000 +0100
-+++ lightdm-1.5.1/data/users.conf	2013-03-12 22:54:29.398854700 +0100
+--- a/data/users.conf	2013-03-06 03:40:10.000000000 +0100
++++ b/data/users.conf	2013-03-12 22:54:29.398854700 +0100
 @@ -8,7 +8,7 @@
  # hidden-users = Users that are not shown to the user
  # hidden-shells = Shells that indicate a user cannot login

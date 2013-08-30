@@ -1,12 +1,12 @@
-# Maintainer: Diego Principe <cdprincipei at gmail dot com>
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: Diego Principe <cdprincipei at gmail dot com>
 # Contributor: Brett Lempereur <sordidpanda at gmail dot com>
 # Contributor: Flamelab <panosfilip at gmail dot com>
-# Contributor: alucryd <alucryd at gmail dot com>
 
 pkgname=gnome-shell-extensions-git
 pkgver=3.8.3.1.real.10
 pkgrel=1
-pkgdesc="User-created extensions for the GNOME Shell environment"
+pkgdesc="Extensions for GNOME shell"
 arch=('any')
 url="http://live.gnome.org/GnomeShell/Extensions"
 license=('GPL2')
