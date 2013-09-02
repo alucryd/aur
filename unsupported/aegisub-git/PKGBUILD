@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=aegisub-git
-pkgver=3.1.0.7741
+pkgver=3.1.0.7744
 pkgrel=1
 pkgdesc="A general-purpose subtitle editor with ASS/SSA support"
 arch=('i686' 'x86_64')

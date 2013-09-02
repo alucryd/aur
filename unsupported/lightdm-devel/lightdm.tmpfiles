@@ -1,1 +1,1 @@
-d /run/lightdm 0775 lightdm lightdm
+d /run/lightdm 0711 lightdm lightdm
