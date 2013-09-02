@@ -2,6 +2,6 @@
 
 for pkg in granite-bzr plank-bzr wingpanel-bzr slingshot-launcher-bzr pantheon-files-bzr cerbere-bzr gala-mutter38-bzr; do
   cd $pkg
-  makepkg -cfis
+  makepkg -cis
   cd ..
 done
