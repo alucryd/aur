@@ -10,6 +10,7 @@ url="http://pcsxr.codeplex.com/"
 license=('GPL')
 depends=('gtk3' 'libcdio' 'libxv' 'sdl2')
 makedepends=('intltool' 'mesa' 'subversion')
+[[ $CARCH == i686 ]] && makedepends+=('nasm')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}" 'pcsx-df')
 options=('!libtool')
@@ -25,7 +26,7 @@ pkgver() {
 build() {
   cd ${pkgname%-*}
 
-  ./autogen.sh --prefix='/usr' --enable-libcdio --enable-opengl
+  ./autogen.sh --prefix='/usr' --enable-{libcdio,opengl}
   make
 }
 
