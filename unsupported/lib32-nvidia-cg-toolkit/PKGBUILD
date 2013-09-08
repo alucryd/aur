@@ -1,8 +1,9 @@
-# Maintainer: josephgbr <rafael.f.f1@gmail.com>
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Maintainer: josephgbr <rafael.f.f1 at gmail dot com>
 
 pkgname=lib32-nvidia-cg-toolkit
 pkgver=3.1
-pkgrel=2
+pkgrel=3
 pkgdesc="NVIDIA Cg libraries"
 arch=('x86_64')
 url="http://developer.nvidia.com/object/cg_toolkit.html"

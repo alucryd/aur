@@ -1,9 +1,10 @@
-# Maintainer : josephgbr <rafael.f.f1 at gmail.com>
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor : josephgbr <rafael.f.f1 at gmail.com>
 # Contributor : angvp <angvp at archlinux.org>
 
 pkgname=lib32-libaio
 pkgver=0.3.109
-pkgrel=4
+pkgrel=5
 pkgdesc="The Linux-native asynchronous I/O facility (aio) library"
 arch=('x86_64')
 url="http://lse.sourceforge.net/io/aio.html"
