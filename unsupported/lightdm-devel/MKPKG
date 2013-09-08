@@ -1,3 +1,13 @@
 pkgname=('lightdm-devel')
 
+check() {
+  pushd $packagedir/$pkgname
+  eval $(cat PKGBUILD | grep pkgver=)
+  eval $(cat PKGBUILD | grep pkgrel=)
+  [[ -f $repodir/x86_64/$pkgname-$pkgver-$pkgrel-[^-]##.pkg.tar.xz ]] && exit 0
+  popd
+}
+
+check
+
 # vim: ts=2 sw=2 et:

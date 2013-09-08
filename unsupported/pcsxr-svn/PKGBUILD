@@ -2,14 +2,15 @@
 # Contributor: Infy <eugene dot yudin at gmail dot com>
 
 pkgname=pcsxr-svn
-pkgver=83929
+pkgver=87058
 pkgrel=1
 pkgdesc="A Sony PlayStation emulator based on the PCSX-df Project"
 arch=('i686' 'x86_64')
 url="http://pcsxr.codeplex.com/"
 license=('GPL')
-depends=('gtk3' 'libcdio' 'libxv' 'sdl')
+depends=('gtk3' 'libcdio' 'libxv' 'sdl2')
 makedepends=('intltool' 'mesa' 'subversion')
+[[ $CARCH == i686 ]] && makedepends+=('nasm')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}" 'pcsx-df')
 options=('!libtool')
@@ -17,20 +18,20 @@ source=("${pkgname%-*}::svn+https://pcsxr.svn.codeplex.com/svn/pcsxr")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "$SRCDEST"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   svnversion
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
-  ./autogen.sh --prefix=/usr --enable-libcdio --enable-opengl
+  ./autogen.sh --prefix='/usr' --enable-{libcdio,opengl}
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
 }

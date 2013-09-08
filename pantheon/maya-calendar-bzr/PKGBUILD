@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=maya-calendar-bzr
-pkgver=481
+pkgver=486
 pkgrel=1
 pkgdesc="GCal-syncing GTK+ calendar application"
 arch=('i686' 'x86_64')
@@ -10,7 +10,7 @@ license=('GPL3')
 depends=('evolution-data-server' 'granite' 'libpeas')
 makedepends=('bzr' 'cmake' 'vala0.16')
 install="${pkgname%-*}.install"
-source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~tintou/maya/maya-saucy/")
+source=("${pkgname%-*}::bzr+lp:maya/isis")
 sha256sums=('SKIP')
 
 pkgver() {

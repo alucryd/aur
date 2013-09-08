@@ -1,0 +1,35 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Maintainer: Constantin Schomburg <me at xconstruct dot net>
+
+pkgname=liboverlay-scrollbar-gtk3
+pkgver=0.2.16
+pkgrel=1
+pkgdesc="Overlay scrollbar widget - GTK3 version"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/overlay-scrollbar"
+license=('GPL')
+depends=('gtk3')
+source=("https://launchpad.net/overlay-scrollbar/${pkgver%.*}/${pkgver}/+download/overlay-scrollbar-${pkgver}.tar.gz")
+sha256sums=('2403ffb1de3f3a2b83d6473df96c57c85a2a062980231e3fd0e5a9182befe7ec')
+
+prepare() {
+  cd overlay-scrollbar-${pkgver}
+
+  sed 's/install-os3includeHEADERS install-osincludeHEADERS/install-os3includeHEADERS/g' -i os/Makefile.in
+}
+
+build() {
+  cd overlay-scrollbar-${pkgver}
+
+  ./configure --prefix='/usr' --sysconfdir='/etc' --disable-{static,tests} --with-gtk='3'
+  make
+}
+
+package() {
+  cd overlay-scrollbar-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/etc
+}
+
+# vim: ts=2 sw=2 et:
