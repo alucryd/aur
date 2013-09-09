@@ -5,7 +5,7 @@
 pkgbase=lightdm-devel
 pkgname="${pkgbase}"
 true && pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
-pkgver=1.7.12
+pkgver=1.7.13
 pkgrel=1
 
 prepare() {
@@ -105,7 +105,7 @@ url="https://launchpad.net/lightdm"
 license=('GPL3' 'LGPL3')
 makedepends=('gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'polkit' 'qt4' 'qt5-base')
 options=('!libtool')
-source=("https://launchpad.net/lightdm/1.8/${pkgver}/+download/${pkgbase%-*}-${pkgver}.tar.xz"
+source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/${pkgbase%-*}-${pkgver}.tar.xz"
         'lightdm.service'
         'lightdm.tmpfiles'
         'lightdm.pam'
@@ -114,7 +114,7 @@ source=("https://launchpad.net/lightdm/1.8/${pkgver}/+download/${pkgbase%-*}-${p
         'lightdm-default-config.patch'
         'Xsession')
 
-sha256sums=('b13681bc0eb4b111e3b66172739a783b3511f3cdc431f6abb2ab98746f8eef24'
+sha256sums=('02c7a7cf65dd4b0bfbbce4a0c8912c22130f7f303b3c6069138257dff530c2e3'
             '0d2adba25cdbe59e97ffd302083db9d5e23920780f41e04f64512cd6b633289a'
             'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
