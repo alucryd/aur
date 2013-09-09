@@ -1,14 +1,14 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: BlackIkeEagle <ike dot devolder at gmail dot com>
 
-pkgname=xbmc-retroplayer-git
-pkgver=22766
+pkgname=xbmc-devel
+pkgver=13.0alpha7
+_release=Gotham_alpha7
 pkgrel=1
-pkgdesc="XBMC Media Center - GIT retroplayer branch"
+pkgdesc="XBMC Media Center - Development snapshots"
 provides=('xbmc')
-conflicts=('xbmc' 'xbmc-git')
+conflicts=('xbmc')
 arch=('i686' 'x86_64')
-url="https://github.com/garbear/xbmc"
+url="http://xbmc.org/"
 license=('GPL' 'LGPL')
 depends=('afpfs-ng' 'avahi' 'bluez-libs' 'fribidi' 'glew' 'glu' 'hicolor-icon-theme' 'jasper' 'java-runtime-headless' 'libass' 'libbluray' 'libcap' 'libcdio' 'libjpeg-turbo' 'libmad' 'libmicrohttpd' 'libmodplug' 'libmpeg2' 'libmysqlclient' 'libnfs' 'libpng' 'libpulse' 'libsamplerate' 'libssh' 'libtiff' 'libva' 'libxrandr' 'lzo2' 'mesa' 'mesa-demos' 'python2' 'rtmpdump' 'sdl_image' 'sdl_mixer' 'shairplay-git' 'smbclient' 'swig' 'taglib' 'tinyxml' 'unzip' 'xorg-xdpyinfo' 'yajl')
 makedepends=('boost' 'cmake' 'doxygen' 'git' 'gperf' 'libcec' 'libva-vdpau-driver' 'libxinerama' 'nasm' 'udisks' 'upower' 'zip')
@@ -22,27 +22,21 @@ optdepends=('gdb: for meaningful backtraces in case of trouble - STRONGLY RECOMM
             'upower: used to trigger suspend functionality'
             'unrar: access compressed files without unpacking them'
             'pulseaudio: pulseaudio support')
-install="${pkgname%%-*}.install"
-source=("${pkgname%-*}::git+https://github.com/garbear/xbmc.git"
+install="${pkgname%-*}.install"
+source=("https://github.com/xbmc/xbmc/archive/$_release.tar.gz"
         'xbmc.service')
-sha256sums=('SKIP'
+sha256sums=('cce080e18c745218f640c765acdf80dc2a1383d4fdccdb0783ba5636d6db724d'
             '547e06f3141866cd34b1df34025517e9826992b67543af7621d954bcdfa0ba94')
 
-pkgver() {
-  cd ${pkgname%-*}
-
-  git rev-list --count HEAD
-}
-
 prepare() {
-  cd ${pkgname%-*}
+  cd xbmc-$_release
 
   sed 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' -i lib/libdvd/libdvdcss/configure.ac
   sed 's/\(#include \)<libsmbclient\.h>/\1<samba-4.0\/libsmbclient\.h>/g' -i xbmc/filesystem/{SmbFile.cpp,SMBDirectory.cpp}
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd xbmc-$_release
 
 # Note on external-libs:
 #   - We cannot use external python because Arch's python was built with
@@ -115,7 +109,7 @@ build() {
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd xbmc-$_release
 
   make DESTDIR="${pkgdir}" install
 
