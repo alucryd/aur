@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-files-bzr
-pkgver=1316
+pkgver=1328
 pkgrel=1
 pkgdesc="The file manager of the Pantheon desktop"
 arch=('i686' 'x86_64')

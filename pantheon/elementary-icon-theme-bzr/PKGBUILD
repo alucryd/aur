@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=elementary-icon-theme-bzr
-pkgver=1137
+pkgver=1139
 pkgrel=1
 pkgdesc="elementary icon theme"
 arch=('any')

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for pkg in granite-bzr plank-bzr wingpanel-bzr slingshot-launcher-bzr pantheon-files-bzr cerbere-bzr gala-mutter38-bzr; do
+for pkg in granite-bzr libpantheon-bzr contractor-bzr webcontracts-bzr plank-bzr wingpanel-bzr slingshot-launcher-bzr switchboard-bzr switchboard-plug-{pantheon-shell,keyboard,power,elementary-tweaks,default-applications,about}-bzr pantheon-files-bzr noise-bzr pantheon-terminal-bzr cerbere-bzr gala-mutter38-bzr gtk-theme-elementary4.0-bzr elementary-icon-theme-bzr elementary-icons-thirdparty-bzr; do
   cd $pkg
   makepkg -cis
   cd ..
