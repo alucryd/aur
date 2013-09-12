@@ -1,33 +1,27 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
-pkgname=switchboard-plug-about-bzr
-pkgver=138
+pkgname=switchboard-plug-about
+pkgver=0.1.2
 pkgrel=1
 pkgdesc="About plug for Switchboard"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/switchboard-plug-about"
 license=('GPL3')
 depends=('libpantheon' 'switchboard')
-makedepends=('bzr' 'cmake' 'vala0.16')
-source=("bzr+lp:${pkgname%-*}"
+makedepends=('cmake' 'vala0.16')
+source=("https://launchpad.net/${pkgname}/trunk/${pkgver}/+download/${pkgname}-${pkgver}.tgz"
         'about-archlinux.patch')
-sha256sums=('SKIP'
+sha256sums=('1ced8c11b285ac6210121f7edd115958f07a49ef4de365793f2517aade408a04'
             '2c68f1307b939a19a1cccebf75af387c32dfe68cf95f97ed6174fc29c56a2462')
 
-pkgver() {
-  cd ${pkgname%-*}
-
-  bzr revno
-}
-
 prepare() {
-  cd ${pkgname%-*}
+  cd ${pkgname}-${pkgver}
 
   patch -Np1 -i ../about-archlinux.patch
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd ${pkgname}-${pkgver}
 
   if [[ -d build ]]; then
     rm -rf build
@@ -39,7 +33,7 @@ build() {
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd ${pkgname}-${pkgver}/build
 
   make DESTDIR="${pkgdir}" install
 }

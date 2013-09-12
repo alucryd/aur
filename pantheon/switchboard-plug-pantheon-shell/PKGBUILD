@@ -1,25 +1,19 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
-pkgname=switchboard-plug-pantheon-shell-bzr
-pkgver=173
+pkgname=switchboard-plug-pantheon-shell
+pkgver=0.1.2
 pkgrel=1
 pkgdesc="Pantheon Shell plug for Switchboard"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/switchboard-plug-pantheon-shell"
 license=('GPL3')
 depends=('libpantheon' 'switchboard')
-makedepends=('bzr' 'cmake' 'vala0.16')
-source=("bzr+lp:${pkgname%-*}")
-sha256sums=('SKIP')
-
-pkgver() {
-  cd ${pkgname%-*}
-
-  bzr revno
-}
+makedepends=('cmake' 'vala0.16')
+source=("https://launchpad.net/${pkgname}/trunk/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
+sha256sums=('80142ae42ffe29f1d50993da01f5d9cef977f894c39fa7cc72d38069ae38a2c5')
 
 build() {
-  cd ${pkgname%-*}
+  cd ${pkgname}-${pkgver}
 
   if [[ -d build ]]; then
     rm -rf build
@@ -31,7 +25,7 @@ build() {
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd ${pkgname}-${pkgver}/build
 
   make DESTDIR="${pkgdir}" install
 }
