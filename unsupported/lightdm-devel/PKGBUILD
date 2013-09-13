@@ -44,14 +44,14 @@ install="${pkgbase%-*}.install"
   make DESTDIR="${pkgdir}" install
   make DESTDIR="${pkgdir}" -C liblightdm-qt uninstall
   install -m 755 ../Xsession "${pkgdir}"/etc/lightdm/Xsession
-  install -dm 711 "${pkgdir}"/var/log/lightdm
   rm -rf "${pkgdir}"/etc/init
 
-# Persistent home
   install -dm 770 "${pkgdir}"/var/lib/lightdm
+  install -dm 711 "${pkgdir}"/var/log/lightdm
   chmod +t "${pkgdir}"/var/lib/lightdm
   echo 'GDK_CORE_DEVICE_EVENTS=true' > "${pkgdir}"/var/lib/lightdm/.pam_environment
   chmod 644 "${pkgdir}"/var/lib/lightdm/.pam_environment
+  chown 620:620 -R "${pkgdir}"/var/{lib,log}/lightdm
 
 # PAM
   install -m 644 ../lightdm.pam "${pkgdir}"/etc/pam.d/lightdm
