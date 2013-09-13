@@ -35,6 +35,7 @@ build() {
 
   export VALAC=/usr/bin/valac-0.16
   export VAPIGEN=/usr/bin/vapigen-0.16
+  export AUTOMAKE=automake
   ./autogen.sh --prefix=/usr --sysconfdir=/etc --disable-gee-0.8
   make
 }
