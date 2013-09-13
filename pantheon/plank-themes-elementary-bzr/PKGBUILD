@@ -11,7 +11,7 @@ depends=('plank')
 makedepends=('bzr')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::bzr+lp:elementary-community/elementary-plank-themes")
+source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~versable/elementary-community/elementary-plank-themes/")
 sha256sums=('SKIP')
 
 pkgver() {
