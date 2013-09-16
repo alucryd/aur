@@ -1,13 +1,13 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=aegisub-git
-pkgver=3.1.0.7744
+pkgver=3.1.0.7748
 pkgrel=1
 pkgdesc="A general-purpose subtitle editor with ASS/SSA support"
 arch=('i686' 'x86_64')
 url="http://www.aegisub.org"
 license=('GPL' 'BSD')
-depends=('desktop-file-utils' 'ffmpegsource' 'fftw' 'hicolor-icon-theme' 'hunspell' 'libass' 'lua51' 'wxgtk2.9')
+depends=('desktop-file-utils' 'ffms2' 'fftw' 'hicolor-icon-theme' 'hunspell' 'libass' 'lua51' 'wxgtk2.9')
 makedepends=('boost' 'git' 'intltool' 'mesa')
 optdepends=('libpulse: Pulseaudio backend'
             'openal: OpenAL backend'

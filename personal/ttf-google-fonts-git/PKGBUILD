@@ -1,0 +1,33 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: Sebastian Stammler <stammler dot s at gmail dot com>
+# Contributor: Sarkasper <kasper dot menten at gmx dot com>
+# Contributor: Daniel Micay <danielmicay at gmail dot com>
+# Contributor: Michalis Georgiou <mechmg93 at gmail dot com>
+
+pkgname=ttf-google-fonts-git
+pkgver=37
+pkgrel=1
+pkgdesc="Google Fonts catalogue"
+arch=('any')
+url="https://github.com/w0ng/googlefontdirectory"
+license=('various')
+depends=('fontconfig' 'xorg-fonts-encodings' 'xorg-mkfontdir' 'xorg-mkfontscale')
+makedepends=('git')
+provides=("${pkgname%-*}" 'cantarell-fonts' 'jsmath-fonts' 'lohit-fonts' 'oldstand-font' 'otf-goudy' 'ttf-andika' 'ttf-anonymous-pro' 'ttf-cantarell' 'ttf-cardo' 'ttf-chromeos-fonts' 'ttf-comfortaa' 'ttf-droid' 'ttf-google-webfonts-hg' 'ttf-inconsolata' 'ttf-kimberly_geswein_print' 'ttf-medievalsharp' 'ttf-nova' 'ttf-oldstandard' 'ttf-opensans' 'ttf-oxygen' 'ttf-pt-mono' 'ttf-ptsans' 'ttf-pt-sans' 'ttf-roboto' 'ttf-sil-fonts' 'ttf-sortsmillgoudy' 'ttf-source-code-pro' 'ttf-source-sans-pro' 'ttf-ubuntu-font-family' 'ttf-vollkorn')
+conflicts=("${provides}")
+install="${pkgname%-*}.install"
+source=("git://github.com/w0ng/googlefontdirectory.git")
+md5sums=('SKIP')
+
+pkgver() {
+  cd googlefontdirectory
+
+  printf "%s" "$(git rev-list --count HEAD)"
+}
+
+package() {
+  install -dm 755 "$pkgdir"/usr/share/fonts/TTF
+  find . -type f -name *.ttf -exec install -m 644 {} "$pkgdir"/usr/share/fonts/TTF/ \;
+}
+
+# vim: ts=2 sw=2 et:

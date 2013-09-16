@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=granite-bzr
-pkgver=630
+pkgver=633
 pkgrel=1
 pkgdesc="An extension of GTK+ libraries"
 arch=('i686' 'x86_64')
