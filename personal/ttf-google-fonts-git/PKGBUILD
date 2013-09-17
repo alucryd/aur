@@ -10,14 +10,16 @@ pkgrel=1
 pkgdesc="Google Fonts catalogue"
 arch=('any')
 url="https://github.com/w0ng/googlefontdirectory"
-license=('various')
+license=('Apache' 'OFL')
 depends=('fontconfig' 'xorg-fonts-encodings' 'xorg-mkfontdir' 'xorg-mkfontscale')
 makedepends=('git')
 provides=("${pkgname%-*}" 'cantarell-fonts' 'jsmath-fonts' 'lohit-fonts' 'oldstand-font' 'otf-goudy' 'ttf-andika' 'ttf-anonymous-pro' 'ttf-cantarell' 'ttf-cardo' 'ttf-chromeos-fonts' 'ttf-comfortaa' 'ttf-droid' 'ttf-google-webfonts-hg' 'ttf-inconsolata' 'ttf-kimberly_geswein_print' 'ttf-medievalsharp' 'ttf-nova' 'ttf-oldstandard' 'ttf-opensans' 'ttf-oxygen' 'ttf-pt-mono' 'ttf-ptsans' 'ttf-pt-sans' 'ttf-roboto' 'ttf-sil-fonts' 'ttf-sortsmillgoudy' 'ttf-source-code-pro' 'ttf-source-sans-pro' 'ttf-ubuntu-font-family' 'ttf-vollkorn')
 conflicts=("${provides}")
 install="${pkgname%-*}.install"
-source=("git://github.com/w0ng/googlefontdirectory.git")
-md5sums=('SKIP')
+source=("git://github.com/w0ng/googlefontdirectory.git"
+        'OFL.txt::http://scripts.sil.org/cms/scripts/render_download.php?format=file&media_id=OFL_plaintext&filename=OFL.txt')
+md5sums=('SKIP'
+         '6ed93967ff0dc6dd9c8d31c17f817a06')
 
 pkgver() {
   cd googlefontdirectory
@@ -26,8 +28,12 @@ pkgver() {
 }
 
 package() {
-  install -dm 755 "$pkgdir"/usr/share/fonts/TTF
+  install -dm 755 "${pkgdir}"/usr/share/fonts/TTF
   find . -type f -name *.ttf -exec install -m 644 {} "$pkgdir"/usr/share/fonts/TTF/ \;
+
+# License
+  install -dm 755 "${pkgdir}"/usr/share/licenses/${pkgname}
+  install -m 644 {,"${pkgdir}"/usr/share/licenses/${pkgname}/}OFL.txt
 }
 
 # vim: ts=2 sw=2 et:
