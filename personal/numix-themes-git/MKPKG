@@ -1,3 +1,4 @@
+arch=('any')
 pkgname=('numix-themes-git')
 
 check_git $packagedir/$pkgname/${pkgname%-*}

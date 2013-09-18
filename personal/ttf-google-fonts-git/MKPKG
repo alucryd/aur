@@ -1,3 +1,4 @@
+arch=('any')
 pkgname=('ttf-google-fonts-git')
 
 check_git $packagedir/$pkgname/googlefontdirectory
