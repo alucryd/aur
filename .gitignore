@@ -1,3 +1,4 @@
+*.gem
 *.log
 *.pkg.tar.xz
 *.src.tar.gz
@@ -7,6 +8,7 @@
 *.tar.gz
 *.tar.xz
 *.tgz
+*.txt
 src/
 pkg/
 srcpkg/

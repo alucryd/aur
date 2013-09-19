@@ -20,7 +20,7 @@ build() {
 package() {
   local _rubyver="$(ruby --version | sed 's/.* \(.*\..*\..*\)p.*/\1/')"
   install -dm 755 "${pkgdir}"/usr/{lib/ruby/{gems,vendor_ruby}/${_rubyver},share/{doc,vim/vimfiles/syntax}}
-  mv {,"${pkgdir}"/usr/}bin
+  mv {gems/${pkgname%3}-${pkgver},"${pkgdir}"/usr}/bin
   mv gems/${pkgname%3}-${pkgver}/lib/* "${pkgdir}"/usr/lib/ruby/vendor_ruby/${_rubyver}/
   mv gems/${pkgname%3}-${pkgver}/data "${pkgdir}"/usr/share/${pkgname%3}
   mv gems/${pkgname%3}-${pkgver}/manual "${pkgdir}"/usr/share/doc/${pkgname%3}
