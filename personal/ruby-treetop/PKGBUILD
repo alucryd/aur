@@ -1,0 +1,33 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: Emiliano Vavassori <syntaxerrormmm at gmail dot com>
+# Contributor: Guilherme Nogueira <guilherme at nirev dot org>
+
+pkgname=ruby-treetop
+pkgver=1.4.15
+pkgrel=1
+pkgdesc="A Ruby-based text parsing and interpretation DSL"
+arch=('any')
+url="http://functionalform.blogspot.com/"
+license=('MIT')
+depends=('ruby-polyglot>=0.3.1')
+source=("http://rubygems.org/downloads/${pkgname#*-}-${pkgver}.gem")
+noextract=("${pkgname#*-}-$pkgver.gem")
+sha256sums=('ffa68f201c0f62c26b0a1d13233d73194400596964696843f87ebb5d812f12ff')
+
+build() {
+  gem install --no-user-install --ignore-dependencies -i . ${pkgname#*-}-${pkgver}.gem
+}
+
+package() {
+  local _rubyver="$(ruby --version | sed 's/.* \(.*\..*\..*\)p.*/\1/')"
+  install -dm 755 "${pkgdir}"/usr/lib/ruby/{gems,vendor_ruby}/${_rubyver}
+  mv {,"${pkgdir}"/usr/}bin
+  mv gems/${pkgname#*-}-${pkgver}/lib/* "${pkgdir}"/usr/lib/ruby/vendor_ruby/${_rubyver}/
+  mv doc specifications "${pkgdir}"/usr/lib/ruby/gems/${_rubyver}/
+
+# License
+  install -dm 755 "${pkgdir}"/usr/share/licenses/${pkgname}
+  install -m 644 {gems/${pkgname#*-}-${pkgver},"${pkgdir}"/usr/share/licenses/${pkgname}}/LICENSE
+}
+
+# vim: ts=2 sw=2 et:

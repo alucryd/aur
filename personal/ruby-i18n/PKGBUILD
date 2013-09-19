@@ -1,0 +1,31 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: Alexsandr Pavlov <kidoz at mail dot ru>
+
+pkgname=ruby-i18n
+pkgver=0.6.5
+pkgrel=1
+pkgdesc="New wave Internationalization support for Ruby"
+arch=('any')
+url="http://github.com/svenfuchs/i18n"
+license=('MIT')
+depends=('ruby')
+source=("http://rubygems.org/downloads/${pkgname#*-}-${pkgver}.gem")
+noextract=("${pkgname#*-}-${pkgver}.gem")
+sha256sums=('81c63a7d447cafa4b173c549835a3b2479a74e8d03ad815377601497e22d6133')
+
+build() {
+  gem install --no-user-install --ignore-dependencies -i . ${pkgname#*-}-${pkgver}.gem
+}
+
+package() {
+  local _rubyver="$(ruby --version | sed 's/.* \(.*\..*\..*\)p.*/\1/')"
+  install -dm 755 "${pkgdir}"/usr/lib/ruby/{gems,vendor_ruby}/${_rubyver}
+  mv gems/${pkgname#*-}-${pkgver}/lib/* "${pkgdir}"/usr/lib/ruby/vendor_ruby/${_rubyver}/
+  mv doc specifications "${pkgdir}"/usr/lib/ruby/gems/${_rubyver}/
+
+# License
+  install -dm 755 "${pkgdir}"/usr/share/licenses/${pkgname}
+  install -m 644 {gems/${pkgname#*-}-${pkgver},"${pkgdir}"/usr/share/licenses/${pkgname}}/MIT-LICENSE
+}
+
+# vim: ts=2 sw=2 et:

@@ -2,15 +2,14 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=scratch-text-editor-bzr
-pkgver=1195
+pkgver=1208
 pkgrel=1
 pkgdesc="A text editor written in Vala"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/scratch"
 license=('GPL3')
-depends=('gtksourceview3' 'libpeas' 'pantheon-files' 'python2-chardet' 'vte3' 'webkitgtk3' 'libzeitgeist')
+depends=('gtksourceview3' 'libpeas' 'pantheon-files' 'python2-chardet' 'vte3' 'webkitgtk3' 'zeitgeist')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
-optdepends=('zeitgeist: Zeitgeist support')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install

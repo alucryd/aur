@@ -1,0 +1,31 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: Guilherme Nogueira <guilherme at nirev dot org>
+
+pkgname=ruby-polyglot
+pkgver=0.3.3
+pkgrel=1
+pkgdesc="Allows custom language loaders to be hooked into require"
+arch=('any')
+url="http://polyglot.rubyforge.org/"
+license=('MIT')
+depends=('ruby')
+source=("http://rubygems.org/downloads/${pkgname#*-}-${pkgver}.gem")
+noextract=("${pkgname#*-}-${pkgver}.gem")
+sha256sums=('1b0026fa0ce5aef4a65199ff3f5c589a4865265cd1f2f053eb6c4041a3aa5f20')
+
+build() {
+  gem install --no-user-install --ignore-dependencies -i . ${pkgname#*-}-${pkgver}.gem
+}
+
+package() {
+  local _rubyver="$(ruby --version | sed 's/.* \(.*\..*\..*\)p.*/\1/')"
+  install -dm 755 "${pkgdir}"/usr/lib/ruby/{gems,vendor_ruby}/${_rubyver}
+  mv gems/${pkgname#*-}-${pkgver}/lib/* "${pkgdir}"/usr/lib/ruby/vendor_ruby/${_rubyver}/
+  mv doc specifications "${pkgdir}"/usr/lib/ruby/gems/${_rubyver}/
+
+# License
+  install -dm 755 "${pkgdir}"/usr/share/licenses/${pkgname}
+  install -m 644 {gems/${pkgname#*-}-${pkgver},"${pkgdir}"/usr/share/licenses/${pkgname}}/License.txt
+}
+
+# vim: ts=2 sw=2 et:

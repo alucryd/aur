@@ -3,32 +3,30 @@
 
 pkgname=taskjuggler3
 pkgver=3.5.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Project Management Software"
 arch=('any')
 url="http://www.taskjuggler.org"
 license=('GPL')
 depends=('ruby-mail>=2.4.3' 'ruby-term-ansicolor>=1.0.7')
-makedepends=('rubygems')
-optdepends=('ruby-rspec>=2.5.0: Taskjuggler rspec test suite')
-source=("http://gems.rubyforge.org/gems/${pkgname%?}-${pkgver}.gem")
+source=("http://rubygems.org/downloads/${pkgname%3}-${pkgver}.gem")
+noextract=("${pkgname%3}-${pkgver}.gem")
 sha256sums=('42f2e81470be9b2486fc074ba6ff04180258f462fed5c46cba871b7518cd0465')
-noextract=("${pkgname%?}-$pkgver.gem")
+
+build() {
+  gem install --no-user-install --ignore-dependencies -i . ${pkgname%3}-${pkgver}.gem
+}
 
 package() {
-# Install GEM
-  local _gemdir="$(ruby -rubygems -e 'puts Gem.default_dir')"
-  gem install --no-user-install --ignore-dependencies -i "${pkgdir}"${_gemdir} ${pkgname%?}-${pkgver}.gem
-
-# Fix permissions
-  find "${pkgdir}" -type d -exec chmod 755 {} +
-  find "${pkgdir}" -type f -exec chmod 644 {} +
-  chmod 755 "${pkgdir}"/usr/lib/ruby/gems/*/bin/*
-
-# Symlink binaries
-  install -dm 755 "${pkgdir}"/usr/bin
-  cd "${pkgdir}"/usr/bin
-  ln -s ../lib/ruby/gems/*/bin/* .
+  local _rubyver="$(ruby --version | sed 's/.* \(.*\..*\..*\)p.*/\1/')"
+  install -dm 755 "${pkgdir}"/usr/{lib/ruby/{gems,vendor_ruby}/${_rubyver},share/{doc,vim/vimfiles/syntax}}
+  mv {,"${pkgdir}"/usr/}bin
+  mv gems/${pkgname%3}-${pkgver}/lib/* "${pkgdir}"/usr/lib/ruby/vendor_ruby/${_rubyver}/
+  mv gems/${pkgname%3}-${pkgver}/data "${pkgdir}"/usr/share/${pkgname%3}
+  mv gems/${pkgname%3}-${pkgver}/manual "${pkgdir}"/usr/share/doc/${pkgname%3}
+  mv doc specifications "${pkgdir}"/usr/lib/ruby/gems/${_rubyver}/
+  mv "${pkgdir}"/usr/share/{${pkgname%3},vim/vimfiles/syntax}/tjp.vim
+  rm "${pkgdir}"/usr/lib/ruby/vendor_ruby/${_rubyver}/{header.tmpl,updateheader.sh}
 }
 
 # vim: ts=2 sw=2 et:
