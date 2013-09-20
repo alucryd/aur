@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=gala-bzr
-pkgver=358
+pkgver=359
 pkgrel=1
 pkgdesc="Pantheon Window Manager"
 arch=('i686' 'x86_64')
