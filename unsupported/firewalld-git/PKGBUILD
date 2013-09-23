@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=firewalld-git
-pkgver=0.3.4.824
+pkgver=860
 pkgrel=1
 pkgdesc="A firewall daemon with D-BUS interface providing a dynamic firewall"
 arch=('any')
@@ -14,7 +14,7 @@ backup=('etc/conf.d/firewalld'
 provides=('firewalld')
 conflicts=('firewalld')
 install=${pkgname%-*}.install
-source=("${pkgname%-*}::git+http://git.fedorahosted.org/git/firewalld.git"
+source=('git+http://git.fedorahosted.org/git/firewalld.git'
         'firewalld-paths.patch')
 sha256sums=('SKIP'
             '3fdf9cd88a959c19ca9e5d8e098cfbcbdb073db6602f6e9b0f2ddb542e5a88f8')
@@ -22,7 +22,7 @@ sha256sums=('SKIP'
 pkgver() {
   cd ${pkgname%-*}
 
-  echo "$(grep Version firewalld.spec|sed 's|Version: ||').$(git rev-list --count HEAD)"
+  printf "%s" "$(git rev-list --count HEAD)"
 }
 
 prepare() {
