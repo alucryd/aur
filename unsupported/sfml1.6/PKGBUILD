@@ -10,32 +10,33 @@ pkgdesc="A simple, fast, cross-platform, and object-oriented multimedia API"
 arch=('i686' 'x86_64')
 url="http://www.sfml-dev.org/"
 license=('zlib')
-depends=('glew' 'libjpeg' 'libpng' 'libsndfile' 'openal')
-makedepends=('mesa' 'soil')
+depends=('freetype2' 'glew' 'libjpeg' 'libpng' 'libsndfile' 'libxrandr' 'mesa' 'openal')
+makedepends=('soil')
 source=("http://downloads.sourceforge.net/sfml/SFML-${pkgver}-sdk-linux-64.tar.gz"
         'various-fixes.patch')
 sha256sums=('05bdc32286ab2ec8cb1ccdafe53f31830284e09e11ebfc3ab3836c99a0d9654b'
             'b2eccdbe4b37001b83e2ea830b111842276f421caf09d1475b3b1d8e10fb34b2')
 
 prepare() {
-  cd "${srcdir}/SFML-${pkgver}"
+  cd SFML-${pkgver}
 
   patch -Np1 -i ../various-fixes.patch
 }
 
 build() {
-  cd "${srcdir}/SFML-${pkgver}"
+  cd SFML-${pkgver}
 
   make
 }
 
 package() {
-  cd "${srcdir}/SFML-${pkgver}"
+  cd SFML-${pkgver}
 
   make DESTDIR="${pkgdir}" install
 
+# License
   install -dm 755 "${pkgdir}"/usr/share/licenses/${pkgname}
-  install -m 644 "${srcdir}"/SFML-${pkgver}/license.txt "${pkgdir}"/usr/share/licenses/${pkgname}/LICENSE
+  install -m 644 {,"${pkgdir}"/usr/share/licenses/${pkgname}/}license.txt
 }
 
 # vim: ts=2 sw=2 et:
