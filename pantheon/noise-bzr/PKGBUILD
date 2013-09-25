@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=noise-bzr
-pkgver=1531
+pkgver=1532
 pkgrel=1
 pkgdesc="Simple, fast, and good looking music player"
 arch=('i686' 'x86_64')
@@ -20,6 +20,12 @@ pkgver() {
   cd ${pkgname%-*}
 
   bzr revno
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  sed 's|\.\./||' -i src/CMakeLists.txt
 }
 
 build() {

@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=audience-bzr
-pkgver=291
+pkgver=296
 pkgrel=1
 pkgdesc="A modern media player"
 arch=('i686' 'x86_64')

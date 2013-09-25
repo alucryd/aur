@@ -4,7 +4,7 @@
 # Contributor: Flamelab <panosfilip at gmail dot com>
 
 pkgname=gnome-shell-extensions-git
-pkgver=3.8.3.1.real.10
+pkgver=3.10.0.2
 pkgrel=1
 pkgdesc="Extensions for GNOME shell"
 arch=('any')
@@ -15,10 +15,10 @@ makedepends=('git' 'gnome-common' 'intltool')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("git+http://git.gnome.org/browse/${pkgname%-*}#branch=gnome-3-8")
+source=("git+http://git.gnome.org/browse/${pkgname%-*}")
 sha256sums=('SKIP')
 
-_ext="alternate-tab alternative-status-menu apps-menu auto-move-windows drive-menu example launch-new-instance native-window-placement places-menu systemMonitor user-theme window-list windowsNavigator workspace-indicator xrandr-indicator"
+_ext="alternate-tab apps-menu auto-move-windows drive-menu example launch-new-instance native-window-placement places-menu systemMonitor user-theme window-list windowsNavigator workspace-indicator"
 
 pkgver() {
   cd ${pkgname%-*}

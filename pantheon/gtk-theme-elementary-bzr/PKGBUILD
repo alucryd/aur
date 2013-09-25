@@ -1,8 +1,8 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 # Contributor: fresh24 <pascher dot christian at gmail dot com>
 
-pkgname=gtk-theme-elementary4.0-bzr
-pkgver=126
+pkgname=gtk-theme-elementary-bzr
+pkgver=127
 pkgrel=1
 pkgdesc="elementary GTK theme"
 arch=('i686' 'x86_64')
@@ -11,9 +11,9 @@ license=('GPL3')
 depends=('gtk-engine-murrine' 'gtk-engine-unico')
 makedepends=('bzr')
 optdepends=('elementary-icon-theme')
-provides=("${pkgname%4.0-*}" 'elementary-gtk-theme-bzr')
-conflicts=("${pkgname%4.0-*}" 'elementary-gtk-theme-bzr')
-source=("${pkgname%-*}::bzr+lp:egtk/4.x")
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("${pkgname%-*}::bzr+lp:egtk")
 sha256sums=('SKIP')
 
 pkgver() {
