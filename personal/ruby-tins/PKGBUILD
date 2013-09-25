@@ -4,7 +4,7 @@
 
 pkgname=ruby-tins
 pkgver=0.10.0
-pkgrel=1
+pkgrel=2
 pkgdesc="All the stuff that isn't good/big enough for a real library"
 arch=('any')
 url="https://github.com/flori/tins"
@@ -14,19 +14,24 @@ source=("https://rubygems.org/downloads/${pkgname#*-}-${pkgver}.gem")
 noextract=("${pkgname#*-}-${pkgver}.gem")
 sha256sums=('b6cc4ea8c05cc5949326b6ff6205d4d8369835d9b7e5694e1a05888e4cccd5a2')
 
-build() {
-  gem install --no-user-install --ignore-dependencies -i . ${pkgname#*-}-${pkgver}.gem
+prepare() {
+  gem install --no-{document,user-install} --ignore-dependencies -i . ${pkgname#*-}-${pkgver}.gem
 }
 
 package() {
+  cd gems/${pkgname#*-}-${pkgver}
+
   local _rubyver="$(ruby --version | sed 's/.* \(.*\..*\..*\)p.*/\1/')"
-  install -dm 755 "${pkgdir}"/usr/lib/ruby/{gems,vendor_ruby}/${_rubyver}
-  mv gems/${pkgname#*-}-${pkgver}/lib/* "${pkgdir}"/usr/lib/ruby/vendor_ruby/${_rubyver}/
-  mv doc specifications "${pkgdir}"/usr/lib/ruby/gems/${_rubyver}/
+
+  install -dm 755 "${pkgdir}"/usr/lib/ruby/{gems/${_rubyver},vendor_ruby}
+  mv lib "${pkgdir}"/usr/lib/ruby/vendor_ruby/${_rubyver}
+
+# Gem compatibility
+  mv ../../specifications "${pkgdir}"/usr/lib/ruby/gems/${_rubyver}/
 
 # License
   install -dm 755 "${pkgdir}"/usr/share/licenses/${pkgname}
-  install -m 644 {gems/${pkgname#*-}-${pkgver},"${pkgdir}"/usr/share/licenses/${pkgname}}/COPYING
+  install -m 644 {,"${pkgdir}"/usr/share/licenses/${pkgname}/}COPYING
 }
 
 # vim: ts=2 sw=2 et:
