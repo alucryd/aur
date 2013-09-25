@@ -1,0 +1,1882 @@
+==> Making package: noise-bzr 1532-1 (Wed Sep 25 15:16:13 CEST 2013)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Pulling lp:noise ...
+==> Validating source files with sha256sums...
+    noise ... Skipped
+==> Extracting sources...
+  -> Creating working copy of noise bzr repo...
+==> Starting pkgver()...
+==> Removing existing pkg/ directory...
+==> Starting build()...
+-- Shared libraries enabled
+-- Will use sqlheavy-0.1
+-- libnotify enabled
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/config.vala
+-- Icon view workaround disabled
+-- Plugins enabled
+-- MPRIS plugin disabled
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/core/GStreamer/Pipeline.vala:71.51-71.66: warning: Gst.Element.get_pad is deprecated
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/core/GStreamer/Pipeline.vala:82.27-82.48: warning: Gst.Element.get_pad is deprecated
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/core/GStreamer/Pipeline.vala:83.15-83.38: warning: Gst.Element.get_request_pad is deprecated. Use Gst.Element.request_pad
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c: In function ‘noise_libraries_manager_add_library’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c:214:2: warning: passing argument 1 of ‘gee_abstract_map_get_keys’ from incompatible pointer type [enabled by default]
+  _tmp1_ = gee_abstract_map_get_keys ((GeeMap*) _tmp0_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c:40:0:
+/usr/include/gee-1.0/gee.h:792:9: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeSet* gee_abstract_map_get_keys (GeeAbstractMap* self);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c: In function ‘noise_libraries_manager_remove_library’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c:247:2: warning: passing argument 1 of ‘gee_abstract_map_get_keys’ from incompatible pointer type [enabled by default]
+  _tmp1_ = gee_abstract_map_get_keys ((GeeMap*) _tmp0_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c:40:0:
+/usr/include/gee-1.0/gee.h:792:9: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeSet* gee_abstract_map_get_keys (GeeAbstractMap* self);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c: In function ‘noise_libraries_manager_get_library_from_index’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c:284:3: warning: passing argument 1 of ‘gee_abstract_map_get_entries’ from incompatible pointer type [enabled by default]
+   _tmp1_ = gee_abstract_map_get_entries ((GeeMap*) _tmp0_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c:40:0:
+/usr/include/gee-1.0/gee.h:794:9: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeSet* gee_abstract_map_get_entries (GeeAbstractMap* self);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c:311:12: warning: assignment makes integer from pointer without a cast [enabled by default]
+    _tmp12_ = _tmp11_;
+            ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c:320:13: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+     _tmp16_ = _tmp15_;
+             ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c: In function ‘noise_libraries_manager_search_for_string’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c:361:3: warning: passing argument 1 of ‘gee_abstract_map_get_keys’ from incompatible pointer type [enabled by default]
+   _tmp5_ = gee_abstract_map_get_keys ((GeeMap*) _tmp4_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/LibrariesManager.c:40:0:
+/usr/include/gee-1.0/gee.h:792:9: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeSet* gee_abstract_map_get_keys (GeeAbstractMap* self);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Settings.c: In function ‘noise_settings_equalizer_getPresets’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Settings.c:1460:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp18_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp17_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Settings.c:36:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/PluginManager.c: In function ‘noise_plugins_manager_construct’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/PluginManager.c:1415:10: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+  _tmp25_ = peas_engine_get_plugin_list (_tmp24_);
+          ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/PluginManager.c: In function ‘noise_plugins_manager_on_extension_added’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/PluginManager.c:1533:9: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+  _tmp1_ = peas_engine_get_plugin_list (_tmp0_);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Album.c: In function ‘noise_album_get_n_media’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Album.c:361:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp1_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp0_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Album.c:38:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/Playlist.c: In function ‘noise_playlist_is_empty’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/Playlist.c:188:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp1_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp0_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/Playlist.c:36:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Devices/DeviceManager.c: In function ‘__lambda24_’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Devices/DeviceManager.c:370:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Devices/DeviceManager.c:38:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Devices/DeviceManager.c:413:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp15_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp14_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Devices/DeviceManager.c:38:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Devices/DeviceManager.c: In function ‘noise_device_manager_get_device_preferences’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Devices/DeviceManager.c:625:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Devices/DeviceManager.c:38:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c: In function ‘noise_smart_playlist_real_add_media’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c:560:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp17_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp16_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c:37:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c: In function ‘noise_smart_playlist_real_add_medias’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c:660:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp23_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp22_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c:37:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c: In function ‘noise_smart_playlist_queries_to_string’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c:964:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c:37:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c: In function ‘____lambda18_’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c:1189:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp10_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp9_);
+     ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c:37:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c:1235:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp28_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp27_);
+     ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c:37:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c:1325:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp61_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp60_);
+     ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Playlists/SmartPlaylist.c:37:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/String.c: In function ‘noise_string_compare’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/String.c:135:10: warning: assignment from incompatible pointer type [enabled by default]
+  _tmp10_ = g_strcmp0;
+          ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/String.c: In function ‘string_strip’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/String.c:177:2: warning: passing argument 1 of ‘g_strchug’ discards ‘const’ qualifier from pointer target type [enabled by default]
+  g_strstrip (_tmp1_);
+  ^
+In file included from /usr/include/glib-2.0/glib.h:81:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/String.c:34:
+/usr/include/glib-2.0/glib/gstrfuncs.h:177:23: note: expected ‘gchar *’ but argument is of type ‘const gchar *’
+ gchar*                g_strchug        (gchar        *string);
+                       ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c: In function ‘noise_time_utils_time_string_from_seconds’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:138:3: warning: ‘noise_numeric_lowest_uint_from_double’ is deprecated (declared at /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:51) [-Wdeprecated-declarations]
+   _tmp11_ = noise_numeric_lowest_uint_from_double ((gdouble) (_tmp10_ / NOISE_TIME_UTILS_SECONDS_PER_MINUTE));
+   ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:183:2: warning: ‘noise_numeric_lowest_uint_from_double’ is deprecated (declared at /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:51) [-Wdeprecated-declarations]
+  _tmp28_ = noise_numeric_lowest_uint_from_double ((gdouble) (_tmp27_ / NOISE_TIME_UTILS_SECONDS_PER_DAY));
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:189:2: warning: ‘noise_numeric_lowest_uint_from_double’ is deprecated (declared at /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:51) [-Wdeprecated-declarations]
+  _tmp32_ = noise_numeric_lowest_uint_from_double ((gdouble) (_tmp31_ / NOISE_TIME_UTILS_SECONDS_PER_HOUR));
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:195:2: warning: ‘noise_numeric_uint_from_double’ is deprecated (declared at /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:52) [-Wdeprecated-declarations]
+  _tmp36_ = noise_numeric_uint_from_double ((gdouble) (_tmp35_ / NOISE_TIME_UTILS_SECONDS_PER_MINUTE));
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c: In function ‘noise_time_utils_pretty_length’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:392:3: warning: ‘noise_numeric_lowest_uint_from_double’ is deprecated (declared at /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:51) [-Wdeprecated-declarations]
+   _tmp2_ = noise_numeric_lowest_uint_from_double ((gdouble) (_tmp1_ / NOISE_TIME_UTILS_SECONDS_PER_MINUTE));
+   ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:404:2: warning: ‘noise_numeric_lowest_uint_from_double’ is deprecated (declared at /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:51) [-Wdeprecated-declarations]
+  _tmp9_ = noise_numeric_lowest_uint_from_double ((gdouble) (_tmp8_ / NOISE_TIME_UTILS_SECONDS_PER_HOUR));
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:410:2: warning: ‘noise_numeric_lowest_uint_from_double’ is deprecated (declared at /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/TimeUtils.c:51) [-Wdeprecated-declarations]
+  _tmp13_ = noise_numeric_lowest_uint_from_double ((gdouble) (_tmp12_ / NOISE_TIME_UTILS_SECONDS_PER_MINUTE));
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/FileUtils.c: In function ‘noise_file_utils_is_valid_content_type’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/FileUtils.c:1355:3: warning: passing argument 1 of ‘_vala_array_dup6’ from incompatible pointer type [enabled by default]
+   _tmp3_ = (NOISE_MEDIA_CONTENT_TYPES != NULL) ? _vala_array_dup6 (NOISE_MEDIA_CONTENT_TYPES, G_N_ELEMENTS (NOISE_MEDIA_CONTENT_TYPES)) : ((gpointer) NOISE_MEDIA_CONTENT_TYPES);
+   ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/FileUtils.c:1316:16: note: expected ‘gchar **’ but argument is of type ‘const gchar **’
+ static gchar** _vala_array_dup6 (gchar** self, int length) {
+                ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/FileUtils.c: In function ‘noise_file_utils_is_valid_playlist_type’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/FileUtils.c:1451:3: warning: passing argument 1 of ‘_vala_array_dup8’ from incompatible pointer type [enabled by default]
+   _tmp3_ = (NOISE_PLAYLISTS_CONTENT_TYPES != NULL) ? _vala_array_dup8 (NOISE_PLAYLISTS_CONTENT_TYPES, G_N_ELEMENTS (NOISE_PLAYLISTS_CONTENT_TYPES)) : ((gpointer) NOISE_PLAYLISTS_CONTENT_TYPES);
+   ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/FileUtils.c:1412:16: note: expected ‘gchar **’ but argument is of type ‘const gchar **’
+ static gchar** _vala_array_dup8 (gchar** self, int length) {
+                ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c: In function ‘noise_playlists_utils_get_playlist_m3u_file’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:450:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp6_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp5_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:39:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c: In function ‘noise_playlists_utils_save_playlist_pls’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:618:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp6_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp5_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:39:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:640:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp14_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp13_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:39:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c: In function ‘noise_playlists_utils_parse_paths_from_pls’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:1237:2: warning: passing argument 1 of ‘gee_abstract_map_get_values’ from incompatible pointer type [enabled by default]
+  _tmp39_ = gee_abstract_map_get_values ((GeeMap*) _tmp38_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:39:0:
+/usr/include/gee-1.0/gee.h:793:16: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeCollection* gee_abstract_map_get_values (GeeAbstractMap* self);
+                ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c: In function ‘noise_playlists_utils_import_from_playlist_file_info’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:1358:3: warning: passing argument 1 of ‘gee_abstract_map_get_values’ from incompatible pointer type [enabled by default]
+   _tmp1_ = gee_abstract_map_get_values ((GeeMap*) _tmp0_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:39:0:
+/usr/include/gee-1.0/gee.h:793:16: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeCollection* gee_abstract_map_get_values (GeeAbstractMap* self);
+                ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:1383:4: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+    _tmp11_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp10_);
+    ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:39:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:1429:3: warning: passing argument 1 of ‘gee_abstract_map_get_entries’ from incompatible pointer type [enabled by default]
+   _tmp25_ = gee_abstract_map_get_entries ((GeeMap*) _tmp24_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:39:0:
+/usr/include/gee-1.0/gee.h:794:9: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeSet* gee_abstract_map_get_entries (GeeAbstractMap* self);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/PlaylistsUtils.c:1476:12: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+    _tmp41_ = _tmp40_;
+            ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/Icon.c: In function ‘noise_icon_get_file’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/Icon.c:233:2: warning: ‘gtk_icon_info_free’ is deprecated (declared at /usr/include/gtk-3.0/gtk/gtkicontheme.h:198): Use 'g_object_unref' instead [-Wdeprecated-declarations]
+  _gtk_icon_info_free0 (info);
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/Icon.c: In function ‘noise_icon_render_at_size’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/Icon.c:306:6: warning: ‘gtk_icon_info_free’ is deprecated (declared at /usr/include/gtk-3.0/gtk/gtkicontheme.h:198): Use 'g_object_unref' instead [-Wdeprecated-declarations]
+      _gtk_icon_info_free0 (icon_info);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/Icon.c:319:6: warning: ‘gtk_icon_info_free’ is deprecated (declared at /usr/include/gtk-3.0/gtk/gtkicontheme.h:198): Use 'g_object_unref' instead [-Wdeprecated-declarations]
+      _gtk_icon_info_free0 (icon_info);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/Icon.c:359:5: warning: ‘gtk_icon_info_free’ is deprecated (declared at /usr/include/gtk-3.0/gtk/gtkicontheme.h:198): Use 'g_object_unref' instead [-Wdeprecated-declarations]
+     _gtk_icon_info_free0 (icon_info);
+     ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/Utils/Icon.c:366:3: warning: ‘gtk_icon_info_free’ is deprecated (declared at /usr/include/gtk-3.0/gtk/gtkicontheme.h:198): Use 'g_object_unref' instead [-Wdeprecated-declarations]
+   _gtk_icon_info_free0 (icon_info);
+   ^
+error: Package `noise' not found in specified Vala API directories or GObject-Introspection GIR directories
+error: Package `noise' not found in specified Vala API directories or GObject-Introspection GIR directories
+make[2]: make[2]: *** [plugins/Devices/iPod/ipod-device_valac.stamp] Error 1
+make[1]: *** [plugins/Devices/iPod/CMakeFiles/ipod-device.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make[1]: *** [plugins/Devices/AudioPlayers/CMakeFiles/audioplayer-device.dir/all] Error 2
+error: Package `noise' not found in specified Vala API directories or GObject-Introspection GIR directories
+make[2]: *** [plugins/LastFM/lastfm_valac.stamp] Error 1
+make[1]: *** [plugins/LastFM/CMakeFiles/lastfm.dir/all] Error 2
+error: Package `noise' not found in specified Vala API directories or GObject-Introspection GIR directories
+make[2]: *** [plugins/Devices/CDRom/cdrom-device_valac.stamp] Error 1
+make[1]: *** [plugins/Devices/CDRom/CMakeFiles/cdrom-device.dir/all] Error 2
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/src/Widgets/TopDisplay.vala:191.9-191.25: warning: Gtk.Widget.get_pointer has been deprecated since 3.4. Use Gdk.Window.get_device_position
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/src/Dialogs/MediaEditor.vala:291.9-291.25: warning: Gdk.threads_enter has been deprecated since 3.6
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/src/Dialogs/MediaEditor.vala:304.9-304.25: warning: Gdk.threads_leave has been deprecated since 3.6
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘noise_local_library_real_initialize_library’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:940:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp8_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp7_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:1006:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp25_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp24_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:1086:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp44_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp43_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘noise_local_library_remove_all_static_playlists’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:1435:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp5_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp4_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:1506:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp24_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp23_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘__lambda31_’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:2560:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp54_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp53_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:2570:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp61_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp60_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/main.c: In function ‘main’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/main.c:126:2: warning: ‘g_type_init’ is deprecated (declared at /usr/include/glib-2.0/gobject/gtype.h:669) [-Wdeprecated-declarations]
+  g_type_init ();
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:2585:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp68_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp67_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘noise_local_library_media_opened_finished’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:2767:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp4_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp3_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘noise_local_library_real_search_medias’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:3839:7: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+       _tmp14_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp13_);
+       ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘noise_local_library_clear_medias’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:3971:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp4_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp3_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘noise_local_library_real_update_medias’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:4255:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp15_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp14_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘noise_local_library_real_media_from_id’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:4464:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp4_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp3_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘noise_local_library_real_find_media’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:4553:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp4_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp3_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘noise_local_library_real_media_from_file’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:4687:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp4_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp3_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘noise_local_library_real_media_from_uri’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:4786:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp4_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp3_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘noise_local_library_real_medias_from_ids’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:4890:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp5_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp4_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:4937:6: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+      _tmp21_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp20_);
+      ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c: In function ‘noise_local_library_real_medias_from_uris’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c: In function ‘noise_playback_manager_is_shuffled’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:463:2: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+  _tmp1_ = gee_abstract_map_get_size ((GeeMap*) _tmp0_);
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:4997:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp5_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp4_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c: In function ‘noise_playback_manager_current_media’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:515:3: warning: passing argument 1 of ‘gee_abstract_map_get_values’ from incompatible pointer type [enabled by default]
+   _tmp4_ = gee_abstract_map_get_values ((GeeMap*) _tmp3_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:793:16: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeCollection* gee_abstract_map_get_values (GeeAbstractMap* self);
+                ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:5049:6: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+      _tmp23_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp22_);
+      ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LocalLibrary.c:38:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:693:5: warning: passing argument 1 of ‘gee_abstract_map_get_values’ from incompatible pointer type [enabled by default]
+     _tmp26_ = gee_abstract_map_get_values ((GeeMap*) _tmp25_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:793:16: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeCollection* gee_abstract_map_get_values (GeeAbstractMap* self);
+                ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:758:7: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+       _tmp42_ = gee_abstract_map_get_size ((GeeMap*) _tmp41_);
+       ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:764:7: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+       _tmp45_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp44_);
+       ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c: In function ‘__lambda160_’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c: In function ‘noise_playback_manager_getNext’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:2480:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp4_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp3_);
+   ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:846:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:30:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c: In function ‘__lambda161_’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:907:6: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+      _tmp24_ = gee_abstract_map_get_size ((GeeMap*) _tmp23_);
+      ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:2567:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp4_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp3_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:30:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:958:8: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+        _tmp39_ = gee_abstract_map_get_size ((GeeMap*) _tmp38_);
+        ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c: In function ‘__lambda162_’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:2647:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp4_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp3_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:30:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c: In function ‘__lambda163_’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:2722:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp4_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp3_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:30:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:1202:6: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+      _tmp123_ = gee_abstract_map_get_size ((GeeMap*) _tmp122_);
+      ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:1241:8: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+        _tmp135_ = gee_abstract_map_get_size ((GeeMap*) _tmp134_);
+        ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c: In function ‘noise_playback_manager_getPrevious’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:1495:4: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+    _tmp9_ = gee_abstract_map_get_size ((GeeMap*) _tmp8_);
+    ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:1537:7: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+       _tmp25_ = gee_abstract_map_get_size ((GeeMap*) _tmp24_);
+       ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:1563:7: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+       _tmp34_ = gee_abstract_map_get_size ((GeeMap*) _tmp33_);
+       ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:1775:7: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+       _tmp111_ = gee_abstract_map_get_size ((GeeMap*) _tmp110_);
+       ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:1801:4: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+    _tmp119_ = gee_abstract_map_get_size ((GeeMap*) _tmp118_);
+    ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:1843:7: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+       _tmp135_ = gee_abstract_map_get_size ((GeeMap*) _tmp134_);
+       ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:1869:7: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+       _tmp144_ = gee_abstract_map_get_size ((GeeMap*) _tmp143_);
+       ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:2081:7: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+       _tmp221_ = gee_abstract_map_get_size ((GeeMap*) _tmp220_);
+       ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c: In function ‘noise_playback_manager_playMedia’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:2321:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp28_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp27_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c: In function ‘noise_library_window_load_playlists’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:4097:3: warning: passing argument 1 of ‘gee_abstract_map_get_entries’ from incompatible pointer type [enabled by default]
+   _tmp61_ = gee_abstract_map_get_entries ((GeeMap*) _tmp60_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:30:
+/usr/include/gee-1.0/gee.h:794:9: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeSet* gee_abstract_map_get_entries (GeeAbstractMap* self);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:4125:12: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+    _tmp72_ = _tmp71_;
+            ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:4136:13: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+     _tmp77_ = _tmp76_;
+             ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c: In function ‘noise_library_window_update_playlist_badge’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c: In function ‘noise_playback_manager_get_current_index’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:4322:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp6_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp5_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:30:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:3196:2: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+  _tmp1_ = gee_abstract_map_get_size ((GeeMap*) _tmp0_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c: In function ‘noise_playback_manager_set_current_index’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:3218:2: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+  _tmp1_ = gee_abstract_map_get_size ((GeeMap*) _tmp0_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/PlaybackManager.c:37:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c: In function ‘noise_library_window_remove_device’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:4860:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp16_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp15_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:30:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/LyricFetcher.c: In function ‘lyrics_mania_fetcher_fetch_lyrics’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/LyricFetcher.c:393:3: warning: passing argument 3 of ‘g_file_load_contents’ from incompatible pointer type [enabled by default]
+   g_file_load_contents (_tmp5_, NULL, &_tmp6_, &_tmp7_, &_tmp8_, &_inner_error_);
+   ^
+In file included from /usr/include/glib-2.0/gio/gio.h:66:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/LyricFetcher.c:28:
+/usr/include/glib-2.0/gio/gfile.h:1092:10: note: expected ‘char **’ but argument is of type ‘guint8 **’
+ gboolean g_file_load_contents                (GFile                  *file,
+          ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/LyricFetcher.c:458:4: warning: passing argument 3 of ‘g_file_load_contents’ from incompatible pointer type [enabled by default]
+    g_file_load_contents (_tmp20_, NULL, &_tmp21_, &_tmp22_, &_tmp23_, &_inner_error_);
+    ^
+In file included from /usr/include/glib-2.0/gio/gio.h:66:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/LyricFetcher.c:28:
+/usr/include/glib-2.0/gio/gfile.h:1092:10: note: expected ‘char **’ but argument is of type ‘guint8 **’
+ gboolean g_file_load_contents                (GFile                  *file,
+          ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c: In function ‘noise_library_window_playlist_name_edited’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:5946:5: warning: passing argument 1 of ‘gee_abstract_map_get_entries’ from incompatible pointer type [enabled by default]
+     _tmp20_ = gee_abstract_map_get_entries ((GeeMap*) _tmp19_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:30:
+/usr/include/gee-1.0/gee.h:794:9: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeSet* gee_abstract_map_get_entries (GeeAbstractMap* self);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:5973:14: warning: assignment makes integer from pointer without a cast [enabled by default]
+      _tmp31_ = _tmp30_;
+              ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:5984:15: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+       _tmp35_ = _tmp34_;
+               ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:5995:16: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+        _tmp41_ = _tmp40_;
+                ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c: In function ‘noise_library_window_noise_library_window_interface_interface_init’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/LibraryWindow.c:8282:30: warning: assignment from incompatible pointer type [enabled by default]
+  iface->update_sensitivities = (void (*)(NoiseLibraryWindowInterface*)) noise_library_window_real_update_sensitivities;
+                              ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c: In function ‘noise_file_operator_media_imported’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c:1287:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp8_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp7_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c:37:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c: In function ‘noise_file_operator_queue_finished’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c:1370:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c:37:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c:1392:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp12_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp11_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c:37:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c:1459:4: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+    _tmp33_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp32_);
+    ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c:37:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c: In function ‘noise_file_operator_copy_imports_thread’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c:1578:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp1_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp0_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c:37:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c:1594:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp6_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp5_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/FileOperator.c:37:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/CoverartCache.c: In function ‘noise_coverart_cache_get_album_cover’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/CoverartCache.c:518:2: warning: ‘noise_coverart_cache_get_album_key’ is deprecated (declared at /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/CoverartCache.c:469) [-Wdeprecated-declarations]
+  _tmp1_ = noise_coverart_cache_get_album_key (self, _tmp0_);
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/CoverartCache.c:520:2: warning: ‘noise_media_art_cache_get_image_from_key’ is deprecated (declared at /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/CoverartCache.c:324) [-Wdeprecated-declarations]
+  _tmp3_ = noise_media_art_cache_get_image_from_key ((NoiseMediaArtCache*) self, _tmp2_);
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/MediaKeyListener.c: In function ‘_noise_media_key_listener_mediaKeyPressed_gnome_media_keys_media_player_key_pressed’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/MediaKeyListener.c:450:2: warning: passing argument 2 of ‘noise_media_key_listener_mediaKeyPressed’ from incompatible pointer type [enabled by default]
+  noise_media_key_listener_mediaKeyPressed (self, _sender, application, key);
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/MediaKeyListener.c:130:13: note: expected ‘struct GObject *’ but argument is of type ‘struct GnomeMediaKeys *’
+ static void noise_media_key_listener_mediaKeyPressed (NoiseMediaKeyListener* self, GObject* bus, const gchar* application, const gchar* key);
+             ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/CoverartCache.c: In function ‘noise_coverart_cache_lookup_folder_image_file_async_co’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/CoverartCache.c:1121:2: warning: passing argument 2 of ‘noise_file_utils_enumerate_files_async’ from incompatible pointer type [enabled by default]
+  noise_file_utils_enumerate_files_async (_data_->_tmp31_, NOISE_PIXBUF_CACHE_IMAGE_TYPES, G_N_ELEMENTS (NOISE_PIXBUF_CACHE_IMAGE_TYPES), FALSE, NULL, noise_coverart_cache_lookup_folder_image_file_async_ready, _data_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/CoverartCache.c:40:0:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:1307:6: note: expected ‘gchar **’ but argument is of type ‘const gchar **’
+ void noise_file_utils_enumerate_files_async (GFile* folder, gchar** types, int types_length1, gboolean recursive, GCancellable* cancellable, GAsyncReadyCallback _callback_, gpointer _user_data_);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/CoverartCache.c: In function ‘noise_coverart_cache_class_init’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Objects/CoverartCache.c:1315:47: warning: assignment from incompatible pointer type [enabled by default]
+  NOISE_MEDIA_ART_CACHE_CLASS (klass)->get_key = noise_coverart_cache_real_get_key;
+                                               ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/TopDisplay.c: In function ‘noise_top_display_get_current_time’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/TopDisplay.c:774:2: warning: ‘gtk_widget_get_pointer’ is deprecated (declared at /usr/include/gtk-3.0/gtk/gtkwidget.h:779): Use 'gdk_window_get_device_position' instead [-Wdeprecated-declarations]
+  gtk_widget_get_pointer ((GtkWidget*) _tmp0_, &_tmp1_, &_tmp2_);
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/EmbeddedAlert.c: In function ‘string_strip’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/EmbeddedAlert.c:895:2: warning: passing argument 1 of ‘g_strchug’ discards ‘const’ qualifier from pointer target type [enabled by default]
+  g_strstrip (_tmp1_);
+  ^
+In file included from /usr/include/glib-2.0/glib.h:81:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/EmbeddedAlert.c:27:
+/usr/include/glib-2.0/glib/gstrfuncs.h:177:23: note: expected ‘gchar *’ but argument is of type ‘const gchar *’
+ gchar*                g_strchug        (gchar        *string);
+                       ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c: In function ‘noise_simple_option_chooser_setOption’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c:146:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp2_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp1_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c:29:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c: In function ‘noise_simple_option_chooser_appendItem’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c:282:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c:29:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c:330:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp25_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp24_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c:29:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c:334:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp28_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp27_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c:29:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c: In function ‘noise_simple_option_chooser_real_button_press_event’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c:392:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp13_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp12_);
+     ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SimpleOptionChooser.c:29:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SideBar.c: In function ‘granite_widgets_expander_renderer_class_init’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SideBar.c:255:44: warning: assignment from incompatible pointer type [enabled by default]
+  GTK_CELL_RENDERER_CLASS (klass)->get_size = granite_widgets_expander_renderer_real_get_size;
+                                            ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SideBar.c:256:42: warning: assignment from incompatible pointer type [enabled by default]
+  GTK_CELL_RENDERER_CLASS (klass)->render = granite_widgets_expander_renderer_real_render;
+                                          ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SourceListView.c: In function ‘__lambda6_’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SourceListView.c:1273:2: warning: passing argument 1 of ‘noise_library_window_get_library_manager’ from incompatible pointer type [enabled by default]
+  _tmp2_ = noise_library_window_get_library_manager (self);
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SourceListView.c:307:20: note: expected ‘struct NoiseLibraryWindow *’ but argument is of type ‘struct NoisePlayListCategory *’
+ NoiseLocalLibrary* noise_library_window_get_library_manager (NoiseLibraryWindow* self);
+                    ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SourceListView.c: In function ‘noise_source_list_view_remove_playlist’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SourceListView.c:2154:6: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+      _tmp33_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp32_);
+      ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SourceListView.c:27:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SourceListView.c: In function ‘noise_source_list_view_change_playlist_name’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SourceListView.c:2595:6: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+      _tmp33_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp32_);
+      ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SourceListView.c:27:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/StatusBar.c: In function ‘__lambda17_’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/StatusBar.c:977:2: warning: passing argument 1 of ‘noise_library_window_get_library_manager’ from incompatible pointer type [enabled by default]
+  _tmp2_ = noise_library_window_get_library_manager (self);
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/StatusBar.c:362:20: note: expected ‘struct NoiseLibraryWindow *’ but argument is of type ‘struct NoiseWidgetsAddPlaylistChooser *’
+ NoiseLocalLibrary* noise_library_window_get_library_manager (NoiseLibraryWindow* self);
+                    ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/RatingWidget.c: In function ‘granite_widgets_cell_renderer_rating_class_init’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/RatingWidget.c:2381:42: warning: assignment from incompatible pointer type [enabled by default]
+  GTK_CELL_RENDERER_CLASS (klass)->render = granite_widgets_cell_renderer_rating_real_render;
+                                          ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/RatingWidget.c:2382:44: warning: assignment from incompatible pointer type [enabled by default]
+  GTK_CELL_RENDERER_CLASS (klass)->activate = granite_widgets_cell_renderer_rating_real_activate;
+                                            ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SpaceWidget.c: In function ‘space_widget_construct’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SpaceWidget.c:505:2: warning: ‘gtk_scrolled_window_add_with_viewport’ is deprecated (declared at /usr/include/gtk-3.0/gtk/gtkscrolledwindow.h:110): Use 'gtk_container_add' instead [-Wdeprecated-declarations]
+  gtk_scrolled_window_add_with_viewport ((GtkScrolledWindow*) self, (GtkWidget*) _tmp2_);
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SpaceWidget.c: In function ‘space_widget_add_item_at_pos’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SpaceWidget.c:818:2: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+  _tmp6_ = gee_abstract_map_get_size ((GeeMap*) _tmp5_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SpaceWidget.c:29:0:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SpaceWidget.c: In function ‘space_widget_update_bar_item_sizes’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SpaceWidget.c:929:2: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+  _tmp1_ = gee_abstract_map_get_size ((GeeMap*) _tmp0_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SpaceWidget.c:29:0:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SpaceWidget.c:957:3: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+   _tmp11_ = gee_abstract_map_get_size ((GeeMap*) _tmp10_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SpaceWidget.c:29:0:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SpaceWidget.c:1054:3: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+   _tmp41_ = gee_abstract_map_get_size ((GeeMap*) _tmp40_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/SpaceWidget.c:29:0:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGrid.c: In function ‘noise_fast_grid_get_index_from_iter’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGrid.c:227:11: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  result = (gint) _tmp1_;
+           ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c: In function ‘noise_fast_grid_model_real_get_iter’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c:220:25: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  _vala_iter.user_data = (void*) _tmp20_;
+                         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c: In function ‘noise_fast_grid_model_real_get_path’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c:251:34: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  _tmp2_ = g_strdup_printf ("%i", (gint) _tmp1_);
+                                  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c: In function ‘noise_fast_grid_model_real_get_value’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c:331:8: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  row = (gint) _tmp15_;
+        ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c: In function ‘noise_fast_grid_model_real_iter_next’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c:452:32: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  (*iter).user_data = (void*) (((gint) _tmp4_) + 1);
+                                ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c:452:22: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  (*iter).user_data = (void*) (((gint) _tmp4_) + 1);
+                      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c:457:16: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  if (((guint) ((gint) _tmp6_)) >= _tmp8_) {
+                ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c: In function ‘noise_fast_grid_model_real_iter_nth_child’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c:510:25: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  _vala_iter.user_data = (void*) _tmp10_;
+                         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c: In function ‘noise_fast_grid_model_remove’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c:603:34: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  _tmp5_ = g_strdup_printf ("%i", (gint) _tmp4_);
+                                  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c:612:54: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  g_hash_table_remove (_tmp9_, (gpointer) ((gintptr) ((gint) _tmp11_)));
+                                                      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c: In function ‘noise_fast_grid_model_update_row’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastGridModel.c:736:19: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  iter.user_data = (void*) _tmp6_;
+                   ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c: In function ‘noise_fast_model_real_get_iter’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:193:2: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+  _tmp5_ = gee_abstract_map_get_size ((GeeMap*) _tmp4_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:28:0:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:240:25: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  _vala_iter.user_data = (void*) _tmp22_;
+                         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c: In function ‘noise_fast_model_real_get_path’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:275:34: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  _tmp2_ = g_strdup_printf ("%i", (gint) _tmp1_);
+                                  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c: In function ‘noise_fast_model_real_get_value’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:354:8: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  row = (gint) _tmp15_;
+        ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c: In function ‘noise_fast_model_get_object’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:412:82: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  _tmp3_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp0_, (gpointer) ((gintptr) ((gint) _tmp2_)));
+                                                                                  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c: In function ‘noise_fast_model_real_iter_n_children’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:455:3: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_map_get_size ((GeeMap*) _tmp2_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:28:0:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c: In function ‘noise_fast_model_real_iter_next’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:493:10: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  index = (gint) _tmp4_;
+          ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:497:22: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  (*iter).user_data = (void*) _tmp6_;
+                      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:500:2: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+  _tmp9_ = gee_abstract_map_get_size ((GeeMap*) _tmp8_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:28:0:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c: In function ‘noise_fast_model_real_iter_nth_child’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:530:3: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+   _tmp5_ = gee_abstract_map_get_size ((GeeMap*) _tmp4_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:28:0:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:553:25: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  _vala_iter.user_data = (void*) _tmp11_;
+                         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c: In function ‘noise_fast_model_append’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:596:2: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+  _tmp1_ = gee_abstract_map_get_size ((GeeMap*) _tmp0_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:28:0:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:609:2: warning: passing argument 1 of ‘gee_abstract_map_get_size’ from incompatible pointer type [enabled by default]
+  _tmp9_ = gee_abstract_map_get_size ((GeeMap*) _tmp8_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:28:0:
+/usr/include/gee-1.0/gee.h:790:6: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ gint gee_abstract_map_get_size (GeeAbstractMap* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:611:25: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  _vala_iter.user_data = (void*) _tmp10_;
+                         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c: In function ‘noise_fast_model_remove’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:644:10: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  index = (gint) _tmp4_;
+          ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c: In function ‘noise_fast_model_update_row’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastListModel.c:772:19: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  iter.user_data = (void*) _tmp6_;
+                   ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastList.c: In function ‘noise_fast_view_get_index_from_iter’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Widgets/FastView/FastList.c:206:11: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  result = (gint) _tmp1_;
+           ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/DataBase/DataBaseManager.c: In function ‘noise_data_base_manager_save_playlists’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/DataBase/DataBaseManager.c:5555:7: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+       _tmp36_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp35_);
+       ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/DataBase/DataBaseManager.c:29:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/DataBase/DataBaseManager.c: In function ‘noise_data_base_manager_save_playlist’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/DataBase/DataBaseManager.c:5804:4: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+    _tmp20_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp19_);
+    ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/DataBase/DataBaseManager.c:29:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/DataBase/DataBaseManager.c: In function ‘noise_data_base_manager_add_playlist’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/DataBase/DataBaseManager.c:5979:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp10_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp9_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/DataBase/DataBaseManager.c:29:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/DataBase/DataBaseUpdater.c: In function ‘noise_data_base_updater_update_db_sync’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/DataBase/DataBaseUpdater.c:634:6: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+      _tmp5_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp4_);
+      ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/DataBase/DataBaseUpdater.c:25:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c: In function ‘noise_gstreamer_tagger_file_set_finished’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c:383:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c:30:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c: In function ‘noise_gstreamer_tagger_import_media_data_free’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c:586:2: warning: passing argument 1 of ‘gst_mini_object_unref’ from incompatible pointer type [enabled by default]
+  _gst_mini_object_unref0 (_data_->info);
+  ^
+In file included from /usr/include/gstreamer-0.10/gst/gstbuffer.h:27:0,
+                 from /usr/include/gstreamer-0.10/gst/gstpad.h:30,
+                 from /usr/include/gstreamer-0.10/gst/gstelement.h:57,
+                 from /usr/include/gstreamer-0.10/gst/gstbin.h:27,
+                 from /usr/include/gstreamer-0.10/gst/gst.h:35,
+                 from /usr/include/gstreamer-0.10/gst/pbutils/pbutils.h:23,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c:29:
+/usr/include/gstreamer-0.10/gst/gstminiobject.h:198:8: note: expected ‘struct GstMiniObject *’ but argument is of type ‘struct GstDiscovererInfo *’
+ void   gst_mini_object_unref   (GstMiniObject *mini_object);
+        ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c: In function ‘noise_gstreamer_tagger_import_media’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c:617:2: warning: passing argument 1 of ‘gst_mini_object_unref’ from incompatible pointer type [enabled by default]
+  _gst_mini_object_unref0 (_data_->info);
+  ^
+In file included from /usr/include/gstreamer-0.10/gst/gstbuffer.h:27:0,
+                 from /usr/include/gstreamer-0.10/gst/gstpad.h:30,
+                 from /usr/include/gstreamer-0.10/gst/gstelement.h:57,
+                 from /usr/include/gstreamer-0.10/gst/gstbin.h:27,
+                 from /usr/include/gstreamer-0.10/gst/gst.h:35,
+                 from /usr/include/gstreamer-0.10/gst/pbutils/pbutils.h:23,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c:29:
+/usr/include/gstreamer-0.10/gst/gstminiobject.h:198:8: note: expected ‘struct GstMiniObject *’ but argument is of type ‘struct GstDiscovererInfo *’
+ void   gst_mini_object_unref   (GstMiniObject *mini_object);
+        ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c: In function ‘noise_gstreamer_tagger_import_media_co’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c:794:19: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+   _data_->_tmp19_ = gst_discoverer_info_get_tags (_data_->_tmp18_);
+                   ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c:1024:7: warning: passing argument 1 of ‘gst_mini_object_unref’ from incompatible pointer type [enabled by default]
+       _gst_mini_object_unref0 (_data_->audio_stream);
+       ^
+In file included from /usr/include/gstreamer-0.10/gst/gstbuffer.h:27:0,
+                 from /usr/include/gstreamer-0.10/gst/gstpad.h:30,
+                 from /usr/include/gstreamer-0.10/gst/gstelement.h:57,
+                 from /usr/include/gstreamer-0.10/gst/gstbin.h:27,
+                 from /usr/include/gstreamer-0.10/gst/gst.h:35,
+                 from /usr/include/gstreamer-0.10/gst/pbutils/pbutils.h:23,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c:29:
+/usr/include/gstreamer-0.10/gst/gstminiobject.h:198:8: note: expected ‘struct GstMiniObject *’ but argument is of type ‘struct GstDiscovererAudioInfo *’
+ void   gst_mini_object_unref   (GstMiniObject *mini_object);
+        ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c:1065:6: warning: passing argument 1 of ‘gst_mini_object_unref’ from incompatible pointer type [enabled by default]
+      _gst_mini_object_unref0 (_data_->audio_stream);
+      ^
+In file included from /usr/include/gstreamer-0.10/gst/gstbuffer.h:27:0,
+                 from /usr/include/gstreamer-0.10/gst/gstpad.h:30,
+                 from /usr/include/gstreamer-0.10/gst/gstelement.h:57,
+                 from /usr/include/gstreamer-0.10/gst/gstbin.h:27,
+                 from /usr/include/gstreamer-0.10/gst/gst.h:35,
+                 from /usr/include/gstreamer-0.10/gst/pbutils/pbutils.h:23,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/GStreamerTagger.c:29:
+/usr/include/gstreamer-0.10/gst/gstminiobject.h:198:8: note: expected ‘struct GstMiniObject *’ but argument is of type ‘struct GstDiscovererAudioInfo *’
+ void   gst_mini_object_unref   (GstMiniObject *mini_object);
+        ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c: In function ‘noise_cover_import_file_set_finished’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:289:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp7_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp6_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:30:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/Streamer.c: In function ‘string_chug’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/Streamer.c:709:2: warning: passing argument 1 of ‘g_strchug’ discards ‘const’ qualifier from pointer target type [enabled by default]
+  g_strchug (_tmp1_);
+  ^
+In file included from /usr/include/glib-2.0/glib.h:81:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/Streamer.c:26:
+/usr/include/glib-2.0/glib/gstrfuncs.h:177:23: note: expected ‘gchar *’ but argument is of type ‘const gchar *’
+ gchar*                g_strchug        (gchar        *string);
+                       ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/Streamer.c: In function ‘string_strip’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/Streamer.c:724:2: warning: passing argument 1 of ‘g_strchug’ discards ‘const’ qualifier from pointer target type [enabled by default]
+  g_strstrip (_tmp1_);
+  ^
+In file included from /usr/include/glib-2.0/glib.h:81:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/Streamer.c:26:
+/usr/include/glib-2.0/glib/gstrfuncs.h:177:23: note: expected ‘gchar *’ but argument is of type ‘const gchar *’
+ gchar*                g_strchug        (gchar        *string);
+                       ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c: In function ‘noise_cover_import_import_media_data_free’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:510:2: warning: passing argument 1 of ‘gst_mini_object_unref’ from incompatible pointer type [enabled by default]
+  _gst_mini_object_unref0 (_data_->info);
+  ^
+In file included from /usr/include/gstreamer-0.10/gst/gstbuffer.h:27:0,
+                 from /usr/include/gstreamer-0.10/gst/gstpad.h:30,
+                 from /usr/include/gstreamer-0.10/gst/gstelement.h:57,
+                 from /usr/include/gstreamer-0.10/gst/gstbin.h:27,
+                 from /usr/include/gstreamer-0.10/gst/gst.h:35,
+                 from /usr/include/gstreamer-0.10/gst/pbutils/pbutils.h:23,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:29:
+/usr/include/gstreamer-0.10/gst/gstminiobject.h:198:8: note: expected ‘struct GstMiniObject *’ but argument is of type ‘struct GstDiscovererInfo *’
+ void   gst_mini_object_unref   (GstMiniObject *mini_object);
+        ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c: In function ‘noise_cover_import_import_media’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:541:2: warning: passing argument 1 of ‘gst_mini_object_unref’ from incompatible pointer type [enabled by default]
+  _gst_mini_object_unref0 (_data_->info);
+  ^
+In file included from /usr/include/gstreamer-0.10/gst/gstbuffer.h:27:0,
+                 from /usr/include/gstreamer-0.10/gst/gstpad.h:30,
+                 from /usr/include/gstreamer-0.10/gst/gstelement.h:57,
+                 from /usr/include/gstreamer-0.10/gst/gstbin.h:27,
+                 from /usr/include/gstreamer-0.10/gst/gst.h:35,
+                 from /usr/include/gstreamer-0.10/gst/pbutils/pbutils.h:23,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:29:
+/usr/include/gstreamer-0.10/gst/gstminiobject.h:198:8: note: expected ‘struct GstMiniObject *’ but argument is of type ‘struct GstDiscovererInfo *’
+ void   gst_mini_object_unref   (GstMiniObject *mini_object);
+        ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c: In function ‘noise_cover_import_import_art_async_data_free’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:651:2: warning: passing argument 1 of ‘gst_mini_object_unref’ from incompatible pointer type [enabled by default]
+  _gst_mini_object_unref0 (_data_->info);
+  ^
+In file included from /usr/include/gstreamer-0.10/gst/gstbuffer.h:27:0,
+                 from /usr/include/gstreamer-0.10/gst/gstpad.h:30,
+                 from /usr/include/gstreamer-0.10/gst/gstelement.h:57,
+                 from /usr/include/gstreamer-0.10/gst/gstbin.h:27,
+                 from /usr/include/gstreamer-0.10/gst/gst.h:35,
+                 from /usr/include/gstreamer-0.10/gst/pbutils/pbutils.h:23,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:29:
+/usr/include/gstreamer-0.10/gst/gstminiobject.h:198:8: note: expected ‘struct GstMiniObject *’ but argument is of type ‘struct GstDiscovererInfo *’
+ void   gst_mini_object_unref   (GstMiniObject *mini_object);
+        ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c: In function ‘noise_cover_import_import_art_async’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:675:2: warning: passing argument 1 of ‘gst_mini_object_unref’ from incompatible pointer type [enabled by default]
+  _gst_mini_object_unref0 (_data_->info);
+  ^
+In file included from /usr/include/gstreamer-0.10/gst/gstbuffer.h:27:0,
+                 from /usr/include/gstreamer-0.10/gst/gstpad.h:30,
+                 from /usr/include/gstreamer-0.10/gst/gstelement.h:57,
+                 from /usr/include/gstreamer-0.10/gst/gstbin.h:27,
+                 from /usr/include/gstreamer-0.10/gst/gst.h:35,
+                 from /usr/include/gstreamer-0.10/gst/pbutils/pbutils.h:23,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:29:
+/usr/include/gstreamer-0.10/gst/gstminiobject.h:198:8: note: expected ‘struct GstMiniObject *’ but argument is of type ‘struct GstDiscovererInfo *’
+ void   gst_mini_object_unref   (GstMiniObject *mini_object);
+        ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c: In function ‘noise_cover_import_import_art_async_co’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:720:17: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+  _data_->_tmp7_ = gst_discoverer_info_get_tags (_data_->_tmp6_);
+                 ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c: In function ‘noise_cover_import_get_image’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:817:5: warning: passing argument 1 of ‘_gst_structure_copy0’ discards ‘const’ qualifier from pointer target type [enabled by default]
+     _tmp12_ = _gst_structure_copy0 (_tmp11_);
+     ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/GStreamer/CoverImport.c:753:17: note: expected ‘gpointer’ but argument is of type ‘const struct GstStructure *’
+ static gpointer _gst_structure_copy0 (gpointer self) {
+                 ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ViewContainer.c: In function ‘noise_view_container_remove_view’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ViewContainer.c:210:3: warning: passing argument 1 of ‘gee_abstract_map_get_entries’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_map_get_entries ((GeeMap*) _tmp2_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ViewContainer.c:25:0:
+/usr/include/gee-1.0/gee.h:794:9: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeSet* gee_abstract_map_get_entries (GeeAbstractMap* self);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ViewContainer.c:237:12: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+    _tmp14_ = _tmp13_;
+            ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ViewContainer.c:247:13: warning: assignment makes integer from pointer without a cast [enabled by default]
+     _tmp19_ = _tmp18_;
+             ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ViewContainer.c: In function ‘noise_view_container_get_view_index’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ViewContainer.c:297:3: warning: passing argument 1 of ‘gee_abstract_map_get_entries’ from incompatible pointer type [enabled by default]
+   _tmp1_ = gee_abstract_map_get_entries ((GeeMap*) _tmp0_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ViewContainer.c:25:0:
+/usr/include/gee-1.0/gee.h:794:9: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeSet* gee_abstract_map_get_entries (GeeAbstractMap* self);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ViewContainer.c:324:12: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+    _tmp12_ = _tmp11_;
+            ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ViewContainer.c:332:13: warning: assignment makes integer from pointer without a cast [enabled by default]
+     _tmp16_ = _tmp15_;
+             ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/Wrappers/MusicViewWrapper.c: In function ‘noise_music_view_wrapper_welcome_screen_activated’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/Wrappers/MusicViewWrapper.c:1079:4: warning: passing argument 1 of ‘gee_abstract_map_get_entries’ from incompatible pointer type [enabled by default]
+    _tmp25_ = gee_abstract_map_get_entries ((GeeMap*) _tmp24_);
+    ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/Wrappers/MusicViewWrapper.c:30:0:
+/usr/include/gee-1.0/gee.h:794:9: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeSet* gee_abstract_map_get_entries (GeeAbstractMap* self);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/Wrappers/MusicViewWrapper.c:1106:13: warning: assignment makes integer from pointer without a cast [enabled by default]
+     _tmp36_ = _tmp35_;
+             ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/Wrappers/MusicViewWrapper.c:1120:14: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+      _tmp41_ = _tmp40_;
+              ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/DeviceSummaryWidget.c: In function ‘noise_device_summary_widget_sync_clicked’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/DeviceSummaryWidget.c:1514:6: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+      _tmp39_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp38_);
+      ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/DeviceSummaryWidget.c:29:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/DeviceSummaryWidget.c:1696:4: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+    _tmp104_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp103_);
+    ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/DeviceSummaryWidget.c:29:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/DeviceView.c: In function ‘noise_device_view_buildUI’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/DeviceView.c:309:9: warning: assignment from incompatible pointer type [enabled by default]
+  _tmp6_ = gtk_info_bar_get_content_area (_tmp5_);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/DeviceView.c: In function ‘noise_device_view_showImportDialog’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/DeviceView.c:429:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp18_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp17_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/DeviceView.c:29:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ListView.c: In function ‘noise_list_view_set_column_browser_position’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ListView.c:630:4: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+    _tmp10_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp9_);
+    ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ListView.c:25:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c: In function ‘noise_grid_view_setup_focus’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c:486:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp28_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp27_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c:28:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c: In function ‘noise_grid_view_real_add_media’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c:1033:2: warning: passing argument 1 of ‘gee_abstract_map_get_values’ from incompatible pointer type [enabled by default]
+  _tmp35_ = gee_abstract_map_get_values ((GeeMap*) _tmp34_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c:28:0:
+/usr/include/gee-1.0/gee.h:793:16: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeCollection* gee_abstract_map_get_values (GeeAbstractMap* self);
+                ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c: In function ‘noise_grid_view_real_remove_media’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c:1142:3: warning: passing argument 1 of ‘gee_abstract_map_get_entries’ from incompatible pointer type [enabled by default]
+   _tmp25_ = gee_abstract_map_get_entries ((GeeMap*) _tmp24_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c:28:0:
+/usr/include/gee-1.0/gee.h:794:9: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeSet* gee_abstract_map_get_entries (GeeAbstractMap* self);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c:1199:13: warning: assignment discards ‘const’ qualifier from pointer target type [enabled by default]
+     _tmp46_ = _tmp45_;
+             ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c:1267:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp70_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp69_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c:28:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c: In function ‘noise_grid_view_real_val_func’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c:1628:4: warning: ‘noise_coverart_cache_get_album_cover’ is deprecated (declared at /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/GridView/GridView.c:325) [-Wdeprecated-declarations]
+    _tmp7_ = noise_coverart_cache_get_album_cover (_tmp5_, _tmp6_);
+    ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/BrowserColumn.c: In function ‘noise_browser_column_on_menu_item_toggled’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/BrowserColumn.c:458:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp17_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp16_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/BrowserColumn.c:36:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/BrowserColumn.c:531:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp43_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp42_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/BrowserColumn.c:36:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c: In function ‘noise_column_browser_reset_filters’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:479:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:26:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c: In function ‘noise_column_browser_get_filters’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:755:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp8_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp7_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:26:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c: In function ‘noise_column_browser_populate_columns’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:954:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:26:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c: In function ‘noise_column_browser_update_column_separators’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:1581:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp14_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp13_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:26:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c: In function ‘noise_column_browser_get_filtered’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:1770:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:26:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c: In function ‘noise_column_browser_get_visible_columns’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:1834:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:26:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c: In function ‘noise_column_browser_set_visible_columns’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:1901:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/ColumnBrowser/ColumnBrowser.c:26:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/TreeViewSetup.c: In function ‘noise_tree_view_setup_get_columns’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/TreeViewSetup.c:256:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp2_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp1_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/TreeViewSetup.c:26:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/TreeViewSetup.c:265:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp5_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp4_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/TreeViewSetup.c:26:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/TreeViewSetup.c:292:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp13_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp12_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/TreeViewSetup.c:26:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/GenericList.c: In function ‘noise_generic_list_add_media’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/GenericList.c:975:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp20_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp19_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/GenericList.c:26:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/MusicListView.c: In function ‘noise_music_list_view_real_button_press_event’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/MusicListView.c:1093:3: warning: passing argument 2 of ‘gtk_menu_item_set_submenu’ from incompatible pointer type [enabled by default]
+   gtk_menu_item_set_submenu (_tmp47_, _tmp48_);
+   ^
+In file included from /usr/include/gtk-3.0/gtk/gtkcheckmenuitem.h:33:0,
+                 from /usr/include/gtk-3.0/gtk/gtk.h:76,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/MusicListView.c:26:
+/usr/include/gtk-3.0/gtk/gtkmenuitem.h:95:12: note: expected ‘struct GtkWidget *’ but argument is of type ‘struct GtkMenu *’
+ void       gtk_menu_item_set_submenu          (GtkMenuItem         *menu_item,
+            ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/MusicListView.c: In function ‘noise_music_list_view_mediaMenuEditClicked’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/MusicListView.c:1545:5: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+     _tmp9_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp8_);
+     ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/MusicListView.c:27:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/MusicListView.c:1560:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp14_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp13_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/MusicListView.c:27:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/MusicListView.c:1580:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp28_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp27_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Views/ListView/Lists/MusicListView.c:27:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/EqualizerWindow.c: In function ‘noise_equalizer_window_preset_selected’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/EqualizerWindow.c:1237:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp6_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp5_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/EqualizerWindow.c:29:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c: In function ‘noise_smart_playlist_editor_load_smart_playlist’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c:739:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c:25:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c:811:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp29_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp28_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c:25:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c:831:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp35_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp34_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c:25:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c: In function ‘string_strip’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c:878:2: warning: passing argument 1 of ‘g_strchug’ discards ‘const’ qualifier from pointer target type [enabled by default]
+  g_strstrip (_tmp1_);
+  ^
+In file included from /usr/include/glib-2.0/glib.h:81:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c:23:
+/usr/include/glib-2.0/glib/gstrfuncs.h:177:23: note: expected ‘gchar *’ but argument is of type ‘const gchar *’
+ gchar*                g_strchug        (gchar        *string);
+                       ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c: In function ‘noise_smart_playlist_editor_add_row’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c:1062:9: warning: assignment from incompatible pointer type [enabled by default]
+  _tmp1_ = gtk_widget_get_parent ((GtkWidget*) _tmp0_);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c: In function ‘noise_smart_playlist_editor_real_save_click’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c:1158:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp5_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp4_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SmartPlaylistEditor.c:25:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/PreferencesWindow.c: In function ‘noise_preferences_window_build_ui’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/PreferencesWindow.c:380:9: warning: assignment from incompatible pointer type [enabled by default]
+  _tmp5_ = gtk_dialog_get_content_area ((GtkDialog*) self);
+         ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c: In function ‘noise_media_editor_construct’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:450:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp17_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp16_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:518:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp48_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp47_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:522:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp51_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp50_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:534:4: warning: passing argument 1 of ‘gee_abstract_map_get_values’ from incompatible pointer type [enabled by default]
+    _tmp54_ = gee_abstract_map_get_values ((GeeMap*) _tmp53_);
+    ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:793:16: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeCollection* gee_abstract_map_get_values (GeeAbstractMap* self);
+                ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c: In function ‘noise_media_editor_createBasicContent’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:855:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp11_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp10_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:1146:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp128_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp127_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:1206:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp152_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp151_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c: In function ‘noise_media_editor_lyricsFetched’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:1741:2: warning: ‘gdk_threads_enter’ is deprecated (declared at /usr/include/gtk-3.0/gdk/gdkthreads.h:45) [-Wdeprecated-declarations]
+  gdk_threads_enter ();
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:1798:2: warning: ‘gdk_threads_leave’ is deprecated (declared at /usr/include/gtk-3.0/gdk/gdkthreads.h:47) [-Wdeprecated-declarations]
+  gdk_threads_leave ();
+  ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c: In function ‘noise_media_editor_previousClicked’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:1830:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp7_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp6_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c: In function ‘noise_media_editor_nextClicked’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:1875:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:1882:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp9_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp8_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c: In function ‘noise_media_editor_change_media’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:2017:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp7_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp6_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:2077:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp31_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp30_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:2093:3: warning: passing argument 1 of ‘gee_abstract_map_get_values’ from incompatible pointer type [enabled by default]
+   _tmp36_ = gee_abstract_map_get_values ((GeeMap*) _tmp35_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:793:16: note: expected ‘struct GeeAbstractMap *’ but argument is of type ‘struct GeeMap *’
+ GeeCollection* gee_abstract_map_get_values (GeeAbstractMap* self);
+                ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c: In function ‘noise_media_editor_save_medias’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:2280:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp3_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp2_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/MediaEditor.c:37:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/FileNotFoundDialog.c: In function ‘noise_file_not_found_dialog_construct’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/FileNotFoundDialog.c:391:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp34_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp33_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/FileNotFoundDialog.c:38:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/FileNotFoundDialog.c:450:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp57_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp56_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/FileNotFoundDialog.c:38:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/RemoveFilesDialog.c: In function ‘noise_remove_files_dialog_construct’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/RemoveFilesDialog.c:308:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp20_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp19_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/RemoveFilesDialog.c:29:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/RemoveFilesDialog.c:329:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp30_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp29_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/RemoveFilesDialog.c:29:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/RemoveFilesDialog.c:376:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp53_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp52_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/RemoveFilesDialog.c:29:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/RemoveFilesDialog.c:403:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp64_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp63_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/RemoveFilesDialog.c:29:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SyncWarningDialog.c: In function ‘noise_sync_warning_dialog_construct’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SyncWarningDialog.c:315:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp38_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp37_);
+  ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SyncWarningDialog.c:29:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SyncWarningDialog.c:328:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp42_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp41_);
+   ^
+In file included from /usr/include/granite/granite.h:18:0,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/core/noise-core.h:12,
+                 from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/SyncWarningDialog.c:29:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/TransferFromDeviceDialog.c: In function ‘noise_transfer_from_device_dialog_construct’:
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/TransferFromDeviceDialog.c:499:2: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+  _tmp41_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp40_);
+  ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/TransferFromDeviceDialog.c:31:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/TransferFromDeviceDialog.c:512:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp45_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp44_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/TransferFromDeviceDialog.c:31:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/TransferFromDeviceDialog.c:699:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp131_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp130_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/TransferFromDeviceDialog.c:31:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+/home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/TransferFromDeviceDialog.c:746:3: warning: passing argument 1 of ‘gee_abstract_collection_get_size’ from incompatible pointer type [enabled by default]
+   _tmp145_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp144_);
+   ^
+In file included from /home/alucryd/AUR/pantheon/noise-bzr/src/noise/build/src/Dialogs/TransferFromDeviceDialog.c:31:0:
+/usr/include/gee-1.0/gee.h:755:6: note: expected ‘struct GeeAbstractCollection *’ but argument is of type ‘struct GeeCollection *’
+ gint gee_abstract_collection_get_size (GeeAbstractCollection* self);
+      ^
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
