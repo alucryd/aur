@@ -1,0 +1,46 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: Patrick McCarty <pnorcks at gmail dot com>
+
+pkgname=lilypond-devel
+pkgver=2.17.26
+pkgrel=1
+pkgdesc="An automated music engraving system"
+arch=('i686' 'x86_64')
+url="http://lilypond.org/"
+license=('GPL')
+depends=('ghostscript' 'guile1.8' 'pango' 'python2')
+makedepends=('fontforge' 'gsfonts' 't1utils' 'texlive-core')
+provides=("lilypond=${pkgver}")
+conflicts=('lilypond')
+options=('!emptydirs')
+source=("http://download.linuxaudio.org/lilypond/sources/v${pkgver%.*}/lilypond-${pkgver}.tar.gz")
+sha256sums=('76f9d1c0302a4cf42a39dfc5876e6e3560b1f9c999a054d40129b1dece07cc2e')
+
+prepare() {
+  cd lilypond-${pkgver}
+
+  sed -i 's|^#!.*python$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
+  sed -i 's|GUILE_CFLAGS=.*|GUILE_CFLAGS="`pkg-config --cflags guile-1.8`"|
+          s|GUILE_LDFLAGS=.*|GUILE_LDFLAGS="`pkg-config --libs guile-1.8`"|' configure
+}
+
+build() {
+  cd lilypond-${pkgver}
+
+  export GUILE='/usr/bin/guile1.8'
+  export GUILE_CONFIG='/usr/bin/guile-config1.8'
+  export PYTHON='/usr/bin/python2'
+  export PYTHON_CONFIG='python2-config'
+
+  ./configure --prefix=/usr --disable-{debugging,documentation}
+
+  make
+}
+
+package() {
+  cd lilypond-${pkgver}
+
+  make DESTDIR="${pkgdir}" vimdir='/usr/share/vim/vimfiles' install
+}
+
+# vim: ts=2 sw=2 et:
