@@ -2,7 +2,7 @@
 # Contributor: Patrick McCarty <pnorcks at gmail dot com>
 
 pkgname=lilypond-devel
-pkgver=2.17.26
+pkgver=2.17.27
 pkgrel=1
 pkgdesc="An automated music engraving system"
 arch=('i686' 'x86_64')
@@ -14,7 +14,7 @@ provides=("lilypond=${pkgver}")
 conflicts=('lilypond')
 options=('!emptydirs')
 source=("http://download.linuxaudio.org/lilypond/sources/v${pkgver%.*}/lilypond-${pkgver}.tar.gz")
-sha256sums=('76f9d1c0302a4cf42a39dfc5876e6e3560b1f9c999a054d40129b1dece07cc2e')
+sha256sums=('c83dde6127a2c806fc7c2a15e7f5d75176e96df8998f020bc7f2e95464cf32fe')
 
 prepare() {
   cd lilypond-${pkgver}
