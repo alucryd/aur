@@ -1,0 +1,19 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: Star Brilliant <m13253 at  hotmail dot com>
+
+pkgname=soundfont-fluidr3
+pkgver=2.2
+pkgrel=1
+pkgdesc="FluidR3_GM soundfont"
+arch=('any')
+url="http://www.hammersound.net"
+license=('custom:Public Domain')
+source=("http://www.musescore.org/download/fluid-soundfont.tar.gz")
+sha256sums=('c815769e44d86f1507b946a6c48c997c7f650699aea1ec4b11ba66e3415c26b9')
+
+package() {
+  install -dm 755 "${pkgdir}"/usr/share/soundfonts
+  install -m 644 FluidR3*.SF2 "${pkgdir}"/usr/share/soundfonts/FluidR3_GM.SF2
+}
+
+# vim: ts=2 sw=2 et:

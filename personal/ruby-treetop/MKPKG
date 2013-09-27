@@ -1,5 +1,0 @@
-arch=('any')
-pkgname=('ruby-treetop')
-builddeps=('ruby-polyglot')
-
-# vim: ts=2 sw=2 et:

@@ -1,5 +1,0 @@
-arch=('any')
-pkgname=('ruby-term-ansicolor')
-builddeps=('ruby-tins')
-
-# vim: ts=2 sw=2 et:

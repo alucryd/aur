@@ -1,5 +1,0 @@
-arch=('any')
-pkgname=('taskjuggler3')
-builddeps=('ruby-polyglot' 'ruby-mime-types' 'ruby-tins' 'ruby-treetop' 'ruby-mail' 'ruby-term-ansicolor')
-
-# vim: ts=2 sw=2 et:
