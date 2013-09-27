@@ -1,0 +1,41 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+
+pkgname=pantheon-files-plugin-dropbox-bzr
+pkgver=22
+pkgrel=1
+pkgdesc="Dropbox integration for pantheon-files"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/pantheon-files"
+license=('GPL3')
+depends=('pantheon-files')
+makedepends=('bzr' 'cmake')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("bzr+http://bazaar.launchpad.net/~elementary-apps/pantheon-files/${pkgname%-*}/")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  bzr revno
+}
+
+build() {
+  cd ${pkgname%-*}
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  make
+}
+
+package() {
+  cd ${pkgname%-*}/build
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
