@@ -8,8 +8,8 @@ pkgdesc="A VBA fork which improves the capatibility and features of the emulator
 arch=('i686' 'x86_64')
 url="http://vba-m.com"
 license=('GPL2')
-depends=('desktop-file-utils' 'gtkglextmm' 'hicolor-icon-theme' 'sdl' 'sfml1.6')
-makedepends=('cmake' 'mesa')
+depends=('desktop-file-utils' 'gtkglextmm' 'hicolor-icon-theme' 'sdl')
+makedepends=('cmake' 'mesa' 'sfml1.6' 'soil')
 [[ $CARCH == i686 ]] && makedepends+=('nasm')
 conflicts=('vba-m-wx')
 install="${pkgname%-*}.install"
@@ -17,8 +17,8 @@ source=("http://downloads.sourceforge.net/project/vbam/vbam-src/vbam-r${pkgver##
 sha256sums=('148d866c08d7a810be5c845247d212f1d1d07395f2ccdecef10ad81a76072877')
 
 prepare() {
-  sed 's|/usr/include|/usr/include/sfml-1.6|' -i CMakeScripts/FindSFML.cmake
-  sed 's/NAMES sfml-${LOWERCOMPONENT}/NAMES sfml-${LOWERCOMPONENT}-1.6/' -i CMakeScripts/FindSFML.cmake
+  sed 's|/usr/include|/usr/include/sfml-1.6|
+       s/NAMES sfml-${LOWERCOMPONENT}/NAMES sfml-${LOWERCOMPONENT}-s/' -i CMakeScripts/FindSFML.cmake
 }
 
 build() {
