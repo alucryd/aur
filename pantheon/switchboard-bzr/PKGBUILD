@@ -3,14 +3,14 @@
 # Contributor: dserban <dserban01@yahoo.com>
 
 pkgname=switchboard-bzr
-pkgver=401
+pkgver=406
 pkgrel=1
 pkgdesc="Modular desktop settings hub"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/switchboard"
 license=('GPL3')
 depends=('granite' 'libunity')
-makedepends=('bzr' 'cmake' 'vala0.16')
+makedepends=('bzr' 'cmake' 'vala')
 optdepends=('switchboard-plug-about-bzr: About plug'
             'switchboard-plug-default-applications-bzr: Default applications plug'
             'switchboard-plug-pantheon-shell-bzr: Pantheon Shell plug'
@@ -34,7 +34,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
   make
 }
 
