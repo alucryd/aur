@@ -1,8 +1,8 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=wingpanel
-pkgver=0.2.3
-pkgrel=3
+pkgver=0.2.5
+pkgrel=1
 pkgdesc="A super sexy space-saving top panel"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/wingpanel"
@@ -13,8 +13,8 @@ optdepends=('indicator-datetime: Display date and time'
             'indicator-power: Battery idicator')
 makedepends=('cmake' 'vala0.16')
 install="${pkgname}.install"
-source=("https://launchpad.net/${pkgname}/${pkgver%?}x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('064c4ac11c330cd084d96a1497cd2dc38d488afd9410b3ae484d2ed73f749ee3')
+source=("https://launchpad.net/${pkgname}/${pkgver%?}x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
+sha256sums=('c4bc2b78b24d2f943215b68637d6b4ef23ca9f845fab6d6fef9e3896851bb144')
 
 build() {
   cd ${pkgname}-${pkgver}
