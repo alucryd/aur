@@ -3,7 +3,7 @@
 # Contributor: flamelab <panosfilip@gmail.com>
 
 pkgname=wingpanel-bzr
-pkgver=149
+pkgver=151
 pkgrel=1
 pkgdesc="A super sexy space-saving top panel"
 arch=('i686' 'x86_64')
