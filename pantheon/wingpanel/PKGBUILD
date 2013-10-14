@@ -2,12 +2,12 @@
 
 pkgname=wingpanel
 pkgver=0.2.5
-pkgrel=1
+pkgrel=2
 pkgdesc="A super sexy space-saving top panel"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/wingpanel"
 license=('GPL3')
-depends=('granite' 'libindicator3')
+depends=('granite' 'libindicator-gtk3')
 optdepends=('indicator-datetime: Display date and time'
             'indicator-pantheon-session-bzr: Pantheon session indicator'
             'indicator-power: Battery idicator')
