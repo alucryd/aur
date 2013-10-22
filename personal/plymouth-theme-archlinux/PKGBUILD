@@ -1,0 +1,19 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+
+pkgname=plymouth-theme-archlinux
+pkgver=0.1
+pkgrel=1
+pkgdesc="Arch Linux theme for Plymouth"
+arch=('any')
+url="https://www.archlinux.org/"
+license=('GPL3')
+depends=('plymouth')
+source=('plymouth-archlinux.tar.xz')
+sha256sums=('c6322da7fd7995fb245819a1b4c7285d17ce65069d6d4b44f7a869918b4613dc')
+
+package() {
+  mkdir -p "$pkgdir"/usr/share/plymouth/themes
+  cp -dr --no-preserve=ownership archlinux "$pkgdir"/usr/share/plymouth/themes/
+}
+
+# vim: ts=2 sw=2 et:
