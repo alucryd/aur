@@ -1,14 +1,14 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
+# Contributor: Ner0 <darkelfdarkelf666 at yahoo dot co dot uk>
 
 pkgname=noise-bzr
-pkgver=1532
+pkgver=1538
 pkgrel=1
 pkgdesc="Simple, fast, and good looking music player"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
-depends=('desktop-file-utils' 'granite' 'gstreamer0.10-base' 'libgpod' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib')
+depends=('desktop-file-utils' 'granite' 'gstreamer0.10-base' 'json-glib' 'libgpod' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
@@ -36,14 +36,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_BUILD_TYPE='Release' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
   cd ${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:
