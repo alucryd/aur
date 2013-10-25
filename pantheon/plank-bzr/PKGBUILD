@@ -3,18 +3,17 @@
 # Contributor: dcelasun <dcelasun@gmail.com>
 
 pkgname=plank-bzr
-pkgver=906
+pkgver=922
 pkgrel=1
 pkgdesc="Elegant, simple, clean dock"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/plank"
 license=('GPL3')
-depends=('bamf' 'hicolor-icon-theme' 'libdbusmenu-gtk3' 'libgee06')
-makedepends=('bzr' 'gnome-common' 'intltool' 'vala0.16')
+depends=('bamf' 'libdbusmenu-gtk3' 'libgee')
+makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-options=('!libtool')
-install=${pkgname%-*}.install
+install="${pkgname%-*}.install"
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
@@ -33,17 +32,15 @@ prepare() {
 build() {
   cd ${pkgname%-*}
 
-  export VALAC=/usr/bin/valac-0.16
-  export VAPIGEN=/usr/bin/vapigen-0.16
-  export AUTOMAKE=automake
-  ./autogen.sh --prefix=/usr --sysconfdir=/etc --disable-gee-0.8
+  export AUTOMAKE='/usr/bin/automake'
+  ./autogen.sh --prefix='/usr' --sysconfdir='/etc'
   make
 }
 
 package() {
   cd ${pkgname%-*}
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:
