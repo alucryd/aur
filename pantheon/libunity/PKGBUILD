@@ -3,12 +3,12 @@
 
 pkgname=libunity
 pkgver=6.12.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Library for instrumenting and integrating with all aspects of the Unity shell"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/libunity"
 license=('LGPL')
-depends=('dee' 'libdbusmenu' 'libgee06')
+depends=('dee' 'libdbusmenu-glib' 'libgee06')
 makedepends=('gobject-introspection' 'intltool' 'vala')
 options=('!libtool')
 install="${pkgname}.install"
