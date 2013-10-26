@@ -1,13 +1,13 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=firewalld-git
-pkgver=860
+pkgver=955.2f98f28
 pkgrel=1
 pkgdesc="A firewall daemon with D-BUS interface providing a dynamic firewall"
 arch=('any')
 url="http://fedorahosted.org/firewalld"
 license=('GPL2')
-depends=('ebtables' 'gtk3' 'hicolor-icon-theme' 'iptables' 'libnotify' 'networkmanager' 'python2-slip')
+depends=('ebtables' 'gtk3' 'iptables' 'libnotify' 'networkmanager' 'python-slip')
 makedepends=('docbook-xsl' 'git' 'intltool')
 backup=('etc/conf.d/firewalld'
         'etc/firewalld/firewalld.conf')
@@ -22,23 +22,18 @@ sha256sums=('SKIP'
 pkgver() {
   cd ${pkgname%-*}
 
-  printf "%s" "$(git rev-list --count HEAD)"
+  printf "%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 prepare() {
   cd ${pkgname%-*}
 
   patch -Np1 -i ../firewalld-paths.patch
-  sed -i 's/sysconfig/conf\.d/' config/firewalld.service.in
-  sed -i 's|^#!.*python$|#!/usr/bin/python2|
-          s|^#!.*python -Es$|#!/usr/bin/python2|' $(grep -rl '^#!.*python$')
-  sed -i 's/python/python2/g' fix_python_shebang.sh
 }
 
 build () {
   cd ${pkgname%-*}
 
-  export PYTHON='python2'
   ./autogen.sh
   ./configure --prefix='/usr' --sysconfdir='/etc' --disable-schemas-compile
   make
