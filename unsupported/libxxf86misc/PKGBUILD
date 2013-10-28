@@ -2,12 +2,12 @@
 
 pkgname=libxxf86misc
 pkgver=1.0.3
-pkgrel=1
+pkgrel=2
 pkgdesc="X11 XFree86 misc extension library"
 arch=('x86_64' 'i686')
 license=('custom')
 url="http://xorg.freedesktop.org/"
-depends=('libxext')
+depends=('libxext' 'xf86miscproto')
 makedepends=('xorg-util-macros')
 source=("${url}/releases/individual/lib/libXxf86misc-${pkgver}.tar.bz2")
 sha256sums=('563f4200862efd3334c33a669e0a0aae5bab31f3998db75b87a99a697cc26b5b')
@@ -15,7 +15,7 @@ sha256sums=('563f4200862efd3334c33a669e0a0aae5bab31f3998db75b87a99a697cc26b5b')
 build() {
   cd libXxf86misc-${pkgver}
 
-  ./configure --prefix=/usr --disable-static
+  ./configure --prefix='/usr' --disable-static
   make
 }
 
