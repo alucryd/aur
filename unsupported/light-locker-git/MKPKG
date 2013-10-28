@@ -1,0 +1,6 @@
+pkgname=('light-locker')
+builddeps=('xf86miscproto' 'libxxf86misc')
+
+check_git $packagedir/$pkgname/${pkgname%-*}
+
+# vim: ts=2 sw=2 et:
