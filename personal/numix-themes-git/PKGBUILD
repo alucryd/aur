@@ -18,14 +18,14 @@ md5sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  printf "%s" "$(git rev-list --count HEAD)"
+  printf "%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package() {
   cd ${pkgname%-*}
 
   install -dm 755 "$pkgdir"/usr/share/themes/Numix
-  rm -rf {.git,.gitignore,CREDITS,LICENSE,README.md}
+  rm -rf .git .gitignore CREDITS LICENSE README.md
   cp -dr --no-preserve=ownership * "$pkgdir"/usr/share/themes/Numix/
 }
 

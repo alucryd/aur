@@ -1,0 +1,21 @@
+# Maintainer: alucryd <alucryd at gmail dot com> 
+
+pkgname=plank-theme-numix
+pkgver=0.1
+pkgrel=1
+pkgdesc="Numix theme for plank"
+arch=('i686' 'x86_64')
+url="http://me4oslav.deviantart.com/art/Numix-theme-for-Plank-393957556"
+license=('GPL3')
+depends=('plank')
+source=("https://launchpad.net/~numix/+archive/ppa/+files/numix-plank-theme_0.1~ppa.tar.gz")
+sha256sums=('951377d49be903e9257ad72bde18689d3471798e6bc21ea84e1249f0646759ed')
+
+package() {
+  cd numix-plank-theme
+
+  mkdir -p "${pkgdir}"/usr/share/plank/themes
+  cp -dr --no-preserve=ownership {,"${pkgdir}"/usr/share/plank/themes/}Numix
+}
+
+# vim: ts=2 sw=2 et:
