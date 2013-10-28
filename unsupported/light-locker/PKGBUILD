@@ -2,20 +2,20 @@
 
 pkgname=light-locker
 pkgver=1.0.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A simple locker forked from gnome-screensaver"
 arch=('i686' 'x86_64')
 url="https://github.com/the-cavalry/light-locker"
 license=('GPL2')
-depends=('dbus-glib' 'gtk3' 'lightdm')
-makedepends=('gnome-common' 'intltool')
+depends=('dbus-glib' 'gtk3' 'libxxf86misc' 'lightdm')
+makedepends=('gnome-common' 'intltool' 'libxss')
 source=("https://github.com/the-cavalry/${pkgname}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
 sha256sums=('d5db80a5554e038a6b7332239fa587fd78873d0ceb83dd24ba083642ee7a4a29')
 
 build () {
   cd ${pkgname}-${pkgver}
 
-  ./configure --prefix='/usr'
+  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --disable-{schemas-compile,static} --without-console-kit
   make
 }
 
