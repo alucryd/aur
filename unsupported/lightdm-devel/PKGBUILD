@@ -5,7 +5,7 @@
 pkgbase=lightdm-devel
 pkgname="${pkgbase}"
 true && pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
-pkgver=1.7.17
+pkgver=1.9.0
 pkgrel=1
 
 prepare() {
@@ -24,7 +24,7 @@ build() {
 }
 
 package_lightdm-devel() {
-depends=('libgcrypt' 'libxklavier' 'pam' 'polkit' 'systemd')
+depends=('libxklavier' 'polkit' 'systemd')
 optdepends=('xorg-server-xephyr: LightDM test mode'
             'accountsservice: limit visible accounts')
 provides=("lightdm=${pkgver}")
@@ -45,6 +45,7 @@ install="${pkgbase%-*}.install"
   make DESTDIR="${pkgdir}" -C liblightdm-qt uninstall
   install -m 755 ../Xsession "${pkgdir}"/etc/lightdm/Xsession
   rm -rf "${pkgdir}"/etc/init
+  rm -rf "${pkgdir}"/usr/include/lightdm-qt{,5}-3
 
   install -dm 770 "${pkgdir}"/var/lib/lightdm
   install -dm 711 "${pkgdir}"/var/log/lightdm
@@ -72,6 +73,7 @@ pkgdesc=('LightDM Qt client library')
 depends=('lightdm' 'qt4')
 provides=("liblightdm-qt4=${pkgver}")
 conflicts=('liblightdm-qt4')
+options=('!emptydirs')
 
   cd ${pkgbase%-*}-${pkgver}
 
@@ -88,6 +90,7 @@ pkgdesc=('LightDM Qt client library')
 depends=('lightdm' 'qt5-base')
 provides=("liblightdm-qt5=${pkgver}")
 conflicts=('liblightdm-qt5')
+options=('!emptydirs')
 
   cd ${pkgbase%-*}-${pkgver}
 
@@ -103,8 +106,7 @@ pkgdesc="A lightweight display manager"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/lightdm"
 license=('GPL3' 'LGPL3')
-makedepends=('gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'polkit' 'qt4' 'qt5-base')
-options=('!libtool')
+makedepends=('gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'polkit' 'qt4' 'qt5-base' 'systemd')
 source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/${pkgbase%-*}-${pkgver}.tar.xz"
         'lightdm.service'
         'lightdm.tmpfiles'
@@ -114,7 +116,7 @@ source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/${pkgbas
         'lightdm-default-config.patch'
         'Xsession')
 
-sha256sums=('86676ccee2e95b6a8993b8b89c61f800cfe49c1ce612715c37e651ee15de35c5'
+sha256sums=('71e4a464653c0dfe25369bff3271a9ad35c6d8cd5a50c950e56feb1805ca62fa'
             '0d2adba25cdbe59e97ffd302083db9d5e23920780f41e04f64512cd6b633289a'
             'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
