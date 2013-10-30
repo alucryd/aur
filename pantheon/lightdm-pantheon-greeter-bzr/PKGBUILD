@@ -2,14 +2,14 @@
 # Contributor: sh4nks <sh4nks7 at gmail dot com
 
 pkgname=lightdm-pantheon-greeter-bzr
-pkgver=220
+pkgver=223
 pkgrel=1
-pkgdesc="Pantheon greeter for LightDM"
+pkgdesc='Pantheon greeter for LightDM'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-greeter"
 license=('GPL')
 depends=('clutter-gtk' 'granite' 'libindicator-gtk3' 'lightdm')
-makedepends=('bzr' 'cmake' 'vala0.16')
+makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
@@ -22,6 +22,14 @@ pkgver() {
   bzr revno
 }
 
+prepare() {
+  cd ${pkgname%-*}
+
+  sed 's/share\/xgreeters/bin/
+       s/pantheon-greeter/lightdm-pantheon-greeter/g
+       /en_US/d' -i data/pantheon-greeter.desktop
+}
+
 build(){
   cd ${pkgname%-*}
 
@@ -30,21 +38,18 @@ build(){
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DVALA_EXECUTABLE='/usr/bin/valac-0.16' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package(){
   cd ${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 
   install -dm 755 "${pkgdir}"/usr/bin
   mv "${pkgdir}"/usr/{share/xgreeters/,bin/lightdm-}pantheon-greeter
   mv "${pkgdir}"/usr/share/xgreeters/{,lightdm-}pantheon-greeter.desktop
-
-  sed 's/share\/xgreeters/bin/; s/pantheon-greeter/lightdm-pantheon-greeter/g; /en_US/d' -i "${pkgdir}"/usr/share/xgreeters/lightdm-pantheon-greeter.desktop
-
 }
 
 # vim: ts=2 sw=2 et:

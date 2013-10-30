@@ -3,12 +3,12 @@
 pkgname=scour
 pkgver=0.26
 pkgrel=1
-pkgdesc="An SVG scrubber"
+pkgdesc='An SVG scrubber'
 arch=('any')
-url="http://www.codedread.com/scour/"
+url='http://www.codedread.com/scour/'
 license=('APACHE')
-depends=("python2")
-source=("http://www.codedread.com/${pkgname}/${pkgname}-${pkgver}.zip")
+depends=('python2')
+source=("${url}/${pkgname}-${pkgver}.zip")
 sha256sums=('bb9ff799ed5590ac6611a1d7325d722541eb9b18937dcf40b086d7d35b7a2a1f')
 
 prepare() {

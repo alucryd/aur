@@ -3,12 +3,12 @@
 pkgname=maya-calendar-bzr
 pkgver=486
 pkgrel=1
-pkgdesc="GCal-syncing GTK+ calendar application"
+pkgdesc='GCal-syncing GTK+ calendar application'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/maya"
+url="https://launchpad.net/${pkgname%%-*}"
 license=('GPL3')
 depends=('evolution-data-server' 'granite' 'libpeas')
-makedepends=('bzr' 'cmake' 'vala0.16')
+makedepends=('bzr' 'cmake' 'vala')
 install="${pkgname%-*}.install"
 source=("${pkgname%-*}::bzr+lp:maya/isis")
 sha256sums=('SKIP')
@@ -34,7 +34,7 @@ build() {
 package() {
   cd ${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

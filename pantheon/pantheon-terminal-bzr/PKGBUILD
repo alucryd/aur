@@ -4,12 +4,12 @@
 pkgname=pantheon-terminal-bzr
 pkgver=448
 pkgrel=1
-pkgdesc="A modern terminal from elementary project"
+pkgdesc='A modern terminal from elementary project'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/pantheon-terminal"
+url='https://launchpad.net/pantheon-terminal'
 license=('GPL3')
 depends=('granite' 'libnotify' 'vte3')
-makedepends=('bzr' 'cmake' 'vala0.16')
+makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install=${pkgname}.install
@@ -24,14 +24,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
   cd ${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

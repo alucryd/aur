@@ -2,14 +2,14 @@
 
 pkgname=cerbere
 pkgver=0.2
-pkgrel=2
-pkgdesc="A service to relaunch Pantheon apps"
+pkgrel=3
+pkgdesc='A service to relaunch Pantheon apps'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/cerbere"
+url='https://launchpad.net/cerbere'
 license=('GPL2')
 depends=('dconf' 'libgee06')
-makedepends=('cmake' 'vala0.16')
-install=${pkgname}.install
+makedepends=('cmake' 'vala')
+install="${pkgname}.install"
 source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
 sha256sums=('cd0261877ef50495c7aaacffe216f9aa06e9a7d9a85444af7d5b6c17b2a245f5')
 
@@ -21,14 +21,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
   cd ${pkgname}-${pkgver}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

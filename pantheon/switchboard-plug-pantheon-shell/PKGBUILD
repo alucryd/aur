@@ -2,13 +2,13 @@
 
 pkgname=switchboard-plug-pantheon-shell
 pkgver=0.1.2
-pkgrel=1
-pkgdesc="Pantheon Shell plug for Switchboard"
+pkgrel=2
+pkgdesc='Pantheon Shell plug for Switchboard'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/switchboard-plug-pantheon-shell"
+url='https://launchpad.net/switchboard-plug-pantheon-shell'
 license=('GPL3')
 depends=('libpantheon' 'switchboard')
-makedepends=('cmake' 'vala0.16')
+makedepends=('cmake' 'vala')
 source=("https://launchpad.net/${pkgname}/trunk/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
 sha256sums=('80142ae42ffe29f1d50993da01f5d9cef977f894c39fa7cc72d38069ae38a2c5')
 
@@ -20,7 +20,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DVALA_EXECUTABLE='/usr/bin/valac-0.16'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

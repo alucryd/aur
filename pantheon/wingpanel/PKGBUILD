@@ -2,18 +2,18 @@
 
 pkgname=wingpanel
 pkgver=0.2.5
-pkgrel=2
-pkgdesc="A super sexy space-saving top panel"
+pkgrel=3
+pkgdesc='A super sexy space-saving top panel'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/wingpanel"
+url="https://launchpad.net/${pkgname}"
 license=('GPL3')
 depends=('granite' 'libindicator-gtk3')
 optdepends=('indicator-datetime: Display date and time'
             'indicator-pantheon-session-bzr: Pantheon session indicator'
             'indicator-power: Battery idicator')
-makedepends=('cmake' 'vala0.16')
+makedepends=('cmake' 'vala')
 install="${pkgname}.install"
-source=("https://launchpad.net/${pkgname}/${pkgver%?}x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
+source=("https://launchpad.net/${pkgname}/0.2.x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
 sha256sums=('c4bc2b78b24d2f943215b68637d6b4ef23ca9f845fab6d6fef9e3896851bb144')
 
 build() {
@@ -24,14 +24,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DVALA_EXECUTABLE='/usr/bin/valac-0.16' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
   cd ${pkgname}-${pkgver}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

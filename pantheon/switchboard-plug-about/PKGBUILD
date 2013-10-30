@@ -2,13 +2,13 @@
 
 pkgname=switchboard-plug-about
 pkgver=0.1.2
-pkgrel=1
+pkgrel=2
 pkgdesc="About plug for Switchboard"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/switchboard-plug-about"
 license=('GPL3')
 depends=('libpantheon' 'switchboard')
-makedepends=('cmake' 'vala0.16')
+makedepends=('cmake' 'vala')
 source=("https://launchpad.net/${pkgname}/trunk/${pkgver}/+download/${pkgname}-${pkgver}.tgz"
         'about-archlinux.patch')
 sha256sums=('1ced8c11b285ac6210121f7edd115958f07a49ef4de365793f2517aade408a04'
@@ -28,7 +28,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DVALA_EXECUTABLE='/usr/bin/valac-0.16'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

@@ -1,15 +1,15 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
+# Contributor: Ner0 <darkelfdarkelf666 at yahoo dot co dot uk>
 
 pkgname=contractor-bzr
-pkgver=130
+pkgver=131
 pkgrel=1
 pkgdesc="A service for sharing data between apps"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/contractor"
 license=('GPL3')
 depends=('glib2' 'seahorse')
-makedepends=('bzr' 'cmake' 'vala0.16')
+makedepends=('bzr' 'cmake' 'vala')
 optdepends=('brasero: Burn Disc context menu entries'
             'file-roller: Archive context menu entries'
             'gnome-bluetooth: Bluetooth context-menu entry'
@@ -41,7 +41,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

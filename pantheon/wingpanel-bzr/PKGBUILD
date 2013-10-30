@@ -3,15 +3,15 @@
 # Contributor: flamelab <panosfilip@gmail.com>
 
 pkgname=wingpanel-bzr
-pkgver=151
+pkgver=154
 pkgrel=1
-pkgdesc="A super sexy space-saving top panel"
+pkgdesc='A super sexy space-saving top panel'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/wingpanel"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('granite' 'libindicator-gtk3')
 optdepends=('indicator-pantheon-session-bzr: Pantheon session indicator')
-makedepends=('bzr' 'cmake' 'vala0.16')
+makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
@@ -32,14 +32,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
   cd ${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

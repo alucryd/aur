@@ -4,13 +4,12 @@
 pkgname=libunity
 pkgver=6.12.0
 pkgrel=3
-pkgdesc="Library for instrumenting and integrating with all aspects of the Unity shell"
+pkgdesc='Library for instrumenting and integrating with all aspects of the Unity shell'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/libunity"
+url='https://launchpad.net/libunity'
 license=('LGPL')
 depends=('dee' 'libdbusmenu-glib' 'libgee06')
 makedepends=('gobject-introspection' 'intltool' 'vala')
-options=('!libtool')
 install="${pkgname}.install"
 source=("http://launchpad.net/${pkgname}/6.0/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
 sha256sums=('4d2e5dcdff0347ddd3ff488706263bf1436060565e6c1e304a1da431e8554dd9')
@@ -28,9 +27,10 @@ package() {
 
   make DESTDIR="${pkgdir}" install
 
-# Install GI overrides for python 3 as well
-  install -dm 755 "${pkgdir}"/usr/lib/python3.3/site-packages/gi/overrides
-  ln -s ../../../../python2.7/site-packages/gi/overrides/Unity.py "${pkgdir}"/usr/lib/python3.3/site-packages/gi/overrides/Unity.py
+# Don't see those on packages in pkgs.org, disabled until someone complains.
+## Install GI overrides for python 3 as well
+#  install -dm 755 "${pkgdir}"/usr/lib/python3.3/site-packages/gi/overrides
+#  ln -s ../../../../python2.7/site-packages/gi/overrides/Unity.py "${pkgdir}"/usr/lib/python3.3/site-packages/gi/overrides/Unity.py
 }
 
 # vim: ts=2 sw=2 et:

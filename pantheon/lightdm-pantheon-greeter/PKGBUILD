@@ -3,15 +3,23 @@
 pkgname=lightdm-pantheon-greeter
 pkgver=1.0.2
 pkgrel=1
-pkgdesc="Pantheon greeter for LightDM"
+pkgdesc='Pantheon greeter for LightDM'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/pantheon-greeter"
+url='https://launchpad.net/pantheon-greeter'
 license=('GPL')
 depends=('clutter-gtk' 'granite' 'libindicator-gtk3' 'lightdm')
-makedepends=('cmake' 'vala0.16')
-install=${pkgname}.install
+makedepends=('cmake' 'vala')
+install="${pkgname}.install"
 source=("https://launchpad.net/${pkgname#*-}/${pkgver%%.*}.x/${pkgver}/+download/${pkgname#*-}-${pkgver}.tgz")
 sha256sums=('28e92fa37bf4084c110f3037df70ae8d8e51db3719e639b18af8eefdfc339fb9')
+
+prepare() {
+  cd ${pkgname#*-}-${pkgver}
+
+  sed 's/share\/xgreeters/bin/
+       s/pantheon-greeter/lightdm-pantheon-greeter/g
+       /en_US/d' -i data/pantheon-greeter.desktop
+}
 
 build() {
   cd ${pkgname#*-}-${pkgver}
@@ -21,23 +29,18 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
   cd ${pkgname#*-}-${pkgver}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 
   install -dm 755 "${pkgdir}"/usr/bin
   mv "${pkgdir}"/usr/{share/xgreeters/,bin/lightdm-}pantheon-greeter
   mv "${pkgdir}"/usr/share/xgreeters/{,lightdm-}pantheon-greeter.desktop
-
-  sed 's/share\/xgreeters/bin/
-       s/pantheon-greeter/lightdm-pantheon-greeter/g
-        /en_US/d' -i "${pkgdir}"/usr/share/xgreeters/lightdm-pantheon-greeter.desktop
-
 }
 
 # vim: ts=2 sw=2 et:

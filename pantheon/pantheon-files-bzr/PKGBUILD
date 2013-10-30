@@ -1,14 +1,14 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-files-bzr
-pkgver=1341
+pkgver=1364
 pkgrel=1
-pkgdesc="The file manager of the Pantheon desktop"
+pkgdesc='The file manager of the Pantheon desktop'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/pantheon-files"
+url='https://launchpad.net/pantheon-files'
 license=('GPL3')
 depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
-makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala0.16')
+makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala')
 optdepends=('contractor-bzr: Plugins integration'
             "${pkgname%-*}-plugin-dropbox-bzr: Dropbox integration"
             'tumbler: Thumbnails generation')
@@ -32,14 +32,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
   cd ${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

@@ -4,12 +4,12 @@
 pkgname=pantheon-notify-bzr
 pkgver=27
 pkgrel=1
-pkgdesc="Stylish and standard-compliant notification daemon"
+pkgdesc='Stylish and standard-compliant notification daemon'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/pantheon-notify"
+url='https://launchpad.net/pantheon-notify'
 license=('GPL3')
 depends=('clutter-gtk' 'granite' 'libwnck3')
-makedepends=('bzr' 'cmake' 'vala0.16')
+makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=("bzr+lp:${pkgname%-*}")
@@ -29,14 +29,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 
 package() {
   cd ${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

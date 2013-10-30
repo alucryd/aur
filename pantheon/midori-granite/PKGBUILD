@@ -5,10 +5,10 @@ pkgver=0.5.5
 pkgrel=1
 pkgdesc='Lightweight web browser based on Gtk WebKit'
 arch=('i686' 'x86_64')
-url="http://twotoasts.de/index.php/midori/"
+url='http://twotoasts.de/index.php/midori/'
 license=('LGPL2.1')
 depends=('gcr' 'granite' 'libnotify' 'libunique3' 'libxss' 'libzeitgeist' 'webkitgtk3')
-makedepends=('clutter-gtk' 'gtk-doc' 'intltool' 'librsvg' 'libxml2' 'python2' 'vala0.16')
+makedepends=('clutter-gtk' 'gtk-doc' 'intltool' 'librsvg' 'libxml2' 'python2' 'vala')
 optdepends=('gstreamer0.10-ugly-plugins: HTML5 videos support'
             'aria2: Download utility')
 provides=("${pkgname%-*}")
@@ -28,8 +28,6 @@ build() {
   cd ${pkgname%%-*}-${pkgver}
 
   export PYTHON='/usr/bin/python2'
-  export VALAC='/usr/bin/valac-0.16'
-  export VAPIGEN='/usr/bin/vapigen-0.16'
   ./configure --prefix=/usr --jobs="$(echo $MAKEFLAGS | sed 's/.*-j\([0-9]*\).*/\1/')" --enable-{addons,apidocs,docs,granite,gtk3,nls,unique}
   make
 }

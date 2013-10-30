@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-print"
 license=('GPL3')
 depends=('contractor' 'gtk3')
-makedepends=('bzr' 'cmake' 'vala0.16')
+makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=("bzr+lp:${pkgname%-*}")
@@ -28,7 +28,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

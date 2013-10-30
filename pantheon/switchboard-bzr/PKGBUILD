@@ -1,9 +1,9 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
-# Contributor: dserban <dserban01@yahoo.com>
+# Contributor: Ner0 <darkelfdarkelf666 at yahoo dot co dot uk>
+# Contributor: dserban <dserban01 at yahoo dot com>
 
 pkgname=switchboard-bzr
-pkgver=406
+pkgver=407
 pkgrel=1
 pkgdesc="Modular desktop settings hub"
 arch=('i686' 'x86_64')
@@ -13,6 +13,8 @@ depends=('granite' 'libunity')
 makedepends=('bzr' 'cmake' 'vala')
 optdepends=('switchboard-plug-about-bzr: About plug'
             'switchboard-plug-default-applications-bzr: Default applications plug'
+            'switchboard-plug-elementary-tweaks-bzr: Elementary tweaks plug'
+            'switchboard-plug-keyboard-bzr: Keyboard plug'
             'switchboard-plug-pantheon-shell-bzr: Pantheon Shell plug'
             'switchboard-plug-power-bzr: Power plug')
 provides=("${pkgname%-*}")
@@ -34,7 +36,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

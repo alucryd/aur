@@ -8,8 +8,11 @@ pkgdesc="The text editor that works"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/scratch"
 license=('GPL3')
-depends=('gtksourceview3' 'libpeas' 'pantheon-files' 'python2-chardet' 'vte3' 'webkitgtk3' 'zeitgeist')
-makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
+depends=('gtksourceview3' 'libpeas' 'python2-chardet' 'libzeitgeist')
+makedepends=('bzr' 'cmake' 'gobject-introspection' 'pantheon-files' 'vala' 'vte3' 'webkitgtk3')
+optdepends=('vala: Outline plugin'
+            'vte3: Terminal plugin'
+            'webkitgtk3: Browser Preview plugin')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install

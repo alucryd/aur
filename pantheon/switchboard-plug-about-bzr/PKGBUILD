@@ -1,14 +1,16 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=switchboard-plug-about-bzr
-pkgver=139
+pkgver=142
 pkgrel=1
-pkgdesc="About plug for Switchboard"
+pkgdesc='About plug for Switchboard'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/switchboard-plug-about"
+url='https://launchpad.net/switchboard-plug-about'
 license=('GPL3')
 depends=('libpantheon' 'switchboard')
-makedepends=('bzr' 'cmake' 'vala0.16')
+makedepends=('bzr' 'cmake' 'vala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 source=("bzr+lp:${pkgname%-*}"
         'about-archlinux.patch')
 sha256sums=('SKIP'
@@ -34,7 +36,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DVALA_EXECUTABLE='/usr/bin/valac-0.16'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

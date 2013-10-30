@@ -1,3 +1,4 @@
 pkgname=('libunity')
+builddeps=('dee')
 
 # vim: ts=2 sw=2 et:

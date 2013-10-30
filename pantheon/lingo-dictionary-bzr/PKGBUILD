@@ -5,15 +5,15 @@
 pkgname=lingo-dictionary-bzr
 pkgver=179
 pkgrel=1
-pkgdesc="The sexiest dictionary on Earth and Jupiter"
+pkgdesc='The sexiest dictionary on Earth and Jupiter'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/lingo-dictionary"
+url='https://launchpad.net/lingo-dictionary'
 license=('GPL3')
 depends=('granite' 'json-glib' 'libsoup')
-makedepends=('bzr' 'cmake' 'sqlite' 'vala0.16')
+makedepends=('bzr' 'cmake' 'sqlite' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-install=${pkgname}.install
+install="${pkgname}.install"
 source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~elementary-apps/lingo-dictionary/lingo/")
 sha256sums=('SKIP')
 
@@ -25,14 +25,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
  cd ${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

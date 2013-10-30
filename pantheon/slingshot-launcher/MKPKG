@@ -1,4 +1,4 @@
 pkgname=('slingshot-launcher')
-builddeps=('granite' 'libdbusmenu' 'libunity' 'vala0.16')
+builddeps=('dee' 'libunity')
 
 # vim: ts=2 sw=2 et:
