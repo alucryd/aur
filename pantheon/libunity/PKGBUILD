@@ -6,12 +6,12 @@ pkgver=6.12.0
 pkgrel=3
 pkgdesc='Library for instrumenting and integrating with all aspects of the Unity shell'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/libunity'
+url="https://launchpad.net/${pkgname}"
 license=('LGPL')
-depends=('dee' 'libdbusmenu-glib' 'libgee06')
+depends=('dee' 'gtk3' 'libdbusmenu-glib' 'libgee06')
 makedepends=('gobject-introspection' 'intltool' 'vala')
 install="${pkgname}.install"
-source=("http://launchpad.net/${pkgname}/6.0/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
+source=("${url}/6.0/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
 sha256sums=('4d2e5dcdff0347ddd3ff488706263bf1436060565e6c1e304a1da431e8554dd9')
 
 build() {
