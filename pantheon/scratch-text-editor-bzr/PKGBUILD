@@ -4,7 +4,7 @@
 pkgname=scratch-text-editor-bzr
 pkgver=1212
 pkgrel=1
-pkgdesc="A text editor written in Vala"
+pkgdesc="The text editor that works"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/scratch"
 license=('GPL3')
@@ -38,14 +38,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
   cd ${pkgname%%-*}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
   chmod +x "${pkgdir}"/usr/share/scratch/scripts/*.py
 }
 

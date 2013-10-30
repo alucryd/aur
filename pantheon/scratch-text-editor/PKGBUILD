@@ -4,7 +4,7 @@
 pkgname=scratch-text-editor
 pkgver=2.0.1
 pkgrel=1
-pkgdesc="A text editor written in Vala"
+pkgdesc='The text editor that works'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/scratch"
 license=('GPL3')
