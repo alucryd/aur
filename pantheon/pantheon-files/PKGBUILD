@@ -1,18 +1,18 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-files
-pkgver=0.1.4
+pkgver=0.1.5
 pkgrel=1
-pkgdesc="Files is a simple, powerful, sexy file manager for the Pantheon desktop."
+pkgdesc="A simple, powerful, sexy file manager for the Pantheon desktop"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/pantheon-files"
 license=('GPL3')
 depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
-makedepends=('cmake' 'gnome-common' 'sqlite3' 'vala0.16')
+makedepends=('cmake' 'gnome-common' 'sqlite3' 'vala')
 conflicts=('marlin-bin' 'marlin-bzr')
-install=${pkgname}.install
+install="${pkgname}.install"
 source=("https://launchpad.net/${pkgname}/${pkgver%?}x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
-sha256sums=('1b719e7fa58489889112052d23e6b2713d8092a4c938de7d12af5f368bf083e0')
+sha256sums=('62ef5139554a18fdf9263896f71aa077edd95e82bf6f184d7f031cedbc6a638b')
 
 build() {
   cd ${pkgname}-${pkgver}
@@ -22,14 +22,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DVALA_EXECUTABLE=/usr/bin/valac-0.16 -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
   cd ${pkgname}-${pkgver}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

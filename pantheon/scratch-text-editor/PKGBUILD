@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=scratch-text-editor
-pkgver=2.0
+pkgver=2.0.1
 pkgrel=1
 pkgdesc="A text editor written in Vala"
 arch=('i686' 'x86_64')
@@ -12,8 +12,8 @@ depends=('gtksourceview3' 'libpeas' 'pantheon-files' 'python2-chardet' 'vte3' 'w
 makedepends=('cmake' 'gobject-introspection' 'vala')
 optdepends=('zeitgeist: Zeitgeist support')
 install=${pkgname}.install
-source=("https://launchpad.net/${pkgname%%-*}/2.x/2.0/+download/${pkgname%%-*}-${pkgver}.tar.gz")
-sha256sums=('7b07b58de56f20e815930e45934653a93248b452ca6667a848a603233969a9b6')
+source=("https://launchpad.net/${pkgname%%-*}/2.x/${pkgver}/+download/${pkgname%%-*}-${pkgver}.tar.gz")
+sha256sums=('002ab65364c0c51e21207fc5e6610be9b869f215df2434cca20b330537ddf242')
 
 prepare() {
   cd ${pkgname%%-*}
@@ -31,14 +31,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
   cd ${pkgname%%-*}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
   chmod +x "${pkgdir}"/usr/share/scratch/scripts/*.py
 }
 
