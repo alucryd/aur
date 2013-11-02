@@ -1,0 +1,30 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: RazrFalcon <razrfalcon at gmail dot com>
+# Contributor: N30N <archlinux at alunamation dot com>
+
+pkgname=svgcleaner
+pkgver=0.5.1
+pkgrel=1
+pkgdesc='An application that cleans svg images from unnecessary data in batch mode'
+arch=('i686' 'x86_64')
+url='https://github.com/RazrFalcon/SVGCleaner'
+license=('GPL3')
+depends=('p7zip' 'qt4')
+source=("${url}/archive/v${pkgver}.tar.gz")
+install="${pkgname}.install"
+sha256sums=('93ac01eb7be3f8588fb38a0fae51890f55b8786be0dd4bb93b824826937a9e86')
+
+build() {
+  cd SVGCleaner-${pkgver}
+
+  qmake-qt4 CONFIG+='release' QMAKE_LRELEASE='lrelease-qt4'
+  make
+}
+
+package() {
+  cd SVGCleaner-${pkgver}
+
+  make INSTALL_ROOT="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:

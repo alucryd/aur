@@ -1,4 +1,4 @@
-pkgname=('light-locker')
+pkgname=('light-locker-git')
 builddeps=('xf86miscproto' 'libxxf86misc')
 
 check_git $packagedir/$pkgname/${pkgname%-*}
