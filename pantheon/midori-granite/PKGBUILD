@@ -5,7 +5,7 @@ pkgver=0.5.5
 pkgrel=1
 pkgdesc='Lightweight web browser based on Gtk WebKit'
 arch=('i686' 'x86_64')
-url='http://twotoasts.de/index.php/midori/'
+url='http://www.midori-browser.org/'
 license=('LGPL2.1')
 depends=('gcr' 'granite' 'libnotify' 'libunique3' 'libxss' 'libzeitgeist' 'webkitgtk3')
 makedepends=('clutter-gtk' 'gtk-doc' 'intltool' 'librsvg' 'libxml2' 'python2' 'vala')
@@ -15,7 +15,7 @@ provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 options=('!emptydirs')
 install="${pkgname}.install"
-source=("http://www.midori-browser.org/downloads/${pkgname%-*}_${pkgver}_all_.tar.bz2")
+source=("${url}/downloads/${pkgname%-*}_${pkgver}_all_.tar.bz2")
 sha256sums=('ca69382a285222a86028abebd73fed1976735883027ff0adc094b627789bbd62')
 
 prepare() {

@@ -6,7 +6,7 @@ pkgver=2.0.1
 pkgrel=1
 pkgdesc='The text editor that works'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/scratch'
+url="https://launchpad.net/${pkgname%%-*}"
 license=('GPL3')
 depends=('desktop-file-utils' 'granite' 'gtksourceview3' 'libpeas' 'python2-chardet' 'libzeitgeist')
 makedepends=('cmake' 'gobject-introspection' 'pantheon-files' 'vala' 'vte3' 'webkitgtk3')
@@ -14,7 +14,7 @@ optdepends=('vala: Outline plugin'
             'vte3: Terminal plugin'
             'webkitgtk3: Browser Preview plugin')
 install="${pkgname}.install"
-source=("https://launchpad.net/${pkgname%%-*}/2.x/${pkgver}/+download/${pkgname%%-*}-${pkgver}.tar.gz")
+source=("${url}/2.x/${pkgver}/+download/${pkgname%%-*}-${pkgver}.tar.gz")
 sha256sums=('002ab65364c0c51e21207fc5e6610be9b869f215df2434cca20b330537ddf242')
 
 prepare() {
@@ -33,7 +33,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

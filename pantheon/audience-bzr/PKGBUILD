@@ -4,15 +4,15 @@
 pkgname=audience-bzr
 pkgver=296
 pkgrel=1
-pkgdesc="A modern media player"
+pkgdesc='A modern media player'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/audience"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('clutter-gtk' 'desktop-file-utils' 'granite' 'gst-plugins-base-libs')
 makedepends=('bzr' 'clutter-gst' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-install=${pkgname%-*}.install
+install="${pkgname%-*}.install"
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
@@ -30,14 +30,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
   cd ${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

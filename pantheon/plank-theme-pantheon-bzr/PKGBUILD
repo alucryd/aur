@@ -3,9 +3,9 @@
 pkgname=plank-theme-pantheon-bzr
 pkgver=6
 pkgrel=1
-pkgdesc="Pantheon theme for plank"
-arch=('i686' 'x86_64')
-url="https://launchpad.net/plank-theme-pantheon"
+pkgdesc='Pantheon theme for plank'
+arch=('any')
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('plank')
 makedepends=('bzr')
@@ -24,7 +24,7 @@ package() {
   cd ${pkgname%-*}
 
   mkdir -p "${pkgdir}"/usr/share/plank/themes
-  cp -dr --no-preserve=ownership {,"${pkgdir}"/usr/share/plank/themes/}Pantheon
+  cp -dr --no-preserve=ownership Pantheon "${pkgdir}"/usr/share/plank/themes/
 }
 
 # vim: ts=2 sw=2 et:

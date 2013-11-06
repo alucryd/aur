@@ -5,7 +5,7 @@ pkgver=148
 pkgrel=1
 pkgdesc='Elementary Tweaks plug for Switchboard'
 arch=('i686' 'x86_64')
-url="https://code.launchpad.net/elementary-community/elementary-tweaks"
+url='https://code.launchpad.net/elementary-community/elementary-tweaks'
 license=('GPL3')
 depends=('libpantheon-bzr' 'gconf' 'switchboard')
 makedepends=('bzr' 'cmake' 'vala')
@@ -28,7 +28,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

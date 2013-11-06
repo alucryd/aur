@@ -6,13 +6,13 @@ pkgver=164
 pkgrel=1
 pkgdesc='Simple screencaster for the elementary project'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/eidete'
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('granite' 'gstreamer0.10-base' 'libwnck3')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-install=${pkgname%-*}.install
+install="${pkgname%-*}.install"
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
@@ -30,7 +30,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_EXE_LINKER_FLAGS='-lX11'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_EXE_LINKER_FLAGS='-lX11'
   make
 }
 

@@ -4,9 +4,9 @@
 pkgname=scratch-text-editor-bzr
 pkgver=1212
 pkgrel=1
-pkgdesc="The text editor that works"
+pkgdesc='The text editor that works'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/scratch"
+url="https://launchpad.net/${pkgname%%-*}"
 license=('GPL3')
 depends=('gtksourceview3' 'libpeas' 'python2-chardet' 'libzeitgeist')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'pantheon-files' 'vala' 'vte3' 'webkitgtk3')
@@ -15,7 +15,7 @@ optdepends=('vala: Outline plugin'
             'webkitgtk3: Browser Preview plugin')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-install=${pkgname%-*}.install
+install="${pkgname%-*}.install"
 source=("bzr+lp:${pkgname%%-*}")
 sha256sums=('SKIP')
 
@@ -41,7 +41,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

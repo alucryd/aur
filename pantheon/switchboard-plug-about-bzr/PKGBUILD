@@ -5,7 +5,7 @@ pkgver=142
 pkgrel=1
 pkgdesc='About plug for Switchboard'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/switchboard-plug-about'
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('libpantheon' 'switchboard')
 makedepends=('bzr' 'cmake' 'vala')
@@ -36,7 +36,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

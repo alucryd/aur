@@ -5,7 +5,7 @@ pkgver=22
 pkgrel=1
 pkgdesc="Dropbox integration for pantheon-files"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/pantheon-files"
+url='https://launchpad.net/pantheon-files'
 license=('GPL3')
 depends=('pantheon-files')
 makedepends=('bzr' 'cmake')
@@ -28,7 +28,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

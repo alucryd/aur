@@ -3,9 +3,9 @@
 pkgname=elementary-icons-thirdparty-bzr
 pkgver=8
 pkgrel=1
-pkgdesc="elementary icon theme"
+pkgdesc="Thirdparty icons for the elementary icon theme"
 arch=('any')
-url="https://launchpad.net/elementaryicons"
+url='https://launchpad.net/elementary-community/elementary-thirdparty-icons'
 license=('GPL3')
 depends=('elementary-icon-theme')
 makedepends=('bzr')
@@ -25,11 +25,8 @@ pkgver() {
 package() {
   cd ${pkgname%-*}
 
-  install -dm 755 "${pkgdir}"/usr/share/icons
-  for icon in icons/elementary/apps/*/xchat.svg; do
-    ln -s xchat.svg ${icon/xchat/hexchat}
-  done
-  cp -dr --no-preserve=ownership {,"${pkgdir}"/usr/share/}icons/elementary
+  install -dm 755 "${pkgdir}"/usr/share
+  cp -dr --no-preserve=ownership icons/elementary "${pkgdir}"/usr/share/
 }
 
 # vim: ts=2 sw=2 et:

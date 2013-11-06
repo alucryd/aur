@@ -4,9 +4,9 @@
 pkgname=contractor-bzr
 pkgver=131
 pkgrel=1
-pkgdesc="A service for sharing data between apps"
+pkgdesc='A service for sharing data between apps'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/contractor"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('glib2' 'seahorse')
 makedepends=('bzr' 'cmake' 'vala')
@@ -41,7 +41,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 
@@ -54,7 +54,7 @@ package() {
     install -m 644 "${srcdir}"/${_app}-contracts/*.contract "${pkgdir}"/usr/share/contractor/
   done
   install -dm 755 "${pkgdir}"/usr/lib/svg-contracts
-  install -m 755 {"${srcdir}"/inkscape-contracts,"${pkgdir}"/usr/lib/svg-contracts}/inkscape-export.sh
+  install -m 755 "${srcdir}"/inkscape-contracts/inkscape-export.sh "${pkgdir}"/usr/lib/svg-contracts
 }
 
 # vim: ts=2 sw=2 et:

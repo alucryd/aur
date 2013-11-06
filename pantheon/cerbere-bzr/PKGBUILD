@@ -5,7 +5,7 @@ pkgver=45
 pkgrel=1
 pkgdesc='A service to relaunch Pantheon apps'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/cerbere'
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL2')
 depends=('dconf' 'libgee06')
 makedepends=('bzr' 'cmake' 'vala')
@@ -29,7 +29,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

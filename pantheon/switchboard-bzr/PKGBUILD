@@ -5,9 +5,9 @@
 pkgname=switchboard-bzr
 pkgver=407
 pkgrel=1
-pkgdesc="Modular desktop settings hub"
+pkgdesc='Modular desktop settings hub'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/switchboard"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('granite' 'libunity')
 makedepends=('bzr' 'cmake' 'vala')
@@ -36,7 +36,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

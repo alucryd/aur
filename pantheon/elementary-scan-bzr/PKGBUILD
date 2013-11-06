@@ -11,7 +11,7 @@ depends=('granite' 'launchpad-integration-gtk3' 'sane' 'scour')
 makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
 provides=("${pkgname%-*}" 'simple-scan')
 conflicts=("${pkgname%-*}" 'simple-scan')
-install=${pkgname%-*}.install
+install="${pkgname%-*}.install"
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 

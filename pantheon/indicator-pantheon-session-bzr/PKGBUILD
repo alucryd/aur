@@ -5,7 +5,7 @@ pkgver=241
 pkgrel=6
 pkgdesc="Pantheon fork of the session indicator"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/indicator-pantheon-session"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('libdbusmenu-gtk3' 'libindicator-gtk3')
 makedepends=('bzr' 'cmake' 'gnome-common' 'intltool')
@@ -27,7 +27,7 @@ pkgver() {
 prepare() {
   cd ${pkgname%-*}
 
-  sed -i 's|AM_CONFIG_HEADER|AC_CONFIG_HEADERS|g' configure.ac
+  sed -i 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure.ac
   sed -i '/g_type_init();/d' $(grep -rl 'g_type_init();')
   patch -Np1 -i ../no-packagekit.patch
 }

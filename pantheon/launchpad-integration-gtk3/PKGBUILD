@@ -3,9 +3,9 @@
 pkgname=launchpad-integration-gtk3
 pkgver=0.1.56.2
 pkgrel=2
-pkgdesc="A library to integrate launchpad urls into the menus"
+pkgdesc='A library to integrate launchpad urls into the menus'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/launchpad-integration"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('hicolor-icon-theme' 'gtk3' 'pygtk')
 makedepends=('bzr' 'gobject-introspection')

@@ -5,13 +5,13 @@ pkgver=18
 pkgrel=1
 pkgdesc='A tiny, simple calculator written in GTK+ and Vala'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/pantheon-calculator'
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('granite')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-install=${pkgname%-*}.install
+install="${pkgname%-*}.install"
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
@@ -29,7 +29,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

@@ -5,7 +5,7 @@ pkgver=1364
 pkgrel=1
 pkgdesc='The file manager of the Pantheon desktop'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/pantheon-files'
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
 makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala')
@@ -14,7 +14,7 @@ optdepends=('contractor-bzr: Plugins integration'
             'tumbler: Thumbnails generation')
 provides=("${pkgname%-*}")
 conflicts=('marlin-bin' 'marlin-bzr' "${pkgname%-*}")
-install=${pkgname%-*}.install
+install="${pkgname%-*}.install"
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
@@ -32,7 +32,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

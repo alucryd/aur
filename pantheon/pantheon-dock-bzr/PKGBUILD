@@ -5,40 +5,40 @@ pkgver=822
 pkgrel=1
 pkgdesc="The dock for elementary Pantheon, built on the awesome foundation of Plank"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/pantheon-dock"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
-depends=('bamf-bzr' 'hicolor-icon-theme' 'libdbusmenu-gtk3' 'libgee06')
+depends=('bamf' 'hicolor-icon-theme' 'libdbusmenu-gtk3' 'libgee06')
 makedepends=('bzr' 'gnome-common' 'intltool')
-provides=("${pkgname%-*}" 'plank' 'plank-bzr')
-conflicts=("${pkgname%-*}" 'plank' 'plank-bzr')
-options=('!libtool')
-install=${pkgname%-*}.install
+provides=("${pkgname%-*}" 'plank')
+conflicts=("${pkgname%-*}" 'plank')
+install="${pkgname%-*}.install"
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 prepare() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
   sed -i 's|^#!.*python$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd ${pkgname%-*}
 
-  ./autogen.sh --prefix=/usr --sysconfdir=/etc --disable-gee-0.8
+  ./autogen.sh --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --disable-gee-0.8
   make
 }
 
 package() {
   cd "${srcdir}"/${pkgname%-*}
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/{etc,usr/share/apport}
 }
 
 # vim: ts=2 sw=2 et:

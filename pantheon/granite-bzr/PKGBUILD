@@ -6,7 +6,7 @@ pkgver=644
 pkgrel=1
 pkgdesc="An extension of GTK+ libraries"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/granite"
+url="https://launchpad.net/${pkgname%-*}"
 license=('LGPL3')
 depends=('gtk3' 'libgee06')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
@@ -30,7 +30,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_BUILD_TYPE='Release'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

@@ -4,7 +4,7 @@ pkgname=plank-extra-elementary-bzr
 pkgver=7
 pkgrel=1
 pkgdesc='Extra options for the Plank project'
-arch=('i686' 'x86_64')
+arch=('any')
 url='https://launchpad.net/elementary-community/elementary-plank-extra'
 license=('GPL3')
 depends=('plank')
@@ -28,7 +28,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
   make
 
   make

@@ -5,12 +5,12 @@ pkgver=1.0.2
 pkgrel=1
 pkgdesc='Pantheon greeter for LightDM'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/pantheon-greeter'
+url="https://launchpad.net/${pkgname#*-}"
 license=('GPL')
 depends=('clutter-gtk' 'granite' 'libindicator-gtk3' 'lightdm')
 makedepends=('cmake' 'vala')
 install="${pkgname}.install"
-source=("https://launchpad.net/${pkgname#*-}/${pkgver%%.*}.x/${pkgver}/+download/${pkgname#*-}-${pkgver}.tgz")
+source=("${url}/${pkgver%%.*}.x/${pkgver}/+download/${pkgname#*-}-${pkgver}.tgz")
 sha256sums=('28e92fa37bf4084c110f3037df70ae8d8e51db3719e639b18af8eefdfc339fb9')
 
 prepare() {
@@ -29,7 +29,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

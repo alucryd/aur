@@ -4,15 +4,15 @@
 pkgname=footnote-bzr
 pkgver=292
 pkgrel=1
-pkgdesc="Take note in elementary style"
+pkgdesc='Take note in elementary style'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/footnote"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('clutter-gtk' 'granite' 'sqlheavy')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-install=${pkgname%-*}.install
+install="${pkgname%-*}.install"
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 
@@ -30,14 +30,14 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
   cd ${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 install
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

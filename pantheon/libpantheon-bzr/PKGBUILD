@@ -5,7 +5,7 @@ pkgver=23
 pkgrel=1
 pkgdesc='Library for the Pantheon Desktop Environment'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/libpantheon'
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('gtk3')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
@@ -28,7 +28,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

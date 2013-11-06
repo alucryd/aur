@@ -7,7 +7,7 @@ pkgver=179
 pkgrel=1
 pkgdesc='The sexiest dictionary on Earth and Jupiter'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/lingo-dictionary'
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('granite' 'json-glib' 'libsoup')
 makedepends=('bzr' 'cmake' 'sqlite' 'vala')
@@ -25,7 +25,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

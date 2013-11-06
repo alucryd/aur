@@ -5,9 +5,9 @@
 pkgname=switchboard
 pkgver=1.0.1
 pkgrel=2
-pkgdesc="Modular desktop settings hub"
+pkgdesc='Modular desktop settings hub'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/switchboard'
+url="https://launchpad.net/${pkgname}"
 license=('GPL3')
 depends=('granite' 'libunity')
 makedepends=('bzr' 'cmake' 'vala')
@@ -17,7 +17,7 @@ optdepends=('switchboard-plug-about: About plug'
             'switchboard-plug-keyboard-bzr: Keyboard plug'
             'switchboard-plug-pantheon-shell-bzr: Pantheon Shell plug'
             'switchboard-plug-power-bzr: Power plug')
-source=("https://launchpad.net/${pkgname}/1.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.bz2")
+source=("${url}/1.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.bz2")
 sha256sums=('SKIP')
 
 build() {
@@ -28,7 +28,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 

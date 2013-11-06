@@ -3,9 +3,9 @@
 pkgname=plank-themes-elementary-bzr
 pkgver=4
 pkgrel=1
-pkgdesc="Elementary theme collection for plank"
+pkgdesc='elementary theme collection for plank'
 arch=('any')
-url="https://launchpad.net/elementary-community/elementary-plank-themes"
+url='https://launchpad.net/elementary-community/elementary-plank-themes'
 license=('GPL3')
 depends=('plank')
 makedepends=('bzr')
@@ -24,7 +24,7 @@ package() {
   cd ${pkgname%-*}
 
   mkdir -p "${pkgdir}"/usr/share/plank
-  cp -dr --no-preserve=ownership {,"${pkgdir}"/usr/share/plank/}themes
+  cp -dr --no-preserve=ownership themes "${pkgdir}"/usr/share/plank/
 }
 
 # vim: ts=2 sw=2 et:

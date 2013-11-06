@@ -5,13 +5,13 @@ pkgver=0.1.5
 pkgrel=1
 pkgdesc="A simple, powerful, sexy file manager for the Pantheon desktop"
 arch=('i686' 'x86_64')
-url="https://launchpad.net/pantheon-files"
+url="https://launchpad.net/${pkgname}"
 license=('GPL3')
 depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
 makedepends=('cmake' 'gnome-common' 'sqlite3' 'vala')
 conflicts=('marlin-bin' 'marlin-bzr')
 install="${pkgname}.install"
-source=("https://launchpad.net/${pkgname}/${pkgver%?}x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
+source=("${url}/${pkgver%?}x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
 sha256sums=('62ef5139554a18fdf9263896f71aa077edd95e82bf6f184d7f031cedbc6a638b')
 
 build() {
@@ -22,7 +22,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

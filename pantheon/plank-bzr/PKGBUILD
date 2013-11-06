@@ -5,9 +5,9 @@
 pkgname=plank-bzr
 pkgver=922
 pkgrel=1
-pkgdesc="Elegant, simple, clean dock"
+pkgdesc='Elegant, simple, clean dock'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/plank"
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('bamf' 'libdbusmenu-gtk3' 'libgee')
 makedepends=('bzr' 'gnome-common' 'intltool' 'vala')

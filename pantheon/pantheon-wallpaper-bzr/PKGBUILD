@@ -5,7 +5,7 @@ pkgver=34
 pkgrel=1
 pkgdesc='The elementary wallpaper drawer'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/pantheon-wallpaper'
+url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('granite')
 makedepends=('bzr' 'cmake' 'vala')
@@ -29,7 +29,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGETTINGS_COMPILE='OFF'
   make
 }
 
