@@ -5,12 +5,12 @@ pkgver=0.2
 pkgrel=3
 pkgdesc='A service to relaunch Pantheon apps'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/cerbere'
+url="https://launchpad.net/${pkgname}"
 license=('GPL2')
 depends=('dconf' 'libgee06')
 makedepends=('cmake' 'vala')
 install="${pkgname}.install"
-source=("https://launchpad.net/${pkgname}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
+source=("${url}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
 sha256sums=('cd0261877ef50495c7aaacffe216f9aa06e9a7d9a85444af7d5b6c17b2a245f5')
 
 build() {

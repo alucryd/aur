@@ -11,7 +11,7 @@ depends=('clutter-gtk' 'granite' 'mutter' 'plank')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-install=${pkgname%-*}.install
+install="${pkgname%-*}.install"
 source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~gala-dev/gala/trunk/")
 sha256sums=('SKIP')
 

@@ -10,11 +10,13 @@ arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
 depends=('granite' 'libindicator-gtk3')
-optdepends=('indicator-pantheon-session-bzr: Pantheon session indicator')
+optdepends=('indicator-datetime: Display date and time'
+            'indicator-pantheon-session-bzr: Pantheon session indicator'
+            'indicator-power: Battery idicator')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-install=${pkgname%-*}.install
+install="${pkgname%-*}.install"
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
 

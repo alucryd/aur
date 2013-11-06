@@ -1,0 +1,6 @@
+pkgname=('slingshot-launcher-bzr')
+builddeps=('dee' 'gnome-menus2' 'libunity')
+
+check_bzr $packagedir/$pkgname/${pkgname%-*}
+
+# vim: ts=2 sw=2 et:
