@@ -1,3 +1,4 @@
+arch=('any')
 pkgname=('gtk-theme-elementary-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}

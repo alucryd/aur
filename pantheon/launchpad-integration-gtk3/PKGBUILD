@@ -11,7 +11,7 @@ depends=('hicolor-icon-theme' 'gtk3' 'pygtk')
 makedepends=('bzr' 'gobject-introspection')
 install="${pkgname%-*}.install"
 source=("${pkgname%-*}-${pkgver}.tar.gz::http://bazaar.launchpad.net/~ubuntu-desktop/launchpad-integration/ubuntu/tarball/189")
-sha256sums=('6795ec298505baf39d09dea7d9a7796bb3c3b06e2876d423bae5e2e276ab5620')
+sha256sums=('41eb9a105115547824de52815dd2f3fba23bacdecc63852bce469303f17f9ed5')
 
 build() {
   cd ~ubuntu-desktop/${pkgname%-*}/ubuntu
