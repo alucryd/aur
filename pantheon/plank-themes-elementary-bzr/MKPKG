@@ -1,6 +1,5 @@
 arch=('any')
 pkgname=('plank-themes-elementary-bzr')
-builddeps=('plank')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

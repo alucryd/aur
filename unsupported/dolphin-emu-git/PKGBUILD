@@ -13,6 +13,7 @@ makedepends=('cmake' 'git' 'opencl-headers')
 optdepends=('pulseaudio: PulseAudio backend')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
+options=('!emptydirs')
 source=("${pkgname%-*}::git+https://code.google.com/p/dolphin-emu/")
 sha256sums=('SKIP')
 

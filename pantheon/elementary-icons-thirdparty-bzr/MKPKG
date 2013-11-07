@@ -1,6 +1,5 @@
 arch=('any')
 pkgname=('elementary-icons-thirdparty-bzr')
-builddeps=('elementary-icon-theme')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 
