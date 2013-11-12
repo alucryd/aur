@@ -2,7 +2,7 @@
 
 pkgname=indicator-pantheon-session-bzr
 pkgver=241
-pkgrel=6
+pkgrel=7
 pkgdesc="Pantheon fork of the session indicator"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%-*}"
@@ -35,6 +35,7 @@ prepare() {
 build() {
   cd ${pkgname%-*}
 
+  export CFLAGS="$CFLAGS -Wno-deprecated-declarations"
   ./autogen.sh --prefix='/usr' --libexecdir="/usr/lib/${pkgname%-*}" --disable-{apt,schemas-compile,static} --with-gtk='3'
   make
 }
