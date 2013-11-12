@@ -21,10 +21,8 @@ elif [[ $CARCH == x86_64 ]]; then
               'lib32-gtk-unico: unico gtk2 engine support')
 fi
 options=('!emptydirs')
-source=("${pkgname%-*}::svn+http://pcsx2.googlecode.com/svn/trunk/"
-        'sdl2.patch')
-sha256sums=('SKIP'
-            '14bc73db388f6532ce82644d2dc5c6b28eb4e69277406b796dda05e7f5af8dcd')
+source=("${pkgname%-*}::svn+http://pcsx2.googlecode.com/svn/trunk/")
+sha256sums=('SKIP')
 
 pkgver() {
   cd ${pkgname%-*}
