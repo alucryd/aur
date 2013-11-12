@@ -39,10 +39,10 @@ package() {
   make DESTDIR="${pkgdir}" install
 
 # Fix icon names to provide the playlist icon
-  install -dm 755 "$pkgdir"/usr/share/libindicator/icons/hicolor/{16x16,scalable}/mimetypes
-  mv "$pkgdir"/usr/share/libindicator/icons/hicolor/16x16/{status/sound-icon.png,mimetypes/playlist.png}
-  mv "$pkgdir"/usr/share/libindicator/icons/hicolor/scalable/{status/sound-icon.svg,mimetypes/playlist.svg}
-  rm -r "$pkgdir"/usr/share/libindicator/icons/hicolor/{16x16,scalable}/status
+  install -dm 755 "${pkgdir}"/usr/share/libindicator/icons/hicolor/{16x16,scalable}/mimetypes
+  mv "${pkgdir}"/usr/share/libindicator/icons/hicolor/16x16/{status/sound-icon.png,mimetypes/playlist.png}
+  mv "${pkgdir}"/usr/share/libindicator/icons/hicolor/scalable/{status/sound-icon.svg,mimetypes/playlist.svg}
+  rm -r "${pkgdir}"/usr/share/libindicator/icons/hicolor/{16x16,scalable}/status
 }
 
 # vim: ts=2 sw=2 et:
