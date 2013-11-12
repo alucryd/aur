@@ -1,4 +1,4 @@
 pkgname=('indicator-power')
-builddeps=(libindicator-gtk3')
+builddeps=('libindicator-gtk3')
 
 # vim: ts=2 sw=2 et:
