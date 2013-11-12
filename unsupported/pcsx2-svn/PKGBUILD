@@ -3,7 +3,7 @@
 # Contributor: Themaister <maister at archlinux dot us>
 
 pkgname=pcsx2-svn
-pkgver=5737
+pkgver=5760
 pkgrel=1
 pkgdesc="A Sony PlayStation 2 emulator"
 arch=('i686' 'x86_64')
@@ -21,13 +21,21 @@ elif [[ $CARCH == x86_64 ]]; then
               'lib32-gtk-unico: unico gtk2 engine support')
 fi
 options=('!emptydirs')
-source=("${pkgname%-*}::svn+http://pcsx2.googlecode.com/svn/trunk/")
-sha256sums=('SKIP')
+source=("${pkgname%-*}::svn+http://pcsx2.googlecode.com/svn/trunk/"
+        'sdl2.patch')
+sha256sums=('SKIP'
+            '14bc73db388f6532ce82644d2dc5c6b28eb4e69277406b796dda05e7f5af8dcd')
 
 pkgver() {
   cd ${pkgname%-*}
 
   printf "%s" "$(svnversion | tr -d [A-z])"
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  patch -Np0 -i ../sdl2.patch
 }
 
 build() {

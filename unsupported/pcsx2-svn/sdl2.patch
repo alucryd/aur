@@ -1,0 +1,14 @@
+--- plugins/spu2-x/src/CMakeLists.txt.orig	2013-11-12 16:42:54.055618513 +0100
++++ plugins/spu2-x/src/CMakeLists.txt	2013-11-12 16:43:28.666058317 +0100
+@@ -113,9 +113,9 @@ include_directories(.  Linux)
+ if(SDL_FOUND)
+     list(APPEND spu2xSources SndOut_SDL.cpp)
+     if(SDL2_API)
+-        add_definitions(-DSPU2X_SDL)
+-    else()
+         add_definitions(-DSPU2X_SDL2)
++    else()
++        add_definitions(-DSPU2X_SDL)
+     endif()
+   #elseif(SDL2_FOUND)
+   #  add_definitions(-DSPU2X_SDL2)
