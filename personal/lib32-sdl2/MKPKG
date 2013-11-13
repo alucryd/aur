@@ -1,5 +1,5 @@
-pkgname=('lib32-sdl2')
 arch=('x86_64')
+pkgname=('lib32-sdl2')
 
 build () {
   local arch=$1

@@ -2,7 +2,7 @@
 # Contributor: flamelab <panosfilip at gmail dot com>
 
 pkgname=slingshot-launcher-bzr
-pkgver=393
+pkgver=394
 pkgrel=1
 pkgdesc='Slingshot application launcher'
 arch=('i686' 'x86_64')

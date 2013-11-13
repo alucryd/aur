@@ -1,21 +1,21 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=light-locker
-pkgver=1.0.0
-pkgrel=2
+pkgver=1.1.0
+pkgrel=1
 pkgdesc="A simple locker forked from gnome-screensaver"
 arch=('i686' 'x86_64')
 url="https://github.com/the-cavalry/light-locker"
 license=('GPL2')
-depends=('dbus-glib' 'gtk3' 'libxxf86misc' 'lightdm')
-makedepends=('gnome-common' 'intltool' 'libxss')
+depends=('gtk3' 'libxxf86misc' 'lightdm' 'libxss' 'upower')
+makedepends=('gnome-common' 'intltool')
 source=("https://github.com/the-cavalry/${pkgname}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
-sha256sums=('d5db80a5554e038a6b7332239fa587fd78873d0ceb83dd24ba083642ee7a4a29')
+sha256sums=('b946c9b909c1d9e0713cd16d6ef7e8094177c49e86f361cfd513b521a811eef6')
 
 build () {
   cd ${pkgname}-${pkgver}
 
-  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --disable-{schemas-compile,static} --without-console-kit
+  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --disable-{schemas-compile,static} --with-{mit-ext,systemd,upower,xf86gamma-ext,x} --without-console-kit
   make
 }
 
