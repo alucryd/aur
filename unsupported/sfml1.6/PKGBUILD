@@ -10,8 +10,7 @@ pkgdesc="A simple, fast, cross-platform, and object-oriented multimedia API"
 arch=('i686' 'x86_64')
 url="http://www.sfml-dev.org/"
 license=('zlib')
-depends=('freetype2' 'glew' 'libjpeg' 'libpng' 'libsndfile' 'libxrandr' 'mesa' 'openal')
-makedepends=('soil')
+depends=('freetype2' 'glew' 'libjpeg' 'libsndfile' 'libxrandr' 'mesa' 'openal' 'soil')
 source=("http://downloads.sourceforge.net/sfml/SFML-${pkgver}-sdk-linux-64.tar.gz"
         'various-fixes.patch')
 sha256sums=('05bdc32286ab2ec8cb1ccdafe53f31830284e09e11ebfc3ab3836c99a0d9654b'
