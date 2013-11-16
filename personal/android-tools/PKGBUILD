@@ -2,7 +2,7 @@
 # Contributor: 謝致邦 <Yeking at Red54 dot com>
 
 pkgname=android-tools
-pkgver=4.3_r2.1
+pkgver=4.4_r1
 pkgrel=1
 pkgdesc="Android platform tools (adb, fastboot)"
 arch=('i686' 'x86_64' 'armv7h')
