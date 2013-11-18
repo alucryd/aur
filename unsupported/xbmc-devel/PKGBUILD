@@ -3,15 +3,13 @@
 pkgname=xbmc-devel
 pkgver=13.0alpha9
 _release=Gotham_alpha9
-pkgrel=3
-pkgdesc="XBMC Media Center - Development snapshots"
-provides=('xbmc')
-conflicts=('xbmc')
+pkgrel=4
+pkgdesc='XBMC Media Center - Development snapshots'
 arch=('i686' 'x86_64')
-url="http://xbmc.org/"
-license=('GPL' 'LGPL')
-depends=('avahi' 'bluez-libs' 'ffmpeg' 'glew' 'hicolor-icon-theme' 'libcdio' 'libmicrohttpd' 'libmariadbclient' 'libsamplerate' 'libssh' 'libxrandr' 'lzo2' 'mesa' 'mesa-demos' 'python2' 'sdl_image' 'taglib' 'tinyxml' 'xorg-xdpyinfo' 'yajl')
-makedepends=('afpfs-ng' 'boost' 'cmake' 'curl' 'doxygen' 'git' 'gperf' 'jasper' 'java-runtime-headless' 'libcec' 'libmad' 'libmpeg2' 'libnfs' 'libplist' 'libshairport' 'libva-vdpau-driver' 'nasm' 'smbclient' 'swig' 'unzip' 'zip')
+url='http://xbmc.org/'
+license=('GPL2')
+depends=('avahi' 'bluez-libs' 'ffmpeg' 'glew' 'hicolor-icon-theme' 'java-runtime-headless' 'libcdio' 'libmicrohttpd' 'libmariadbclient' 'libsamplerate' 'libssh' 'libxrandr' 'lzo2' 'mesa' 'mesa-demos' 'python2' 'sdl_image' 'taglib' 'tinyxml' 'xorg-xdpyinfo' 'yajl')
+makedepends=('afpfs-ng' 'boost' 'cmake' 'curl' 'doxygen' 'git' 'gperf' 'jasper' 'libcec' 'libmad' 'libmpeg2' 'libnfs' 'libplist' 'libshairport' 'libva-vdpau-driver' 'nasm' 'smbclient' 'swig' 'unzip' 'zip')
 optdepends=('afpfs-ng: Apple shares support'
             'smbclient: Windows shares support'
             'libnfs: NFS shares support'
@@ -19,21 +17,23 @@ optdepends=('afpfs-ng: Apple shares support'
             'libshairport: AirPlay support'
             'libcec: Pulse-Eight USB-CEC adapter support'
             'pulseaudio: PulseAudio support')
+provides=("${pkgname%-}")
+conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("https://github.com/xbmc/xbmc/archive/$_release.tar.gz"
+source=("https://github.com/xbmc/xbmc/archive/${_release}.tar.gz"
         'xbmc.service')
 sha256sums=('ac52925ed9b1d7b8a17137d637e43833774ed96f66f1e3d1e5f2a43c960576a8'
             '547e06f3141866cd34b1df34025517e9826992b67543af7621d954bcdfa0ba94')
 
 prepare() {
-  cd xbmc-$_release
+  cd xbmc-${_release}
 
   sed 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' -i lib/libdvd/libdvdcss/configure.ac
   sed 's/\(#include \)<libsmbclient\.h>/\1<samba-4.0\/libsmbclient\.h>/g' -i xbmc/filesystem/{SmbFile.cpp,SMBDirectory.cpp}
 }
 
 build() {
-  cd xbmc-$_release
+  cd xbmc-${_release}
 
   ./bootstrap
 
@@ -99,13 +99,13 @@ build() {
 #  --enable-external-ffmpeg     enable use of external ffmpeg libraries (default is no) 'Linux only'
 #  --enable-libav-compat        build a wrapper around libav to provide the functions needed by XBMC. This is *not* supported by XBMC developers and is provided only for convenience. (default is no) 'Linux only'
 
-  export PYTHON_VERSION=2
-  ./configure --prefix='/usr' --exec-prefix='/usr' --enable-{external-libraries,ffmpeg-libvorbis,libbluray,libusb,pulse} --disable-debug
+  export PYTHON_VERSION='2'
+  ./configure --prefix='/usr' --exec-prefix='/usr' --enable-{external-libraries,ffmpeg-libvorbis,libbluray,pulse} --disable-{debug,static}
   make
 }
 
 package() {
-  cd xbmc-$_release
+  cd xbmc-${_release}
 
   make DESTDIR="${pkgdir}" install
 
@@ -114,10 +114,6 @@ package() {
 
 # Texture Packer
   install -m 755 {tools/TexturePacker,"${pkgdir}"/usr/lib/xbmc}/TexturePacker
-
-# Licenses
-  install -dm 755 "${pkgdir}"/usr/share/licenses/${pkgname}
-  mv "${pkgdir}"/usr/share/{doc/xbmc/{LICENSE.GPL,copying.txt},licenses/${pkgname}/}
 
 # Systemd
   install -dm 755 "${pkgdir}"/usr/lib/systemd/system

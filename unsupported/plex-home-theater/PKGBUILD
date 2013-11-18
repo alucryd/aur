@@ -1,0 +1,53 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+
+pkgname=plex-home-theater
+pkgver=1.0.1
+pkgrel=1
+pkgdesc='Plex Home Theater'
+arch=('i686' 'x86_64')
+url='http://www.plexapp.com/'
+license=('GPL2')
+depends=('avahi' 'bluez-libs' 'glew' 'hicolor-icon-theme' 'java-runtime' 'libcdio' 'libmicrohttpd' 'libmariadbclient' 'libsamplerate' 'libssh' 'libxrandr' 'lzo2' 'mesa' 'mesa-demos' 'python2' 'sdl_image' 'sdl_mixer' 'taglib' 'tinyxml' 'xorg-xdpyinfo' 'yajl')
+makedepends=('afpfs-ng' 'boost' 'cmake' 'curl' 'doxygen' 'git' 'gperf' 'jasper' 'java-environment' 'libcec' 'libmad' 'libmpeg2' 'libnfs' 'libplist' 'libshairport' 'libusbx' 'libva-vdpau-driver' 'nasm' 'smbclient' 'swig' 'unzip' 'zip')
+optdepends=('afpfs-ng: Apple shares support'
+            'smbclient: Windows shares support'
+            'libnfs: NFS shares support'
+            'libplist: AirPlay support'
+            'libshairport: AirPlay support'
+            'libusbx: USB devices support'
+            'libcec: Pulse-Eight USB-CEC adapter support'
+            'pulseaudio: PulseAudio support')
+conflicts=('xbmc')
+install="${pkgname}.install"
+source=("https://github.com/plexinc/plex-home-theater-public/archive/pht-v${pkgver}.tar.gz")
+sha256sums=('91dc03661854655b64764cf4360c7b429d6878f5cadd4985fd0c6e5ba6ccbfe0')
+
+build() {
+  cd plex-home-theater-public-pht-v${pkgver}
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DENABLE_{AUTOUPDATE='OFF',DUMP_SYMBOLS='OFF',PYTHON='OFF'} -DUSE_INTERNAL_FFMPEG='ON'
+  make
+}
+
+package() {
+  cd plex-home-theater-public-pht-v${pkgver}/build
+
+  make DESTDIR="${pkgdir}" install
+
+# Python2
+#  sed 's/python/python2/g' -i "${pkgdir}"/usr/{bin/xbmc,share/xbmc/addons/service.xbmc.versioncheck/service.py}
+
+# Texture Packer
+#  install -m 755 {tools/TexturePacker,"${pkgdir}"/usr/lib/xbmc}/TexturePacker
+
+# Systemd
+#  install -dm 755 "${pkgdir}"/usr/lib/systemd/system
+#  install -m 644 {..,"${pkgdir}"/usr/lib/systemd/system}/xbmc.service
+}
+
+# vim: ts=2 sw=2 et:
