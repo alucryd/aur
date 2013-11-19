@@ -2,13 +2,13 @@
 
 pkgname=plex-home-theater
 pkgver=1.0.1
-pkgrel=2
+pkgrel=3
 pkgdesc='Plex Home Theater'
 arch=('i686' 'x86_64')
 url='http://www.plexapp.com/'
 license=('GPL2')
-depends=('avahi' 'boost-libs' 'curl' 'fontconfig' 'glew' 'java-runtime' 'lame' 'libass' 'libcdio' 'libjpeg-turbo' 'libmad' 'libmicrohttpd' 'libmodplug' 'libmpeg2' 'libpulse' 'libsamplerate' 'libssh' 'libva' 'libxrandr' 'lzo2' 'mesa' 'rtmpdump' 'sdl_image' 'sdl_mixer' 'sqlite' 'taglib' 'tinyxml' 'yajl')
-makedepends=('boost' 'cmake' 'doxygen' 'ftgl' 'gperf' 'java-environment' 'libcec' 'libplist' 'libshairport' 'libusb-compat' 'nasm' 'swig' 'unzip' 'zip')
+depends=('avahi' 'boost-libs' 'curl' 'fontconfig' 'glew' 'java-runtime' 'lame' 'libass' 'libcdio' 'libjpeg-turbo' 'libmad' 'libmicrohttpd' 'libmodplug' 'libmpeg2' 'libpulse' 'libsamplerate' 'libssh' 'libusb-compat' 'libva' 'libxrandr' 'lzo2' 'mesa' 'rtmpdump' 'sdl_image' 'sdl_mixer' 'sqlite' 'taglib' 'tinyxml' 'yajl')
+makedepends=('boost' 'cmake' 'doxygen' 'ftgl' 'gperf' 'java-environment' 'libcec' 'libplist' 'libshairport' 'nasm' 'swig' 'unzip' 'zip')
 optdepends=('libplist: AirPlay support'
             'libshairport: AirPlay support'
             'libusb-compat: USB devices support'
