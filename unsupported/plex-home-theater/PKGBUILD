@@ -2,17 +2,14 @@
 
 pkgname=plex-home-theater
 pkgver=1.0.1
-pkgrel=1
+pkgrel=2
 pkgdesc='Plex Home Theater'
 arch=('i686' 'x86_64')
 url='http://www.plexapp.com/'
 license=('GPL2')
-depends=('avahi' 'boost-libs' 'glew' 'hicolor-icon-theme' 'java-runtime' 'lame' 'libass' 'libcdio' 'libmad' 'libmariadbclient' 'libmicrohttpd' 'libmodplug' 'libmpeg2' 'libpulse' 'libsamplerate' 'libssh' 'libva' 'libxrandr' 'lzo2' 'mesa' 'rtmpdump' 'sdl_image' 'sdl_mixer' 'taglib' 'tinyxml' 'yajl')
-makedepends=('afpfs-ng' 'boost' 'cmake' 'curl' 'doxygen' 'fontconfig' 'git' 'gperf' 'jasper' 'java-environment' 'libcec' 'libnfs' 'libplist' 'libshairport' 'libusb-compat' 'nasm' 'smbclient' 'swig' 'unzip' 'zip')
-optdepends=('afpfs-ng: Apple shares support'
-            'smbclient: Windows shares support'
-            'libnfs: NFS shares support'
-            'libplist: AirPlay support'
+depends=('avahi' 'boost-libs' 'curl' 'fontconfig' 'glew' 'java-runtime' 'lame' 'libass' 'libcdio' 'libjpeg-turbo' 'libmad' 'libmicrohttpd' 'libmodplug' 'libmpeg2' 'libpulse' 'libsamplerate' 'libssh' 'libva' 'libxrandr' 'lzo2' 'mesa' 'rtmpdump' 'sdl_image' 'sdl_mixer' 'sqlite' 'taglib' 'tinyxml' 'yajl')
+makedepends=('boost' 'cmake' 'doxygen' 'ftgl' 'gperf' 'java-environment' 'libcec' 'libplist' 'libshairport' 'libusb-compat' 'nasm' 'swig' 'unzip' 'zip')
+optdepends=('libplist: AirPlay support'
             'libshairport: AirPlay support'
             'libusb-compat: USB devices support'
             'libcec: Pulse-Eight USB-CEC adapter support'
@@ -20,7 +17,7 @@ optdepends=('afpfs-ng: Apple shares support'
 source=("https://github.com/plexinc/plex-home-theater-public/archive/pht-v${pkgver}.tar.gz"
         'plexhometheater.sh')
 sha256sums=('91dc03661854655b64764cf4360c7b429d6878f5cadd4985fd0c6e5ba6ccbfe0'
-            'c551d8f50342dcfede5a11e1bae2c18b25d44b89a5a29863e5809d45ef365702')
+            '15993c2dad0f874253d93f2198320d97e35801962363ad92edbfe936567fcaa3')
 
 build() {
   cd plex-home-theater-public-pht-v${pkgver}
@@ -30,7 +27,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/opt/plexhometheater' -DENABLE_{AUTOUPDATE='OFF',DUMP_SYMBOLS='OFF',PYTHON='OFF'} -DUSE_INTERNAL_FFMPEG='ON'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DENABLE_{AUTOUPDATE='OFF',DUMP_SYMBOLS='OFF',PYTHON='OFF'} -DUSE_INTERNAL_FFMPEG='ON'
   make
 }
 
@@ -39,10 +36,18 @@ package() {
 
   make DESTDIR="${pkgdir}" install
 
-  install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,pixmaps}}
+# Install additional files
+  install -dm 755 "${pkgdir}"/usr/{lib,share/{applications,pixmaps}}
   install -m 755 "${srcdir}"/plexhometheater.sh "${pkgdir}"/usr/bin/
   install -m 644 ../plex/Resources/plexhometheater.desktop "${pkgdir}"/usr/share/applications/
   install -m 644 ../plex/Resources/plex-icon-256.png "${pkgdir}"/usr/share/pixmaps/plexhometheater.png
+
+# Move things where they should be
+  mv "${pkgdir}"/usr/{bin/system,lib/plexhometheater}
+  mv "${pkgdir}"/usr/share/{XBMC,plexhometheater}
+
+# Very ugly workaround
+  ln -s ../lib/plexhometheater "${pkgdir}"/usr/bin/system
 }
 
 # vim: ts=2 sw=2 et:
