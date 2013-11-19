@@ -25,13 +25,6 @@ source=("https://github.com/xbmc/xbmc/archive/${_release}.tar.gz"
 sha256sums=('ac52925ed9b1d7b8a17137d637e43833774ed96f66f1e3d1e5f2a43c960576a8'
             '547e06f3141866cd34b1df34025517e9826992b67543af7621d954bcdfa0ba94')
 
-prepare() {
-  cd xbmc-${_release}
-
-  sed 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' -i lib/libdvd/libdvdcss/configure.ac
-  sed 's/\(#include \)<libsmbclient\.h>/\1<samba-4.0\/libsmbclient\.h>/g' -i xbmc/filesystem/{SmbFile.cpp,SMBDirectory.cpp}
-}
-
 build() {
   cd xbmc-${_release}
 
