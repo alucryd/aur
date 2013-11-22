@@ -2,13 +2,13 @@
 # Contributor: BlackIkeEagle <ike dot devolder at gmail dot com>
 
 pkgname=xbmc-retroplayer-git
-pkgver=22766
+pkgver=13.0.r23422.7033319
 pkgrel=1
-pkgdesc="XBMC Media Center - GIT retroplayer branch"
+pkgdesc='XBMC Media Center Retroplayer'
 provides=('xbmc')
 conflicts=('xbmc' 'xbmc-git')
 arch=('i686' 'x86_64')
-url="https://github.com/garbear/xbmc"
+url='https://github.com/garbear/xbmc'
 license=('GPL' 'LGPL')
 depends=('afpfs-ng' 'avahi' 'bluez-libs' 'fribidi' 'glew' 'glu' 'hicolor-icon-theme' 'jasper' 'java-runtime-headless' 'libass' 'libbluray' 'libcap' 'libcdio' 'libjpeg-turbo' 'libmad' 'libmicrohttpd' 'libmodplug' 'libmpeg2' 'libmysqlclient' 'libnfs' 'libpng' 'libpulse' 'libsamplerate' 'libssh' 'libtiff' 'libva' 'libxrandr' 'lzo2' 'mesa' 'mesa-demos' 'python2' 'rtmpdump' 'sdl_image' 'sdl_mixer' 'shairplay-git' 'smbclient' 'swig' 'taglib' 'tinyxml' 'unzip' 'xorg-xdpyinfo' 'yajl')
 makedepends=('boost' 'cmake' 'doxygen' 'git' 'gperf' 'libcec' 'libva-vdpau-driver' 'libxinerama' 'nasm' 'udisks' 'upower' 'zip')
@@ -31,7 +31,7 @@ sha256sums=('SKIP'
 pkgver() {
   cd ${pkgname%-*}
 
-  git rev-list --count HEAD
+  printf "13.0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 prepare() {

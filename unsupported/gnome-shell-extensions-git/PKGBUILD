@@ -4,11 +4,11 @@
 # Contributor: Flamelab <panosfilip at gmail dot com>
 
 pkgname=gnome-shell-extensions-git
-pkgver=3.10.0.2
+pkgver=3.11.2.r771.e801c61
 pkgrel=1
-pkgdesc="Extensions for GNOME shell"
+pkgdesc='Extensions for GNOME shell'
 arch=('any')
-url="http://live.gnome.org/GnomeShell/Extensions"
+url='http://live.gnome.org/GnomeShell/Extensions'
 license=('GPL2')
 depends=('gnome-shell' 'libgtop')
 makedepends=('git' 'gnome-common' 'intltool')
@@ -23,7 +23,7 @@ _ext="alternate-tab apps-menu auto-move-windows drive-menu example launch-new-in
 pkgver() {
   cd ${pkgname%-*}
 
-  git describe | sed 's|\(.*-.*\)-.*|\1|;s|-|.|g'
+  printf "%s.r%s.%s" "$(git describe --tags | sed 's/-.*//')" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {

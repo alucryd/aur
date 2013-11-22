@@ -1,11 +1,11 @@
 # Maintainer: Yosef Or Boczko <yoseforb@gmail.com>
 
-pkgname=polari-git
-pkgver=3.11.2.r300.36b6232
+pkgname=polari-devel
+pkgver=3.11.2
 pkgrel=1
-pkgdesc="An IRC Client for GNOME"
+pkgdesc='An IRC Client for GNOME'
 arch=('i686' 'x86_64')
-url="https://wiki.gnome.org/Apps/Polari"
+url='https://wiki.gnome.org/Apps/Polari'
 license=('GPL2')
 groups=('gnome')
 depends=('gjs' 'gnome-icon-theme-symbolic' 'gtk3' 'telepathy-idle')
@@ -14,24 +14,18 @@ provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 options=('!libtool')
 install="${pkgname%-*}.install"
-source=('git://git.gnome.org/polari')
-sha256sums=('SKIP')
-
-pkgver() {
-  cd ${pkgname%-*}
-
-  printf "%s.r%s.%s" "$(git describe --tags | sed 's/-.*//')" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
+source=("http://ftp.gnome.org/pub/GNOME/sources/${pkgname%-*}/${pkgver%.*}/${pkgname%-*}-${pkgver}.tar.xz")
+sha256sums=('138fca388b8af853635ea6db93159ddc457590cefab6530fcebaf912b6f34859')
 
 build() {
-  cd ${pkgname%-*}
+  cd ${pkgname%-*}-${pkgver}
 
-  ./autogen.sh --prefix='/usr' --disable-schemas-compile
+  ./configure --prefix='/usr' --disable-schemas-compile
   make
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd ${pkgname%-*}-${pkgver}
 
   make DESTDIR="${pkgdir}" install
 }

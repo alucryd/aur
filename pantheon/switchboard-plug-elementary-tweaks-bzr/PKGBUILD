@@ -11,17 +11,17 @@ depends=('libpantheon-bzr' 'gconf' 'switchboard')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("bzr+http://bazaar.launchpad.net/~versable/elementary-community/elementary-tweaks/")
+source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~versable/elementary-community/elementary-tweaks/")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd elementary-tweaks
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 build() {
-  cd elementary-tweaks
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
@@ -33,7 +33,7 @@ build() {
 }
 
 package() {
-  cd elementary-tweaks/build
+  cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" install
 }

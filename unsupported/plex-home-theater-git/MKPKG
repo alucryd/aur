@@ -1,5 +1,4 @@
-arch=('any')
-pkgname=('ttf-google-fonts-git')
+pkgname=('plex-home-theater')
 
 check_git $packagedir/$pkgname/${pkgname%-*}
 

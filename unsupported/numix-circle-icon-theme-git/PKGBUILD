@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot dom>
 
 pkgname=numix-circle-icon-theme-git
-pkgver=10.410497f
+pkgver=0.r28.fce2698
 pkgrel=1
 pkgdesc='Circle icon theme from the Numix project'
 arch=('any')
@@ -19,7 +19,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  printf "%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  printf "0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package() {

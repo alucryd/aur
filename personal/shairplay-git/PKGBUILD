@@ -3,9 +3,9 @@
 # Contributor: BlackIkeEagle <ike dot devolder at gmail dot com>
 
 pkgname=shairplay-git
-pkgver=108
+pkgver=0.r108.c892072
 pkgrel=1
-pkgdesc='Apple airplay and raop protocol server'
+pkgdesc='Apple AirPlay and RAOP protocol server'
 arch=('i686' 'x86_64')
 url='https://github.com/juhovh/shairplay'
 license=('GPL3')
@@ -20,7 +20,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  git rev-list --count HEAD
+  printf "0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {

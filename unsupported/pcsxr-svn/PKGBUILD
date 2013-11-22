@@ -2,9 +2,9 @@
 # Contributor: Infy <eugene dot yudin at gmail dot com>
 
 pkgname=pcsxr-svn
-pkgver=87058
+pkgver=1.9.93.r87892
 pkgrel=1
-pkgdesc="A Sony PlayStation emulator based on the PCSX-df Project"
+pkgdesc='A Sony PlayStation emulator based on the PCSX-df Project'
 arch=('i686' 'x86_64')
 url="http://pcsxr.codeplex.com/"
 license=('GPL')
@@ -20,12 +20,13 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  svnversion
+  printf "1.9.93.r%s" "$(svnversion)"
 }
 
 build() {
   cd ${pkgname%-*}
 
+  chmod +x autogen.sh
   ./autogen.sh --prefix='/usr' --enable-{libcdio,opengl}
   make
 }

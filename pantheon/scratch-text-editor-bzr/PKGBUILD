@@ -16,17 +16,17 @@ optdepends=('vala: Outline plugin'
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("bzr+lp:${pkgname%%-*}")
+source=("${pkgname%-*}::bzr+lp:${pkgname%%-*}")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}"/${pkgname%%-*}
+  cd ${pkgname%-*}
 
   bzr revno
 }
 
 prepare() {
-  cd ${pkgname%%-*}
+  cd ${pkgname%-*}
 
   sed -i 's/gtkspell-3.0/gtkspell3-3.0/' plugins/spell/CMakeLists.txt
   sed -i '/add_subdirectory (spell)/d' plugins/CMakeLists.txt
@@ -34,7 +34,7 @@ prepare() {
 }
 
 build() {
-  cd ${pkgname%%-*}
+  cd ${pkgname%-*}
 
   if [[ -d build ]]; then
     rm -rf build
@@ -46,7 +46,7 @@ build() {
 }
 
 package() {
-  cd ${pkgname%%-*}/build
+  cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" install
   chmod +x "${pkgdir}"/usr/share/scratch/scripts/*.py

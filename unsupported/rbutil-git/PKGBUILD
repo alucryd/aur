@@ -1,29 +1,31 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=rbutil-git
-pkgver=31457
+pkgver=1.3.1.r31979.adc5033
 pkgrel=1
-pkgdesc="Rockbox Utility git version"
+pkgdesc='Rockbox Utility'
 arch=('i686' 'x86_64')
-url="http://www.rockbox.org/twiki/bin/view/Main/RockboxUtility"
+url='http://www.rockbox.org/twiki/bin/view/Main/RockboxUtility'
 license=("GPL")
 depends=('qt4' 'libusbx' 'speex')
-makedepends=('git')
+makedepends=('gendesk' 'git')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::git://git.rockbox.org/rockbox"
-        'rbutil.desktop')
-sha256sums=('SKIP'
-            '539285237af16fbc60a7501963e8c2f584e58a31f2613481e6b42d21337b7a25')
+source=("${pkgname%-*}::git://git.rockbox.org/rockbox")
+sha256sums=('SKIP')
 
 pkgver() {
   cd "${srcdir}"/${pkgname%-*}
 
-  git rev-list --count HEAD
+  printf "1.3.1.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  gendesk -n --pkgname "${pkgname}" --pkgdesc "${pkgdesc}" --name="Rockbox Utility" --exec="RockboxUtility" --categories="Application;Utility;" --comment="Rockbox automated installer"
 }
 
 build() {
-  cd "${srcdir}"/${pkgname%-*}/${pkgname%-*}/${pkgname%-*}qt
+  cd ${pkgname%-*}/${pkgname%-*}/${pkgname%-*}qt
 
   lrelease-qt4 rbutilqt.pro
   qmake-qt4
@@ -31,12 +33,11 @@ build() {
 }
 
 package(){
-  cd "${srcdir}"/${pkgname%-*}/${pkgname%-*}/${pkgname%-*}qt
+  cd ${pkgname%-*}/${pkgname%-*}/${pkgname%-*}qt
 
-  install -dm 755 "${pkgdir}"/usr/{bin,share/pixmaps}
-  install -m 644 icons/rockbox-64.png "${pkgdir}"/usr/share/pixmaps/rbutil.png
+  install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,pixmaps}}
   install -m 755 RockboxUtility "${pkgdir}"/usr/bin/rbutil
-  install -dm 755 "${pkgdir}"/usr/share/applications
+  install -m 644 icons/rockbox-64.png "${pkgdir}"/usr/share/pixmaps/rbutil.png
   install -m 644 "${srcdir}"/rbutil.desktop "${pkgdir}"/usr/share/applications/rbutil.desktop
 }
 

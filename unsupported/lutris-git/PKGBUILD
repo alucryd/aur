@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=lutris-git
-pkgver=415.2d576ba
+pkgver=0.3.1.r427.b3b3475
 pkgrel=1
 pkgdesc='Open Gaming Platform'
 arch=('any')
@@ -18,7 +18,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  printf "%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  printf "0.3.1.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 prepare() {

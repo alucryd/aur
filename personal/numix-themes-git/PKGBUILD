@@ -2,23 +2,23 @@
 # Contributor: Diego <cdprincipe at gmail dot com>
 
 pkgname=numix-themes-git
-pkgver=241
+pkgver=2.0.r262.52523cf
 pkgrel=1
 pkgdesc="A flat and light theme with a modern look (GNOME, Openbox, Unity, Xfce)"
 arch=('any')
-url="https://github.com/shimmerproject/Numix"
+url='https://github.com/shimmerproject/Numix'
 license=('GPL3')
 depends=('gtk-engine-murrine')
 makedepends=('git')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::git://github.com/shimmerproject/Numix.git")
+source=("${pkgname%-*}::git+${url}.git")
 md5sums=('SKIP')
 
 pkgver() {
   cd ${pkgname%-*}
 
-  printf "%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  printf "%s.r%s.%s" "$(git describe --tags | sed 's/^v//; s/-.*//')" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package() {

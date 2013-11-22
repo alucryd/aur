@@ -1,9 +1,9 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=light-locker-git
-pkgver=0.1.0.19
+pkgver=1.1.0.r2129.b31ec27
 pkgrel=1
-pkgdesc="A simple locker forked from gnome-screensaver"
+pkgdesc='A simple locker forked from gnome-screensaver'
 arch=('i686' 'x86_64')
 url="https://github.com/the-cavalry/light-locker"
 license=('GPL2')
@@ -17,7 +17,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  git describe | sed 's/v//; s/-/./; s/-.*//'
+  printf "%s.r%s.%s" "$(git describe --tags | sed 's/^v//')" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build () {

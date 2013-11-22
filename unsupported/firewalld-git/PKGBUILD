@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=firewalld-git
-pkgver=955.2f98f28
+pkgver=0.3.8.r975.e77a70c
 pkgrel=1
 pkgdesc="A firewall daemon with D-BUS interface providing a dynamic firewall"
 arch=('any')
@@ -22,7 +22,7 @@ sha256sums=('SKIP'
 pkgver() {
   cd ${pkgname%-*}
 
-  printf "%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  printf "%s.r%s.%s" "$(git describe --tags | sed 's/^r//; s/_/./g; s/-.*//')" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 prepare() {
