@@ -1,4 +1,4 @@
-pkgname=('plex-home-theater')
+pkgname=('plex-home-theater-git')
 
 check_git $packagedir/$pkgname/${pkgname%-*}
 

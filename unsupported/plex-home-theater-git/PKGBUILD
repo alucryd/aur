@@ -9,7 +9,7 @@ arch=('i686' 'x86_64')
 url='http://www.plexapp.com/'
 license=('GPL2')
 depends=('boost-libs' 'curl' 'fontconfig' 'glew' 'java-runtime' 'lame' 'libass' 'libcdio' 'libjpeg-turbo' 'libmad' 'libmicrohttpd' 'libmodplug' 'libmpeg2' 'libpulse' 'libsamplerate' 'libssh' 'libusb-compat' 'libva' 'libxrandr' 'lzo2' 'mesa' 'rtmpdump' 'sdl_image' 'sdl_mixer' 'smbclient' 'taglib' 'tinyxml' 'yajl')
-makedepends=('boost' 'cmake' 'doxygen' 'ftgl' 'java-environment' 'libcec' 'libplist' 'libshairport' 'nasm' 'swig' 'unzip' 'zip')
+makedepends=('boost' 'cmake' 'doxygen' 'ftgl' 'git' 'java-environment' 'libcec' 'libplist' 'libshairport' 'nasm' 'swig' 'unzip' 'zip')
 optdepends=('libplist: AirPlay support'
             'libshairport: AirPlay support'
             'libcec: Pulse-Eight USB-CEC adapter support'
