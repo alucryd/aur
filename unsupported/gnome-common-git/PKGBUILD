@@ -3,7 +3,7 @@
 # Contributor: teddy_beer_maniac <teddy_beer_maniac at wp dot pl>
 
 pkgname=gnome-common-git
-pkgver=3.10.0.r916.62f7546
+pkgver=3.10.0.r3.62f7546
 pkgrel=1
 pkgdesc="Common development macros for GNOME"
 arch=('any')
@@ -18,7 +18,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  printf "%s.r%s.%s" "$(git describe --tags | sed 's/-.*//')" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  printf "%s" "$(git describe --tags | sed 's/-/.r/; s/-g/./')"
 }
 
 build() {

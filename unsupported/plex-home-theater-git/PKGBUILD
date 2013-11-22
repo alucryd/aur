@@ -2,7 +2,7 @@
 # Contributor: Daniel Wallace <daniel dot wallace at gatech dot edu>
 
 pkgname=plex-home-theater-git
-pkgver=1.0.1.r23472.5212c71
+pkgver=1.0.2.r1.f00f964
 pkgrel=1
 pkgdesc='Plex Home Theater'
 arch=('i686' 'x86_64')
@@ -22,7 +22,7 @@ sha256sums=('SKIP'
 pkgver() {
   cd ${pkgname%-*}
 
-  printf "%s.r%s.%s" "$(git describe --tags | sed 's/pht-v//')" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  printf "%s" "$(git describe --tags | sed 's/pht-v//; s/-/.r/; s/-g/./')"
 }
 
 build() {
@@ -33,12 +33,12 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DENABLE_{AUTOUPDATE='OFF',DUMP_SYMBOLS='OFF',PYTHON='OFF'} -DUSE_INTERNAL_FFMPEG='ON'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DENABLE_{AUTOUPDATE='OFF',DUMP_SYMBOLS='OFF',PYTHON='OFF'} -DUSE_INTERNAL_FFMPEG='ON' -DCREATE_BUNDLE='OFF'
   make
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" install
 
