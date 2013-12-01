@@ -1,4 +1,4 @@
-# Maintainer: Maxime Gauduin <alucryd at gmail dot com>
+# Maintainer: alucryd <alucryd at gmail dot com>
 # Contributor: josephgbr <rafael.f.f1 at gmail dot com>
 # Contributor: Themaister <maister at archlinux dot us>
 
@@ -13,12 +13,10 @@ makedepends=('cmake' 'sparsehash' 'subversion')
 if [[ $CARCH == i686 ]]; then
   depends=('glew' 'libaio' 'libcanberra' 'libjpeg-turbo' 'nvidia-cg-toolkit' 'portaudio' 'sdl2' 'soundtouch' 'wxgtk')
 elif [[ $CARCH == x86_64 ]]; then
-  depends=('lib32-glew' 'lib32-libaio' 'lib32-libcanberra' 'lib32-libjpeg-turbo' 'lib32-nvidia-cg-toolkit' 'lib32-portaudio' 'lib32-sdl2' 'lib32-soundtouch' 'lib32-wxgtk')
-  makedepends+=('gcc-multilib')
-  optdepends=('lib32-gtk-engines: gtk2 engines support'
-              'lib32-gtk-aurora-engine: aurora gtk2 engine support'
-              'lib32-gtk-murrine: murrine gtk3 engine support'
-              'lib32-gtk-unico: unico gtk2 engine support')
+  makedepends+=('gcc-multilib' 'lib32-glew' 'lib32-libaio' 'lib32-libcanberra' 'lib32-libjpeg-turbo' 'lib32-nvidia-cg-toolkit' 'lib32-portaudio' 'lib32-sdl2' 'lib32-soundtouch' 'lib32-wxgtk')
+  optdepends=('lib32-gtk-engines: GTK2 engines support'
+              'lib32-gtk-murrine: murrine GTK3 engine support'
+              'lib32-gtk-unico: unico GTK2 engine support')
 fi
 options=('!emptydirs')
 source=("${pkgname%-*}::svn+http://pcsx2.googlecode.com/svn/trunk/")
@@ -51,6 +49,10 @@ build() {
 
 package() {
   cd ${pkgname%-*}/build
+
+  if [[ $CARCH == x86_64 ]]; then
+    depends=('lib32-glew' 'lib32-libaio' 'lib32-libcanberra' 'lib32-libjpeg-turbo' 'lib32-nvidia-cg-toolkit' 'lib32-portaudio' 'lib32-sdl2' 'lib32-soundtouch' 'lib32-wxgtk')
+  fi
 
   make DESTDIR="${pkgdir}" install
 }
