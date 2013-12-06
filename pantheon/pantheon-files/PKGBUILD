@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-files
-pkgver=0.1.5
+pkgver=0.1.5.1
 pkgrel=1
 pkgdesc="A simple, powerful, sexy file manager for the Pantheon desktop"
 arch=('i686' 'x86_64')
@@ -11,8 +11,16 @@ depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
 makedepends=('cmake' 'gnome-common' 'sqlite3' 'vala')
 conflicts=('marlin-bin' 'marlin-bzr')
 install="${pkgname}.install"
-source=("${url}/${pkgver%?}x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
-sha256sums=('62ef5139554a18fdf9263896f71aa077edd95e82bf6f184d7f031cedbc6a638b')
+source=("${url}/${pkgver:0:4}x/${pkgver}/+download/${pkgname}-${pkgver}.tgz"
+        'progress-ui-handler.patch')
+sha256sums=('b0af091280431ed442485b31df78a8a2d99ca4fbba693ce1148fee71c5b6bf1c'
+            '885bf44f1e5542b6479ef2ff4ec4a8cbd69b5cff4c7d072b947d8633f6d8653d')
+
+prepare() {
+  cd ${pkgname}-${pkgver}
+
+  patch -Np0 -i ../progress-ui-handler.patch
+}
 
 build() {
   cd ${pkgname}-${pkgver}

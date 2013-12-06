@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=rbutil-git
-pkgver=1.3.1.r31979.adc5033
+pkgver=1.3.1.r32000.2bf192e
 pkgrel=1
 pkgdesc='Rockbox Utility'
 arch=('i686' 'x86_64')
@@ -21,7 +21,7 @@ pkgver() {
 }
 
 prepare() {
-  gendesk -n --pkgname "${pkgname}" --pkgdesc "${pkgdesc}" --name="Rockbox Utility" --exec="RockboxUtility" --categories="Application;Utility;" --comment="Rockbox automated installer"
+  gendesk -n --pkgname "${pkgname%-*}" --pkgdesc "${pkgdesc}" --name="Rockbox Utility" --exec="RockboxUtility" --categories="Application;Utility;" --comment="Rockbox automated installer"
 }
 
 build() {

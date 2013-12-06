@@ -2,7 +2,7 @@
 # Contributor: Daniel Wallace <daniel dot wallace at gatech dot edu>
 
 pkgname=plex-home-theater-git
-pkgver=1.0.2.r32.51951c8
+pkgver=1.0.2.r66.ab391a2
 pkgrel=1
 pkgdesc='Plex Home Theater'
 arch=('i686' 'x86_64')
@@ -25,12 +25,6 @@ pkgver() {
   cd ${pkgname%-*}
 
   printf "%s" "$(git describe --tags | sed 's/pht-v//; s/-/.r/; s/-g/./')"
-}
-
-prepare() {
-  cd ${pkgname%-*}
-
-  sed 's|Pictures/PictureInfoTag.h|pictures/PictureInfoTag.h|' -i plex/FileSystem/PlexDirectoryTypeParserPicture.cpp
 }
 
 build() {

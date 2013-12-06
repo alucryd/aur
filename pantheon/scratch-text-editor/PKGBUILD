@@ -2,20 +2,20 @@
 # Contributor: Ner0 <darkelfdarkelf666 at yahoo dot co dot uk>
 
 pkgname=scratch-text-editor
-pkgver=2.0.1
+pkgver=2.0.2
 pkgrel=1
 pkgdesc='The text editor that works'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%%-*}"
 license=('GPL3')
 depends=('desktop-file-utils' 'granite' 'gtksourceview3' 'libpeas' 'python2-chardet' 'zeitgeist')
-makedepends=('cmake' 'gobject-introspection' 'pantheon-files' 'vala' 'vte3' 'webkitgtk3')
+makedepends=('cmake' 'gobject-introspection' 'pantheon-files' 'vala' 'vte3' 'webkitgtk')
 optdepends=('vala: Outline plugin'
             'vte3: Terminal plugin'
-            'webkitgtk3: Browser Preview plugin')
+            'webkitgtk: Browser Preview plugin')
 install="${pkgname}.install"
-source=("${url}/2.x/${pkgver}/+download/${pkgname%%-*}-${pkgver}.tar.gz")
-sha256sums=('002ab65364c0c51e21207fc5e6610be9b869f215df2434cca20b330537ddf242')
+source=("${url}/2.x/${pkgver}/+download/${pkgname%%-*}-${pkgver}.tgz")
+sha256sums=('65a341ce34c5d8cc119e3b582ac9027d83f91c01636527d55bbfc8b4cafd6a1e')
 
 prepare() {
   cd ${pkgname%%-*}
