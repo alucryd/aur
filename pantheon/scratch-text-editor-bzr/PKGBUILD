@@ -2,14 +2,14 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=scratch-text-editor-bzr
-pkgver=1212
+pkgver=1233
 pkgrel=1
 pkgdesc='The text editor that works'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%%-*}"
 license=('GPL3')
 depends=('desktop-file-utils' 'granite' 'gtksourceview3' 'libpeas' 'python2-chardet' 'zeitgeist')
-makedepends=('bzr' 'cmake' 'gobject-introspection' 'pantheon-files' 'vala' 'vte3' 'webkitgtk3')
+makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala' 'vte3' 'webkitgtk3')
 optdepends=('vala: Outline plugin'
             'vte3: Terminal plugin'
             'webkitgtk3: Browser Preview plugin')

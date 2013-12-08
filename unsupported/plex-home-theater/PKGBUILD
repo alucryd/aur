@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=plex-home-theater
-pkgver=1.0.2
+pkgver=1.0.6
 pkgrel=1
 pkgdesc='Plex Home Theater'
 arch=('i686' 'x86_64')
@@ -15,7 +15,7 @@ optdepends=('libplist: AirPlay support'
             'pulseaudio: PulseAudio support')
 source=("https://github.com/plexinc/plex-home-theater-public/archive/pht-v${pkgver}.tar.gz"
         'plexhometheater.sh')
-sha256sums=('ab0eccc7464c2f5daefcc0e7f676c42d9d7ed4c4147a8a174ed1e01b38eeb567'
+sha256sums=('38774c36f87416ca99dc42737bbac98f9f45fa0311f4f4b96cf730fc64f93874'
             '15993c2dad0f874253d93f2198320d97e35801962363ad92edbfe936567fcaa3')
 
 prepare() {
