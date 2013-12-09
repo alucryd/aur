@@ -8,7 +8,7 @@ pkgdesc='The text editor that works'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%%-*}"
 license=('GPL3')
-depends=('desktop-file-utils' 'granite' 'gtksourceview3' 'libpeas' 'python2-chardet' 'zeitgeist')
+depends=('desktop-file-utils' 'granite' 'gtksourceview3' 'libpeas' 'python2-chardet' 'libzeitgeist')
 makedepends=('cmake' 'gobject-introspection' 'vala' 'vte3' 'webkitgtk')
 optdepends=('vala: Outline plugin'
             'vte3: Terminal plugin'
