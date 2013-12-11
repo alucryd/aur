@@ -1,15 +1,15 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=pantheon-session-bzr
-pkgver=57
+pkgver=61
 pkgrel=1
 pkgdesc='Session entry for Pantheon'
 arch=('any')
-url='https://code.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-settings-luna'
+url='https://code.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-settings'
 license=('GPL3')
 depends=('cerbere' 'gala-bzr' 'gconf' 'gnome-keyring' 'gnome-session' 'gnome-settings-daemon' 'gnome-user-share' 'plank' 'polkit-gnome' 'slingshot-launcher' 'wingpanel' 'xdg-user-dirs-gtk')
 makedepends=('bzr')
-source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/pantheon-xsession-settings-luna"
+source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-settings/"
         'pantheon-session.sh')
 sha256sums=('SKIP'
             '1e0c8e9403e52614d43ecb920e507ee1e96b1439bb20949ff814741e5e5e2284')
@@ -25,22 +25,10 @@ prepare() {
 
   sed 's/policykit-1/polkit/' -i autostart/polkit-gnome-authentication-agent-1-pantheon.desktop
   sed 's|gnome-session --session=pantheon|/usr/bin/pantheon-session|' -i debian/pantheon.desktop
-
-# sed 's/env python/env python2/g' -i waf wscript
-}
-
-build() {
-  cd ${pkgname%-*}
-
-# ./waf configure --prefix=/usr
-# ./waf build
 }
 
 package() {
   cd ${pkgname%-*}
-
-# ./waf install -f --destdir="${pkgdir}"
-# sed -i 's|wm=compiz|wm=gala|g' "${pkgdir}/usr/share/pantheon-session/pantheon.session"
 
   mkdir -p "${pkgdir}"/{etc/xdg,usr/{bin,share/{gnome-session/sessions,pantheon,xsessions}}}
   mv autostart "${pkgdir}/etc/xdg/"

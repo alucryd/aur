@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=gala-bzr
-pkgver=362
+pkgver=364
 pkgrel=1
 pkgdesc="Pantheon Window Manager"
 arch=('i686' 'x86_64')
@@ -9,7 +9,6 @@ url="https://launchpad.net/gala"
 license=('GPL3')
 depends=('clutter-gtk' 'granite' 'mutter' 'plank')
 makedepends=('bzr' 'cmake' 'vala')
-optdepends=('pantheon-wallpaper-bzr: Wallpaper drawer')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
