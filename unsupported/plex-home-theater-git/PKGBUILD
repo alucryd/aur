@@ -2,7 +2,7 @@
 # Contributor: Daniel Wallace <daniel dot wallace at gatech dot edu>
 
 pkgname=plex-home-theater-git
-pkgver=1.0.2.r66.ab391a2
+pkgver=1.0.6.r14.cfbffa5
 pkgrel=1
 pkgdesc='Plex Home Theater'
 arch=('i686' 'x86_64')
@@ -25,6 +25,12 @@ pkgver() {
   cd ${pkgname%-*}
 
   printf "%s" "$(git describe --tags | sed 's/pht-v//; s/-/.r/; s/-g/./')"
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  sed 's|client/PlexServer.h|Client/PlexServer.h|' -i plex/Client/PlexTranscoderClient.cpp
 }
 
 build() {

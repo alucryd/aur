@@ -1,9 +1,9 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=slingshot-launcher
-pkgver=0.7.6
+pkgver=0.7.6.1
 pkgrel=1
-pkgdesc='Slingshot application launcher'
+pkgdesc='The Pantheon Application Launcher'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
@@ -11,7 +11,7 @@ depends=('gnome-menus2' 'granite' 'libunity' 'libwnck3' 'libzeitgeist')
 makedepends=('cmake' 'vala')
 install="${pkgname}.install"
 source=("${url}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
-sha256sums=('52a3ec3d913e1b1a590fb159c1862e10a70f1029792eacfd16a1ad1c2c4b85e1')
+sha256sums=('fa7766281b323e0f86db64afc24d0fd9e8765773da54eb703aaa507cddc0ebcb')
 
 build() {
   cd ${pkgname}-${pkgver}
