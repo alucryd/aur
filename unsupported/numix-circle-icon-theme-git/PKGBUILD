@@ -1,19 +1,19 @@
 # Maintainer: alucryd <alucryd at gmail dot dom>
 
 pkgname=numix-circle-icon-theme-git
-pkgver=0.r81.a219a46
+pkgver=0.r104.bbec939
 pkgrel=1
 pkgdesc='Circle icon theme from the Numix project'
 arch=('any')
-url="https://github.com/numixproject/numix-icon-theme-circle"
+url='http://numixproject.org/'
 license=('GPL3')
-depends=('gnome-icon-theme')
+depends=('numix-icon-theme')
 makedepends=('git')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 options=('!strip')
 install="${pkgname%-*}.install"
-source=("${pkgname%-*}::git+${url}.git")
+source=("${pkgname%-*}::git+https://github.com/numixproject/numix-icon-theme-circle.git")
 sha256sums=('SKIP')
 
 pkgver() {

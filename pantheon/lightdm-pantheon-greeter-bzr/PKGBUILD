@@ -2,7 +2,7 @@
 # Contributor: sh4nks <sh4nks7 at gmail dot com
 
 pkgname=lightdm-pantheon-greeter-bzr
-pkgver=223
+pkgver=234
 pkgrel=1
 pkgdesc='Pantheon greeter for LightDM'
 arch=('i686' 'x86_64')
@@ -13,7 +13,7 @@ makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("${pkgname%-*}::bzr+lp:pantheon-greeter")
+source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~teemperor/pantheon-greeter/new-ui/")
 sha256sums=('SKIP')
 
 pkgver() {

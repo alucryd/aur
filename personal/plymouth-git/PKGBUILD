@@ -1,0 +1,76 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: mytbk <mytbk920423 at gmail dot com>
+# Contributor: PirateJonno <jonno dot conder plus arch at gmail dot com>
+
+pkgname=plymouth-git
+pkgver=0.8.8.r96.g759e6d9
+pkgrel=1
+pkgdesc='Graphical Boot System'
+arch=('i686' 'x86_64')
+url='http://cgit.freedesktop.org/plymouth/'
+license=('GPL')
+depends=('libdrm' 'pango' 'systemd')
+makedepends=('docbook-xsl' 'git')
+optdepends=('ttf-dejavu')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+backup=('etc/plymouth/plymouthd.conf')
+options=('!emptydirs')
+source=('git://anongit.freedesktop.org/plymouth'
+        'arch_logo.png'
+        'plymouth.functions'
+        'plymouth-encrypt-hook'
+        'plymouth-encrypt-install'
+        'plymouth-hook'
+        'plymouth-install'
+        'plymouth-set-default-theme.in.patch'
+        'plymouth-update-initrd.patch'
+        'system-release')
+sha256sums=('SKIP'
+            '8c41732192ca8d5ca88de6ed92459e58ce76825abb3e6f57dc7bfa422c6bfa1c'
+            'f9caa93e784ed1f045c6c12d39c0f89f5391ecfa8e12ba3f021a0a4d55234815'
+            '57fe2a075ac92d550873cbde4844deeea35e3e65a81a1a3ca9d7fa8763514a7e'
+            '544399d4f3454644f24ad11e504eaa7d622c73942728f52fb55bea054c756fa1'
+            'c1d44564bad8c4d49ef7eb5083f0339f11ef2b3215ee8a5e6c56a586a8d31fac'
+            '1889dacfdfa8edc5f419b0ccd326d4ecdb05d4d796e54eeec1719e092a19dafe'
+            '1292cc3ac2b73020f2a94a0ec53b238ec7c7321b66e59d243d6b645f794499fb'
+            'c5711bc39e1f09eece553697b29b01a0ea4e5d1f7f6ce2a72f725c3e488b7d56'
+            '2b4d152cc0f431eb7463c8103d4b540e6526814496e537cabeb748b47834ce67')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  git describe | sed 's/-/.r/; s/-/./'
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  #patch -Np0 -i ../plymouth-set-default-theme.in.patch
+  #patch -Np0 -i ../plymouth-update-initrd.patch
+}
+
+build() {
+  cd ${pkgname%-*}
+
+  export LDFLAGS="$LDFLAGS -ludev"
+  ./autogen.sh --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --sbindir='/usr/bin' --libexecdir="/usr/lib/${pkgname%-*}" --with-logo='/usr/share/plymouth/arch_logo.png' --with-background-color='0x333333' --enable-{drm,pango,systemd-integration} --without-{rhgb-compat-link,system-root-install}
+  make
+}
+
+package() {
+  cd ${pkgname%-*}
+
+  make DESTDIR="$pkgdir" install
+
+  install -dm 755 "${pkgdir}"/{etc/rc.d/functions.d,usr/{lib/{initcpio/{hooks,install},systemd/system},share/plymouth}}
+  install -m 644 ../system-release "${pkgdir}"/etc/
+  install -m 644 ../arch_logo.png "${pkgdir}"/usr/share/plymouth/
+  install -m 644 ../plymouth.functions "${pkgdir}"/etc/rc.d/functions.d/
+  install -m 644 ../plymouth-encrypt-hook "${pkgdir}"/usr/lib/initcpio/hooks/plymouth-encrypt
+  install -m 644 ../plymouth-encrypt-install "${pkgdir}"/usr/lib/initcpio/install/plymouth-encrypt
+  install -m 644 ../plymouth-hook "${pkgdir}"/usr/lib/initcpio/hooks/plymouth
+  install -m 644 ../plymouth-install "${pkgdir}"/usr/lib/initcpio/install/plymouth
+}
+
+# vim: ts=2 sw=2 et:

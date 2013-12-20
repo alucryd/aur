@@ -1,0 +1,16 @@
+run_hook() {
+        msg -n ":: Loading plymouth..."
+
+        /bin/mknod /dev/fb c 29 0 &>/dev/null
+        #/bin/mount devpts /dev/pts -t devpts
+
+        # plymouth deamon
+        #/bin/mkdir -p /run/plymouth
+        /usr/sbin/plymouthd --mode=boot --pid-file=/run/plymouth.pid
+
+        # plymouth frontend
+        /usr/bin/plymouth --show-splash
+        msg "done."
+}
+
+# vim: set ft=sh:

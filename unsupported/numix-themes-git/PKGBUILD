@@ -6,13 +6,13 @@ pkgver=2.0.r262.52523cf
 pkgrel=1
 pkgdesc="A flat and light theme with a modern look (GNOME, Openbox, Unity, Xfce)"
 arch=('any')
-url='https://github.com/shimmerproject/Numix'
+url='http://numixproject.org/'
 license=('GPL3')
 depends=('gtk-engine-murrine')
 makedepends=('git')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::git+${url}.git")
+source=("${pkgname%-*}::git+https://github.com/shimmerproject/Numix.git")
 md5sums=('SKIP')
 
 pkgver() {

@@ -27,7 +27,7 @@ build() {
   cd build
 
   export CC='gcc -m32'
-  export CXX="g++ -m32"
+  export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
   ../SDL2-${pkgver}/configure --prefix='/usr' --libdir='/usr/lib32' --enable-{alsa,pulseaudio-shared,sdl-dlopen} --disable-{arts,esd,nas,rpath}

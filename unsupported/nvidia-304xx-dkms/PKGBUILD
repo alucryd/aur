@@ -1,12 +1,12 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=nvidia-304xx-dkms
-pkgver=304.116
+pkgver=304.117
 pkgrel=1
 pkgdesc="NVIDIA kernel module sources (DKMS)"
 arch=('i686' 'x86_64')
-[[ $CARCH == i686 ]] && _arch=x86 && _pkg=NVIDIA-Linux-${_arch}-${pkgver} && md5sums=('0626e8582fd81f14e7fbd906fbca1d51')
-[[ $CARCH == x86_64 ]] && _arch=x86_64 && _pkg=NVIDIA-Linux-${_arch}-${pkgver}-no-compat32 && md5sums=('8b89d14e717ce7dd78c4d38cab930d1e')
+[[ $CARCH == i686 ]] && _arch=x86 && _pkg=NVIDIA-Linux-${_arch}-${pkgver} && md5sums=('023eb03da304a1842fc503c81e3c5694')
+[[ $CARCH == x86_64 ]] && _arch=x86_64 && _pkg=NVIDIA-Linux-${_arch}-${pkgver}-no-compat32 && md5sums=('8ee9f672028971c6d36118894d0e2c59')
 url="http://www.nvidia.com/"
 license=('custom')
 depends=('dkms' "nvidia-304xx-utils=${pkgver}")

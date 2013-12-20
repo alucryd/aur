@@ -1,0 +1,8 @@
+--- scripts/plymouth-update-initrd.old 2013-10-27 17:02:15.200368142 +0900
++++ scripts/plymouth-update-initrd 2013-10-27 17:02:57.686768138 +0900
+@@ -1,2 +1,4 @@
+#!/bin/bash
+-dracut -f /boot/initramfs-$(uname -r).img $(uname -r)
++find /etc/mkinitcpio.d/ -name \*.preset -a \! -name example.preset | while read p; do
++ mkinitcpio -p $p
++done
