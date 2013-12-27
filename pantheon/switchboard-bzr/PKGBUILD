@@ -3,13 +3,13 @@
 # Contributor: dserban <dserban01 at yahoo dot com>
 
 pkgname=switchboard-bzr
-pkgver=407
+pkgver=413
 pkgrel=1
 pkgdesc='Modular desktop settings hub'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
-depends=('granite' 'libunity')
+depends=('granite-bzr' 'libunity')
 makedepends=('bzr' 'cmake' 'vala')
 optdepends=('switchboard-plug-about-bzr: About plug'
             'switchboard-plug-default-applications-bzr: Default applications plug'
