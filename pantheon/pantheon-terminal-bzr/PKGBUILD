@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-terminal-bzr
-pkgver=448
+pkgver=538
 pkgrel=1
 pkgdesc='The Pantheon Terminal Emulator'
 arch=('i686' 'x86_64')
@@ -15,6 +15,12 @@ conflicts=("${pkgname%-*}")
 install="${pkgname}.install"
 source=("bzr+lp:${pkgname%-*}")
 sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  bzr revno
+}
 
 build() {
   cd ${pkgname%-*}
