@@ -2,13 +2,13 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=audience-bzr
-pkgver=296
+pkgver=305
 pkgrel=1
 pkgdesc='A modern media player'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%-*}"
 license=('GPL3')
-depends=('clutter-gtk' 'desktop-file-utils' 'granite' 'gst-plugins-base-libs')
+depends=('clutter-gtk' 'desktop-file-utils' 'granite-bzr' 'gst-plugins-base-libs')
 makedepends=('bzr' 'clutter-gst' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
