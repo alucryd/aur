@@ -1,0 +1,29 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+# Contributor: xzy3186 <xzy3186 at gmail dot com>
+
+pkgname=gnome-shell-themes-elegance-colors
+pkgver=2.8
+pkgrel=1
+pkgdesc='A chameleon theme for GNOME Shell'
+arch=('i686' 'x86_64')
+license=('GPL3')
+url='https://github.com/satya164/elegance-colors'
+depends=('bc' 'gnome-shell' 'imagemagick')
+makedepends=('vala')
+install="${pkgname}.install"
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/satya164/elegance-colors/archive/v${pkgver}.tar.gz")
+sha256sums=('3729a4a838a3f078076b856c71e154fa185a45dd46c44486bac038b8bcdff6cb')
+
+build() {
+  cd elegance-colors-${pkgver}
+
+  make
+}
+
+package() {
+  cd elegance-colors-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
