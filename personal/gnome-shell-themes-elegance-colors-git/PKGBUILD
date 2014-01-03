@@ -1,5 +1,5 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: xzy3186 <xzy3186 at gmail dot com>
+# Contributor: Rasmus Schults <rasmusx at gmail dot com>
 
 pkgname=gnome-shell-themes-elegance-colors-git
 pkgver=2.8.5.5781c30
@@ -19,7 +19,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd elegance-colors
 
-  git describe --tags | sed 's/v//; s/-/./; s/-g/./'
+  printf "%s" "$(git describe --tags | sed 's/v//; s/-/.r/; s/-g/./')"
 }
 
 build() {
