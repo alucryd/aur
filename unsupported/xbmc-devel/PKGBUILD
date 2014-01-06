@@ -1,8 +1,8 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=xbmc-devel
-pkgver=13.0alpha10
-_release=Gotham_alpha10
+pkgver=13.0alpha11
+_release=Gotham_alpha11
 pkgrel=1
 pkgdesc='XBMC Media Center - Development snapshots'
 arch=('i686' 'x86_64')
@@ -22,7 +22,7 @@ conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
 source=("https://github.com/xbmc/xbmc/archive/${_release}.tar.gz"
         'xbmc.service')
-sha256sums=('e3b5ae5c069df95f9ab1ffd0edb9a9c9b046fc32c7ab16a259524ebc2a1f7f30'
+sha256sums=('442bcb838c9ba85169116b00b36954d8781f836dc8f173348ac68b356725e94f'
             '547e06f3141866cd34b1df34025517e9826992b67543af7621d954bcdfa0ba94')
 
 build() {
