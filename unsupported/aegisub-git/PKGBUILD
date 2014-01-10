@@ -1,13 +1,13 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=aegisub-git
-pkgver=3.0.4.r6738.3d573f0
+pkgver=3.1.0.r6840.6617d52
 pkgrel=1
-pkgdesc="A general-purpose subtitle editor with ASS/SSA support"
+pkgdesc='A general-purpose subtitle editor with ASS/SSA support'
 arch=('i686' 'x86_64')
-url="http://www.aegisub.org"
+url='http://www.aegisub.org'
 license=('GPL' 'BSD')
-depends=('boost-libs' 'desktop-file-utils' 'ffms2' 'fftw' 'hunspell' 'lua51' 'wxgtk2.9')
+depends=('boost-libs' 'desktop-file-utils' 'ffms2' 'fftw' 'hunspell' 'lua51' 'wxgtk')
 makedepends=('boost' 'git' 'intltool' 'mesa')
 optdepends=('libpulse: Pulseaudio backend'
             'openal: OpenAL backend'
@@ -22,14 +22,14 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  printf "3.0.4.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  printf "3.1.0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build () {
   cd ${pkgname%-*}/${pkgname%-*}
 
   ./autogen.sh
-  ./configure --prefix='/usr' --with-wxdir='/usr/include/wx-2.9' --with-wx-config='/usr/bin/wx-config-2.9'
+  ./configure --prefix='/usr'
   make
 }
 
@@ -37,10 +37,9 @@ package() {
   cd ${pkgname%-*}/${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
-  chmod 644 "${pkgdir}"/usr/share/icons/hicolor/scalable/apps/aegisub.svg
 
   install -dm 755 "${pkgdir}"/usr/share/licenses/aegisub-git
-  install -m 644 {,"${pkgdir}"/usr/share/licenses/aegisub-git/}LICENCE
+  install -m 644 LICENCE "${pkgdir}"/usr/share/licenses/aegisub-git/
 }
 
 # vim: ts=2 sw=2 et:

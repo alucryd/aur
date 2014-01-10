@@ -3,12 +3,12 @@
 pkgname=xbmc-devel
 pkgver=13.0alpha11
 _release=Gotham_alpha11
-pkgrel=1
+pkgrel=2
 pkgdesc='XBMC Media Center - Development snapshots'
 arch=('i686' 'x86_64')
 url='http://xbmc.org/'
 license=('GPL2')
-depends=('avahi' 'bluez-libs' 'curl' 'ffmpeg' 'glew' 'hicolor-icon-theme' 'java-runtime' 'libcdio' 'libmicrohttpd' 'libmad' 'libmariadbclient' 'libmpeg2' 'libsamplerate' 'libssh' 'libxrandr' 'lzo2' 'mesa' 'mesa-demos' 'python2' 'sdl_image' 'taglib' 'tinyxml' 'xorg-xdpyinfo' 'yajl')
+depends=('avahi' 'bluez-libs' 'curl' 'ffmpeg' 'glew' 'hicolor-icon-theme' 'java-runtime' 'libcdio' 'libmicrohttpd' 'libmad' 'libmariadbclient' 'libmpeg2' 'libsamplerate' 'libssh' 'libxrandr' 'libxslt' 'lzo2' 'mesa' 'mesa-demos' 'python2' 'sdl_image' 'taglib' 'tinyxml' 'xorg-xdpyinfo' 'yajl')
 makedepends=('afpfs-ng' 'boost' 'cmake' 'doxygen' 'gperf' 'jasper' 'java-environment' 'libcec' 'libnfs' 'libplist' 'libshairport' 'nasm' 'smbclient' 'swig' 'unzip' 'zip')
 optdepends=('afpfs-ng: Apple shares support'
             'smbclient: Windows shares support'
