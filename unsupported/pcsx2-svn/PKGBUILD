@@ -3,17 +3,17 @@
 # Contributor: Themaister <maister at archlinux dot us>
 
 pkgname=pcsx2-svn
-pkgver=1.1.0.r5800
+pkgver=1.1.0.r5809
 pkgrel=1
-pkgdesc="A Sony PlayStation 2 emulator"
+pkgdesc='A Sony PlayStation 2 emulator'
 arch=('i686' 'x86_64')
 url='http://www.pcsx2.net'
 license=('GPL2' 'GPL3' 'LGPL2.1' 'LGPL3')
 makedepends=('cmake' 'sparsehash' 'subversion')
 if [[ $CARCH == i686 ]]; then
-  depends=('glew' 'libaio' 'libcanberra' 'libjpeg-turbo' 'nvidia-cg-toolkit' 'portaudio' 'sdl2' 'soundtouch' 'wxgtk')
+  depends=('glew' 'libaio' 'libcanberra' 'libjpeg-turbo' 'nvidia-cg-toolkit' 'portaudio' 'sdl2' 'soundtouch' 'wxgtk2.8')
 elif [[ $CARCH == x86_64 ]]; then
-  makedepends+=('gcc-multilib' 'lib32-glew' 'lib32-libaio' 'lib32-libcanberra' 'lib32-libjpeg-turbo' 'lib32-nvidia-cg-toolkit' 'lib32-portaudio' 'lib32-sdl2' 'lib32-soundtouch' 'lib32-wxgtk')
+  makedepends+=('gcc-multilib' 'lib32-glew' 'lib32-libaio' 'lib32-libcanberra' 'lib32-libjpeg-turbo' 'lib32-nvidia-cg-toolkit' 'lib32-portaudio' 'lib32-sdl2' 'lib32-soundtouch' 'lib32-wxgtk2.8')
   optdepends=('lib32-gtk-engines: GTK2 engines support'
               'lib32-gtk-murrine: murrine GTK3 engine support'
               'lib32-gtk-unico: unico GTK2 engine support')
@@ -37,12 +37,12 @@ build() {
   mkdir build && cd build
 
   if [[ $CARCH == i686 ]]; then
-    cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_BUILD_TYPE='Release' -DPACKAGE_MODE='TRUE' -DXDG_STD='TRUE' -DGLSL_API='TRUE' -DSDL2_API='TRUE' -DREBUILD_SHADER='TRUE' -DPLUGIN_DIR='/usr/lib/pcsx2' -DGAMEINDEX_DIR='/usr/share/pcsx2'
+    cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_BUILD_TYPE='Release' -DPACKAGE_MODE='TRUE' -DXDG_STD='TRUE' -DGLSL_API='TRUE' -DSDL2_API='TRUE' -DREBUILD_SHADER='TRUE' -DPLUGIN_DIR='/usr/lib/pcsx2' -DGAMEINDEX_DIR='/usr/share/pcsx2' -DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config-2.8' -DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc-2.8'
   elif [[ $CARCH == x86_64 ]]; then
     export CC='gcc -m32'
     export CXX='g++ -m32'
     export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
-    cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_BUILD_TYPE='Release' -DPACKAGE_MODE='TRUE' -DXDG_STD='TRUE' -DGLSL_API='TRUE' -DREBUILD_SHADER='TRUE' -DPLUGIN_DIR='/usr/lib32/pcsx2' -DGAMEINDEX_DIR='/usr/share/pcsx2' -DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config32' -DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc32' -DCMAKE_LIBRARY_PATH='/usr/lib32'
+    cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_BUILD_TYPE='Release' -DPACKAGE_MODE='TRUE' -DXDG_STD='TRUE' -DGLSL_API='TRUE' -DREBUILD_SHADER='TRUE' -DPLUGIN_DIR='/usr/lib32/pcsx2' -DGAMEINDEX_DIR='/usr/share/pcsx2' -DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config32-2.8' -DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc32-2.8' -DCMAKE_LIBRARY_PATH='/usr/lib32'
   fi
   make
 }
@@ -51,7 +51,7 @@ package() {
   cd ${pkgname%-*}/build
 
   if [[ $CARCH == x86_64 ]]; then
-    depends=('lib32-glew' 'lib32-libaio' 'lib32-libcanberra' 'lib32-libjpeg-turbo' 'lib32-nvidia-cg-toolkit' 'lib32-portaudio' 'lib32-sdl2' 'lib32-soundtouch' 'lib32-wxgtk')
+    depends=('lib32-glew' 'lib32-libaio' 'lib32-libcanberra' 'lib32-libjpeg-turbo' 'lib32-nvidia-cg-toolkit' 'lib32-portaudio' 'lib32-sdl2' 'lib32-soundtouch' 'lib32-wxgtk2.8')
   fi
 
   make DESTDIR="${pkgdir}" install
