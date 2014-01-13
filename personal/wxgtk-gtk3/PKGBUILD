@@ -1,9 +1,9 @@
-# $Id$
-# Maintainer: Eric Bélanger <eric@archlinux.org>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Eric Bélanger <eric@archlinux.org>
 
-pkgname=wxgtk
+pkgname=wxgtk-gtk3
 pkgver=3.0.0
-pkgrel=3
+pkgrel=1
 pkgdesc='GTK+ implementation of wxWidgets API for GUI'
 arch=('i686' 'x86_64')
 url='http://wxwidgets.org'
@@ -11,6 +11,7 @@ license=('custom:wxWindows')
 depends=('gstreamer0.10-base' 'gtk3' 'libnotify')
 makedepends=('gconf' 'glu' 'gstreamer0.10-base-plugins' 'webkitgtk')
 optdepends=('webkitgtk: for webview support')
+conflicts=("${pkgname%-*}")
 options=('!emptydirs')
 source=("http://downloads.sourceforge.net/wxwindows/wxWidgets-${pkgver}.tar.bz2"
         'wx-gdk-wayland.patch')

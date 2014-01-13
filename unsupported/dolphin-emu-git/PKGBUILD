@@ -2,7 +2,7 @@
 # Contributor: Lightning <sgsdxzy at gmail dot com>
 
 pkgname=dolphin-emu-git
-pkgver=4.0.r608.e3d103f
+pkgver=4.0.r611.8b53385
 pkgrel=1
 pkgdesc="A GameCube / Wii / Triforce emulator"
 arch=('i686' 'x86_64')
