@@ -1,0 +1,45 @@
+# $Id$
+# Maintainer: Eric Bélanger <eric@archlinux.org>
+
+pkgname=wxgtk
+pkgver=3.0.0
+pkgrel=3
+pkgdesc='GTK+ implementation of wxWidgets API for GUI'
+arch=('i686' 'x86_64')
+url='http://wxwidgets.org'
+license=('custom:wxWindows')
+depends=('gstreamer0.10-base' 'gtk3' 'libnotify')
+makedepends=('gconf' 'glu' 'gstreamer0.10-base-plugins' 'webkitgtk')
+optdepends=('webkitgtk: for webview support')
+options=('!emptydirs')
+source=("http://downloads.sourceforge.net/wxwindows/wxWidgets-${pkgver}.tar.bz2"
+        'wx-gdk-wayland.patch')
+sha256sums=('ff340539bcb6e45d8dbce848d3c13ebce34da6ffb9004a0a88e9541bec45bf85'
+            'fc53982525fc36cad2d684ae42b6ffb5672d2bbf9f2484aa4c3d0e0ac55f90cc')
+
+prepare() {
+  cd wxWidgets-${pkgver}
+
+  patch -Np1 -i ../wx-gdk-wayland.patch
+}
+
+build() {
+  cd wxWidgets-${pkgver}
+
+  ./configure --prefix='/usr' --libdir='/usr/lib' \
+              --with-gtk='3' --with-opengl --with-regex='builtin' --with-lib{jpeg,png,tiff,xpm}='sys' \
+              --enable-{graphics_ctx,mediactrl,stl,unicode,webview} --disable-precomp-headers
+  make
+  make -C locale allmo
+}
+
+package() {
+  cd wxWidgets-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+
+# License
+  install -Dm 644 docs/licence.txt "${pkgdir}"/usr/share/licenses/${pkgname}/LICENSE
+}
+
+# vim: ts=2 sw=2 et:
