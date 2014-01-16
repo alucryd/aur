@@ -1,5 +1,5 @@
 pkgname=('switchboard-plug-about-bzr')
-builddeps=('dee' 'granite-bzr' 'libunity' 'libpantheon-bzr' 'switchboard')
+builddeps=('dee' 'granite-bzr' 'libunity' 'libpantheon-bzr' 'switchboard-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

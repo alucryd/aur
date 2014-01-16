@@ -6,7 +6,7 @@ pkgbase=lightdm-devel
 pkgname="${pkgbase}"
 true && pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
 pkgver=1.9.5
-pkgrel=1
+pkgrel=2
 
 prepare() {
   cd ${pkgbase%-*}-${pkgver}
