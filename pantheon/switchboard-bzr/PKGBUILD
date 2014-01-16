@@ -3,7 +3,7 @@
 # Contributor: dserban <dserban01 at yahoo dot com>
 
 pkgname=switchboard-bzr
-pkgver=413
+pkgver=415
 pkgrel=1
 pkgdesc='Modular desktop settings hub'
 arch=('i686' 'x86_64')
@@ -36,7 +36,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_INSTALL_LIBDIR='/usr/lib'
   make
 }
 
