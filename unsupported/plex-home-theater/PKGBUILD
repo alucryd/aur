@@ -1,8 +1,8 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=plex-home-theater
-pkgver=1.0.7
-pkgrel=1
+pkgver=1.0.8
+pkgrel=2
 pkgdesc='Plex Home Theater'
 arch=('i686' 'x86_64')
 url='http://www.plexapp.com/'
@@ -14,9 +14,17 @@ optdepends=('libplist: AirPlay support'
             'libcec: Pulse-Eight USB-CEC adapter support'
             'pulseaudio: PulseAudio support')
 source=("https://github.com/plexinc/plex-home-theater-public/archive/pht-v${pkgver}.tar.gz"
-        'plexhometheater.sh')
-sha256sums=('ab777efdc008ea7efecfdeb5cb41e4f0d24161dd0cd8f9a3df1e9ac360b12648'
-            '15993c2dad0f874253d93f2198320d97e35801962363ad92edbfe936567fcaa3')
+        'plexhometheater.sh'
+        'plex-fribidi.patch')
+sha256sums=('ad5624be434c303ce261b7ea8ae2867a61b26770e95588984456c9914b77fcda'
+            '15993c2dad0f874253d93f2198320d97e35801962363ad92edbfe936567fcaa3'
+            'de777a4582932344408cbffd1f512ca75b6a7e8a2dc716ffc01cd512307c3433')
+
+prepare() {
+  cd plex-home-theater-public-pht-v${pkgver}
+
+  patch -Np1 -i ../plex-fribidi.patch
+}
 
 build() {
   cd plex-home-theater-public-pht-v${pkgver}
@@ -26,7 +34,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DENABLE_{AUTOUPDATE='OFF',DUMP_SYMBOLS='OFF',PYTHON='OFF'} -DUSE_INTERNAL_FFMPEG='ON' -DCREATE_BUNDLE='OFF'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_C_FLAGS="$CMAKE_C_FLAGS -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include" -DCMAKE_CXX_FLAGS="$CMAKE_CXX_FLAGS -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include" -DENABLE_{AUTOUPDATE='OFF',DUMP_SYMBOLS='OFF',PYTHON='OFF'} -DUSE_INTERNAL_FFMPEG='ON' -DCREATE_BUNDLE='OFF'
   make
 }
 

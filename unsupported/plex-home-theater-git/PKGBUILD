@@ -2,7 +2,7 @@
 # Contributor: Daniel Wallace <daniel dot wallace at gatech dot edu>
 
 pkgname=plex-home-theater-git
-pkgver=1.0.6.r14.cfbffa5
+pkgver=1.0.8
 pkgrel=1
 pkgdesc='Plex Home Theater'
 arch=('i686' 'x86_64')
@@ -17,9 +17,11 @@ optdepends=('libplist: AirPlay support'
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=("${pkgname%-*}::git+https://github.com/plexinc/plex-home-theater-public.git"
-        'plexhometheater.sh')
+        'plexhometheater.sh'
+        'plex-fribidi.patch')
 sha256sums=('SKIP'
-            '15993c2dad0f874253d93f2198320d97e35801962363ad92edbfe936567fcaa3')
+            '15993c2dad0f874253d93f2198320d97e35801962363ad92edbfe936567fcaa3'
+            'de777a4582932344408cbffd1f512ca75b6a7e8a2dc716ffc01cd512307c3433')
 
 pkgver() {
   cd ${pkgname%-*}
@@ -30,7 +32,7 @@ pkgver() {
 prepare() {
   cd ${pkgname%-*}
 
-  sed 's|client/PlexServer.h|Client/PlexServer.h|' -i plex/Client/PlexTranscoderClient.cpp
+  patch -Np1 -i ../plex-fribidi.patch
 }
 
 build() {
@@ -41,7 +43,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DENABLE_{AUTOUPDATE='OFF',DUMP_SYMBOLS='OFF',PYTHON='OFF'} -DUSE_INTERNAL_FFMPEG='ON' -DCREATE_BUNDLE='OFF'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_C_FLAGS="$CMAKE_C_FLAGS -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include" -DCMAKE_CXX_FLAGS="$CMAKE_CXX_FLAGS -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include" -DENABLE_{AUTOUPDATE='OFF',DUMP_SYMBOLS='OFF',PYTHON='OFF'} -DUSE_INTERNAL_FFMPEG='ON' -DCREATE_BUNDLE='OFF'
   make
 }
 
