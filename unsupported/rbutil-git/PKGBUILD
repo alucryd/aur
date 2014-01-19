@@ -1,14 +1,15 @@
 # Maintainer: alucryd <alucryd at gmail dot com>
 
 pkgname=rbutil-git
-pkgver=1.3.1.r32000.2bf192e
+pkgver=1.4.0.r101.gcc64d9e
 pkgrel=1
 pkgdesc='Rockbox Utility'
 arch=('i686' 'x86_64')
 url='http://www.rockbox.org/twiki/bin/view/Main/RockboxUtility'
 license=("GPL")
-depends=('qt4' 'libusbx' 'speex')
-makedepends=('gendesk' 'git')
+depends=('libusbx' 'qt5-base')
+makedepends=('gendesk' 'git' 'qt5-tools')
+optdepends=('speex: voice files support')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=("${pkgname%-*}::git://git.rockbox.org/rockbox")
@@ -17,7 +18,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd "${srcdir}"/${pkgname%-*}
 
-  printf "1.3.1.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  printf "%s" "$(git describe | sed 's/.*_//; s/-/.r/; s/-/./')"
 }
 
 prepare() {
@@ -27,8 +28,8 @@ prepare() {
 build() {
   cd ${pkgname%-*}/${pkgname%-*}/${pkgname%-*}qt
 
-  lrelease-qt4 rbutilqt.pro
-  qmake-qt4
+  lrelease-qt5 rbutilqt.pro
+  qmake-qt5
   make
 }
 
@@ -36,7 +37,7 @@ package(){
   cd ${pkgname%-*}/${pkgname%-*}/${pkgname%-*}qt
 
   install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,pixmaps}}
-  install -m 755 RockboxUtility "${pkgdir}"/usr/bin/rbutil
+  install -m 755 RockboxUtility "${pkgdir}"/usr/bin/
   install -m 644 icons/rockbox-64.png "${pkgdir}"/usr/share/pixmaps/rbutil.png
   install -m 644 "${srcdir}"/rbutil.desktop "${pkgdir}"/usr/share/applications/rbutil.desktop
 }
