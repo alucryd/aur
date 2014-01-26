@@ -5,8 +5,8 @@
 pkgbase=lightdm-devel
 pkgname="${pkgbase}"
 true && pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
-pkgver=1.9.5
-pkgrel=2
+pkgver=1.9.6
+pkgrel=1
 
 prepare() {
   cd ${pkgbase%-*}-${pkgver}
@@ -69,9 +69,9 @@ install="${pkgbase%-*}.install"
 }
 
 package_liblightdm-qt4-devel() {
-pkgdesc=('LightDM Qt client library')
+pkgdesc='LightDM Qt client library'
 depends=('lightdm' 'qt4')
-provides=("liblightdm-qt4=${pkgver}")
+provides=('liblightdm-qt4')
 conflicts=('liblightdm-qt4')
 options=('!emptydirs')
 
@@ -86,9 +86,9 @@ options=('!emptydirs')
 }
 
 package_liblightdm-qt5-devel() {
-pkgdesc=('LightDM Qt client library')
+pkgdesc='LightDM Qt client library'
 depends=('lightdm' 'qt5-base')
-provides=("liblightdm-qt5=${pkgver}")
+provides=('liblightdm-qt5')
 conflicts=('liblightdm-qt5')
 options=('!emptydirs')
 
@@ -102,9 +102,9 @@ options=('!emptydirs')
   find "${pkgdir}" -type l  -name *qt[!5]* -exec rm {} +
 }
 
-pkgdesc="A lightweight display manager"
+pkgdesc='A lightweight display manager'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/lightdm"
+url='https://launchpad.net/lightdm'
 license=('GPL3' 'LGPL3')
 makedepends=('gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'polkit' 'qt4' 'qt5-base' 'systemd')
 source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/${pkgbase%-*}-${pkgver}.tar.xz"
@@ -116,7 +116,7 @@ source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/${pkgbas
         'lightdm-default-config.patch'
         'Xsession')
 
-sha256sums=('e3a3b4181218137c7d5f82221939cfab30322f747b0e8183e198300a0897ff81'
+sha256sums=('ae6bd456d08678459dbab29c9966ecdc0808667f7dd7854a208b6f767b213d8a'
             '0d2adba25cdbe59e97ffd302083db9d5e23920780f41e04f64512cd6b633289a'
             'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
