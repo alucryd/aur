@@ -13,23 +13,23 @@ makedepends=('git' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("git+https://github.com/satya164/elegance-colors.git")
+source=("${pkgname%-*}::git+https://github.com/satya164/elegance-colors.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd elegance-colors
+  cd ${pkgname%-*}
 
   printf "%s" "$(git describe --tags | sed 's/v//; s/-/.r/; s/-g/./')"
 }
 
 build() {
-  cd elegance-colors
+  cd ${pkgname%-*}
 
   make
 }
 
 package() {
-  cd elegance-colors
+  cd ${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
 }
