@@ -1,0 +1,28 @@
+# Maintainer: alucryd <alucryd@gmail.com>
+
+pkgname=libgsignon-glib
+pkgver=2.0.3
+pkgrel=1
+pkgdesc='gSSO client library'
+arch=('i686' 'x86_64')
+url='https://01.org/gsso'
+license=('LGPL2.1')
+depends=('glib2' 'python')
+makedepends=('git' 'gobject-introspection' 'gtk-doc')
+source=("${pkgname}::git+https://code.google.com/p/accounts-sso.${pkgname}/#commit=45a3e120e138")
+sha256sums=('SKIP')
+
+build() {
+  cd ${pkgname}
+
+  ./autogen.sh --prefix='/usr' --enable-{dbus-type='session',introspection='yes'}
+  make
+}
+
+package() {
+  cd ${pkgname}
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:

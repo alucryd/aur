@@ -17,14 +17,14 @@ provides=("${pkgname%-*}" 'cantarell-fonts' 'jsmath-fonts' 'lohit-fonts' 'oldsta
 conflicts=("${provides}")
 install="${pkgname%-*}.install"
 source=("${pkgname%-*}::git+${url}.git"
-        'OFL.txt::http://scripts.sil.org/cms/scripts/render_download.php?format=file&media_id=OFL_plaintext&filename=OFL.txt')
-md5sums=('SKIP'
-         '6ed93967ff0dc6dd9c8d31c17f817a06')
+        'OFL.txt')
+sha256sums=('SKIP'
+            'ca122f3bda0154f692817450168cb650a7fc59ef96c93582acd2e7a744d464d3')
 
 pkgver() {
   cd ${pkgname%-*}
 
-  printf "0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package() {

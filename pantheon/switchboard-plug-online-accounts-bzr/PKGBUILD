@@ -1,0 +1,41 @@
+# Maintainer: alucryd <alucryd at gmail dot com>
+
+pkgname=switchboard-plug-online-accounts-bzr
+pkgver=23
+pkgrel=1
+pkgdesc='Online Accounts plug for Switchboard'
+arch=('i686' 'x86_64')
+url="https://launchpad.net/${pkgname%-*}"
+license=('GPL3')
+depends=('gsignond' 'libaccounts-glib' 'libgsignon-glib' 'switchboard-bzr')
+makedepends=('bzr' 'cmake' 'vala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("${pkgname%-*}::bzr+lp:switchboard-plug-onlineaccounts")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  bzr revno
+}
+
+build() {
+  cd ${pkgname%-*}
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_INSTALL_LIBDIR='/usr/lib'
+  make
+}
+
+package() {
+  cd ${pkgname%-*}/build
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
