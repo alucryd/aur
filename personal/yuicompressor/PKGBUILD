@@ -1,0 +1,50 @@
+# Maintainer: alucryd <alucryd@gmail.com>
+# Contributor: Anntoin Wilkinson <anntoin@gmail.com>
+# Contributor: Vladimir Ermakov <vooon341@gmail.com>
+# Contributor: Peter A. Shevtsov <pshevtsov@severusweb.ru>
+
+pkgname=yuicompressor
+pkgver=2.4.8
+pkgrel=1
+pkgdesc='The Yahoo! JavaScript and CSS Compressor'
+arch=('any')
+url='http://yui.github.io/yuicompressor/'
+license=('BSD')
+depends=('java-runtime')
+makedepends=('apache-ant')
+source=("https://github.com/yui/${pkgname}/archive/v${pkgver}.tar.gz"
+        'remove-js-cssmin.patch')
+sha256sums=('199ed2e4a05330b72cc1802347e2ae449112bb955894d44f596c1ef7319167bf'
+            '3be27b9cf252abfe20cf46d091639b5b021536e5c93b4ca950a94aab1fc4c679')
+
+prepare() {
+  cd ${pkgname}-${pkgver}
+
+  patch -Np1 -i ../remove-js-cssmin.patch
+}
+
+build() {
+  cd ${pkgname}-${pkgver}
+
+  ant
+}
+
+check() {
+  cd ${pkgname}-${pkgver}
+
+  ./tests/suite.sh
+}
+
+package() {
+  cd ${pkgname}-${pkgver}
+
+  install -dm 755 "${pkgdir}"/usr/{bin,share/{java,licenses}/${pkgname}}
+  install -m 755 build/${pkgname}-${pkgver}.jar "${pkgdir}"/usr/share/java/${pkgname}/${pkgname}.jar
+  install -m 644 LICENSE.TXT "${pkgdir}"/usr/share/licenses/${pkgname}/
+
+  echo '#!/bin/sh
+  "$JAVA_HOME/bin/java" -jar /usr/share/java/yuicompressor/yuicompressor.jar $@' > "${pkgdir}"/usr/bin/${pkgname}
+  chmod +x "${pkgdir}"/usr/bin/${pkgname}
+}
+
+# vim: ts=2 sw=2 et:
