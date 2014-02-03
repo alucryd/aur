@@ -2,7 +2,7 @@
 # Contributor: Lightning <sgsdxzy at gmail dot com>
 
 pkgname=dolphin-emu-git
-pkgver=4.0.r611.8b53385
+pkgver=4.0.r780.9856110
 pkgrel=1
 pkgdesc="A GameCube / Wii / Triforce emulator"
 arch=('i686' 'x86_64')
@@ -14,7 +14,7 @@ optdepends=('pulseaudio: PulseAudio backend')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 options=('!emptydirs')
-source=("${pkgname%-*}::git+https://code.google.com/p/dolphin-emu/")
+source=("${pkgname%-*}::git+https://github.com/dolphin-emu/dolphin.git")
 sha256sums=('SKIP')
 
 pkgver() {

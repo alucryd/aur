@@ -3,7 +3,7 @@
 # Contributor: Themaister <maister at archlinux dot us>
 
 pkgname=pcsx2-svn
-pkgver=1.1.0.r5809
+pkgver=1.3.0.r5875
 pkgrel=1
 pkgdesc='A Sony PlayStation 2 emulator'
 arch=('i686' 'x86_64')
@@ -25,7 +25,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  printf "1.1.0.r%s" "$(svnversion)"
+  printf "1.3.0.r%s" "$(svnversion)"
 }
 
 build() {
