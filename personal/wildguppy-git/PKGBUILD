@@ -1,0 +1,54 @@
+# Maintainer: alucryd <alucryd@gmail.com>
+# Contributor: der_fenix <derfenix@gmail.com>
+
+pkgname=wildguppy-git
+pkgver=r44.0e11a33
+pkgrel=1
+pkgdesc='Adjust brightness automatically by using your camera as a light sensor'
+arch=('any')
+url='https://github.com/bilegt/autobrightness'
+license=('GPL3')
+depends=('fswebcam' 'gtk3' 'python2-pillow' 'xorg-xbacklight')
+makedepends=('git')
+optdepends=('libappindicator3: Indicator applet')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("${pkgname%-*}::git+${url}.git"
+        "${pkgname%-*}-paths.patch")
+sha256sums=('SKIP'
+            '850f9eaefe1c43fd80df2b9c5eb091bbf2b077eabebf0cb386e3022d7111d698')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  patch -Np1 -i ../${pkgname%-*}-paths.patch
+  sed -i 's|^#!.*python$|#!/usr/bin/python2|' *.py
+}
+
+build() {
+  cd ${pkgname%-*}
+
+  python2 -Om compileall .
+}
+
+package() {
+  cd ${pkgname%-*}
+
+  install -dm 755  "${pkgdir}"/usr/{bin,lib/python2.7/site-packages/${pkgname%-*},share/{applications,pixmaps}}
+  install -m 755 *.py* "${pkgdir}"/usr/lib/python2.7/site-packages/${pkgname%-*}/
+  install -m 644 fish_large.png "${pkgdir}"/usr/share/pixmaps/${pkgname%-*}.png
+  install -m 644 fish.png "${pkgdir}"/usr/share/pixmaps/${pkgname%-*}-applet.png
+  install -m 644 ${pkgname%-*}.desktop "${pkgdir}"/usr/share/applications/
+
+  ln -s /usr/lib/python2.7/site-packages/${pkgname%-*}/${pkgname%-*}.py "${pkgdir}"/usr/bin/${pkgname%-*}
+  ln -s /usr/lib/python2.7/site-packages/${pkgname%-*}/settings.py "${pkgdir}"/usr/bin/${pkgname%-*}-config
+  ln -s /usr/lib/python2.7/site-packages/${pkgname%-*}/panel_app.py "${pkgdir}"/usr/bin/${pkgname%-*}-applet
+}
+
+# vim: ts=2 sw=2 et:
