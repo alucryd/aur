@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-notify-bzr
-pkgver=27
+pkgver=r27
 pkgrel=1
 pkgdesc='Stylish and standard-compliant notification daemon'
 arch=('i686' 'x86_64')
@@ -18,7 +18,7 @@ md5sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 build() {

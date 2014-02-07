@@ -1,8 +1,8 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=indicator-pantheon-session-bzr
-pkgver=241
-pkgrel=7
+pkgver=r241
+pkgrel=1
 pkgdesc="Pantheon fork of the session indicator"
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%-*}"
@@ -20,7 +20,7 @@ sha256sums=('SKIP'
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 prepare() {

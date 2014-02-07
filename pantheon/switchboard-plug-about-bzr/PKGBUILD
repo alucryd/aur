@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=switchboard-plug-about-bzr
-pkgver=145
+pkgver=r151
 pkgrel=1
 pkgdesc='About plug for Switchboard'
 arch=('i686' 'x86_64')
@@ -19,7 +19,7 @@ sha256sums=('SKIP'
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 prepare() {

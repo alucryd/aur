@@ -5,13 +5,13 @@
 pkgbase=lightdm-bzr
 pkgname="${pkgbase}"
 true && pkgname=('lightdm-bzr' 'liblightdm-qt4-bzr' 'liblightdm-qt5-bzr')
-pkgver=1777
+pkgver=r1885
 pkgrel=1
 
 pkgver() {
   cd ${pkgbase%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 prepare() {

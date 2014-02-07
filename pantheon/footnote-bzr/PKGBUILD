@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=footnote-bzr
-pkgver=292
+pkgver=r292
 pkgrel=1
 pkgdesc='Take note in elementary style'
 arch=('i686' 'x86_64')
@@ -19,7 +19,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 build() {

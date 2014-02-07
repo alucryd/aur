@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=contractor-bzr
-pkgver=131
+pkgver=r133
 pkgrel=1
 pkgdesc='A service for sharing data between apps'
 arch=('i686' 'x86_64')
@@ -30,7 +30,7 @@ sha256sums=('SKIP'
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 build() {

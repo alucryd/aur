@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=pantheon-print-bzr
-pkgver=8
+pkgver=r8
 pkgrel=1
 pkgdesc='A small utility used to print documents that allows the user to set the preferences'
 arch=('i686' 'x86_64')
@@ -17,7 +17,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 build() {

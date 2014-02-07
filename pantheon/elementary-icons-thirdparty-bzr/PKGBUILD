@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=elementary-icons-thirdparty-bzr
-pkgver=8
+pkgver=r8
 pkgrel=1
 pkgdesc="Thirdparty icons for the elementary icon theme"
 arch=('any')
@@ -19,7 +19,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 package() {

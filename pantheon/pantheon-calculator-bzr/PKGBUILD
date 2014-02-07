@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=pantheon-calculator-bzr
-pkgver=18
+pkgver=r18
 pkgrel=1
 pkgdesc='A tiny, simple calculator written in GTK+ and Vala'
 arch=('i686' 'x86_64')
@@ -18,7 +18,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 build() {

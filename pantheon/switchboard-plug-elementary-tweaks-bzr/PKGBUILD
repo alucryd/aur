@@ -1,7 +1,7 @@
 # Maintainer: Alucryd <alucryd@gmail.com>
 
 pkgname=switchboard-plug-elementary-tweaks-bzr
-pkgver=153
+pkgver=r175
 pkgrel=1
 pkgdesc='Elementary Tweaks plug for Switchboard'
 arch=('i686' 'x86_64')
@@ -17,7 +17,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 build() {

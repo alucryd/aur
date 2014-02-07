@@ -2,7 +2,7 @@
 # Contributor: flamelab <panosfilip@gmail.com>
 
 pkgname=slingshot-launcher-bzr
-pkgver=396
+pkgver=r402
 pkgrel=1
 pkgdesc='Slingshot application launcher'
 arch=('i686' 'x86_64')
@@ -19,7 +19,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 build() {

@@ -3,7 +3,7 @@
 # Contributor: dserban <dserban01@yahoo.com>
 
 pkgname=switchboard-bzr
-pkgver=415
+pkgver=r417
 pkgrel=1
 pkgdesc='Modular desktop settings hub'
 arch=('i686' 'x86_64')
@@ -25,7 +25,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 build() {

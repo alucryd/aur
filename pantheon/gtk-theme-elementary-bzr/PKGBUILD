@@ -2,7 +2,7 @@
 # Contributor: fresh24 <pascher.christian@gmail.com>
 
 pkgname=gtk-theme-elementary-bzr
-pkgver=127
+pkgver=r165
 pkgrel=1
 pkgdesc="elementary GTK theme"
 arch=('any')
@@ -19,7 +19,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 package() {

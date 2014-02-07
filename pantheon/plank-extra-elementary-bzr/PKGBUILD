@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com> 
 
 pkgname=plank-extra-elementary-bzr
-pkgver=7
+pkgver=r7
 pkgrel=1
 pkgdesc='Extra options for the Plank project'
 arch=('i686' 'x86_64')
@@ -17,7 +17,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd ${pkgname%-*}
 
-  bzr revno
+  printf "r%s" "$(bzr revno)"
 }
 
 build() {
