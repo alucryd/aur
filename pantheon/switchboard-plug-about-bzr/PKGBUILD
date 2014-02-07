@@ -26,6 +26,7 @@ prepare() {
   cd ${pkgname%-*}
 
 #  patch -Np1 -i ../about-archlinux.patch
+  sed 's|${CMAKE_INSTALL_FULL_LIBDIR}|${CMAKE_INSTALL_PREFIX}/lib|g' -i "$(grep -rl CMAKE_INSTALL_FULL_LIBDIR)"
 }
 
 build() {
