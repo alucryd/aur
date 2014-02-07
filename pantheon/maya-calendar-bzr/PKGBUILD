@@ -10,7 +10,7 @@ license=('GPL3')
 depends=('evolution-data-server' 'granite' 'libpeas')
 makedepends=('bzr' 'cmake' 'vala')
 install="${pkgname%-*}.install"
-source=("${pkgname%-*}::bzr+lp:maya/isis")
+source=("${pkgname%-*}::bzr+lp:maya")
 sha256sums=('SKIP')
 
 pkgver() {
