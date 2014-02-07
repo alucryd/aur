@@ -1,6 +1,6 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: eworm <arch at eworm dot de>
-# Contributor: pisuka <tekmon at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: eworm <arch@eworm.de>
+# Contributor: pisuka <tekmon@gmail.com>
 
 pkgbase=lightdm-bzr
 pkgname="${pkgbase}"

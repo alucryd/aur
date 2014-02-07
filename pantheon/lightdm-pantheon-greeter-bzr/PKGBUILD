@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: sh4nks <sh4nks7 at gmail dot com
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: sh4nks <sh4nks7@gmail.com
 
 pkgname=lightdm-pantheon-greeter-bzr
 pkgver=235

@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: flamelab <panosfilip at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: flamelab <panosfilip@gmail.com>
 
 pkgname=slingshot-launcher-bzr
 pkgver=396

@@ -1,4 +1,4 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=rbutil-git
 pkgver=1.4.0.r101.gcc64d9e

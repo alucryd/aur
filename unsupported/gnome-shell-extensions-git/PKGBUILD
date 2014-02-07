@@ -1,7 +1,7 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Diego Principe <cdprincipei at gmail dot com>
-# Contributor: Brett Lempereur <sordidpanda at gmail dot com>
-# Contributor: Flamelab <panosfilip at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Diego Principe <cdprincipei@gmail.com>
+# Contributor: Brett Lempereur <sordidpanda@gmail.com>
+# Contributor: Flamelab <panosfilip@gmail.com>
 
 pkgname=gnome-shell-extensions-git
 pkgver=3.11.2.r771.e801c61

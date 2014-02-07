@@ -1,6 +1,6 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: winlu <winklerlukas at gmail dot com>
-# Contributor: BlackIkeEagle <ike dot devolder at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: winlu <winklerlukas@gmail.com>
+# Contributor: BlackIkeEagle <ike.devolder@gmail.com>
 
 pkgname=shairplay-git
 pkgver=0.r108.c892072

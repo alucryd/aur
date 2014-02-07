@@ -1,6 +1,6 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: RazrFalcon <razrfalcon at gmail dot com>
-# Contributor: N30N <archlinux at alunamation dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: RazrFalcon <razrfalcon@gmail.com>
+# Contributor: N30N <archlinux@alunamation.com>
 
 pkgname=svgcleaner
 pkgver=0.5.1

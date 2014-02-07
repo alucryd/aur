@@ -1,6 +1,6 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Ner0 <darkelfdarkelf666 at yahoo dot co dot uk>
-# Contributor: flamelab <panosfilip at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
+# Contributor: flamelab <panosfilip@gmail.com>
 
 pkgname=wingpanel-bzr
 pkgver=154

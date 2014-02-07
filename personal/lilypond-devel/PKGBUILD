@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Patrick McCarty <pnorcks at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Patrick McCarty <pnorcks@gmail.com>
 
 pkgname=lilypond-devel
 pkgver=2.17.95

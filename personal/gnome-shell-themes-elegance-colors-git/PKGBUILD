@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Rasmus Schults <rasmusx at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Rasmus Schults <rasmusx@gmail.com>
 
 pkgname=gnome-shell-themes-elegance-colors-git
 pkgver=2.8.5.5781c30

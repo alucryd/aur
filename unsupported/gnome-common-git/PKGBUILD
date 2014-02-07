@@ -1,6 +1,6 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: L42y <423300 at gmail dot com>
-# Contributor: teddy_beer_maniac <teddy_beer_maniac at wp dot pl>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: L42y <423300@gmail.com>
+# Contributor: teddy_beer_maniac <teddy_beer_maniac@wp.pl>
 
 pkgname=gnome-common-git
 pkgver=3.10.0.r3.62f7546

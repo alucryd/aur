@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Balló György <ballogyor+arch at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Balló György <ballogyor+arch@gmail.com>
 
 pkgname=libindicator-gtk3
 pkgver=12.10.1

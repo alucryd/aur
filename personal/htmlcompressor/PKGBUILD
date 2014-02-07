@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd@gmail.com>
-# Contributor: Peter A. Shevtsov <pshevtsov at severusweb dot ru>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Peter A. Shevtsov <pshevtsov@severusweb.ru>
 
 pkgname=htmlcompressor
 pkgver=1.5.3

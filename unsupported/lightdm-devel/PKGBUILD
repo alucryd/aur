@@ -1,6 +1,6 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
 # Contributor: padfoot <padfoot@exemail.com.au>
-# Contributor: Morfeo <morfeo89 at hotmail dot it>
+# Contributor: Morfeo <morfeo89@hotmail.it>
 
 pkgbase=lightdm-devel
 pkgname="${pkgbase}"

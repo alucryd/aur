@@ -1,4 +1,4 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=firewalld-git
 pkgver=0.3.8.1.r15.e77a70c

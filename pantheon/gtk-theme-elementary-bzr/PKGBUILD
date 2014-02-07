@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: fresh24 <pascher dot christian at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: fresh24 <pascher.christian@gmail.com>
 
 pkgname=gtk-theme-elementary-bzr
 pkgver=127

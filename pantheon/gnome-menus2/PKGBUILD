@@ -1,6 +1,6 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Balló György <ballogyor+arch at gmail dot com>
-# Contributor: Jan de Groot <jan at archlinux dot org>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Balló György <ballogyor+arch@gmail.com>
+# Contributor: Jan de Groot <jan@archlinux.org>
 
 pkgname=gnome-menus2
 pkgver=3.0.1

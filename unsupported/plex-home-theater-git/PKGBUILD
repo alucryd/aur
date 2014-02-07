@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Daniel Wallace <daniel dot wallace at gatech dot edu>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Daniel Wallace <daniel.wallace@gatech.edu>
 
 pkgname=plex-home-theater-git
 pkgver=1.0.8

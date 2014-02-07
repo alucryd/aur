@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Gustavo Alvarez <sl1pkn07 at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Gustavo Alvarez <sl1pkn07@gmail.com>
 
 pkgname=vhba-dkms
 pkgver=20130607

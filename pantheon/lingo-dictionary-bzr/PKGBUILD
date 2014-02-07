@@ -1,6 +1,6 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Maintainer: Guff <cassmacguff at gmail dot com>
-# Contributor: Nicolas Reynolds <fauno at kiwwwi dot com dot ar>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Maintainer: Guff <cassmacguff@gmail.com>
+# Contributor: Nicolas Reynolds <fauno@kiwwwi.com.ar>
 
 pkgname=lingo-dictionary-bzr
 pkgver=179

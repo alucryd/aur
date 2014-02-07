@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Maintainer: Balló György <ballogyor+arch at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Maintainer: Balló György <ballogyor+arch@gmail.com>
 
 pkgname=indicator-session
 pkgver=12.10.4

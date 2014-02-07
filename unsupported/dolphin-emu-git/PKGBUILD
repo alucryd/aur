@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Lightning <sgsdxzy at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Lightning <sgsdxzy@gmail.com>
 
 pkgname=dolphin-emu-git
 pkgver=4.0.r780.9856110

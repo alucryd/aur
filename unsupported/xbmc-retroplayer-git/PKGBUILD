@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: BlackIkeEagle <ike dot devolder at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: BlackIkeEagle <ike.devolder@gmail.com>
 
 pkgname=xbmc-retroplayer-git
 pkgver=13.0.r23422.7033319

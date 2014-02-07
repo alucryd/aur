@@ -1,8 +1,8 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Sebastian Stammler <stammler dot s at gmail dot com>
-# Contributor: Sarkasper <kasper dot menten at gmx dot com>
-# Contributor: Daniel Micay <danielmicay at gmail dot com>
-# Contributor: Michalis Georgiou <mechmg93 at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Sebastian Stammler <stammler.s@gmail.com>
+# Contributor: Sarkasper <kasper.menten@gmx.com>
+# Contributor: Daniel Micay <danielmicay@gmail.com>
+# Contributor: Michalis Georgiou <mechmg93@gmail.com>
 
 pkgname=ttf-google-fonts-git
 pkgver=37

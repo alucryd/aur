@@ -1,7 +1,7 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: jarda-wien <xstej70 at gmail dot com>
-# Contributor: Jason Melton <jason dot melton at gmail dot com>
-# Contributor: Atilla ÖNTAŞ <tarakbumba at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: jarda-wien <xstej70@gmail.com>
+# Contributor: Jason Melton <jason.melton@gmail.com>
+# Contributor: Atilla ÖNTAŞ <tarakbumba@gmail.com>
 
 pkgname=nvidia-dkms
 pkgver=331.38

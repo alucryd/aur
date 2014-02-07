@@ -1,5 +1,5 @@
-# Maintainer: alucryd <alucryd at gmail dot com>
-# Contributor: Mihai Militaru <mihai militaru at xmpp dot ro>
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Mihai Militaru <mihai.militaru@xmpp.ro>
 
 pkgname=polarssl
 pkgver=1.2.8
