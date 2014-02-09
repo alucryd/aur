@@ -1,0 +1,41 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor:  Gustavo Alvarez <sl1pkn07@gmail.com>
+
+pkgname=vapoursynth-plugin-fmtconv-git
+pkgver=r3.ce9e577
+pkgrel=1
+pkgdesc='fmtconv plugin for Vapoursynth'
+arch=('i686' 'x86_64')
+url='https://github.com/vapoursynth/fmtconv'
+license=('custom')
+depends=('vapoursynth')
+makedepends=('git')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("${pkgname%-*}::git+${url}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd ${pkgname%-*}/src
+
+  echo "all:
+	g++ $CXXFLAGS -shared -fPIC -o libfmtconv.so AvstpWrapper.cpp main.cpp fmtc/*.cpp fstb/*.cpp vsutl/*.cpp -I." > Makefile
+  make
+}
+
+package(){
+  cd ${pkgname%-*}
+
+  install -dm 755 "${pkgdir}"/usr/{lib/vapoursynth,share/doc/vapoursynth/plugins/fmtconv,share/licenses/${pkgname}}
+  install -m 755 src/libfmtconv.so "${pkgdir}"/usr/lib/vapoursynth/
+  install -m 644 doc/*.{png,html,css} "${pkgdir}"/usr/share/doc/vapoursynth/plugins/fmtconv
+  install -m 644 doc/license.txt "${pkgdir}"/usr/share/licenses/${pkgname}/
+}
+
+# vim: ts=2 sw=2 et:
