@@ -1,0 +1,36 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+
+pkgname=ffms2-git
+pkgver=2.19.r32.57ae962
+pkgrel=1
+pkgdesc='A libav/ffmpeg based source library and Avisynth/Vapoursynth plugin for easy frame accurate access'
+url='https://github.com/FFMS/ffms2'
+arch=('i686' 'x86_64')
+license=('GPL')
+depends=('ffmpeg')
+makedepends=('git')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("git+${url}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "%s" "$(git describe --tags | sed 's/-/.r/; s/-g/./')"
+}
+
+build() {
+  cd ${pkgname%-*}
+
+  ./autogen.sh --prefix='/usr' --enable-shared --disable-static --enable-avresample
+  make
+}
+
+package() {
+  cd ${pkgname%-*}
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:

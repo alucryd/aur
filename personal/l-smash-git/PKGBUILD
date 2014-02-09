@@ -1,0 +1,40 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Gustavo Alvarez <sl1pkn07@gmail.com>
+
+pkgname=l-smash-git
+pkgver=r842.a654214
+pkgrel=1
+pkgdesc="A simple tool for MP4"
+arch=('i686' 'x86_64')
+url="https://code.google.com/p/${pkgname%-*}/"
+license=('custom')
+depends=('glibc')
+makedepends=('git')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("git+${url}")
+md5sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd ${pkgname%-*}
+
+  ./configure --prefix='/usr' --enable-shared --disable-static
+  make
+}
+
+package() {
+  cd ${pkgname%-*}
+
+  make DESTDIR="${pkgdir}" install
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses/${pkgname}
+  install -m 644 LICENSE "${pkgdir}"/usr/share/licenses/${pkgname}/
+}
+
+# vim: ts=2 sw=2 et:

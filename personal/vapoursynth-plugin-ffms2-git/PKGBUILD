@@ -1,14 +1,20 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 # Contributor: Gustavo Alvarez <sl1pkn07@gmail.com>
 
-pkgname=vapoursynth-plugin-ffms2
+pkgname=vapoursynth-plugin-ffms2-git
 pkgver=2.19
 pkgrel=1
 pkgdesc='ffms2 plugin for Vapoursynth'
 arch=('i686' 'x86_64')
 url='https://github.com/FFMS/ffms2'
-license=('MIT')
-depends=('ffms2' 'vapoursynth')
+license=('GPL')
+depends=('ffms2-git' 'vapoursynth')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+
+pkgver() {
+  printf "%s" "$(pacman -Q ffms2-git | awk '{print $2}')"
+}
 
 package(){
   install -dm 755 "${pkgdir}"/usr/{lib/${pkgname%%-*},share/licenses}
