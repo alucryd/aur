@@ -12,14 +12,14 @@ arch=('i686' 'x86_64')
 [[ $CARCH == x86_64 ]] && _arch=x86_64 && _pkg=NVIDIA-Linux-${_arch}-${pkgver}-no-compat32 && md5sums=('f2059ae373665cb6c8fb826e1173b04d')
 url="http://www.nvidia.com/"
 license=('custom')
-depends=('dkms' "nvidia-utils=${pkgver}")
+depends=('bash' 'dkms' "nvidia-utils=${pkgver}")
 optdepends=('linux-headers: Build the module against Arch kernel'
             'linux-lts-headers: Build the module against LTS Arch kernel')
 provides=("nvidia=${pkgver}")
-conflicts=('nvidia')
+conflicts=('nvidia' 'nvidia-304xx-dkms')
 install="${pkgname}.install"
 source=("http://us.download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run"
-        'nvidia-linux3.13.patch')
+        "${pkgname%-*}-linux3.13.patch")
 md5sums+=('61d3ec004734f9ecbf42eea98e1dd07d')
 
 prepare() {
@@ -30,26 +30,15 @@ prepare() {
   sh ${_pkg}.run --extract-only
 
   cd ${_pkg}
-  patch -Np1 -i ../nvidia-linux3.13.patch
+  patch -Np1 -i ../${pkgname%-*}-linux3.13.patch
 }
 
 package() {
   cd ${_pkg}
 
-  mkdir -p "${pkgdir}"/usr/src
+  install -dm 755 "${pkgdir}"/usr/{lib/modprobe.d,share/licenses,src}
   cp -dr --no-preserve=ownership kernel "${pkgdir}"/usr/src/nvidia-${pkgver}
-
-# Blacklist nouveau driver
-  mkdir -p "${pkgdir}"/usr/lib/modprobe.d
   echo "blacklist nouveau" > "${pkgdir}"/usr/lib/modprobe.d/nvidia.conf
-
-# Fix permissions
-  find "${pkgdir}" -type d -exec chmod 755 {} +
-  find "${pkgdir}" -type f -exec chmod 644 {} +
-  chmod 755 "${pkgdir}"/usr/src/nvidia-${pkgver}/conftest.sh
-
-# License
-  install -dm 755 "${pkgdir}"/usr/share/licenses
   ln -s nvidia "${pkgdir}"/usr/share/licenses/${pkgname}
 }
 

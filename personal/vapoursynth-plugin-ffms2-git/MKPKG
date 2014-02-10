@@ -1,3 +1,4 @@
+arch=('x86_64')
 pkgname=('vapoursynth-plugin-ffms2-git')
 builddeps=('ffms2-git' 'vapoursynth')
 
