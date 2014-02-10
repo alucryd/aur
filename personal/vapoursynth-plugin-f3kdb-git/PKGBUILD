@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url='https://github.com/SAPikachu/flash3kyuu_deband'
 license=('GPL3')
 depends=('vapoursynth')
-makedepends=('waf')
+makedepends=('git' 'waf')
 source=("${pkgname%-*}::git+${url}.git")
 sha256sums=('SKIP')
 

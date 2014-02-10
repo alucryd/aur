@@ -13,7 +13,7 @@ provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 
 pkgver() {
-  printf "%s" "$(pacman -Q ffms2-git | awk '{print $2}')"
+  printf "%s" "$(pacman -Q ffms2-git | awk '{print $2}' | sed 's/-.*//')"
 }
 
 package(){
