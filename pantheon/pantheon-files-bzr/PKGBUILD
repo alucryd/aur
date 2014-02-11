@@ -3,9 +3,9 @@
 pkgname=pantheon-files-bzr
 pkgver=r1424
 pkgrel=1
-pkgdesc='The file manager of the Pantheon desktop'
+pkgdesc='The Pantheon File Manager'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/pantheon-files'
 license=('GPL3')
 depends=('desktop-file-utils' 'gconf' 'granite-bzr' 'libnotify')
 makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala')
@@ -15,7 +15,7 @@ optdepends=('contractor-bzr: Plugins integration'
 provides=("${pkgname%-*}")
 conflicts=('marlin-bin' 'marlin-bzr' "${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:pantheon-files')
 sha256sums=('SKIP')
 
 pkgver() {

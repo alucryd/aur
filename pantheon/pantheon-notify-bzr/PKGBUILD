@@ -4,15 +4,15 @@
 pkgname=pantheon-notify-bzr
 pkgver=r27
 pkgrel=1
-pkgdesc='Stylish and standard-compliant notification daemon'
+pkgdesc='The Pantheon Notification Daemon'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/pantheon-notify'
 license=('GPL3')
 depends=('clutter-gtk' 'granite' 'libwnck3')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:pantheon-notify')
 md5sums=('SKIP')
 
 pkgver() {

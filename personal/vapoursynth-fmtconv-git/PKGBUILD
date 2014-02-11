@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 # Contributor:  Gustavo Alvarez <sl1pkn07@gmail.com>
 
-pkgname=vapoursynth-plugin-fmtconv-git
+pkgname=vapoursynth-fmtconv-git
 pkgver=r3.ce9e577
 pkgrel=1
 pkgdesc='fmtconv plugin for Vapoursynth'

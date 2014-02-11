@@ -5,13 +5,13 @@ pkgver=r184
 pkgrel=1
 pkgdesc='Pantheon Shell plug for Switchboard'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/switchboard-plug-pantheon-shell'
 license=('GPL3')
 depends=('switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname}")
 conflicts=("${pkgname%-*}")
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:switchboard-plug-pantheon-shell')
 sha256sums=('SKIP')
 
 pkgver() {

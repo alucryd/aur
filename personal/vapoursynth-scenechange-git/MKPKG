@@ -1,5 +1,5 @@
 arch=('x86_64')
-pkgname=('vapoursynth-plugin-fmtconv-git')
+pkgname=('vapoursynth-scenechange-git')
 builddeps=('vapoursynth')
 
 check_git $packagedir/$pkgname/${pkgname%-*}

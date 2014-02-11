@@ -1,9 +1,9 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=pantheon-files
-pkgver=0.1.5.1
+pkgver=0.1.6
 pkgrel=1
-pkgdesc="A simple, powerful, sexy file manager for the Pantheon desktop"
+pkgdesc='The Pantheon File Manager'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname}"
 license=('GPL3')
@@ -11,16 +11,8 @@ depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
 makedepends=('cmake' 'gnome-common' 'sqlite3' 'vala')
 conflicts=('marlin-bin' 'marlin-bzr')
 install="${pkgname}.install"
-source=("${url}/${pkgver:0:4}x/${pkgver}/+download/${pkgname}-${pkgver}.tgz"
-        'progress-ui-handler.patch')
-sha256sums=('b0af091280431ed442485b31df78a8a2d99ca4fbba693ce1148fee71c5b6bf1c'
-            '885bf44f1e5542b6479ef2ff4ec4a8cbd69b5cff4c7d072b947d8633f6d8653d')
-
-prepare() {
-  cd ${pkgname}-${pkgver}
-
-  patch -Np0 -i ../progress-ui-handler.patch
-}
+source=("${url}/${pkgver:0:4}x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
+sha256sums=('2ff9d44d69a496d2c4e072a535c0289ee590f9870d9f3976eb0dedda8db19cf6')
 
 build() {
   cd ${pkgname}-${pkgver}

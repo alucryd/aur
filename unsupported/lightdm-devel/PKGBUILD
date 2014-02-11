@@ -5,7 +5,7 @@
 pkgbase=lightdm-devel
 pkgname="${pkgbase}"
 true && pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
-pkgver=1.9.6
+pkgver=1.9.7
 pkgrel=1
 
 prepare() {
@@ -116,7 +116,7 @@ source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/${pkgbas
         'lightdm-default-config.patch'
         'Xsession')
 
-sha256sums=('ae6bd456d08678459dbab29c9966ecdc0808667f7dd7854a208b6f767b213d8a'
+sha256sums=('ba731380831935968a0cadbfd5577c1568924bec2206a7ecb5a740f50315a799'
             '0d2adba25cdbe59e97ffd302083db9d5e23920780f41e04f64512cd6b633289a'
             'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'

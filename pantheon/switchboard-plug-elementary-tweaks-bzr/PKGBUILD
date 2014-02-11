@@ -11,7 +11,7 @@ depends=('libpantheon-bzr' 'gconf' 'switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~versable/elementary-community/elementary-tweaks/")
+source=("${pkgname%-*}::bzr+lp:elementary-community/elementary-tweaks")
 sha256sums=('SKIP')
 
 pkgver() {

@@ -1,0 +1,39 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+
+pkgname=vapoursynth-scenechange-git
+pkgver=0.2.0
+pkgrel=1
+pkgdesc='Scene change plugin for Vapoursynth'
+arch=('i686' 'x86_64')
+url='http://forum.doom9.org/showthread.php?t=166769'
+license=('LGPL2.1')
+depends=('vapoursynth')
+makedepends=('git')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("git+https://github.com/alucryd/${pkgname%-*}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "%s" "$(git describe --tags | sed 's/-/.r/; s/-g/./; s/^v//')"
+}
+
+build() {
+  cd ${pkgname%-*}
+
+  ./configure --install="${pkgdir}/usr/lib/vapoursynth"
+  make
+}
+
+package(){
+  cd ${pkgname%-*}
+
+  make install
+
+  install -dm 755 "${pkgdir}"/usr/share/doc/vapoursynth/plugins/scenechange
+  install -m 644 README.md "${pkgdir}"/usr/share/doc/vapoursynth/plugins/scenechange/
+}
+
+# vim: ts=2 sw=2 et:

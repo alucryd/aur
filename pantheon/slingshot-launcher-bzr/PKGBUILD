@@ -4,16 +4,16 @@
 pkgname=slingshot-launcher-bzr
 pkgver=r402
 pkgrel=1
-pkgdesc='Slingshot application launcher'
+pkgdesc='The Pantheon Application Launcher'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%%-*}"
+url='https://launchpad.net/slingshot'
 license=('GPL3')
 depends=('gnome-menus2' 'granite-bzr' 'libunity' 'libwnck3' 'zeitgeist')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("${pkgname%-*}::bzr+lp:${pkgname%%-*}")
+source=("${pkgname%-*}::bzr+lp:slingshot")
 sha256sums=('SKIP')
 
 pkgver() {

@@ -5,13 +5,13 @@ pkgver=r151
 pkgrel=1
 pkgdesc='About plug for Switchboard'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/switchboard-plug-about'
 license=('GPL3')
 depends=('switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("bzr+lp:${pkgname%-*}"
+source=('bzr+lp:switchboard-plug-about'
         'about-archlinux.patch')
 sha256sums=('SKIP'
             '2c68f1307b939a19a1cccebf75af387c32dfe68cf95f97ed6174fc29c56a2462')

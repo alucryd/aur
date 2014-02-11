@@ -9,7 +9,7 @@ url='https://code.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-se
 license=('GPL3')
 depends=('cerbere-bzr' 'gala-bzr' 'gconf' 'gnome-keyring' 'gnome-session' 'gnome-settings-daemon' 'gnome-user-share' 'plank' 'polkit-gnome' 'slingshot-launcher-bzr' 'wingpanel-bzr' 'xdg-user-dirs-gtk')
 makedepends=('bzr')
-source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-settings/"
+source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/pantheon-xsession-settings"
         'pantheon-session.sh')
 sha256sums=('SKIP'
             '1e0c8e9403e52614d43ecb920e507ee1e96b1439bb20949ff814741e5e5e2284')

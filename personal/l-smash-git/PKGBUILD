@@ -2,11 +2,11 @@
 # Contributor: Gustavo Alvarez <sl1pkn07@gmail.com>
 
 pkgname=l-smash-git
-pkgver=r842.a654214
+pkgver=r843.518d287
 pkgrel=1
-pkgdesc="A simple tool for MP4"
+pkgdesc='A simple tool for MP4'
 arch=('i686' 'x86_64')
-url="https://code.google.com/p/${pkgname%-*}/"
+url='https://code.google.com/p/l-smash/'
 license=('custom')
 depends=('glibc')
 makedepends=('git')

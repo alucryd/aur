@@ -6,7 +6,7 @@ pkgver=r133
 pkgrel=1
 pkgdesc='A service for sharing data between apps'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/contractor'
 license=('GPL3')
 depends=('libgee06')
 makedepends=('bzr' 'cmake' 'seahorse' 'vala')
@@ -18,10 +18,10 @@ optdepends=('brasero: Burn Disc context menu entries'
             'webcontracts-bzr: Contracts for web services')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("bzr+lp:${pkgname%-*}"
-        "bzr+lp:~elementary-os/${pkgname%-*}/brasero-contracts"
-        "bzr+lp:~elementary-os/${pkgname%-*}/inkscape-contracts"
-        "bzr+lp:~elementary-os/${pkgname%-*}/seahorse-contracts")
+source=('bzr+lp:contractor'
+        'bzr+lp:~elementary-os/contractor/brasero-contracts'
+        'bzr+lp:~elementary-os/contractor/inkscape-contracts'
+        'bzr+lp:~elementary-os/contractor/seahorse-contracts')
 sha256sums=('SKIP'
             'SKIP'
             'SKIP'

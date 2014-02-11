@@ -5,9 +5,9 @@
 pkgname=switchboard-bzr
 pkgver=r417
 pkgrel=1
-pkgdesc='Modular desktop settings hub'
+pkgdesc='The Pantheon Control Center'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/switchboard'
 license=('GPL3')
 depends=('granite-bzr' 'libunity')
 makedepends=('bzr' 'cmake' 'vala')
@@ -19,7 +19,7 @@ optdepends=('switchboard-plug-about-bzr: About plug'
             'switchboard-plug-power-bzr: Power plug')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:switchboard')
 sha256sums=('SKIP')
 
 pkgver() {

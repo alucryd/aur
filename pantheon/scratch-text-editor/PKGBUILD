@@ -4,9 +4,9 @@
 pkgname=scratch-text-editor
 pkgver=2.0.2
 pkgrel=1
-pkgdesc='The text editor that works'
+pkgdesc='The Pantheon Text Editor'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%%-*}"
+url='https://launchpad.net/scratch'
 license=('GPL3')
 depends=('desktop-file-utils' 'granite' 'gtksourceview3' 'libpeas' 'python2-chardet' 'libzeitgeist')
 makedepends=('cmake' 'gobject-introspection' 'vala' 'vte3' 'webkitgtk')
@@ -14,7 +14,7 @@ optdepends=('vala: Outline plugin'
             'vte3: Terminal plugin'
             'webkitgtk: Browser Preview plugin')
 install="${pkgname}.install"
-source=("${url}/2.x/${pkgver}/+download/${pkgname%%-*}-${pkgver}.tgz")
+source=("${url}/2.x/${pkgver}/+download/scratch-${pkgver}.tgz")
 sha256sums=('65a341ce34c5d8cc119e3b582ac9027d83f91c01636527d55bbfc8b4cafd6a1e')
 
 prepare() {

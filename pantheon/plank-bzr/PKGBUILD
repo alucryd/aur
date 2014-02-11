@@ -7,14 +7,14 @@ pkgver=r968
 pkgrel=1
 pkgdesc='Elegant, simple, clean dock'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/plank'
 license=('GPL3')
 depends=('bamf' 'libdbusmenu-gtk3' 'libgee')
 makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:plank')
 sha256sums=('SKIP')
 
 pkgver() {

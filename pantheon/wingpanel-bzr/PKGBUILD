@@ -5,9 +5,9 @@
 pkgname=wingpanel-bzr
 pkgver=r156
 pkgrel=1
-pkgdesc='A super sexy space-saving top panel'
+pkgdesc='The Pantheon Top Panel'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/wingpanel'
 license=('GPL3')
 depends=('granite-bzr' 'libindicator-gtk3')
 optdepends=('indicator-datetime: Display date and time'
@@ -17,7 +17,7 @@ makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:wingpanel')
 sha256sums=('SKIP')
 
 pkgver() {

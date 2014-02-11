@@ -5,11 +5,11 @@ pkgver=r103
 pkgrel=1
 pkgdesc='Power plug for Switchboard'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/switchboard-plug-power'
 license=('GPL3')
 depends=('switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:switchboard-plug-power')
 sha256sums=('SKIP')
 
 pkgver() {

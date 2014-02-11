@@ -6,14 +6,14 @@ pkgver=r2506
 pkgrel=1
 pkgdesc='The Pantheon Photos Manager'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/pantheon-photos'
 license=('GPL3')
 depends=('desktop-file-utils' 'json-glib' 'libgee' 'libgexiv2' 'libgphoto2' 'libraw' 'rest' 'webkitgtk')
 makedepends=('bzr' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:photos-manager')
 sha256sums=('SKIP')
 
 pkgver() {

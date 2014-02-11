@@ -3,16 +3,16 @@
 pkgname=elementary-scan-bzr
 pkgver=r607
 pkgrel=1
-pkgdesc="Simple Scanning Utility"
+pkgdesc='Simple Scanning Utility'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/elementary-scan"
+url='https://launchpad.net/elementary-scan'
 license=('GPL2')
 depends=('granite' 'launchpad-integration-gtk3' 'sane' 'scour')
 makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
 provides=("${pkgname%-*}" 'simple-scan')
 conflicts=("${pkgname%-*}" 'simple-scan')
 install="${pkgname%-*}.install"
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:elementary-scan')
 sha256sums=('SKIP')
 
 pkgver() {

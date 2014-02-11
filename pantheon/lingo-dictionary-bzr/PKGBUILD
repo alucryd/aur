@@ -3,19 +3,25 @@
 # Contributor: Nicolas Reynolds <fauno@kiwwwi.com.ar>
 
 pkgname=lingo-dictionary-bzr
-pkgver=179
+pkgver=r180
 pkgrel=1
 pkgdesc='The sexiest dictionary on Earth and Jupiter'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/lingo-dictionary'
 license=('GPL3')
 depends=('granite' 'json-glib' 'libsoup')
 makedepends=('bzr' 'cmake' 'sqlite' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname}.install"
-source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~elementary-apps/lingo-dictionary/lingo/")
+source=('bzr+lp:lingo-dictionary')
 sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "r%s" "$(bzr revno)"
+}
 
 build() {
  cd ${pkgname%-*}

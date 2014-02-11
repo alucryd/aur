@@ -3,7 +3,7 @@
 pkgname=cerbere
 pkgver=0.2
 pkgrel=3
-pkgdesc='A service to relaunch Pantheon apps'
+pkgdesc='The Pantheon Watchdog'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname}"
 license=('GPL2')

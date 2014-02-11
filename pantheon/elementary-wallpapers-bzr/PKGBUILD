@@ -3,9 +3,9 @@
 pkgname=elementary-wallpapers-bzr
 pkgver=r1
 pkgrel=1
-pkgdesc="elementary wallpaper collection"
+pkgdesc='elementary wallpaper collection'
 arch=('any')
-url="https://launchpad.net/elementary-community/elementary-wallpaper-collection"
+url='https://launchpad.net/elementary-community/elementary-wallpaper-collection'
 license=('GPL3')
 makedepends=('bzr')
 provides=("${pkgname%-*}")

@@ -3,7 +3,7 @@
 pkgname=pantheon-files-plugin-dropbox-bzr
 pkgver=r22
 pkgrel=1
-pkgdesc="Dropbox integration for pantheon-files"
+pkgdesc='Dropbox integration for pantheon-files'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/pantheon-files'
 license=('GPL3')
@@ -11,7 +11,7 @@ depends=('pantheon-files')
 makedepends=('bzr' 'cmake')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("bzr+http://bazaar.launchpad.net/~elementary-apps/pantheon-files/${pkgname%-*}/")
+source=('bzr+lp:~elementary-apps/pantheon-files/pantheon-files-plugin-dropbox')
 sha256sums=('SKIP')
 
 pkgver() {

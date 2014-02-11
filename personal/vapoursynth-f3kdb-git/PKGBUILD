@@ -1,6 +1,6 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
-pkgname=vapoursynth-plugin-f3kdb-git
+pkgname=vapoursynth-f3kdb-git
 pkgver=2.0.r389.cf65834
 pkgrel=1
 pkgdesc='flash3kyuu deband plugin for Vapoursynth'

@@ -4,16 +4,16 @@
 pkgname=noise-bzr
 pkgver=r1555
 pkgrel=1
-pkgdesc="Simple, fast, and good looking music player"
+pkgdesc='The Pantheon Music Player'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/noise'
 license=('GPL3')
 depends=('desktop-file-utils' 'granite-bzr' 'gst-plugins-base-libs' 'json-glib' 'libgpod' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname}.install"
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:noise')
 sha256sums=('SKIP')
 
 pkgver() {

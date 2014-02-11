@@ -5,13 +5,13 @@ pkgver=r8
 pkgrel=1
 pkgdesc='A small utility used to print documents that allows the user to set the preferences'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/pantheon-print'
 license=('GPL3')
 depends=('contractor' 'gtk3')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:pantheon-print')
 sha256sums=('SKIP')
 
 pkgver() {

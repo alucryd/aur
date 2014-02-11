@@ -3,9 +3,9 @@
 pkgname=elementary-icon-theme-bzr
 pkgver=r1175
 pkgrel=1
-pkgdesc="elementary icon theme"
+pkgdesc='elementary icon theme'
 arch=('any')
-url="https://launchpad.net/elementaryicons"
+url='https://launchpad.net/elementaryicons'
 license=('GPL3')
 depends=('gtk-update-icon-cache' 'hicolor-icon-theme')
 makedepends=('bzr')

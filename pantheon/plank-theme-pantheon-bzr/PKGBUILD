@@ -5,13 +5,13 @@ pkgver=r6
 pkgrel=1
 pkgdesc='Pantheon theme for plank'
 arch=('any')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/plank-theme-pantheon'
 license=('GPL3')
 depends=('plank')
 makedepends=('bzr')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:plank-theme-pantheon')
 sha256sums=('SKIP')
 
 pkgver() {

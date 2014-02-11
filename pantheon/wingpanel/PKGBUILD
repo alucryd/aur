@@ -3,7 +3,7 @@
 pkgname=wingpanel
 pkgver=0.2.5
 pkgrel=3
-pkgdesc='A super sexy space-saving top panel'
+pkgdesc='The Pantheon Top Panel'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname}"
 license=('GPL3')

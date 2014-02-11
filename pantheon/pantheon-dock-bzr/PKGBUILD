@@ -3,16 +3,16 @@
 pkgname=pantheon-dock-bzr
 pkgver=r962
 pkgrel=1
-pkgdesc="The dock for elementary Pantheon, built on the awesome foundation of Plank"
+pkgdesc='The Pantheon Dock'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/pantheon-dock'
 license=('GPL3')
 depends=('bamf' 'libdbusmenu-gtk3' 'libgee06')
 makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
 provides=("${pkgname%-*}" 'plank')
 conflicts=("${pkgname%-*}" 'plank')
 install="${pkgname%-*}.install"
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:pantheon-dock')
 sha256sums=('SKIP')
 
 pkgver() {

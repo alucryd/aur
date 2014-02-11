@@ -5,13 +5,13 @@ pkgver=r25
 pkgrel=1
 pkgdesc='Library for the Pantheon Desktop Environment'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname%-*}"
+url='https://launchpad.net/libpantheon'
 license=('GPL3')
 depends=('gtk3')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("bzr+lp:${pkgname%-*}")
+source=('bzr+lp:libpantheon')
 sha256sums=('SKIP')
 
 pkgver() {

@@ -5,7 +5,7 @@
 pkgbase=lightdm-bzr
 pkgname="${pkgbase}"
 true && pkgname=('lightdm-bzr' 'liblightdm-qt4-bzr' 'liblightdm-qt5-bzr')
-pkgver=r1885
+pkgver=r1887
 pkgrel=1
 
 pkgver() {
@@ -33,8 +33,8 @@ package_lightdm-bzr() {
 depends=('libgcrypt' 'libxklavier' 'pam' 'polkit' 'systemd')
 optdepends=('xorg-server-xephyr: LightDM test mode'
             'accountsservice: limit visible accounts')
-provides=("lightdm")
-conflicts=('lightdm')
+provides=("${pkgbase%-*}")
+conflicts=("${pkgbase%-*}")
 backup=('etc/apparmor.d/lightdm-guest-session'
         'etc/lightdm/keys.conf'
         'etc/lightdm/lightdm.conf'
@@ -74,9 +74,9 @@ install="${pkgbase%-*}.install"
 }
 
 package_liblightdm-qt4-bzr() {
-pkgdesc=('LightDM Qt client library')
+pkgdesc='LightDM Qt client library'
 depends=('lightdm' 'qt4')
-provides=("liblightdm-qt4")
+provides=('liblightdm-qt4')
 conflicts=('liblightdm-qt4')
 
   cd ${pkgbase%-*}
@@ -90,9 +90,9 @@ conflicts=('liblightdm-qt4')
 }
 
 package_liblightdm-qt5-bzr() {
-pkgdesc=('LightDM Qt client library')
+pkgdesc='LightDM Qt client library'
 depends=('lightdm' 'qt5-base')
-provides=("liblightdm-qt5")
+provides=('liblightdm-qt5')
 conflicts=('liblightdm-qt5')
 
   cd ${pkgbase%-*}
@@ -105,13 +105,12 @@ conflicts=('liblightdm-qt5')
   find "${pkgdir}" -type l  -name *qt[!5]* -exec rm {} +
 }
 
-pkgdesc="A lightweight display manager"
+pkgdesc='A lightweight display manager'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/lightdm"
+url='https://launchpad.net/lightdm'
 license=('GPL3' 'LGPL3')
 makedepends=('gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'polkit' 'qt4' 'qt5-base' 'yelp-tools')
-options=('!libtool')
-source=("bzr+lp:${pkgbase%-*}"
+source=('bzr+lp:lightdm'
         'lightdm.service'
         'lightdm.tmpfiles'
         'lightdm.pam'
