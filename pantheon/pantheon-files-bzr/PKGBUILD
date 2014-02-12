@@ -9,8 +9,8 @@ url='https://launchpad.net/pantheon-files'
 license=('GPL3')
 depends=('desktop-file-utils' 'gconf' 'granite-bzr' 'libnotify')
 makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala')
-optdepends=('contractor-bzr: Plugins integration'
-            "${pkgname%-*}-plugin-dropbox-bzr: Dropbox integration"
+optdepends=('contractor-bzr: Various context menu entries'
+            'pantheon-files-plugin-dropbox-bzr: Dropbox integration'
             'tumbler: Thumbnails generation')
 provides=("${pkgname%-*}")
 conflicts=('marlin-bin' 'marlin-bzr' "${pkgname%-*}")

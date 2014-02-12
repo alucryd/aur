@@ -1,7 +1,0 @@
-arch=('x86_64')
-pkgname=('vapoursynth-ffms2-git')
-builddeps=('ffms2-git' 'vapoursynth')
-
-check_git $packagedir/$pkgname/${pkgname%-*}
-
-#vim: ts=2 sw=2 et:

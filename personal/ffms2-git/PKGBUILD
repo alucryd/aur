@@ -9,7 +9,7 @@ arch=('i686' 'x86_64')
 license=('GPL')
 depends=('ffmpeg')
 makedepends=('git')
-provides=("${pkgname%-*}")
+provides=("${pkgname%-*}" 'vapoursynth-plugin-ffms2-git')
 conflicts=("${pkgname%-*}")
 source=("git+${url}.git")
 sha256sums=('SKIP')
@@ -31,6 +31,9 @@ package() {
   cd ${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
+
+  install -dm 755 "${pkgdir}"/usr/lib/vapoursynth$
+  ln -s ../libffms2.so "${pkgdir}"/usr/lib/vapoursynth/
 }
 
 # vim: ts=2 sw=2 et:

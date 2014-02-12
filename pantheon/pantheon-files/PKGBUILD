@@ -7,8 +7,11 @@ pkgdesc='The Pantheon File Manager'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname}"
 license=('GPL3')
-depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
+depends=('gconf' 'desktop-file-utils' 'granite-bzr' 'libnotify')
 makedepends=('cmake' 'gnome-common' 'sqlite3' 'vala')
+optdepends=('contractor-bzr: Various context menu entries'
+            'pantheon-files-plugin-dropbox-bzr: Dropbox integration'
+            'tumbler: Thumbnails generation')
 conflicts=('marlin-bin' 'marlin-bzr')
 install="${pkgname}.install"
 source=("${url}/${pkgver:0:4}x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
