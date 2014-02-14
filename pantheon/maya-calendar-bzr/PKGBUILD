@@ -1,13 +1,13 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=maya-calendar-bzr
-pkgver=r513
+pkgver=r517
 pkgrel=1
 pkgdesc='GCal-syncing GTK+ calendar application'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/maya'
 license=('GPL3')
-depends=('evolution-data-server' 'granite' 'libpeas')
+depends=('evolution-data-server' 'granite-bzr' 'libpeas')
 makedepends=('bzr' 'cmake' 'vala')
 install="${pkgname%-*}.install"
 source=("${pkgname%-*}::bzr+lp:maya")
