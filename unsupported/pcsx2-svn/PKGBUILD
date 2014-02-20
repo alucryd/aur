@@ -19,6 +19,8 @@ elif [[ $CARCH == x86_64 ]]; then
               'lib32-gtk-murrine: murrine GTK3 engine support'
               'lib32-gtk-unico: unico GTK2 engine support')
 fi
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 options=('!emptydirs')
 source=("${pkgname%-*}::svn+http://pcsx2.googlecode.com/svn/trunk/")
 sha256sums=('SKIP')
