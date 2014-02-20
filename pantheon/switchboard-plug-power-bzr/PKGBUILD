@@ -9,13 +9,21 @@ url='https://launchpad.net/switchboard-plug-power'
 license=('GPL3')
 depends=('switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
-source=('bzr+lp:switchboard-plug-power')
-sha256sums=('SKIP')
+source=('bzr+lp:switchboard-plug-power'
+        'no-lid-gsettings.patch')
+sha256sums=('SKIP'
+            'f79f770f50999d4e552d2bba29d8bcdf676e23236e7842003069d925e61d8fd5')
 
 pkgver() {
   cd ${pkgname%-*}
 
   printf "r%s" "$(bzr revno)"
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  patch -Np1 -i ../no-lid-gsettings.patch
 }
 
 build() {

@@ -12,7 +12,7 @@ makedepends=('bzr' 'exo' 'gnome-common' 'gnome-doc-utils' 'gobject-introspection
 provides=('lightdm-gtk-greeter')
 conflicts=('lightdm-gtk-greeter')
 backup=('etc/lightdm/lightdm-gtk-greeter.conf')
-install='lighdm-gtk-greeter.install'
+install='lightdm-gtk-greeter.install'
 source=('bzr+lp:lightdm-gtk-greeter')
 sha256sums=('SKIP')
 
