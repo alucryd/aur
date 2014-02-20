@@ -50,6 +50,7 @@ package(){
   install -dm 755 "${pkgdir}"/usr/bin
   mv "${pkgdir}"/usr/{share/xgreeters/,bin/lightdm-}pantheon-greeter
   mv "${pkgdir}"/usr/share/xgreeters/{,lightdm-}pantheon-greeter.desktop
+  ln -s /usr/share/themes/Adwaita/backgrounds/bright-day.jpg "${pkgdir}"/usr/share/backgrounds/elementaryos-default
 }
 
 # vim: ts=2 sw=2 et:
