@@ -1,5 +1,5 @@
 pkgname=('slingshot-launcher-bzr')
-builddeps=('dee' 'gnome-menus2' 'granite-bzr' 'libunity')
+builddeps=('dee' 'granite-bzr' 'libunity')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 
