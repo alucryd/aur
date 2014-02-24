@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=maya-calendar-bzr
-pkgver=r517
+pkgver=r523
 pkgrel=1
 pkgdesc='GCal-syncing GTK+ calendar application'
 arch=('i686' 'x86_64')
@@ -17,6 +17,12 @@ pkgver() {
   cd ${pkgname%-*}
 
   printf "r%s" "$(bzr revno)"
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  sed 's|${CMAKE_INSTALL_FULL_LIBDIR}|${CMAKE_INSTALL_PREFIX}/lib|g' -i $(grep -rl CMAKE_INSTALL_FULL_LIBDIR)
 }
 
 build() {

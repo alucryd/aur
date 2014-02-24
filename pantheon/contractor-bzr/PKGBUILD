@@ -8,7 +8,7 @@ pkgdesc='A service for sharing data between apps'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/contractor'
 license=('GPL3')
-depends=('libgee06')
+depends=('libgee')
 makedepends=('bzr' 'cmake' 'seahorse' 'vala')
 optdepends=('brasero: Burn Disc context menu entries'
             'file-roller: Archive context menu entries'

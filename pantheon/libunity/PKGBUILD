@@ -2,23 +2,22 @@
 # Contributor: Balló György <ballogyor+arch@gmail.com>
 
 pkgname=libunity
-pkgver=6.12.0
-pkgrel=3
+pkgver=7.1.4
+pkgrel=1
 pkgdesc='Library for instrumenting and integrating with all aspects of the Unity shell'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname}"
+url='https://launchpad.net/libunity'
 license=('LGPL')
-depends=('dee' 'gtk3' 'libdbusmenu-glib' 'libgee06')
+depends=('dee' 'gtk3' 'libdbusmenu-glib')
 makedepends=('gobject-introspection' 'intltool' 'vala')
 install="${pkgname}.install"
-source=("${url}/6.0/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('4d2e5dcdff0347ddd3ff488706263bf1436060565e6c1e304a1da431e8554dd9')
+source=("${pkgname}-${pkgver}::bzr+lp:${pkgname}#revision=312")
+sha256sums=('SKIP')
 
 build() {
   cd ${pkgname}-${pkgver}
 
-  export PYTHON='/usr/bin/python2'
-  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --disable-static
+  ./autogen.sh --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --disable-static
   make
 }
 
@@ -26,11 +25,6 @@ package() {
   cd ${pkgname}-${pkgver}
 
   make DESTDIR="${pkgdir}" install
-
-# Don't see those on packages in pkgs.org, disabled until someone complains.
-## Install GI overrides for python 3 as well
-#  install -dm 755 "${pkgdir}"/usr/lib/python3.3/site-packages/gi/overrides
-#  ln -s ../../../../python2.7/site-packages/gi/overrides/Unity.py "${pkgdir}"/usr/lib/python3.3/site-packages/gi/overrides/Unity.py
 }
 
 # vim: ts=2 sw=2 et:

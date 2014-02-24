@@ -1,0 +1,31 @@
+# $Id$
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Vinícius dos Santos Oliveira <vini.ipsmaker@gmail.com>
+
+pkgname=terra
+pkgver=0.1.8
+pkgrel=1
+pkgdesc='Python/GTK3 drop-down tiling terminal emulator'
+arch=('any')
+url='https://launchpad.net/terra'
+license=('GPL3')
+depends=('python2-dbus' 'python2-gobject' 'vte3')
+makedepends=('bzr' 'python2-distutils-extra')
+source=("bzr+lp:${pkgname}#revision=53"
+        'terra-various-fixes.patch')
+sha256sums=('SKIP'
+            'd8f239c27bc4786e0fab0a3f2a8bee9f1a3b93998099bfb0bebff75e4229709b')
+
+prepare() {
+  cd ${pkgname}
+
+  patch -Np0 -i ../terra-various-fixes.patch
+}
+
+package() {
+  cd ${pkgname}
+
+  python2 setup.py install --root="${pkgdir}" --optimize='1'
+}
+
+# vim: ts=2 sw=2 et:

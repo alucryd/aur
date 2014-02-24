@@ -3,7 +3,7 @@
 # Contributor: flamelab <panosfilip@gmail.com>
 
 pkgname=wingpanel-bzr
-pkgver=r156
+pkgver=r157
 pkgrel=1
 pkgdesc='The Pantheon Top Panel'
 arch=('i686' 'x86_64')

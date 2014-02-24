@@ -2,13 +2,13 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=granite-bzr
-pkgver=r686
+pkgver=r690
 pkgrel=1
 pkgdesc='An extension of GTK+ libraries'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/granite'
 license=('LGPL3')
-depends=('gtk3' 'libgee06')
+depends=('gtk3' 'libgee')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
