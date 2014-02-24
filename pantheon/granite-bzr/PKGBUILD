@@ -22,6 +22,12 @@ pkgver() {
   printf "r%s" "$(bzr revno)"
 }
 
+prepare() {
+  cd ${pkgname%-*}
+
+  sed 's|${CMAKE_INSTALL_FULL_LIBDIR}|${CMAKE_INSTALL_PREFIX}/lib|g' -i $(grep -rl CMAKE_INSTALL_FULL_LIBDIR)
+}
+
 build() {
   cd ${pkgname%-*}
 
@@ -30,7 +36,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_INSTALL_FULL_LIBDIR='/usr/lib'
   make
 }
 

@@ -1,5 +1,5 @@
 pkgname=('gala-bzr')
-builddeps=('granite-bzr')
+builddeps=('granite-bzr' 'plank-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 
