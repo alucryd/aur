@@ -1,0 +1,24 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+
+pkgname=pyanimenc
+pkgver=r1
+pkgrel=1
+pkgdesc='Python encoding helper'
+arch=('any')
+url='http://alucryd.hd.free.fr'
+license=('GPL3')
+depends=('fdkaac' 'python-lxml' 'x264')
+source=("${pkgname}.py"
+        'encaudio'
+        'encvideo')
+sha256sums=('61dfe6cae8283a5a46364aeb396cff52628162c7056fcb698cf0be22685c0557'
+            '8071da28d8c41158520b4436555d3c4b4403e952f5af3e0266e1322de71fa6a6'
+            '08f4f5dc432585bfedb8140ef3c6f45af9bdced63decc7af0940f8e3b09181b1')
+
+package(){
+  install -dm 755 "${pkgdir}"/usr/{bin,lib/python3.3/site-packages}
+  install -m 755 enc{audio,video} "${pkgdir}"/usr/bin/
+  install -m 644 ${pkgname}.py "${pkgdir}"/usr/lib/python3.3/site-packages/
+}
+
+# vim: ts=2 sw=2 et:

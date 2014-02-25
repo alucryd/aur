@@ -1,13 +1,13 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=nvidia-304xx-dkms
-pkgver=304.117
-pkgrel=2
+pkgver=304.119
+pkgrel=1
 pkgdesc='NVIDIA kernel module sources (DKMS)'
 arch=('i686' 'x86_64')
-[[ $CARCH == i686 ]] && _arch=x86 && _pkg=NVIDIA-Linux-${_arch}-${pkgver} && md5sums=('023eb03da304a1842fc503c81e3c5694')
-[[ $CARCH == x86_64 ]] && _arch=x86_64 && _pkg=NVIDIA-Linux-${_arch}-${pkgver}-no-compat32 && md5sums=('8ee9f672028971c6d36118894d0e2c59')
-url="http://www.nvidia.com/"
+[[ $CARCH == i686 ]] && _arch=x86 && _pkg=NVIDIA-Linux-${_arch}-${pkgver} && md5sums=('a2acb8066ac296005dbf560ee83ae6d9')
+[[ $CARCH == x86_64 ]] && _arch=x86_64 && _pkg=NVIDIA-Linux-${_arch}-${pkgver}-no-compat32 && md5sums=('fb93002115c99f15b6ca393a90a9c9ec')
+url='http://www.nvidia.com/'
 license=('custom')
 depends=('bash' 'dkms' "nvidia-304xx-utils=${pkgver}")
 optdepends=('linux-headers: build the module for Arch kernel'
@@ -35,7 +35,7 @@ package() {
 
   install -dm 755 "${pkgdir}"/usr/{lib/modprobe.d,share/licenses,src}
   cp -dr --no-preserve=ownership kernel "${pkgdir}"/usr/src/nvidia-${pkgver}
-  echo "blacklist nouveau" > "${pkgdir}"/usr/lib/modprobe.d/nvidia.conf
+  echo 'blacklist nouveau' > "${pkgdir}"/usr/lib/modprobe.d/nvidia.conf
   ln -s nvidia-304xx "${pkgdir}"/usr/share/licenses/${pkgname}
 }
 
