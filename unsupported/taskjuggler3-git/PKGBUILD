@@ -1,0 +1,44 @@
+# $Id: PKGBUILD 103841 2014-01-12 10:41:39Z alucryd $
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Mathieu Clabaut <mathieu.clabaut@gmail.com>
+
+pkgname=taskjuggler3-git
+pkgver=3.5.0.r18.6202972
+pkgrel=1
+pkgdesc='Project Management Software'
+arch=('any')
+url='http://www.taskjuggler.org'
+license=('GPL')
+depends=('ruby-mail' 'ruby-term-ansicolor')
+optdepends=('ruby-rspec: Test suite')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("${pkgname%-*}::git+https://github.com/taskjuggler/TaskJuggler.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "%s" "$(git describe --tags | sed 's/^release-//; s/-/.r/; s/-g/./')"
+}
+
+build() {
+  cd ${pkgname%-*}
+
+  rake gem
+}
+
+package() {
+  cd ${pkgname%-*}
+
+  local _gemdir="$(ruby -e'puts Gem.default_dir')"
+
+  gem install --ignore-dependencies --no-user-install -N -i "${pkgdir}"/${_gemdir} -n "${pkgdir}"/usr/bin pkg/${pkgname%3}-${pkgver}.gem
+  find "${pkgdir}" -type f -name *.gem -delete
+
+# Vim
+  mv "${pkgdir}"/${_gemdir}/${pkgname%3}-${pkgver}/data/tjp.vim "${pkgdir}"/usr/share/vim/vimfiles/syntax/
+  echo 'au! BufNewFile,BufRead *.tjp,*.tji set ft=tjp' > "${pkgdir}"/usr/share/vim/vimfiles/ftdetect/tjp.vim
+}
+
+# vim: ts=2 sw=2 et:

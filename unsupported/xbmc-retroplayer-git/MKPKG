@@ -1,6 +1,0 @@
-pkgname=('xbmc-retroplayer-git')
-builddeps=('shairplay-git')
-
-check_git $packagedir/$pkgname/${pkgname%-*}
-
-# vim: ts=2 sw=2 et:

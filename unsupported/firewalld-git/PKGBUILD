@@ -1,23 +1,23 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=firewalld-git
-pkgver=0.3.8.1.r15.e77a70c
+pkgver=0.3.9.3.1.r29.8b01bca
 pkgrel=1
-pkgdesc="A firewall daemon with D-BUS interface providing a dynamic firewall"
+pkgdesc='A firewall daemon with D-BUS interface providing a dynamic firewall'
 arch=('any')
-url="http://fedorahosted.org/firewalld"
+url='http://fedorahosted.org/firewalld'
 license=('GPL2')
 depends=('ebtables' 'gtk3' 'iptables' 'libnotify' 'networkmanager' 'python-slip')
 makedepends=('docbook-xsl' 'git' 'intltool')
 backup=('etc/conf.d/firewalld'
         'etc/firewalld/firewalld.conf')
-provides=('firewalld')
-conflicts=('firewalld')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 install=${pkgname%-*}.install
 source=('git+http://git.fedorahosted.org/git/firewalld.git'
-        'firewalld-paths.patch')
+        'firewalld-arch.patch')
 sha256sums=('SKIP'
-            '3fdf9cd88a959c19ca9e5d8e098cfbcbdb073db6602f6e9b0f2ddb542e5a88f8')
+            '91dbd5c580d3603e77c905880ca99ebddf398cf72f86ad37d0134ff7aa119ced')
 
 pkgver() {
   cd ${pkgname%-*}
@@ -28,14 +28,14 @@ pkgver() {
 prepare() {
   cd ${pkgname%-*}
 
-  patch -Np1 -i ../firewalld-paths.patch
+  patch -Np1 -i ../firewalld-arch.patch
 }
 
 build () {
   cd ${pkgname%-*}
 
   ./autogen.sh
-  ./configure --prefix='/usr' --sysconfdir='/etc' --disable-schemas-compile
+  ./configure --prefix='/usr' --sbindir='/usr/bin' --sysconfdir='/etc' --disable-schemas-compile
   make
 }
 
