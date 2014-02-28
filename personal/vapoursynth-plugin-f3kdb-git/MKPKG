@@ -1,5 +1,5 @@
 arch=('x86_64')
-pkgname=('vapoursynth-f3kdb-git')
+pkgname=('vapoursynth-plugin-f3kdb-git')
 builddeps=('vapoursynth')
 
 check_git $packagedir/$pkgname/${pkgname%-*}

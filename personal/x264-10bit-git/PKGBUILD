@@ -14,6 +14,8 @@ url='http://www.videolan.org/developers/x264.html'
 license=('GPL')
 depends=('ffms2-git' 'l-smash-git')
 makedepends=('yasm' 'git')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 source=('git://git.videolan.org/x264.git')
 md5sums=('SKIP')
 
