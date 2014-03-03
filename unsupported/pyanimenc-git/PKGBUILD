@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=pyanimenc-git
-pkgver=r4.67951b8
+pkgver=r8.01a3f3a
 pkgrel=1
 pkgdesc='Python Transcoding Tools'
 arch=('any')
