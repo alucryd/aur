@@ -1,15 +1,14 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=xbmc-devel
-pkgver=13.0alpha11
-_release=Gotham_alpha11
-pkgrel=2
+pkgver=13.0_beta_2
+pkgrel=1
 pkgdesc='XBMC Media Center - Development snapshots'
 arch=('i686' 'x86_64')
 url='http://xbmc.org/'
 license=('GPL2')
 depends=('avahi' 'bluez-libs' 'curl' 'ffmpeg' 'hicolor-icon-theme' 'java-runtime' 'libcdio' 'libmicrohttpd' 'libmad' 'libmariadbclient' 'libmpeg2' 'libsamplerate' 'libssh' 'libxrandr' 'libxslt' 'lzo2' 'mesa' 'mesa-demos' 'python2' 'sdl_image' 'taglib' 'tinyxml' 'xorg-xdpyinfo' 'yajl')
-makedepends=('afpfs-ng' 'boost' 'cmake' 'doxygen' 'gperf' 'jasper' 'java-environment' 'libcec' 'libnfs' 'libplist' 'libshairport' 'nasm' 'smbclient' 'swig' 'unzip' 'zip')
+makedepends=('afpfs-ng' 'boost' 'cmake' 'doxygen' 'git' 'gperf' 'jasper' 'java-environment' 'libcec' 'libnfs' 'libplist' 'libshairport' 'nasm' 'smbclient' 'swig' 'unzip' 'zip')
 optdepends=('afpfs-ng: Apple shares support'
             'smbclient: Windows shares support'
             'libnfs: NFS shares support'
@@ -20,9 +19,9 @@ optdepends=('afpfs-ng: Apple shares support'
 provides=("${pkgname%-}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("https://github.com/xbmc/xbmc/archive/${_release}.tar.gz"
+source=("git+https://github.com/xbmc/xbmc.git#branch=Gotham#commit=19197d5ce5"
         'xbmc.service')
-sha256sums=('442bcb838c9ba85169116b00b36954d8781f836dc8f173348ac68b356725e94f'
+sha256sums=('SKIP'
             '547e06f3141866cd34b1df34025517e9826992b67543af7621d954bcdfa0ba94')
 
 build() {

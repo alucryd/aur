@@ -3,6 +3,8 @@
 for repo in community pantheon unsupported personal; do
   find $repo -type d -name pkg -exec rm -rf {} +
   find $repo -type d -name src -exec rm -rf {} +
+  find $repo -type d -exec chmod 755 {} +
+  find $repo -type f -exec chmod 644 {} +
   find $repo -name *.tar.xz -delete
   find $repo -name *.tar.xz.sig -delete
   find $repo -name *.log -delete
