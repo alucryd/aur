@@ -10,6 +10,8 @@ license=('GPL3')
 depends=('fdkaac' 'python-lxml' 'x264' 'vapoursynth-plugin-ffms2')
 optdepends=('vapoursynth-plugin-flash3kyuu_deband-git: Deband filter'
             'x264-10bit: Hi10 encoding')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
 source=("git+${url}.git")
 sha256sums=('SKIP')
 

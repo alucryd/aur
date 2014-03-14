@@ -1,9 +1,8 @@
-# $Id: PKGBUILD 103841 2014-01-12 10:41:39Z alucryd $
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 # Contributor: Mathieu Clabaut <mathieu.clabaut@gmail.com>
 
 pkgname=taskjuggler3-git
-pkgver=3.5.0.r18.6202972
+pkgver=3.5.0.r22.48cf80e
 pkgrel=1
 pkgdesc='Project Management Software'
 arch=('any')

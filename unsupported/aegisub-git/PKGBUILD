@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=aegisub-git
-pkgver=3.1.0.r6851.c035c45
+pkgver=3.1.0.r6925.21d87ff
 pkgrel=1
 pkgdesc='A general-purpose subtitle editor with ASS/SSA support'
 arch=('i686' 'x86_64')
@@ -26,7 +26,7 @@ pkgver() {
 }
 
 build () {
-  cd ${pkgname%-*}/${pkgname%-*}
+  cd ${pkgname%-*}
 
   ./autogen.sh
   ./configure --prefix='/usr'
@@ -34,7 +34,7 @@ build () {
 }
 
 package() {
-  cd ${pkgname%-*}/${pkgname%-*}
+  cd ${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
 
