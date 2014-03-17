@@ -2,7 +2,7 @@
 
 pkgname=xbmc-devel
 pkgver=13.0_beta_2
-pkgrel=2
+pkgrel=3
 pkgdesc='XBMC Media Center - Development snapshots'
 arch=('i686' 'x86_64')
 url='http://xbmc.org/'
@@ -19,7 +19,7 @@ optdepends=('afpfs-ng: Apple shares support'
 provides=("${pkgname%-}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("git+https://github.com/xbmc/xbmc.git#commit=19197d5ce5"
+source=("git+https://github.com/xbmc/xbmc.git#commit=a1cab7afcb"
         'xbmc.service')
 sha256sums=('SKIP'
             '547e06f3141866cd34b1df34025517e9826992b67543af7621d954bcdfa0ba94')
