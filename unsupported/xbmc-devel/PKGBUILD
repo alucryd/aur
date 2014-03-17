@@ -19,9 +19,9 @@ optdepends=('afpfs-ng: Apple shares support'
 provides=("${pkgname%-}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("git+https://github.com/xbmc/xbmc.git#commit=a1cab7afcb"
+source=("https://github.com/xbmc/xbmc/archive/Gotham_beta2.tar.gz"
         'xbmc.service')
-sha256sums=('SKIP'
+sha256sums=('c15ff981498ef003507bb542667a7b1bc0d24e9d6182900d14734b8dbff8acd6'
             '547e06f3141866cd34b1df34025517e9826992b67543af7621d954bcdfa0ba94')
 
 build() {
