@@ -1,13 +1,13 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=xbmc-devel
-pkgver=13.0_beta_2
-pkgrel=3
+pkgver=13.0_beta2
+pkgrel=1
 pkgdesc='XBMC Media Center - Development snapshots'
 arch=('i686' 'x86_64')
 url='http://xbmc.org/'
 license=('GPL2')
-depends=('avahi' 'bluez-libs' 'curl' 'ffmpeg' 'hicolor-icon-theme' 'java-runtime' 'libcdio' 'libmicrohttpd' 'libmad' 'libmariadbclient' 'libmpeg2' 'libsamplerate' 'libssh' 'libxrandr' 'libxslt' 'lzo2' 'mesa' 'mesa-demos' 'python2' 'sdl_image' 'taglib' 'tinyxml' 'xorg-xdpyinfo' 'yajl')
+depends=('avahi' 'bluez-libs' 'curl' 'hicolor-icon-theme' 'java-runtime' 'lame' 'libass' 'libbluray' 'libcdio' 'libmicrohttpd' 'libmad' 'libmariadbclient' 'libmodplug' 'libmpeg2' 'libpulse' 'libsamplerate' 'libssh' 'libxrandr' 'libxslt' 'lzo2' 'mesa' 'mesa-demos' 'python2' 'rtmpdump' 'sdl_image' 'taglib' 'tinyxml' 'xorg-xdpyinfo' 'yajl')
 makedepends=('afpfs-ng' 'boost' 'cmake' 'doxygen' 'git' 'gperf' 'jasper' 'java-environment' 'libcec' 'libnfs' 'libplist' 'libshairport' 'nasm' 'smbclient' 'swig' 'unzip' 'zip')
 optdepends=('afpfs-ng: Apple shares support'
             'smbclient: Windows shares support'
@@ -19,85 +19,23 @@ optdepends=('afpfs-ng: Apple shares support'
 provides=("${pkgname%-}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("https://github.com/xbmc/xbmc/archive/Gotham_beta2.tar.gz"
+source=("https://github.com/xbmc/xbmc/archive/Gotham_${pkgver#*_}.tar.gz"
         'xbmc.service')
 sha256sums=('c15ff981498ef003507bb542667a7b1bc0d24e9d6182900d14734b8dbff8acd6'
             '547e06f3141866cd34b1df34025517e9826992b67543af7621d954bcdfa0ba94')
 
 build() {
-  cd xbmc
-
-  ./bootstrap
-
-# Configure options
-#  --enable-shared-lib          build libxbmc. helpful for tests (default is no)
-#  --enable-debug               enable debugging information (default is yes)
-#  --enable-neon                enable neon passing to ffmpeg (default is no)
-#  --enable-optimizations       enable optimization (default is yes)
-#  --enable-gl                  enable OpenGL rendering (default is yes)
-#  --enable-gles                enable OpenGLES rendering (default is no)
-#  --enable-sdl                 enable SDL (default is auto)
-#  --enable-vdpau               enable VDPAU decoding (default is auto)
-#  --enable-vaapi               enable VAAPI decoding (default is auto)
-#  --enable-crystalhd           enable CrystalHD decoding (default is auto)
-#  --enable-vtbdecoder          enable VTBDecoder decoding (default is auto)
-#  --enable-openmax             enable OpenMax decoding (default is auto, requires OpenGLES)
-#  --enable-tegra               enable Tegra2 arm (default is no)
-#  --enable-profiling           enable gprof profiling (default is no)
-#  --enable-joystick            enable SDL joystick support (default is yes)
-#  --enable-xrandr              enable XRandR support (default is yes)
-#  --enable-waveform            enable Waveform visualisation (default is yes)
-#  --enable-spectrum            enable Spectrum visualisation (default is yes)
-#  --enable-goom                enable GOOM visualisation (default is no)
-#  --enable-rsxs                enable really slick X screensavers (default is yes)
-#  --enable-fishbmc             enable FishBMC visualisation (default is yes)
-#  --enable-projectm            enable ProjectM visualisation (default is yes)
-#  --enable-wayland             enable wayland (default is no) 'Linux Only'
-#  --enable-x11                 enable x11 (default is yes) 'Linux Only'
-#  --enable-ccache              enable building with ccache feature (default is auto)
-#  --disable-alsa               disable ALSA support (only for linux/freebsd)
-#  --enable-pulse               enable PulseAudio support (default is no)
-#  --disable-ssh                disable SSH SFTP support (default is enabled)
-#  --enable-rtmp                enable RTMP support via librtmp (default is auto)
-#  --disable-samba              disable SAMBA support (default is enabled)
-#  --enable-nfs                 enable NFS support via libnfs (default is auto)
-#  --enable-afpclient           enable AFP support via libafpclient (default is auto)
-#  --enable-airplay             enable AirPlay support(default is auto)
-#  --enable-airtunes            enable AirTunes support(default is auto)
-#  --disable-upnp               disable UPnP support (default is enabled)
-#  --enable-ffmpeg-libvorbis    enable FFmpeg vorbis encoding (default is no)
-#  --enable-dvdcss              enable DVDCSS support (default is yes)
-#  --enable-mid                 enable MID support (default is no)
-#  --disable-hal                disable HAL support (default is enabled if hal and hal-storage is found)
-#  --disable-avahi              disable Avahi support (default is enabled if libavahi-common and libavahi-client is found)
-#  --disable-mdnsembedded       disable mDNSEmbedded support (default is auto)
-#  --disable-non-free           disable componentents with non-compliant licenses
-#  --enable-asap-codec          enable ASAP ADPCM support
-#  --disable-mysql              disable mysql
-#  --disable-webserver          disable webserver
-#  --disable-optical-drive      disable optical drive
-#  --enable-libbluray           enable libbluray support
-#  --enable-texturepacker       enable texturepacker support (default is yes)
-#  --enable-udev                enable udev support (default is auto)
-#  --enable-libusb              enable libusb support (default is auto)
-#  --enable-libcec              enable libcec support (default is auto)
-#  --enable-libmp3lame          enable lame mp3 encoder support (default is auto)
-#  --enable-libvorbisenc        enable vorbis encoder support (default is auto)
-#  --enable-libcap              enable libcap support (default is auto)
-#  --enable-player              enable additional players from a list of comma separated names, (default is none, choices are omxplayer)
-#  --enable-gtest               configure Google Test Framework (default is no)
-#  --enable-codec               enable additional codecs from a list of comma separated names, (default is none, choices are amcodec, libstagefright)
-#  --enable-external-libraries  enable use of all supported external libraries (default is no) 'Linux only'
-#  --enable-external-ffmpeg     enable use of external ffmpeg libraries (default is no) 'Linux only'
-#  --enable-libav-compat        build a wrapper around libav to provide the functions needed by XBMC. This is *not* supported by XBMC developers and is provided only for convenience. (default is no) 'Linux only'
+  cd xbmc-Gotham_${pkgver#*_}
 
   export PYTHON_VERSION='2'
-  ./configure --prefix='/usr' --exec-prefix='/usr' --enable-{external-libraries,ffmpeg-libvorbis,libbluray,pulse} --disable-{debug,static}
+
+  ./bootstrap
+  ./configure --prefix='/usr' --exec-prefix='/usr' --enable-{external-libraries,libbluray,pulse} --disable-{debug,non-free,static}
   make
 }
 
 package() {
-  cd xbmc
+  cd xbmc-Gotham_${pkgver#*_}
 
   make DESTDIR="${pkgdir}" install
 
