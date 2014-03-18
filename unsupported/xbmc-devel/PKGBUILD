@@ -2,7 +2,7 @@
 
 pkgname=xbmc-devel
 pkgver=13.0_beta2
-pkgrel=1
+pkgrel=2
 pkgdesc='XBMC Media Center - Development snapshots'
 arch=('i686' 'x86_64')
 url='http://xbmc.org/'
@@ -22,7 +22,7 @@ install="${pkgname%-*}.install"
 source=("https://github.com/xbmc/xbmc/archive/Gotham_${pkgver#*_}.tar.gz"
         'xbmc.service')
 sha256sums=('c15ff981498ef003507bb542667a7b1bc0d24e9d6182900d14734b8dbff8acd6'
-            '547e06f3141866cd34b1df34025517e9826992b67543af7621d954bcdfa0ba94')
+            '0713c3df26656ac2065c411c3d08f6d78515eff76dafec5c496cd11960451642')
 
 build() {
   cd xbmc-Gotham_${pkgver#*_}
