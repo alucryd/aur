@@ -11,7 +11,7 @@ pkgdesc='A scientific software package for numerical computations'
 arch=('i686' 'x86_64')
 url='http://www.scilab.org/'
 license=('custom:CeCILL')
-depends=('arpack' 'curl' 'desktop-file-utils' 'gtk-update-icon-cache' 'fftw' 'hdf5' 'hicolor-icon-theme' 'java-environment' 'shared-mime-info' 'tk')
+depends=('arpack' 'curl' 'desktop-file-utils' 'gtk-update-icon-cache' 'fftw' 'hdf5' 'java-environment' 'shared-mime-info' 'tk')
 makedepends=('apache-ant' 'ocaml' 'umfpack')
 install="${pkgname%-*}.install"
 options=('!emptydirs')
@@ -31,7 +31,7 @@ build() {
 
   export LDFLAGS="${LDFLAGS/--as-needed,/}"
 
-  ./configure --prefix='/usr' --enable-build-localization --disable-build-help --with-mpi --without-matio
+  ./configure --prefix='/usr' --enable-build-localization --disable-build-help --without-matio
   make all
 }
 
@@ -41,6 +41,7 @@ package() {
   make DESTDIR="${pkgdir}" install
 
   install -dm 755 "${pkgdir}"/usr/share/${pkgname%-*}/thirdparty
+  install -m 644 etc/classpath.xml.vc  "${pkgdir}"/usr/share/${pkgname%-*}/etc/classpath.xml
   for jar in thirdparty/*.jar; do
     install -m 644 ${jar} "${pkgdir}"/usr/share/${pkgname%-*}/thirdparty/
   done
