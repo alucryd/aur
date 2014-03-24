@@ -3,12 +3,12 @@
 
 pkgname=neovim-git
 pkgdesc="Vim's rebirth for the 21st century"
-pkgver=0.r79.fffb899
+pkgver=0.r259.7bd4d68
 pkgrel=1
 arch=('i686' 'x86_64')
 url='https://github.com/neovim/neovim'
 license=('custom:vim')
-depends=('libuv' 'ncurses')
+depends=('libuv' 'luajit' 'ncurses')
 makedepends=('cmake' 'git')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
