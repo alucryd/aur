@@ -2,19 +2,21 @@
 # Contributor: sh4nks <sh4nks7@gmail.com
 
 pkgname=lightdm-pantheon-greeter-bzr
-pkgver=r225
+pkgver=r261
 pkgrel=1
 pkgdesc='Pantheon greeter for LightDM'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/pantheon-greeter'
 license=('GPL')
-depends=('clutter-gtk' 'granite-bzr' 'libindicator-gtk3' 'lightdm')
+depends=('clutter-gtk' 'granite' 'libindicator-gtk3' 'lightdm')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("${pkgname%-*}::bzr+lp:pantheon-greeter")
-sha256sums=('SKIP')
+source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~teemperor/pantheon-greeter/greeter-0.3/"
+        'desktop.patch')
+sha256sums=('SKIP'
+            'bfb5fa8b7ca911509603b7b69fc5cc82082f90f192e8ac8d961e16500a43b6c4')
 
 pkgver() {
   cd ${pkgname%-*}
@@ -25,9 +27,7 @@ pkgver() {
 prepare() {
   cd ${pkgname%-*}
 
-  sed 's/share\/xgreeters/bin/
-       s/pantheon-greeter/lightdm-pantheon-greeter/g
-       /en_US/d' -i data/pantheon-greeter.desktop
+  patch -Np0 -i ../desktop.patch
 }
 
 build(){
@@ -47,10 +47,9 @@ package(){
 
   make DESTDIR="${pkgdir}" install
 
-  install -dm 755 "${pkgdir}"/usr/{bin,share/backgrounds}
+  install -dm 755 "${pkgdir}"/usr/bin
   mv "${pkgdir}"/usr/{share/xgreeters/,bin/lightdm-}pantheon-greeter
   mv "${pkgdir}"/usr/share/xgreeters/{,lightdm-}pantheon-greeter.desktop
-  ln -s /usr/share/themes/Adwaita/backgrounds/bright-day.jpg "${pkgdir}"/usr/share/backgrounds/elementaryos-default
 }
 
 # vim: ts=2 sw=2 et:

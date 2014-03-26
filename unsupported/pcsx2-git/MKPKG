@@ -1,4 +1,4 @@
-pkgname=('pcsx2-svn')
+pkgname=('pcsx2-git')
 
 build () {
   local arch=$1

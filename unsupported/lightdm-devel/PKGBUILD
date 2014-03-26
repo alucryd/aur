@@ -5,7 +5,7 @@
 pkgbase=lightdm-devel
 pkgname="${pkgbase}"
 true && pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
-pkgver=1.9.7
+pkgver=1.9.13
 pkgrel=1
 
 prepare() {
@@ -116,13 +116,13 @@ source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/${pkgbas
         'lightdm-default-config.patch'
         'Xsession')
 
-sha256sums=('ba731380831935968a0cadbfd5577c1568924bec2206a7ecb5a740f50315a799'
+sha256sums=('f2383ca692309021a4246a78def8ca4184cce494b1240e7b95cb8031002970c1'
             '0d2adba25cdbe59e97ffd302083db9d5e23920780f41e04f64512cd6b633289a'
             'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
             '33e3c3d6e16c8d30756754ea3f31f5457c5be0343686aad287692be34958984a'
             'a89566307e1c81c24f037d854cbd472d2f94f8a4b759877a01563a332319f7d6'
-            '0b2f740616110887d5c8662e40f1a8350fc0dfa6c7e99f6e3a5636c6b0ca714f'
+            '20de3152b9ea037be1cbb9a32c052cb53d3362daf7c4ebd3d8669a1af0f13723'
             '7fb85a1b54406032a922e8fd6f45d869fcfe5681df630e74e8e50c040b786ee4')
 
 # vim: ts=2 sw=2 et:
