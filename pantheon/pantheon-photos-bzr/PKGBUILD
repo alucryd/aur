@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-photos-bzr
-pkgver=r2506
+pkgver=r2511
 pkgrel=1
 pkgdesc='The Pantheon Photos Manager'
 arch=('i686' 'x86_64')
@@ -13,7 +13,7 @@ makedepends=('bzr' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=('bzr+lp:photos-manager')
+source=('bzr+lp:pantheon-photos')
 sha256sums=('SKIP')
 
 pkgver() {
