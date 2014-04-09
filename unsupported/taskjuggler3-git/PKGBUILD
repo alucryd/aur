@@ -2,7 +2,7 @@
 # Contributor: Mathieu Clabaut <mathieu.clabaut@gmail.com>
 
 pkgname=taskjuggler3-git
-pkgver=3.5.0.r22.48cf80e
+pkgver=3.5.0.r26.44b7f9b
 pkgrel=1
 pkgdesc='Project Management Software'
 arch=('any')

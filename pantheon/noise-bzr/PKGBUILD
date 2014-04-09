@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=noise-bzr
-pkgver=r1557
+pkgver=r1563
 pkgrel=1
 pkgdesc='The Pantheon Music Player'
 arch=('i686' 'x86_64')

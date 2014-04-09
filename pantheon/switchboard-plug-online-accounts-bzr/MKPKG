@@ -1,5 +1,5 @@
-pkgname=('switchboard-plug-default-applications-bzr')
-builddeps=('dee' 'granite-bzr' 'libunity' 'switchboard-bzr')
+pkgname=('switchboard-plug-online-accounts-bzr')
+builddeps=('dee' 'libgsignon-glib-git' 'granite-bzr' 'gsignond-git' 'gsignond-plugin-oauth-git' 'gsignond-plugin-sasl-git' 'libunity' 'switchboard-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

@@ -3,7 +3,7 @@
 # Contributor: dserban <dserban01@yahoo.com>
 
 pkgname=switchboard-bzr
-pkgver=r418
+pkgver=r425
 pkgrel=1
 pkgdesc='The Pantheon Control Center'
 arch=('i686' 'x86_64')

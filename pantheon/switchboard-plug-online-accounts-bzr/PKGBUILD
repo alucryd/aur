@@ -1,17 +1,17 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=switchboard-plug-online-accounts-bzr
-pkgver=r23
+pkgver=r41
 pkgrel=1
 pkgdesc='Online Accounts plug for Switchboard'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/switchboard-plug-onlineaccounts'
 license=('GPL3')
-depends=('gsignond' 'libaccounts-glib' 'libgsignon-glib' 'switchboard-bzr')
+depends=('gsignond-plugin-oauth' 'gsignond-plugin-sasl' 'libaccounts-glib' 'libgsignon-glib' 'switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::bzr+lp:switchboard-plug-onlineaccounts")
+source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~elementary-apps/switchboard-plug-onlineaccounts/trunk/")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -29,6 +29,7 @@ build() {
   mkdir build && cd build
 
   cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_INSTALL_LIBDIR='/usr/lib'
+  make pantheon-online-accounts
   make
 }
 
