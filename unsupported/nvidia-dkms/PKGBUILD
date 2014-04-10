@@ -5,7 +5,7 @@
 
 pkgname=nvidia-dkms
 pkgver=334.21
-pkgrel=3
+pkgrel=4
 pkgdesc='NVIDIA kernel module sources (DKMS)'
 arch=('i686' 'x86_64')
 [[ $CARCH == i686 ]] && _arch=x86 && _pkg=NVIDIA-Linux-${_arch}-${pkgver} && md5sums=('3b2736dd6ed7e24f71004bad0e55e32e')
@@ -18,7 +18,9 @@ optdepends=('linux-headers: Build the module against Arch kernel'
 provides=("nvidia=${pkgver}" "nvidia-uvm=${pkgver}")
 conflicts=('nvidia' 'nvidia-304xx-dkms')
 install="${pkgname}.install"
-source=("http://us.download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run")
+source=("http://us.download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run"
+        'linux3.14.patch')
+md5sums+=('395af13a91b44c7ac9084a2dd709c7de')
 
 prepare() {
   if [[ -d ${_pkg} ]] ; then
@@ -26,6 +28,9 @@ prepare() {
   fi
 
   sh ${_pkg}.run --extract-only
+
+  cd ${_pkg}
+  patch -Np1 -i ../linux3.14.patch
 }
 
 package() {

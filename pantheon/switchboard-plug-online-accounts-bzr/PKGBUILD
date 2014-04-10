@@ -11,6 +11,7 @@ depends=('gsignond-plugin-oauth' 'gsignond-plugin-sasl' 'libaccounts-glib' 'libg
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
+install="${pkgname%-*}.install"
 source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~elementary-apps/switchboard-plug-onlineaccounts/trunk/")
 sha256sums=('SKIP')
 
