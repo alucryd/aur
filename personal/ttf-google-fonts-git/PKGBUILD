@@ -17,7 +17,7 @@ provides=("${pkgname%-*}" 'cantarell-fonts' 'jsmath-fonts' 'lohit-fonts' 'oldsta
 conflicts=("${provides}")
 install="${pkgname%-*}.install"
 source=("${pkgname%-*}::git+${url}.git"
-        'OFL.txt')
+        'OFL.txt::http://scripts.sil.org/cms/scripts/render_download.php?format=file&media_id=OFL_plaintext&filename=OFL.txt')
 sha256sums=('SKIP'
             'ca122f3bda0154f692817450168cb650a7fc59ef96c93582acd2e7a744d464d3')
 
