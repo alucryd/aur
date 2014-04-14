@@ -19,6 +19,7 @@ optdepends=('switchboard-plug-about-bzr: About plug'
             'switchboard-plug-power-bzr: Power plug')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
+install="${pkgname%-*}.install"
 source=('bzr+lp:switchboard')
 sha256sums=('SKIP')
 
