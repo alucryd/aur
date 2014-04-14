@@ -1,26 +1,18 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 # Contributor: Josip Ponjavic <josipponjavic@gmail.com>
 
-pkgname=gsignond-git
-pkgver=1.0.1.r3.739328f
+pkgname=gsignond
+pkgver=1.0.1
 pkgrel=1
 pkgdesc='gSSO glib daemon'
 arch=('i686' 'x86_64')
 url='https://01.org/gsso'
 license=('LGPL2.1')
-depends=('dbus' 'libgsignon-glib-git' 'sqlite')
+depends=('dbus' 'libgsignon-glib' 'sqlite')
 makedepends=('git' 'gobject-introspection' 'gtk-doc')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
 backup=('etc/gsignond.conf')
-source=("${pkgname%-*}::git+https://code.google.com/p/accounts-sso.gsignond/")
+source=("${pkgname%-*}::git+https://code.google.com/p/accounts-sso.gsignond/#commit=61538c810dbe")
 sha256sums=('SKIP')
-
-pkgver() {
-  cd ${pkgname%-*}
-
-  printf "%s" "$(git describe --tags | sed 's/-/.r/; s/-g/./')"
-}
 
 build() {
   cd ${pkgname%-*}

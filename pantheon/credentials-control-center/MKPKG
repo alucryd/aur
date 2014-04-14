@@ -1,0 +1,4 @@
+pkgname=('credentials-control-center')
+builddeps=('libsignon-glib')
+
+# vim: ts=2 sw=2 et:

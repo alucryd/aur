@@ -5,7 +5,7 @@
 
 pkgname=nvidia-dkms
 pkgver=334.21
-pkgrel=4
+pkgrel=5
 pkgdesc='NVIDIA kernel module sources (DKMS)'
 arch=('i686' 'x86_64')
 [[ $CARCH == i686 ]] && _arch=x86 && _pkg=NVIDIA-Linux-${_arch}-${pkgver} && md5sums=('3b2736dd6ed7e24f71004bad0e55e32e')
@@ -50,3 +50,5 @@ package() {
 }
 
 # vim: ts=2 sw=2 et:
+md5sums=('f96b6708702830fe647a7d11832c514e'
+         '92edfe0c11d774f3de2b67e20c3a452e')
