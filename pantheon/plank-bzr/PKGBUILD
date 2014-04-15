@@ -3,7 +3,7 @@
 # Contributor: dcelasun <dcelasun@gmail.com>
 
 pkgname=plank-bzr
-pkgver=r968
+pkgver=r1018
 pkgrel=1
 pkgdesc='Elegant, simple, clean dock'
 arch=('i686' 'x86_64')
@@ -23,17 +23,10 @@ pkgver() {
   printf "r%s" "$(bzr revno)"
 }
 
-prepare() {
-  cd ${pkgname%-*}
-
-  sed -i 's|^#!.*python$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
-}
-
 build() {
   cd ${pkgname%-*}
 
-  export AUTOMAKE='/usr/bin/automake'
-  ./autogen.sh --prefix='/usr' --sysconfdir='/etc'
+  ./autogen.sh --prefix='/usr' --sysconfdir='/etc' --disable-apport
   make
 }
 
@@ -41,7 +34,6 @@ package() {
   cd ${pkgname%-*}
 
   make DESTDIR="${pkgdir}" install
-  rm -rf "${pkgdir}"/{etc,usr/share/apport}
 }
 
 # vim: ts=2 sw=2 et:
