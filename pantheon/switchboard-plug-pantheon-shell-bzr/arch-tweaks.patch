@@ -1,0 +1,41 @@
+diff -rupN switchboard-plug-pantheon-shell.orig/src/Wallpaper.vala switchboard-plug-pantheon-shell/src/Wallpaper.vala
+--- switchboard-plug-pantheon-shell.orig/src/Wallpaper.vala	2014-04-16 15:06:57.323211705 +0200
++++ switchboard-plug-pantheon-shell/src/Wallpaper.vala	2014-04-16 15:09:21.220963826 +0200
+@@ -62,7 +62,7 @@ public enum ColumnType {
+ }
+ 
+ class Wallpaper : EventBox {
+-    string WALLPAPER_DIR = "/usr/share/backgrounds";
++    string WALLPAPER_DIR = "/usr/share/backgrounds/pantheon";
+ 
+     GLib.Settings settings;
+ 
+@@ -82,7 +82,7 @@ class Wallpaper : EventBox {
+ 
+     //name of the default-wallpaper-link that we can prevent loading it again
+     //(assumes that the defaultwallpaper is also in the system wallpaper directory)
+-    static string default_link = "file:///usr/share/backgrounds/elementaryos-default";
++    static string default_link = "file:///usr/share/backgrounds/pantheon/elementaryos-default";
+ 
+     public Wallpaper (Switchboard.Plug _plug) {
+         plug = _plug;
+@@ -221,7 +221,7 @@ class Wallpaper : EventBox {
+             load_wallpapers.begin ();
+         } else if (folder_combo.get_active () == 1) {
+             clean_wallpapers ();
+-            WALLPAPER_DIR = "file:///usr/share/backgrounds";
++            WALLPAPER_DIR = "file:///usr/share/backgrounds/pantheon";
+             load_wallpapers.begin (() => {
+                 var backgrounds_file = GLib.File.new_for_path (GLib.Environment.get_user_data_dir () + "/backgrounds");
+                 WALLPAPER_DIR = backgrounds_file.get_uri ();
+@@ -329,8 +329,8 @@ class Wallpaper : EventBox {
+ 
+             string display_name = Filename.display_basename (file.get_path ());
+ 
+-            var dest_folder = File.new_for_path (Environment.get_user_data_dir () + "/backgrounds");
+-            var dest = File.new_for_path (Environment.get_user_data_dir () + "/backgrounds/" + display_name);
++            var dest_folder = File.new_for_path (Environment.get_user_data_dir () + "/backgrounds/pantheon");
++            var dest = File.new_for_path (Environment.get_user_data_dir () + "/backgrounds/pantheon/" + display_name);
+             if (!dest_folder.query_exists ()) {
+                 try {
+                     dest_folder.make_directory ();
