@@ -1,6 +1,6 @@
 arch=('any')
 pkgname=('pantheon-default-settings-bzr')
-builddeps=('pantheon-backgrounds-bzr' 'ttf-opensans')
+builddeps=('gtk-theme-elementary-bzr' 'pantheon-backgrounds-bzr' 'plank-theme-pantheon-bzr' 'ttf-opensans')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 
