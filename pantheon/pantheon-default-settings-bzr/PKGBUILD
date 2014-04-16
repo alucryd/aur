@@ -9,6 +9,7 @@ url='https://code.launchpad.net/~elementary-os/elementaryos/default-settings-tru
 license=('GPL')
 groups=('pantheon')
 depends=('elementary-icon-theme' 'gtk-theme-elementary-bzr' 'gnome-themes-standard' 'pantheon-backgrounds-bzr' 'plank-theme-pantheon-bzr' 'ttf-droid' 'ttf-opensans')
+makedepends=('bzr')
 install="${pkgname%-*}.install"
 source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/default-settings-trusty"
         'arch-tweaks.patch')
