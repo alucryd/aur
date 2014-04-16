@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=switchboard-plug-pantheon-shell-bzr
-pkgver=r184
+pkgver=r194
 pkgrel=1
 pkgdesc='Pantheon Shell plug for Switchboard'
 arch=('i686' 'x86_64')
@@ -11,13 +11,21 @@ depends=('switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname}")
 conflicts=("${pkgname%-*}")
-source=('bzr+lp:switchboard-plug-pantheon-shell')
-sha256sums=('SKIP')
+source=('bzr+lp:switchboard-plug-pantheon-shell'
+        'arch-tweaks.patch')
+sha256sums=('SKIP'
+            '43a3c4a7a18c75bf86681682b35a3191464f5885ef8d843da95d81b954e0ac93')
 
 pkgver() {
   cd ${pkgname%-*}
 
   printf "r%s" "$(bzr revno)"
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  patch -Np1 -i ../arch-tweaks.patch
 }
 
 build() {

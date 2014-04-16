@@ -2,12 +2,12 @@
 
 pkgname=pantheon-session-bzr
 pkgver=r61
-pkgrel=2
-pkgdesc='Session entry for Pantheon'
+pkgrel=3
+pkgdesc='The Pantheon Session Handler'
 arch=('any')
 url='https://code.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-settings'
 license=('GPL3')
-depends=('cerbere-bzr' 'gala-bzr' 'gconf' 'gnome-keyring' 'gnome-session' 'gnome-settings-daemon' 'gnome-user-share' 'polkit-gnome' 'slingshot-launcher-bzr' 'wingpanel-bzr' 'xdg-user-dirs-gtk')
+depends=('cerbere-bzr' 'gala-bzr' 'gconf' 'gnome-keyring' 'gnome-session' 'gnome-settings-daemon' 'gnome-user-share' 'pantheon-default-settings' 'polkit-gnome' 'slingshot-launcher-bzr' 'wingpanel-bzr' 'xdg-user-dirs-gtk')
 makedepends=('bzr')
 source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/pantheon-xsession-settings"
         'pantheon-session.sh')
@@ -31,14 +31,13 @@ package() {
   cd ${pkgname%-*}
 
   mkdir -p "${pkgdir}"/{etc/xdg,usr/{bin,share/{gnome-session/sessions,pantheon,xsessions}}}
-  mv autostart "${pkgdir}/etc/xdg/"
-  mv debian/pantheon.desktop "${pkgdir}/usr/share/xsessions/"
-  mv debian/pantheon.session "${pkgdir}/usr/share/gnome-session/sessions/"
-  mv gconf "${pkgdir}/usr/share/GConf"
-  mv unity-greeter "${pkgdir}/usr/share/"
-  mv applications "${pkgdir}/usr/share/pantheon/"
+  cp -dr --no-preserve='ownership' autostart "${pkgdir}/etc/xdg/"
+  cp -dr --no-preserve='ownership' debian/pantheon.desktop "${pkgdir}/usr/share/xsessions/"
+  cp -dr --no-preserve='ownership' debian/pantheon.session "${pkgdir}/usr/share/gnome-session/sessions/"
+  cp -dr --no-preserve='ownership' gconf "${pkgdir}/usr/share/GConf"
+  cp -dr --no-preserve='ownership' unity-greeter "${pkgdir}/usr/share/"
+  cp -dr --no-preserve='ownership' applications "${pkgdir}/usr/share/pantheon/"
 
-# Fix permissions
   find "${pkgdir}" -type d -exec chmod 755 {} +
   find "${pkgdir}" -type f -exec chmod 644 {} +
 
