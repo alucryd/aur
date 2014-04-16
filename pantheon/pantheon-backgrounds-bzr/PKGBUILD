@@ -1,0 +1,38 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+
+pkgname=pantheon-backgrounds-bzr
+pkgver=r41
+pkgrel=1
+pkgdesc='Background images and data for Pantheon'
+arch=('any')
+url='https://code.launchpad.net/~elementary-design/elementaryos/elementary-wallpapers'
+license=('GPL3')
+groups=('pantheon')
+makedepends=('bzr')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+options=('!emptydirs')
+source=("${pkgname%-*}::bzr+lp:~elementary-design/elementaryos/elementary-wallpapers")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "r%s" "$(bzr revno)"
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  sed 's|/usr/share/backgrounds|/usr/share/backgrounds/pantheon|g' -i elementary-wallpapers.xml
+}
+
+package() {
+  cd ${pkgname%-*}
+
+  install -dm 755 "${pkgdir}"/usr/share/{backgrounds/pantheon,pantheon-backgrounds-properties}
+  install -m 644 *.jpg "${pkgdir}"/usr/share/backgrounds/pantheon/
+  install -m 644 elementary-wallpapers.xml "${pkgdir}"/usr/share/pantheon-backgrounds-properties/pantheon-backgrounds.xml
+}
+
+# vim: ts=2 sw=2 et:
