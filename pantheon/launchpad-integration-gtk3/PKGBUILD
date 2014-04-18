@@ -2,7 +2,7 @@
 
 pkgname=launchpad-integration-gtk3
 pkgver=0.1.56.2
-pkgrel=2
+pkgrel=3
 pkgdesc='A library to integrate launchpad urls into the menus'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname%-*}"
@@ -11,7 +11,7 @@ depends=('hicolor-icon-theme' 'gtk3' 'pygtk')
 makedepends=('bzr' 'gobject-introspection')
 install="${pkgname%-*}.install"
 source=("${pkgname%-*}-${pkgver}.tar.gz::http://bazaar.launchpad.net/~ubuntu-desktop/launchpad-integration/ubuntu/tarball/189")
-sha256sums=('41eb9a105115547824de52815dd2f3fba23bacdecc63852bce469303f17f9ed5')
+sha256sums=('SKIP')
 
 build() {
   cd ~ubuntu-desktop/${pkgname%-*}/ubuntu
