@@ -3,19 +3,19 @@
 # Contributor: Jan de Groot <jgc@archlinux.org>
 
 pkgname=libgnome-control-center
-pkgver=3.12.0
+pkgver=3.12.1
 pkgrel=1
 pkgdesc='The Control Center for GNOME - shared library'
 license=('GPL')
 arch=('i686' 'x86_64')
 depends=("gnome-control-center=${pkgver}")
-makedepends=('gnome-doc-utils' 'intltool' 'docbook-xsl' 'gnome-common modemmanager')
+makedepends=('gnome-doc-utils' 'intltool' 'docbook-xsl' 'gnome-common' 'modemmanager')
 groups=('gnome')
 url='http://www.gnome.org'
 options=('!emptydirs')
 source=("http://download.gnome.org/sources/${pkgname#lib}/${pkgver:0:4}/${pkgname#lib}-${pkgver}.tar.xz"
         'revert-drop-library.patch')
-sha256sums=('14fd8334d3f8e1ce36f6948c5092b9437d5563550030cd562a695a6120119058'
+sha256sums=('5297d448eff0ec58f6c0ad9fbd1b94bed0a850496df0ee65571c0622b49c1582'
             '80c964ecef5abf230fa274bb39fdff22c0f75cd082ad393211b3933a1bfa43b4')
 
 prepare() {
