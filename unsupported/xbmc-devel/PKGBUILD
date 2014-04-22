@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=xbmc-devel
-pkgver=13.0_beta3
+pkgver=13.0_beta4
 pkgrel=1
 pkgdesc='XBMC Media Center - Development snapshots'
 arch=('i686' 'x86_64')
@@ -21,7 +21,7 @@ conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
 source=("https://github.com/xbmc/xbmc/archive/Gotham_${pkgver#*_}.tar.gz"
         'xbmc.service')
-sha256sums=('d09677541da88674ff7a737c16533c02e7c47843b8bf90e613394dfc6c160779'
+sha256sums=('df7e0d09a214e23fdb7c9e13e65f5beadb8b8f573d295650f961600084007ccd'
             '0713c3df26656ac2065c411c3d08f6d78515eff76dafec5c496cd11960451642')
 
 build() {
