@@ -1,13 +1,13 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=snap-photobooth-bzr
-pkgver=r216
+pkgver=r232
 pkgrel=1
 pkgdesc='Snap webcam viewer'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/snap-elementary'
 license=('GPL3')
-depends=('cheese' 'granite' 'gstreamer0.10-base-plugins')
+depends=('cheese' 'granite-bzr' 'gstreamer0.10-base-plugins')
 makedepends=('bzr' 'cmake' 'vala')
 install="${pkgname%-*}.install"
 source=("${pkgname%-*}::bzr+lp:snap-elementary")
@@ -17,13 +17,6 @@ pkgver() {
   cd ${pkgname%-*}
 
   printf "r%s" "$(bzr revno)"
-}
-
-prepare() {
-  cd ${pkgname%-*}
-
-  sed -i 's|libgnome-desktop/gnome-desktop-utils.h,||g
-          s|libgnome-desktop/gnome-rr-labeler.h,||g' vapi/gnome-desktop-3.0.vapi
 }
 
 build() {
