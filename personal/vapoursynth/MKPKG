@@ -1,4 +1,0 @@
-arch=('x86_64')
-pkgname=('vapoursynth')
-
-#vim: ts=2 sw=2 et:
