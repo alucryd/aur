@@ -1,8 +1,8 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=xbmc-devel
-pkgver=13.0_beta4
-pkgrel=1
+pkgver=13.0
+pkgrel=3
 pkgdesc='XBMC Media Center - Development snapshots'
 arch=('i686' 'x86_64')
 url='http://xbmc.org/'
@@ -19,13 +19,13 @@ optdepends=('afpfs-ng: Apple shares support'
 provides=("${pkgname%-}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("https://github.com/xbmc/xbmc/archive/Gotham_${pkgver#*_}.tar.gz"
+source=("https://github.com/xbmc/xbmc/archive/${pkgver}-Gotham_r2.tar.gz"
         'xbmc.service')
-sha256sums=('df7e0d09a214e23fdb7c9e13e65f5beadb8b8f573d295650f961600084007ccd'
+sha256sums=('663b99f3e196ead51d90f06ccfa864b4e5ade385dfc5972acb0f854d525f2903'
             '0713c3df26656ac2065c411c3d08f6d78515eff76dafec5c496cd11960451642')
 
 build() {
-  cd xbmc-Gotham_${pkgver#*_}
+  cd xbmc-${pkgver}-Gotham_r2
 
   export PYTHON_VERSION='2'
 
@@ -35,7 +35,7 @@ build() {
 }
 
 package() {
-  cd xbmc-Gotham_${pkgver#*_}
+  cd xbmc-${pkgver}-Gotham_r2
 
   make DESTDIR="${pkgdir}" install
 

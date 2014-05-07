@@ -1,7 +1,7 @@
 # Maintainer: Yosef Or Boczko <yoseforb@gmail.com>
 
 pkgname=polari-devel
-pkgver=3.11.2
+pkgver=3.13.1
 pkgrel=1
 pkgdesc='An IRC Client for GNOME'
 arch=('i686' 'x86_64')
@@ -15,7 +15,7 @@ conflicts=("${pkgname%-*}")
 options=('!libtool')
 install="${pkgname%-*}.install"
 source=("http://ftp.gnome.org/pub/GNOME/sources/${pkgname%-*}/${pkgver%.*}/${pkgname%-*}-${pkgver}.tar.xz")
-sha256sums=('138fca388b8af853635ea6db93159ddc457590cefab6530fcebaf912b6f34859')
+sha256sums=('b84cd69fbdc7991f4aa5c6008bde009008b045002cb77e8393380f7a51dd4a74')
 
 build() {
   cd ${pkgname%-*}-${pkgver}

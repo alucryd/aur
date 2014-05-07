@@ -5,7 +5,7 @@
 pkgbase=lightdm-bzr
 pkgname="${pkgbase}"
 true && pkgname=('lightdm-bzr' 'liblightdm-qt4-bzr' 'liblightdm-qt5-bzr')
-pkgver=r1887
+pkgver=r1976
 pkgrel=1
 
 pkgver() {
@@ -30,7 +30,7 @@ build() {
 }
 
 package_lightdm-bzr() {
-depends=('libgcrypt' 'libxklavier' 'pam' 'polkit' 'systemd')
+depends=('libxklavier' 'pam' 'polkit' 'systemd')
 optdepends=('xorg-server-xephyr: LightDM test mode'
             'accountsservice: limit visible accounts')
 provides=("${pkgbase%-*}")
@@ -50,14 +50,17 @@ install="${pkgbase%-*}.install"
   make DESTDIR="${pkgdir}" install
   make DESTDIR="${pkgdir}" -C liblightdm-qt uninstall
   install -m 755 ../Xsession "${pkgdir}"/etc/lightdm/Xsession
-  install -dm 711 "${pkgdir}"/var/log/lightdm
   rm -rf "${pkgdir}"/etc/init
+  rm -rf "${pkgdir}"/usr/include/lightdm-qt{,5}-*
 
-# Persistent home
-  install -dm 770 "${pkgdir}"/var/lib/lightdm
-  chmod +t "${pkgdir}"/var/lib/lightdm
+  install -dm 755 "${pkgdir}"/var/cache/lightdm
+  install -dm 770 "${pkgdir}"/var/lib/lightdm{,-data}
+  install -dm 711 "${pkgdir}"/var/log/lightdm
+  chmod +t "${pkgdir}"/var/{cache/lightdm,lib/lightdm{,-data}}
   echo 'GDK_CORE_DEVICE_EVENTS=true' > "${pkgdir}"/var/lib/lightdm/.pam_environment
   chmod 644 "${pkgdir}"/var/lib/lightdm/.pam_environment
+  chown 620:620 -R "${pkgdir}"/var/lib/lightdm{,-data}
+  chgrp 620 "${pkgdir}"/var/log/lightdm
 
 # PAM
   install -m 644 ../lightdm.pam "${pkgdir}"/etc/pam.d/lightdm
@@ -78,6 +81,7 @@ pkgdesc='LightDM Qt client library'
 depends=('lightdm' 'qt4')
 provides=('liblightdm-qt4')
 conflicts=('liblightdm-qt4')
+options=('!emptydirs')
 
   cd ${pkgbase%-*}
 
@@ -94,6 +98,7 @@ pkgdesc='LightDM Qt client library'
 depends=('lightdm' 'qt5-base')
 provides=('liblightdm-qt5')
 conflicts=('liblightdm-qt5')
+options=('!emptydirs')
 
   cd ${pkgbase%-*}
 
@@ -109,7 +114,7 @@ pkgdesc='A lightweight display manager'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/lightdm'
 license=('GPL3' 'LGPL3')
-makedepends=('gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'polkit' 'qt4' 'qt5-base' 'yelp-tools')
+makedepends=('gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'polkit' 'qt4' 'qt5-base' 'systemd')
 source=('bzr+lp:lightdm'
         'lightdm.service'
         'lightdm.tmpfiles'
@@ -125,7 +130,7 @@ sha256sums=('SKIP'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
             '33e3c3d6e16c8d30756754ea3f31f5457c5be0343686aad287692be34958984a'
             'a89566307e1c81c24f037d854cbd472d2f94f8a4b759877a01563a332319f7d6'
-            '0b2f740616110887d5c8662e40f1a8350fc0dfa6c7e99f6e3a5636c6b0ca714f'
+            '20de3152b9ea037be1cbb9a32c052cb53d3362daf7c4ebd3d8669a1af0f13723'
             '7fb85a1b54406032a922e8fd6f45d869fcfe5681df630e74e8e50c040b786ee4')
 
 # vim: ts=2 sw=2 et:

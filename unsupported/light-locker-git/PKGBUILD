@@ -1,11 +1,11 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=light-locker-git
-pkgver=1.1.0.r5.ee024ee
+pkgver=1.4.0.r5.f45fdd4
 pkgrel=1
-pkgdesc='A simple locker forked from gnome-screensaver'
+pkgdesc='A simple session locker'
 arch=('i686' 'x86_64')
-url="https://github.com/the-cavalry/light-locker"
+url='https://github.com/the-cavalry/light-locker'
 license=('GPL2')
 depends=('dbus-glib' 'gtk3' 'libxss' 'libxxf86misc' 'lightdm')
 makedepends=('git' 'gnome-common' 'intltool')
@@ -23,7 +23,7 @@ pkgver() {
 build () {
   cd ${pkgname%-*}
 
-  ./autogen.sh --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --disable-{schemas-compile,static} --without-console-kit
+  ./autogen.sh --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --disable-{schemas-compile,static} --with-{mit-ext,systemd,xf86gamma-ext,x} --without-{console-kit,upower}
   make
 }
 
