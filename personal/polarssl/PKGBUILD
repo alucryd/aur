@@ -2,36 +2,36 @@
 # Contributor: Mihai Militaru <mihai.militaru@xmpp.ro>
 
 pkgname=polarssl
-pkgver=1.2.8
+pkgver=1.3.7
 pkgrel=1
-pkgdesc="Portable cryptographic and SSL/TLS library"
+pkgdesc='Portable cryptographic and SSL/TLS library'
 arch=('i686' 'x86_64')
-url="http://www.polarssl.org/"
+url='http://www.polarssl.org/'
 license=('GPL2')
 depends=('openssl')
 makedepends=('cmake')
-source=("http://www.polarssl.org/code/releases/${pkgname}-$pkgver-gpl.tgz")
-sha1sums=('a3e69d4e9302529c5006dcb7d8ecab9c99488036')
+source=("http://www.polarssl.org/code/releases/${pkgname}-${pkgver}-gpl.tgz")
+sha256sums=('6beef0281160bf07fefefd6b412dd1ce4c39261cf5300835aef442253f0400e5')
 
 build() {
-  cd $pkgname-$pkgver
+  cd ${pkgname}-${pkgver}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DUSE_SHARED_POLARSSL_LIBRARY='ON' -DENABLE_ZLIB_SUPPORT='ON'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DENABLE_ZLIB_SUPPORT='TRUE' \
+           -DUSE_SHARED_POLARSSL_LIBRARY='TRUE' \
+           -DUSE_STATIC_POLARSSL_LIBRARY='FALSE'
   make
 }
 
 package() {
-  cd $pkgname-$pkgver/build
+  cd ${pkgname}-${pkgver}/build
 
-  make DESTDIR="$pkgdir" install
-
-# Prevent conflicts with coreutils
-  rm "${pkgdir}"/usr/bin/{md5sum,sha1sum}
+  make DESTDIR="${pkgdir}" install
+  rm "${pkgdir}"/usr/bin/{md5,sha1}sum
 }
 
 # vim: ts=2 sw=2 et:

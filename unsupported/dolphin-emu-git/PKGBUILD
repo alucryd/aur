@@ -2,14 +2,14 @@
 # Contributor: Lightning <sgsdxzy@gmail.com>
 
 pkgname=dolphin-emu-git
-pkgver=4.0.r780.9856110
+pkgver=4.0.r1546.b4e1ac5
 pkgrel=1
-pkgdesc="A GameCube / Wii / Triforce emulator"
+pkgdesc='A GameCube / Wii / Triforce emulator'
 arch=('i686' 'x86_64')
-url="http://www.dolphin-emu.org/"
+url='http://www.dolphin-emu.org/'
 license=('GPL2')
-depends=('bluez-libs' 'ffmpeg' 'libao' 'libusbx' 'miniupnpc' 'openal' 'portaudio' 'sdl2' 'soundtouch' 'wxgtk')
-makedepends=('cmake' 'git' 'opencl-headers')
+depends=('bluez-libs' 'ffmpeg' 'libao' 'libusbx' 'miniupnpc' 'openal' 'polarssl' 'portaudio' 'sdl2' 'soundtouch' 'wxgtk')
+makedepends=('cmake' 'git')
 optdepends=('pulseaudio: PulseAudio backend')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
@@ -31,7 +31,10 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr'
+  export CFLAGS="${CFLAGS/O3/O2}"
+  export CXXFLAGS="${CXXFLAGS/O3/O2}"
+
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS"
   make
 
 }
