@@ -2,7 +2,7 @@
 # Contributor: dorkfish <dork.fish.wat@gmail.com>
 
 pkgname=bamf-bzr
-pkgver=r590
+pkgver=r601
 pkgrel=1
 pkgdesc='Application matching framework'
 arch=('i686' 'x86_64')
@@ -31,7 +31,8 @@ build() {
   cd ${pkgname%-*}
 
   export PYTHON=/usr/bin/python2
-  ./autogen.sh --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --libexecdir="/usr/lib/${pkgname%-*}" --disable-{static,webapps}
+  ./autogen.sh --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' \
+               --libexecdir="/usr/lib/${pkgname%-*}" --disable-static
   make
 }
 

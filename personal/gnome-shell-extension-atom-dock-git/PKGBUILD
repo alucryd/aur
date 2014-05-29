@@ -1,0 +1,28 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Tim Jester-Pfadt <t.jp@gmx.de>
+
+pkgname=gnome-shell-extension-atom-dock-git
+pkgver=r87.364fffc
+pkgrel=1
+pkgdesc='The OzonOS dock extension'
+arch=('any')
+url='https://github.com/ozonos/atom-dock'
+groups=('gnome-shell-extensions')
+license=('GPL3')
+source=('git+https://github.com/ozonos/atom-dock.git')
+md5sums=('SKIP')
+
+
+pkgver() {
+  cd atom-dock
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  cd atom-dock
+
+  install -dm 755 "${pkgdir}"/usr/share/gnome-shell/extensions/atom-dock@ozonos.org
+  cp -dr --no-preserve='ownership' *.js *.json *.css "${pkgdir}"/usr/share/gnome-shell/extensions/atom-dock@ozonos.org/
+}
+
+# vim: ts=2 sw=2 et:

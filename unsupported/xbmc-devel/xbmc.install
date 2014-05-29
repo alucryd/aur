@@ -1,18 +1,20 @@
 post_install() {
-  [[ $(type -p gtk-update-icon-cache) ]] && usr/bin/gtk-update-icon-cache -qtf usr/share/icons/hicolor
-  [[ $(type -p update-desktop-database) ]] && usr/bin/update-desktop-database -q usr/share/applications
-  getent group xbmc > /dev/null || groupadd xbmc
-  getent passwd xbmc > /dev/null || useradd -m -d /var/lib/xbmc -g xbmc xbmc
-  usermod -a -G xbmc,audio,video,power,network,optical,storage,disk xbmc
+  gtk-update-icon-cache -ftq usr/share/icons/hicolor
+  update-desktop-database -q
+  getent group xbmc > /dev/null 2>&1 || groupadd -g 420 xbmc
+  getent passwd xbmc > /dev/null 2>&1 || useradd -c 'XBMC user' -u 420 -g xbmc -G audio,video,network,optical -d /var/lib/xbmc -s /sbin/nologin xbmc
+  passwd -l xbmc > /dev/null
 }
 
 post_upgrade() {
-  post_install $1
+  post_install
 }
 
 post_remove() {
-  post_install $1
-  echo "You may want to remove xbmc user and group"
+  gtk-update-icon-cache -ftq usr/share/icons/hicolor
+  update-desktop-database -q
+  getent passwd xbmc > /dev/null 2>&1 && userdel xbmc
+  getent group xbmc > /dev/null 2>&1 && groupdel xbmc
 }
 
 # vim: ts=2 sw=2 et:

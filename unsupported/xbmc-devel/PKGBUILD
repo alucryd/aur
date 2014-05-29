@@ -5,24 +5,42 @@ pkgver=13.0
 pkgrel=3
 pkgdesc='XBMC Media Center - Development snapshots'
 arch=('i686' 'x86_64')
-url='http://xbmc.org/'
+url='http://xbmc.org'
 license=('GPL2')
-depends=('avahi' 'bluez-libs' 'curl' 'hicolor-icon-theme' 'java-runtime' 'lame' 'libass' 'libbluray' 'libcdio' 'libmicrohttpd' 'libmad' 'libmariadbclient' 'libmodplug' 'libmpeg2' 'libpulse' 'libsamplerate' 'libssh' 'libxrandr' 'libxslt' 'lzo2' 'mesa' 'mesa-demos' 'python2' 'rtmpdump' 'sdl_image' 'taglib' 'tinyxml' 'xorg-xdpyinfo' 'yajl')
-makedepends=('afpfs-ng' 'boost' 'cmake' 'doxygen' 'git' 'gperf' 'jasper' 'java-environment' 'libcec' 'libnfs' 'libplist' 'libshairport' 'nasm' 'smbclient' 'swig' 'unzip' 'zip')
+depends=('bluez-libs' 'curl' 'ffmpeg' 'glew' 'hicolor-icon-theme' 'libcdio' 'libmad' 'libmicrohttpd' 'libmariadbclient' 'libmpeg2' 'libsamplerate' 'libssh' 'libxrandr' 'libxslt' 'lzo2' 'mesa' 'sdl_image' 'smbclient' 'taglib' 'tinyxml' 'xorg-xdpyinfo' 'yajl')
+makedepends=('afpfs-ng' 'boost' 'cmake' 'doxygen' 'ftgl' 'git' 'gperf' 'jasper' 'java-environment' 'libcec' 'libnfs' 'libplist' 'nasm' 'shairplay' 'smbclient' 'swig' 'unzip' 'zip')
 optdepends=('afpfs-ng: Apple shares support'
-            'smbclient: Windows shares support'
             'libnfs: NFS shares support'
             'libplist: AirPlay support'
-            'libshairport: AirPlay support'
             'libcec: Pulse-Eight USB-CEC adapter support'
-            'pulseaudio: PulseAudio support')
-provides=("${pkgname%-}")
-conflicts=("${pkgname%-*}")
+            'lirc: Remote controller support'
+            'pulseaudio: PulseAudio support'
+            'shairplay: AirPlay support'
+            'udisks: Automount external drives'
+            'unrar: Archived files support'
+            'xorg-xinit: XBMC standalone')
 install="${pkgname%-*}.install"
-source=("https://github.com/xbmc/xbmc/archive/${pkgver}-Gotham_r2.tar.gz"
-        'xbmc.service')
+source=("xbmc-$pkgver.tar.gz::https://github.com/xbmc/xbmc/archive/13.0-Gotham_r2.tar.gz"
+        'enable-external-ffmpeg.patch'
+        'fix-missing-librtmp.patch'
+        'xbmc.service'
+        'polkit.rules')
 sha256sums=('663b99f3e196ead51d90f06ccfa864b4e5ade385dfc5972acb0f854d525f2903'
-            '0713c3df26656ac2065c411c3d08f6d78515eff76dafec5c496cd11960451642')
+            '0239e33e87292c7340ed2092f2b5f1e82f5e283b1f763fb125b3aee78f50c355'
+            '9a21c01de5e14da874a16ffecc2981896f969d96b74d0bdeeb20bb20ced37146'
+            'f8b811ffe85c11b8da12895d65f0f8ccb2d4a3e196fd1bc5cd764cc96c4b6832'
+            'c00027a32570fd3b651b26d2f63f4e7e7a162e877de6572bb6553ec007673029')
+
+prepare() {
+  cd xbmc-${pkgver}-Gotham_r2
+
+  patch -Np1 -i ../enable-external-ffmpeg.patch
+  patch -Np1 -i ../fix-missing-librtmp.patch
+
+  find -type f -name *.py -exec sed 's|^#!.*python$|#!/usr/bin/python2|' -i "{}" +
+  sed 's|^#!.*python$|#!/usr/bin/python2|' -i tools/depends/native/rpl-native/rpl
+  sed 's/python/python2/' -i tools/Linux/xbmc.sh.in
+}
 
 build() {
   cd xbmc-${pkgver}-Gotham_r2
@@ -38,16 +56,19 @@ package() {
   cd xbmc-${pkgver}-Gotham_r2
 
   make DESTDIR="${pkgdir}" install
+  install -m 755 tools/TexturePacker/TexturePacker "${pkgdir}"/usr/lib/xbmc/
 
-# Python2
-  sed 's/python/python2/g' -i "${pkgdir}"/usr/{bin/xbmc,share/xbmc/addons/service.xbmc.versioncheck/service.py}
-
-# Texture Packer
-  install -m 755 {tools/TexturePacker,"${pkgdir}"/usr/lib/xbmc}/TexturePacker
-
-# Systemd
+  # Systemd
   install -dm 755 "${pkgdir}"/usr/lib/systemd/system
-  install -m 644 {..,"${pkgdir}"/usr/lib/systemd/system}/xbmc.service
+  install -m 644 ../xbmc.service "${pkgdir}"/usr/lib/systemd/system/
+
+  # Polkit
+  install -dm 700 "${pkgdir}"/etc/polkit-1/rules.d
+  install -m 644 ../polkit.rules "${pkgdir}"/etc/polkit-1/rules.d/10-xbmc.rules
+
+  # XBMC user home
+  install -dm 700 "${pkgdir}"/var/lib/xbmc
+  chown 420:420 "${pkgdir}"/var/lib/xbmc
 }
 
 # vim: ts=2 sw=2 et:
