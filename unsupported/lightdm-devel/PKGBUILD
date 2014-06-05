@@ -3,10 +3,30 @@
 # Contributor: Morfeo <morfeo89@hotmail.it>
 
 pkgbase=lightdm-devel
-pkgname="${pkgbase}"
-true && pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
-pkgver=1.10.0
+pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
+pkgver=1.11.2
 pkgrel=1
+pkgdesc='A lightweight display manager'
+arch=('i686' 'x86_64')
+url='https://launchpad.net/lightdm'
+license=('GPL3' 'LGPL3')
+makedepends=('gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'polkit' 'qt4' 'qt5-base' 'systemd')
+source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/${pkgbase%-*}-${pkgver}.tar.xz"
+        'lightdm.service'
+        'lightdm.tmpfiles'
+        'lightdm.pam'
+        'lightdm-autologin.pam'
+        'lightdm.rules'
+        'lightdm-default-config.patch'
+        'Xsession')
+sha256sums=('7ed7fb8094485d6ba9cbd7b3dfe5c80f25dd9c606922369a0bfb233691272d9a'
+            '0d2adba25cdbe59e97ffd302083db9d5e23920780f41e04f64512cd6b633289a'
+            'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
+            'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
+            '33e3c3d6e16c8d30756754ea3f31f5457c5be0343686aad287692be34958984a'
+            'a89566307e1c81c24f037d854cbd472d2f94f8a4b759877a01563a332319f7d6'
+            '20de3152b9ea037be1cbb9a32c052cb53d3362daf7c4ebd3d8669a1af0f13723'
+            '7fb85a1b54406032a922e8fd6f45d869fcfe5681df630e74e8e50c040b786ee4')
 
 prepare() {
   cd ${pkgbase%-*}-${pkgver}
@@ -103,28 +123,5 @@ options=('!emptydirs')
   find "${pkgdir}" -type f  -name *qt[!5]* -exec rm {} +
   find "${pkgdir}" -type l  -name *qt[!5]* -exec rm {} +
 }
-
-pkgdesc='A lightweight display manager'
-arch=('i686' 'x86_64')
-url='https://launchpad.net/lightdm'
-license=('GPL3' 'LGPL3')
-makedepends=('gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'polkit' 'qt4' 'qt5-base' 'systemd')
-source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/${pkgbase%-*}-${pkgver}.tar.xz"
-        'lightdm.service'
-        'lightdm.tmpfiles'
-        'lightdm.pam'
-        'lightdm-autologin.pam'
-        'lightdm.rules'
-        'lightdm-default-config.patch'
-        'Xsession')
-
-sha256sums=('0edfaf947984906b1f37be7a24377267cdd3e0ebee64d683c9401dd3988d1824'
-            '0d2adba25cdbe59e97ffd302083db9d5e23920780f41e04f64512cd6b633289a'
-            'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
-            'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
-            '33e3c3d6e16c8d30756754ea3f31f5457c5be0343686aad287692be34958984a'
-            'a89566307e1c81c24f037d854cbd472d2f94f8a4b759877a01563a332319f7d6'
-            '20de3152b9ea037be1cbb9a32c052cb53d3362daf7c4ebd3d8669a1af0f13723'
-            '7fb85a1b54406032a922e8fd6f45d869fcfe5681df630e74e8e50c040b786ee4')
 
 # vim: ts=2 sw=2 et:

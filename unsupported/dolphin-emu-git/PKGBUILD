@@ -2,10 +2,10 @@
 # Contributor: Lightning <sgsdxzy@gmail.com>
 
 pkgname=dolphin-emu-git
-pkgver=4.0.r1546.b4e1ac5
+pkgver=4.0.r1771.edf9af0
 pkgrel=1
 pkgdesc='A GameCube / Wii / Triforce emulator'
-arch=('i686' 'x86_64')
+arch=('x86_64')
 url='http://www.dolphin-emu.org/'
 license=('GPL2')
 depends=('bluez-libs' 'ffmpeg' 'libao' 'libusbx' 'miniupnpc' 'openal' 'polarssl' 'portaudio' 'sdl2' 'soundtouch' 'wxgtk')
@@ -31,10 +31,7 @@ build() {
   fi
   mkdir build && cd build
 
-  export CFLAGS="${CFLAGS/O3/O2}"
-  export CXXFLAGS="${CXXFLAGS/O3/O2}"
-
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS"
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_CXX_FLAGS='-fno-inline-functions'
   make
 
 }

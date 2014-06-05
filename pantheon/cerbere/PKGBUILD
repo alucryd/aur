@@ -1,17 +1,17 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=cerbere
-pkgver=0.2
-pkgrel=3
+pkgver=0.2.1
+pkgrel=1
 pkgdesc='The Pantheon Watchdog'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname}"
 license=('GPL2')
-depends=('dconf' 'libgee06')
+depends=('dconf' 'libgee')
 makedepends=('cmake' 'vala')
 install="${pkgname}.install"
-source=("${url}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('cd0261877ef50495c7aaacffe216f9aa06e9a7d9a85444af7d5b6c17b2a245f5')
+source=("${url}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
+sha256sums=('6d585290105558fe8adf1554228c8650aae1a0cec1457a2614d3c9d78a129606')
 
 build() {
   cd ${pkgname}-${pkgver}

@@ -1,35 +1,26 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 # Contributor: Gustavo Alvarez <sl1pkn07@gmail.com>
 
-pkgname=l-smash-git
-pkgver=r843.518d287
+pkgname=l-smash
+pkgver=1.11.7
 pkgrel=1
 pkgdesc='A simple tool for MP4'
 arch=('i686' 'x86_64')
-url='https://code.google.com/p/l-smash/'
+url='https://github.com/l-smash/l-smash'
 license=('custom')
 depends=('glibc')
-makedepends=('git')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("git+${url}")
-md5sums=('SKIP')
-
-pkgver() {
-  cd ${pkgname%-*}
-
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz")
+sha256sums=('58ad53ae211c8352fed189047db44c0cd9de67aa4694e343539ad9d94a92e88a')
 
 build() {
-  cd ${pkgname%-*}
+  cd ${pkgname}-${pkgver}
 
   ./configure --prefix='/usr' --enable-shared --disable-static
   make
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd ${pkgname}-${pkgver}
 
   make DESTDIR="${pkgdir}" install
 

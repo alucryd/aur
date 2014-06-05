@@ -1,5 +1,5 @@
 pkgname=('x264-10bit-git')
-builddeps=('ffms2-git' 'l-smash-git')
+builddeps=('l-smash')
 
 check_git $packagedir/$pkgname/${pkgname%%-*}
 

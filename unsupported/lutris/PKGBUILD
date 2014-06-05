@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=lutris
-pkgver=0.3.3
+pkgver=0.3.4
 pkgrel=1
 pkgdesc='Open Gaming Platform'
 arch=('any')
@@ -11,7 +11,7 @@ depends=('dconf' 'desktop-file-utils' 'hicolor-icon-theme' 'polkit' 'python2-gob
 makedepends=('python2-setuptools')
 install="${pkgname}.install"
 source=("${url}/releases/${pkgname}_${pkgver}.tar.gz")
-sha256sums=('2c4d2d1a99f02b9dc42515fc908e824a4c505a1200c36c78acbbb383e180c1a9')
+sha256sums=('b817cce83c9149b9110a96e2372624091a47fd3a2d2c5eba749b0f1d3a3fa1db')
 
 prepare() {
   cd ${pkgname}
