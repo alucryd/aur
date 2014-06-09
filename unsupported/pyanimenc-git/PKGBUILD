@@ -1,16 +1,15 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=pyanimenc-git
-pkgver=r11.8c36ed9
+pkgver=r16.000a51a
 pkgrel=1
 pkgdesc='Python Transcoding Tools'
 arch=('any')
 url='https://github.com/alucryd/pyanimenc'
 license=('GPL3')
-depends=('fdkaac' 'python-lxml' 'x264' 'vapoursynth-plugin-ffms2')
+depends=('fdkaac' 'python-lxml' 'x264' 'ffms2')
 optdepends=('python-gobject: GTK+ GUI'
-            'vapoursynth-plugin-flash3kyuu_deband-git: Deband filter'
-            'x264-10bit: Hi10 encoding')
+            'vapoursynth-plugin-flash3kyuu_deband-git: Deband filter')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=("git+${url}.git")
@@ -26,9 +25,9 @@ package(){
   cd ${pkgname%-*}
 
   install -dm 755 "${pkgdir}"/usr/{bin,lib/python3.4/site-packages,share/${pkgname%-*}}
-  install -m 755 encaudio encvideo mkchap transcode "${pkgdir}"/usr/bin/
-  install -m 644 ${pkgname%-*}.py "${pkgdir}"/usr/lib/python3.4/site-packages/
-  install -m 644 *.json "${pkgdir}"/usr/share/${pkgname%-*}/
+  install -m 755 pyanimenc "${pkgdir}"/usr/bin/
+  install -m 644 pyanimenc.py "${pkgdir}"/usr/lib/python3.4/site-packages/
+  install -m 644 chapters.yml.example "${pkgdir}"/usr/share/${pkgname%-*}/chapters.yml
 }
 
 # vim: ts=2 sw=2 et:
