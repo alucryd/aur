@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=midori-granite
-pkgver=0.5.7
+pkgver=0.5.8
 pkgrel=1
 pkgdesc='A lightweight, fast, and free web browser'
 arch=('i686' 'x86_64')
@@ -18,10 +18,10 @@ conflicts=("${pkgname%-*}")
 options=('!emptydirs')
 install="${pkgname%-*}.install"
 source=("${url}/downloads/midori_${pkgver}_all_.tar.bz2")
-sha256sums=('2875bb2aa8a8a0cce342178f04700d4ebccd13bf1b2ad4cb3ba9fec7e2bd0b4d')
+sha256sums=('af19135fd4c4b04345df4d3592e7939c20f9b40eaca24550e6cb619751aa9381')
 
 build() {
-  cd ${pkgname%-*}-${pkgver}
+  #cd ${pkgname%-*}-${pkgver}
 
   [[ -d build ]] && rm -rf build
   mkdir build && cd build
@@ -31,7 +31,8 @@ build() {
 }
 
 package() {
-  cd ${pkgname%-*}-${pkgver}/build
+  #cd ${pkgname%-*}-${pkgver}/build
+  cd build
 
   make DESTDIR="${pkgdir}" install
 }

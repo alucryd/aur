@@ -9,7 +9,7 @@ pkgdesc='The Pantheon Top Panel'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/wingpanel'
 license=('GPL3')
-depends=('granite-bzr' 'libindicator-gtk3')
+depends=('granite' 'libindicator-gtk3')
 optdepends=('indicator-datetime: Display date and time'
             'indicator-pantheon-session-bzr: Pantheon session indicator'
             'indicator-power: Battery idicator')
@@ -34,7 +34,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

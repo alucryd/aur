@@ -1,9 +1,11 @@
 diff -rupN pantheon-default-settings.orig/debian/elementary-default-settings.gsettings-override pantheon-default-settings/debian/elementary-default-settings.gsettings-override
---- pantheon-default-settings.orig/debian/elementary-default-settings.gsettings-override	2014-04-16 12:18:30.772104090 +0200
-+++ pantheon-default-settings/debian/elementary-default-settings.gsettings-override	2014-04-16 12:24:42.601411132 +0200
-@@ -8,12 +8,12 @@ show-events=false
+--- pantheon-default-settings.orig/debian/elementary-default-settings.gsettings-override	2014-06-12 11:36:52.475180180 +0200
++++ pantheon-default-settings/debian/elementary-default-settings.gsettings-override	2014-06-12 11:38:05.396175618 +0200
+@@ -6,20 +6,18 @@ show-day=true
+ show-events=false
+ 
  [org.gnome.desktop.background]
- draw-background=true
+-draw-background=true
  picture-options='zoom'
 -picture-uri='file:///usr/share/backgrounds/elementaryos-default'
 +picture-uri='file:///usr/share/backgrounds/pantheon/elementaryos-default'
@@ -16,9 +18,15 @@ diff -rupN pantheon-default-settings.orig/debian/elementary-default-settings.gse
  document-font-name='Open Sans 10'
  font-name='Droid Sans 9'
  gtk-theme='elementary'
+ icon-theme='elementary'
+ monospace-font-name='Droid Sans Mono 10'
+-show-unicode-menu=false
+ toolbar-style='icons'
+ 
+ [org.gnome.desktop.screensaver]
 diff -rupN pantheon-default-settings.orig/midori/config pantheon-default-settings/midori/config
---- pantheon-default-settings.orig/midori/config	2014-04-16 12:18:30.772104090 +0200
-+++ pantheon-default-settings/midori/config	2014-04-16 12:20:58.133353101 +0200
+--- pantheon-default-settings.orig/midori/config	2014-06-12 11:36:52.475180180 +0200
++++ pantheon-default-settings/midori/config	2014-06-12 11:37:00.528255282 +0200
 @@ -2,7 +2,7 @@
  default-font-family=Droid Sans
  enable-spell-checking=true
@@ -30,14 +38,14 @@ diff -rupN pantheon-default-settings.orig/midori/config pantheon-default-setting
  toolbar-items=Back,Forward,ReloadStop,BookmarkAdd,Location,CompactMenu,
 diff -rupN pantheon-default-settings.orig/plank/dock1/launchers/audience.dockitem pantheon-default-settings/plank/dock1/launchers/audience.dockitem
 --- pantheon-default-settings.orig/plank/dock1/launchers/audience.dockitem	1970-01-01 01:00:00.000000000 +0100
-+++ pantheon-default-settings/plank/dock1/launchers/audience.dockitem	2014-04-16 12:20:09.831816881 +0200
++++ pantheon-default-settings/plank/dock1/launchers/audience.dockitem	2014-06-12 11:37:00.528255282 +0200
 @@ -0,0 +1,4 @@
 +[PlankItemsDockItemPreferences]
 +Launcher=file:///usr/share/applications/audience.desktop
 +
 +
 diff -rupN pantheon-default-settings.orig/plank/dock1/launchers/softwarecenter.dockitem pantheon-default-settings/plank/dock1/launchers/softwarecenter.dockitem
---- pantheon-default-settings.orig/plank/dock1/launchers/softwarecenter.dockitem	2014-04-16 12:18:30.775437304 +0200
+--- pantheon-default-settings.orig/plank/dock1/launchers/softwarecenter.dockitem	2014-06-12 11:36:52.475180180 +0200
 +++ pantheon-default-settings/plank/dock1/launchers/softwarecenter.dockitem	1970-01-01 01:00:00.000000000 +0100
 @@ -1,4 +0,0 @@
 -[PlankItemsDockItemPreferences]
@@ -45,7 +53,7 @@ diff -rupN pantheon-default-settings.orig/plank/dock1/launchers/softwarecenter.d
 -
 -
 diff -rupN pantheon-default-settings.orig/plank/dock1/launchers/totem.dockitem pantheon-default-settings/plank/dock1/launchers/totem.dockitem
---- pantheon-default-settings.orig/plank/dock1/launchers/totem.dockitem	2014-04-16 12:18:30.775437304 +0200
+--- pantheon-default-settings.orig/plank/dock1/launchers/totem.dockitem	2014-06-12 11:36:52.475180180 +0200
 +++ pantheon-default-settings/plank/dock1/launchers/totem.dockitem	1970-01-01 01:00:00.000000000 +0100
 @@ -1,4 +0,0 @@
 -[PlankItemsDockItemPreferences]
@@ -53,8 +61,8 @@ diff -rupN pantheon-default-settings.orig/plank/dock1/launchers/totem.dockitem p
 -
 -
 diff -rupN pantheon-default-settings.orig/plank/dock1/settings pantheon-default-settings/plank/dock1/settings
---- pantheon-default-settings.orig/plank/dock1/settings	2014-04-16 12:18:30.775437304 +0200
-+++ pantheon-default-settings/plank/dock1/settings	2014-04-16 12:19:48.315944124 +0200
+--- pantheon-default-settings.orig/plank/dock1/settings	2014-06-12 11:36:52.475180180 +0200
++++ pantheon-default-settings/plank/dock1/settings	2014-06-12 11:37:00.528255282 +0200
 @@ -11,7 +11,7 @@ UnhideDelay=0
  #The monitor number for the dock. Use -1 to keep on the primary monitor.
  Monitor=-1

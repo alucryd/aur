@@ -8,7 +8,7 @@ pkgdesc='The Pantheon Terminal Emulator'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/pantheon-terminal'
 license=('GPL3')
-depends=('desktop-file-utils' 'granite-bzr' 'libnotify' 'vte3')
+depends=('desktop-file-utils' 'granite' 'libnotify' 'vte3')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
@@ -30,7 +30,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

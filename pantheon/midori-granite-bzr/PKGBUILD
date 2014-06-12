@@ -1,13 +1,13 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
-pkgname=midori-granite-bzr
+pkgname=midori-granite
 pkgver=r6557
 pkgrel=1
 pkgdesc='A lightweight, fast, and free web browser'
 arch=('i686' 'x86_64')
 url='http://midori-browser.org/'
 license=('LGPL2.1')
-depends=('gcr' 'granite-bzr' 'libnotify' 'libxss' 'libzeitgeist' 'webkitgtk')
+depends=('gcr' 'granite' 'libnotify' 'libxss' 'libzeitgeist' 'webkitgtk')
 makedepends=('bzr' 'cmake' 'intltool' 'librsvg' 'vala')
 optdepends=('aria2: Download utility'
             'gst-plugins-base: HTML5 OGG videos support'

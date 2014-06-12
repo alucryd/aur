@@ -1,5 +1,5 @@
 pkgname=('slingshot-launcher-bzr')
-builddeps=('dee' 'granite-bzr')
+builddeps=('dee')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

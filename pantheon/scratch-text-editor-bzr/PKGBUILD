@@ -8,7 +8,7 @@ pkgdesc='The Pantheon Text Editor'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/scratch'
 license=('GPL3')
-depends=('desktop-file-utils' 'granite-bzr' 'gtksourceview3' 'libpeas' 'python2-chardet' 'zeitgeist')
+depends=('desktop-file-utils' 'granite' 'gtksourceview3' 'libpeas' 'python2-chardet' 'zeitgeist')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala' 'vte3' 'webkitgtk3')
 optdepends=('vala: Outline plugin'
             'vte3: Terminal plugin'
@@ -41,7 +41,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

@@ -8,7 +8,7 @@ pkgdesc='The Pantheon Application Launcher'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/slingshot'
 license=('GPL3')
-depends=('gnome-menus' 'granite-bzr' 'libwnck3' 'zeitgeist')
+depends=('gnome-menus' 'granite' 'libwnck3' 'zeitgeist')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
@@ -30,7 +30,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF' -DUSE_UNITY='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -D{GSETTINGS_COMPILE,USE_UNITY}='OFF'
   make
 }
 

@@ -1,5 +1,5 @@
 pkgname=('pantheon-files-plugin-dropbox-bzr')
-builddeps=('granite-bzr' 'pantheon-files-bzr')
+builddeps=('pantheon-files-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

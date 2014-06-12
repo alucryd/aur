@@ -7,9 +7,8 @@ pkgdesc='Python Transcoding Tools'
 arch=('any')
 url='https://github.com/alucryd/pyanimenc'
 license=('GPL3')
-depends=('fdkaac' 'python-lxml' 'x264' 'ffms2')
-optdepends=('python-gobject: GTK+ GUI'
-            'vapoursynth-plugin-flash3kyuu_deband-git: Deband filter')
+depends=('fdkaac' 'python-gobject' 'python-lxml' 'x264' 'ffms2' 'vapoursynth')
+optdepends=('vapoursynth-plugin-flash3kyuu_deband-git: Deband filter')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=("git+${url}.git")

@@ -9,7 +9,7 @@ pkgdesc='The Pantheon Control Center'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/switchboard'
 license=('GPL3')
-depends=('granite-bzr')
+depends=('granite')
 makedepends=('bzr' 'cmake' 'vala')
 optdepends=('switchboard-plug-about-bzr: About plug'
             'switchboard-plug-default-applications-bzr: Default applications plug'
@@ -37,7 +37,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_INSTALL_LIBDIR='/usr/lib' -D{GSETTINGS_COMPILE,USE_UNITY}='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_INSTALL_LIBDIR='/usr/lib' -D{GSETTINGS_COMPILE,USE_UNITY}='OFF'
   make
 }
 

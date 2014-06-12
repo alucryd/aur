@@ -1,5 +1,4 @@
-pkgname=('midori-granite-bzr')
-builddeps=('granite-bzr')
+pkgname=('midori-granite')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

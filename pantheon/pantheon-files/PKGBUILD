@@ -7,7 +7,7 @@ pkgdesc='The Pantheon File Manager'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname}"
 license=('GPL3')
-depends=('gconf' 'desktop-file-utils' 'granite-bzr' 'libnotify')
+depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
 makedepends=('cmake' 'gnome-common' 'sqlite3' 'vala')
 optdepends=('contractor-bzr: Various context menu entries'
             'pantheon-files-plugin-dropbox-bzr: Dropbox integration'
@@ -25,7 +25,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

@@ -30,7 +30,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_EXE_LINKER_FLAGS='-lX11'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_EXE_LINKER_FLAGS='-lX11'
   make
 }
 

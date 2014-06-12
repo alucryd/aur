@@ -1,6 +1,6 @@
 arch=('any')
 pkgname=('pantheon-session-bzr')
-builddeps=('dee' 'granite-bzr' 'libunity' 'libindicator-gtk3' 'gnome-menus2' 'cerbere-bzr' 'gtk-theme-elementary-bzr' 'ttf-opensans' 'pantheon-backgrounds-bzr' 'plank-theme-pantheon-bzr' 'pantheon-default-settings-bzr' 'slingshot-launcher-bzr' 'wingpanel-bzr' 'gala-bzr')
+builddeps=('dee' 'libindicator-gtk3' 'gnome-menus2' 'cerbere-bzr' 'gtk-theme-elementary-bzr' 'ttf-opensans' 'pantheon-backgrounds-bzr' 'plank-theme-pantheon-bzr' 'pantheon-default-settings-bzr' 'slingshot-launcher-bzr' 'wingpanel-bzr' 'gala-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

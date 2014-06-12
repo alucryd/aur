@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=pantheon-default-settings-bzr
-pkgver=r110
+pkgver=r112
 pkgrel=1
 pkgdesc='Default settings for Pantheon'
 arch=('any')
@@ -14,7 +14,7 @@ install="${pkgname%-*}.install"
 source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/default-settings-trusty"
         'arch-tweaks.patch')
 sha256sums=('SKIP'
-            '72aef7b9932a9cae55e7e8a6831a9f5a580144bf8d7d02651fb83de1129b242b')
+            'c3aaa3a30fff349b2ce8c2dd3e6e505e0e53bf5d01dedd60e40cfdc9751205ca')
 
 pkgver() {
   cd ${pkgname%-*}
@@ -25,7 +25,7 @@ pkgver() {
 prepare() {
   cd ${pkgname%-*}
 
-  patch -Np1 -i ../arch-tweaks.patch
+#  patch -Np1 -i ../arch-tweaks.patch
 }
 
 package() {

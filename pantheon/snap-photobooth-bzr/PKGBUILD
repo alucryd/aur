@@ -7,7 +7,7 @@ pkgdesc='Snap webcam viewer'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/snap-elementary'
 license=('GPL3')
-depends=('granite-bzr' 'gst-plugins-base-libs' 'zeitgeist')
+depends=('granite' 'gst-plugins-base-libs' 'zeitgeist')
 makedepends=('bzr' 'cmake' 'vala')
 install="${pkgname%-*}.install"
 source=("${pkgname%-*}::bzr+lp:snap-elementary")
@@ -27,7 +27,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

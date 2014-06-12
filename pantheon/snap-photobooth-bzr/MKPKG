@@ -1,5 +1,4 @@
 pkgname=('snap-photobooth-bzr')
-builddeps=('granite-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

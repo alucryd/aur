@@ -8,7 +8,7 @@ pkgdesc='A modern video player'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/audience'
 license=('GPL3')
-depends=('clutter-gtk' 'desktop-file-utils' 'granite-bzr' 'gst-plugins-base-libs')
+depends=('clutter-gtk' 'desktop-file-utils' 'granite' 'gst-plugins-base-libs')
 makedepends=('bzr' 'clutter-gst' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
@@ -30,7 +30,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 

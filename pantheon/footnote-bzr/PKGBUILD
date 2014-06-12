@@ -8,7 +8,7 @@ pkgdesc='Take note in elementary style'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/footnote'
 license=('GPL3')
-depends=('clutter-gtk' 'granite-bzr' 'sqlheavy')
+depends=('clutter-gtk' 'granite' 'sqlheavy')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
@@ -30,7 +30,7 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
   make
 }
 
