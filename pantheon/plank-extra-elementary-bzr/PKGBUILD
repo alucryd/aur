@@ -11,7 +11,7 @@ depends=('plank')
 makedepends=('bzr' 'cmake' 'granite' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::bzr+lp:elementary-community/elementary-plank-extra")
+source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~versable/elementary-community/elementary-plank-extra/")
 sha256sums=('SKIP')
 
 pkgver() {
