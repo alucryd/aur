@@ -1,5 +1,4 @@
 pkgname=('switchboard-bzr')
-builddeps=('dee')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

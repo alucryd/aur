@@ -1,5 +1,5 @@
 pkgname=('switchboard-plug-gcc-bzr')
-builddeps=('dee' 'libgnome-control-center' 'switchboard-bzr')
+builddeps=('libgnome-control-center' 'switchboard-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 
