@@ -7,7 +7,7 @@ pkgdesc='The Pantheon File Manager'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname}"
 license=('GPL3')
-depends=('gconf' 'desktop-file-utils' 'granite' 'libnotify')
+depends=('gconf' 'desktop-file-utils' 'granite' 'libgee06' 'libnotify' 'libunity')
 makedepends=('cmake' 'gnome-common' 'sqlite3' 'vala')
 optdepends=('contractor-bzr: Various context menu entries'
             'pantheon-files-plugin-dropbox-bzr: Dropbox integration'

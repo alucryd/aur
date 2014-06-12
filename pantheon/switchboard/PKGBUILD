@@ -9,7 +9,7 @@ pkgdesc='The Pantheon Control Center'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgname}"
 license=('GPL3')
-depends=('granite')
+depends=('granite' 'libunity')
 makedepends=('bzr' 'cmake' 'vala')
 optdepends=('switchboard-plug-about: About plug'
             'switchboard-plug-default-applications-bzr: Default applications plug'

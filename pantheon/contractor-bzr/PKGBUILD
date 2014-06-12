@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=contractor-bzr
-pkgver=r133
+pkgver=r136
 pkgrel=1
 pkgdesc='A service for sharing data between apps'
 arch=('i686' 'x86_64')
@@ -50,6 +50,7 @@ package() {
 
   make DESTDIR="${pkgdir}" install
 
+  install -dm 755 "${pkgdir}"/usr/share/contractor
   for _app in brasero inkscape seahorse; do
     install -m 644 "${srcdir}"/${_app}-contracts/*.contract "${pkgdir}"/usr/share/contractor/
   done

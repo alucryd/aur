@@ -8,7 +8,7 @@ pkgdesc='The Pantheon Text Editor'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/scratch'
 license=('GPL3')
-depends=('desktop-file-utils' 'granite' 'gtksourceview3' 'libpeas' 'python2-chardet' 'libzeitgeist')
+depends=('desktop-file-utils' 'granite' 'gtksourceview3' 'libgee06' 'libpeas' 'python2-chardet' 'libzeitgeist')
 makedepends=('cmake' 'gobject-introspection' 'vala' 'vte3' 'webkitgtk')
 optdepends=('vala: Outline plugin'
             'vte3: Terminal plugin'
