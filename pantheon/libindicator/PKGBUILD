@@ -9,6 +9,7 @@ pkgdesc='Shared functions for Ayatana indicators'
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${pkgbase}"
 license=('GPL')
+makedepends=('gtk2' 'gtk3')
 source=("https://launchpad.net/${pkgname%-*}/${pkgver%.*}/${pkgver}/+download/${pkgname%-*}-${pkgver}.tar.gz")
 sha256sums=('b2d2e44c10313d5c9cd60db455d520f80b36dc39562df079a3f29495e8f9447f')
 
