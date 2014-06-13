@@ -5,7 +5,7 @@
 pkgbase=lightdm-devel
 pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
 pkgver=1.11.3
-pkgrel=1
+pkgrel=2
 pkgdesc='A lightweight display manager'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/lightdm'
@@ -25,7 +25,7 @@ sha256sums=('020b773fa9e12d1396ded5755de5e167dd6d5ada02aafa1bfbd5645565174895'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
             '33e3c3d6e16c8d30756754ea3f31f5457c5be0343686aad287692be34958984a'
             'a89566307e1c81c24f037d854cbd472d2f94f8a4b759877a01563a332319f7d6'
-            '20de3152b9ea037be1cbb9a32c052cb53d3362daf7c4ebd3d8669a1af0f13723'
+            '756437add6021bb10f1e8884dab518ea544f0f04a8201f5b72d6d6e0e8cc2a24'
             '7fb85a1b54406032a922e8fd6f45d869fcfe5681df630e74e8e50c040b786ee4')
 
 prepare() {

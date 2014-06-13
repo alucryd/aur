@@ -2,7 +2,7 @@
 
 pkgname=xbmc-devel
 pkgver=13.1
-pkgrel=1
+pkgrel=2
 pkgdesc='XBMC Media Center - Development snapshots'
 arch=('i686' 'x86_64')
 url='http://xbmc.org'
@@ -22,20 +22,17 @@ optdepends=('afpfs-ng: Apple shares support'
 install="${pkgname%-*}.install"
 source=("xbmc-$pkgver.tar.gz::https://github.com/xbmc/xbmc/archive/13.1-Gotham.tar.gz"
         'enable-external-ffmpeg.patch'
-        'fix-missing-librtmp.patch'
         'xbmc.service'
         'polkit.rules')
 sha256sums=('344b604eae2ddb47c032dd7964d01f27e6fcd7a8873c84c0841d5da75961a678'
             '0239e33e87292c7340ed2092f2b5f1e82f5e283b1f763fb125b3aee78f50c355'
-            '9a21c01de5e14da874a16ffecc2981896f969d96b74d0bdeeb20bb20ced37146'
             'f8b811ffe85c11b8da12895d65f0f8ccb2d4a3e196fd1bc5cd764cc96c4b6832'
             'c00027a32570fd3b651b26d2f63f4e7e7a162e877de6572bb6553ec007673029')
 
 prepare() {
-  cd xbmc-${pkgver}-Gotham_r2
+  cd xbmc-${pkgver}-Gotham
 
   patch -Np1 -i ../enable-external-ffmpeg.patch
-  patch -Np1 -i ../fix-missing-librtmp.patch
 
   find -type f -name *.py -exec sed 's|^#!.*python$|#!/usr/bin/python2|' -i "{}" +
   sed 's|^#!.*python$|#!/usr/bin/python2|' -i tools/depends/native/rpl-native/rpl
@@ -43,7 +40,7 @@ prepare() {
 }
 
 build() {
-  cd xbmc-${pkgver}-Gotham_r2
+  cd xbmc-${pkgver}-Gotham
 
   export PYTHON_VERSION='2'
 
@@ -53,7 +50,7 @@ build() {
 }
 
 package() {
-  cd xbmc-${pkgver}-Gotham_r2
+  cd xbmc-${pkgver}-Gotham
 
   make DESTDIR="${pkgdir}" install
   install -m 755 tools/TexturePacker/TexturePacker "${pkgdir}"/usr/lib/xbmc/
