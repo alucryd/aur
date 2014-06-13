@@ -1,14 +1,14 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=xbmc-devel
-pkgver=13.0
-pkgrel=3
+pkgver=13.1
+pkgrel=1
 pkgdesc='XBMC Media Center - Development snapshots'
 arch=('i686' 'x86_64')
 url='http://xbmc.org'
 license=('GPL2')
 depends=('bluez-libs' 'curl' 'ffmpeg' 'glew' 'hicolor-icon-theme' 'libcdio' 'libmad' 'libmicrohttpd' 'libmariadbclient' 'libmpeg2' 'libsamplerate' 'libssh' 'libxrandr' 'libxslt' 'lzo2' 'mesa' 'sdl_image' 'smbclient' 'taglib' 'tinyxml' 'xorg-xdpyinfo' 'yajl')
-makedepends=('afpfs-ng' 'boost' 'cmake' 'doxygen' 'ftgl' 'git' 'gperf' 'jasper' 'java-environment' 'libcec' 'libnfs' 'libplist' 'nasm' 'shairplay' 'smbclient' 'swig' 'unzip' 'zip')
+makedepends=('afpfs-ng' 'boost' 'cmake' 'doxygen' 'ftgl' 'git' 'gperf' 'jasper' 'java-environment' 'libcec' 'libnfs' 'libplist' 'nasm' 'shairplay' 'swig' 'unzip' 'zip')
 optdepends=('afpfs-ng: Apple shares support'
             'libnfs: NFS shares support'
             'libplist: AirPlay support'
@@ -20,12 +20,12 @@ optdepends=('afpfs-ng: Apple shares support'
             'unrar: Archived files support'
             'xorg-xinit: XBMC standalone')
 install="${pkgname%-*}.install"
-source=("xbmc-$pkgver.tar.gz::https://github.com/xbmc/xbmc/archive/13.0-Gotham_r2.tar.gz"
+source=("xbmc-$pkgver.tar.gz::https://github.com/xbmc/xbmc/archive/13.1-Gotham.tar.gz"
         'enable-external-ffmpeg.patch'
         'fix-missing-librtmp.patch'
         'xbmc.service'
         'polkit.rules')
-sha256sums=('663b99f3e196ead51d90f06ccfa864b4e5ade385dfc5972acb0f854d525f2903'
+sha256sums=('344b604eae2ddb47c032dd7964d01f27e6fcd7a8873c84c0841d5da75961a678'
             '0239e33e87292c7340ed2092f2b5f1e82f5e283b1f763fb125b3aee78f50c355'
             '9a21c01de5e14da874a16ffecc2981896f969d96b74d0bdeeb20bb20ced37146'
             'f8b811ffe85c11b8da12895d65f0f8ccb2d4a3e196fd1bc5cd764cc96c4b6832'

@@ -25,7 +25,7 @@ pkgver() {
 prepare() {
   cd ${pkgname%-*}
 
-  sed 's|\.\./||' -i src/CMakeLists.txt
+  sed 's|\.\./||; s|${CMAKE_INSTALL_PREFIX}/${PLUGIN_DIR_UNPREFIXED}|${PLUGIN_DIR_UNPREFIXED}|' -i CMakeLists.txt
 }
 
 build() {

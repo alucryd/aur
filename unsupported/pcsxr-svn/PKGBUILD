@@ -8,9 +8,8 @@ pkgdesc='A Sony PlayStation emulator based on the PCSX-df Project'
 arch=('i686' 'x86_64')
 url="http://pcsxr.codeplex.com/"
 license=('GPL')
-depends=('gtk3' 'libcdio' 'libxv' 'sdl2')
+depends=('gtk3' 'libarchive' 'libcdio' 'libxv' 'sdl2')
 makedepends=('intltool' 'mesa' 'subversion')
-optdepends=('libarchive: Support for archived ISOs')
 [[ $CARCH == i686 ]] && makedepends+=('nasm')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}" 'pcsx-df')
