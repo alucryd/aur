@@ -1,5 +1,5 @@
 pkgname=('dolphin-emu-git')
-builddeps=('polarssl')
+builddeps=('polarssl' 'wxgtk')
 
 check_git $packagedir/$pkgname/${pkgname%-*}
 
