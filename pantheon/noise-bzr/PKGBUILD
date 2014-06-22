@@ -37,13 +37,13 @@ build() {
   mkdir build && cd build
 
   cmake .. -DCMAKE_INSTALL_{LIBDIR='/usr/lib',PREFIX='/usr'} -DGSETTINGS_COMPILE='OFF'
-  make
+  make -j1
 }
 
 package() {
   cd ${pkgname%-*}/build
 
-  make DESTDIR="${pkgdir}" install
+  make -j1 DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:
