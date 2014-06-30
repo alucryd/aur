@@ -1,0 +1,81 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: PelPix <kylebloss@pelpix.info>
+# Contributor: Ionut Biru <ibiru@archlinux.org>
+# Contributor: Bartłomiej Piotrowski <nospam@bpiotrowski.pl>
+# Contributor: damir <damir@archlinux.org>
+# Contributor: Paul Mattal <paul@archlinux.org>
+
+pkgbase=x264-git
+pkgname=('x264-git' 'libx264-git' 'libx264-10bit-git')
+pkgver=r2431.a5831aa
+pkgrel=1
+arch=('i686' 'x86_64')
+url='http://www.videolan.org/developers/x264.html'
+license=('GPL')
+makedepends=('ffms2' 'git' 'l-smash' 'yasm')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=('git://git.videolan.org/x264.git')
+md5sums=('SKIP')
+
+pkgver() {
+  cd ${pkgbase%-*}
+
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  cp -r ${pkgbase%-*}{,-10bit}
+}
+
+build() {
+  cd ${pkgbase%-*}
+
+  ./configure --prefix='/usr' --bit-depth='8' --enable-shared
+  make
+
+  cd ../${pkgbase%-*}-10bit
+
+  ./configure --prefix='/usr' --bit-depth='10' --enable-shared
+  make
+}
+
+package_x264-git() {
+  pkgdesc='CLI tools for encoding H264/AVC video streams.'
+  depends=('ffms2' 'l-smash')
+  provides=('x264')
+  conflicts=('x264')
+
+  cd ${pkgbase%-*}
+
+  make DESTDIR="${pkgdir}" install-{cli,lib-dev}
+
+  cd ../${pkgbase%-*}-10bit
+  install -m 755 x264 "${pkgdir}"/usr/bin/x264-10bit
+}
+
+package_libx264-git() {
+  pkgdesc='Library for encoding H264/AVC video streams.'
+  depends=('glibc')
+  provides=('libx264')
+  conflicts=('libx264')
+
+  cd ${pkgbase%-*}
+
+  install -dm 755 "$pkgdir"/usr/lib
+  make DESTDIR="$pkgdir" install-lib-shared
+}
+
+package_libx264-10bit-git() {
+  pkgdesc='Library for encoding H264/AVC video streams. 10bit-depth.'
+  depends=('glibc')
+  provides=('libx264')
+  conflicts=('libx264')
+
+  cd ${pkgbase%-*}-10bit
+
+  install -dm 755 "$pkgdir"/usr/lib
+  make DESTDIR="$pkgdir" install-lib-shared
+}
+
+# vim: ts=2 sw=2 et:
