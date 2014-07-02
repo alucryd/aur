@@ -25,6 +25,7 @@ pkgver() {
 }
 
 prepare() {
+  sed 's/install-lib-dev$//g' -i ${pkgbase%-*}/Makefile
   cp -r ${pkgbase%-*}{,-10bit}
 }
 
