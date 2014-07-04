@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=pyanimenc-git
-pkgver=r16.000a51a
+pkgver=r18.5afee39
 pkgrel=1
 pkgdesc='Python Transcoding Tools'
 arch=('any')
@@ -23,10 +23,16 @@ pkgver() {
 package(){
   cd ${pkgname%-*}
 
-  install -dm 755 "${pkgdir}"/usr/{bin,lib/python3.4/site-packages,share/${pkgname%-*}}
+  install -dm 755 "${pkgdir}"/usr/{bin,lib/python3.4/site-packages/${pkgname%-*},share/${pkgname%-*}}
   install -m 755 pyanimenc "${pkgdir}"/usr/bin/
+  install -m 755 {chapter-editor,vs-script-creator}.py "${pkgdir}"/usr/lib/python3.4/site-packages/${pkgname%-*}/
   install -m 644 pyanimenc.py "${pkgdir}"/usr/lib/python3.4/site-packages/
+  install -m 644 *.glade "${pkgdir}"/usr/share/${pkgname%-*}/
   install -m 644 chapters.yml.example "${pkgdir}"/usr/share/${pkgname%-*}/chapters.yml
+
+  cd "${pkgdir}"/usr/lib/python3.4/site-packages
+
+  python -O -m compileall *.py ${pkgname%-*}/*.py
 }
 
 # vim: ts=2 sw=2 et:
