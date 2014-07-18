@@ -1,6 +1,6 @@
 post_install() {
   getent group plex > /dev/null 2>&1 || groupadd -g 421 plex
-  getent passwd plex > /dev/null 2>&1 || useradd -c 'Plex user' -u 421 -g plex -G audio,video,network,optical -d /var/lib/plex -s /sbin/nologin plex
+  getent passwd plex > /dev/null 2>&1 || useradd -c 'Plex user' -u 421 -g plex -G audio,video,network,optical -d /var/lib/plex -s /usr/bin/nologin plex
   passwd -l plex > /dev/null
 }
 
