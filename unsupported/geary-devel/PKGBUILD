@@ -1,0 +1,39 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: sebikul <sebikul@gmail.com>
+# Contributor: Massimiliano Torromeo <massimiliano.torromeo@gmail.com>
+
+pkgname=geary-devel
+pkgver=0.7.0
+pkgrel=1
+pkgdesc='A lightweight email client for the GNOME desktop'
+arch=('i686' 'x86_64')
+url='https://wiki.gnome.org/Apps/Geary'
+license=('GPL3')
+depends=('gnome-keyring' 'gmime' 'libcanberra' 'libgee' 'libnotify' 'webkitgtk')
+makedepends=('cmake' 'gnome-doc-utils' 'gobject-introspection' 'intltool' 'vala')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+install="${pkgname%-*}.install"
+source=("https://download.gnome.org/sources/${pkgname%-*}/${pkgver%.?}/${pkgname%-*}-${pkgver}.tar.xz")
+sha256sums=('d6a0d584a1542ab358b1999478dc94ea0a920ce0ec6da5aa7c7d02d0d0b5cafd')
+
+build() {
+  cd ${pkgname%-*}-${pkgver}
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' \
+           -D{DESKTOP_UPDATE,GSETTINGS_COMPILE{,_IN_PLACE},ICON_UPDATE}='FALSE'
+  make
+}
+
+package() {
+  cd ${pkgname%-*}-${pkgver}/build
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
