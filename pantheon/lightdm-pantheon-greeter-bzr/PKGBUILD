@@ -17,7 +17,7 @@ install="${pkgname%-*}.install"
 source=("${pkgname%-*}::bzr+lp:pantheon-greeter"
         'desktop.patch')
 sha256sums=('SKIP'
-            '3d257222278cd36da8edfc841670d66e4cb683d99e85ff7b106d8f01ff6f9ddb')
+            '4f86eb3ad01f954fcaa7a2979a61a964a23fed43564b07896bfd765e3bb4cd7f')
 
 pkgver() {
   cd ${pkgname%-*}

@@ -5,6 +5,6 @@
  Name=Pantheon Greeter
  Comment=Pantheon Greeter
 -Exec=pantheon-greeter
-+Exec=env GDK_CORE_DEVICE_EVENTS=false /usr/bin/lightdm-pantheon-greeter
++Exec=lightdm-pantheon-greeter
  Type=Application
  X-Ubuntu-Gettext-Domain=pantheon-greeter
