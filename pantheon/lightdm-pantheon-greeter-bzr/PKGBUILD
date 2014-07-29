@@ -12,6 +12,7 @@ depends=('clutter-gtk' 'granite-bzr' 'libindicator-gtk3' 'lightdm')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
+options=('!emptydirs')
 install="${pkgname%-*}.install"
 source=("${pkgname%-*}::bzr+lp:pantheon-greeter"
         'desktop.patch')
