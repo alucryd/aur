@@ -1,14 +1,15 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=pantheon-session-bzr
-pkgver=r61
-pkgrel=3
+pkgver=r62
+pkgrel=1
 pkgdesc='The Pantheon Session Handler'
 arch=('any')
 url='https://code.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-settings'
 license=('GPL3')
-depends=('cerbere-bzr' 'gala-bzr' 'gconf' 'gnome-keyring' 'gnome-session' 'gnome-settings-daemon' 'gnome-user-share' 'pantheon-default-settings-bzr' 'polkit-gnome' 'slingshot-launcher-bzr' 'wingpanel-bzr' 'xdg-user-dirs-gtk')
+depends=('cerbere-bzr' 'gala-bzr' 'gconf' 'gnome-keyring' 'gnome-session' 'gnome-settings-daemon' 'gnome-user-share' 'polkit-gnome' 'slingshot-launcher-bzr' 'wingpanel-bzr' 'xdg-user-dirs-gtk')
 makedepends=('bzr')
+optdepends=('pantheon-default-settings-bzr')
 source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/pantheon-xsession-settings"
         'pantheon-session.sh')
 sha256sums=('SKIP'

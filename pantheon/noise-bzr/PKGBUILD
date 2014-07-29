@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=noise-bzr
-pkgver=r1614
+pkgver=r1645
 pkgrel=1
 pkgdesc='The Pantheon Music Player'
 arch=('i686' 'x86_64')
@@ -13,8 +13,10 @@ makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname}.install"
-source=('bzr+lp:noise')
-sha256sums=('SKIP')
+source=('bzr+lp:noise'
+        'mesa-demos-conflict.patch')
+sha256sums=('SKIP'
+            'df2c77d7da40126b8957e40924f8d07f8e722cfae27d7f59eb3fa307768a3620')
 
 pkgver() {
   cd ${pkgname%-*}
@@ -25,6 +27,7 @@ pkgver() {
 prepare() {
   cd ${pkgname%-*}
 
+  patch -Np1 -i ../mesa-demos-conflict.patch
   sed 's|\.\./||; s|${CMAKE_INSTALL_PREFIX}/${PLUGIN_DIR_UNPREFIXED}|${PLUGIN_DIR_UNPREFIXED}|' -i CMakeLists.txt
 }
 
@@ -36,7 +39,8 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_{LIBDIR='/usr/lib',PREFIX='/usr'} -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_INSTALL_{LIBDIR='/usr/lib',PREFIX='/usr'} \
+           -DGSETTINGS_COMPILE='OFF'
   make -j1
 }
 

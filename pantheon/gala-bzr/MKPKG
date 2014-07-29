@@ -1,4 +1,5 @@
 pkgname=('gala-bzr')
+builddeps=('pantheon-dock-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

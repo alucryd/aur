@@ -2,21 +2,21 @@
 # Contributor: sh4nks <sh4nks7@gmail.com
 
 pkgname=lightdm-pantheon-greeter-bzr
-pkgver=r261
+pkgver=r273
 pkgrel=1
 pkgdesc='Pantheon greeter for LightDM'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/pantheon-greeter'
 license=('GPL')
-depends=('clutter-gtk' 'granite' 'libindicator-gtk3' 'lightdm')
+depends=('clutter-gtk' 'granite-bzr' 'libindicator-gtk3' 'lightdm')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~teemperor/pantheon-greeter/greeter-0.3/"
+source=("${pkgname%-*}::bzr+lp:pantheon-greeter"
         'desktop.patch')
 sha256sums=('SKIP'
-            'bfb5fa8b7ca911509603b7b69fc5cc82082f90f192e8ac8d961e16500a43b6c4')
+            '3d257222278cd36da8edfc841670d66e4cb683d99e85ff7b106d8f01ff6f9ddb')
 
 pkgver() {
   cd ${pkgname%-*}
@@ -48,7 +48,7 @@ package(){
   make DESTDIR="${pkgdir}" install
 
   install -dm 755 "${pkgdir}"/usr/bin
-  mv "${pkgdir}"/usr/{share/xgreeters/,bin/lightdm-}pantheon-greeter
+  mv "${pkgdir}"/usr/{sbin/,bin/lightdm-}pantheon-greeter
   mv "${pkgdir}"/usr/share/xgreeters/{,lightdm-}pantheon-greeter.desktop
 }
 
