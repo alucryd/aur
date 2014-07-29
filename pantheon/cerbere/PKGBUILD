@@ -13,6 +13,12 @@ install="${pkgname}.install"
 source=("${url}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
 sha256sums=('6d585290105558fe8adf1554228c8650aae1a0cec1457a2614d3c9d78a129606')
 
+prepare() {
+  cd ${pkgname%-*}-${pkgver}
+
+  sed "s/'wingpanel','plank','slingshot-launcher --silent'/'gala','wingpanel','plank','slingshot-launcher --silent'/" -i org.pantheon.cerbere.gschema.xml
+}
+
 build() {
   cd ${pkgname}-${pkgver}
 

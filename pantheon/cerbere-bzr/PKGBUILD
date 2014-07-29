@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=cerbere-bzr
-pkgver=r47
+pkgver=r48
 pkgrel=1
 pkgdesc='The Pantheon Watchdog'
 arch=('i686' 'x86_64')
@@ -19,6 +19,12 @@ pkgver() {
   cd ${pkgname%-*}
 
   printf "r%s" "$(bzr revno)"
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  sed "s/'wingpanel','plank','slingshot-launcher --silent'/'gala','wingpanel','plank','slingshot-launcher --silent'/" -i org.pantheon.cerbere.gschema.xml
 }
 
 build() {
