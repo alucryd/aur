@@ -33,7 +33,7 @@ package() {
   install -dm 755 "${pkgdir}"/usr/share/{backgrounds/pantheon,pantheon-backgrounds-properties}
   install -m 644 *.jpg "${pkgdir}"/usr/share/backgrounds/pantheon/
   install -m 644 elementary-wallpapers.xml "${pkgdir}"/usr/share/pantheon-backgrounds-properties/pantheon-backgrounds.xml
-  ln -s 94.jpg "${pkgdir}"/usr/share/backgrounds/pantheon/elementaryos-default
+  ln -s pantheon/94.jpg "${pkgdir}"/usr/share/backgrounds/elementaryos-default
 }
 
 # vim: ts=2 sw=2 et:
