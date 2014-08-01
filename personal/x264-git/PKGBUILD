@@ -13,8 +13,6 @@ arch=('i686' 'x86_64')
 url='http://www.videolan.org/developers/x264.html'
 license=('GPL')
 makedepends=('ffms2' 'git' 'l-smash' 'yasm')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
 source=('git://git.videolan.org/x264.git')
 md5sums=('SKIP')
 

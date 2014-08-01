@@ -1,0 +1,51 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Eric Bélanger <eric@archlinux.org>
+
+pkgname=lib32-wxgtk
+pkgver=3.0.1
+pkgrel=1
+pkgdesc='GTK+ implementation of wxWidgets API for GUI'
+arch=('x86_64')
+url='http://wxwidgets.org'
+license=('custom:wxWindows')
+depends=('lib32-gtk2' 'lib32-gstreamer0.10-base' 'lib32-libsm' "${pkgname#*-}")
+makedepends=('lib32-gstreamer0.10-base-plugins' 'lib32-glu')
+options=('!emptydirs')
+source=("http://downloads.sourceforge.net/wxwindows/wxWidgets-${pkgver}.tar.bz2"
+        'wxGTK-collision.patch')
+sha256sums=('bd671b79ec56af8fb3844e11cafceac1a4276fb02c79404d06b91b6c19d2c5f5'
+            'f383c1918932ce3642c3505999a3f2257a6f987fc8fb32d160951b1f3fa60bb5')
+
+prepare() {
+  cd wx*-${pkgver}
+
+  patch -Np1 -i ../wxGTK-collision.patch
+}
+
+
+build() {
+  cd wxWidgets-${pkgver}
+
+  export CC='gcc -m32'
+  export CXX='g++ -m32'
+  export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
+
+  ./configure --prefix='/usr' --libdir='/usr/lib32' \
+              --enable-{graphics_ctx,mediactrl,stl,unicode} \
+              --with-lib{jpeg,png,tiff,xpm}='sys' --with-regex='builtin' \
+              --with-gtk='2' --with-opengl --disable-precomp-headers
+  make
+  make -C locale allmo
+}
+
+package() {
+  cd wxWidgets-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/{include,share}
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses
+  ln -s ${pkgname#*-} "${pkgdir}"/usr/share/licenses/${pkgname}
+}
+
+# vim: ts=2 sw=2 et:

@@ -1,0 +1,88 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: kfgz <kfgz@interia.pl>
+# Contributor: Bartłomiej Piotrowski <nospam@bpiotrowski.pl>
+
+pkgbase=x265-hg
+pkgname=('x265-hg' 'libx265-hg' 'libx265-10bit-hg')
+pkgver=r7665.3db5fda6abf0
+pkgrel=1
+arch=('i686' 'x86_64')
+url='https://bitbucket.org/multicoreware/x265'
+license=('GPL')
+depends=('gcc-libs')
+makedepends=('cmake' 'mercurial' 'yasm')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=('hg+https://bitbucket.org/multicoreware/x265')
+md5sums=('SKIP')
+
+pkgver() {
+  cd ${pkgbase%-*}
+
+  printf "r%s.%s" "$(hg identify -n)" "$(hg identify -i)"
+}
+
+prepare() {
+  cp -r ${pkgbase%-*}{,-10bit}
+}
+
+build() {
+  cd ${pkgbase%-*}
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake ../source -DCMAKE_INSTALL_PREFIX='/usr'
+  make
+
+  cd ../../${pkgbase%-*}-10bit
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake ../source -DCMAKE_INSTALL_PREFIX='/usr' -DHIGH_BIT_DEPTH='TRUE'
+  make
+}
+
+package_x265-hg() {
+pkgdesc='CLI tools for encoding H265/HEVC video streams.'
+depends=('libx265')
+provides=('x265')$
+conflicts=('x265')
+  cd ${pkgbase%-*}/build
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/lib/libx265.so*
+
+  cd ../../${pkgbase%-*}-10bit/build
+
+  install -m 755 x265 "${pkgdir}"/usr/bin/x265-10bit
+}
+
+package_libx265-hg() {
+pkgdesc='Library for encoding H265/HEVC video streams.'
+depends=('gcc-libs')
+provides=('libx265')
+conflicts=('libx265')
+  cd ${pkgbase%-*}/build
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/{bin,include,lib/pkgconfig}
+}
+
+package_libx265-10bit-hg() {
+pkgdesc='Library for encoding H265/HEVC video streams.'
+depends=('gcc-libs')
+provides=('libx265')
+conflicts=('libx265')
+  cd ${pkgbase%-*}-10bit/build
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/{bin,include,lib/pkgconfig}
+}
+
+# vim: ts=2 sw=2 et:

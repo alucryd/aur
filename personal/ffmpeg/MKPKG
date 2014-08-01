@@ -1,0 +1,4 @@
+pkgname=('ffmpeg')
+builddeps=('libx265-10bit-hg' 'x265-hg')
+
+# vim: ts=2 sw=2 et:
