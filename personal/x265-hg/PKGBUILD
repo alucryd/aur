@@ -9,10 +9,7 @@ pkgrel=1
 arch=('i686' 'x86_64')
 url='https://bitbucket.org/multicoreware/x265'
 license=('GPL')
-depends=('gcc-libs')
 makedepends=('cmake' 'mercurial' 'yasm')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
 source=('hg+https://bitbucket.org/multicoreware/x265')
 md5sums=('SKIP')
 
@@ -50,7 +47,7 @@ build() {
 
 package_x265-hg() {
 pkgdesc='CLI tools for encoding H265/HEVC video streams.'
-depends=('libx265')
+depends=('libx265-hg')
 provides=('x265')$
 conflicts=('x265')
   cd ${pkgbase%-*}/build
