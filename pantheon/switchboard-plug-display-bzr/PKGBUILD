@@ -1,17 +1,17 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
-pkgname=switchboard-plug-default-applications-bzr
-pkgver=r72
+pkgname=switchboard-plug-display-bzr
+pkgver=r44
 pkgrel=1
-pkgdesc='Default Applications plug for Switchboard'
+pkgdesc='Display plug for Switchboard'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/switchboard-plug-default-applications'
+url='https://launchpad.net/switchboard-plug-display'
 license=('GPL3')
 depends=('switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=('bzr+lp:switchboard-plug-default-applications')
+source=('bzr+lp:switchboard-plug-display')
 sha256sums=('SKIP')
 
 pkgver() {
