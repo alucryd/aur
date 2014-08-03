@@ -6,7 +6,7 @@ build () {
   if [[ $arch == i686 ]]; then
     ionice -c 3 chrt -b 0 sudo extra-i686-build -- $*
   elif [[ $arch == x86_64 ]]; then
-    ionice -c 3 chrt -b 0 sudo multilib-build -- $*
+    ionice -c 3 chrt -b 0 sudo multilib-build -- -I ~/public_html/alucryd/x86_64/lib32-wxgtk-*-x86_64.pkg.tar.xz $*
   fi
 }
 

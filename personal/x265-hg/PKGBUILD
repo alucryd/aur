@@ -48,7 +48,7 @@ build() {
 package_x265-hg() {
 pkgdesc='CLI tools for encoding H265/HEVC video streams.'
 depends=('libx265')
-provides=('x265')$
+provides=('x265')
 conflicts=('x265')
   cd ${pkgbase%-*}/build
 
