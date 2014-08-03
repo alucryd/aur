@@ -4,7 +4,7 @@
 
 pkgbase=x265-hg
 pkgname=('x265-hg' 'libx265-hg' 'libx265-10bit-hg')
-pkgver=r7665.3db5fda6abf0
+pkgver=r7687.ed49f875ab20
 pkgrel=1
 arch=('i686' 'x86_64')
 url='https://bitbucket.org/multicoreware/x265'
@@ -14,17 +14,29 @@ source=('hg+https://bitbucket.org/multicoreware/x265')
 md5sums=('SKIP')
 
 pkgver() {
-  cd ${pkgbase%-*}
+  cd x265
 
   printf "r%s.%s" "$(hg identify -n)" "$(hg identify -i)"
 }
 
 prepare() {
-  cp -r ${pkgbase%-*}{,-10bit}
+  cp -r x265 x265-10bit
+  cp -r x265 libx265
+  cp -r x265 libx265-10bit
 }
 
 build() {
-  cd ${pkgbase%-*}
+  cd x265
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake ../source -DCMAKE_INSTALL_PREFIX='/usr' -DENABLE_SHARED='FALSE'
+  make
+
+  cd ../../libx265
 
   if [[ -d build ]]; then
     rm -rf build
@@ -34,7 +46,18 @@ build() {
   cmake ../source -DCMAKE_INSTALL_PREFIX='/usr'
   make
 
-  cd ../../${pkgbase%-*}-10bit
+  cd ../../x265-10bit
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake ../source -DCMAKE_INSTALL_PREFIX='/usr' -DHIGH_BIT_DEPTH='TRUE' \
+                  -DENABLE_SHARED='FALSE'
+  make
+
+  cd ../../libx265-10bit
 
   if [[ -d build ]]; then
     rm -rf build
@@ -47,15 +70,13 @@ build() {
 
 package_x265-hg() {
 pkgdesc='CLI tools for encoding H265/HEVC video streams.'
-depends=('libx265')
 provides=('x265')
 conflicts=('x265')
-  cd ${pkgbase%-*}/build
+  cd x265/build
 
   make DESTDIR="${pkgdir}" install
-  rm -rf "${pkgdir}"/usr/lib/libx265.so*
 
-  cd ../../${pkgbase%-*}-10bit/build
+  cd ../../x265-10bit/build
 
   install -m 755 x265 "${pkgdir}"/usr/bin/x265-10bit
 }
@@ -65,7 +86,7 @@ pkgdesc='Library for encoding H265/HEVC video streams.'
 depends=('gcc-libs')
 provides=('libx265')
 conflicts=('libx265')
-  cd ${pkgbase%-*}/build
+  cd libx265/build
 
   make DESTDIR="${pkgdir}" install
   rm -rf "${pkgdir}"/usr/{bin,include,lib/pkgconfig}
@@ -76,7 +97,7 @@ pkgdesc='Library for encoding H265/HEVC video streams.'
 depends=('gcc-libs')
 provides=('libx265')
 conflicts=('libx265')
-  cd ${pkgbase%-*}-10bit/build
+  cd libx265-10bit/build
 
   make DESTDIR="${pkgdir}" install
   rm -rf "${pkgdir}"/usr/{bin,include,lib/pkgconfig}
