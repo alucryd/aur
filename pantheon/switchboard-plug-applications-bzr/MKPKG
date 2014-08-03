@@ -1,4 +1,4 @@
-pkgname=('switchboard-plug-default-applications-bzr')
+pkgname=('switchboard-plug-applications-bzr')
 builddeps=('switchboard-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}

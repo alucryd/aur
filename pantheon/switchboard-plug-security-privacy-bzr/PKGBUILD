@@ -1,15 +1,17 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
-pkgname=switchboard-plug-startup-applications-bzr
-pkgver=r56
+pkgname=switchboard-plug-security-privacy-bzr
+pkgver=r57
 pkgrel=1
-pkgdesc='Startup Applications plug for Switchboard'
+pkgdesc='Security & Privacy plug for Switchboard'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/switchboard-plug-startup-applications'
+url='https://launchpad.net/switchboard-plug-security-privacy'
 license=('GPL3')
-depends=('switchboard-bzr')
+depends=('switchboard-bzr' 'ufw' 'zeitgeist')
 makedepends=('bzr' 'cmake' 'vala')
-source=('bzr+lp:switchboard-plug-startup-applications')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=('bzr+lp:switchboard-plug-security-privacy')
 sha256sums=('SKIP')
 
 pkgver() {

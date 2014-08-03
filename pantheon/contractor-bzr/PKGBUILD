@@ -13,18 +13,12 @@ makedepends=('bzr' 'cmake' 'seahorse' 'vala')
 optdepends=('brasero: Burn Disc context menu entries'
             'file-roller: Archive context menu entries'
             'gnome-bluetooth: Bluetooth context-menu entry'
-            'inkscape: Inkscape context menu entry'
-            'seahorse: Seahorse integration'
-            'webcontracts-bzr: Contracts for web services')
+            'inkscape: Inkscape context menu entry')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=('bzr+lp:contractor'
-        'bzr+lp:~elementary-os/contractor/brasero-contracts'
-        'bzr+lp:~elementary-os/contractor/inkscape-contracts'
-        'bzr+lp:~elementary-os/contractor/seahorse-contracts')
+        'bzr+http://bazaar.launchpad.net/~elementary-os/contractor/elementary-contracts/')
 sha256sums=('SKIP'
-            'SKIP'
-            'SKIP'
             'SKIP')
 
 pkgver() {
@@ -51,11 +45,11 @@ package() {
   make DESTDIR="${pkgdir}" install
 
   install -dm 755 "${pkgdir}"/usr/share/contractor
-  for _app in brasero inkscape seahorse; do
-    install -m 644 "${srcdir}"/${_app}-contracts/*.contract "${pkgdir}"/usr/share/contractor/
+  for _app in brasero file-roller gnome-bluetooth gnome-wallpaper inkscape; do
+    install -m 644 "${srcdir}"/elementary-contracts/${_app}/*.contract "${pkgdir}"/usr/share/contractor/
   done
   install -dm 755 "${pkgdir}"/usr/lib/svg-contracts
-  install -m 755 "${srcdir}"/inkscape-contracts/inkscape-export.sh "${pkgdir}"/usr/lib/svg-contracts
+  install -m 755 "${srcdir}"/elementary-contracts/inkscape/inkscape-export.sh "${pkgdir}"/usr/lib/svg-contracts
 }
 
 # vim: ts=2 sw=2 et:
