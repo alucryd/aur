@@ -2,7 +2,7 @@
 # Contributor: Josip Ponjavic <josipponjavic@gmail.com>
 
 pkgname=gsignond-git
-pkgver=1.0.1.r3.739328f
+pkgver=1.0.1.r18.9602d97
 pkgrel=1
 pkgdesc='gSSO glib daemon'
 arch=('i686' 'x86_64')
@@ -33,7 +33,7 @@ build() {
   autoconf
   automake --add-missing --copy
   autoreconf --install --force
-  ./configure --prefix='/usr' --sysconfdir='/etc' --enable-dbus-type='session'
+  ./configure --prefix='/usr' --sysconfdir='/etc' --enable-dbus-type='session' --enable-gtk-doc
   make
 }
 

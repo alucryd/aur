@@ -1,0 +1,6 @@
+[org/pantheon/desktop/greeter]
+activate-numlock=false
+default-wallpaper='/usr/share/backgrounds/test'
+high-contrast=false
+last-user=''
+onscreen-keyboard=false

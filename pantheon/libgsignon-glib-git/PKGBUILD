@@ -2,7 +2,7 @@
 # Contributor: Maintainer: Josip Ponjavic <josipponjavic@gmail.com>
 
 pkgname=libgsignon-glib-git
-pkgver=2.1.0.r308.8e26c82
+pkgver=2.1.0.r341.c7e865e
 pkgrel=1
 pkgdesc='gSSO client library'
 arch=('i686' 'x86_64')
@@ -24,7 +24,7 @@ pkgver() {
 build() {
   cd ${pkgname%-*}
 
-  ./autogen.sh --prefix='/usr' --enable-{dbus-type='session',introspection='yes'}
+  ./autogen.sh --prefix='/usr' --enable-{dbus-type='session',gtk-doc,introspection='yes'}
   make
 }
 
