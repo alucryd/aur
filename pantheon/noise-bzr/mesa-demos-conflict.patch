@@ -1,6 +1,6 @@
-diff -rupN noise-0.3.0.orig/data/noise.desktop noise-0.3.0/data/noise.desktop
---- noise-0.3.0.orig/data/noise.desktop	2014-07-14 15:32:41.859039779 +0200
-+++ noise-0.3.0/data/noise.desktop	2014-07-14 15:33:18.950708937 +0200
+diff -rupN noise.orig/data/noise.desktop noise/data/noise.desktop
+--- noise.orig/data/noise.desktop	2014-08-08 00:54:24.107900734 +0200
++++ noise/data/noise.desktop	2014-08-08 00:56:03.044866936 +0200
 @@ -3,7 +3,7 @@ Type=Application
  Name=Noise
  GenericName=Music Player
@@ -10,15 +10,24 @@ diff -rupN noise-0.3.0.orig/data/noise.desktop noise-0.3.0/data/noise.desktop
  Icon=multimedia-audio-player
  Terminal=false
  Categories=Audio;Music;Player;AudioVideo;GNOME;GTK;
-diff -rupN noise-0.3.0.orig/src/CMakeLists.txt noise-0.3.0/src/CMakeLists.txt
---- noise-0.3.0.orig/src/CMakeLists.txt	2014-07-14 15:32:41.852369815 +0200
-+++ noise-0.3.0/src/CMakeLists.txt	2014-07-14 15:38:21.230137167 +0200
-@@ -107,7 +107,7 @@ vala_precompile (CLIENT_VALA_C ${SRC_TAR
+@@ -16,5 +16,5 @@ X-PulseAudio-Properties=media.role=music
+ Actions=AboutDialog;
+ 
+ [Desktop Action AboutDialog]
+-Exec=noise --about
+-Name=About Noise
+\ No newline at end of file
++Exec=noise-player --about
++Name=About Noise
+diff -rupN noise.orig/src/CMakeLists.txt noise/src/CMakeLists.txt
+--- noise.orig/src/CMakeLists.txt	2014-08-08 00:54:24.364559520 +0200
++++ noise/src/CMakeLists.txt	2014-08-08 00:55:32.009151191 +0200
+@@ -98,7 +98,7 @@ vala_precompile (CLIENT_VALA_C ${SRC_TAR
    ${CLIENT_VAPI}
  )
  
--set (EXEC_NAME ../${SRC_TARGET})
-+set (EXEC_NAME ../${SRC_TARGET}-player)
+-set (EXEC_NAME ${SRC_TARGET})
++set (EXEC_NAME ${SRC_TARGET}-player)
  
  add_definitions (${DEPS_CFLAGS})
  link_directories (${DEPS_LIBRARY_DIRS})
