@@ -15,13 +15,9 @@ conflicts=("${pkgname%-*}")
 options=('!emptydirs')
 install="${pkgname%-*}.install"
 source=("${pkgname%-*}::bzr+lp:pantheon-greeter"
-        'lightdm.profile'
-        '00-pantheon-greeter'
         'desktop.patch')
 sha256sums=('SKIP'
-            '3e13948d1fe7055ab411875ff717094941f8bbf86bdbec51b490faab60460729'
-            '1db0281fd8852861d1e07f75ea384ded5f0e557a8a5de1f71deced089610c3a3'
-            '6a2712b4c5087330f9ef1f5f3a62307b1330cabae183d10b02f665c149ba0dc8')
+            '4f86eb3ad01f954fcaa7a2979a61a964a23fed43564b07896bfd765e3bb4cd7f')
 
 pkgver() {
   cd ${pkgname%-*}
