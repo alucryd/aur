@@ -1,5 +1,5 @@
 pkgname=('switchboard-plug-locale-bzr')
-builddeps=('switchboard-bzr')
+builddeps=('granite-bzr' 'switchboard-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 
