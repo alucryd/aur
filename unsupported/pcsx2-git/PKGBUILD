@@ -16,8 +16,8 @@ elif [[ $CARCH == x86_64 ]]; then
   depends=('lib32-glew' 'lib32-libaio' 'lib32-libcanberra' 'lib32-libjpeg-turbo' 'lib32-nvidia-cg-toolkit' 'lib32-portaudio' 'lib32-sdl' 'lib32-soundtouch' 'lib32-wxgtk')
   makedepends+=('gcc-multilib')
   optdepends=('lib32-gtk-engines: GTK2 engines support'
-              'lib32-gtk-murrine: murrine GTK3 engine support'
-              'lib32-gtk-unico: unico GTK2 engine support')
+              'lib32-gtk-engine-murrine: Murrine GTK3 engine support'
+              'lib32-gtk-engine-unico: Unico GTK2 engine support')
 fi
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
