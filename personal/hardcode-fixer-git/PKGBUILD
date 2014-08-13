@@ -1,0 +1,29 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Robert Orzanna <orschiro@gmail.com>
+
+pkgname=hardcode-fixer-git
+pkgver=0.8.2.r18.f64860e
+pkgrel=1
+pkgdesc='Fix hardcoded icon paths'
+arch=('i686' 'x86_64')
+url='https://github.com/Foggalong/hardcode-fixer'
+license=('GPL')
+depends=('pacman' 'curl')
+makedepends=('git')
+source=("git+${url}.git")
+md5sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "%s" "$(git describe --tags | sed 's/^v//; s/-/.r/; s/-g/./')"
+}
+
+package() {
+  cd ${pkgname%-*}
+
+  install -dm 755 "${pkgdir}"/usr/bin
+  install -m 755 fix.sh "${pkgdir}"/usr/bin/hardcode-fixer
+}
+
+# vim: ts=2 sw=2 et:

@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=pyanimenc-git
-pkgver=r24.dfd943a
+pkgver=r25.e0099b7
 pkgrel=1
 pkgdesc='Python Transcoding Tools'
 arch=('any')
@@ -10,8 +10,11 @@ license=('GPL3')
 depends=('ffms2' 'python-gobject' 'python-lxml' 'vapoursynth')
 optdepends=('fdkaac: fdkaac encoder'
             'lame: lame encoder'
-            'vapoursynth-plugin-flash3kyuu_deband-git: Deband filter'
-            'x264: x264 and x264-10bit encoders')
+            'vapoursynth-plugin-flash3kyuu_deband-git: f3kdb deband filter'
+            'vapoursynth-plugin-fluxsmooth-git: FluxSmooth denoise filters'
+            'vapoursynth-plugin-temporalsoften-git: TemporalSoften denoise filter'
+            'x264: x264 and x264-10bit encoders'
+            'x265: x265 encoder')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=("git+${url}.git")
