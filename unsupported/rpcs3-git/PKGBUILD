@@ -1,0 +1,52 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+
+pkgname=rpcs3-git
+pkgver=0.0.0.5.r368.2740316
+pkgrel=1
+pkgdesc='A Sony PlayStation 3 emulator'
+arch=('x86_64')
+url='https://github.com/DHrpcs3/rpcs3'
+license=('GPL2')
+depends=('glew' 'openal' 'wxgtk')
+makedepends=('chrpath' 'cmake' 'git')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("git+${url}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "%s" "$(git describe --tags | sed 's/^v//; s/-/.r/; s/-g/./')"
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  git submodule init asmjit
+  git submodule init ffmpeg
+  git submodule update
+}
+
+build() {
+  cd ${pkgname%-*}
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
+  make
+
+}
+
+package() {
+  cd ${pkgname%-*}/build
+
+  chrpath -d bin/rpcs3
+  install -dm 755 "${pkgdir}"/usr/bin
+  install -m 755 bin/rpcs3 "${pkgdir}"/usr/bin/
+}
+
+# vim: ts=2 sw=2 et:

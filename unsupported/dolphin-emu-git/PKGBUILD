@@ -2,7 +2,7 @@
 # Contributor: Lightning <sgsdxzy@gmail.com>
 
 pkgname=dolphin-emu-git
-pkgver=4.0.r2556.e5ca4f6
+pkgver=4.0.r2566.64697ab
 pkgrel=1
 pkgdesc='A GameCube / Wii / Triforce emulator'
 arch=('x86_64')
@@ -31,9 +31,9 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_CXX_FLAGS='-fno-inline-functions'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_CXX_FLAGS='-fno-inline-functions' \
+           -DENABLE_LTO='TRUE'
   make
-
 }
 
 package() {
