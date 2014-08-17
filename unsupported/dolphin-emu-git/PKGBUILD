@@ -2,7 +2,7 @@
 # Contributor: Lightning <sgsdxzy@gmail.com>
 
 pkgname=dolphin-emu-git
-pkgver=4.0.r2566.64697ab
+pkgver=4.0.r2618.7222eb1
 pkgrel=1
 pkgdesc='A GameCube / Wii / Triforce emulator'
 arch=('x86_64')
@@ -40,6 +40,7 @@ package() {
   cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" install
+  install -m 755 Binaries/dolphin-emu-nogui "${pkgdir}"/usr/bin/
 }
 
 # vim: ts=2 sw=2 et:
