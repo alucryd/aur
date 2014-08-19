@@ -2,13 +2,13 @@
 # Contributor: Lightning <sgsdxzy@gmail.com>
 
 pkgname=dolphin-emu-git
-pkgver=4.0.r2618.7222eb1
+pkgver=4.0.r2649.355f7b3
 pkgrel=1
 pkgdesc='A GameCube / Wii / Triforce emulator'
 arch=('x86_64')
 url='http://www.dolphin-emu.org/'
 license=('GPL2')
-depends=('bluez-libs' 'ffmpeg' 'libao' 'libusbx' 'miniupnpc' 'openal' 'polarssl' 'portaudio' 'sdl2' 'soundtouch' 'wxgtk')
+depends=('bluez-libs' 'ffmpeg' 'libao' 'libusb' 'miniupnpc' 'openal' 'polarssl' 'portaudio' 'sdl2' 'soundtouch' 'wxgtk')
 makedepends=('cmake' 'git')
 optdepends=('pulseaudio: PulseAudio backend')
 provides=("${pkgname%-*}")
