@@ -3,13 +3,13 @@
 # Contributor: flamelab <panosfilip@gmail.com>
 
 pkgname=wingpanel-bzr
-pkgver=r157
+pkgver=r164
 pkgrel=1
 pkgdesc='The Pantheon Top Panel'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/wingpanel'
 license=('GPL3')
-depends=('granite' 'ido' 'libindicator-gtk3' 'libwnck3')
+depends=('granite-bzr' 'ido' 'libindicator-gtk3' 'libwnck3')
 optdepends=('indicator-datetime: Display date and time'
             'indicator-pantheon-session-bzr: Pantheon session indicator'
             'indicator-power: Battery idicator')
@@ -17,13 +17,21 @@ makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=('bzr+lp:wingpanel')
-sha256sums=('SKIP')
+source=('bzr+lp:wingpanel'
+        'wingpanel-no-ubuntu-gtk3.patch')
+sha256sums=('SKIP'
+            '728d9775bb2ae7d8a41e158ba0493ae198071b8255f48e0e51275d115de0f57d')
 
 pkgver() {
   cd ${pkgname%-*}
 
   printf "r%s" "$(bzr revno)"
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  patch -Np0 -i ../wingpanel-no-ubuntu-gtk3.patch
 }
 
 build() {
@@ -34,7 +42,8 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF' \
+           -D{NO_INDICATOR_NG,OLD_LIB_IDO}='TRUE'
   make
 }
 
