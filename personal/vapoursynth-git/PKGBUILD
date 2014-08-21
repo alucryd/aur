@@ -3,7 +3,7 @@
 # Contributor: jackoneill <cantabile.desu@gmail.com>
 
 pkgname=vapoursynth-git
-pkgver=R23.r57.b28c596
+pkgver=R24.r7.4bfbaf7
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
 arch=('i686' 'x86_64')
@@ -25,7 +25,7 @@ pkgver() {
 build() {
   cd ${pkgname%-*}
 
-  waf configure --prefix='/usr'
+  waf configure --prefix='/usr' --enable-examples
   waf build $MAKEFLAGS
   python setup.py build
 }
