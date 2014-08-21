@@ -9,7 +9,7 @@ pkgdesc='The sexiest dictionary on Earth and Jupiter'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/lingo-dictionary'
 license=('GPL3')
-depends=('granite' 'json-glib' 'libgee06' 'libsoup')
+depends=('granite-bzr' 'json-glib' 'libsoup')
 makedepends=('bzr' 'cmake' 'sqlite' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
@@ -21,6 +21,12 @@ pkgver() {
   cd ${pkgname%-*}
 
   printf "r%s" "$(bzr revno)"
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  sed 's/gee-1.0/gee-0.8/' -i CMakeLists.txt
 }
 
 build() {

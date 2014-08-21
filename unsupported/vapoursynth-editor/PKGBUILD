@@ -1,0 +1,42 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Contributor: Gustavo Alvarez <sl1pkn07@gmail.com>
+
+pkgname=vapoursynth-editor
+pkgver=R3
+pkgrel=1
+pkgdesc='VapourSynth script editor'
+arch=('i686' 'x86_64')
+url="https://bitbucket.org/mystery_keeper/${pkgname}"
+license=('CCPL' 'MIT')
+depends=('desktop-file-utils' 'qt5-base' 'shared-mime-info' 'vapoursynth')
+makedepends=('git')
+install="${pkgname}.install"
+source=("git+${url}.git#tag=${pkgver,}"
+        'vsedit.desktop'
+        'x-vpy.xml')
+sha256sums=('SKIP'
+            'b6d24441cf5746ea4dc08ecf379c67695bac663deb394db4334ba6aba9474c0f'
+            '670310582f59030a828bfb61ebe7929b76eb84429af0aed730282a493eb4bc42')
+
+build() {
+  cd ${pkgname}/pro
+
+  qmake-qt5
+  make
+}
+
+package() {
+  cd ${pkgname}/build/bin
+
+  install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,licenses/${pkgname},mime/packages,pixmaps,vsedit/fonts}}
+  install -m 755 vsedit "${pkgdir}"/usr/share/vsedit/
+  install -m 644 fonts/DigitalMini.ttf "${pkgdir}"/usr/share/vsedit/fonts/
+  install -m 644 vsedit.svg "${pkgdir}"/usr/share/pixmaps/
+  install -m 644 LICENSE "${pkgdir}"/usr/share/licenses/${pkgname}/
+  install -m 644 ../../../vsedit.desktop "${pkgdir}"/usr/share/applications/
+  install -m 644 ../../../x-vpy.xml "${pkgdir}"/usr/share/mime/packages/
+  echo 'exec /usr/share/vsedit/vsedit' > "${pkgdir}"/usr/bin/vsedit
+  chmod 755 "${pkgdir}"/usr/bin/vsedit
+}
+
+# vim: ts=2 sw=2 et:

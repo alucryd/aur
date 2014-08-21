@@ -1,5 +1,5 @@
 pkgname=('elementary-scan-bzr')
-builddeps=('launchpad-integration-gtk3' 'scour')
+builddeps=('granite-bzr' 'launchpad-integration-gtk3' 'scour')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

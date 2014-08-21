@@ -1,0 +1,28 @@
+# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+
+pkgname=plymouth-theme-numix-bzr
+pkgver=r1
+pkgrel=1
+pkgdesc='Numix theme for Plymouth'
+arch=('any')
+url='https://launchpad.net/numix-plymouth'
+license=('GPL3')
+depends=('plymouth')
+makedepends=('bzr')
+source=("${pkgname%-*}::bzr+lp:numix-plymouth")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "r%s" "$(bzr revno)"
+}
+
+package() {
+  cd ${pkgname%-*}
+
+  install -dm 755 "${pkgdir}"/usr/share
+  cp -dr --no-preserve='ownership' lib/plymouth "${pkgdir}"/usr/share/
+}
+
+# vim: ts=2 sw=2 et:

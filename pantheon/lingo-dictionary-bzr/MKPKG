@@ -1,4 +1,5 @@
 pkgname=('lingo-dictionary-bzr')
+builddeps=('granite-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 
