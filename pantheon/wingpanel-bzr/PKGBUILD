@@ -17,21 +17,13 @@ makedepends=('bzr' 'cmake' 'vala')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 install="${pkgname%-*}.install"
-source=('bzr+lp:wingpanel'
-        'wingpanel-no-ubuntu-gtk3.patch')
-sha256sums=('SKIP'
-            '728d9775bb2ae7d8a41e158ba0493ae198071b8255f48e0e51275d115de0f57d')
+source=('bzr+lp:wingpanel')
+sha256sums=('SKIP')
 
 pkgver() {
   cd ${pkgname%-*}
 
   printf "r%s" "$(bzr revno)"
-}
-
-prepare() {
-  cd ${pkgname%-*}
-
-  patch -Np0 -i ../wingpanel-no-ubuntu-gtk3.patch
 }
 
 build() {

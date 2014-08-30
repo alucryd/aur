@@ -21,8 +21,10 @@ optdepends=('libplist: AirPlay support'
             'pulseaudio: PulseAudio support')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::git+https://github.com/plexinc/plex-home-theater-public.git")
-sha256sums=('SKIP')
+source=("${pkgname%-*}::git+https://github.com/plexinc/plex-home-theater-public.git"
+        'plexhometheater.sh')
+sha256sums=('SKIP'
+            'c551d8f50342dcfede5a11e1bae2c18b25d44b89a5a29863e5809d45ef365702')
 
 pkgver() {
   cd ${pkgname%-*}
