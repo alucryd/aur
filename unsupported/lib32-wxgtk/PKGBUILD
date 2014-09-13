@@ -8,8 +8,8 @@ pkgdesc='GTK+ implementation of wxWidgets API for GUI'
 arch=('x86_64')
 url='http://wxwidgets.org'
 license=('custom:wxWindows')
-depends=('lib32-gtk2' 'lib32-gstreamer0.10-base' 'lib32-libsm' "${pkgname#*-}")
-makedepends=('lib32-gstreamer0.10-base-plugins' 'lib32-glu')
+depends=('lib32-gtk2' 'lib32-gstreamer0.10-base' 'lib32-libsm' "${pkgname#*-}=${pkgver}")
+makedepends=('gcc-multilib' 'lib32-gstreamer0.10-base-plugins' 'lib32-glu')
 options=('!emptydirs')
 source=("http://downloads.sourceforge.net/wxwindows/wxWidgets-${pkgver}.tar.bz2"
         'wxGTK-collision.patch')

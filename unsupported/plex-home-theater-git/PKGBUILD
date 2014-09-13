@@ -11,7 +11,7 @@ license=('GPL2')
 depends=('boost-libs' 'curl' 'fontconfig' 'glew' 'lame' 'libass' 'libcdio'
          'libjpeg-turbo' 'libmad' 'libmicrohttpd' 'libmodplug' 'libmpeg2'
          'libsamplerate' 'libssh' 'libusb-compat' 'libva' 'libvdpau'
-         'libxrandr' 'lzo2' 'mesa' 'rtmpdump' 'sdl_image' 'sdl_mixer'
+         'libxrandr' 'lzo' 'mesa' 'rtmpdump' 'sdl_image' 'sdl_mixer'
          'smbclient' 'taglib' 'tinyxml' 'yajl')
 makedepends=('boost' 'cmake' 'doxygen' 'ftgl' 'git' 'java-environment' 'libcec'
              'libplist' 'libshairport' 'nasm' 'swig' 'unzip' 'zip')
