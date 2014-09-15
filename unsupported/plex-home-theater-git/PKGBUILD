@@ -8,7 +8,7 @@ pkgdesc='Plex Home Theater'
 arch=('i686' 'x86_64')
 url='http://www.plexapp.com/'
 license=('GPL2')
-depends=('boost-libs' 'curl' 'fontconfig' 'glew' 'lame' 'libass' 'libcdio'
+depends=('boost-libs' 'curl' 'ffmpeg-compat' 'fontconfig' 'glew' 'lame' 'libass' 'libcdio'
          'libjpeg-turbo' 'libmad' 'libmicrohttpd' 'libmodplug' 'libmpeg2'
          'libsamplerate' 'libssh' 'libusb-compat' 'libva' 'libvdpau'
          'libxrandr' 'lzo' 'mesa' 'rtmpdump' 'sdl_image' 'sdl_mixer'
@@ -22,14 +22,22 @@ optdepends=('libplist: AirPlay support'
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=("${pkgname%-*}::git+https://github.com/plexinc/plex-home-theater-public.git"
+        'plex-ffmpeg-compat.patch'
         'plexhometheater.sh')
 sha256sums=('SKIP'
-            'c551d8f50342dcfede5a11e1bae2c18b25d44b89a5a29863e5809d45ef365702')
+            '5b370e4dec6998130df46ad6bd5ca6258e3a040dd6c6cc4085c335dc3d6050bd'
+            'dc6bd394c07a2ececbb2f8c53cb54afd5d78f7c00a0b34acab3e71217da085fb')
 
 pkgver() {
   cd ${pkgname%-*}
 
   printf "%s" "$(git describe --tags | sed 's/pht-v//; s/-/.r/; s/-g/./')"
+}
+
+prepare() {
+  cd ${pkgname%-*}
+
+  patch -Np1 -i ../plex-ffmpeg-compat.patch
 }
 
 build() {
@@ -40,11 +48,11 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/opt/plexhometheater' \
+  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' \
            -DCMAKE_C_FLAGS="$CMAKE_C_FLAGS -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include" \
            -DCMAKE_CXX_FLAGS="$CMAKE_CXX_FLAGS -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include" \
            -DENABLE_{AUTOUPDATE,DUMP_SYMBOLS}='FALSE' -DENABLE_PYTHON='TRUE' \
-           -DPYTHON_EXEC='/usr/bin/python2' -DUSE_INTERNAL_FFMPEG='TRUE' \
+           -DPYTHON_EXEC='/usr/bin/python2' -DUSE_INTERNAL_FFMPEG='FALSE' \
            -DCREATE_BUNDLE='FALSE'
   make
 }
@@ -53,7 +61,9 @@ package() {
   cd ${pkgname%-*}/build
 
   make DESTDIR="${pkgdir}" install
-  install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,pixmaps}}
+  install -dm 755 "${pkgdir}"/usr/{lib/plexhometheater,share/{applications,pixmaps}}
+  mv "${pkgdir}"/usr/{bin/{system,xbmc-xrandr},lib/plexhometheater/}
+  mv "${pkgdir}"/usr/share/{XBMC,plexhometheater}
   install -m 755 "${srcdir}"/plexhometheater.sh "${pkgdir}"/usr/bin/
   install -m 644 ../plex/Resources/plexhometheater.desktop "${pkgdir}"/usr/share/applications/
   install -m 644 ../plex/Resources/plex-icon-256.png "${pkgdir}"/usr/share/pixmaps/plexhometheater.png
