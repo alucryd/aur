@@ -3,13 +3,13 @@
 
 pkgname=lib32-wxgtk
 pkgver=3.0.1
-pkgrel=3
+pkgrel=4
 pkgdesc='GTK+ implementation of wxWidgets API for GUI'
 arch=('x86_64')
 url='http://wxwidgets.org'
 license=('custom:wxWindows')
-depends=('lib32-gtk2' 'lib32-gstreamer0.10-base' 'lib32-libsm' "${pkgname#*-}=${pkgver}")
-makedepends=('gcc-multilib' 'lib32-gstreamer0.10-base-plugins' 'lib32-glu')
+depends=('lib32-gtk2' 'lib32-libsm' "${pkgname#*-}=${pkgver}")
+makedepends=('gcc-multilib' 'lib32-glu')
 options=('!emptydirs')
 source=("http://downloads.sourceforge.net/wxwindows/wxWidgets-${pkgver}.tar.bz2"
         'wxGTK-collision.patch')
@@ -31,10 +31,10 @@ build() {
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
   ./configure --prefix='/usr' --libdir='/usr/lib32' \
-              --enable-{graphics_ctx,mediactrl,unicode} \
+              --enable-{graphics_ctx,unicode} \
               --with-lib{jpeg,png,tiff,xpm}='sys' --with-regex='builtin' \
               --with-gtk='2' --with-opengl --without-libnotify \
-              --disable-{precomp-headers,webview}
+              --disable-{mediactrl,precomp-headers,webview}
   make
   make -C locale allmo
 }

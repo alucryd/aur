@@ -12,7 +12,7 @@ depends=('dconf' 'desktop-file-utils' 'hicolor-icon-theme' 'polkit'
 makedepends=('python2-setuptools')
 install="${pkgname}.install"
 source=("${url}/releases/${pkgname}_${pkgver}.tar.gz")
-sha256sums=('af6255d459509c8ff499e8e2c692ae5b33de01700f19d9c4e145bb716ff23f95')
+sha256sums=('d8eca9a7d287860fff5273fec7005f9b3f8cd8cb5d6ce130f7dfc90d5ff3afa5')
 
 prepare() {
   cd ${pkgname}
