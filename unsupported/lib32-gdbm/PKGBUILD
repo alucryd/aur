@@ -34,12 +34,6 @@ build() {
   make
 }
 
-check() {
-  cd ${pkgname#*-}-${pkgver}
-
-  make check
-}
-
 package() {
   cd ${pkgname#*-}-${pkgver}
 

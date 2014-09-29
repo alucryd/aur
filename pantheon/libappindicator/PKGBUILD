@@ -46,7 +46,7 @@ package_libappindicator-gtk2() {
 
   make -j1 DESTDIR="${pkgdir}" install
   make -j1 -C bindings/mono DESTDIR="${pkgdir}" uninstall
-  rm -rf "${pkgdir}"/usr/share
+#  rm -rf "${pkgdir}"/usr/share
 }
 
 package_libappindicator-gtk3() {
@@ -58,7 +58,7 @@ package_libappindicator-gtk3() {
 
   make -j1 DESTDIR="${pkgdir}" install
   make -j1 -C bindings/mono DESTDIR="${pkgdir}" uninstall
-  rm -rf "${pkgdir}"/usr/share
+#  rm -rf "${pkgdir}"/usr/share
 }
 
 package_libappindicator-sharp() {
@@ -67,7 +67,7 @@ arch=('any')
   cd ${pkgbase}-${pkgver}
 
   make -j1 -C bindings/mono DESTDIR="${pkgdir}" install
-  rm -rf "${pkgdir}"/usr/share
+#  rm -rf "${pkgdir}"/usr/share
 }
 
 # vim: ts=2 sw=2 et:

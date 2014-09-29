@@ -1,0 +1,38 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: jtts <jussaar@mbnet.fi>
+# Contributor: josephgbr <rafael.f.f1@gmail.com>
+# Contributor: Tobias Powalowski <tpowa@archlinux.org>
+# Contributor: Federico Quagliata <quaqo@despammed.com>
+
+pkgname=lib32-cracklib
+pkgver=2.9.1
+pkgrel=1
+pkgdesc='Password Checking Library'
+arch=('x86_64')
+url='http://sourceforge.net/projects/cracklib'
+license=('GPL')
+depends=('lib32-zlib' "cracklib=${pkgver}")
+makedepends=('gcc-multilib')
+source=("http://downloads.sourceforge.net/sourceforge/cracklib/cracklib-${pkgver}.tar.gz")
+sha256sums=('408905c2539a97dc8cbbb6d7cd2046cb5647a345b4bda399220d9471be16d156')
+
+build() {
+  cd cracklib-${pkgver}
+
+  export CC='gcc -m32'
+  export CXX='g++ -m32'
+  export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
+
+  ./configure --prefix='/usr' --sbindir='/usr/bin' --libdir='/usr/lib32' \
+              --without-python
+  make
+}
+
+package() {
+  cd cracklib-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/{include,bin,share}
+}
+
+# vim: ts=2 sw=2 et:

@@ -7,7 +7,7 @@
 
 pkgbase=x264-git
 pkgname=('x264-git' 'libx264-git' 'libx264-10bit-git')
-pkgver=r2431.a5831aa
+pkgver=r2479.dd79a61
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.videolan.org/developers/x264.html'
