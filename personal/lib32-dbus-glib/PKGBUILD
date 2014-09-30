@@ -1,0 +1,37 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor:  Martin Wimpress <code@flexion.org>
+# Contributor: josephgbr <rafael.f.f1@gmail.com>
+
+pkgname=lib32-dbus-glib
+pkgver=0.102
+pkgrel=1
+pkgdesc='GLib bindings for DBUS'
+arch=('x86_64')
+license=('GPL')
+url='http://www.freedesktop.org/wiki/Software/DBusBindings'
+depends=("dbus-glib=${pkgver}" 'lib32-glib2')
+makedepends=('gcc-multilib')
+options=('!emptydirs')
+source=("http://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-${pkgver}.tar.gz")
+sha256sums=('6964ed585bb8149a14ab744b5ded5e77cf71ec5446e6dcc5fcf5eebcc52df29c')
+
+build() {
+  cd dbus-glib-${pkgver}
+
+  export CC='gcc -m32'
+  export CXX='g++ -m32'
+  export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
+
+  ./configure --prefix='/usr' --libdir='/usr/lib32' --localstatedir='/var' \
+              --sysconfdir='/etc' --enable-{bash-completion,static}='no'
+  make
+}
+
+package() {
+  cd dbus-glib-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}/usr"/{bin,include,share}
+}
+
+# vim: ts=2 sw=2 et:

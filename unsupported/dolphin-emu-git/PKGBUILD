@@ -1,8 +1,8 @@
-# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 # Contributor: Lightning <sgsdxzy@gmail.com>
 
 pkgname=dolphin-emu-git
-pkgver=4.0.r3234.1458b59
+pkgver=4.0.r3443.b5ebace
 pkgrel=1
 pkgdesc='A GameCube / Wii / Triforce emulator'
 arch=('x86_64')

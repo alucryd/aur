@@ -1,4 +1,4 @@
-# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-terminal-bzr
@@ -8,22 +8,22 @@ pkgdesc='The Pantheon Terminal Emulator'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/pantheon-terminal'
 license=('GPL3')
-depends=('desktop-file-utils' 'granite' 'libnotify' 'vte3')
+depends=('desktop-file-utils' 'granite-bzr' 'libnotify' 'vte3')
 makedepends=('bzr' 'cmake' 'vala')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-install="${pkgname}.install"
+provides=('pantheon-terminal')
+conflicts=('pantheon-terminal')
+install='pantheon-terminal.install'
 source=('bzr+lp:pantheon-terminal')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd pantheon-terminal
 
   printf "r%s" "$(bzr revno)"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd pantheon-terminal
 
   if [[ -d build ]]; then
     rm -rf build
@@ -35,7 +35,7 @@ build() {
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd pantheon-terminal/build
 
   make DESTDIR="${pkgdir}" install
 }

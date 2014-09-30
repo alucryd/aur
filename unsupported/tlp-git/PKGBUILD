@@ -1,0 +1,70 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Marc Schulte <bomba@nerdstube.de>
+
+pkgbase=tlp-git
+pkgname=('tlp-git' 'tlp-rdw-git')
+pkgver=0.5.r41.f68014c
+pkgrel=1
+arch=('any')
+url='http://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html'
+license=('GPL2' 'GPL3')
+makedepends=('git')
+source=("tlp::git+https://github.com/linrunner/TLP.git#branch=devel"
+'tlp-arch.patch')
+sha256sums=('SKIP'
+            'd240143cde75c2d6edf09e001459e79e49652934f5b02ed0174f99e8fe4eabce')
+
+pkgver() {
+  cd tlp
+
+  printf "%s" "$(git describe --tags | sed 's/-/.r/; s/-g/./')"
+}
+
+prepare() {
+  cd tlp
+
+  patch -Np1 -i ../tlp-arch.patch
+}
+
+package_tlp-git() {
+  pkgdesc='Linux Advanced Power Management'
+  depends=('bash' 'hdparm' 'perl' 'rfkill' 'wireless_tools')
+  optdepends=('acpi_call: Sandy Bridge and newer ThinkPad battery functions'
+            'acpid: ThinkPad wireless radio switch'
+            'ethtool: Disable Wake On Lan'
+            'iw: Wifi power save'
+            'lsb-release: Display LSB release version in tlp-stat'
+            'smartmontools: Display S.M.A.R.T. data in tlp-stat'
+            'tp_smapi: ThinkPad battery functions')
+  conflicts=('laptop-mode-tools' 'pm-utils')
+  backup=('etc/default/tlp')
+
+  cd tlp
+
+  export TLP_SBIN='/usr/bin'
+  export TLP_ULIB='/usr/lib/udev'
+  export TLP_NO_INIT='1'
+  export TLP_NO_PMUTILS='1'
+  make DESTDIR="${pkgdir}" install-tlp
+
+  # Systemd
+  install -dm 755 "${pkgdir}"/usr/lib/systemd/system
+  install -m 644 tlp.service "${pkgdir}"/usr/lib/systemd/system/
+  install -m 644 tlp-sleep.service "${pkgdir}"/usr/lib/systemd/system/
+
+  # Manpages
+  install -dm 755 "${pkgdir}"/usr/share/man/man{1,8}
+  install -m 644 man/*.1 "${pkgdir}"/usr/share/man/man1/
+  install -m 644 man/*.8 "${pkgdir}"/usr/share/man/man8/
+}
+
+package_tlp-rdw-git() {
+  pkgdesc='Linux Advanced Power Management - Radio Device Wizard'
+  depends=('networkmanager' 'tlp')
+
+  cd tlp
+
+  make DESTDIR="${pkgdir}" install-rdw
+}
+
+# vim: ts=2 sw=2 et:

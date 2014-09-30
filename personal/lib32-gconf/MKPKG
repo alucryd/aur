@@ -1,0 +1,10 @@
+arch=('x86_64')
+pkgname=('lib32-gconf')
+builddeps=('lib32-dbus-glib' 'lib32-gtk3' 'lib32-polkit')
+
+build () {
+    shift
+    ionice -c 3 chrt -b 0 sudo multilib-build -- $*
+}
+
+# vim: ts=2 sw=2 et:

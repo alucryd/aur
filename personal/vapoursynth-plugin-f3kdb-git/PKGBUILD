@@ -1,4 +1,4 @@
-# Maintainer: Maxime Gauduin <alucryd@gmail.com>
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=vapoursynth-plugin-f3kdb-git
 pkgver=2.0.r399.8ea4292

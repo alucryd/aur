@@ -1,0 +1,43 @@
+# Maintainer:m Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: jtts <jussaar@mbnet.fi>
+# Contributor: Ionut Biru <ibiru@archlinux.org>
+
+pkgname=lib32-at-spi2-core
+pkgver=2.14.0
+pkgrel=1
+pkgdesc='Protocol definitions and daemon for D-Bus at-spi'
+arch=('x86_64')
+url='http://www.gnome.org'
+license=('GPL2')
+depends=("at-spi2-core=${pkgver}" 'lib32-dbus' 'lib32-glib2' 'lib32-libxtst')
+makedepends=('gcc-multilib' 'gobject-introspection' 'intltool')
+source=("http://download.gnome.org/sources/at-spi2-core/${pkgver%.*}/at-spi2-core-${pkgver}.tar.xz")
+sha256sums=('5807b02e6ef695b52fde7ff26d675dd94a0707df3c42fe7fd224828e092514c8')
+
+prepare() {
+  cd at-spi2-core-${pkgver}
+
+  sed -i -e '/AC_PATH_XTRA/d' configure.ac
+}
+
+build() {
+  cd at-spi2-core-${pkgver}
+
+  export CC='gcc -m32'
+  export CXX='g++ -m32'
+  export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
+
+  autoreconf -fi
+  ./configure --prefix='/usr' --sysconfdir='/etc' --libdir='/usr/lib32' \
+              --libexecdir='/usr/lib32/at-spi2-core' --disable-xevie
+  make
+}
+
+package() {
+  cd at-spi2-core-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/{etc,usr/{include,share}}
+}
+
+# vim: ts=2 sw=2 et:
