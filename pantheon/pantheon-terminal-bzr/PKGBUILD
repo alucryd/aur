@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-terminal-bzr
-pkgver=r637
+pkgver=r643
 pkgrel=1
 pkgdesc='The Pantheon Terminal Emulator'
 arch=('i686' 'x86_64')
@@ -13,7 +13,7 @@ makedepends=('bzr' 'cmake' 'vala')
 provides=('pantheon-terminal')
 conflicts=('pantheon-terminal')
 install='pantheon-terminal.install'
-source=('bzr+lp:pantheon-terminal')
+source=('pantheon-terminal::bzr+lp:~stevenvandenbrandenstift/pantheon-terminal/fix-1375346')
 sha256sums=('SKIP')
 
 pkgver() {

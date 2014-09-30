@@ -43,16 +43,12 @@ package_tlp-git() {
 
   export TLP_SBIN='/usr/bin'
   export TLP_ULIB='/usr/lib/udev'
+  export TLP_SYSD='/usr/lib/systemd/system'
   export TLP_NO_INIT='1'
   export TLP_NO_PMUTILS='1'
+  export TLP_WITH_SYSTEMD='1'
   make DESTDIR="${pkgdir}" install-tlp
 
-  # Systemd
-  install -dm 755 "${pkgdir}"/usr/lib/systemd/system
-  install -m 644 tlp.service "${pkgdir}"/usr/lib/systemd/system/
-  install -m 644 tlp-sleep.service "${pkgdir}"/usr/lib/systemd/system/
-
-  # Manpages
   install -dm 755 "${pkgdir}"/usr/share/man/man{1,8}
   install -m 644 man/*.1 "${pkgdir}"/usr/share/man/man1/
   install -m 644 man/*.8 "${pkgdir}"/usr/share/man/man8/
