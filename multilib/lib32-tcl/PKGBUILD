@@ -1,0 +1,61 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Miguel Revilla <yo@miguelrevilla.com>
+# Contributor: Eric Bélanger <eric@archlinux.org>
+
+pkgname=lib32-tcl
+pkgver=8.6.2
+pkgrel=1
+pkgdesc='The Tcl scripting language'
+arch=('x86_64')
+url='http://tcl.sourceforge.net/'
+license=('custom')
+depends=('lib32-zlib' "tcl=${pkgver}")
+source=("http://downloads.sourceforge.net/sourceforge/tcl/tcl${pkgver}-src.tar.gz")
+md5sums=('8103eaf6d71acb716a64224492f09d5f')
+
+prepare() {
+  cd tcl${pkgver}
+
+  rm -rf pkgs/sqlite3*
+}
+
+build() {
+  cd tcl${pkgver}/unix
+
+  export CC="gcc -m32"
+  export CXX="g++ -m32"
+  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+  ./configure --prefix='/usr' --libdir='/usr/lib32' --mandir='/usr/share/man' \
+              --enable-threads
+  make
+}
+
+package() {
+  cd tcl${pkgver}/unix
+
+  make INSTALL_ROOT="${pkgdir}" install install-private-headers
+  rm -rf "${pkgdir}"/usr/{bin,include,lib,share}
+  ln -sf libtcl${pkgver%.*}.so "${pkgdir}"/usr/lib32/libtcl.so
+
+  sed -e "s#${srcdir}/tcl${pkgver}/unix#/usr/lib32#" \
+      -e "s#${srcdir}/tcl${pkgver}#/usr/include#" \
+      -i "${pkgdir}/usr/lib32/tclConfig.sh"
+
+  sed -e "s#${srcdir}/tcl${pkgver}/unix/pkgs/tdbc1.0.1#/usr/lib32/tdbc1.0.0#" \
+      -e "s#${srcdir}/tcl${pkgver}/pkgs/tdbc1.0.1/generic#/usr/include#" \
+      -e "s#${srcdir}/tcl${pkgver}/pkgs/tdbc1.0.1/library#/usr/lib32/tcl${pkgver%.*}#" \
+      -e "s#${srcdir}/tcl${pkgver}/pkgs/tdbc1.0.1#/usr/include#" \
+      -i "${pkgdir}/usr/lib32/tdbc1.0.1/tdbcConfig.sh"
+
+  sed -e "s#${srcdir}/tcl${pkgver}/unix/pkgs/itcl4.0.1#/usr/lib32/itcl4.0.0#" \
+      -e "s#${srcdir}/tcl${pkgver}/pkgs/itcl4.0.1/generic#/usr/include#" \
+      -e "s#${srcdir}/tcl${pkgver}/pkgs/itcl4.0.1#/usr/include#" \
+      -i "${pkgdir}/usr/lib32/itcl4.0.1/itclConfig.sh"
+
+
+  install -dm 755 -p "${pkgdir}"/usr/share/licenses
+  ln -s tcl "${pkgdir}"/usr/share/licenses/lib32-tcl
+}
+
+# vim: ts=2 sw=2 et:

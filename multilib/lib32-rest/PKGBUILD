@@ -1,0 +1,35 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: GordonGR <ntheo1979@gmail.com>
+# Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+
+pkgname=lib32-rest
+pkgver=0.7.92
+pkgrel=1
+pkgdesc='A helper library for RESTful services'
+arch=('x86_64')
+url='http://www.gtk.org/'
+license=('GPL2')
+depends=('lib32-glib2' 'lib32-libsoup' 'lib32-libxml2' "rest=${pkgver}")
+makedepends=('gobject-introspection')
+source=("http://download.gnome.org/sources/rest/${pkgver%.*}/rest-${pkgver}.tar.xz")
+sha256sums=('07548c8785a3e743daf54a82b952ff5f32af94fee68997df4c83b00d52f9c0ec')
+
+build() {
+  cd rest-${pkgver}
+
+  export CC='gcc -m32'
+  export CXX='g++ -m32'
+  export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
+
+  ./configure --prefix='/usr' --libdir='/usr/lib32'
+  make
+}
+
+package() {
+  cd rest-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/{include,share}
+}
+
+# vim: ts=2 sw=2 et:

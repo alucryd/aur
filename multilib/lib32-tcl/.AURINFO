@@ -1,0 +1,13 @@
+pkgbase = lib32-tcl
+	pkgdesc = The Tcl scripting language (32-bit runtime)
+	pkgver = 8.6.2
+	pkgrel = 1
+	url = http://tcl.sourceforge.net/
+	arch = x86_64
+	license = custom
+	depends = tcl
+	depends = lib32-zlib
+	source = http://downloads.sourceforge.net/sourceforge/tcl/tcl8.6.2-src.tar.gz
+
+pkgname = lib32-tcl
+

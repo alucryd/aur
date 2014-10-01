@@ -1,0 +1,36 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+
+pkgname=lib32-libqmi
+pkgver=1.10.2
+pkgrel=1
+pkgdesc='QMI modem protocol helper library'
+arch=('x86_64')
+url='http://www.freedesktop.org/wiki/Software/libqmi/'
+license=('GPL2')
+depends=('lib32-glib2' "libqmi=${pkgver}")
+makedepends=('gcc-multilib')
+source=("http://www.freedesktop.org/software/libqmi/libqmi-${pkgver}.tar.xz")
+sha256sums=('0d70b10810e45aebb4af902db59972d756441ca1e301240c5c529ef0f08bf80f')
+
+build() {
+  cd libqmi-${pkgver}
+
+  export CC='gcc -m32'
+  export CXX='g++ -m32'
+  export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
+
+  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' \
+              --libdir='/usr/lib32' --libexecdir='/usr/lib32' \
+              --disable-{gtk-doc-html,static} --without-python
+  make
+}
+
+package() {
+  cd libqmi-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/{bin,include,share}
+}
+
+# vim: ts=2 sw=2 et:

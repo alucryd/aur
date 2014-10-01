@@ -1,0 +1,38 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Jakub Schmidtke <sjakub-at-gmail-dot-com>
+# Contributor: Kyle Keen <keenerd@gmail.com>
+# Contributor: Dave Reisner <d@falconindy.com>
+
+pkgname=lib32-jansson
+pkgver=2.6
+pkgrel=1
+pkgdesc='C library for encoding, decoding and manipulating JSON data'
+arch=('x86_64')
+url='http://www.digip.org/jansson/'
+depends=("jansson=${pkgver}" 'lib32-glibc')
+license=('MIT')
+source=("http://www.digip.org/jansson/releases/jansson-${pkgver}.tar.bz2")
+sha256sums=('d2cc63ee7f6dcda6c9a8f0b558f94b8f25f048706b7cbd6a79d3e877b738cd4d')
+
+build() {
+  cd jansson-${pkgver}
+
+  export CC="gcc -m32"
+  export CXX="g++ -m32"
+  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+  ./configure --prefix='/usr' --libdir='/usr/lib32'
+  make
+}
+
+package() {
+  cd jansson-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/{share,include}
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses
+  ln -s jansson "${pkgdir}"/usr/share/licenses/lib32-jansson
+}
+
+# vim:set ts=2 sw=2 et:

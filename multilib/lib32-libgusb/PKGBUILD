@@ -1,0 +1,35 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: jtts <jussaar@mbnet.fi>
+# Contributor: josephgbr <rafael.f.f1@gmail.com>
+
+pkgname=lib32-libgusb
+pkgver=0.1.6
+pkgrel=2
+pkgdesc='GLib wrapper around libusb1'
+arch=('x86_64')
+url='https://gitorious.org/gusb/'
+license=('LGPL2.1')
+depends=('lib32-libusb' 'lib32-systemd' "libgusb=${pkgver}")
+makedepends=('gcc-multilib' 'gobject-introspection')
+source=("http://people.freedesktop.org/~hughsient/releases/libgusb-${pkgver}.tar.xz")
+sha256sums=('900103ff24a851ef8395b992236ced0aedb4c265ef2264f6ad8349300095198b')
+
+build() {
+  cd libgusb-${pkgver}
+
+  export CC='gcc -m32'
+  export CXX='g++ -m32'
+  export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
+
+  ./configure --prefix='/usr' --libdir='/usr/lib32'  --disable-static
+  make
+}
+
+package() {
+  cd libgusb-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/{include,share}
+}
+
+# vim: ts=2 sw=2 et:

@@ -1,0 +1,36 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: oi_wtf <brainpower@gulli.com>
+# Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+
+pkgname=lib32-libndp
+pkgver=1.3
+pkgrel=1
+pkgdesc='Library for Neighbor Discovery Protocol'
+arch=('x86_64')
+url='http://libndp.org/'
+license=('LGPL2.1')
+depends=('lib32-glibc' "libndp=${pkgver}")
+makedepends=('gcc-multilib')
+source=("http://libndp.org/files/libndp-$pkgver.tar.gz")
+sha256sums=('58a013427debfc554f1ff6555bccfd3ba910d50effc8231cfcad79f0f19c3f9e')
+
+build() {
+  cd libndp-${pkgver}
+
+  export CC='gcc -m32'
+  export CXX='g++ -m32'
+  export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
+
+  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' \
+              --libdir='/usr/lib32' --libexecdir='/usr/lib32' --disable-static
+  make
+}
+
+package() {
+  cd libndp-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/{bin,include,share}
+}
+
+# vim: ts=2 sw=2 et:

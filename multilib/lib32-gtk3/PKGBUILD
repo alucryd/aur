@@ -18,7 +18,7 @@ depends=("gtk3=${pkgver}" 'lib32-at-spi2-atk' 'lib32-atk' 'lib32-cairo'
 makedepends=('gcc-multilib' 'gobject-introspection')
 install='gtk3.install'
 source=("http://ftp.gnome.org/pub/gnome/sources/gtk+/${pkgver:0:4}/gtk+-$pkgver.tar.xz")
-sha256sums=('0d6d8f9f79132b3b47475d047b369b1c')
+sha256sums=('68d6b57d15c16808d0045e96b303f3dd439cc22a9c06fdffb07025cd713a82bc')
 
 build() {
   cd gtk+-${pkgver}
@@ -39,7 +39,7 @@ package() {
 
   make DESTDIR="${pkgdir}" install
   mv "${pkgdir}"/usr/bin/gtk-query-immodules-3.0{,-32}
-  rm "${pkgdir}"/usr/bin/{broadwayd,gtk-launch,gtk3-{demo,demo-application,widget-factory}}
+  rm "${pkgdir}"/usr/bin/{broadwayd,gtk-{encode-symbolic-svg,launch},gtk3-{demo,demo-application,icon-browser,widget-factory}}
   rm -rf "${pkgdir}"/{etc,usr/{include,share}}
 }
 
