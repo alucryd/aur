@@ -12,9 +12,9 @@ pkgdesc="Not Erik's Windowing Toolkit - text mode windowing with slang"
 arch=('x86_64')
 url='https://fedorahosted.org/newt/'
 license=('GPL')
-depends=('lib32-slang' 'lib32-popt' "libnewt=${pkgver}")
+depends=('lib32-popt' 'lib32-slang' "libnewt=${pkgver}")
 makedepends=('gcc-multilib' 'lib32-tcl')
-optdepends=('lib32-tcl')
+optdepends=('lib32-tcl: whiptcl support')
 options=('!makeflags')
 source=("https://fedorahosted.org/releases/n/e/newt/newt-$pkgver.tar.gz")
 sha256sums=('69837973ef2ee2fa644426f1c3e48d2b18785ebcd382ef7fd01eb2e67d2d632b')

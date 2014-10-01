@@ -9,13 +9,11 @@ pkgdesc='GObject-based multi-platform GUI toolkit (v3)'
 arch=('x86_64')
 license=('LGPL')
 url='http://www.gtk.org/'
-depends=("gtk3=${pkgver}" 'lib32-at-spi2-atk' 'lib32-atk' 'lib32-cairo'
-         'lib32-colord' 'lib32-libcups' 'lib32-fontconfig' 'lib32-gdk-pixbuf2'
-         'lib32-glib2' 'lib32-json-glib' 'lib32-pango' 'lib32-rest'
-         'lib32-libxcomposite' 'lib32-libxcursor' 'lib32-libxdamage'
-         'lib32-libxi' 'lib32-libxinerama' 'lib32-libxkbcommon'
-         'lib32-libxrandr' 'lib32-wayland')
-makedepends=('gcc-multilib' 'gobject-introspection')
+depends=("gtk3=${pkgver}" 'lib32-at-spi2-atk' 'lib32-colord' 'lib32-libcups'
+         'lib32-gdk-pixbuf2' 'lib32-json-glib' 'lib32-pango' 'lib32-rest'
+         'lib32-libxcomposite' 'lib32-libxcursor' 'lib32-libxinerama'
+         'lib32-libxkbcommon' 'lib32-libxrandr')
+makedepends=('gcc-multilib' 'gobject-introspection' 'python2')
 install='gtk3.install'
 source=("http://ftp.gnome.org/pub/gnome/sources/gtk+/${pkgver:0:4}/gtk+-$pkgver.tar.xz")
 sha256sums=('68d6b57d15c16808d0045e96b303f3dd439cc22a9c06fdffb07025cd713a82bc')

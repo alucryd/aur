@@ -1,10 +1,4 @@
-arch=('x86_64')
 pkgname=('lib32-pam')
 builddeps=('lib32-cracklib' 'lib32-flex' 'lib32-libtirpc')
-
-build () {
-    shift
-    ionice -c 3 chrt -b 0 sudo multilib-build -- $*
-}
 
 # vim: ts=2 sw=2 et:

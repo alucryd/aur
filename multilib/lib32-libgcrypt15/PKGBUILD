@@ -9,7 +9,7 @@ pkgdesc='General purpose cryptographic library based on the code from GnuPG'
 arch=('x86_64')
 url='http://www.gnupg.org'
 license=('LGPL')
-depends=('lib32-libgpg-error>=1.10-2')
+depends=('lib32-libgpg-error')
 makedepends=('gcc-multilib' 'libtool-multilib')
 source=("ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-${pkgver}.tar.bz2")
 sha256sums=('bcf5334e7da352c45de6aec5d2084ce9a1d30029ff4a4a5da13f1848874759d1')

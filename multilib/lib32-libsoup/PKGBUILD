@@ -9,8 +9,10 @@ pkgdesc='GNOME HTTP Library'
 arch=('x86_64')
 url='http://www.gnome.org'
 license=('LGPL')
-depends=('lib32-glib2' 'lib32-libxml2' 'lib32-sqlite' "libsoup=${pkgver}")
-makedepends=('gcc-multilib' 'gobject-introspection' 'intltool' 'python2')
+depends=('lib32-glib-networking' 'lib32-libxml2' 'lib32-sqlite'
+         "libsoup=${pkgver}")
+makedepends=('gcc-multilib' 'gobject-introspection' 'intltool' 'python2'
+             'python')
 conflicts=('lib32-libsoup-gnome')
 replaces=('lib32-libsoup-gnome')
 options=('!emptydirs')

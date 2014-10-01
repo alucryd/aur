@@ -9,8 +9,8 @@ pkgdesc='GLib wrapper around libusb1'
 arch=('x86_64')
 url='https://gitorious.org/gusb/'
 license=('LGPL2.1')
-depends=('lib32-libusb' 'lib32-systemd' "libgusb=${pkgver}")
-makedepends=('gcc-multilib' 'gobject-introspection')
+depends=('lib32-libusb' "libgusb=${pkgver}")
+makedepends=('gcc-multilib' 'gobject-introspection' 'python2')
 source=("http://people.freedesktop.org/~hughsient/releases/libgusb-${pkgver}.tar.xz")
 sha256sums=('900103ff24a851ef8395b992236ced0aedb4c265ef2264f6ad8349300095198b')
 
@@ -21,7 +21,7 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --libdir='/usr/lib32'  --disable-static
+  ./configure --prefix='/usr' --libdir='/usr/lib32' --disable-static
   make
 }
 

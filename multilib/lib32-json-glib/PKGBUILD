@@ -9,7 +9,7 @@ arch=('x86_64')
 url='http://live.gnome.org/JsonGlib'
 license=('GPL')
 depends=("json-glib=${pkgver}" 'lib32-glib2')
-makedepends=('gobject-introspection')
+makedepends=('gobject-introspection' 'python2')
 source=("http://ftp.gnome.org/pub/GNOME/sources/json-glib/${pkgver%.*}/json-glib-${pkgver}.tar.xz")
 sha256sums=('887bd192da8f5edc53b490ec51bf3ffebd958a671f5963e4f3af32c22e35660a')
 

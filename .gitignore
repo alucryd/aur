@@ -1,6 +1,8 @@
+*.asc
 *.gem
 *.log
 *.pkg.tar.xz
+*.run
 *.src.tar.gz
 *.sig
 *.swp
@@ -14,4 +16,6 @@ pkg/
 srcpkg/
 log/
 community/
+*/*/nvidia
+*/*/vboxhost
 */*/*/

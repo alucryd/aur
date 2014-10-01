@@ -8,8 +8,8 @@ pkgdesc='Dynamic library to access udev device information (legacy)'
 arch=('i686' 'x86_64')
 url='https://www.kernel.org/pub/linux/utils/kernel/hotplug/udev/udev.html'
 license=('GPL')
-depends=('lib32-glibc' "libudev0=${pkgver}")
-makedepends=('gcc-multilib' 'gperf' 'lib32-kmod')
+depends=('lib32-glibc')
+makedepends=('gcc-multilib' 'gperf' 'lib32-kmod' 'lib32-util-linux' 'usbutils')
 source=("https://www.kernel.org/pub/linux/utils/kernel/hotplug/udev-${pkgver}.tar.xz")
 sha256sums=('adb8892f3b8e4b7163703ed4a545774721a3d55a1062de001f08c477c03d97ab')
 

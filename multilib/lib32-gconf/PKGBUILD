@@ -8,9 +8,8 @@ pkgdesc='A configuration database system'
 arch=('x86_64')
 license=('LGPL')
 url='http://www.gnome.org'
-depends=("gconf=${pkgver}" 'lib32-libxml2' 'lib32-polkit' 'lib32-libldap'
-         'lib32-dbus-glib' 'lib32-gtk3')
-makedepends=('gcc-multilib' 'gobject-introspection' 'intltool')
+depends=("gconf=${pkgver}" 'lib32-dbus-glib' 'lib32-gtk3')
+makedepends=('gcc-multilib' 'gobject-introspection' 'intltool' 'python2')
 install='gconf.install'
 source=("http://ftp.gnome.org/pub/gnome/sources/GConf/3.2/GConf-${pkgver}.tar.xz"
         'gconf-reload.patch'
@@ -37,7 +36,7 @@ build() {
   ./configure --prefix='/usr' --libdir='/usr/lib32' \
               --libexecdir='/usr/lib32/GConf' --sysconfdir='/etc' \
               --localstatedir='/var' --enable-defaults-service \
-              --disable-{gtk-doc,orbit,static} --with-gtk=3.0
+              --disable-{gtk-doc,orbit,static} --with-gtk='3.0'
 
   make pkglibdir=/usr/lib32/GConf
 }

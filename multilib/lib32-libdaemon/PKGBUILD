@@ -7,15 +7,16 @@ pkgver=0.14
 pkgrel=3
 pkgdesc='A lightweight C library which eases the writing of UNIX daemons'
 arch=('x86_64')
-url="http://0pointer.de/lennart/projects/${pkgname#*-}/"
+url='http://0pointer.de/lennart/projects/libdaemon/'
 license=('LGPL')
-depends=('lib32-glibc' "${pkgname#*-}=${pkgver}")
+depends=('lib32-glibc' "libdaemon=${pkgver}")
 makedepends=('gcc-multilib')
-source=("${url}/${pkgname#*-}-${pkgver}.tar.gz")
+#source=("http://0pointer.de/lennart/projects/libdaemon/libdaemon-${pkgver}.tar.gz")
+source=("http://pkgs.fedoraproject.org/repo/pkgs/libdaemon/libdaemon-${pkgver}.tar.gz/509dc27107c21bcd9fbf2f95f5669563/libdaemon-${pkgver}.tar.gz")
 sha256sums=('fd23eb5f6f986dcc7e708307355ba3289abe03cc381fc47a80bca4a50aa6b834')
 
 build() {
-  cd ${pkgname#*-}-${pkgver}
+  cd libdaemon-${pkgver}
 
   export CC='gcc -m32'
   export CXX='g++ -m32'
@@ -27,10 +28,10 @@ build() {
 }
 
 package() {
-  cd ${pkgname#*-}-${pkgver}
+  cd libdaemon-${pkgver}
 
   make DESTDIR="${pkgdir}" install
-  rm -rf ${pkgdir}/usr/{include,share}
+  rm -rf "${pkgdir}"/usr/{include,share}
 }
 
 # vim: ts=2 sw=2 et:

@@ -7,14 +7,14 @@
 pkgname=lib32-colord
 pkgver=1.2.3
 pkgrel=1
-pkgdesc='System daemon for managing color devices (32-bit)'
+pkgdesc='System daemon for managing color devices'
 arch=('x86_64')
 url='http://www.freedesktop.org/software/colord'
 license=('GPL2')
-depends=("colord=${pkgver}" 'lib32-dbus' 'lib32-dconf' 'lib32-glib2'
-         'lib32-libgusb' 'lib32-lcms2' 'lib32-polkit' 'lib32-sqlite'
-         'lib32-systemd')
-makedepends=('gcc-multilib' 'gobject-introspection' 'intltool' 'vala')
+depends=("colord=${pkgver}" 'lib32-dconf' 'lib32-libgusb' 'lib32-lcms2'
+         'lib32-polkit' 'lib32-sqlite')
+makedepends=('gcc-multilib' 'gobject-introspection' 'intltool' 'python2'
+             'vala')
 source=("http://www.freedesktop.org/software/colord/releases/colord-${pkgver}.tar.xz")
 sha256sums=('2091fcca19d049136644e9dc6d56849b0e29d441a81a955d8f0e8135163474fc')
 

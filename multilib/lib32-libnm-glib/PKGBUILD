@@ -1,6 +1,6 @@
-# $Id$
-# Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
-# Maintainer: Jan de Groot <jgc@archlinxu.org>
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+# Contributor: Jan de Groot <jgc@archlinxu.org>
 # Contributor: Wael Nasreddine <gandalf@siemens-mobiles.org>
 # Contributor: Tor Krill <tor@krill.nu>
 # Contributor: Will Rea <sillywilly@gmail.com>
@@ -13,12 +13,11 @@ pkgdesc='NetworkManager library'
 arch=('x86_64')
 url='http://www.gnome.org/projects/NetworkManager/'
 license=('GPL2' 'LGPL2.1')
-depends=('lib32-dbus-glib' 'lib32-systemd' 'lib32-nss'
-         "libnm-glib")
+depends=('lib32-dbus-glib' 'lib32-systemd' 'lib32-nss')
 makedepends=('dhcpcd' 'dhclient' 'dhcp-client' 'gobject-introspection'
              'intltool' 'iproute2' 'iptables' 'lib32-libmm-glib' 'lib32-libndp'
              'lib32-libnewt' 'lib32-libnl' 'lib32-polkit' 'lib32-libsoup'
-             'lib32-libteam' 'modemmanager' 'ppp' 'rp-pppoe' 'vala'
+             'lib32-libteam' 'modemmanager' 'ppp' 'python2' 'rp-pppoe' 'vala'
              'wpa_supplicant')
 source=("http://ftp.gnome.org/pub/gnome/sources/NetworkManager/${pkgver%.*.*}/NetworkManager-${pkgver}.tar.xz"
         'disable_set_hostname.patch'
@@ -48,7 +47,7 @@ build() {
               --with-dhcpcd='/usr/bin/dhcpcd' \
               --with-dnsmasq='/usr/bin/dnsmasq' \
               --with-iptables='/usr/bin/iptables' \
-              --with-systemdsystemunitdir='/usr/lib32/systemd/system' \
+              --with-systemdsystemunitdir='/usr/lib/systemd/system' \
               --with-udev-dir='/usr/lib/udev' \
               --with-resolvconf='/usr/bin/resolvconf' \
               --with-pppd='/usr/bin/pppd' \

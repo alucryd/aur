@@ -1,10 +1,4 @@
-arch=('x86_64')
 pkgname=('lib32-polkit')
-builddeps=('lib32-js17' 'lib32-pam')
-
-build () {
-    shift
-    ionice -c 3 chrt -b 0 sudo multilib-build -- $*
-}
+builddeps=('lib32-js17' 'lib32-cracklib' 'lib32-libtirpc' 'lib32-pam')
 
 # vim: ts=2 sw=2 et:

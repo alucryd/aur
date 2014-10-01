@@ -9,7 +9,7 @@ arch=('x86_64')
 url='http://www.freedesktop.org/wiki/Software/libqmi/'
 license=('GPL2')
 depends=('lib32-glib2' "libqmi=${pkgver}")
-makedepends=('gcc-multilib')
+makedepends=('gcc-multilib' 'python')
 source=("http://www.freedesktop.org/software/libqmi/libqmi-${pkgver}.tar.xz")
 sha256sums=('0d70b10810e45aebb4af902db59972d756441ca1e301240c5c529ef0f08bf80f')
 
