@@ -1,13 +1,17 @@
 #!/bin/sh
 
-for repo in community pantheon unsupported personal; do
-  find $repo -type d -name pkg -exec rm -rf {} +
-  find $repo -type d -name src -exec rm -rf {} +
-  find $repo -type d -exec chmod 755 {} +
-  find $repo -type f -exec chmod 644 {} +
-  find $repo -name *.tar.xz -delete
-  find $repo -name *.tar.xz.sig -delete
-  find $repo -name *.log -delete
+for repo in community multilib pantheon personal unsupported; do
+  # Clean build files
+  find $repo -maxdepth 3 -type d -name pkg -exec rm -rf {} +
+  find $repo -maxdepth 3 -type d -name src -exec rm -rf {} +
+  find $repo -maxdepth 3 -name *.pkg.tar.xz -delete
+  # Clean sources
+  find $repo -maxdepth 3 -name *.tar.bz2 -delete
+  find $repo -maxdepth 3 -name *.tar.gz -delete
+  find $repo -maxdepth 3 -name *.tar.xz -delete
+  # Correct permissions
+  find $repo -maxdepth 3 -type d -exec chmod 755 {} +
+  find $repo -maxdepth 3 -type f -exec chmod 644 {} +
 done
 
 # vim: ts=2 sw=2 et:
