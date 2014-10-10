@@ -7,7 +7,7 @@
 # Contributor: Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
 
 pkgname=kodi-devel
-pkgver=14.0a3
+pkgver=14.0a4
 pkgrel=1
 pkgdesc='kodi Entertainment Center'
 arch=('i686' 'x86_64')
@@ -39,7 +39,7 @@ provides=('xbmc')
 conflicts=('xbmc')
 install="${pkgname%-*}.install"
 source=("kodi-$pkgver.tar.gz::https://github.com/xbmc/xbmc/archive/${pkgver}-Helix.tar.gz")
-sha256sums=('857a6d2f0d0ee59404931b1d0701ed9d5d6cc01ecf3438273fd1e87ee1802995')
+sha256sums=('37aa242d74b6f74c52db05007a93eaf09842ad79c7acdc7d96a6fd30b9b83f62')
 
 prepare() {
   cd xbmc-${pkgver}-Helix

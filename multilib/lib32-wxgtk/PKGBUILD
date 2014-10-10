@@ -2,8 +2,8 @@
 # Contributor: Eric Bélanger <eric@archlinux.org>
 
 pkgname=lib32-wxgtk
-pkgver=3.0.1
-pkgrel=4
+pkgver=3.0.2
+pkgrel=1
 pkgdesc='GTK+ implementation of wxWidgets API for GUI'
 arch=('x86_64')
 url='http://wxwidgets.org'
@@ -13,7 +13,7 @@ makedepends=('gcc-multilib' 'lib32-glu')
 options=('!emptydirs')
 source=("http://downloads.sourceforge.net/wxwindows/wxWidgets-${pkgver}.tar.bz2"
         'wxGTK-collision.patch')
-sha256sums=('bd671b79ec56af8fb3844e11cafceac1a4276fb02c79404d06b91b6c19d2c5f5'
+sha256sums=('346879dc554f3ab8d6da2704f651ecb504a22e9d31c17ef5449b129ed711585d'
             'f383c1918932ce3642c3505999a3f2257a6f987fc8fb32d160951b1f3fa60bb5')
 
 prepare() {
