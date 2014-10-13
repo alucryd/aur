@@ -24,7 +24,7 @@ source=('plexmediaserver.conf.d'
         'terms.txt')
 sha256sums=('a82829854ab8e780f7686a9e65d36c8cf6900d6c3471176e0f2aae8f5a024a19'
             '88956c678b54fd92d0568088efb8982d63e9e80ff1629849d95352055bcb5b8a'
-            'd0d5c815401300da0f3b82051651af1c2683df5b980f1cbd891f774ab04ac262'
+            'b55368f164da76696215153a7a2d880097f1e3ccdba9faf5a3690706407eb7bb'
             '7bb97271eb2dc5d1dcb95f9763f505970d234df17f1b8d79b467b9020257915a')
 
 if [[ $CARCH == x86_64 ]]; then
