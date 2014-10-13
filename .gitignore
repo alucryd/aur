@@ -1,7 +1,9 @@
 *.asc
+*.deb
 *.gem
 *.log
 *.pkg.tar.xz
+*.rpm
 *.run
 *.src.tar.gz
 *.sig
@@ -10,7 +12,6 @@
 *.tar.gz
 *.tar.xz
 *.tgz
-*.txt
 src/
 pkg/
 srcpkg/
