@@ -8,11 +8,19 @@ pkgrel=1
 arch=('i686' 'x86_64')
 url='http://vba-m.com'
 license=('GPL2')
-makedepends=('cairo' 'chrpath' 'cmake' 'desktop-file-utils' 'ffmpeg-compat' 'gtkglextmm'
-             'imagemagick' 'openal' 'subversion' 'wxgtk2.8' 'zip')
+makedepends=('cairo' 'chrpath' 'cmake' 'desktop-file-utils' 'ffmpeg-compat'
+             'gtkglextmm' 'imagemagick' 'openal' 'subversion' 'wxgtk2.8' 'zip')
 [[ $CARCH == i686 ]] && makedepends+=('nasm')
-source=("vbam::svn://svn.code.sf.net/p/vbam/code/trunk")
-sha256sums=('SKIP')
+source=("vbam::svn://svn.code.sf.net/p/vbam/code/trunk"
+        'http://downloads.sourceforge.net/sfml/SFML-1.6-sdk-linux-64.tar.gz'
+        'http://www.lonesock.net/files/soil.zip'
+        'sfml.patch'
+        'soil.patch')
+sha256sums=('SKIP'
+            '05bdc32286ab2ec8cb1ccdafe53f31830284e09e11ebfc3ab3836c99a0d9654b'
+            'a2305b8d64f6d636e36d669bbdb0ca5445d1345c754b3d61d3f037dad2e5f701'
+            'c3c2fc48f4edc303ad24d91583a57aef9b7ca3b78de1d6734cb666745fff9bad'
+            '65705aeef90667bd4e28dd03ac0b43685470f2925b642637b7ff6e2f3acd34c7')
 
 pkgver() {
   cd vbam
@@ -21,6 +29,9 @@ pkgver() {
 }
 
 prepare() {
+  patch -Np0 -i soil.patch
+  patch -Np0 -i sfml.patch
+
   cd vbam
 
   sed 's/wxrc/wxrc-2.8/g' -i {po/update_pot.sh,src/wx/CMakeLists.txt}
@@ -28,6 +39,16 @@ prepare() {
 }
 
 build() {
+  pushd 'Simple OpenGL Image Library/src'
+  make -f "../projects/makefile/alternate Makefile.txt"
+  make -f "../projects/makefile/alternate Makefile.txt" DESTDIR="${srcdir}/staging" install
+  popd
+
+  pushd SFML-1.6
+  make
+  make DESTDIR="${srcdir}/staging/usr" install
+  popd
+
   cd vbam
 
   if [[ -d build ]]; then
@@ -36,20 +57,27 @@ build() {
   mkdir build && cd build
 
   export PKG_CONFIG_PATH='/usr/lib/ffmpeg-compat/pkgconfig'
+  local _cmakeargs="-DCMAKE_INSTALL_PREFIX='/usr' \
+                    -DCMAKE_CXX_FLAGS=-I${srcdir}/staging/usr/include \
+                    -DCMAKE_EXE_LINKER_FLAGS='-L/usr/lib/ffmpeg-compat' \
+                    -DENABLE_FFMPEG='TRUE' -DENABLE_LINK='TRUE' \
+                    -DENABLE_GTK='TRUE' -DENABLE_WX='TRUE' \
+                    -DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config-2.8' \
+                    -DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc-2.8'
+                    -DSFML_INCLUDE_DIR=${srcdir}/staging/usr/include/SFML \
+                    -DSFML_AUDIO_INCLUDE_DIR=${srcdir}/staging/usr/include/SFML/Audio \
+                    -DSFML_AUDIO_LIBRARY=${srcdir}/staging/usr/lib/libsfml-audio-s.a \
+                    -DSFML_GRAPHICS_INCLUDE_DIR=${srcdir}/staging/usr/include/SFML/Graphics \
+                    -DSFML_GRAPHICS_LIBRARY=${srcdir}/staging/usr/lib/libsfml-graphics-s.a \
+                    -DSFML_NETWORK_INCLUDE_DIR=${srcdir}/staging/usr/include/SFML/Network \
+                    -DSFML_NETWORK_LIBRARY=${srcdir}/staging/usr/lib/libsfml-network-s.a \
+                    -DSFML_SYSTEM_INCLUDE_DIR=${srcdir}/staging/usr/include/SFML/System \
+                    -DSFML_SYSTEM_LIBRARY=${srcdir}/staging/usr/lib/libsfml-system-s.a"
 
   if [[ $CARCH == i686 ]]; then
-    cmake .. -DCMAKE_INSTALL_PREFIX='/usr' \
-             -DCMAKE_EXE_LINKER_FLAGS='-L/usr/lib/ffmpeg-compat' \
-             -DENABLE_{FFMPEG,GTK,WX}='TRUE' \
-             -DENABLE_ASM_{CORE,SCALERS}='TRUE' \
-             -DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config-2.8' \
-             -DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc-2.8'
+    cmake .. ${_cmakeargs} -DENABLE_ASM_{CORE,SCALERS}='TRUE'
   else
-    cmake .. -DCMAKE_INSTALL_PREFIX='/usr' \
-             -DCMAKE_EXE_LINKER_FLAGS='-L/usr/lib/ffmpeg-compat' \
-             -DENABLE_{FFMPEG,GTK,WX}='TRUE' \
-             -DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config-2.8' \
-             -DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc-2.8'
+    cmake .. ${_cmakeargs}
   fi
   make
 }

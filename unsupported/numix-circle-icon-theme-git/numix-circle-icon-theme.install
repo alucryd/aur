@@ -1,5 +1,6 @@
 post-install() {
   gtk-update-icon-cache -ftq usr/share/icons/Numix-Circle
+  gtk-update-icon-cache -ftq usr/share/icons/Numix-Circle-Light
 }
 
 post-upgrade() {

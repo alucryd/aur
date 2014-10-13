@@ -9,6 +9,8 @@ for repo in community multilib pantheon personal unsupported; do
   find $repo -maxdepth 3 -name *.tar.bz2 -delete
   find $repo -maxdepth 3 -name *.tar.gz -delete
   find $repo -maxdepth 3 -name *.tar.xz -delete
+  find $repo -maxdepth 3 -name *.deb -delete
+  find $repo -maxdepth 3 -name *.rpm -delete
   # Correct permissions
   find $repo -maxdepth 3 -type d -exec chmod 755 {} +
   find $repo -maxdepth 3 -type f -exec chmod 644 {} +

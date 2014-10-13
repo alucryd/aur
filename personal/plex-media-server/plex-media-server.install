@@ -1,0 +1,16 @@
+post_install() {
+  getent group lightdm > /dev/null 2>&1 || groupadd -g 421 plex
+  getent passwd lightdm > /dev/null 2>&1 || useradd -c 'Plex User' -u 421 -g plex -d /var/lib/plex -s /usr/bin/nologin plex
+  passwd -l plex > /dev/null
+}
+
+post_upgrade() {
+  post_install
+}
+
+post_remove() {
+  getent passwd plex > /dev/null 2>&1 && userdel plex
+  getent group plex > /dev/null 2>&1 && groupdel plex
+}
+
+# vim: ts=2 sw=2 et:
