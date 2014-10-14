@@ -9,12 +9,13 @@
 pkgname=plex-media-server
 pkgver=0.9.9.14.531
 _pkgsum=7eef8c6
-pkgrel=1
+pkgrel=2
 pkgdesc='Plex Media Server'
 arch=('i686' 'x86_64')
 url='https://plex.tv/'
 license=('custom')
 depends=('systemd')
+replaces=('plexmediaserver')
 conflicts=('plexmediaserver' 'plexmediaserver-plexpass')
 backup=('etc/conf.d/plexmediaserver')
 install='plex-media-server.install'
