@@ -1,0 +1,41 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Maintainer: Piotr Rogoża <rogoza.piotr@gmail.com>
+# Contributor: Jaroslav Lichtblau <dragonlord@aur.archlinux.org>
+# Contributor: Sergei Lebedev <superbobry@gmail.com>
+
+pkgname=rutorrent
+pkgver=3.6
+pkgrel=3
+pkgdesc='Yet another web front-end for rTorrent'
+arch=('any')
+url='https://github.com/Novik/ruTorrent'
+license=('GPL')
+depends=('coreutils' 'curl' 'gzip' 'php')
+backup=('etc/webapps/rutorrent/config.php'
+        'etc/webapps/rutorrent/access.ini'
+        'etc/webapps/rutorrent/plugins.ini')
+source=("https://github.com/Novik/ruTorrent/archive/rutorrent.tar.gz"
+        "https://github.com/Novik/ruTorrent/archive/plugins.tar.gz")
+sha256sums=('4bb91c814f0c43883b7c8f996d3d8887368a38072040699b31df7c26aedad392'
+            '887fa263a7325806ecbcf864843d0db1a4d89e2f3f5c9cc9ce2a74c23d805fa5')
+
+package() {
+  cd ruTorrent-rutorrent
+
+  install -dm 755 "${pkgdir}"/{etc,usr/share}/webapps
+  cp -dr --no-preserve='ownership' ${pkgver} "${pkgdir}"/usr/share/webapps/rutorrent
+  mv "${pkgdir}"/usr/share/webapps/rutorrent/conf "${pkgdir}"/etc/webapps/rutorrent
+
+  cd ../ruTorrent-plugins
+
+  install -dm 755 "${pkgdir}"/usr/share/webapps/rutorrent/plugins
+  for p in $(find -type d -name ${pkgver} | sed "s|\./\(.*\)/${pkgver}|\1|g"); do
+    cp -dr --no-preserve='ownership' ${p}/${pkgver} "${pkgdir}"/usr/share/webapps/rutorrent/plugins/${p}
+  done
+
+  ln -s /etc/webapps/rutorrent "${pkgdir}"/usr/share/webapps/rutorrent/conf
+
+  chown http:http -R "${pkgdir}"/usr/share/webapps/rutorrent
+}
+
+# vim: ts=2 sw=2 et:

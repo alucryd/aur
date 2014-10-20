@@ -32,14 +32,16 @@ prepare() {
 build() {
   cd libappindicator-${pkgver}
 
+  export CFLAGS="$CFLAGS -Wno-deprecated-declarations"
+
   ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' \
-              --disable-{static,tests} --with-gtk='3'
+              --disable-{gtk-doc-html,mono-test,static,tests} --with-gtk='3'
   make -j1
 
   cd ../libappindicator-gtk2-${pkgver}
 
   ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' \
-              --disable-{gtk-doc-html,static,tests}
+              --disable-{gtk-doc-html,mono-test,static,tests}
   make -j1
 }
 
