@@ -10,7 +10,7 @@ arch=('i686' 'x86_64')
 url='http://www.vapoursynth.com/'
 license=('LGPL2.1' 'custom:OFL')
 depends=('ffmpeg' 'python' 'tesseract')
-makedepends=('cython' 'git' 'python-sphinx' 'waf' 'yasm')
+makedepends=('cython' 'git' 'python-sphinx' 'yasm')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=('git+https://github.com/vapoursynth/vapoursynth.git')
@@ -25,15 +25,16 @@ pkgver() {
 build() {
   cd ${pkgname%-*}
 
-  waf configure --prefix='/usr' --enable-examples
-  waf build $MAKEFLAGS
+  ./bootstrap.py
+  ./waf configure --prefix='/usr' --enable-examples
+  ./waf build $MAKEFLAGS
   python setup.py build
 }
 
 package() {
   cd ${pkgname%-*}
 
-  waf install --destdir="${pkgdir}"
+  ./waf install --destdir="${pkgdir}"
   python setup.py install --root="${pkgdir}" --optimize='1'
 
   install -dm 755 "${pkgdir}"/usr/share/licenses/${pkgname}
