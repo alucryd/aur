@@ -1,5 +1,6 @@
 post-install() {
   gtk-update-icon-cache -ftq usr/share/icons/Numix
+  gtk-update-icon-cache -ftq usr/share/icons/Numix-Light
 }
 
 post-upgrade() {
