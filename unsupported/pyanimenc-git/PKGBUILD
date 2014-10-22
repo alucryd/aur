@@ -8,6 +8,7 @@ arch=('any')
 url='https://github.com/alucryd/pyanimenc'
 license=('GPL3')
 depends=('ffms2' 'python-gobject' 'python-lxml' 'python-setuptools' 'vapoursynth')
+makedepends=('git')
 optdepends=('fdkaac: fdkaac encoder'
             'lame: lame encoder'
             'vapoursynth-plugin-flash3kyuu_deband-git: f3kdb deband filter'
