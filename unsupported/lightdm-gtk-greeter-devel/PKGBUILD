@@ -1,0 +1,35 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Padfoot <padfoot@exemail.com.au>
+
+pkgname=lightdm-gtk-greeter-devel
+pkgver=1.9.0
+pkgrel=1
+pkgdesc='GTK+ greeter for LightDM'
+arch=('i686' 'x86_64')
+url='https://launchpad.net/lightdm-gtk-greeter'
+license=('GPL3' 'LGPL3')
+depends=('gtk3' 'lightdm')
+makedepends=('gnome-doc-utils' 'gobject-introspection' 'intltool')
+provides=('lightdm-gtk-greeter')
+conflicts=('lightdm-gtk-greeter')
+backup=('etc/lightdm/lightdm-gtk-greeter.conf')
+install='lightdm-gtk-greeter.install'
+source=("https://launchpad.net/lightdm-gtk-greeter/${pkgver%.?}/${pkgver}/+download/lightdm-gtk-greeter-${pkgver}.tar.gz")
+sha256sums=('a9103b4aa161feae99a2a62b716a157cde3817e93cee7f73cde2796a12396938')
+
+build() {
+  cd lightdm-gtk-greeter-${pkgver}
+
+  ./configure --prefix='/usr' --sbindir='/usr/bin' --sysconfdir='/etc' \
+              --libexecdir='/usr/lib/lightdm' --disable-static \
+              --with-libxklavier
+  make
+}
+
+package() {
+  cd lightdm-gtk-greeter-${pkgver}
+
+  make DESTDIR="${pkgdir}" install  
+}
+
+# vim: ts=2 sw=2 et:
