@@ -20,7 +20,11 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --sysconfdir='/etc' --libdir='/usr/lib32' --with-zlib
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --sysconfdir='/etc' \
+    --with-zlib
   make
 }
 

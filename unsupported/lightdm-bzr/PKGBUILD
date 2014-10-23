@@ -3,13 +3,34 @@
 # Contributor: pisuka <tekmon@gmail.com>
 
 pkgbase=lightdm-bzr
-pkgname="${pkgbase}"
-true && pkgname=('lightdm-bzr' 'liblightdm-qt4-bzr' 'liblightdm-qt5-bzr')
-pkgver=r1976
+pkgname=('lightdm-bzr' 'liblightdm-qt4-bzr' 'liblightdm-qt5-bzr')
+pkgver=r2087
 pkgrel=1
+pkgdesc='A lightweight display manager'
+arch=('i686' 'x86_64')
+url='https://launchpad.net/lightdm'
+license=('GPL3' 'LGPL3')
+makedepends=('bzr' 'gobject-introspection' 'gtk-doc' 'intltool' 'itstool'
+             'libxklavier' 'polkit' 'qt4' 'qt5-base' 'systemd' 'yelp-tools')
+source=('bzr+lp:lightdm'
+        'lightdm.service'
+        'lightdm.tmpfiles'
+        'lightdm.pam'
+        'lightdm-autologin.pam'
+        'lightdm.rules'
+        'lightdm-default-config.patch'
+        'Xsession')
+sha256sums=('SKIP'
+            '0d2adba25cdbe59e97ffd302083db9d5e23920780f41e04f64512cd6b633289a'
+            'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
+            'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
+            '33e3c3d6e16c8d30756754ea3f31f5457c5be0343686aad287692be34958984a'
+            'a89566307e1c81c24f037d854cbd472d2f94f8a4b759877a01563a332319f7d6'
+            'ed3dca57ef19d32499b72668bc78eaff0d9e772718b76f3816c5ee5f816b1891'
+            '7fb85a1b54406032a922e8fd6f45d869fcfe5681df630e74e8e50c040b786ee4')
 
 pkgver() {
-  cd ${pkgbase%-*}
+  cd lightdm
 
   printf "r%s" "$(bzr revno)"
 }
@@ -21,20 +42,30 @@ prepare() {
 }
 
 build() {
-  cd ${pkgbase%-*}
+  cd lightdm
 
   export MOC4='moc-qt4'
   export MOC5='moc-qt5'
-  ./autogen.sh --prefix='/usr' --sbindir='/usr/bin' --sysconfdir='/etc' --localstatedir='/var' --libexecdir="/usr/lib/${pkgbase%-*}" --with-greeter-user='lightdm' --with-greeter-session='lightdm-gtk-greeter' --disable-{static,tests}
+
+  ./autogen.sh \
+    --prefix='/usr' \
+    --libexecdir='/usr/lib/lightdm' \
+    --localstatedir='/var' \
+    --sbindir='/usr/bin' \
+    --sysconfdir='/etc' \
+    --with-greeter-session='lightdm-gtk-greeter' \
+    --with-greeter-user='lightdm' \
+    --disable-static \
+    --disable-tests
    make
 }
 
 package_lightdm-bzr() {
-depends=('libxklavier' 'pam' 'polkit' 'systemd')
+depends=('libxklavier' 'polkit' 'systemd')
 optdepends=('xorg-server-xephyr: LightDM test mode'
             'accountsservice: limit visible accounts')
-provides=("${pkgbase%-*}")
-conflicts=("${pkgbase%-*}")
+provides=('lightdm')
+conflicts=('lightdm')
 backup=('etc/apparmor.d/lightdm-guest-session'
         'etc/lightdm/keys.conf'
         'etc/lightdm/lightdm.conf'
@@ -43,9 +74,9 @@ backup=('etc/apparmor.d/lightdm-guest-session'
         'etc/pam.d/lightdm'
         'etc/pam.d/lightdm-autologin'
         'etc/pam.d/lightdm-greeter')
-install="${pkgbase%-*}.install"
+install='lightdm.install'
 
-  cd ${pkgbase%-*}
+  cd lightdm
 
   make DESTDIR="${pkgdir}" install
   make DESTDIR="${pkgdir}" -C liblightdm-qt uninstall
@@ -83,7 +114,7 @@ provides=('liblightdm-qt4')
 conflicts=('liblightdm-qt4')
 options=('!emptydirs')
 
-  cd ${pkgbase%-*}
+  cd lightdm
 
   make DESTDIR="${pkgdir}" -C liblightdm-gobject install
   make DESTDIR="${pkgdir}" -C liblightdm-qt install
@@ -100,7 +131,7 @@ provides=('liblightdm-qt5')
 conflicts=('liblightdm-qt5')
 options=('!emptydirs')
 
-  cd ${pkgbase%-*}
+  cd lightdm
 
   make DESTDIR="${pkgdir}" -C liblightdm-gobject install
   make DESTDIR="${pkgdir}" -C liblightdm-qt install
@@ -109,28 +140,5 @@ options=('!emptydirs')
   find "${pkgdir}" -type f  -name *qt[!5]* -exec rm {} +
   find "${pkgdir}" -type l  -name *qt[!5]* -exec rm {} +
 }
-
-pkgdesc='A lightweight display manager'
-arch=('i686' 'x86_64')
-url='https://launchpad.net/lightdm'
-license=('GPL3' 'LGPL3')
-makedepends=('gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'polkit' 'qt4' 'qt5-base' 'systemd')
-source=('bzr+lp:lightdm'
-        'lightdm.service'
-        'lightdm.tmpfiles'
-        'lightdm.pam'
-        'lightdm-autologin.pam'
-        'lightdm.rules'
-        'lightdm-default-config.patch'
-        'Xsession')
-
-sha256sums=('SKIP'
-            '0d2adba25cdbe59e97ffd302083db9d5e23920780f41e04f64512cd6b633289a'
-            'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
-            'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
-            '33e3c3d6e16c8d30756754ea3f31f5457c5be0343686aad287692be34958984a'
-            'a89566307e1c81c24f037d854cbd472d2f94f8a4b759877a01563a332319f7d6'
-            '20de3152b9ea037be1cbb9a32c052cb53d3362daf7c4ebd3d8669a1af0f13723'
-            '7fb85a1b54406032a922e8fd6f45d869fcfe5681df630e74e8e50c040b786ee4')
 
 # vim: ts=2 sw=2 et:

@@ -11,11 +11,11 @@ arch=('i686' 'x86_64')
 url='http://www.nvidia.com/'
 license=('custom')
 depends=('dkms' "nvidia-utils=${pkgver}")
-optdepends=('linux-headers: Build the module against Arch kernel'
-            'linux-lts-headers: Build the module against LTS Arch kernel')
-provides=("nvidia=${pkgver}" "nvidia-uvm=${pkgver}")
-conflicts=('nvidia' 'nvidia-304xx-dkms')
-install="${pkgname}.install"
+optdepends=('linux-headers: Build the module for Arch kernel'
+            'linux-lts-headers: Build the module for LTS Arch kernel')
+provides=('nvidia')
+conflicts=('nvidia')
+install='nvidia-dkms.install'
 source=("http://us.download.nvidia.com/XFree86/Linux-x86/${pkgver}/NVIDIA-Linux-x86-${pkgver}.run"
         "http://us.download.nvidia.com/XFree86/Linux-x86_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run"
         'linux3.18.patch')
@@ -43,14 +43,11 @@ package() {
   install -dm 755 "${pkgdir}"/usr/{lib/modprobe.d,share/licenses,src}
   cp -dr --no-preserve='ownership' kernel "${pkgdir}"/usr/src/nvidia-${pkgver}
 
-# Blacklist nouveau
-  echo "blacklist nouveau" > "${pkgdir}"/usr/lib/modprobe.d/nvidia.conf
-
-# UVM module
   cat "${pkgdir}"/usr/src/nvidia-${pkgver}/uvm/dkms.conf.fragment >> "${pkgdir}"/usr/src/nvidia-${pkgver}/dkms.conf
+  echo 'blacklist nouveau' > "${pkgdir}"/usr/lib/modprobe.d/nvidia.conf
 
-# License
-  ln -s nvidia "${pkgdir}"/usr/share/licenses/${pkgname}
+
+  ln -s nvidia "${pkgdir}"/usr/share/licenses/nvidia-dkms
 }
 
 # vim: ts=2 sw=2 et:

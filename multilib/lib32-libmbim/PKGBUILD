@@ -20,9 +20,15 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' \
-              --libdir='/usr/lib32' --libexecdir='/usr/lib32/libmbim' \
-              --disable-{gtk-doc-html,static} --without-python
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --libexecdir='/usr/lib32/libmbim' \
+    --localstatedir='/var' \
+    --sysconfdir='/etc' \
+    --disable-gtk-doc-html \
+    --disable-static \
+    --without-python
   make
 }
 

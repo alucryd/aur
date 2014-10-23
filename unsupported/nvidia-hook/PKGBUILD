@@ -8,7 +8,7 @@ url='https://github.com/alucryd/mkinitcpio-hooks'
 arch=('any')
 license=('GPL3')
 depends=('nvidia-dkms')
-install="${pkgname}.install"
+install='nvidia-hook.install'
 source=('https://raw.github.com/alucryd/mkinitcpio-hooks/master/nvidia')
 sha256sums=('d3cdc998faac6a8f835efb48b925758e5bb25cfa15e8f2f21430b46b9f880e26')
 

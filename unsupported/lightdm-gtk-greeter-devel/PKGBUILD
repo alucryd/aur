@@ -20,16 +20,20 @@ sha256sums=('a9103b4aa161feae99a2a62b716a157cde3817e93cee7f73cde2796a12396938')
 build() {
   cd lightdm-gtk-greeter-${pkgver}
 
-  ./configure --prefix='/usr' --sbindir='/usr/bin' --sysconfdir='/etc' \
-              --libexecdir='/usr/lib/lightdm' --disable-static \
-              --with-libxklavier
+  ./configure \
+    --prefix='/usr' \
+    --libexecdir='/usr/lib/lightdm' \
+    --sbindir='/usr/bin' \
+    --sysconfdir='/etc' \
+    --with-libxklavier \
+    --disable-static
   make
 }
 
 package() {
   cd lightdm-gtk-greeter-${pkgver}
 
-  make DESTDIR="${pkgdir}" install  
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

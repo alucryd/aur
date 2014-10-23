@@ -21,16 +21,21 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' \
-    --libdir='/usr/lib32' --libexecdir='/usr/lib32' --disable-static
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --libexecdir='/usr/lib32' \
+    --localstatedir='/var' \
+    --sysconfdir='/etc' \
+    --disable-static
     make
 }
 
 package() {
   cd libteam-${pkgver}
 
-  make DESTDIR="$pkgdir" install
-  rm -rf "$pkgdir"/{etc,usr/{bin,include,share}}
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/{etc,usr/{bin,include,share}}
 }
 
 # vim: ts=2 sw=2 et:

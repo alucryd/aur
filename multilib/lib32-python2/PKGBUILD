@@ -20,9 +20,9 @@ prepare() {
   cd Python-${pkgver}
 
   sed -i "/progname =/s/python/python${pkgver%.*}/" Python/pythonrun.c
-  sed -i "/SQLITE_OMIT_LOAD_EXTENSION/d" setup.py
-  sed -i "s|^#.* /usr/local/bin/python|#!/usr/bin/python2|" Lib/cgi.py
-  sed -i "s/python2.3/python2/g" Lib/distutils/tests/test_{build,install}_scripts.py
+  sed -i '/SQLITE_OMIT_LOAD_EXTENSION/d' setup.py
+  sed -i 's|^#.* /usr/local/bin/python|#!/usr/bin/python2|' Lib/cgi.py
+  sed -i 's/python2.3/python2/g' Lib/distutils/tests/test_{build,install}_scripts.py
   rm -r Modules/expat
   rm -r Modules/zlib
   rm -r Modules/_ctypes/{darwin,libffi}*
@@ -37,12 +37,16 @@ build() {
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
   export OPT="${CFLAGS}"
 
-  ./configure --prefix='/usr' --lib{,exec}dir='/usr/lib32' --enable-shared \
-              --with-system-{expat,ffi} --with-threads --enable-ipv6 \
-              --enable-unicode='ucs4' --with-dbmliborder=gdbm:ndbm
-
-  sed -i -e 's#$(prefix)/lib#$(prefix)/lib32#' Makefile
-
+  ./configure \
+    --prefix='/usr' \
+    --lib{,exec}dir='/usr/lib32' \
+    --enable-ipv6 \
+    --enable-unicode='ucs4' \
+    --enable-shared \
+    --with-dbmliborder='gdbm:ndbm' \
+    --with-system-{expat,ffi} \
+    --with-threads
+  sed -e 's#$(prefix)/lib#$(prefix)/lib32#' -i Makefile
   make
 }
 

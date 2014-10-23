@@ -13,9 +13,7 @@ source=('https://raw.github.com/alucryd/mkinitcpio-hooks/master/vboxhost')
 sha256sums=('6c5e321b6dac90ca6b7c7e45c842081762d140679bf186dcb948d65eb702bd15')
 
 package() {
-  cd "${srcdir}"
-
-  sed -i "s|_arch|$CARCH|" vboxhost
+  sed "s|_arch|$CARCH|" -i vboxhost
   install -dm 755 "${pkgdir}"/usr/lib/initcpio/install
   install -m 644 vboxhost "${pkgdir}"/usr/lib/initcpio/install/
 }

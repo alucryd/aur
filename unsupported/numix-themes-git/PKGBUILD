@@ -4,30 +4,30 @@
 pkgname=numix-themes-git
 pkgver=2.4.r2.5792629
 pkgrel=1
-pkgdesc="A flat and light theme with a modern look (GNOME, Openbox, Unity, Xfce)"
+pkgdesc='A flat and light theme with a modern look (GNOME, Openbox, Unity, Xfce)'
 arch=('any')
 url='http://numixproject.org/'
 license=('GPL3')
 depends=('gtk-engine-murrine')
 makedepends=('git')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::git+https://github.com/shimmerproject/Numix.git")
+provides=('numix-themes')
+conflicts=('numix-themes')
+source=('numix-themes::git+https://github.com/shimmerproject/Numix.git')
 md5sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd numix-themes
 
   #printf "%s" "$(git describe --tags | sed 's/^v//; s/-/.r/; s/-g/./')"
   printf "2.4.r%s.%s" "$(git rev-list --count v2.4..HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd numix-themes
 
-  install -dm 755 "$pkgdir"/usr/share/themes/Numix
+  install -dm 755 "${pkgdir}"/usr/share/themes/Numix
   rm -rf .git .gitignore CREDITS LICENSE README.md
-  cp -dr --no-preserve=ownership * "$pkgdir"/usr/share/themes/Numix/
+  cp -dr --no-preserve='ownership' * "${pkgdir}"/usr/share/themes/Numix/
 }
 
 # vim: ts=2 sw=2 et:

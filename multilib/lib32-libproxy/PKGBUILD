@@ -27,11 +27,15 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DLIB_SUFFIX='32' \
-           -DLIBEXEC_INSTALL_DIR='/usr/lib32/libproxy' \
-           -DCMAKE_SKIP_RPATH='TRUE' -DPERL_VENDORINSTALL='FALSE' \
-           -DCMAKE_CXX_FLAGS="$CXXFLAGS" -DCMAKE_C_FLAGS="${CFLAGS}" \
-           -DWITH_{GNOME3,MOZJS,NATUS,NM,KDE4,PERL,PYTHON,WEBKIT}='FALSE'
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_C_FLAGS="${CFLAGS}" \
+    -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
+    -DCMAKE_SKIP_RPATH='TRUE' \
+    -DLIBEXEC_INSTALL_DIR='/usr/lib32/libproxy' \
+    -DLIB_SUFFIX='32' \
+    -DPERL_VENDORINSTALL='FALSE' \
+    -DWITH_{GNOME3,MOZJS,NATUS,NM,KDE4,PERL,PYTHON,WEBKIT}='FALSE'
   make
 }
 

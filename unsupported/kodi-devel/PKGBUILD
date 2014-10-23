@@ -37,7 +37,7 @@ optdepends=('afpfs-ng: Apple shares support'
 replaces=('xbmc-devel')
 provides=('xbmc')
 conflicts=('xbmc')
-install="${pkgname%-*}.install"
+install='kodi.install'
 source=("kodi-$pkgver.tar.gz::https://github.com/xbmc/xbmc/archive/${pkgver}-Helix.tar.gz")
 sha256sums=('37aa242d74b6f74c52db05007a93eaf09842ad79c7acdc7d96a6fd30b9b83f62')
 
@@ -55,8 +55,12 @@ build() {
   export PYTHON_VERSION='2'
 
   ./bootstrap
-  ./configure --prefix='/usr' --exec-prefix='/usr' \
-              --disable-{debug,non-free,static}
+  ./configure \
+    --prefix='/usr' \
+    --exec-prefix='/usr' \
+    --disable-non-free \
+    --disable-debug \
+    --disable-static}
   make
 }
 

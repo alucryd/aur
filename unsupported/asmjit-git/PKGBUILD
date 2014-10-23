@@ -11,7 +11,7 @@ url='https://github.com/kobalicek/asmjit'
 license=('custom')
 depends=('gcc-libs')
 makedepends=('cmake' 'git')
-source=("git+${url}.git")
+source=("git+https://github.com/kobalicek/asmjit.git")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -37,7 +37,6 @@ package () {
 
   make install DESTDIR="$pkgdir"
 
-  # License
   install -dm 755 "${pkgdir}"/usr/share/licenses/${pkgname}
   install -m 644 ../LICENSE.md "${pkgdir}"/usr/share/licenses/${pkgname}
 }

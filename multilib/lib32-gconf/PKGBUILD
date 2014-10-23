@@ -33,10 +33,17 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --libdir='/usr/lib32' \
-              --libexecdir='/usr/lib32/GConf' --sysconfdir='/etc' \
-              --localstatedir='/var' --enable-defaults-service \
-              --disable-{gtk-doc,orbit,static} --with-gtk='3.0'
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --libexecdir='/usr/lib32/GConf' \
+    --sysconfdir='/etc' \
+    --localstatedir='/var' \
+    --enable-defaults-service \
+    --disable-gtk-doc-html \
+    --disable-orbit \
+    --disable-static \
+    --with-gtk='3.0'
 
   make pkglibdir=/usr/lib32/GConf
 }

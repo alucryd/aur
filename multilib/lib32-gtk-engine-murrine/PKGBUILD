@@ -9,7 +9,7 @@ pkgdesc='Murrine GTK2 engine'
 arch=('x86_64')
 url='http://cimitan.com/murrine/project/murrine'
 license=('GPL')
-depends=('lib32-gtk2' "gtk-engine-murrine=${pkgver}")
+depends=("gtk-engine-murrine=${pkgver}" 'lib32-gtk3')
 makedepends=('gcc-multilib' 'intltool' 'perl')
 source=("http://ftp.gnome.org/pub/GNOME/sources/murrine/0.98/murrine-${pkgver}.tar.xz") 
 sha256sums=('e9c68ae001b9130d0f9d1b311e8121a94e5c134b82553ba03971088e57d12c89')
@@ -21,7 +21,10 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --libdir='/usr/lib32' --enable-animation{,rtl}
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --enable-animation{,rtl}
   make
 }
 

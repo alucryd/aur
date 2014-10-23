@@ -9,26 +9,33 @@ url='https://github.com/the-cavalry/light-locker'
 license=('GPL2')
 depends=('dbus-glib' 'gtk3' 'libxss' 'libxxf86misc' 'lightdm')
 makedepends=('git' 'gnome-common' 'intltool')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("git+${url}.git")
+provides=('light-locker')
+conflicts=('light-locker')
+source=('git+https://github.com/the-cavalry/light-locker.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd light-locker
 
   printf "%s" "$(git describe --tags | sed 's/-/.r/; s/-g/./; s/^v//')"
 }
 
 build () {
-  cd ${pkgname%-*}
+  cd light-locker
 
-  ./autogen.sh --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' --disable-{schemas-compile,static} --with-{mit-ext,systemd,xf86gamma-ext,x} --without-{console-kit,upower}
+  ./autogen.sh \
+    --prefix='/usr' \
+    --localstatedir='/var' \
+    --sysconfdir='/etc' \
+    --disable-schemas-compile \
+    --disable-static \
+    --with-{mit-ext,systemd,xf86gamma-ext,x} \
+    --without-{console-kit,upower}
   make
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd light-locker
 
   make DESTDIR="${pkgdir}" install
 }

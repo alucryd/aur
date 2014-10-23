@@ -10,18 +10,18 @@ url='http://sourceforge.net/projects/cups-bjnp/'
 license=('GPL')
 depends=('libcups')
 makedepends=('cups')
-source=("http://downloads.sourceforge.net/sourceforge/${pkgname}/${pkgname}-${pkgver}.tar.gz")
+source=("http://downloads.sourceforge.net/sourceforge/cups-bjnp/cups-bjnp-${pkgver}.tar.gz")
 sha256sums=('2acb716680d66f1378cf8dcd45fedf7f72ccc9b66fa80214d6dcb042b5e3c9ab')
 
 build() {
-  cd ${pkgname}-${pkgver}
+  cd cups-bjnp-${pkgver}
 
   ./configure --prefix='/usr'
   make
 }
 
 package() {
-  cd ${pkgname}-${pkgver}
+  cd cups-bjnp-${pkgver}
 
   make DESTDIR="${pkgdir}" install
 }

@@ -16,25 +16,25 @@ optdepends=('fdkaac: fdkaac encoder'
             'vapoursynth-plugin-temporalsoften-git: TemporalSoften denoise filter'
             'x264: x264 and x264-10bit encoders'
             'x265: x265 encoder')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("git+${url}.git")
+provides=('pyanimenc')
+conflicts=('pyanimenc')
+source=('git+https://github.com/alucryd/pyanimenc.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd pyanimenc
 
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd pyanimenc
 
   python setup.py build
 }
 
 package(){
-  cd ${pkgname%-*}
+  cd pyanimenc
 
   python setup.py install --root="${pkgdir}" --optimize='1'
 }

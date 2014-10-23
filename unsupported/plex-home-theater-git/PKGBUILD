@@ -19,9 +19,9 @@ optdepends=('libplist: AirPlay support'
             'libshairport: AirPlay support'
             'libcec: Pulse-Eight USB-CEC adapter support'
             'pulseaudio: PulseAudio support')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::git+https://github.com/plexinc/plex-home-theater-public.git"
+provides=('plex-home-theater-git')
+conflicts=('plex-home-theater-git')
+source=('plex-home-theater::git+https://github.com/plexinc/plex-home-theater-public.git'
         'plex-ffmpeg-compat.patch'
         'plexhometheater.sh')
 sha256sums=('SKIP'
@@ -29,36 +29,40 @@ sha256sums=('SKIP'
             'dc6bd394c07a2ececbb2f8c53cb54afd5d78f7c00a0b34acab3e71217da085fb')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd plex-home-theater
 
   printf "%s" "$(git describe --tags | sed 's/pht-v//; s/-/.r/; s/-g/./')"
 }
 
 prepare() {
-  cd ${pkgname%-*}
+  cd plex-home-theater
 
   patch -Np1 -i ../plex-ffmpeg-compat.patch
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd plex-home-theater
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' \
-           -DCMAKE_C_FLAGS="$CMAKE_C_FLAGS -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include" \
-           -DCMAKE_CXX_FLAGS="$CMAKE_CXX_FLAGS -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include" \
-           -DENABLE_{AUTOUPDATE,DUMP_SYMBOLS}='FALSE' -DENABLE_PYTHON='TRUE' \
-           -DPYTHON_EXEC='/usr/bin/python2' -DUSE_INTERNAL_FFMPEG='FALSE' \
-           -DCREATE_BUNDLE='FALSE'
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_C_FLAGS="$CMAKE_C_FLAGS -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include" \
+    -DCMAKE_CXX_FLAGS="$CMAKE_CXX_FLAGS -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include" \
+    -DENABLE_DUMP_SYMBOLS='FALSE' \
+    -DENABLE_PYTHON='TRUE' \
+    -DPYTHON_EXEC='/usr/bin/python2' \
+    -DUSE_INTERNAL_FFMPEG='FALSE' \
+    -DENABLE_AUTOUPDATE='FALSE' \
+    -DCREATE_BUNDLE='FALSE'
   make
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd plex-home-theater/build
 
   make DESTDIR="${pkgdir}" install
   install -dm 755 "${pkgdir}"/usr/{lib/plexhometheater,share/{applications,pixmaps}}

@@ -28,8 +28,11 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --sysconfdir='/etc' --libdir='/usr/lib32' \
-              --disable-schemas-compile
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --sysconfdir='/etc' \
+    --disable-schemas-compile
   make
 }
 

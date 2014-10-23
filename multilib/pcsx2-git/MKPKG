@@ -1,0 +1,5 @@
+pkgname=('pcsx2-git')
+
+check_svn $packagedir/$pkgname/${pkgname%-*}
+
+# vim: ts=2 sw=2 et:

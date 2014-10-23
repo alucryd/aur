@@ -11,9 +11,9 @@ license=('GPL2')
 depends=('dkms')
 optdepends=('linux-headers: build the module against Arch kernel'
             'linux-lts-headers: build the module against LTS Arch kernel')
-provides=("vhba-module=${pkgver}")
+provides=('vhba-module')
 conflicts=('vhba-module')
-install="${pkgname}.install"
+install='vhba-dkms.install'
 source=("http://downloads.sourceforge.net/cdemu/vhba-module-${pkgver}.tar.bz2"
         'vhba-linux3.15.patch'
         'dkms.conf'
@@ -35,8 +35,8 @@ package() {
 
   install -dm 755 "${pkgdir}"/usr/{lib/udev/rules.d,src/vhba-${pkgver}}
   install -m 644 {Makefile,vhba.c} "${pkgdir}"/usr/src/vhba-${pkgver}/
-  install -m 644 "${srcdir}"/dkms.conf "${pkgdir}"/usr/src/vhba-${pkgver}/
-  install -m 644 "${srcdir}"/60-vhba.rules "${pkgdir}"/usr/lib/udev/rules.d/
+  install -m 644 ../dkms.conf "${pkgdir}"/usr/src/vhba-${pkgver}/
+  install -m 644 ../60-vhba.rules "${pkgdir}"/usr/lib/udev/rules.d/
 }
 
 # vim: ts=2 sw=2 et:

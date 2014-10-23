@@ -10,18 +10,18 @@ license=('GPL3')
 depends=('dconf' 'desktop-file-utils' 'hicolor-icon-theme' 'polkit'
          'python2-gobject' 'python2-xdg' 'python2-yaml')
 makedepends=('python2-setuptools')
-install="${pkgname}.install"
-source=("${url}/releases/${pkgname}_${pkgver}.tar.gz")
+install='lutris.install'
+source=("http://lutris.net/releases/lutris_${pkgver}.tar.gz")
 sha256sums=('d8eca9a7d287860fff5273fec7005f9b3f8cd8cb5d6ce130f7dfc90d5ff3afa5')
 
 prepare() {
-  cd ${pkgname}
+  cd lutris
 
   sed -i 's|^#!.*python$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
 }
 
 package() {
-  cd ${pkgname}
+  cd lutris
 
   python2 setup.py install --root="${pkgdir}" --optimize='1'
 }

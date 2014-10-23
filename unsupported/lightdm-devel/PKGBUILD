@@ -4,14 +4,15 @@
 
 pkgbase=lightdm-devel
 pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
-pkgver=1.11.9
+pkgver=1.12.1
 pkgrel=1
 pkgdesc='A lightweight display manager'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/lightdm'
 license=('GPL3' 'LGPL3')
-makedepends=('gobject-introspection' 'gtk-doc' 'intltool' 'itstool' 'libxklavier' 'polkit' 'qt4' 'qt5-base' 'systemd')
-source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/${pkgbase%-*}-${pkgver}.tar.xz"
+makedepends=('gobject-introspection' 'gtk-doc' 'intltool' 'itstool'
+             'libxklavier' 'polkit' 'qt4' 'qt5-base' 'systemd')
+source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/lightdm-${pkgver}.tar.xz"
         'lightdm.service'
         'lightdm.tmpfiles'
         'lightdm.pam'
@@ -19,7 +20,7 @@ source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/${pkgbas
         'lightdm.rules'
         'lightdm-default-config.patch'
         'Xsession')
-sha256sums=('a6047c773cb7341e28385d807fd1cd1adb356c7fee0d559e7c9fd6c3c9cb934c'
+sha256sums=('55fc6ed30681d0d4c60ae3d2760c54ed74096632ca777f8cab5c072ef8f35b1b'
             '0d2adba25cdbe59e97ffd302083db9d5e23920780f41e04f64512cd6b633289a'
             'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
@@ -29,17 +30,27 @@ sha256sums=('a6047c773cb7341e28385d807fd1cd1adb356c7fee0d559e7c9fd6c3c9cb934c'
             '7fb85a1b54406032a922e8fd6f45d869fcfe5681df630e74e8e50c040b786ee4')
 
 prepare() {
-  cd ${pkgbase%-*}-${pkgver}
+  cd lightdm-${pkgver}
 
   patch -Np1 -i ../lightdm-default-config.patch
 }
 
 build() {
-  cd ${pkgbase%-*}-${pkgver}
+  cd lightdm-${pkgver}
 
   export MOC4='moc-qt4'
   export MOC5='moc-qt5'
-  ./configure --prefix='/usr' --sbindir='/usr/bin' --sysconfdir='/etc' --localstatedir='/var' --libexecdir="/usr/lib/${pkgbase%-*}" --with-greeter-user='lightdm' --with-greeter-session='lightdm-gtk-greeter' --disable-{static,tests}
+
+  ./configure \
+    --prefix='/usr' \
+    --libexecdir='/usr/lib/lightdm' \
+    --localstatedir='/var' \
+    --sbindir='/usr/bin' \
+    --sysconfdir='/etc' \
+    --with-greeter-session='lightdm-gtk-greeter' \
+    --with-greeter-user='lightdm' \
+    --disable-static \
+    --disable-tests
    make
 }
 
@@ -57,9 +68,9 @@ backup=('etc/apparmor.d/lightdm-guest-session'
         'etc/pam.d/lightdm'
         'etc/pam.d/lightdm-autologin'
         'etc/pam.d/lightdm-greeter')
-install="${pkgbase%-*}.install"
+install='lightdm.install'
 
-  cd ${pkgbase%-*}-${pkgver}
+  cd lightdm-${pkgver}
 
   make DESTDIR="${pkgdir}" install
   make DESTDIR="${pkgdir}" -C liblightdm-qt uninstall
@@ -97,7 +108,7 @@ provides=('liblightdm-qt4')
 conflicts=('liblightdm-qt4')
 options=('!emptydirs')
 
-  cd ${pkgbase%-*}-${pkgver}
+  cd lightdm-${pkgver}
 
   make DESTDIR="${pkgdir}" -C liblightdm-gobject install
   make DESTDIR="${pkgdir}" -C liblightdm-qt install
@@ -114,7 +125,7 @@ provides=('liblightdm-qt5')
 conflicts=('liblightdm-qt5')
 options=('!emptydirs')
 
-  cd ${pkgbase%-*}-${pkgver}
+  cd lightdm-${pkgver}
 
   make DESTDIR="${pkgdir}" -C liblightdm-gobject install
   make DESTDIR="${pkgdir}" -C liblightdm-qt install

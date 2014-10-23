@@ -25,9 +25,12 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --libdir='/usr/lib32' \
-              --enable-{alsa,pulseaudio-shared,sdl-dlopen,video-wayland} \
-              --disable-{arts,esd,nas,rpath}
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --enable-{alsa,pulseaudio-shared,sdl-dlopen,video-wayland} \
+    --disable-{arts,esd,nas} \
+    --disable-rpath
   make
 }
 

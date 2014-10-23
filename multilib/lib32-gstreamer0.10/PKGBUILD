@@ -8,10 +8,10 @@ pkgdesc='GStreamer Multimedia Framework'
 arch=('x86_64')
 license=('LGPL')
 url='http://gstreamer.freedesktop.org/'
-depends=("${pkgname#*-}" 'lib32-glib2' 'lib32-libxml2')
+depends=("gstreamer0.10=${pkgver}" 'lib32-glib2' 'lib32-libxml2')
 makedepends=('gcc-multilib' 'git' 'gobject-introspection' 'intltool')
-source=("git://anongit.freedesktop.org/gstreamer-sdk/gstreamer#commit=3ddc31eaa18c3be1613e43430eca78a3e445639e"
-'bison3.patch')
+source=('git://anongit.freedesktop.org/gstreamer-sdk/gstreamer#commit=3ddc31eaa18c3be1613e43430eca78a3e445639e'
+        'bison3.patch')
 sha256sums=('SKIP'
             'ed154e280abf59b24d98a8ab0fe868b449b26aa61f7ae3813fab8ac615fcaefa')
 
@@ -20,6 +20,8 @@ prepare() {
 
   patch -Np1 -i ../bison3.patch
   sed 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/' -i configure.ac
+
+  NOCONFIGURE=1 ./autogen.sh
 }
 
 build() {
@@ -29,11 +31,18 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  NOCONFIGURE=1 ./autogen.sh
-  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' \
-              --libdir='/usr/lib32' --libexecdir='/usr/lib32' \
-              --with-package-{name='GStreamer (Archlinux Multilib)',origin='http://www.archlinux.org/'} \
-              --disable-{examples,gtk-doc,static,tests}
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --libexecdir='/usr/lib32' \
+    --localstatedir='/var' \
+    --sysconfdir='/etc' \
+    --with-package-name='GStreamer (Archlinux Multilib)' \
+    --with-package-origin='http://www.archlinux.org/' \
+    --disable-examples \
+    --disable-gtk-doc-html \
+    --disable-static \
+    --disable-tests
   make
 }
 

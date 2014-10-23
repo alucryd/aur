@@ -44,8 +44,12 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --libdir='/usr/lib32' --sbindir='/usr/bin' \
-              --with-xml-catalog='no' --disable-db
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --sbindir='/usr/bin' \
+    --disable-db \
+    --disable-xml-catalog
   make
 
   cd ../pam_unix2-2.9.1
@@ -53,7 +57,9 @@ build() {
   export CFLAGS="$CFLAGS -I"${srcdir}"/Linux-PAM-${pkgver}/libpam/include/"
   export LDFLAGS="$LDFLAGS -L"${srcdir}"/Linux-PAM-${pkgver}/libpam/.libs/"
 
-  ./configure --sbindir='/usr/bin' --libdir='/usr/lib32'
+  ./configure --prefix='/usr' \
+              --libdir='/usr/lib32' \
+              --sbindir='/usr/bin'
   make
 }
 
@@ -68,6 +74,7 @@ package() {
   install -m 644 src/pam_unix2.so "${pkgdir}"/usr/lib32/security/
 
   cd "${pkgdir}"/usr/lib32/security
+
   ln -s pam_unix.so pam_unix_acct.so
   ln -s pam_unix.so pam_unix_auth.so
   ln -s pam_unix.so pam_unix_passwd.so

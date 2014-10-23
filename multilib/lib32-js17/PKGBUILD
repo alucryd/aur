@@ -28,11 +28,15 @@ build() {
 
   unset CPPFLAGS
 
-  ./configure --prefix='/usr' --sbindir='/usr/bin' --libdir='/usr/lib32' \
-              --target='i686-pc-linux-gnu' --enable-{readline,threadsafe} \
-              --with-nspr-cflags="$(pkg-config --cflags nspr)" \
-              --with-nspr-libs="$(pkg-config --libs nspr)" \
-              --with-system-ffi
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --sbindir='/usr/bin' \
+    --target='i686-pc-linux-gnu' \
+    --enable-{readline,threadsafe} \
+    --with-nspr-cflags="$(pkg-config --cflags nspr)" \
+    --with-nspr-libs="$(pkg-config --libs nspr)" \
+    --with-system-ffi
   make
 }
 

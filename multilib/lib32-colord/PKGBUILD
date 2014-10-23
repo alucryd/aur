@@ -6,7 +6,7 @@
 
 pkgname=lib32-colord
 pkgver=1.2.3
-pkgrel=1
+pkgrel=2
 pkgdesc='System daemon for managing color devices'
 arch=('x86_64')
 url='http://www.freedesktop.org/software/colord'
@@ -25,11 +25,18 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' \
-              --libdir='/usr/lib32' --libexecdir='/usr/lib32/colord' \
-              --with-systemdsystemunitdir='/usr/lib/systemd/system' \
-              --disable-{bash-completion,nls,static,volume-search} \
-              --enable-vala --with-daemon-user='colord'
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --libexecdir='/usr/lib32/colord' \
+    --localstatedir='/var' \
+    --sysconfdir='/etc' \
+    --enable-vala \
+    --disable-bash-completion \
+    --disable-static \
+    --disable-volume-search \
+    --with-daemon-user='colord' \
+    --with-systemdsystemunitdir='/usr/lib/systemd/system'
   make
 }
 

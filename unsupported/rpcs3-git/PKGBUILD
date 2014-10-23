@@ -9,19 +9,19 @@ url='https://github.com/DHrpcs3/rpcs3'
 license=('GPL2')
 depends=('glew' 'openal' 'wxgtk')
 makedepends=('chrpath' 'cmake' 'git')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("git+${url}.git")
+provides=('rpcs3')
+conflicts=('rpcs3')
+source=('git+https://github.com/DHrpcs3/rpcs3.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd rpcs3
 
   printf "%s" "$(git describe --tags | sed 's/^v//; s/-/.r/; s/-g/./')"
 }
 
 prepare() {
-  cd ${pkgname%-*}
+  cd rpcs3
 
   git submodule init asmjit
   git submodule init ffmpeg
@@ -29,7 +29,7 @@ prepare() {
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd rpcs3
 
   if [[ -d build ]]; then
     rm -rf build

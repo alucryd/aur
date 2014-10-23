@@ -2,25 +2,28 @@
 # Contributor: Gustavo Alvarez <sl1pkn07@gmail.com>
 
 pkgname=l-smash
-pkgver=1.11.7
+pkgver=1.13.27
 pkgrel=1
 pkgdesc='A simple tool for MP4'
 arch=('i686' 'x86_64')
 url='https://github.com/l-smash/l-smash'
 license=('custom')
 depends=('glibc')
-source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz")
-sha256sums=('58ad53ae211c8352fed189047db44c0cd9de67aa4694e343539ad9d94a92e88a')
+source=("l-smash-${pkgver}.tar.gz::https://github.com/l-smash/l-smash/archive/v${pkgver}.tar.gz")
+sha256sums=('0d1070532196bfebd7b9793ead27b544e60d8af98d94e76ef072dd97738910be')
 
 build() {
-  cd ${pkgname}-${pkgver}
+  cd l-smash-${pkgver}
 
-  ./configure --prefix='/usr' --enable-shared --disable-static
+  ./configure \
+    --prefix='/usr' \
+    --enable-shared \
+    --disable-static
   make
 }
 
 package() {
-  cd ${pkgname}-${pkgver}
+  cd l-smash-${pkgver}
 
   make DESTDIR="${pkgdir}" install
 

@@ -40,14 +40,23 @@ $(find ${srcdir}/samba-${pkgver}/source4/scripting -type f)"
   _samba4_pdb_modules='pdb_tdbsam,pdb_ldap,pdb_ads,pdb_smbpasswd,pdb_wbc_sam,pdb_samba4'
   _samba4_auth_modules='auth_unix,auth_wbc,auth_server,auth_netlogond,auth_script,auth_samba4'
 
-  ./configure --enable-fhs --prefix='/usr' --sbindir='/usr/bin' \
-              --libdir='/usr/lib32' --localstatedir='/var' \
-              --with-{configdir='/etc/samba',lockdir='/var/cache/samba',sockets-dir='/var/run/samba',piddir='/var/run'} \
-              --with-{ads,ldap,winbind,acl-support} --enable-gnutls \
-              --with-pam --with-pammodulesdir='/usr/lib/security' \
-              --bundled-libraries='!tdb,!talloc,!pytalloc-util,!tevent,!popt,!ldb,!pyldb-util' \
-              --with-shared-modules="${_samba4_idmap_modules},${_samba4_pdb_modules},${_samba4_auth_modules}" \
-              --disable-rpath-install
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --localstatedir='/var' \
+    --sbindir='/usr/bin' \
+    --enable-fhs \
+    --enable-gnutls \
+    --disable-rpath-install \
+    --with-configdir='/etc/samba' \
+    --with-lockdir='/var/cache/samba' \
+    --with-piddir='/var/run' \
+    --with-sockets-dir='/var/run/samba' \
+    --with-{ads,ldap,winbind,acl-support} \
+    --with-pam \
+    --with-pammodulesdir='/usr/lib/security' \
+    --bundled-libraries='!tdb,!talloc,!pytalloc-util,!tevent,!popt,!ldb,!pyldb-util' \
+    --with-shared-modules="${_samba4_idmap_modules},${_samba4_pdb_modules},${_samba4_auth_modules}"
   make
   make DESTDIR="${srcdir}/staging" install
 }

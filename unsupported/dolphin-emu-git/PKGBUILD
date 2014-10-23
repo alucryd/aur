@@ -2,42 +2,47 @@
 # Contributor: Lightning <sgsdxzy@gmail.com>
 
 pkgname=dolphin-emu-git
-pkgver=4.0.r3443.b5ebace
+pkgver=4.0.2.r3781.a9f0bd7
 pkgrel=1
 pkgdesc='A GameCube / Wii / Triforce emulator'
 arch=('x86_64')
 url='http://www.dolphin-emu.org/'
 license=('GPL2')
-depends=('bluez-libs' 'ffmpeg' 'libao' 'libusb' 'miniupnpc' 'openal' 'polarssl' 'portaudio' 'sdl2' 'soundtouch' 'wxgtk')
+depends=('bluez-libs' 'ffmpeg' 'libao' 'miniupnpc' 'openal' 'polarssl'
+         'portaudio' 'sdl2' 'soundtouch' 'wxgtk')
 makedepends=('cmake' 'git')
 optdepends=('pulseaudio: PulseAudio backend')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
+provides=('dolphin-emu')
+conflicts=('dolphin-emu')
 options=('!emptydirs')
-source=("${pkgname%-*}::git+https://github.com/dolphin-emu/dolphin.git")
+source=('dolphin-emu::git+https://github.com/dolphin-emu/dolphin.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd dolphin-emu
 
-  printf "%s" "$(git describe --tags | sed 's/-/.r/; s/-g/./')"
+  _tag='4.0.2'
+
+  printf "%s.r%s.%s" "${_tag}" "$(git rev-list --count ${_tag}..HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd dolphin-emu
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_CXX_FLAGS='-fno-inline-functions' \
-           -DENABLE_LTO='TRUE'
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_CXX_FLAGS='-fno-inline-functions' \
+    -DENABLE_LTO='TRUE'
   make
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd dolphin-emu/build
 
   make DESTDIR="${pkgdir}" install
   install -m 755 Binaries/dolphin-emu-nogui "${pkgdir}"/usr/bin/

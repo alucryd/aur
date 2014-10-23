@@ -23,8 +23,11 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --sbindir='/usr/bin' --libdir='/usr/lib32' \
-              --without-python
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --sbindir='/usr/bin' \
+    --without-python
   make
 }
 

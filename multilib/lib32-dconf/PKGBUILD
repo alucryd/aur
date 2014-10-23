@@ -28,9 +28,13 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --libdir='/usr/lib32' \
-              --libexecdir='/usr/lib32/dconf' \
-              --disable-{editor,gtk-doc-html,man}
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --libexecdir='/usr/lib32/dconf' \
+    --disable-editor \
+    --disable-gtk-doc-html \
+    --disable-man
   make
 }
 
@@ -38,7 +42,7 @@ package() {
   cd dconf-${pkgver}
 
   make completiondir='/usr/share/bash-completion/completions' DESTDIR="${pkgdir}" install
-  rm -rf $pkgdir/usr/{bin,include,share}
+  rm -rf "${pkgdir}"/usr/{bin,include,share}
 }
 
 # vim: ts=2 sw=2 et:

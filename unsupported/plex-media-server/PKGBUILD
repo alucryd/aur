@@ -43,11 +43,11 @@ package() {
   install -m 644 plexmediaserver.service "${pkgdir}"/usr/lib/systemd/system/
   install -m 644 plexmediaserver.conf.d "${pkgdir}"/etc/conf.d/plexmediaserver
 
-  install -dm 755 "${pkgdir}"/usr/share/licenses/plex-media-server
-  install -m 644 terms.txt "${pkgdir}"/usr/share/licenses/plex-media-server/
-
   install -dm 755 "${pkgdir}"/var/lib/plex
   chown 421:421 -R "${pkgdir}"/var/lib/plex
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses/plex-media-server
+  install -m 644 terms.txt "${pkgdir}"/usr/share/licenses/plex-media-server/
 }
 
 # vim: ts=2 sw=2 et:

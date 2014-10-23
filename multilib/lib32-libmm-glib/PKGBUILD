@@ -22,10 +22,16 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var' \
-              --sbindir='/usr/bin' --libdir='/usr/lib32' \
-              --with-udev-base-dir='/usr/lib32/udev' \
-              --with-polkit='permissive' --disable-{gtk-doc-html,static}
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --localstatedir='/var' \
+    --sbindir='/usr/bin' \
+    --sysconfdir='/etc' \
+    --disable-gtk-doc-html \
+    --disable-static \
+    --with-polkit='permissive' \
+    --with-udev-base-dir='/usr/lib32/udev'
   sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
   make -C libmm-glib
 }

@@ -5,7 +5,7 @@ pkgver=0.1
 pkgrel=1
 pkgdesc='Numix theme for plank'
 arch=('any')
-url='http://me4oslav.deviantart.com/art/Numix-theme-for-Plank-393957556'
+url='https://numixproject.org/'
 license=('GPL3')
 depends=('plank')
 source=("https://launchpad.net/~numix/+archive/ppa/+files/numix-plank-theme_0.1~ppa.tar.gz")
@@ -15,7 +15,7 @@ package() {
   cd numix-plank-theme
 
   install -dm 755 "${pkgdir}"/usr/share/plank/themes
-  cp -dr --no-preserve=ownership Numix "${pkgdir}"/usr/share/plank/themes/
+  cp -dr --no-preserve='ownership' Numix "${pkgdir}"/usr/share/plank/themes/
 }
 
 # vim: ts=2 sw=2 et:

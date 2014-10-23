@@ -9,39 +9,35 @@ url='http://yui.github.io/yuicompressor/'
 license=('BSD')
 depends=('java-runtime')
 makedepends=('apache-ant')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("git+https://github.com/yui/${pkgname%-*}.git")
+provides=('yuicompressor')
+conflicts=('yuicompressor')
+source=('git+https://github.com/yui/yuicompressor.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd yuicompressor
 
   printf "%s" "$(git describe --tags | sed 's/\([^-]*-\)g/r\1/; s/-/./g; s/^v//')"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd yuicompressor
 
   ant
 }
 
-check() {
-  cd ${pkgname%-*}
-
-  ./tests/suite.sh
-}
-
 package() {
-  cd ${pkgname%-*}
+  cd yuicompressor
 
-  install -dm 755 "${pkgdir}"/usr/{bin,share/{java/${pkgname%-*},licenses/${pkgname}}}
-  install -m 755 build/${pkgname%-*}-${pkgver/.r*/}.jar "${pkgdir}"/usr/share/java/${pkgname%-*}/${pkgname%-*}.jar
-  install -m 644 LICENSE.TXT "${pkgdir}"/usr/share/licenses/${pkgname}/
+  install -dm 755 "${pkgdir}"/usr/{bin,share/java/yuicompressor}
+  install -m 755 build/yuicompressor-${pkgver/.r*/}.jar "${pkgdir}"/usr/share/java/yuicompressor/yuicompressor.jar
 
   echo '#!/bin/sh
-  "$JAVA_HOME/bin/java" -jar /usr/share/java/yuicompressor/yuicompressor.jar $@' > "${pkgdir}"/usr/bin/${pkgname%-*}
+  "$JAVA_HOME/bin/java" -jar /usr/share/java/yuicompressor/yuicompressor.jar $@' > "${pkgdir}"/usr/bin/yuicompressor
   chmod +x "${pkgdir}"/usr/bin/${pkgname%-*}
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses/yuicompressor
+  install -m 644 LICENSE.TXT "${pkgdir}"/usr/share/licenses/yuicompressor/
 }
 
 # vim: ts=2 sw=2 et:

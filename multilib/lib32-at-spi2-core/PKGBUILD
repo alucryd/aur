@@ -28,8 +28,12 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --sysconfdir='/etc' --libdir='/usr/lib32' \
-              --libexecdir='/usr/lib32/at-spi2-core' --disable-xevie
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --libexecdir='/usr/lib32/at-spi2-core' \
+    --sysconfdir='/etc' \
+    --disable-xevie
   make
 }
 

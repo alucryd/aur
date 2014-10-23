@@ -9,8 +9,8 @@ arch=('any')
 url='http://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html'
 license=('GPL2' 'GPL3')
 makedepends=('git')
-source=("tlp::git+https://github.com/linrunner/TLP.git#branch=devel"
-'tlp-arch.patch')
+source=('tlp::git+https://github.com/linrunner/TLP.git#branch=devel'
+        'tlp-arch.patch')
 sha256sums=('SKIP'
             'd240143cde75c2d6edf09e001459e79e49652934f5b02ed0174f99e8fe4eabce')
 
@@ -47,6 +47,7 @@ package_tlp-git() {
   export TLP_NO_INIT='1'
   export TLP_NO_PMUTILS='1'
   export TLP_WITH_SYSTEMD='1'
+
   make DESTDIR="${pkgdir}" install-tlp
 
   install -dm 755 "${pkgdir}"/usr/share/man/man{1,8}

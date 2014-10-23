@@ -14,7 +14,9 @@ sha256sums=('SKIP')
 pkgver() {
   cd rbutil
 
-  printf "1.4.0.r%s.%s" "$(git rev-list rbutil_1.4.0..HEAD --count)" "$(git rev-parse --short HEAD)"
+  _tag='rbutil_1.4.0'
+
+  printf "%s.r%s.%s" "${_tag#rbutil_}" "$(git rev-list --count ${_tag}..HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 prepare() {
@@ -34,14 +36,14 @@ build() {
 }
 
 package_rbutil-git(){
-pkgdesc='Rockbox Utility'
-depends=('libusb' 'qt5-base' 'speex')
-optdepends=('espeak: TTS engine'
-            'festival: TTS engine'
-            'flite: TTS engine'
-            'rbspeex-git: Generate voice/talk files from external sources')
-provides=('rbutil')
-conflicts=('rbutil')
+  pkgdesc='Rockbox Utility'
+  depends=('libusb' 'qt5-base' 'speex')
+  optdepends=('espeak: TTS engine'
+              'festival: TTS engine'
+              'flite: TTS engine'
+              'rbspeex-git: Generate voice/talk files from external sources')
+  provides=('rbutil')
+  conflicts=('rbutil')
 
   cd rbutil/rbutil/rbutilqt
 
@@ -52,14 +54,15 @@ conflicts=('rbutil')
 }
 
 package_rbspeex-git(){
-pkgdesc='Rockbox Speex Codec'
-depends=('speex')
-provides=('rbspeex')
-conflicts=('rbspeex')
+  pkgdesc='Rockbox Speex Codec'
+  depends=('speex')
+  provides=('rbspeex')
+  conflicts=('rbspeex')
 
   cd rbutil/tools
 
   install -dm 755 "${pkgdir}"/usr/bin
   install -m 755 rbspeex{dec,enc} "${pkgdir}"/usr/bin/
 }
+
 # vim: ts=2 sw=2 et:

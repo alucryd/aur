@@ -9,17 +9,17 @@ url='https://launchpad.net/numix-plymouth'
 license=('GPL3')
 depends=('plymouth')
 makedepends=('bzr')
-source=("${pkgname%-*}::bzr+lp:numix-plymouth")
+source=('plymouth-theme-numix::bzr+lp:numix-plymouth')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd plymouth-theme-numix
 
   printf "r%s" "$(bzr revno)"
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd plymouth-theme-numix
 
   install -dm 755 "${pkgdir}"/usr/share
   cp -dr --no-preserve='ownership' lib/plymouth "${pkgdir}"/usr/share/

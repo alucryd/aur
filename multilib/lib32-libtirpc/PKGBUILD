@@ -7,7 +7,7 @@
 
 pkgname=lib32-libtirpc
 pkgver=0.2.5
-pkgrel=1
+pkgrel=2
 pkgdesc='Transport Independent RPC library (SunRPC replacement)'
 arch=('x86_64')
 url='http://libtirpc.sourceforge.net/'
@@ -24,7 +24,10 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --sysconf='/etc' --libdir='/usr/lib32'
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --sysconfdir='/etc'
   make
 }
 

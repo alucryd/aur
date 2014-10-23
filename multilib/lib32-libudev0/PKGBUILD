@@ -26,9 +26,14 @@ build() {
   export CXX='g++ -m32'
   export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
-  ./configure --prefix='/usr' --sysconfdir='/etc' --libdir='/usr/lib32' \
-              --libexecdir='/usr/lib32/udev' --disable-{gudev,introspection} \
-              --with-systemdsystemunitdir='/usr/lib32/systemd/system'
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --libexecdir='/usr/lib32/udev' \
+    --sysconfdir='/etc' \
+    --disable-gudev \
+    --disable-introspection \
+    --with-systemdsystemunitdir='/usr/lib32/systemd/system'
   make LIBS='-lrt'
 }
 
