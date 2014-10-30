@@ -7,8 +7,8 @@ pkgdesc='Collection of libraries to launch Steam without its runtime environment
 arch=('any')
 url=''
 license=('')
-depends=('lib32-dbus-glib' 'lib32-gconf' 'lib32-libgcrypt15'
-         'lib32-libjpeg6-turbo' 'lib32-libnm-glib46' 'lib32-libpng12'
-         'lib32-libudev0' 'lib32-openal' 'lib32-libpulse')
+depends=('lib32-dbus-glib' 'lib32-gconf' 'lib32-libgcrypt15' 'lib32-libjpeg6'
+         'lib32-libnm-glib46' 'lib32-libpng12' 'lib32-libudev0' 'lib32-openal'
+         'lib32-libpulse')
 
 # vim: ts=2 sw=2 et:
