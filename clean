@@ -5,6 +5,7 @@ for repo in community multilib pantheon personal unsupported; do
   find $repo -maxdepth 3 -type d -name pkg -exec rm -rf {} +
   find $repo -maxdepth 3 -type d -name src -exec rm -rf {} +
   find $repo -maxdepth 3 -name *.pkg.tar.xz -delete
+  find $repo -maxdepth 3 -name *.pkg.tar.xz.sig -delete
   # Clean sources
   find $repo -maxdepth 3 -name *.tar.bz2 -delete
   find $repo -maxdepth 3 -name *.tar.gz -delete

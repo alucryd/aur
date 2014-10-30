@@ -13,10 +13,11 @@
 *.tar.gz
 *.tar.xz
 *.tgz
-src/
-pkg/
-srcpkg/
+build/
 log/
+src/
+srcpkg/
+pkg/
 community/
 */*/nvidia
 */*/vboxhost

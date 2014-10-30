@@ -8,7 +8,7 @@ pkgdesc='GTK+ implementation of wxWidgets API for GUI'
 arch=('x86_64')
 url='http://wxwidgets.org'
 license=('custom:wxWindows')
-depends=('lib32-gtk2' 'lib32-libsm' "${pkgname#*-}=${pkgver}")
+depends=('lib32-gtk2' 'lib32-libsm' "wxgtk=${pkgver}")
 makedepends=('gcc-multilib' 'lib32-glu')
 options=('!emptydirs')
 source=("http://downloads.sourceforge.net/wxwindows/wxWidgets-${pkgver}.tar.bz2"
@@ -53,7 +53,7 @@ package() {
   rm -rf "${pkgdir}"/usr/{include,share}
 
   install -dm 755 "${pkgdir}"/usr/share/licenses
-  ln -s ${pkgname#*-} "${pkgdir}"/usr/share/licenses/${pkgname}
+  ln -s wxgtk "${pkgdir}"/usr/share/licenses/lib32-wxgtk
 }
 
 # vim: ts=2 sw=2 et:
