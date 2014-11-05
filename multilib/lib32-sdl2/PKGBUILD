@@ -41,7 +41,7 @@ package() {
   rm -rf "${pkgdir}"/usr/{bin,include,share}
 
   install -dm 755 "${pkgdir}"/usr/share/licenses
-  ln -s ${pkgname#*-} "${pkgdir}"/usr/share/licenses/${pkgname}
+  ln -s sdl2 "${pkgdir}"/usr/share/licenses/lib32-sdl2
 }
 
 # vim: ts=2 sw=2 et:
