@@ -19,13 +19,17 @@ optdepends=('libplist: AirPlay support'
             'libshairport: AirPlay support'
             'libcec: Pulse-Eight USB-CEC adapter support'
             'pulseaudio: PulseAudio support')
-provides=('plex-home-theater-git')
-conflicts=('plex-home-theater-git')
+provides=('plex-home-theater')
+conflicts=('plex-home-theater')
 source=('plex-home-theater::git+https://github.com/plexinc/plex-home-theater-public.git'
         'plex-ffmpeg-compat.patch'
+        'plex-libcec-2.2.0.patch'
+        'plex-lirc-socket.patch'
         'plexhometheater.sh')
 sha256sums=('SKIP'
             '5b370e4dec6998130df46ad6bd5ca6258e3a040dd6c6cc4085c335dc3d6050bd'
+            '13032e8da35b0abdd22109f9ee34c63e43e0f9863fe81d4fa503c05ede23a212'
+            '630070125ad5239163d89fed5bf7f83abf4a411ac3e24aa2e41f99c5c3c8fb7f'
             'dc6bd394c07a2ececbb2f8c53cb54afd5d78f7c00a0b34acab3e71217da085fb')
 
 pkgver() {
@@ -37,6 +41,8 @@ pkgver() {
 prepare() {
   cd plex-home-theater
 
+  patch -Np1 -i ../plex-libcec-2.2.0.patch
+  patch -Np1 -i ../plex-lirc-socket.patch
   patch -Np1 -i ../plex-ffmpeg-compat.patch
 }
 
