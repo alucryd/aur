@@ -1,18 +1,18 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=lutris
-pkgver=0.3.6
+pkgver=0.3.6.1
 pkgrel=1
 pkgdesc='Open Gaming Platform'
 arch=('any')
 url='http://lutris.net/'
 license=('GPL3')
 depends=('dconf' 'desktop-file-utils' 'hicolor-icon-theme' 'polkit'
-         'python2-gobject' 'python2-xdg' 'python2-yaml')
+         'python2-gobject' 'python2-xdg' 'python2-yaml' 'xorg-xrandr')
 makedepends=('python2-setuptools')
 install='lutris.install'
 source=("http://lutris.net/releases/lutris_${pkgver}.tar.gz")
-sha256sums=('20bf103e4eef40a89b9c69ee11197e6c7a762babd517281a6f7b17051fd028b5')
+sha256sums=('5ee6f8d433aa50c5e7beaf022bf9e58ed9ad5ef7b6f03c615cbd35f5c6106a75')
 
 prepare() {
   cd lutris

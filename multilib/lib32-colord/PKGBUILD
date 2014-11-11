@@ -5,8 +5,8 @@
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 
 pkgname=lib32-colord
-pkgver=1.2.3
-pkgrel=2
+pkgver=1.2.5
+pkgrel=1
 pkgdesc='System daemon for managing color devices'
 arch=('x86_64')
 url='http://www.freedesktop.org/software/colord'
@@ -16,7 +16,7 @@ depends=("colord=${pkgver}" 'lib32-dconf' 'lib32-libgusb' 'lib32-lcms2'
 makedepends=('gcc-multilib' 'gobject-introspection' 'intltool' 'python2'
              'vala')
 source=("http://www.freedesktop.org/software/colord/releases/colord-${pkgver}.tar.xz")
-sha256sums=('2091fcca19d049136644e9dc6d56849b0e29d441a81a955d8f0e8135163474fc')
+sha256sums=('0332420c7fd808bb3a028e0249fb2b5e52b9544330c767d08b01a6e03d3c5283')
 
 build() {
   cd colord-${pkgver}

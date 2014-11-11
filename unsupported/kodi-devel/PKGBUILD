@@ -7,7 +7,7 @@
 # Contributor: Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
 
 pkgname=kodi-devel
-pkgver=14.0a4
+pkgver=14.0b1
 pkgrel=1
 pkgdesc='kodi Entertainment Center'
 arch=('i686' 'x86_64')
@@ -39,14 +39,14 @@ provides=('xbmc')
 conflicts=('xbmc')
 install='kodi.install'
 source=("kodi-$pkgver.tar.gz::https://github.com/xbmc/xbmc/archive/${pkgver}-Helix.tar.gz")
-sha256sums=('37aa242d74b6f74c52db05007a93eaf09842ad79c7acdc7d96a6fd30b9b83f62')
+sha256sums=('49cc3a91fba54d2c06cc877dad51e3c1cada772c6cc129a558045ef281d6b3f2')
 
 prepare() {
   cd xbmc-${pkgver}-Helix
 
   find -type f -name *.py -exec sed 's|^#!.*python$|#!/usr/bin/python2|' -i "{}" +
   sed 's|^#!.*python$|#!/usr/bin/python2|' -i tools/depends/native/rpl-native/rpl
-  sed 's/python/python2/' -i tools/Linux/xbmc.sh.in
+  sed 's/python/python2/' -i tools/Linux/kodi.sh.in
 }
 
 build() {
@@ -60,7 +60,7 @@ build() {
     --exec-prefix='/usr' \
     --disable-non-free \
     --disable-debug \
-    --disable-static}
+    --disable-static
   make
 }
 
