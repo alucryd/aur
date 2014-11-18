@@ -1,0 +1,60 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Andreas Radke <andyrtr@archlinux.org>
+
+pkgname=webkit2gtk2.4
+pkgver=2.4.7
+pkgrel=1
+pkgdesc='GTK+ Web content engine library'
+arch=('i686' 'x86_64')
+url='http://webkitgtk.org/'
+license=('custom')
+depends=('enchant' 'geoclue2' 'gst-plugins-base-libs' 'gtk3' 'harfbuzz-icu'
+         'libsecret' 'libsoup' 'libwebp' 'libxslt' 'libxt' 'sqlite'
+         "webkitgtk=$#pkgver}")
+makedepends=('gobject-introspection' 'gperf' 'gtk3' 'mesa' 'python2' 'ruby')
+optdepends=('gst-plugins-base: free media decoding'
+            'gst-plugins-good: media decoding'
+            'gst-libav: nonfree media decoding')
+options=('!emptydirs')
+source=("http://webkitgtk.org/releases/webkitgtk-${pkgver}.tar.xz"
+        'fix-pretty-quotes.patch')
+sha256sums=('f5cf26e39abf1d6b2d25f1398348fef6bbe6c03fb4f99e11c569091c05197d38'
+            '56316228bbbf0b7ebcbe210a35120f4e72cb9c1b680dd82cc2bde0f4549245e6')
+
+prepare() {
+  cd webkitgtk-${pkgver}
+
+  patch -Np0 -i ../fix-pretty-quotes.patch
+}
+
+build() {
+  cd webkitgtk-${pkgver}
+
+  export PYTHON='/usr/bin/python2'
+
+  ./configure \
+    --prefix='/usr' \
+    --libexecdir='/usr/lib/webkit2gtk-3.0' \
+    --disable-webkit1 \
+    --enable-introspection
+  make
+}
+
+package() {
+  cd webkitgtk-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/bin/jsc-3 \
+         "${pkgdir}"/usr/include \
+         "${pkgdir}"/usr/lib/girepository-1.0/JavaScriptCore-3.0.typelib \
+         "${pkgdir}"/usr/lib/libjavascriptcoregtk-3.0.so* \
+         "${pkgdir}"/usr/pkgconfig/javascriptcoregtk-3.0.pc \
+         "${pkgdir}"/usr/share/gir-1.0/JavaScriptCore-3.0.gir \
+         "${pkgdir}"/usr/share/locale \
+         "${pkgdir}"/usr/share/webkitgtk-3.0
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses
+  ln -s webkitgtk "${pkgdir}"/usr/share/licenses/webkit2gtk2.4
+}
+
+# vim: ts=2 sw=2 et:
