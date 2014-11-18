@@ -11,7 +11,8 @@ license=('custom')
 depends=('enchant' 'geoclue2' 'gst-plugins-base-libs' 'gtk3' 'harfbuzz-icu'
          'libsecret' 'libsoup' 'libwebp' 'libxslt' 'libxt' 'sqlite'
          "webkitgtk=${pkgver}")
-makedepends=('gobject-introspection' 'gperf' 'gtk3' 'mesa' 'python2' 'ruby')
+makedepends=('gobject-introspection' 'gperf' 'gtk2' 'gtk3' 'mesa' 'python2'
+             'ruby')
 optdepends=('gst-plugins-base: free media decoding'
             'gst-plugins-good: media decoding'
             'gst-libav: nonfree media decoding')
@@ -22,6 +23,9 @@ sha256sums=('f5cf26e39abf1d6b2d25f1398348fef6bbe6c03fb4f99e11c569091c05197d38'
             '56316228bbbf0b7ebcbe210a35120f4e72cb9c1b680dd82cc2bde0f4549245e6')
 
 prepare() {
+  mkdir path
+  ln -s /usr/bin/python2 path/python
+
   cd webkitgtk-${pkgver}
 
   patch -Np0 -i ../fix-pretty-quotes.patch
@@ -30,13 +34,14 @@ prepare() {
 build() {
   cd webkitgtk-${pkgver}
 
-  export PYTHON='/usr/bin/python2'
+  export PATH="../path:${PATH}"
 
   ./configure \
     --prefix='/usr' \
     --libexecdir='/usr/lib/webkit2gtk-3.0' \
     --disable-webkit1 \
     --enable-introspection
+  sed -i 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
   make
 }
 
