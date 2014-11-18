@@ -10,7 +10,7 @@ url='http://webkitgtk.org/'
 license=('custom')
 depends=('enchant' 'geoclue2' 'gst-plugins-base-libs' 'gtk3' 'harfbuzz-icu'
          'libsecret' 'libsoup' 'libwebp' 'libxslt' 'libxt' 'sqlite'
-         "webkitgtk=$#pkgver}")
+         "webkitgtk=${pkgver}")
 makedepends=('gobject-introspection' 'gperf' 'gtk3' 'mesa' 'python2' 'ruby')
 optdepends=('gst-plugins-base: free media decoding'
             'gst-plugins-good: media decoding'
