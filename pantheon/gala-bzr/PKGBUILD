@@ -8,7 +8,7 @@ pkgdesc='The Pantheon Window Manager'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/gala'
 license=('GPL3')
-depends=('clutter-gtk' 'granite' 'mutter' 'plank-bzr')
+depends=('clutter-gtk' 'granite' 'mutter' 'plank')
 makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
 provides=('gala')
 conflicts=('gala')
@@ -28,7 +28,9 @@ build() {
 #  cd gala
   cd gala-mutter314
 
-  ./autogen.sh --prefix='/usr' --disable-schemas-compile
+  ./autogen.sh \
+    --prefix='/usr' \
+    --disable-schemas-compile
   make
 }
 
