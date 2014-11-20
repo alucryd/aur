@@ -11,27 +11,30 @@ url='https://launchpad.net/plank'
 license=('GPL3')
 depends=('bamf' 'libdbusmenu-gtk3' 'libgee')
 makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-install="${pkgname%-*}.install"
+provides=('plank')
+conflicts=('plank')
+install='plank.install'
 source=('bzr+lp:plank')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd plank
 
   printf "r%s" "$(bzr revno)"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd plank
 
-  ./autogen.sh --prefix='/usr' --sysconfdir='/etc' --disable-apport
+  ./autogen.sh \
+    --prefix='/usr' \
+    --sysconfdir='/etc' \
+    --disable-apport
   make
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd plank
 
   make DESTDIR="${pkgdir}" install
 }

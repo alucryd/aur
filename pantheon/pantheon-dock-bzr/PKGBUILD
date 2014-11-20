@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org> 
 
 pkgname=pantheon-dock-bzr
-pkgver=r1036
+pkgver=r1050
 pkgrel=1
 pkgdesc='The Pantheon Dock'
 arch=('i686' 'x86_64')
@@ -9,36 +9,32 @@ url='https://launchpad.net/pantheon-dock'
 license=('GPL3')
 depends=('bamf' 'libdbusmenu-gtk3' 'libgee')
 makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
-provides=("${pkgname%-*}" 'plank')
-conflicts=("${pkgname%-*}" 'plank')
-install="${pkgname%-*}.install"
+provides=('pantheon-dock' 'plank')
+conflicts=('pantheon-dock' 'plank')
+install='pantheon-dock.install'
 source=('bzr+lp:pantheon-dock')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd pantheon-dock
 
   printf "r%s" "$(bzr revno)"
-}
-
-prepare() {
-  cd ${pkgname%-*}
-
-  sed -i 's|^#!.*python$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
 }
 
 build() {
   cd ${pkgname%-*}
 
-  ./autogen.sh --prefix='/usr' --sysconfdir='/etc' --localstatedir='/var'
+  ./autogen.sh \
+    --prefix='/usr' \
+    --sysconfdir='/etc' \
+    --disable-apport
   make
 }
 
 package() {
-  cd "${srcdir}"/${pkgname%-*}
+  cd pantheon-dock
 
   make DESTDIR="${pkgdir}" install
-  rm -rf "${pkgdir}"/{etc,usr/share/apport}
 }
 
 # vim: ts=2 sw=2 et:

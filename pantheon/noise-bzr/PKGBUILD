@@ -8,44 +8,52 @@ pkgdesc='The Pantheon Music Player'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/noise'
 license=('GPL3')
-depends=('desktop-file-utils' 'granite-bzr' 'gst-plugins-base-libs' 'json-glib' 'libgpod' 'libnotify' 'libpeas' 'libsoup' 'sqlheavy' 'taglib')
+depends=('desktop-file-utils' 'granite-bzr' 'gst-plugins-base-libs' 'libgpod'
+         'libnotify' 'libpeas' 'sqlheavy' 'taglib')
 makedepends=('bzr' 'cmake' 'vala')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-install="${pkgname}.install"
+optdepends=('gst-plugins-base: "Base" plugin libraries'
+            'gst-plugins-good: "Good" plugin libraries'
+            'gst-plugins-bad: "Bad" plugin libraries'
+            'gst-plugins-ugly: "Ugly" plugin libraries'
+            'gst-libav: Libav plugin')
+provides=('noise')
+conflicts=('noise')
+install='noise.install'
 source=('bzr+lp:noise'
         'mesa-demos-conflict.patch')
 sha256sums=('SKIP'
             '5762f448021d326caa628609390074732b38323df894b4173cc2dc799c3d32bc')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd noise
 
   printf "r%s" "$(bzr revno)"
 }
 
 prepare() {
-  cd ${pkgname%-*}
+  cd noise
 
   patch -Np1 -i ../mesa-demos-conflict.patch
   sed 's|\.\./||; s|${CMAKE_INSTALL_PREFIX}/${PLUGIN_DIR_UNPREFIXED}|${PLUGIN_DIR_UNPREFIXED}|' -i CMakeLists.txt
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd noise
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_{LIBDIR='/usr/lib',PREFIX='/usr'} \
-           -DGSETTINGS_COMPILE='OFF'
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
+    -DGSETTINGS_COMPILE='FALSE'
   make -j1
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd noise/build
 
   make -j1 DESTDIR="${pkgdir}" install
 }

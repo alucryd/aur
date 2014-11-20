@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url='https://launchpad.net/switchboard-plug-onlineaccounts'
 license=('GPL3')
 depends=('credentials-control-center' 'gsignond-plugin-oauth'
-         'gsignond-plugin-sasl' 'rest' 'switchboard-bzr' 'webkit2gtk')
+         'gsignond-plugin-sasl' 'rest' 'switchboard-bzr' 'webkit2gtk2.4')
 makedepends=('bzr' 'cmake' 'vala')
 provides=('switchboard-plug-online-accounts')
 conflicts=('switchboard-plug-online-accounts')
@@ -24,8 +24,6 @@ pkgver() {
 
 prepare() {
   cd switchboard-plug-online-accounts
-
-  sed 's/webkit2gtk-3.0/webkit2gtk-4.0/' -i CMakeLists.txt
 }
 
 build() {
@@ -45,7 +43,7 @@ build() {
 package() {
   cd switchboard-plug-online-accounts/build
 
-  make DESTDIR="${pkgdir}" install
+  make -j1 DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:

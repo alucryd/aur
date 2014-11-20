@@ -3,7 +3,7 @@
 
 pkgname=webkit2gtk2.4
 pkgver=2.4.7
-pkgrel=1
+pkgrel=2
 pkgdesc='GTK+ Web content engine library'
 arch=('i686' 'x86_64')
 url='http://webkitgtk.org/'
@@ -53,7 +53,7 @@ package() {
          "${pkgdir}"/usr/include \
          "${pkgdir}"/usr/lib/girepository-1.0/JavaScriptCore-3.0.typelib \
          "${pkgdir}"/usr/lib/libjavascriptcoregtk-3.0.so* \
-         "${pkgdir}"/usr/pkgconfig/javascriptcoregtk-3.0.pc \
+         "${pkgdir}"/usr/lib/pkgconfig/javascriptcoregtk-3.0.pc \
          "${pkgdir}"/usr/share/gir-1.0/JavaScriptCore-3.0.gir \
          "${pkgdir}"/usr/share/locale \
          "${pkgdir}"/usr/share/webkitgtk-3.0
