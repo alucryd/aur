@@ -15,10 +15,8 @@ diff -rupN noise.orig/data/noise.desktop noise/data/noise.desktop
  
  [Desktop Action AboutDialog]
 -Exec=noise --about
--Name=About Noise
-\ No newline at end of file
 +Exec=noise-player --about
-+Name=About Noise
+ Name=About Noise
 diff -rupN noise.orig/src/CMakeLists.txt noise/src/CMakeLists.txt
 --- noise.orig/src/CMakeLists.txt	2014-08-08 00:54:24.364559520 +0200
 +++ noise/src/CMakeLists.txt	2014-08-08 00:55:32.009151191 +0200

@@ -2,43 +2,46 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-files-bzr
-pkgver=r1424
+pkgver=r1642
 pkgrel=1
 pkgdesc='The Pantheon File Manager'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/pantheon-files'
 license=('GPL3')
-depends=('desktop-file-utils' 'gconf' 'granite' 'libnotify')
+depends=('desktop-file-utils' 'gconf' 'granite' 'libnotify' 'zeitgeist')
 makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala')
 optdepends=('contractor-bzr: Various context menu entries'
             'pantheon-files-plugin-dropbox-bzr: Dropbox integration'
             'tumbler: Thumbnails generation')
-provides=("${pkgname%-*}")
-conflicts=('marlin-bin' 'marlin-bzr' "${pkgname%-*}")
-install="${pkgname%-*}.install"
+provides=('pantheon-files')
+conflicts=('marlin-bin' 'marlin-bzr' 'pantheon-files')
+install='pantheon-files.install'
 source=('bzr+lp:pantheon-files')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd pantheon-files
 
   printf "r%s" "$(bzr revno)"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd pantheon-files
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_SKIP_RPATH='TRUE' \
+    -DGSETTINGS_COMPILE='FALSE'
   make
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd pantheon-files/build
 
   make DESTDIR="${pkgdir}" install
 }
