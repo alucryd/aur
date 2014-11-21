@@ -13,13 +13,21 @@ makedepends=('bzr' 'cmake' 'vala')
 provides=('pantheon-terminal')
 conflicts=('pantheon-terminal')
 install='pantheon-terminal.install'
-source=('pantheon-terminal::bzr+lp:~stevenvandenbrandenstift/pantheon-terminal/fix-1375346')
-sha256sums=('SKIP')
+source=('pantheon-terminal::bzr+lp:~stevenvandenbrandenstift/pantheon-terminal/fix-1375346'
+        'bash-notify.patch')
+sha256sums=('SKIP'
+            'a92e7207e8f9961316ae90610e4d90e464352337454b7633cb131751ec1dad3a')
 
 pkgver() {
   cd pantheon-terminal
 
   printf "r%s" "$(bzr revno)"
+}
+
+prepare() {
+  cd pantheon-terminal
+
+  patch -Np2 -i ../bash-notify.patch
 }
 
 build() {
@@ -30,7 +38,9 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DGSETTINGS_COMPILE='FALSE'
   make
 }
 
