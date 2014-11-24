@@ -7,9 +7,9 @@
 # Contributor: Praekon <praekon@googlemail.com>
 
 pkgname=plex-media-server
-pkgver=0.9.11.1.678
-_pkgsum=c48ffd2
-pkgrel=4
+pkgver=0.9.11.4.739
+_pkgsum=a4e710f
+pkgrel=1
 pkgdesc='Plex Media Server'
 arch=('i686' 'x86_64')
 url='https://plex.tv/'
@@ -30,10 +30,10 @@ sha256sums=('a82829854ab8e780f7686a9e65d36c8cf6900d6c3471176e0f2aae8f5a024a19'
 
 if [[ $CARCH == x86_64 ]]; then
   source+=("https://downloads.plex.tv/plex-media-server/${pkgver}-${_pkgsum}/plexmediaserver-${pkgver}-${_pkgsum}.x86_64.rpm")
-  sha256sums+=('37c5d4161902c6e0b040853ef24dbae2490c3eaeead5394726bd5d4d90aa8c3c')
+  sha256sums+=('6466e67868a7e0422143811937cbf2abb96fa2698b1d73ace58b519cc78d8288')
 else
   source+=("https://downloads.plex.tv/plex-media-server/${pkgver}-${_pkgsum}/plexmediaserver-${pkgver}-${_pkgsum}.i386.rpm")
-  sha256sums+=('6a1ee09c776783f63a5ea37c2f71d56386e7f2a8704c6ad0e002a43a281e11d2')
+  sha256sums+=('4af7d2faed8b7ebd6786b01f409cf0089aeec3b95cb3db3d3acc5fd10b940384')
 fi
 
 package() {
