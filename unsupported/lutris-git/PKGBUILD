@@ -1,18 +1,19 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=lutris-git
-pkgver=0.3.5.r173.7370521
+pkgver=0.3.6.2.r33.ed23b42
 pkgrel=1
 pkgdesc='Open Gaming Platform'
 arch=('any')
 url='http://lutris.net/'
 license=('GPL3')
-depends=('dconf' 'desktop-file-utils' 'hicolor-icon-theme' 'polkit' 'python2-gobject' 'python2-xdg' 'python2-yaml')
+depends=('desktop-file-utils' 'glib-networking' 'gvfs' 'hicolor-icon-theme'
+         'polkit' 'python2-gobject' 'python2-xdg' 'python2-yaml' 'xorg-xrandr')
 makedepends=('git' 'python2-setuptools')
 provides=('lutris')
 conflicts=('lutris')
 install='lutris.install'
-source=("git+https://github.com/lutris/lutris.git")
+source=('git+https://github.com/lutris/lutris.git')
 sha256sums=('SKIP')
 
 pkgver() {

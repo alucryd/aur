@@ -2,13 +2,13 @@
 
 pkgname=lutris
 pkgver=0.3.6.3
-pkgrel=1
+pkgrel=2
 pkgdesc='Open Gaming Platform'
 arch=('any')
 url='http://lutris.net/'
 license=('GPL3')
-depends=('dconf' 'desktop-file-utils' 'hicolor-icon-theme' 'polkit'
-         'python2-gobject' 'python2-xdg' 'python2-yaml' 'xorg-xrandr')
+depends=('desktop-file-utils' 'glib-networking' 'gvfs' 'hicolor-icon-theme'
+         'polkit' 'python2-gobject' 'python2-xdg' 'python2-yaml' 'xorg-xrandr')
 makedepends=('python2-setuptools')
 install='lutris.install'
 source=("http://lutris.net/releases/lutris_${pkgver}.tar.gz")

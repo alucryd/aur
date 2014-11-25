@@ -1,40 +1,44 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=midori-granite
-pkgver=0.5.8
+pkgver=0.5.9
 pkgrel=1
 pkgdesc='A lightweight, fast, and free web browser'
 arch=('i686' 'x86_64')
 url='http://midori-browser.org/'
 license=('LGPL2.1')
 depends=('gcr' 'granite' 'libnotify' 'libxss' 'libzeitgeist' 'webkitgtk')
-makedepends=('cmake' 'intltool' 'librsvg' 'vala')
+makedepends=('cmake' 'intltool' 'librsvg' 'ninja' 'vala')
 optdepends=('aria2: Download utility'
             'gst-plugins-base: HTML5 OGG videos support'
             'gst-plugins-good: HTML5 H264 and WebM videos support'
             'gst-libav: HTML5 H264 videos support')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
+provides=('midori')
+conflicts=('midori')
 options=('!emptydirs')
-install="${pkgname%-*}.install"
-source=("${url}/downloads/midori_${pkgver}_all_.tar.bz2")
-sha256sums=('af19135fd4c4b04345df4d3592e7939c20f9b40eaca24550e6cb619751aa9381')
+install='midori.install'
+source=("http://midori-browser.org/downloads/midori_${pkgver}_all_.tar.bz2")
+sha256sums=('b1a5309d926ea4e394f4a39552023b0427cf23053793d325e3daefceed282ec0')
 
 build() {
-  #cd ${pkgname%-*}-${pkgver}
+  cd midori-${pkgver}
 
   [[ -d build ]] && rm -rf build
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_{LIBDIR='/usr/lib',PREFIX='/usr'} -DUSE_{GRANITE,GTK3}='ON'
-  make
+  cmake .. \
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DUSE_GRANITE='TRUE' \
+    -DUSE_GTK3='TRUE' \
+    -G Ninja
+  ninja
 }
 
 package() {
-  #cd ${pkgname%-*}-${pkgver}/build
-  cd build
+  cd midori-${pkgver}/build
 
-  make DESTDIR="${pkgdir}" install
+  DESTDIR="${pkgdir}" ninja install
 }
 
 # vim: ts=2 sw=2 et:
