@@ -17,10 +17,8 @@ optdepends=('vala: Outline extension'
 provides=('scratch-text-editor')
 conflicts=('scratch-text-editor')
 install='scratch-text-editor.install'
-source=('scratch-text-editor::bzr+lp:scratch'
-        'scratch-vte291.patch')
-sha256sums=('SKIP'
-            '43bc03c7e21844ef2cc4697930c40494344ac0422a0963065f442321853079dd')
+source=('scratch-text-editor::bzr+lp:scratch')
+sha256sums=('SKIP')
 
 pkgver() {
   cd scratch-text-editor
@@ -34,8 +32,6 @@ prepare() {
   sed -i 's/gtkspell-3.0/gtkspell3-3.0/' plugins/spell/CMakeLists.txt
   sed -i '/add_subdirectory (spell)/d' plugins/CMakeLists.txt
   sed -i 's|^#!.*python$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
-
-  patch -Np1 -i ../scratch-vte291.patch
 }
 
 build() {
