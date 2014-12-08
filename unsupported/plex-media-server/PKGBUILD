@@ -9,7 +9,7 @@
 pkgname=plex-media-server
 pkgver=0.9.11.4.739
 _pkgsum=a4e710f
-pkgrel=1
+pkgrel=2
 pkgdesc='Plex Media Server'
 arch=('i686' 'x86_64')
 url='https://plex.tv/'
@@ -25,7 +25,7 @@ source=('plexmediaserver.conf.d'
         'terms.txt')
 sha256sums=('a82829854ab8e780f7686a9e65d36c8cf6900d6c3471176e0f2aae8f5a024a19'
             'ea50f866c7aa6b0a9e71d830887fb081b70f34f0b4b36f7cd7a69ab48b81d371'
-            'b55368f164da76696215153a7a2d880097f1e3ccdba9faf5a3690706407eb7bb'
+            '7e5e5e667739bd35f16b7de5edd5846b0ed555a0f61a17aa65e5d623e878f25d'
             '7bb97271eb2dc5d1dcb95f9763f505970d234df17f1b8d79b467b9020257915a')
 
 if [[ $CARCH == x86_64 ]]; then

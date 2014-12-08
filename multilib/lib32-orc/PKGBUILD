@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=lib32-orc
-pkgver=0.4.19
+pkgver=0.4.22
 pkgrel=1
 pkgdesc='The Oild Runtime Compiler'
 arch=('x86_64')
@@ -9,8 +9,8 @@ license=('custom')
 url='http://code.entropywave.com/projects/orc/'
 depends=('lib32-glibc' "orc=${pkgver}")
 makedepends=('valgrind')
-source=("http://gstreamer.freedesktop.org/src/orc/orc-${pkgver}.tar.gz")
-sha256sums=('e21f50321a21c33178bbe41ea8bd27c49ae60aeb8c22902a215f7141297fb59e')
+source=("http://gstreamer.freedesktop.org/data/src/orc/orc-${pkgver}.tar.xz")
+sha256sums=('04ca077f4b25f02cc13090effa55343bbfde986c8d663df430347992aa5cf935')
 
 build() {
   cd orc-${pkgver}
@@ -22,7 +22,8 @@ build() {
   ./configure \
     --prefix='/usr' \
     --libdir='/usr/lib32' \
-    --disable-static
+    --disable-static \
+    --enable-backend=mmx,sse,altivec
   make
 }
 

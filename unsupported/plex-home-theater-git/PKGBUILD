@@ -2,7 +2,7 @@
 # Contributor: Daniel Wallace <daniel.wallace@gatech.edu>
 
 pkgname=plex-home-theater-git
-pkgver=1.2.2
+pkgver=v1.3.2.417.r04be1687
 pkgrel=1
 pkgdesc='Plex Home Theater'
 arch=('i686' 'x86_64')
@@ -13,7 +13,7 @@ depends=('boost-libs' 'curl' 'ffmpeg-compat' 'fontconfig' 'glew' 'lame' 'libass'
          'libsamplerate' 'libssh' 'libusb-compat' 'libva' 'libvdpau'
          'libxrandr' 'lzo' 'mesa' 'rtmpdump' 'sdl_image' 'sdl_mixer'
          'smbclient' 'taglib' 'tinyxml' 'yajl')
-makedepends=('boost' 'cmake' 'doxygen' 'ftgl' 'git' 'java-environment' 'libcec'
+makedepends=('boost' 'cmake' 'doxygen' 'git' 'java-environment' 'libcec'
              'libplist' 'libshairport' 'nasm' 'swig' 'unzip' 'zip')
 optdepends=('libplist: AirPlay support'
             'libshairport: AirPlay support'
