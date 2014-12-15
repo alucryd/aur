@@ -3,7 +3,7 @@
 # Contributor: jackoneill <cantabile.desu@gmail.com>
 
 pkgname=vapoursynth-git
-pkgver=R24.r7.4bfbaf7
+pkgver=R25.r36.a1775cd
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
 arch=('i686' 'x86_64')
@@ -11,34 +11,34 @@ url='http://www.vapoursynth.com/'
 license=('LGPL2.1' 'custom:OFL')
 depends=('ffmpeg' 'python' 'tesseract')
 makedepends=('cython' 'git' 'python-sphinx' 'yasm')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
+provides=('vapoursynth')
+conflicts=('vapoursynth')
 source=('git+https://github.com/vapoursynth/vapoursynth.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd vapoursynth
 
   printf "%s" "$(git describe --tags | sed 's/-/.r/; s/-g/./')"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd vapoursynth
 
-  ./bootstrap.py
-  ./waf configure --prefix='/usr' --enable-examples
-  ./waf build $MAKEFLAGS
-  python setup.py build
+  ./autogen.sh
+  ./configure \
+    --prefix='/usr' \
+    --disable-static
+  make
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd vapoursynth
 
-  ./waf install --destdir="${pkgdir}"
-  python setup.py install --root="${pkgdir}" --optimize='1'
+  make DESTDIR="${pkgdir}" install
 
-  install -dm 755 "${pkgdir}"/usr/share/licenses/${pkgname}
-  install -m 644 ofl.txt "${pkgdir}"/usr/share/licenses/${pkgname}/
+  install -dm 755 "${pkgdir}"/usr/share/licenses/vapoursynth-git
+  install -m 644 ofl.txt "${pkgdir}"/usr/share/licenses/vapoursynth-git/
 }
 
 # vim: ts=2 sw=2 et:
