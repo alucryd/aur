@@ -4,7 +4,7 @@
 pkgbase=lib32-gstreamer0.10-base
 pkgname=('lib32-gstreamer0.10-base' 'lib32-gstreamer0.10-base-plugins')
 pkgver=0.10.36
-pkgrel=6
+pkgrel=7
 arch=('x86_64')
 url='http://gstreamer.freedesktop.org/'
 license=('LGPL')
@@ -30,7 +30,9 @@ build() {
     --with-package-name='GStreamer Base Plugins (Archlinux Multilib)' \
     --with-package-origin='http://www.archlinux.org/' \
     --enable-experimental \
+    --disable-examples \
     --disable-gnome_vfs \
+    --disable-introspection \
     --disable-static
   make
   sed -e 's/^SUBDIRS_EXT =.*/SUBDIRS_EXT =/' -i Makefile
