@@ -3,19 +3,21 @@
 # Contributor: Massimiliano Torromeo <massimiliano.torromeo@gmail.com>
 
 pkgname=geary-devel
-pkgver=0.8.1
+pkgver=0.9.0
 pkgrel=1
 pkgdesc='A lightweight email client for the GNOME desktop'
 arch=('i686' 'x86_64')
 url='https://wiki.gnome.org/Apps/Geary'
 license=('GPL3')
-depends=('gnome-keyring' 'gmime' 'libcanberra' 'libgee' 'libnotify' 'webkitgtk')
-makedepends=('cmake' 'gnome-doc-utils' 'gobject-introspection' 'intltool' 'vala')
+depends=('gnome-keyring' 'gmime' 'libcanberra' 'libgee' 'libnotify'
+         'webkitgtk')
+makedepends=('cmake' 'gnome-doc-utils' 'gobject-introspection' 'intltool'
+             'vala')
 provides=('geary')
 conflicts=('geary')
 install='geary.install'
 source=("https://download.gnome.org/sources/geary/${pkgver%.?}/geary-${pkgver}.tar.xz")
-sha256sums=('9049b4b056ff89d2a2f6fa5438a7f2fcd623f6264b8b0d9568495752604e9e6f')
+sha256sums=('7506e10e4bfa979117c2d0d0c8d6cc656dcb66c04eb0cb6d04e18fb12b852d90')
 
 build() {
   cd geary-${pkgver}

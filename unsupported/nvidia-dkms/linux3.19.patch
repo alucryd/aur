@@ -1,0 +1,66 @@
+diff -Npur NVIDIA-Linux-x86_64-343.orig/kernel/nv.c NVIDIA-Linux-x86_64-343.36-no-compat32/kernel/nv.c
+--- NVIDIA-Linux-x86_64-343.orig/kernel/nv.c	2014-12-02 00:26:56.000000000 +0100
++++ NVIDIA-Linux-x86_64-343.36-no-compat32/kernel/nv.c	2014-12-21 17:41:28.881358753 +0100
+@@ -30,7 +30,11 @@
+ 
+ #if defined(NV_VMWARE) || (NV_BUILD_MODULE_INSTANCES != 0)
+ #if defined(MODULE_LICENSE)
++#if LINUX_KERNEL_VERSION >= KERNEL_VERSION(3, 19, 0)
++MODULE_LICENSE("GPL\0NVIDIA");
++#else
+ MODULE_LICENSE("NVIDIA");
++#endif
+ #endif
+ #if defined(MODULE_INFO)
+ MODULE_INFO(supported, "external");
+@@ -1824,7 +1824,11 @@ nvidia_unlocked_ioctl(
+     unsigned long i_arg
+ )
+ {
++#if LINUX_KERNEL_VERSION >= KERNEL_VERSION(3, 19, 0)
++    return nvidia_ioctl(file->f_path.dentry->d_inode, file, cmd, i_arg);
++#else
+     return nvidia_ioctl(file->f_dentry->d_inode, file, cmd, i_arg);
++#endif
+ }
+ 
+ /*
+diff -Npur NVIDIA-Linux-x86_64-343.orig/kernel/nv-frontend.c NVIDIA-Linux-x86_64-343.36-no-compat32/kernel/nv-frontend.c
+--- NVIDIA-Linux-x86_64-343.orig/kernel/nv-frontend.c	2014-12-02 00:26:56.000000000 +0100
++++ NVIDIA-Linux-x86_64-343.36-no-compat32/kernel/nv-frontend.c	2014-12-21 17:41:28.884693753 +0100
+@@ -15,7 +15,11 @@
+ #include "nv-frontend.h"
+ 
+ #if defined(MODULE_LICENSE)
++#if LINUX_KERNEL_VERSION >= KERNEL_VERSION(3, 19, 0)
++MODULE_LICENSE("GPL\0NVIDIA");
++#else
+ MODULE_LICENSE("NVIDIA");
++#endif
+ #endif
+ #if defined(MODULE_INFO)
+ MODULE_INFO(supported, "external");
+@@ -327,7 +327,11 @@ long nvidia_frontend_unlocked_ioctl(
+     unsigned long i_arg
+ )
+ {
++#if LINUX_KERNEL_VERSION >= KERNEL_VERSION(3, 19, 0)
++    return nvidia_frontend_ioctl(file->f_path.dentry->d_inode, file, cmd, i_arg);
++#else
+     return nvidia_frontend_ioctl(file->f_dentry->d_inode, file, cmd, i_arg);
++#endif
+ }
+ 
+ long nvidia_frontend_compat_ioctl(
+@@ -336,7 +336,11 @@ long nvidia_frontend_compat_ioctl(
+     unsigned long i_arg
+ )
+ {
++#if LINUX_KERNEL_VERSION >= KERNEL_VERSION(3, 19, 0)
++    return nvidia_frontend_ioctl(file->f_path.dentry->d_inode, file, cmd, i_arg);
++#else
+     return nvidia_frontend_ioctl(file->f_dentry->d_inode, file, cmd, i_arg);
++    #endif
+ }
+ 
+ int nvidia_frontend_mmap(
