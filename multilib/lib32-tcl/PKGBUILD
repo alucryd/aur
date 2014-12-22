@@ -9,9 +9,9 @@ pkgdesc='The Tcl scripting language'
 arch=('x86_64')
 url='http://tcl.sourceforge.net/'
 license=('custom')
-depends=('lib32-zlib' "tcl=${pkgver}")
+depends=('lib32-zlib' 'tcl')
 source=("http://downloads.sourceforge.net/sourceforge/tcl/tcl${pkgver}-src.tar.gz")
-md5sums=('8103eaf6d71acb716a64224492f09d5f')
+sha256sums=('86f7ae5f581dd0904d04415637ab3aef5a50986c1b6d04c340e2b1b0258da9c4')
 
 prepare() {
   cd tcl${pkgver}

@@ -11,7 +11,7 @@ pkgdesc='A commandline option parser'
 arch=('x86_64')
 url='http://rpm5.org'
 license=('custom')
-depends=('lib32-glibc' "popt=${pkgver}")
+depends=('lib32-glibc' 'popt')
 makedepends=('gcc-multilib')
 source=("http://rpm5.org/files/popt/popt-${pkgver}.tar.gz")
 sha256sums=('e728ed296fe9f069a0e005003c3d6b2dde3d9cad453422a10d6558616d304cc8')

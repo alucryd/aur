@@ -8,7 +8,7 @@ pkgdesc='A configuration database system'
 arch=('x86_64')
 license=('LGPL')
 url='http://www.gnome.org'
-depends=("gconf=${pkgver}" 'lib32-dbus-glib' 'lib32-gtk3')
+depends=('gconf' 'lib32-dbus-glib' 'lib32-gtk3')
 makedepends=('gcc-multilib' 'gobject-introspection' 'intltool' 'python2')
 install='gconf.install'
 source=("http://ftp.gnome.org/pub/gnome/sources/GConf/3.2/GConf-${pkgver}.tar.xz"

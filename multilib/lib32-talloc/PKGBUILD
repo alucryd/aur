@@ -9,7 +9,7 @@ arch=('x86_64')
 url='http://talloc.samba.org/'
 license=('GPL3')
 source=("http://samba.org/ftp/talloc/talloc-${pkgver}.tar.gz")
-depends=('lib32-glibc' "talloc=${pkgver}")
+depends=('lib32-glibc' 'talloc')
 makedepends=('gcc-multilib' 'python2')
 sha256sums=('3e29ce6c3ba3c4f7c2d57ce8cf0fbc24c86618c519f2b2fb6a459025488b6174')
 

@@ -8,7 +8,7 @@ pkgdesc='Network-related giomodules for glib'
 arch=('x86_64')
 url='http://www.gtk.org/'
 license=('GPL2')
-depends=("glib-networking=${pkgver}" 'lib32-glib2' 'lib32-gnutls' 'lib32-libproxy')
+depends=('glib-networking' 'lib32-glib2' 'lib32-gnutls' 'lib32-libproxy')
 makedepends=('ca-certificates' 'gcc-multilib' 'intltool')
 install='glib-networking.install'
 source=("http://download.gnome.org/sources/glib-networking/${pkgver%.*}/glib-networking-${pkgver}.tar.xz")

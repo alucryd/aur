@@ -9,7 +9,7 @@ arch=('x86_64')
 url='http://www.python.org/'
 license=('PSF')
 depends=('lib32-bzip2' 'lib32-db' 'lib32-expat' 'lib32-gdbm' 'lib32-libffi'
-         'lib32-openssl' 'lib32-sqlite3' 'lib32-zlib' "python2=${pkgver}")
+         'lib32-openssl' 'lib32-sqlite3' 'lib32-zlib' 'python2')
 makedepends=('gcc-multilib' 'tk')
 optdepends=('tk: for IDLE')
 options=('!makeflags')

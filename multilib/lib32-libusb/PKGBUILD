@@ -8,7 +8,7 @@ pkgdesc='A cross-platform user library to access USB devices'
 arch=('x86_64')
 url='http://libusb.info/'
 license=('LGPL')
-depends=('lib32-systemd' "libusb=${pkgver}")
+depends=('lib32-systemd' 'libusb')
 replaces=('lib32-libusb1' 'lib32-libusbx')
 provides=('lib32-libusbx')
 makedepends=('gcc-multilib')

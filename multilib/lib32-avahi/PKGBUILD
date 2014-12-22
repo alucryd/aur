@@ -8,8 +8,8 @@ pkgdesc='A multicast/unicast DNS-SD framework'
 arch=('x86_64')
 url='http://www.avahi.org'
 license=('LGPL')
-depends=("avahi=${pkgver}" 'lib32-dbus-core' 'lib32-gdbm' 'lib32-glib2'
-         'lib32-libcap' 'lib32-libdaemon')
+depends=('avahi' 'lib32-dbus-core' 'lib32-gdbm' 'lib32-glib2' 'lib32-libcap'
+         'lib32-libdaemon')
 makedepends=('gcc-multilib' 'gobject-introspection' 'intltool' 'python2-dbus')
 source=("http://www.avahi.org/download/avahi-${pkgver}.tar.gz")
 sha256sums=('8372719b24e2dd75de6f59bb1315e600db4fd092805bd1201ed0cb651a2dab48')

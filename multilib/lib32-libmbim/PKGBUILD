@@ -8,7 +8,7 @@ pkgdesc='MBIM modem protocol helper library'
 arch=('x86_64')
 url='http://www.freedesktop.org/wiki/Software/libmbim/'
 license=('GPL2')
-depends=('lib32-systemd' "libmbim=${pkgver}")
+depends=('lib32-systemd' 'libmbim')
 makedepends=('gcc-multilib' 'python')
 source=("http://www.freedesktop.org/software/libmbim/libmbim-${pkgver}.tar.xz")
 sha256sums=('4e5eade46a61d0cd1f8b6ad47bee938868766eca617a64e7acd2d0b72ff38b6e')

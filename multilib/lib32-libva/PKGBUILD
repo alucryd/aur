@@ -9,7 +9,7 @@ pkgdesc='Video Acceleration (VA) API for Linux'
 arch=('x86_64')
 url='http://freedesktop.org/wiki/Software/vaapi'
 license=('MIT')
-depends=('lib32-libdrm' 'lib32-libgl' 'lib32-libxfixes' "libva=${pkgver}")
+depends=('lib32-libdrm' 'lib32-libgl' 'lib32-libxfixes' 'libva')
 makedepends=('gcc-multilib' 'mesa')
 optdepends=('lib32-libva-vdpau-driver: backend for Nvidia and AMD cards'
             'lib32-libva-intel-driver: backend for Intel cards')

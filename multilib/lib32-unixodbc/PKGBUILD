@@ -10,7 +10,7 @@ pkgdesc='ODBC is an open specification for providing application developers with
 arch=('x86_64')
 url='http://www.unixodbc.org/'
 license=('GPL2' 'LGPL2.1')
-depends=('lib32-libltdl' "unixodbc=${pkgver}")
+depends=('lib32-libltdl' 'unixodbc')
 makedepends=('gcc-multilib')
 groups=('pipelight-libs')
 source=("http://www.unixodbc.org/unixODBC-$pkgver.tar.gz")

@@ -9,7 +9,7 @@ pkgdesc='GLib bindings for DBUS'
 arch=('x86_64')
 license=('GPL')
 url='http://www.freedesktop.org/wiki/Software/DBusBindings'
-depends=("dbus-glib=${pkgver}" 'lib32-glib2')
+depends=('dbus-glib' 'lib32-glib2')
 makedepends=('gcc-multilib')
 options=('!emptydirs')
 source=("http://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-${pkgver}.tar.gz")

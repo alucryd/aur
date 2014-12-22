@@ -40,7 +40,7 @@ build() {
 
 package_lib32-gstreamer0.10-base() {
   pkgdesc='GStreamer Multimedia Framework Base plugin libraries'
-  depends=("gstreamer0.10-base=${pkgver}" 'lib32-gstreamer0.10' 'lib32-orc'
+  depends=('gstreamer0.10-base' 'lib32-gstreamer0.10' 'lib32-orc'
            'lib32-libxv')
 
   cd gst-plugins-base-${pkgver}
@@ -51,9 +51,9 @@ package_lib32-gstreamer0.10-base() {
 
 package_lib32-gstreamer0.10-base-plugins() {
   pkgdesc='GStreamer Multimedia Framework Base Plugins (gst-plugins-base)'
-  depends=("gstreamer0.10-base-plugins=${pkgver}" 'lib32-alsa-lib'
-           'lib32-cdparanoia' 'lib32-gstreamer0.10-base' 'lib32-libtheora'
-           'lib32-libvisual' 'lib32-libvorbis' 'lib32-pango')
+  depends=('gstreamer0.10-base-plugins' 'lib32-alsa-lib' 'lib32-cdparanoia'
+           'lib32-gstreamer0.10-base' 'lib32-libtheora' 'lib32-libvisual'
+           'lib32-libvorbis' 'lib32-pango')
 
   cd gst-plugins-base-${pkgver}
 

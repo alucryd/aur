@@ -9,7 +9,7 @@ arch=('x86_64')
 url='http://libteam.org/'
 license=('LGPL2.1')
 depends=('lib32-jansson' 'lib32-libdaemon' 'lib32-libdbus' 'lib32-libnl'
-         "libteam=${pkgver}")
+         'libteam')
 makedepends=('gcc-multilib' 'swig')
 source=("http://libteam.org/files/libteam-${pkgver}.tar.gz")
 sha256sums=('b89e81258f8a8f4abd718ec1c91f85cb66d4d29e4d50095a3d2a4ffd8ce4bf7a')

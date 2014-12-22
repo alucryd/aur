@@ -9,7 +9,7 @@ pkgdesc='A GTK+ module that bridges ATK to D-Bus at-spi'
 arch=('x86_64')
 url='http://www.gnome.org'
 license=('GPL2')
-depends=("at-spi2-atk=${pkgver}" 'lib32-at-spi2-core' 'lib32-atk')
+depends=('at-spi2-atk' 'lib32-at-spi2-core' 'lib32-atk')
 makedepends=('gcc-multilib' 'intltool')
 source=("http://download.gnome.org/sources/at-spi2-atk/${pkgver%.*}/at-spi2-atk-${pkgver}.tar.xz")
 sha256sums=('058f34ea60edf0a5f831c9f2bdd280fe95c1bcafb76e466e44aa0fb356d17bcb')

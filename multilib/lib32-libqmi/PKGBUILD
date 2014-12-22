@@ -8,7 +8,7 @@ pkgdesc='QMI modem protocol helper library'
 arch=('x86_64')
 url='http://www.freedesktop.org/wiki/Software/libqmi/'
 license=('GPL2')
-depends=('lib32-glib2' "libqmi=${pkgver}")
+depends=('lib32-glib2' 'libqmi')
 makedepends=('gcc-multilib' 'python')
 source=("http://www.freedesktop.org/software/libqmi/libqmi-${pkgver}.tar.xz")
 sha256sums=('84b4dba6b8105b0c9b0ce80c9da4fd2a5472bfe0311b4c01d65bb200ef773c5a')

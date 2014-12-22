@@ -10,7 +10,7 @@ pkgdesc='A library that provides automatic proxy configuration management'
 arch=('x86_64')
 url='http://libproxy.googlecode.com'
 license=('LGPL')
-depends=('lib32-gcc-libs' "libproxy=${pkgver}")
+depends=('lib32-gcc-libs' 'libproxy')
 makedepends=('cmake' 'gcc-multilib' 'lib32-zlib')
 source=("http://libproxy.googlecode.com/files/libproxy-${pkgver}.tar.gz")
 md5sums=('3cd1ae2a4abecf44b3f24d6639d2cd84')

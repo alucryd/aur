@@ -9,7 +9,7 @@ pkgdesc='JavaScript interpreter and libraries (legacy)'
 arch=('x86_64')
 url='https://developer.mozilla.org/En/SpiderMonkey/17'
 license=('MPL')
-depends=('gcc-libs-multilib' "js17=${pkgver}" 'lib32-nspr' 'lib32-readline')
+depends=('gcc-libs-multilib' 'js17' 'lib32-nspr' 'lib32-readline')
 makedepends=('gcc-multilib' 'lib32-libffi' 'python2' 'zip')
 source=("http://ftp.mozilla.org/pub/mozilla.org/js/mozjs${pkgver}.tar.gz")
 sha256sums=('321e964fe9386785d3bf80870640f2fa1c683e32fe988eeb201b04471c172fba')

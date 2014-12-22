@@ -9,7 +9,7 @@ pkgdesc='A low-level configuration system'
 arch=('x86_64')
 url='http://live.gnome.org/dconf'
 license=('LGPL2.1')
-depends=("dconf=${pkgver}" 'lib32-glib2')
+depends=('dconf' 'lib32-glib2')
 makedepends=('docbook-xsl' 'gcc-multilib' 'intltool' 'python' 'python2' 'vala')
 install='dconf.install'
 source=("http://download.gnome.org/sources/dconf/${pkgver%.*}/dconf-${pkgver}.tar.xz")

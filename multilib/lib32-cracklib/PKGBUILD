@@ -11,7 +11,7 @@ pkgdesc='Password Checking Library'
 arch=('x86_64')
 url='http://sourceforge.net/projects/cracklib'
 license=('GPL')
-depends=("cracklib=${pkgver}" 'lib32-zlib')
+depends=('cracklib' 'lib32-zlib')
 makedepends=('gcc-multilib')
 source=("http://downloads.sourceforge.net/sourceforge/cracklib/cracklib-${pkgver}.tar.gz")
 sha256sums=('408905c2539a97dc8cbbb6d7cd2046cb5647a345b4bda399220d9471be16d156')

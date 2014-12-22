@@ -9,7 +9,7 @@ pkgdesc='GNU database library'
 arch=('x86_64')
 url='http://www.gnu.org/software/gdbm/gdbm.html'
 license=('GPL')
-depends=("gdbm=${pkgver}" 'lib32-glibc')
+depends=('gdbm' 'lib32-glibc')
 makedepends=('gcc-multilib')
 source=("ftp://ftp.gnu.org/gnu/gdbm/gdbm-${pkgver}.tar.gz"
         'gdbm-1.10-zeroheaders.patch')

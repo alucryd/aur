@@ -7,7 +7,7 @@ pkgdesc='Compact Disc Digital Audio extraction tool'
 arch=('x86_64')
 url='http://www.xiph.org/paranoia/'
 license=('GPL')
-depends=("cdparanoia=${pkgver}" 'lib32-glibc')
+depends=('cdparanoia' 'lib32-glibc')
 makedepends=('gcc-multilib')
 options=('!makeflags')
 source=("http://downloads.xiph.org/releases/cdparanoia/cdparanoia-III-${pkgver}.src.tgz"

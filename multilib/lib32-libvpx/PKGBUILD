@@ -8,7 +8,7 @@ pkgdesc='The VP8 Codec SDK'
 arch=('x86_64')
 url='http://www.webmproject.org/'
 license=('BSD')
-depends=('lib32-glibc' "libvpx=${pkgver}")
+depends=('lib32-glibc' 'libvpx')
 makedepends=('yasm')
 source=("https://webm.googlecode.com/files/libvpx-v${pkgver}.tar.bz2")
 sha256sums=('d3dcc8d84af51c6c382b214397c62402e37a799e8ebcda6f4217aef0010451a9')

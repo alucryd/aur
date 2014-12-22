@@ -35,7 +35,7 @@ build() {
 
 package_lib32-libxkbcommon() {
   pkgdesc='Keyboard handling library using XKB data'
-  depends=('lib32-glibc' "libxkbcommon=${pkgver}")
+  depends=('lib32-glibc' 'libxkbcommon')
 
   cd libxkbcommon-${pkgver}
 
@@ -51,7 +51,7 @@ package_lib32-libxkbcommon() {
 
 package_lib32-libxkbcommon-x11() {
   pkgdesc='Keyboard handling library using XKB data for X11 XCB clients'
-  depends=('lib32-libxcb' 'lib32-libxkbcommon' "libxkbcommon-x11=${pkgver}")
+  depends=('lib32-libxcb' 'lib32-libxkbcommon' 'libxkbcommon-x11')
 
   mv x11/* "${pkgdir}"/
   find "${pkgdir}" -type d -exec chmod 755 {} +

@@ -9,7 +9,7 @@ pkgdesc='A lightweight C library which eases the writing of UNIX daemons'
 arch=('x86_64')
 url='http://0pointer.de/lennart/projects/libdaemon/'
 license=('LGPL')
-depends=('lib32-glibc' "libdaemon=${pkgver}")
+depends=('lib32-glibc' 'libdaemon')
 makedepends=('gcc-multilib')
 #source=("http://0pointer.de/lennart/projects/libdaemon/libdaemon-${pkgver}.tar.gz")
 source=("http://pkgs.fedoraproject.org/repo/pkgs/libdaemon/libdaemon-${pkgver}.tar.gz/509dc27107c21bcd9fbf2f95f5669563/libdaemon-${pkgver}.tar.gz")
