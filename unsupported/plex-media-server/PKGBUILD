@@ -7,9 +7,9 @@
 # Contributor: Praekon <praekon@googlemail.com>
 
 pkgname=plex-media-server
-pkgver=0.9.11.4.739
-_pkgsum=a4e710f
-pkgrel=2
+pkgver=0.9.11.7.803
+_pkgsum=87d0708
+pkgrel=1
 pkgdesc='Plex Media Server'
 arch=('i686' 'x86_64')
 url='https://plex.tv/'
@@ -29,8 +29,8 @@ sha256sums=('a82829854ab8e780f7686a9e65d36c8cf6900d6c3471176e0f2aae8f5a024a19'
             'ea50f866c7aa6b0a9e71d830887fb081b70f34f0b4b36f7cd7a69ab48b81d371'
             '7e5e5e667739bd35f16b7de5edd5846b0ed555a0f61a17aa65e5d623e878f25d'
             '7bb97271eb2dc5d1dcb95f9763f505970d234df17f1b8d79b467b9020257915a')
-sha256sums_i686=('4af7d2faed8b7ebd6786b01f409cf0089aeec3b95cb3db3d3acc5fd10b940384')
-sha256sums_x86_64=('6466e67868a7e0422143811937cbf2abb96fa2698b1d73ace58b519cc78d8288')
+sha256sums_i686=('23a8ef78472b80d5877b282cb8e2417db6fff5a8ee37c3e74fe7d2d0ea0c0396')
+sha256sums_x86_64=('2586252f05df035a06f65b71ab1a01ced6fdc5c75b7d8d51ff8aafb795f04e46')
 
 package() {
   install -dm 755 "${pkgdir}"/{opt,etc/conf.d,usr/{bin,lib/systemd/system}}
