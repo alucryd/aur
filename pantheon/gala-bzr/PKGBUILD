@@ -13,20 +13,17 @@ makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
 provides=('gala')
 conflicts=('gala')
 install='gala.install'
-#source=('gala::bzr+http://bazaar.launchpad.net/~gala-dev/gala/trunk/')
-source=('gala-mutter314::bzr+http://bazaar.launchpad.net/~gala-dev/gala/mutter314/')
+source=('gala::bzr+http://bazaar.launchpad.net/~gala-dev/gala/trunk/')
 sha256sums=('SKIP')
 
 pkgver() {
-#  cd gala
-  cd gala-mutter314
+  cd gala
 
   printf "r%s" "$(bzr revno)"
 }
 
 build() {
-#  cd gala
-  cd gala-mutter314
+  cd gala
 
   ./autogen.sh \
     --prefix='/usr' \
@@ -35,8 +32,7 @@ build() {
 }
 
 package() {
-#  cd gala
-  cd gala-mutter314
+  cd gala
 
   make DESTDIR="${pkgdir}" install
 }
