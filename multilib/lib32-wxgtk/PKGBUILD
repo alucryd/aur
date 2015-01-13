@@ -14,7 +14,7 @@ options=('!emptydirs')
 source=("http://downloads.sourceforge.net/wxwindows/wxWidgets-${pkgver}.tar.bz2"
         'wxGTK-collision.patch')
 sha256sums=('346879dc554f3ab8d6da2704f651ecb504a22e9d31c17ef5449b129ed711585d'
-            'a6d05618e76eb7c146b61d786f48a24eb3de2ea29850361ec5df8b248ea9c274')
+            'c73c51f4b65a779462a4e0923a7e3bc7fe28457258fc8bfb5d843d87df119364')
 
 prepare() {
   cd wx*-${pkgver}

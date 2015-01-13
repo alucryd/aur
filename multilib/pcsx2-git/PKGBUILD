@@ -56,9 +56,7 @@ build() {
       -DPACKAGE_MODE='TRUE' \
       -DXDG_STD='TRUE' \
       -DGLSL_API='TRUE' \
-      -DWX28_API='FALSE' \
-      -DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config' \
-      -DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc'
+      -DWX28_API='FALSE'
   elif [[ $CARCH == x86_64 ]]; then
     export CC='gcc -m32'
     export CXX='g++ -m32'
@@ -74,9 +72,7 @@ build() {
       -DPACKAGE_MODE='TRUE' \
       -DXDG_STD='TRUE' \
       -DGLSL_API='TRUE' \
-      -DWX28_API='FALSE' \
-      -DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config32' \
-      -DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc32'
+      -DWX28_API='FALSE'
   fi
   make
 }
