@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=aegisub-git
-pkgver=3.2.1.r46.3d22853
+pkgver=3.2.1.r99.bfe7e46
 pkgrel=1
 pkgdesc='A general-purpose subtitle editor with ASS/SSA support'
 arch=('i686' 'x86_64')

@@ -20,7 +20,7 @@ diff -rupN wxWidgets-3.0.1.orig/utils/wxrc/Makefile.in wxWidgets-3.0.1/utils/wxr
 -@COND_USE_XRC_1@	mv -f $(DESTDIR)$(bindir)/wxrc$(EXEEXT) $(DESTDIR)$(bindir)/wxrc-$(WX_RELEASE)
 -@COND_USE_XRC_1@	(cd $(DESTDIR)$(bindir) && $(LN_S) wxrc-$(WX_RELEASE) wxrc$(EXEEXT))
 +@COND_USE_XRC_1@	mv -f $(DESTDIR)$(bindir)/wxrc$(EXEEXT) $(DESTDIR)$(bindir)/wxrc32-$(WX_RELEASE)
-+@COND_USE_XRC_1@	(cd $(DESTDIR)$(bindir) && $(LN_S) wxrc32-$(WX_RELEASE) wxrc32$(EXEEXT))
++@COND_USE_XRC_1@	(cd $(DESTDIR)$(bindir) && $(LN_S) wxrc32-$(WX_RELEASE) wxrc32-$(WX_RELEASE))
  
  @COND_USE_XRC_1@uninstall_wxrc: 
  @COND_USE_XRC_1@	rm -f $(DESTDIR)$(bindir)/wxrc$(EXEEXT)
