@@ -1,4 +1,3 @@
 pkgname=('lib32-libgusb')
-builddeps=('lib32-libusb')
 
 # vim: ts=2 sw=2 et:
