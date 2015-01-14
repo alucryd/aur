@@ -3,7 +3,7 @@
 
 pkgbase=tlp-git
 pkgname=('tlp-git' 'tlp-rdw-git')
-pkgver=0.6.r91.c778354
+pkgver=0.6.r99.0b1e74b
 pkgrel=1
 arch=('any')
 url='http://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html'
@@ -35,7 +35,8 @@ package_tlp-git() {
             'iw: Wifi power save'
             'lsb-release: Display LSB release version in tlp-stat'
             'smartmontools: Display S.M.A.R.T. data in tlp-stat'
-            'tp_smapi: ThinkPad battery functions')
+            'tp_smapi: ThinkPad battery functions'
+            'x86_energy_perf_policy: Set energy versus performance policy on x86 processors')
   provides=('tlp')
   conflicts=('laptop-mode-tools' 'pm-utils' 'tlp')
   backup=('etc/default/tlp')
