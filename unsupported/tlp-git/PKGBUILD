@@ -28,15 +28,13 @@ prepare() {
 
 package_tlp-git() {
   pkgdesc='Linux Advanced Power Management'
-  depends=('bash' 'hdparm' 'perl' 'rfkill' 'wireless_tools')
+  depends=('hdparm' 'iw' 'pciutils' 'rfkill' 'usbutils' 'util-linux')
   optdepends=('acpi_call: Sandy Bridge and newer ThinkPad battery functions'
-            'acpid: ThinkPad wireless radio switch'
-            'ethtool: Disable Wake On Lan'
-            'iw: Wifi power save'
-            'lsb-release: Display LSB release version in tlp-stat'
-            'smartmontools: Display S.M.A.R.T. data in tlp-stat'
-            'tp_smapi: ThinkPad battery functions'
-            'x86_energy_perf_policy: Set energy versus performance policy on x86 processors')
+              'ethtool: Disable Wake On Lan'
+              'lsb-release: Display LSB release version in tlp-stat'
+              'smartmontools: Display S.M.A.R.T. data in tlp-stat'
+              'tp_smapi: ThinkPad battery functions'
+              'x86_energy_perf_policy: Set energy versus performance policy on x86 processors')
   provides=('tlp')
   conflicts=('laptop-mode-tools' 'pm-utils' 'tlp')
   backup=('etc/default/tlp')
