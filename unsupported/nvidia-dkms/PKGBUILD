@@ -5,7 +5,7 @@
 
 pkgname=nvidia-dkms
 pkgver=346.35
-pkgrel=1
+pkgrel=2
 pkgdesc='NVIDIA kernel module sources (DKMS)'
 arch=('i686' 'x86_64')
 url='http://www.nvidia.com/'
@@ -36,6 +36,8 @@ prepare() {
   cd ${_pkg}
 
   patch -Np0 -i ../linux3.18.patch
+
+  [[ $CARCH == x86_64 ]] && cat kernel/uvm/dkms.conf.fragment >> kernel/dkms.conf
 }
 
 package() {
@@ -44,9 +46,7 @@ package() {
   install -dm 755 "${pkgdir}"/usr/{lib/modprobe.d,share/licenses,src}
   cp -dr --no-preserve='ownership' kernel "${pkgdir}"/usr/src/nvidia-${pkgver}
 
-  cat "${pkgdir}"/usr/src/nvidia-${pkgver}/uvm/dkms.conf.fragment >> "${pkgdir}"/usr/src/nvidia-${pkgver}/dkms.conf
   echo 'blacklist nouveau' > "${pkgdir}"/usr/lib/modprobe.d/nvidia.conf
-
 
   ln -s nvidia "${pkgdir}"/usr/share/licenses/nvidia-dkms
 }
