@@ -16,7 +16,7 @@ optdepends=('indicator-datetime: Display date and time'
 makedepends=('bzr' 'cmake' 'vala')
 provides=('wingpanel')
 conflicts=('wingpanel')
-install='winganel.install'
+install='wingpanel.install'
 source=('bzr+lp:wingpanel')
 sha256sums=('SKIP')
 
