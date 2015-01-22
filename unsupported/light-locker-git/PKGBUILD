@@ -11,6 +11,7 @@ depends=('dbus-glib' 'gtk3' 'libxss' 'libxxf86misc' 'lightdm')
 makedepends=('git' 'gnome-common' 'intltool')
 provides=('light-locker')
 conflicts=('light-locker')
+install='light-locker.install'
 source=('git+https://github.com/the-cavalry/light-locker.git')
 sha256sums=('SKIP')
 

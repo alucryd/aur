@@ -9,40 +9,42 @@ pkgdesc='The sexiest dictionary on Earth and Jupiter'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/lingo-dictionary'
 license=('GPL3')
-depends=('granite-bzr' 'json-glib' 'libsoup')
+depends=('granite-bzr')
 makedepends=('bzr' 'cmake' 'sqlite' 'vala')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-install="${pkgname}.install"
-source=("${pkgname%-*}::bzr+http://bazaar.launchpad.net/~elementary-apps/lingo-dictionary/lingo/")
+provides=('lingo-dictionary')
+conflicts=('lingo-dictionary')
+install='lingo-dictionary.install'
+source=('lingo-dictionary::bzr+http://bazaar.launchpad.net/~elementary-apps/lingo-dictionary/lingo/')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd lingo-dictionary
 
   printf "r%s" "$(bzr revno)"
 }
 
 prepare() {
-  cd ${pkgname%-*}
+  cd lingo-dictionary
 
   sed 's/gee-1.0/gee-0.8/' -i CMakeLists.txt
 }
 
 build() {
- cd ${pkgname%-*}
+ cd lingo-dictionary
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DGSETTINGS_COMPILE='FALSE'
   make
 }
 
 package() {
- cd ${pkgname%-*}/build
+ cd lingo-dictionary/build
 
   make DESTDIR="${pkgdir}" install
 }

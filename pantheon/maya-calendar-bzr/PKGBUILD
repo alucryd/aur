@@ -7,38 +7,40 @@ pkgdesc='GCal-syncing GTK+ calendar application'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/maya'
 license=('GPL3')
-depends=('folks' 'geocode-glib' 'granite' 'libchamplain' 'libpeas')
+depends=('folks' 'granite' 'libchamplain' 'libpeas')
 makedepends=('bzr' 'cmake' 'vala')
-install="${pkgname%-*}.install"
-source=("${pkgname%-*}::bzr+lp:maya")
+install='maya-calendar.install'
+source=('maya-calendar::bzr+lp:maya')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd maya-calendar
 
   printf "r%s" "$(bzr revno)"
 }
 
 prepare() {
-  cd ${pkgname%-*}
+  cd maya-calendar
 
   sed 's|${CMAKE_INSTALL_FULL_LIBDIR}|${CMAKE_INSTALL_PREFIX}/lib|g' -i $(grep -rl CMAKE_INSTALL_FULL_LIBDIR)
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd maya-calendar
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DGSETTINGS_COMPILE='FALSE'
   make
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd maya-calendar/build
 
   make DESTDIR="${pkgdir}" install
 }

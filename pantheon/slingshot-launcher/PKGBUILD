@@ -7,26 +7,31 @@ pkgdesc='The Pantheon Application Launcher'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/slingshot'
 license=('GPL3')
-depends=('gnome-menus2' 'granite' 'libgee06' 'libunity' 'libwnck3' 'libzeitgeist')
+depends=('gnome-menus2' 'granite' 'libgee06' 'libunity' 'libwnck3'
+         'libzeitgeist')
 makedepends=('cmake' 'vala')
-install="${pkgname}.install"
-source=("${url}/0.x/${pkgver}/+download/${pkgname}-${pkgver}.tgz")
+install='slingshot-launcher.install'
+source=("https://launchpad.net/slingshot/0.x/${pkgver}/+download/slingshot-launcher-${pkgver}.tgz")
 sha256sums=('fa7766281b323e0f86db64afc24d0fd9e8765773da54eb703aaa507cddc0ebcb')
 
 build() {
-  cd ${pkgname}-${pkgver}
+  cd slingshot-launcher-${pkgver}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_EXE_LINKER_FLAGS='-lm' -D{GSETTINGS_COMPILE,USE_UNITY}='OFF'
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_EXE_LINKER_FLAGS='-lm' \
+    -DGSETTINGS_COMPILE='FALSE' \
+    -DUSE_UNITY='FALSE'
   make
 }
 
 package() {
-  cd ${pkgname}-${pkgver}/build
+  cd slingshot-launcher-${pkgver}/build
 
   make DESTDIR="${pkgdir}" install
 }

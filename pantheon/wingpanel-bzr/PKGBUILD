@@ -5,7 +5,7 @@
 pkgname=wingpanel-bzr
 pkgver=r164
 pkgrel=1
-pkgdesc='The Pantheon Top Panel'
+pkgdesc='The Pantheon Panel'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/wingpanel'
 license=('GPL3')
@@ -14,33 +14,36 @@ optdepends=('indicator-datetime: Display date and time'
             'indicator-pantheon-session-bzr: Pantheon session indicator'
             'indicator-power: Battery idicator')
 makedepends=('bzr' 'cmake' 'vala')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-install="${pkgname%-*}.install"
+provides=('wingpanel')
+conflicts=('wingpanel')
+install='winganel.install'
 source=('bzr+lp:wingpanel')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd wingpanel
 
   printf "r%s" "$(bzr revno)"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd wingpanel
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF' \
-           -D{NO_INDICATOR_NG,OLD_LIB_IDO}='TRUE'
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DGSETTINGS_COMPILE='FALSE' \
+    -DNO_INDICATOR_NG='TRUE' \
+    -DOLD_LIB_IDO='TRUE'
   make
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd wingpanel/build
 
   make DESTDIR="${pkgdir}" install
 }

@@ -8,7 +8,7 @@ pkgdesc='A GameCube / Wii / Triforce emulator'
 arch=('x86_64')
 url='http://www.dolphin-emu.org/'
 license=('GPL2')
-depends=('bluez-libs' 'ffmpeg' 'libao' 'lzo' 'miniupnpc' 'polarssl' 'portaudio'
+depends=('bluez-libs' 'ffmpeg' 'libao' 'miniupnpc' 'polarssl' 'portaudio'
          'sdl2' 'sfml' 'soundtouch' 'wxgtk' 'xdg-utils')
 makedepends=('cmake' 'git')
 optdepends=('pulseaudio: PulseAudio backend')
@@ -21,9 +21,9 @@ sha256sums=('SKIP')
 pkgver() {
   cd dolphin-emu
 
-  _tag='4.0.2'
+  tag='4.0.2'
 
-  printf "%s.r%s.%s" "${_tag}" "$(git rev-list --count ${_tag}..HEAD)" "$(git rev-parse --short HEAD)"
+  printf "%s.r%s.%s" "${tag}" "$(git rev-list --count ${tag}..HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
