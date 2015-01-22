@@ -7,29 +7,31 @@ pkgdesc='The Pantheon Session Handler'
 arch=('any')
 url='https://code.launchpad.net/~elementary-os/elementaryos/pantheon-xsession-settings'
 license=('GPL3')
-depends=('cerbere-bzr' 'gala-bzr' 'gconf' 'gnome-keyring' 'gnome-session' 'gnome-settings-daemon' 'gnome-user-share' 'polkit-gnome' 'slingshot-launcher-bzr' 'wingpanel-bzr' 'xdg-user-dirs-gtk')
+depends=('cerbere-bzr' 'gala-bzr' 'gconf' 'gnome-keyring' 'gnome-session'
+         'gnome-settings-daemon' 'gnome-user-share' 'polkit-gnome'
+         'slingshot-launcher-bzr' 'wingpanel-bzr' 'xdg-user-dirs-gtk')
 makedepends=('bzr')
 optdepends=('pantheon-default-settings-bzr')
-source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/pantheon-xsession-settings"
+source=('pantheon-session::bzr+lp:~elementary-os/elementaryos/pantheon-xsession-settings'
         'pantheon-session.sh')
 sha256sums=('SKIP'
             '1e0c8e9403e52614d43ecb920e507ee1e96b1439bb20949ff814741e5e5e2284')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd pantheon-session
 
   printf "r%s" "$(bzr revno)"
 }
 
 prepare() {
-  cd ${pkgname%-*}
+  cd pantheon-session
 
   sed 's/policykit-1/polkit/' -i autostart/polkit-gnome-authentication-agent-1-pantheon.desktop
   sed 's|gnome-session --session=pantheon|/usr/bin/pantheon-session|' -i debian/pantheon.desktop
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd pantheon-session
 
   mkdir -p "${pkgdir}"/{etc/xdg,usr/{bin,share/{gnome-session/sessions,pantheon,xsessions}}}
   cp -dr --no-preserve='ownership' autostart "${pkgdir}/etc/xdg/"
