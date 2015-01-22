@@ -22,7 +22,7 @@ source=("http://webkitgtk.org/releases/webkitgtk-${pkgver}.tar.xz"
         'bug140241.patch')
 sha256sums=('68f11559cb178679ca92acc9e3a3d7febede7acb7b98afd7fb761875bbc6bd23'
             '56316228bbbf0b7ebcbe210a35120f4e72cb9c1b680dd82cc2bde0f4549245e6'
-            '51661321611ff06de11b12ea7d49f283274e215a116d870a7d6f8494e6e7d9a5')
+            '0875047b6171c8336d34003d096b2467c00ec797e9084adc2e562c9473ef6230')
 
 prepare() {
   mkdir path
