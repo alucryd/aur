@@ -4,7 +4,7 @@
 
 pkgbase=lightdm-bzr
 pkgname=('lightdm-bzr' 'liblightdm-qt4-bzr' 'liblightdm-qt5-bzr')
-pkgver=r2087
+pkgver=r2117
 pkgrel=1
 pkgdesc='A lightweight display manager'
 arch=('i686' 'x86_64')
@@ -26,7 +26,7 @@ sha256sums=('SKIP'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
             '33e3c3d6e16c8d30756754ea3f31f5457c5be0343686aad287692be34958984a'
             'a89566307e1c81c24f037d854cbd472d2f94f8a4b759877a01563a332319f7d6'
-            'ed3dca57ef19d32499b72668bc78eaff0d9e772718b76f3816c5ee5f816b1891'
+            'f1c4d1f29ac9f8aabe957d48a41be54d3a81c90360530b1061cbd13a6591315f'
             '7fb85a1b54406032a922e8fd6f45d869fcfe5681df630e74e8e50c040b786ee4')
 
 pkgver() {

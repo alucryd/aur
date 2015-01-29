@@ -13,8 +13,10 @@ depends=('ffmpeg' 'python' 'tesseract')
 makedepends=('cython' 'git' 'python-sphinx' 'yasm')
 provides=('vapoursynth')
 conflicts=('vapoursynth')
-source=('git+https://github.com/vapoursynth/vapoursynth.git')
-sha256sums=('SKIP')
+source=('git+https://github.com/vapoursynth/vapoursynth.git'
+        'vapoursynth.xml')
+sha256sums=('SKIP'
+            '8e51579547d20cd7cb9618a47b3ac508423d09d76649bf038d0ab9acb850b068')
 
 pkgver() {
   cd vapoursynth
@@ -37,8 +39,9 @@ package() {
 
   make DESTDIR="${pkgdir}" install
 
-  install -dm 755 "${pkgdir}"/usr/share/licenses/vapoursynth-git
+  install -dm 755 "${pkgdir}"/usr/share/{licenses/vapoursynth-git,mime/packages}
   install -m 644 ofl.txt "${pkgdir}"/usr/share/licenses/vapoursynth-git/
+  install -m 644 ../vapoursynth.xml "${pkgdir}"/usr/share/mime/packages/
 }
 
 # vim: ts=2 sw=2 et:
