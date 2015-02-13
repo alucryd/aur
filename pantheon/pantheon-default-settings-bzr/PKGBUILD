@@ -10,29 +10,29 @@ license=('GPL')
 groups=('pantheon')
 depends=('elementary-icon-theme' 'gtk-theme-elementary-bzr' 'gnome-themes-standard' 'pantheon-backgrounds-bzr' 'plank-theme-pantheon-bzr' 'ttf-droid' 'ttf-opensans')
 makedepends=('bzr')
-install="${pkgname%-*}.install"
-source=("${pkgname%-*}::bzr+lp:~elementary-os/elementaryos/default-settings-trusty"
+install='pantheon-default-settings.install'
+source=('pantheon-default-settings::bzr+lp:~elementary-os/elementaryos/default-settings-trusty'
         'arch-tweaks.patch')
 sha256sums=('SKIP'
             'ef5d6fce3d288aaa26962cfe5a2c365f5e1edc98938552121d94349acebcda63')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd pantheon-default-settings
 
   printf "r%s" "$(bzr revno)"
 }
 
 prepare() {
-  cd ${pkgname%-*}
+  cd pantheon-default-settings
 
-#  patch -Np1 -i ../arch-tweaks.patch
+  patch -Np1 -i ../arch-tweaks.patch
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd pantheon-default-settings
 
   install -dm 755 "${pkgdir}"/{etc/{gtk-3.0,skel/.config,xdg},usr/share/glib-2.0/schemas}
-  install -m 644 debian/elementary-default-settings.gsettings-override "${pkgdir}"/usr/share/glib-2.0/schemas/25_${pkgname%-*}.gschema.override
+  install -m 644 debian/elementary-default-settings.gsettings-override "${pkgdir}"/usr/share/glib-2.0/schemas/25_pantheon-default-settings.gschema.override
   install -m 644 settings.ini "${pkgdir}"/etc/gtk-3.0/
   cp -dr --no-preserve='ownership' plank "${pkgdir}"/etc/skel/.config/
   cp -dr --no-preserve='ownership' midori "${pkgdir}"/etc/xdg/
