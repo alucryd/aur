@@ -18,16 +18,6 @@ ort' into the new home. Please refer to 'https://support.plex.tv/hc/en-us/artic
 les/201370363-Move-an-Install-to-Another-System' for detailed instructions.
 "
   fi
-
-}
-
-post_remove() {
-  if [[ -n $(getent passwd plex) ]]; then
-    userdel plex
-  fi
-  if [[ -n $(getent group plex) ]]; then
-    groupdel plex
-  fi
 }
 
 # vim: ts=2 sw=2 et:

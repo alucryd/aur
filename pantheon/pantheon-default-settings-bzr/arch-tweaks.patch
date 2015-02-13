@@ -1,7 +1,7 @@
 diff -rupN pantheon-default-settings.orig/debian/elementary-default-settings.gsettings-override pantheon-default-settings/debian/elementary-default-settings.gsettings-override
---- pantheon-default-settings.orig/debian/elementary-default-settings.gsettings-override	2014-06-12 11:36:52.475180180 +0200
-+++ pantheon-default-settings/debian/elementary-default-settings.gsettings-override	2014-06-12 11:38:05.396175618 +0200
-@@ -6,20 +6,18 @@ show-day=true
+--- pantheon-default-settings.orig/debian/elementary-default-settings.gsettings-override	2015-02-13 19:13:57.593295066 +0100
++++ pantheon-default-settings/debian/elementary-default-settings.gsettings-override	2015-02-13 19:18:17.806988752 +0100
+@@ -6,9 +6,8 @@ show-day=true
  show-events=false
  
  [org.gnome.desktop.background]
@@ -12,11 +12,7 @@ diff -rupN pantheon-default-settings.orig/debian/elementary-default-settings.gse
  primary-color='#000000'
  show-desktop-icons=false
  
- [org.gnome.desktop.interface]
--cursor-theme='DMZ-Black'
-+cursor-theme='Adwaita'
- document-font-name='Open Sans 10'
- font-name='Droid Sans 9'
+@@ -22,7 +21,6 @@ font-name='Droid Sans 9'
  gtk-theme='elementary'
  icon-theme='elementary'
  monospace-font-name='Droid Sans Mono 10'
@@ -25,50 +21,34 @@ diff -rupN pantheon-default-settings.orig/debian/elementary-default-settings.gse
  
  [org.gnome.desktop.screensaver]
 diff -rupN pantheon-default-settings.orig/midori/config pantheon-default-settings/midori/config
---- pantheon-default-settings.orig/midori/config	2014-06-12 11:36:52.475180180 +0200
-+++ pantheon-default-settings/midori/config	2014-06-12 11:37:00.528255282 +0200
-@@ -2,7 +2,7 @@
- default-font-family=Droid Sans
+--- pantheon-default-settings.orig/midori/config	2015-02-13 19:13:57.643293039 +0100
++++ pantheon-default-settings/midori/config	2015-02-13 19:18:37.919640330 +0100
+@@ -3,7 +3,7 @@ default-font-family=Droid Sans
  enable-spell-checking=true
+ enable-webgl=true
  homepage=http://start.elementaryos.org/
 -text-editor=gnome-text-editor %F
 +text-editor=scratch-text-editor %F
  show-statusbar=false
  close-buttons-left=true
- toolbar-items=Back,Forward,ReloadStop,BookmarkAdd,Location,CompactMenu,
-diff -rupN pantheon-default-settings.orig/plank/dock1/launchers/audience.dockitem pantheon-default-settings/plank/dock1/launchers/audience.dockitem
---- pantheon-default-settings.orig/plank/dock1/launchers/audience.dockitem	1970-01-01 01:00:00.000000000 +0100
-+++ pantheon-default-settings/plank/dock1/launchers/audience.dockitem	2014-06-12 11:37:00.528255282 +0200
-@@ -0,0 +1,4 @@
-+[PlankItemsDockItemPreferences]
-+Launcher=file:///usr/share/applications/audience.desktop
-+
-+
+ first-party-cookies-only=false
 diff -rupN pantheon-default-settings.orig/plank/dock1/launchers/softwarecenter.dockitem pantheon-default-settings/plank/dock1/launchers/softwarecenter.dockitem
---- pantheon-default-settings.orig/plank/dock1/launchers/softwarecenter.dockitem	2014-06-12 11:36:52.475180180 +0200
+--- pantheon-default-settings.orig/plank/dock1/launchers/softwarecenter.dockitem	2015-02-13 19:13:57.643293039 +0100
 +++ pantheon-default-settings/plank/dock1/launchers/softwarecenter.dockitem	1970-01-01 01:00:00.000000000 +0100
 @@ -1,4 +0,0 @@
 -[PlankItemsDockItemPreferences]
 -Launcher=file:///usr/share/applications/ubuntu-software-center.desktop
 -
 -
-diff -rupN pantheon-default-settings.orig/plank/dock1/launchers/totem.dockitem pantheon-default-settings/plank/dock1/launchers/totem.dockitem
---- pantheon-default-settings.orig/plank/dock1/launchers/totem.dockitem	2014-06-12 11:36:52.475180180 +0200
-+++ pantheon-default-settings/plank/dock1/launchers/totem.dockitem	1970-01-01 01:00:00.000000000 +0100
-@@ -1,4 +0,0 @@
--[PlankItemsDockItemPreferences]
--Launcher=file:///usr/share/applications/totem.desktop
--
--
 diff -rupN pantheon-default-settings.orig/plank/dock1/settings pantheon-default-settings/plank/dock1/settings
---- pantheon-default-settings.orig/plank/dock1/settings	2014-06-12 11:36:52.475180180 +0200
-+++ pantheon-default-settings/plank/dock1/settings	2014-06-12 11:37:00.528255282 +0200
+--- pantheon-default-settings.orig/plank/dock1/settings	2015-02-13 19:13:57.643293039 +0100
++++ pantheon-default-settings/plank/dock1/settings	2015-02-13 19:20:31.755913253 +0100
 @@ -11,7 +11,7 @@ UnhideDelay=0
  #The monitor number for the dock. Use -1 to keep on the primary monitor.
  Monitor=-1
  #List of *.dockitem files on this dock. DO NOT MODIFY
--DockItems=midori.dockitem;;geary.dockitem;;empathy.dockitem;;maya-calendar.dockitem;;noise.dockitem;;totem.dockitem;;shotwell.dockitem;;switchboard.dockitem;;softwarecenter.dockitem
-+DockItems=midori.dockitem;;geary.dockitem;;empathy.dockitem;;maya-calendar.dockitem;;noise.dockitem;;audience.dockitem;;shotwell.dockitem;;switchboard.dockitem
+-DockItems=gala-multitaskingview.dockitem;;midori.dockitem;;geary.dockitem;;maya-calendar.dockitem;;noise.dockitem;;audience.dockitem;;shotwell.dockitem;;switchboard.dockitem;;softwarecenter.dockitem
++DockItems=gala-multitaskingview.dockitem;;midori.dockitem;;geary.dockitem;;maya-calendar.dockitem;;noise.dockitem;;audience.dockitem;;shotwell.dockitem;;switchboard.dockitem
  #The position for the dock on the monitor.
  Position=3
  #The dock's position offset from center (in percent).

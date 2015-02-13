@@ -2,13 +2,13 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=gala-bzr
-pkgver=r423
+pkgver=r431
 pkgrel=1
 pkgdesc='The Pantheon Window Manager'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/gala'
 license=('GPL3')
-depends=('clutter-gtk' 'granite' 'mutter' 'plank')
+depends=('clutter-gtk' 'granite-bzr' 'mutter' 'plank')
 makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
 provides=('gala')
 conflicts=('gala')
@@ -19,7 +19,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd gala
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {

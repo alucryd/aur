@@ -1,0 +1,42 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Gustavo Alvarez <sl1pkn07@gmail.com>
+
+pkgname=vapoursynth-plugin-scxvid-git
+pkgver=1
+pkgrel=1
+pkgdesc='SCXvid plugin for VapourSynth'
+arch=('i686' 'x86_64')
+url='https://github.com/dubhater/vapoursynth-scxvid'
+license=('GPL')
+depends=('vapoursynth')
+makedepends=('git')
+provides=('vapoursynth-plugin-scxvid')
+conflicts=('vapoursynth-plugin-scxvid')
+source=('vapoursynth-plugin-scxvid::git+https://github.com/dubhater/vapoursynth-scxvid.git')
+sha256sums=('SKIP')
+
+pkgver() {
+  cd vapoursynth-plugin-scxvid
+
+  printf "%s" "$(git describe --tags | sed 's/^v//; s/-/.r/; s/-g/./')"
+}
+
+build() {
+  cd vapoursynth-plugin-scxvid
+
+  ./autogen.sh
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib/vapoursynth'
+  make
+}
+
+package(){
+  cd vapoursynth-plugin-scxvid
+
+  make DESTDIR="${pkgdir}" install
+  install -dm 755 "${pkgdir}"/usr/share/doc/vapoursynth/plugins/SCXvid
+  install -m 644 readme.rst "${pkgdir}"/usr/share/doc/vapoursynth/plugins/SCXvid/README
+}
+
+# vim: ts=2 sw=2 et:
