@@ -3,7 +3,7 @@
 
 pkgname=webkit2gtk2.4
 pkgver=2.4.8
-pkgrel=1
+pkgrel=2
 pkgdesc='GTK+ Web content engine library'
 arch=('i686' 'x86_64')
 url='http://webkitgtk.org/'
@@ -32,6 +32,8 @@ prepare() {
 
   patch -Np0 -i ../fix-pretty-quotes.patch
   patch -Np1 -i ../bug140241.patch
+
+  autoreconf -fi
 }
 
 build() {

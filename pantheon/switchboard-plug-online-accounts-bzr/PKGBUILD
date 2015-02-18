@@ -7,8 +7,8 @@ pkgdesc='Online Accounts plug for Switchboard'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/switchboard-plug-onlineaccounts'
 license=('GPL3')
-depends=('credentials-control-center' 'gsignond-plugin-oauth'
-         'gsignond-plugin-sasl' 'rest' 'switchboard-bzr' 'webkit2gtk2.4')
+depends=('credentials-control-center' 'gsignond-plugin-oauth-git'
+         'gsignond-plugin-sasl-git' 'rest' 'switchboard-bzr' 'webkit2gtk2.4')
 makedepends=('bzr' 'cmake' 'vala')
 provides=('switchboard-plug-online-accounts')
 conflicts=('switchboard-plug-online-accounts')
@@ -22,10 +22,6 @@ pkgver() {
   printf "r%s" "$(bzr revno)"
 }
 
-prepare() {
-  cd switchboard-plug-online-accounts
-}
-
 build() {
   cd switchboard-plug-online-accounts
 
@@ -35,6 +31,7 @@ build() {
   mkdir build && cd build
 
   cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
     -DCMAKE_INSTALL_PREFIX='/usr' \
     -DCMAKE_INSTALL_LIBDIR='/usr/lib'
   make -j1
