@@ -3,7 +3,7 @@
 
 pkgbase=dolphin-emu-git
 pkgname=('dolphin-emu-git' 'dolphin-emu-cli-git' 'dolphin-emu-qt-git')
-pkgver=4.0.2.r5511.3aa6052
+pkgver=4.0.2.r5681.b1830ed
 pkgrel=1
 pkgdesc='A GameCube / Wii / Triforce emulator'
 arch=('x86_64')
