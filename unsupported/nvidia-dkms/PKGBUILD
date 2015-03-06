@@ -5,7 +5,7 @@
 
 pkgname=nvidia-dkms
 pkgver=346.47
-pkgrel=1
+pkgrel=2
 pkgdesc='NVIDIA kernel module sources (DKMS)'
 arch=('i686' 'x86_64')
 url='http://www.nvidia.com/'
@@ -40,7 +40,9 @@ prepare() {
   patch -Np0 -i ../linux3.18.patch
   patch -Np0 -i ../linux4.0.patch
 
-  [[ $CARCH == x86_64 ]] && cat kernel/uvm/dkms.conf.fragment >> kernel/dkms.conf
+  if [[ $CARCH == x86_64 ]]; then
+    cat kernel/uvm/dkms.conf.fragment >> kernel/dkms.conf
+  fi
 }
 
 package() {

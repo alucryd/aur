@@ -2,20 +2,21 @@
 # Contributor: Padfoot <padfoot@exemail.com.au>
 
 pkgname=lightdm-gtk-greeter-devel
-pkgver=1.9.0
+pkgver=2.0.0
 pkgrel=1
 pkgdesc='GTK+ greeter for LightDM'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/lightdm-gtk-greeter'
 license=('GPL3' 'LGPL3')
 depends=('gtk3' 'lightdm')
-makedepends=('gnome-doc-utils' 'gobject-introspection' 'intltool')
+makedepends=('gnome-common' 'gnome-doc-utils' 'gobject-introspection'
+             'intltool')
 provides=('lightdm-gtk-greeter')
 conflicts=('lightdm-gtk-greeter')
 backup=('etc/lightdm/lightdm-gtk-greeter.conf')
 install='lightdm-gtk-greeter.install'
 source=("https://launchpad.net/lightdm-gtk-greeter/${pkgver%.?}/${pkgver}/+download/lightdm-gtk-greeter-${pkgver}.tar.gz")
-sha256sums=('a9103b4aa161feae99a2a62b716a157cde3817e93cee7f73cde2796a12396938')
+sha256sums=('4c0a0121d1ec82c85c8aed4ad80ebd48ddc56d9bace31da72423bfd330c26484')
 
 build() {
   cd lightdm-gtk-greeter-${pkgver}
@@ -26,6 +27,8 @@ build() {
     --sbindir='/usr/bin' \
     --sysconfdir='/etc' \
     --with-libxklavier \
+    --disable-libido \
+    --disable-libindicator \
     --disable-static
   make
 }
