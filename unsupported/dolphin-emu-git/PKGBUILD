@@ -9,7 +9,7 @@ pkgdesc='A GameCube / Wii / Triforce emulator'
 arch=('x86_64')
 url='http://www.dolphin-emu.org/'
 license=('GPL2')
-depends=('bluez-libs' 'ffmpeg' 'libao' 'miniupnpc' 'polarssl' 'portaudio'
+depends=('bluez-libs' 'ffmpeg' 'libao' 'mbedtls' 'miniupnpc' 'portaudio'
          'sdl2' 'sfml' 'soundtouch' 'xdg-utils' 'wxgtk')
 makedepends=('cmake' 'git' 'qt5-base')
 optdepends=('pulseaudio: PulseAudio backend')
