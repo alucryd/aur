@@ -5,10 +5,10 @@
 # Contributor: Thiago Kenji Okada <thiago.mast3r@gmail.com>
 
 pkgbase=ppsspp-git
-pkgname=('ppsspp-qt-git' 'ppsspp-sdl-git')
+pkgname=('ppsspp-git' 'ppsspp-qt-git')
 pkgver=1.0.1.r158.33b291a
 pkgrel=1
-pkgdesc='A PSP emulator for Android, Windows, Mac, Linux and Blackberry 10, written in C++'
+pkgdesc='A PSP emulator written in C++'
 arch=('i686' 'x86_64')
 url='http://www.ppsspp.org/'
 license=('GPL2')
@@ -34,8 +34,8 @@ pkgver() {
 prepare() {
   cd ppsspp
 
-  git submodule init
   for submodule in native lang ext/armips; do
+    git submodule init ${submodule}
     git config submodule.${submodule}.url ../ppsspp-${submodule#*/}
     git submodule update ${submodule}
   done
@@ -46,6 +46,18 @@ prepare() {
 build() {
   cd ppsspp
 
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_SKIP_RPATH='TRUE'
+  make
+
+  cd ..
+
   if [[ -d build-qt ]]; then
     rm -rf build-qt
   fi
@@ -53,44 +65,31 @@ build() {
 
   qmake-qt5 CONFIG+='release' CONFIG+='system_ffmpeg' ../Qt/PPSSPPQt.pro
   make
-
-  cd ..
-
-  if [[ -d build-sdl ]]; then
-    rm -rf build-sdl
-  fi
-  mkdir build-sdl && cd build-sdl
-
-  cmake .. \
-    -DCMAKE_BUILD_TYPE='Release' \
-    -DCMAKE_SKIP_RPATH='TRUE'
-  make
-
 }
 
-package_ppsspp-qt-git() {
-  depends+=('qt5-base')
+package_ppsspp-git() {
   provides=('ppsspp')
-  conflicts=('ppsspp-qt' 'ppsspp-sdl' 'ppsspp-sdl-git')
+  conflicts=('ppsspp' 'ppsspp-qt' 'ppsspp-qt-git')
 
-  cd ppsspp/build-qt
+  cd ppsspp/build
 
-  install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,man/man1,pixmaps}}
-  install -m 755 ppsspp "${pkgdir}"/usr/bin/
+  install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,man/man1,pixmaps,ppsspp}}
+  install -m 755 PPSSPPSDL "${pkgdir}"/usr/bin/ppsspp
+  cp -dr --no-preserve='ownership' assets "${pkgdir}"/usr/share/ppsspp/
   install -m 644 ../assets/unix-icons/icon-512.svg "${pkgdir}"/usr/share/pixmaps/ppsspp.svg
   install -m 644 ../debian/ppsspp.desktop "${pkgdir}"/usr/share/applications/
   install -m 644 ../debian/ppsspp.1 "${pkgdir}"/usr/share/man/man1/
 }
 
-package_ppsspp-sdl-git() {
+package_ppsspp-qt-git() {
+  depends+=('qt5-base')
   provides=('ppsspp')
-  conflicts=('ppsspp-qt' 'ppsspp-qt-git' 'ppsspp-sdl')
+  conflicts=('ppsspp' 'ppsspp-git' 'ppsspp-qt')
 
-  cd ppsspp/build-sdl
+  cd ppsspp/build-qt
 
-  install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,man/man1,pixmaps,ppsspp}}
-  install -m 755 PPSSPPSDL "${pkgdir}"/usr/bin/ppsspp
-  cp -dr --no-preserve='ownership' assets "${pkgdir}"/usr/share/ppsspp/
+  install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,man/man1,pixmaps}}
+  install -m 755 ppsspp "${pkgdir}"/usr/bin/
   install -m 644 ../assets/unix-icons/icon-512.svg "${pkgdir}"/usr/share/pixmaps/ppsspp.svg
   install -m 644 ../debian/ppsspp.desktop "${pkgdir}"/usr/share/applications/
   install -m 644 ../debian/ppsspp.1 "${pkgdir}"/usr/share/man/man1/
