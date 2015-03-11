@@ -3,6 +3,7 @@
 # Contributor: Ben Reedy <thebenj88@gmail.com>
 # Contributor: Clement Guerin <geecko.dev@free.fr>
 # Contributor: Thiago Kenji Okada <thiago.mast3r@gmail.com>
+# Contributor: uberushaximus <uberushaximus@gmail.com>
 
 pkgbase=ppsspp-git
 pkgname=('ppsspp-git' 'ppsspp-qt-git')
