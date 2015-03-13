@@ -3,7 +3,7 @@
 
 pkgbase=dolphin-emu-git
 pkgname=('dolphin-emu-git' 'dolphin-emu-cli-git' 'dolphin-emu-qt-git')
-pkgver=4.0.2.r5681.b1830ed
+pkgver=4.0.2.r5827.2916aed
 pkgrel=1
 pkgdesc='A GameCube / Wii / Triforce emulator'
 arch=('x86_64')
@@ -14,8 +14,10 @@ depends=('bluez-libs' 'ffmpeg' 'libao' 'mbedtls' 'miniupnpc' 'portaudio'
 makedepends=('cmake' 'git' 'qt5-base')
 optdepends=('pulseaudio: PulseAudio backend')
 options=('!emptydirs')
-source=('dolphin-emu::git+https://github.com/dolphin-emu/dolphin.git')
-sha256sums=('SKIP')
+source=('dolphin-emu::git+https://github.com/dolphin-emu/dolphin.git'
+        'dolphin-emu-findx11.patch')
+sha256sums=('SKIP'
+            'a4c9c768d09c969d9cbfbda0963fd6f8213d00b17d88e096b05979ce4ce1a368')
 
 pkgver() {
   cd dolphin-emu
@@ -23,6 +25,12 @@ pkgver() {
   tag='4.0.2'
 
   echo "${tag}.r$(git rev-list --count ${tag}..HEAD).$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  cd dolphin-emu
+
+  patch -Np1 -i ../dolphin-emu-findx11.patch
 }
 
 build() {
@@ -35,7 +43,7 @@ build() {
 
   cmake .. \
     -DCMAKE_INSTALL_PREFIX='/usr' \
-    -DCMAKE_CXX_FLAGS='-fno-inline-functions' \
+    -DCMAKE_CXX_FLAGS='-fno-inline-functions -fpermissive' \
     -DENABLE_LTO='TRUE' \
     -DENABLE_QT='TRUE'
   make
