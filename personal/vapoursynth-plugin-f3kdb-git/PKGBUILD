@@ -1,36 +1,40 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=vapoursynth-plugin-f3kdb-git
-pkgver=2.0.r399.8ea4292
+pkgver=2.0.r406.a214352
 pkgrel=1
 pkgdesc='flash3kyuu deband plugin for VapourSynth'
 arch=('i686' 'x86_64')
 url='https://github.com/SAPikachu/flash3kyuu_deband'
 license=('GPL3')
 depends=('vapoursynth')
-makedepends=('git' 'waf')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::git+${url}.git")
+makedepends=('git')
+provides=('vapoursynth-plugin-f3kdb')
+conflicts=('vapoursynth-plugin-f3kdb')
+source=('vapoursynth-plugin-f3kdb::git+https://github.com/SAPikachu/flash3kyuu_deband.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd vapoursynth-plugin-f3kdb
 
   printf "2.0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd vapoursynth-plugin-f3kdb
 
-  waf configure --prefix='/usr' --libdir='/usr/lib/vapoursynth'
-  waf build
+  ./waf configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib/vapoursynth'
+  ./waf build
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd vapoursynth-plugin-f3kdb
 
-  waf install --destdir="${pkgdir}" --no-ldconfig
+  ./waf install \
+    --destdir="${pkgdir}" \
+    --no-ldconfig
 }
 
 # vim: ts=2 sw=2 et:

@@ -4,7 +4,7 @@
 
 pkgbase=lightdm-devel
 pkgname=('lightdm-devel' 'liblightdm-qt4-devel' 'liblightdm-qt5-devel')
-pkgver=1.13.1
+pkgver=1.13.2
 pkgrel=1
 pkgdesc='A lightweight display manager'
 arch=('i686' 'x86_64')
@@ -20,7 +20,7 @@ source=("https://launchpad.net/lightdm/${pkgver%.*}/${pkgver}/+download/lightdm-
         'lightdm.rules'
         'lightdm-default-config.patch'
         'Xsession')
-sha256sums=('e958e6afe158680b4dd18707c7fed22955f162dc46f48e6874135e83551d4275'
+sha256sums=('579f74c175b6cb1e2e304fe8cad462f99467b50701a0b1c85fe455f41caf83af'
             '0d2adba25cdbe59e97ffd302083db9d5e23920780f41e04f64512cd6b633289a'
             'b29521fbd7a48a8f60b93ecca3b30c30bcb71560de8033c8d39b25c22c6f696f'
             'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'

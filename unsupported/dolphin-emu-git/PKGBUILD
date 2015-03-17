@@ -14,10 +14,8 @@ depends=('bluez-libs' 'ffmpeg' 'libao' 'mbedtls' 'miniupnpc' 'portaudio'
 makedepends=('cmake' 'git' 'qt5-base')
 optdepends=('pulseaudio: PulseAudio backend')
 options=('!emptydirs')
-source=('dolphin-emu::git+https://github.com/dolphin-emu/dolphin.git'
-        'dolphin-emu-findx11.patch')
-sha256sums=('SKIP'
-            'a4c9c768d09c969d9cbfbda0963fd6f8213d00b17d88e096b05979ce4ce1a368')
+source=('dolphin-emu::git+https://github.com/dolphin-emu/dolphin.git')
+sha256sums=('SKIP')
 
 pkgver() {
   cd dolphin-emu
@@ -25,12 +23,6 @@ pkgver() {
   tag='4.0.2'
 
   echo "${tag}.r$(git rev-list --count ${tag}..HEAD).$(git rev-parse --short HEAD)"
-}
-
-prepare() {
-  cd dolphin-emu
-
-  patch -Np1 -i ../dolphin-emu-findx11.patch
 }
 
 build() {
