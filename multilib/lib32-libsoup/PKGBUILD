@@ -3,20 +3,20 @@
 # Contributor: josephgbr <rafael.f.f1@gmail.com>
 
 pkgname=lib32-libsoup
-pkgver=2.48.1
+pkgver=2.50.0
 pkgrel=1
 pkgdesc='GNOME HTTP Library'
 arch=('x86_64')
 url='http://www.gnome.org'
 license=('LGPL')
 depends=('lib32-glib-networking' 'lib32-libxml2' 'lib32-sqlite' 'libsoup')
-makedepends=('gcc-multilib' 'gobject-introspection' 'intltool' 'python2'
+makedepends=('gcc-multilib' 'gobject-introspection' 'intltool' 'python'
              'python')
 conflicts=('lib32-libsoup-gnome')
 replaces=('lib32-libsoup-gnome')
 options=('!emptydirs')
 source=("http://ftp.gnome.org/pub/gnome/sources/libsoup/${pkgver%.*}/libsoup-${pkgver}.tar.xz")
-sha256sums=('9b0d14b36e36a3131a06c6e3aa7245716e6904e3e636df81c0b6c8bd3f646f9a')
+sha256sums=('1e01365ac4af3817187ea847f9d3588c27eee01fc519a5a7cb212bb78b0f667b')
 
 build() {
   cd libsoup-${pkgver}

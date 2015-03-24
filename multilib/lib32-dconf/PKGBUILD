@@ -3,17 +3,17 @@
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 
 pkgname=lib32-dconf
-pkgver=0.22.0
+pkgver=0.23.1
 pkgrel=1
 pkgdesc='A low-level configuration system'
 arch=('x86_64')
 url='http://live.gnome.org/dconf'
 license=('LGPL2.1')
-depends=('dconf' 'lib32-glib2')
-makedepends=('docbook-xsl' 'gcc-multilib' 'intltool' 'python' 'python2' 'vala')
+depends=('dconf' 'lib32-glib2' 'lib32-libdbus')
+makedepends=('docbook-xsl' 'gcc-multilib' 'intltool' 'python2' 'vala')
 install='dconf.install'
 source=("http://download.gnome.org/sources/dconf/${pkgver%.*}/dconf-${pkgver}.tar.xz")
-sha256sums=('0a277cb0c3f09e77d9413c5a9b3577fc2b5d6e941b59b44940392e024a224b8e')
+sha256sums=('7181580dca4d3765a6ac8292fe66b8c0ea29f6a543ae4e702739026a8f3f4263')
 
 prepare() {
   cd dconf-${pkgver}

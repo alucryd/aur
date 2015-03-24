@@ -3,21 +3,21 @@
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 
 pkgname=lib32-at-spi2-core
-pkgver=2.14.1
+pkgver=2.15.90
 pkgrel=1
 pkgdesc='Protocol definitions and daemon for D-Bus at-spi'
 arch=('x86_64')
 url='http://www.gnome.org'
 license=('GPL2')
 depends=('at-spi2-core' 'lib32-glib2' 'lib32-libxtst')
-makedepends=('gcc-multilib' 'gobject-introspection' 'intltool' 'python2')
+makedepends=('gcc-multilib' 'gobject-introspection' 'intltool')
 source=("http://download.gnome.org/sources/at-spi2-core/${pkgver%.*}/at-spi2-core-${pkgver}.tar.xz")
-sha256sums=('eef9660b14fdf0fb1f30d1be7c72d591fa7cbb87b00ca3a444425712f46ce657')
+sha256sums=('6e3b36b7fc75f281a284c832839af4fd1fc0a37e2eb33a8c6b3d258d4f4693e1')
 
 prepare() {
   cd at-spi2-core-${pkgver}
 
-  sed -i -e '/AC_PATH_XTRA/d' configure.ac
+  sed '/AC_PATH_XTRA/d' -i configure.ac
   autoreconf -fi
 }
 
