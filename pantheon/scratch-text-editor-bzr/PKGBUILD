@@ -2,14 +2,14 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=scratch-text-editor-bzr
-pkgver=r1414
+pkgver=r1481
 pkgrel=1
 pkgdesc='The Pantheon Text Editor'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/scratch'
 license=('GPL3')
 depends=('desktop-file-utils' 'granite-bzr' 'gtksourceview3' 'libpeas'
-         'python2-chardet' 'zeitgeist')
+         'zeitgeist')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala' 'vte3' 'webkitgtk')
 optdepends=('vala: Outline extension'
             'vte3: Terminal extension'
@@ -31,7 +31,6 @@ prepare() {
 
   sed -i 's/gtkspell-3.0/gtkspell3-3.0/' plugins/spell/CMakeLists.txt
   sed -i '/add_subdirectory (spell)/d' plugins/CMakeLists.txt
-  sed -i 's|^#!.*python$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
 }
 
 build() {
@@ -44,6 +43,7 @@ build() {
 
   cmake .. \
     -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
     -DGSETTINGS_COMPILE='OFF'
   make
 }
@@ -52,7 +52,6 @@ package() {
   cd scratch-text-editor/build
 
   make DESTDIR="${pkgdir}" install
-  chmod +x "${pkgdir}"/usr/share/scratch/scripts/*.py
 }
 
 # vim: ts=2 sw=2 et:
