@@ -2,8 +2,8 @@
 # Contributor: Gustavo Alvarez <sl1pkn07@gmail.com>
 
 pkgname=vapoursynth-editor
-pkgver=R3
-pkgrel=3
+pkgver=R4
+pkgrel=1
 pkgdesc='VapourSynth script editor'
 arch=('i686' 'x86_64')
 url='https://bitbucket.org/mystery_keeper/vapoursynth-editor'
@@ -30,11 +30,14 @@ build() {
 }
 
 package() {
-  cd vapoursynth-editor/build/bin
+  if [[ $CARCH == i686 ]]; then
+    cd vapoursynth-editor/build/release-32bit-gcc
+  elif [[ $CARCH == x86_64 ]]; then
+    cd vapoursynth-editor/build/release-64bit-gcc
+  fi
 
-  install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,pixmaps,vsedit}}
+  install -dm 755 "${pkgdir}"/usr/{bin,share/{applications,pixmaps}}
   install -m 755 vsedit "${pkgdir}"/usr/bin/
-  install -m 644 fonts/DigitalMini.ttf "${pkgdir}"/usr/share/vsedit/
   install -m 644 vsedit.svg "${pkgdir}"/usr/share/pixmaps/
   install -m 644 ../../../vsedit.desktop "${pkgdir}"/usr/share/applications/
 

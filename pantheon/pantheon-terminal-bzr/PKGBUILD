@@ -2,18 +2,18 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-terminal-bzr
-pkgver=r644
+pkgver=r705
 pkgrel=1
 pkgdesc='The Pantheon Terminal Emulator'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/pantheon-terminal'
 license=('GPL3')
-depends=('desktop-file-utils' 'granite-bzr' 'libnotify' 'vte3')
+depends=('desktop-file-utils' 'granite-bzr' 'libnotify' 'vte290')
 makedepends=('bzr' 'cmake' 'vala')
 provides=('pantheon-terminal')
 conflicts=('pantheon-terminal')
 install='pantheon-terminal.install'
-source=('pantheon-terminal::bzr+lp:~stevenvandenbrandenstift/pantheon-terminal/fix-1375346'
+source=('pantheon-terminal::bzr+lp:pantheon-terminal'
         'bash-notify.patch')
 sha256sums=('SKIP'
             'a92e7207e8f9961316ae90610e4d90e464352337454b7633cb131751ec1dad3a')
@@ -27,7 +27,7 @@ pkgver() {
 prepare() {
   cd pantheon-terminal
 
-  patch -Np2 -i ../bash-notify.patch
+  #patch -Np2 -i ../bash-notify.patch
 }
 
 build() {
