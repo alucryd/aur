@@ -3,7 +3,7 @@
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 
 pkgname=lib32-at-spi2-core
-pkgver=2.15.90
+pkgver=2.16.0
 pkgrel=1
 pkgdesc='Protocol definitions and daemon for D-Bus at-spi'
 arch=('x86_64')
@@ -12,7 +12,7 @@ license=('GPL2')
 depends=('at-spi2-core' 'lib32-glib2' 'lib32-libxtst')
 makedepends=('gcc-multilib' 'gobject-introspection' 'intltool')
 source=("http://download.gnome.org/sources/at-spi2-core/${pkgver%.*}/at-spi2-core-${pkgver}.tar.xz")
-sha256sums=('6e3b36b7fc75f281a284c832839af4fd1fc0a37e2eb33a8c6b3d258d4f4693e1')
+sha256sums=('1c0b77fb8ce81abbf1d80c0afee9858b3f9229f673b7881995fe0fc16b1a74d0')
 
 prepare() {
   cd at-spi2-core-${pkgver}
