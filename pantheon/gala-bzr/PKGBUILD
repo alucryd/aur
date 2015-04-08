@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=gala-bzr
-pkgver=r457
+pkgver=r460
 pkgrel=1
 pkgdesc='The Pantheon Window Manager'
 arch=('i686' 'x86_64')

@@ -4,13 +4,13 @@
 
 pkgname=lib32-libcanberra-gtk3
 pkgver=0.30
-pkgrel=1
+pkgrel=2
 pkgdesc='A small and lightweight implementation of the XDG Sound Theme Specification'
 arch=('x86_64')
 url='http://0pointer.de/lennart/projects/libcanberra'
 license=('LGPL')
-depends=('lib32-libcanberra')
-makedepends=('gcc-multilib' 'git' 'gtk-doc' 'lib32-gtk3' 'libtool-multilib')
+depends=('lib32-gtk3' 'lib32-libcanberra')
+makedepends=('gcc-multilib' 'git' 'gtk-doc' 'libtool-multilib')
 source=('git://git.0pointer.de/libcanberra.git#commit=c0620e4')
 sha256sums=('SKIP')
 
