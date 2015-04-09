@@ -45,16 +45,18 @@ package() {
       -e "s#${srcdir}/tcl${pkgver}#/usr/include#" \
       -i "${pkgdir}/usr/lib32/tclConfig.sh"
 
-  sed -e "s#${srcdir}/tcl${pkgver}/unix/pkgs/tdbc1.0.1#/usr/lib32/tdbc1.0.0#" \
-      -e "s#${srcdir}/tcl${pkgver}/pkgs/tdbc1.0.1/generic#/usr/include#" \
-      -e "s#${srcdir}/tcl${pkgver}/pkgs/tdbc1.0.1/library#/usr/lib32/tcl${pkgver%.*}#" \
-      -e "s#${srcdir}/tcl${pkgver}/pkgs/tdbc1.0.1#/usr/include#" \
-      -i "${pkgdir}/usr/lib32/tdbc1.0.1/tdbcConfig.sh"
+  tdbcver=1.0.2
+  sed -e "s#${srcdir}/tcl${pkgver}/unix/pkgs/tdbc${tdbcver}#/usr/lib32/tdbc${tdbcver}#" \
+      -e "s#${srcdir}/tcl${pkgver}/pkgs/tdbc${tdbcver}/generic#/usr/include#" \
+      -e "s#${srcdir}/tcl${pkgver}/pkgs/tdbc${tdbcver}/library#/usr/lib32/tcl${pkgver%.*}#" \
+      -e "s#${srcdir}/tcl${pkgver}/pkgs/tdbc${tdbcver}#/usr/include#" \
+      -i "${pkgdir}/usr/lib32/tdbc${tdbcver}/tdbcConfig.sh"
 
-  sed -e "s#${srcdir}/tcl${pkgver}/unix/pkgs/itcl4.0.1#/usr/lib32/itcl4.0.0#" \
-      -e "s#${srcdir}/tcl${pkgver}/pkgs/itcl4.0.1/generic#/usr/include#" \
-      -e "s#${srcdir}/tcl${pkgver}/pkgs/itcl4.0.1#/usr/include#" \
-      -i "${pkgdir}/usr/lib32/itcl4.0.1/itclConfig.sh"
+  ictlver=4.0.2
+  sed -e "s#${srcdir}/tcl${pkgver}/unix/pkgs/itcl${ictlver}#/usr/lib32/${ictlver}#" \
+      -e "s#${srcdir}/tcl${pkgver}/pkgs/itcl${ictlver}/generic#/usr/include#" \
+      -e "s#${srcdir}/tcl${pkgver}/pkgs/itcl${ictlver}#/usr/include#" \
+      -i "${pkgdir}/usr/lib32/itcl${ictlver}/itclConfig.sh"
 
 
   install -dm 755 -p "${pkgdir}"/usr/share/licenses
