@@ -3,7 +3,7 @@
 # Contributor: Eric Bélanger <eric@archlinux.org>
 
 pkgname=lib32-tcl
-pkgver=8.6.2
+pkgver=8.6.4
 pkgrel=1
 pkgdesc='The Tcl scripting language'
 arch=('x86_64')
@@ -11,7 +11,7 @@ url='http://tcl.sourceforge.net/'
 license=('custom')
 depends=('lib32-zlib' 'tcl')
 source=("http://downloads.sourceforge.net/sourceforge/tcl/tcl${pkgver}-src.tar.gz")
-sha256sums=('86f7ae5f581dd0904d04415637ab3aef5a50986c1b6d04c340e2b1b0258da9c4')
+sha256sums=('9e6ed94c981c1d0c5f5fefb8112d06c6bf4d050a7327e95e71d417c416519c8d')
 
 prepare() {
   cd tcl${pkgver}
@@ -22,9 +22,9 @@ prepare() {
 build() {
   cd tcl${pkgver}/unix
 
-  export CC="gcc -m32"
-  export CXX="g++ -m32"
-  export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+  export CC='gcc -m32'
+  export CXX='g++ -m32'
+  export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
 
   ./configure \
     --prefix='/usr' \
@@ -45,14 +45,14 @@ package() {
       -e "s#${srcdir}/tcl${pkgver}#/usr/include#" \
       -i "${pkgdir}/usr/lib32/tclConfig.sh"
 
-  tdbcver=1.0.2
+  tdbcver=1.0.3
   sed -e "s#${srcdir}/tcl${pkgver}/unix/pkgs/tdbc${tdbcver}#/usr/lib32/tdbc${tdbcver}#" \
       -e "s#${srcdir}/tcl${pkgver}/pkgs/tdbc${tdbcver}/generic#/usr/include#" \
       -e "s#${srcdir}/tcl${pkgver}/pkgs/tdbc${tdbcver}/library#/usr/lib32/tcl${pkgver%.*}#" \
       -e "s#${srcdir}/tcl${pkgver}/pkgs/tdbc${tdbcver}#/usr/include#" \
       -i "${pkgdir}/usr/lib32/tdbc${tdbcver}/tdbcConfig.sh"
 
-  ictlver=4.0.2
+  ictlver=4.0.3
   sed -e "s#${srcdir}/tcl${pkgver}/unix/pkgs/itcl${ictlver}#/usr/lib32/${ictlver}#" \
       -e "s#${srcdir}/tcl${pkgver}/pkgs/itcl${ictlver}/generic#/usr/include#" \
       -e "s#${srcdir}/tcl${pkgver}/pkgs/itcl${ictlver}#/usr/include#" \
