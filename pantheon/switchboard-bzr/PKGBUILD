@@ -30,19 +30,23 @@ pkgver() {
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd switchboard
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_INSTALL_LIBDIR='/usr/lib' -D{GSETTINGS_COMPILE,USE_UNITY}='OFF'
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
+    -DGSETTINGS_COMPILE='FALSE' \
+    -DUSE_UNITY='FALSE'
   make
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd switchboard-${pkgver}/build
 
   make DESTDIR="${pkgdir}" install
 }

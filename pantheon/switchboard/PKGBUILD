@@ -3,13 +3,13 @@
 # Contributor: dserban <dserban01@yahoo.com>
 
 pkgname=switchboard
-pkgver=1.0.1
-pkgrel=2
+pkgver=2.0.0
+pkgrel=1
 pkgdesc='The Pantheon Control Center'
 arch=('i686' 'x86_64')
-url="https://launchpad.net/${pkgname}"
+url='https://launchpad.net/switchboard'
 license=('GPL3')
-depends=('granite' 'libunity')
+depends=('cheese' 'granite')
 makedepends=('bzr' 'cmake' 'vala')
 optdepends=('switchboard-plug-about: About plug'
             'switchboard-plug-default-applications-bzr: Default applications plug'
@@ -17,23 +17,27 @@ optdepends=('switchboard-plug-about: About plug'
             'switchboard-plug-keyboard-bzr: Keyboard plug'
             'switchboard-plug-pantheon-shell-bzr: Pantheon Shell plug'
             'switchboard-plug-power-bzr: Power plug')
-source=("${url}/1.x/${pkgver}/+download/${pkgname}-${pkgver}.tar.bz2")
-sha256sums=('SKIP')
+source=("https://launchpad.net/switchboard/${pkgver%%.*}.x/${pkgver%.*}/+download/switchboard-${pkgver}.tgz")
+sha256sums=('4439af2019cda29e6267df2c0dabdaeba129808b0da14b632dcda8713dabb12e')
 
 build() {
-  cd ${pkgname}-${pkgver}
+  cd switchboard-${pkgver}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_INSTALL_LIBDIR='/usr/lib' -D{GSETTINGS_COMPILE,USE_UNITY}='OFF'
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
+    -DGSETTINGS_COMPILE='FALSE' \
+    -DUSE_UNITY='FALSE'
   make
 }
 
 package() {
-  cd ${pkgname}-${pkgver}/build
+  cd switchboard-${pkgver}/build
 
   make DESTDIR="${pkgdir}" install
 }

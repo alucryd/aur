@@ -2,46 +2,48 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=scratch-text-editor
-pkgver=2.0.2
+pkgver=2.1.0
 pkgrel=1
 pkgdesc='The Pantheon Text Editor'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/scratch'
 license=('GPL3')
-depends=('desktop-file-utils' 'granite' 'gtksourceview3' 'libgee06' 'libpeas' 'python2-chardet' 'libzeitgeist')
+depends=('desktop-file-utils' 'granite-bzr' 'gtksourceview3' 'libpeas' 'zeitgeist')
 makedepends=('cmake' 'gobject-introspection' 'vala' 'vte3' 'webkitgtk')
-optdepends=('vala: Outline plugin'
-            'vte3: Terminal plugin'
-            'webkitgtk: Browser Preview plugin')
-install="${pkgname}.install"
-source=("${url}/2.x/${pkgver}/+download/scratch-${pkgver}.tgz")
-sha256sums=('65a341ce34c5d8cc119e3b582ac9027d83f91c01636527d55bbfc8b4cafd6a1e')
+optdepends=('vala: Outline extension'
+            'vte3: Terminal extension'
+            'webkitgtk: Browser Preview extension')
+install='scratch-text-editor.install'
+source=("https://launchpad.net/scratch/${pkgver%%.*}.x/${pkgver%.*}/+download/scratch-${pkgver}.tgz")
+sha256sums=('daaaffbf1d990dd9359da27a594a29761100ffb12dd60b275f099f10646f225e')
 
 prepare() {
-  cd ${pkgname%%-*}-${pkgver}
+  cd scratch-${pkgver}
 
   sed -i 's/gtkspell-3.0/gtkspell3-3.0/' plugins/spell/CMakeLists.txt
   sed -i '/add_subdirectory (spell)/d' plugins/CMakeLists.txt
-  sed -i 's|^#!.*python$|#!/usr/bin/python2|' $(grep -rl '^#!.*python')
 }
 
 build() {
-  cd ${pkgname%%-*}-${pkgver}
+  cd scratch-${pkgver}
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
+    -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
-  cd ${pkgname%%-*}-${pkgver}/build
+  cd scratch-${pkgver}/build
 
   make DESTDIR="${pkgdir}" install
-  chmod +x "${pkgdir}"/usr/share/scratch/scripts/*.py
 }
 
 # vim: ts=2 sw=2 et:
