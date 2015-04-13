@@ -3,7 +3,7 @@
 # Contributor: dserban <dserban01@yahoo.com>
 
 pkgname=switchboard-bzr
-pkgver=r505
+pkgver=r554
 pkgrel=1
 pkgdesc='The Pantheon Control Center'
 arch=('i686' 'x86_64')
@@ -17,16 +17,16 @@ optdepends=('switchboard-plug-about-bzr: About plug'
             'switchboard-plug-keyboard-bzr: Keyboard plug'
             'switchboard-plug-pantheon-shell-bzr: Pantheon Shell plug'
             'switchboard-plug-power-bzr: Power plug')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-install="${pkgname%-*}.install"
+provides=('switchboard')
+conflicts=('switchboard')
+install='switchboard.install'
 source=('bzr+lp:switchboard')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd switchboard
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {
@@ -38,6 +38,7 @@ build() {
   mkdir build && cd build
 
   cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
     -DCMAKE_INSTALL_PREFIX='/usr' \
     -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
     -DGSETTINGS_COMPILE='FALSE' \
@@ -46,7 +47,7 @@ build() {
 }
 
 package() {
-  cd switchboard-${pkgver}/build
+  cd switchboard/build
 
   make DESTDIR="${pkgdir}" install
 }

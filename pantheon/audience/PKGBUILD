@@ -4,7 +4,7 @@
 pkgname=audience
 pkgver=0.1
 pkgrel=1
-pkgdesc='A modern video player'
+pkgdesc='The Pantheon Video Player'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/audience'
 license=('GPL3')

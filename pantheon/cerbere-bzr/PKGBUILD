@@ -9,39 +9,41 @@ url='https://launchpad.net/cerbere'
 license=('GPL2')
 depends=('dconf' 'libgee')
 makedepends=('bzr' 'cmake' 'vala')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-install="${pkgname%-*}.install"
+provides=('cerbere')
+conflicts=('cerbere')
+install='cerbere.install'
 source=('bzr+lp:cerbere')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd cerbere
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 prepare() {
-  cd ${pkgname%-*}
+  cd cerbere
 
   sed "s/'wingpanel','plank','slingshot-launcher --silent'/'gala','wingpanel','plank','slingshot-launcher --silent'/" -i org.pantheon.cerbere.gschema.xml
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd cerbere
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DGSETTINGS_COMPILE='OFF'
   make
 }
 
-# vim: ts=2 sw=2 et:
 package() {
-  cd ${pkgname%-*}/build
+  cd cerbere/build
 
   make DESTDIR="${pkgdir}" install
 }

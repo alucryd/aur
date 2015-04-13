@@ -2,7 +2,7 @@
 # Contributor: fresh24 <pascher.christian@gmail.com>
 
 pkgname=gtk-theme-elementary-bzr
-pkgver=r165
+pkgver=r447
 pkgrel=1
 pkgdesc="elementary GTK theme"
 arch=('any')

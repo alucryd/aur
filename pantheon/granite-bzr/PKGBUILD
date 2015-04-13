@@ -10,32 +10,35 @@ url='https://launchpad.net/granite'
 license=('LGPL3')
 depends=('gtk3' 'libgee')
 makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-install="${pkgname%-*}.install"
+provides=('granite')
+conflicts=('granite')
+install='granite.install'
 source=('bzr+lp:granite')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd granite
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd granite
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_INSTALL_LIBDIR='/usr/lib'
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib'
   make
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd granite/build
 
   make DESTDIR="${pkgdir}" install
 }

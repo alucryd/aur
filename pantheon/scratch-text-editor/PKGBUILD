@@ -21,7 +21,6 @@ prepare() {
   cd scratch-${pkgver}
 
   sed -i 's/gtkspell-3.0/gtkspell3-3.0/' plugins/spell/CMakeLists.txt
-  sed -i '/add_subdirectory (spell)/d' plugins/CMakeLists.txt
 }
 
 build() {

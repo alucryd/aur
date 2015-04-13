@@ -1,6 +1,6 @@
 diff -rupN noise.orig/data/noise.desktop noise/data/noise.desktop
---- noise.orig/data/noise.desktop	2014-08-08 00:54:24.107900734 +0200
-+++ noise/data/noise.desktop	2014-08-08 00:56:03.044866936 +0200
+--- noise.orig/data/noise.desktop	2015-04-13 11:02:23.061729447 +0200
++++ noise/data/noise.desktop	2015-04-13 11:02:45.301129489 +0200
 @@ -3,7 +3,7 @@ Type=Application
  Name=Noise
  GenericName=Music Player
@@ -10,7 +10,7 @@ diff -rupN noise.orig/data/noise.desktop noise/data/noise.desktop
  Icon=multimedia-audio-player
  Terminal=false
  Categories=Audio;Music;Player;AudioVideo;GNOME;GTK;
-@@ -16,5 +16,5 @@ X-PulseAudio-Properties=media.role=music
+@@ -17,5 +17,5 @@ X-PulseAudio-Properties=media.role=music
  Actions=AboutDialog;
  
  [Desktop Action AboutDialog]
@@ -18,9 +18,9 @@ diff -rupN noise.orig/data/noise.desktop noise/data/noise.desktop
 +Exec=noise-player --about
  Name=About Noise
 diff -rupN noise.orig/src/CMakeLists.txt noise/src/CMakeLists.txt
---- noise.orig/src/CMakeLists.txt	2014-08-08 00:54:24.364559520 +0200
-+++ noise/src/CMakeLists.txt	2014-08-08 00:55:32.009151191 +0200
-@@ -98,7 +98,7 @@ vala_precompile (CLIENT_VALA_C ${SRC_TAR
+--- noise.orig/src/CMakeLists.txt	2015-04-13 11:02:23.068395935 +0200
++++ noise/src/CMakeLists.txt	2015-04-13 11:03:35.203100073 +0200
+@@ -93,7 +93,7 @@ vala_precompile (CLIENT_VALA_C ${SRC_TAR
    ${CLIENT_VAPI}
  )
  

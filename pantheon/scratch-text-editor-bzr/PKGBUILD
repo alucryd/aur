@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=scratch-text-editor-bzr
-pkgver=r1481
+pkgver=r1494
 pkgrel=1
 pkgdesc='The Pantheon Text Editor'
 arch=('i686' 'x86_64')
@@ -23,14 +23,13 @@ sha256sums=('SKIP')
 pkgver() {
   cd scratch-text-editor
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 prepare() {
   cd scratch-text-editor
 
   sed -i 's/gtkspell-3.0/gtkspell3-3.0/' plugins/spell/CMakeLists.txt
-  sed -i '/add_subdirectory (spell)/d' plugins/CMakeLists.txt
 }
 
 build() {
@@ -42,6 +41,7 @@ build() {
   mkdir build && cd build
 
   cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
     -DCMAKE_INSTALL_PREFIX='/usr' \
     -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
     -DGSETTINGS_COMPILE='OFF'

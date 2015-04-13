@@ -8,33 +8,35 @@ pkgdesc='Dropbox integration for pantheon-files'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/pantheon-files'
 license=('GPL3')
-depends=('libgee06' 'pantheon-files')
+depends=('pantheon-files')
 makedepends=('bzr' 'cmake')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
+provides=('pantheon-files-plugin-dropbox')
+conflicts=('pantheon-files-plugin-dropbox')
 source=('bzr+lp:~elementary-apps/pantheon-files/pantheon-files-plugin-dropbox')
 sha256sums=('SKIP')
 
 pkgver() {
   cd ${pkgname%-*}
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd pantheon-files-plugin-dropbox
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd pantheon-files-plugin-dropbox/build
 
   make DESTDIR="${pkgdir}" install
 }

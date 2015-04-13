@@ -2,40 +2,44 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=audience-bzr
-pkgver=r309
+pkgver=r518
 pkgrel=1
-pkgdesc='A modern video player'
+pkgdesc='The Pantheon Video Player'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/audience'
 license=('GPL3')
-depends=('clutter-gtk' 'desktop-file-utils' 'granite' 'gst-plugins-base-libs')
+depends=('clutter-gtk' 'desktop-file-utils' 'granite-bzr'
+         'gst-plugins-base-libs')
 makedepends=('bzr' 'clutter-gst' 'cmake' 'vala')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-install="${pkgname%-*}.install"
+provides=('audience')
+conflicts=('audience')
+install='audience.install'
 source=('bzr+lp:audience')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd audience
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd audience
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd audience/build
 
   make DESTDIR="${pkgdir}" install
 }
