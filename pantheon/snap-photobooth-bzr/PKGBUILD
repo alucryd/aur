@@ -1,13 +1,13 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=snap-photobooth-bzr
-pkgver=r232
+pkgver=r330
 pkgrel=1
-pkgdesc='Snap webcam viewer'
+pkgdesc='The Pantheon Camera Application'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/snap-elementary'
 license=('GPL3')
-depends=('granite' 'gst-plugins-base-libs')
+depends=('granite-bzr' 'gst-plugins-base-libs')
 makedepends=('bzr' 'cmake' 'vala' 'zeitgeist')
 install='snap-photobooth.install'
 source=('snap-photobooth::bzr+lp:snap-elementary')
@@ -16,7 +16,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd snap-photobooth
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {
@@ -28,6 +28,7 @@ build() {
   mkdir build && cd build
 
   cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
     -DCMAKE_INSTALL_PREFIX='/usr' \
     -DGSETTINGS_COMPILE='FALSE'
   make

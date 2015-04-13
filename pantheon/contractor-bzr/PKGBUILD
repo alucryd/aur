@@ -14,33 +14,35 @@ optdepends=('brasero: Burn Disc context menu entries'
             'file-roller: Archive context menu entries'
             'gnome-bluetooth: Bluetooth context-menu entry'
             'inkscape: Inkscape context menu entry')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
+provides=('contractor')
+conflicts=('contractor')
 source=('bzr+lp:contractor'
         'bzr+http://bazaar.launchpad.net/~elementary-os/contractor/elementary-contracts/')
 sha256sums=('SKIP'
             'SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd contractor
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd contractor
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr'
   make
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd contractor/build
 
   make DESTDIR="${pkgdir}" install
 
