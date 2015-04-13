@@ -1,5 +1,5 @@
---- src/pantheon-terminal/src/TerminalWidget.vala~	2014-08-13 03:45:46.907149000 +0900
-+++ src/pantheon-terminal/src/TerminalWidget.vala	2014-08-13 13:50:13.146891068 +0900
+--- pantheon-terminal/src/TerminalWidget.vala~	2014-08-13 03:45:46.907149000 +0900
++++ pantheon-terminal/src/TerminalWidget.vala	2014-08-13 13:50:13.146891068 +0900
 @@ -55,7 +55,7 @@
          public int default_size;
          public double zoom_factor = 1.0;
@@ -9,10 +9,3 @@
  
          /* Following strings are used to build RegEx for matching URIs */
          const string USERCHARS = "-[:alnum:]";
-@@ -422,4 +422,4 @@
-             }
-         }
-     }
--}
-\ No newline at end of file
-+}
