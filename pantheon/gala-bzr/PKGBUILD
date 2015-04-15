@@ -8,6 +8,7 @@ pkgdesc='The Pantheon Window Manager'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/gala'
 license=('GPL3')
+groups=('pantheon-unstable')
 depends=('clutter-gtk' 'granite-bzr' 'mutter' 'plank')
 makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
 provides=('gala')

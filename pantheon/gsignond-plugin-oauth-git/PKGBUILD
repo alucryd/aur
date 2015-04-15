@@ -9,19 +9,19 @@ url='https://01.org/gsso'
 license=('LGPL2.1')
 depends=('gsignond' 'json-glib' 'libsoup')
 makedepends=('git' 'gobject-introspection' 'gtk-doc')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::git+https://code.google.com/p/accounts-sso.gsignond-plugin-oa/")
+provides=('gsignond-plugin-oauth')
+conflicts=('gsignond-plugin-oauth')
+source=('gsignond-plugin-oauth::git+https://gitlab.com/accounts-sso/gsignond-plugin-oa.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd gsignond-plugin-oauth
 
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
-build() {
-  cd ${pkgname%-*}
+prepare() {
+  cd gsignond-plugin-oauth
 
   mkdir -p m4
   gtkdocize
@@ -30,12 +30,19 @@ build() {
   libtoolize --copy --force
   autoconf
   automake --add-missing --copy
-  ./configure --prefix='/usr' --enable-gtk-doc
+}
+
+build() {
+  cd gsignond-plugin-oauth
+
+  ./configure \
+    --prefix='/usr' \
+    --enable-gtk-doc
   make
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd gsignond-plugin-oauth
 
   make DESTDIR="${pkgdir}" install
 }

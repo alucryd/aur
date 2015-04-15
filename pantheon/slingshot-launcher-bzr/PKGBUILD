@@ -8,6 +8,7 @@ pkgdesc='The Pantheon Application Launcher'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/slingshot'
 license=('GPL3')
+groups=('pantheon')
 depends=('gnome-menus' 'granite' 'zeitgeist')
 makedepends=('bzr' 'cmake' 'vala')
 provides=('slingshot-launcher')
@@ -19,7 +20,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd slingshot-launcher
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {
@@ -31,6 +32,7 @@ build() {
   mkdir build && cd build
 
   cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
     -DCMAKE_INSTALL_PREFIX='/usr' \
     -DGSETTINGS_COMPILE='FALSE' \
     -DUSE_UNITY='FALSE'

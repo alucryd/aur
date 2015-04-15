@@ -8,6 +8,7 @@ pkgdesc='The Pantheon Video Player'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/audience'
 license=('GPL3')
+groups=('pantheon')
 depends=('clutter-gtk' 'desktop-file-utils' 'granite' 'gst-plugins-base-libs')
 makedepends=('clutter-gst' 'cmake' 'vala')
 install='audience.install'

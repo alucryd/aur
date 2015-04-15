@@ -3,12 +3,13 @@
 # Contributor: flamelab <panosfilip@gmail.com>
 
 pkgname=wingpanel-bzr
-pkgver=r164
+pkgver=r218
 pkgrel=1
 pkgdesc='The Pantheon Panel'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/wingpanel'
 license=('GPL3')
+groups=('pantheon-unstable')
 depends=('granite-bzr' 'ido' 'libindicator-gtk3' 'libwnck3')
 optdepends=('indicator-datetime: Display date and time'
             'indicator-pantheon-session-bzr: Pantheon session indicator'
@@ -23,7 +24,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd wingpanel
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {

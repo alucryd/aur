@@ -2,55 +2,54 @@
 # Contributor: sh4nks <sh4nks7@gmail.com
 
 pkgname=lightdm-pantheon-greeter-bzr
-pkgver=r275
+pkgver=r355
 pkgrel=1
 pkgdesc='Pantheon greeter for LightDM'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/pantheon-greeter'
 license=('GPL')
+groups=('pantheon-unstable')
 depends=('clutter-gtk' 'granite-bzr' 'libindicator-gtk3' 'lightdm')
 makedepends=('bzr' 'cmake' 'vala')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-options=('!emptydirs')
-install="${pkgname%-*}.install"
-source=("${pkgname%-*}::bzr+lp:pantheon-greeter"
-        'desktop.patch')
+provides=('lightdm-pantheon-greeter')
+conflicts=('lightdm-pantheon-greeter')
+install='lightdm-pantheon-greeter.install'
+source=('lightdm-pantheon-greeter::bzr+lp:pantheon-greeter'
+        'lightdm-pantheon-greeter-paths.patch')
 sha256sums=('SKIP'
-            '4f86eb3ad01f954fcaa7a2979a61a964a23fed43564b07896bfd765e3bb4cd7f')
+            '42a407aea92228a2ca811abc3567c29b03eee77ae4f1723e8a44dc0a8d5c4ae8')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd lightdm-pantheon-greeter
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 prepare() {
-  cd ${pkgname%-*}
+  cd lightdm-pantheon-greeter
 
-  patch -Np0 -i ../desktop.patch
+  patch -Np1 -i ../lightdm-pantheon-greeter-paths.patch
 }
 
-build(){
-  cd ${pkgname%-*}
+build() {
+  cd lightdm-pantheon-greeter
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DGSETTINGS_COMPILE='OFF'
   make
 }
 
-package(){
-  cd ${pkgname%-*}/build
+package() {
+  cd lightdm-pantheon-greeter/build
 
   make DESTDIR="${pkgdir}" install
-
-  install -dm 755 "${pkgdir}"/usr/bin
-  mv "${pkgdir}"/usr/{sbin/,bin/lightdm-}pantheon-greeter
-  mv "${pkgdir}"/usr/share/xgreeters/{,lightdm-}pantheon-greeter.desktop
 }
 
 # vim: ts=2 sw=2 et:

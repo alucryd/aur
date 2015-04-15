@@ -9,7 +9,8 @@ pkgdesc='The Pantheon Control Center'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/switchboard'
 license=('GPL3')
-depends=('cheese' 'granite-bzr')
+groups=('pantheon-unstable')
+depends=('clutter-gtk' 'granite-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 optdepends=('switchboard-plug-about-bzr: About plug'
             'switchboard-plug-default-applications-bzr: Default applications plug'

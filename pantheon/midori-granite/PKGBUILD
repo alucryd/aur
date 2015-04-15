@@ -7,6 +7,7 @@ pkgdesc='A lightweight, fast, and free web browser'
 arch=('i686' 'x86_64')
 url='http://midori-browser.org/'
 license=('LGPL2.1')
+groups=('pantheon')
 depends=('gcr' 'granite' 'libnotify' 'libxss' 'libzeitgeist' 'webkitgtk')
 makedepends=('cmake' 'intltool' 'librsvg' 'ninja' 'vala')
 optdepends=('aria2: Download utility'
@@ -27,8 +28,9 @@ build() {
   mkdir build && cd build
 
   cmake .. \
-    -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
+    -DCMAKE_BUILD_TYPE='Release' \
     -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
     -DUSE_GRANITE='TRUE' \
     -DUSE_GTK3='TRUE' \
     -G Ninja

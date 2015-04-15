@@ -7,6 +7,7 @@ pkgdesc='The Pantheon Calculator'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/pantheon-calculator'
 license=('GPL3')
+groups=('pantheon')
 depends=('granite-bzr')
 makedepends=('cmake' 'vala')
 install='pantheon-calculator.install'

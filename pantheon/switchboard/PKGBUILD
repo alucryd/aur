@@ -9,7 +9,8 @@ pkgdesc='The Pantheon Control Center'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/switchboard'
 license=('GPL3')
-depends=('cheese' 'granite-bzr')
+groups=('pantheon')
+depends=('clutter-gtk' 'granite-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 optdepends=('switchboard-plug-about: About plug'
             'switchboard-plug-default-applications-bzr: Default applications plug'
@@ -17,6 +18,7 @@ optdepends=('switchboard-plug-about: About plug'
             'switchboard-plug-keyboard-bzr: Keyboard plug'
             'switchboard-plug-pantheon-shell-bzr: Pantheon Shell plug'
             'switchboard-plug-power-bzr: Power plug')
+install='switchboard.install'
 source=("https://launchpad.net/switchboard/${pkgver%%.*}.x/${pkgver%.*}/+download/switchboard-${pkgver}.tgz")
 sha256sums=('4439af2019cda29e6267df2c0dabdaeba129808b0da14b632dcda8713dabb12e')
 

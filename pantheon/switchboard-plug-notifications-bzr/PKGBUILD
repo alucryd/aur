@@ -1,12 +1,13 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-notifications-bzr
-pkgver=r50
+pkgver=r106
 pkgrel=1
 pkgdesc='Notifications plug for Switchboard'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/switchboard-plug-applications'
 license=('GPL3')
+groups=('pantheon-unstable')
 depends=('switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 provides=('switchboard-plug-notifications')
@@ -17,7 +18,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd switchboard-plug-notifications
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {
@@ -29,6 +30,7 @@ build() {
   mkdir build && cd build
 
   cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
     -DCMAKE_INSTALL_PREFIX='/usr' \
     -DCMAKE_INSTALL_LIBDIR='/usr/lib'
   make

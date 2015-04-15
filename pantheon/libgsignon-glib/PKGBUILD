@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=libgsignon-glib
-pkgver=2.1.0
+pkgver=2.4.0
 pkgrel=1
 pkgdesc='gSSO client library'
 arch=('i686' 'x86_64')
@@ -9,18 +9,21 @@ url='https://01.org/gsso'
 license=('LGPL2.1')
 depends=('glib2' 'python')
 makedepends=('git' 'gobject-introspection' 'gtk-doc')
-source=("${pkgname}::git+https://code.google.com/p/accounts-sso.${pkgname}/#commit=e8873880296e")
+source=("git+https://gitlab.com/accounts-sso/libgsignon-glib.git#commit=799c0b9e")
 sha256sums=('SKIP')
 
 build() {
-  cd ${pkgname}
+  cd libgsignon-glib
 
-  ./autogen.sh --prefix='/usr' --enable-{dbus-type='session',introspection='yes'}
+  ./autogen.sh \
+    --prefix='/usr' \
+    --enable-dbus-type='session' \
+    --enable-introspection='yes'
   make
 }
 
 package() {
-  cd ${pkgname}
+  cd libgsignon-glib
 
   make DESTDIR="${pkgdir}" install
 }

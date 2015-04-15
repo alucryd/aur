@@ -9,19 +9,19 @@ url='https://01.org/gsso'
 license=('LGPL2.1')
 depends=('gsasl' 'gsignond')
 makedepends=('git' 'gobject-introspection' 'gtk-doc')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::git+https://code.google.com/p/accounts-sso.gsignond-plugin-sasl/")
+provides=('gsignond-plugin-sasl')
+conflicts=('gsignond-plugin-sasl')
+source=('git+https://gitlab.com/accounts-sso/gsignond-plugin-sasl.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd gsignond-plugin-sasl
 
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
-build() {
-  cd ${pkgname%-*}
+prepare() {
+  cd gsignond-plugin-sasl
 
   mkdir -p m4
   gtkdocize
@@ -31,12 +31,19 @@ build() {
   autoconf
   automake --add-missing --copy
   autoreconf --install --force
-  ./configure --prefix='/usr' --enable-gtk-doc
+}
+
+build() {
+  cd gsignond-plugin-sasl
+
+  ./configure \
+    --prefix='/usr' \
+    --enable-gtk-doc
   make
 }
 
 package() {
-  cd ${pkgname%-*}
+  cd gsignond-plugin-sasl
 
   make DESTDIR="${pkgdir}" install
 }

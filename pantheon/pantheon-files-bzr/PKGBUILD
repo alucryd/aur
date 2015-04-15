@@ -8,13 +8,14 @@ pkgdesc='The Pantheon File Manager'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/pantheon-files'
 license=('GPL3')
-depends=('desktop-file-utils' 'gconf' 'granite' 'libnotify' 'zeitgeist')
+groups=('pantheon-unstable')
+depends=('desktop-file-utils' 'gconf' 'granite-bzr' 'libnotify' 'zeitgeist')
 makedepends=('bzr' 'cmake' 'gnome-common' 'sqlite3' 'vala')
 optdepends=('contractor-bzr: Various context menu entries'
             'pantheon-files-plugin-dropbox-bzr: Dropbox integration'
             'tumbler: Thumbnails generation')
 provides=('pantheon-files')
-conflicts=('marlin-bin' 'marlin-bzr' 'pantheon-files')
+conflicts=('pantheon-files')
 install='pantheon-files.install'
 source=('bzr+lp:pantheon-files')
 sha256sums=('SKIP')
@@ -22,7 +23,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd pantheon-files
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {

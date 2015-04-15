@@ -8,6 +8,7 @@ pkgdesc='The Pantheon Photos Manager'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/pantheon-photos'
 license=('GPL3')
+groups=('pantheon-unstable')
 depends=('desktop-file-utils' 'granite-bzr' 'libgexiv2' 'libgphoto2' 'libraw'
          'webkitgtk')
 makedepends=('bzr' 'vala')

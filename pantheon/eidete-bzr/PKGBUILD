@@ -2,13 +2,14 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=eidete-bzr
-pkgver=r165
+pkgver=r195
 pkgrel=1
 pkgdesc='Simple screencaster for the elementary project'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/eidete'
 license=('GPL3')
-depends=('granite' 'gst-plugins-base-libs' 'libwnck3')
+groups=('pantheon-unstable')
+depends=('granite-bzr' 'gst-plugins-base-libs' 'libwnck3')
 makedepends=('bzr' 'cmake' 'vala')
 provides=('eidete')
 conflicts=('eidete')
@@ -19,7 +20,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd eidete
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {

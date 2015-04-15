@@ -1,5 +1,5 @@
 pkgname=('switchboard-plug-security-privacy-bzr')
-builddeps=('granite-bzr' 'switchboard-bzr')
+builddeps=('elementary-dpms-helper' 'granite-bzr' 'switchboard-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

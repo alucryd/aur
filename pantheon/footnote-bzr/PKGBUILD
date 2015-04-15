@@ -2,40 +2,44 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=footnote-bzr
-pkgver=r295
+pkgver=r339
 pkgrel=1
 pkgdesc='Take note in elementary style'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/footnote'
 license=('GPL3')
-depends=('clutter-gtk' 'granite' 'sqlheavy')
+groups=('pantheon-unstable')
+depends=('clutter-gtk' 'granite-bzr' 'sqlheavy')
 makedepends=('bzr' 'cmake' 'vala')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-install="${pkgname%-*}.install"
+provides=('footnote')
+conflicts=('footnote')
+install='footnote.install'
 source=('bzr+lp:footnote')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd footnote
 
-  printf "r%s" "$(bzr revno)"
+  echo "r$(bzr revno)"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd footnote
 
   if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build && cd build
 
-  cmake .. -DCMAKE_INSTALL_PREFIX='/usr' -DGSETTINGS_COMPILE='OFF'
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DGSETTINGS_COMPILE='OFF'
   make
 }
 
 package() {
-  cd ${pkgname%-*}/build
+  cd footnote/build
 
   make DESTDIR="${pkgdir}" install
 }
