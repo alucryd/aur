@@ -1,6 +1,12 @@
 #!/bin/sh
 
 for repo in community multilib pantheon personal unsupported; do
+  # Clean old packages
+  for pkg in $(ls $repo); do
+    if [[ ! -f $repo/$pkg/PKGBUILD ]]; then
+      rm -rf $repo/$pkg
+    fi
+  done
   # Clean build files
   find $repo -maxdepth 3 -type d -name pkg -exec rm -rf {} +
   find $repo -maxdepth 3 -type d -name src -exec rm -rf {} +
