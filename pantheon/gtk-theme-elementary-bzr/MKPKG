@@ -1,5 +1,5 @@
 arch=('any')
-pkgname=('gtk-theme-elementary-bzr')
+pkgname=('gtk-theme-elementary-bzr' 'plank-theme-pantheon-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 

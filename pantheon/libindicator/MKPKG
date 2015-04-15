@@ -1,3 +1,3 @@
-pkgname=('libindicator-gtk2' 'libindicator-gtk3')
+pkgname=('libindicator-gtk3')
 
 # vim: ts=2 sw=2 et:
