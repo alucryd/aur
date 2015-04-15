@@ -27,21 +27,6 @@ prepare() {
   patch -Np1 -i ../arch-tweaks.patch
 }
 
-build() {
-  cd pantheon-default-settings
-
-  if [[ -d build ]]; then
-    rm -rf build
-  fi
-  mkdir build && cd build
-
-  cmake .. \
-    -DCMAKE_BUILD_TYPE='Release' \
-    -DCMAKE_INSTALL_PREFIX='/usr' \
-    -DGSETTINGS_COMPILE='FALSE'
-  make
-}
-
 package_elementary-dpms-helper-bzr() {
   pkgdesc='DPMS helper for Pantheon'
   depends=('gnome-settings-daemon')

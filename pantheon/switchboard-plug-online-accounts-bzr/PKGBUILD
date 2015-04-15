@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url='https://launchpad.net/switchboard-plug-onlineaccounts'
 license=('GPL3')
 groups=('pantheon-unstable')
-depends=('gsignond-extension-pantheon' 'gsignond-plugin-oauth-git'
+depends=('gsignond-extension-pantheon-bzr' 'gsignond-plugin-oauth-git'
          'gsignond-plugin-sasl-git' 'switchboard-bzr' 'webkit2gtk')
 makedepends=('bzr' 'cmake' 'vala')
 provides=('switchboard-plug-online-accounts')
