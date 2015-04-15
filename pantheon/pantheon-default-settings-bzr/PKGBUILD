@@ -48,9 +48,12 @@ package_elementary-dpms-helper-bzr() {
   provides=('elementary-dpms-helper')
   conflicts=('elementary-dpms-helper')
 
-  cd pantheon-default-settings/build
+  cd pantheon-default-settings/dpms
 
-  make DESTDIR="${pkgdir}" install
+  install -dm 755 "${pkgdir}"/{etc/xdg/autostart,usr/{bin,share/glib-2.0/schemas}}
+  install -m 644 elementary-dpms-helper.desktop "${pkgdir}"/etc/xdg/autostart/
+  install -m 755 elementary-dpms-helper "${pkgdir}"/usr/bin/
+  install -m 644 org.pantheon.dpms.gschema.xml "${pkgdir}"/usr/share/glib-2.0/schemas/
 }
 
 package_pantheon-default-settings-bzr() {

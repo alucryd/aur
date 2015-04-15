@@ -4,7 +4,7 @@
 
 pkgname=lib32-tcl
 pkgver=8.6.4
-pkgrel=1
+pkgrel=2
 pkgdesc='The Tcl scripting language'
 arch=('x86_64')
 url='http://tcl.sourceforge.net/'
@@ -39,6 +39,7 @@ package() {
 
   make INSTALL_ROOT="${pkgdir}" install install-private-headers
   rm -rf "${pkgdir}"/usr/{bin,include,lib,share}
+  rm -rf "${pkgdir}"/usr/lib32/{libtclstub8.6.a,tdbc1.0.3/libtdbcstub1.0.3.a}
   ln -sf libtcl${pkgver%.*}.so "${pkgdir}"/usr/lib32/libtcl.so
 
   sed -e "s#${srcdir}/tcl${pkgver}/unix#/usr/lib32#" \

@@ -40,6 +40,8 @@ package() {
   cd switchboard-plug-security-privacy/build
 
   make DESTDIR="${pkgdir}" install
+
+  chmod 755 "${pkgdir}"/usr/lib/switchboard/personal/pantheon-security-privacy/security-privacy-plug-helper
 }
 
 # vim: ts=2 sw=2 et:
