@@ -7,7 +7,7 @@ pkgdesc='Security & Privacy plug for Switchboard'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/switchboard-plug-security-privacy'
 license=('GPL3')
-depends=('elementary-dpms-helper' 'light-locker' 'switchboard-bzr' 'ufw'
+depends=('elementary-dpms-helper-bzr' 'light-locker' 'switchboard-bzr' 'ufw'
          'zeitgeist')
 makedepends=('bzr' 'cmake' 'vala')
 provides=('switchboard-plug-security-privacy')
