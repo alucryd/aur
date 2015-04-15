@@ -13,6 +13,7 @@
 *.tar.gz
 *.tar.xz
 *.tgz
+*.zip
 build/
 log/
 src/
