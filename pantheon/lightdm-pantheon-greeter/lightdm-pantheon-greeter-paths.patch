@@ -67,3 +67,15 @@ diff -rupN pantheon-greeter-2.0.0.orig/data/pantheon-greeter.desktop pantheon-gr
 -Type=Application
 -X-Ubuntu-Gettext-Domain=pantheon-greeter
 -Name[en_US]=pantheon-greeter
+diff -rupN pantheon-greeter-2.0.0.orig/src/PantheonGreeter.vala pantheon-greeter-2.0.0/src/PantheonGreeter.vala
+--- pantheon-greeter-2.0.0.orig/src/PantheonGreeter.vala	2015-04-06 23:37:23.000000000 +0200
++++ pantheon-greeter-2.0.0/src/PantheonGreeter.vala	2015-04-20 11:57:44.000000000 +0000
+@@ -81,7 +81,7 @@ public class PantheonGreeter : Gtk.Windo
+ 
+         settings = new KeyFile ();
+         try {
+-            settings.load_from_file (Constants.CONF_DIR+"/pantheon-greeter.conf",
++            settings.load_from_file (Constants.CONF_DIR+"/lightdm-pantheon-greeter.conf",
+                     KeyFileFlags.KEEP_COMMENTS);
+         } catch (Error e) {
+             warning (e.message);
