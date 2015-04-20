@@ -1,6 +1,0 @@
-pkgname=('indicator-pantheon-session-bzr')
-builddeps=('libindicator-gtk3')
-
-check_bzr $packagedir/$pkgname/${pkgname%-*}
-
-# vim: ts=2 sw=2 et:

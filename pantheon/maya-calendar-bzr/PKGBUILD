@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=maya-calendar-bzr
-pkgver=r788
+pkgver=r789
 pkgrel=1
 pkgdesc='The Pantheon Calendar'
 arch=('i686' 'x86_64')

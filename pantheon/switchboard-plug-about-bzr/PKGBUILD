@@ -12,8 +12,10 @@ depends=('switchboard-bzr')
 makedepends=('bzr' 'cmake' 'vala')
 provides=('switchboard-plug-about')
 conflicts=('switchboard-plug-about')
-source=('bzr+lp:switchboard-plug-about')
-sha256sums=('SKIP')
+source=('bzr+lp:switchboard-plug-about'
+        'about-archlinux.patch')
+sha256sums=('SKIP'
+            'b2baf0104c0ca75124d95a0a4b81b6847db79ff97c6032e6722ef712ad17d2a7')
 
 pkgver() {
   cd switchboard-plug-about
@@ -24,7 +26,7 @@ pkgver() {
 prepare() {
   cd switchboard-plug-about
 
-#  patch -Np1 -i ../about-archlinux.patch
+  patch -Np1 -i ../about-archlinux.patch
 }
 
 build() {
