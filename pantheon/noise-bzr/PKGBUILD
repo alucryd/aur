@@ -9,7 +9,7 @@ arch=('i686' 'x86_64')
 url='https://launchpad.net/noise'
 license=('GPL3')
 depends=('desktop-file-utils' 'granite-bzr' 'gst-plugins-base-libs' 'libgpod'
-         'libnotify' 'libpeas' 'sqlheavy' 'taglib')
+         'libindicate-gtk3' 'libnotify' 'libpeas' 'sqlheavy' 'taglib')
 makedepends=('bzr' 'cmake' 'vala')
 optdepends=('gst-plugins-base: "Base" plugin libraries'
             'gst-plugins-good: "Good" plugin libraries'
@@ -23,7 +23,7 @@ source=('bzr+lp:noise'
         'noise-mesa-conflict.patch'
         'noise-plugin-path.patch')
 sha256sums=('SKIP'
-            '8dfc1cd81e5c8e47ba4c1ad6148e399e77e5c32f95648b7e536432997da4e12e'
+            '4097f73439bad8bac46eda80af4a557a31fc14ac5ae10edfc0a2c601071df62a'
             'e83aa10261109d7459945a6731ca18910707426ca7576557bf138614491d0073')
 
 pkgver() {
