@@ -2,19 +2,19 @@
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 
 pkgname=lib32-libvpx
-pkgver=1.3.0
+pkgver=1.4.0
 pkgrel=1
-pkgdesc='The VP8 Codec SDK'
+pkgdesc='VP8 and VP9 codec'
 arch=('x86_64')
 url='http://www.webmproject.org/'
 license=('BSD')
 depends=('lib32-glibc' 'libvpx')
-makedepends=('yasm')
-source=("https://webm.googlecode.com/files/libvpx-v${pkgver}.tar.bz2")
-sha256sums=('d3dcc8d84af51c6c382b214397c62402e37a799e8ebcda6f4217aef0010451a9')
+makedepends=('git' 'yasm')
+source=("libvpx::git+http://code.google.com/p/webm.libvpx#tag=v${pkgver}")
+sha256sums=('SKIP')
 
 build() {
-  cd libvpx-v${pkgver}
+  cd libvpx
 
   export CC='gcc -m32'
   export CXX='g++ -m32'
@@ -34,7 +34,7 @@ build() {
 }
 
 package() {
-  cd libvpx-v${pkgver}
+  cd libvpx
 
   make DIST_DIR="${pkgdir}/usr" install
   rm -rf "${pkgdir}"/usr/include

@@ -2,7 +2,7 @@
 # Contributor: sh4nks <sh4nks7@gmail.com
 
 pkgname=lightdm-pantheon-greeter-bzr
-pkgver=r357
+pkgver=r359
 pkgrel=1
 pkgdesc='Pantheon greeter for LightDM'
 arch=('i686' 'x86_64')
@@ -10,14 +10,14 @@ url='https://launchpad.net/pantheon-greeter'
 license=('GPL')
 groups=('pantheon-unstable')
 depends=('clutter-gtk' 'granite-bzr' 'libindicator-gtk3' 'lightdm')
-makedepends=('bzr' 'cmake' 'vala')
+makedepends=('bzr' 'cmake' 'libxfixes' 'vala')
 provides=('lightdm-pantheon-greeter')
 conflicts=('lightdm-pantheon-greeter')
 install='lightdm-pantheon-greeter.install'
 source=('lightdm-pantheon-greeter::bzr+lp:pantheon-greeter'
         'lightdm-pantheon-greeter-paths.patch')
 sha256sums=('SKIP'
-            '42a407aea92228a2ca811abc3567c29b03eee77ae4f1723e8a44dc0a8d5c4ae8')
+            '164d93b3dd75a5dfa2ecb4095bbf0f366e778544b4769b4a5c47be1cef952d1b')
 
 pkgver() {
   cd lightdm-pantheon-greeter
