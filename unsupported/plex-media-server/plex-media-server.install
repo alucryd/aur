@@ -15,7 +15,9 @@ post_upgrade() {
 Plex' home is now located in '/var/lib/plex'. You will have to move the 'Plex M
 edia Server' directory located in '/opt/plexmediserver/Library/Application Supp
 ort' into the new home. Please refer to 'https://support.plex.tv/hc/en-us/artic
-les/201370363-Move-an-Install-to-Another-System' for detailed instructions.
+les/201370363-Move-an-Install-to-Another-System' for detailed instructions. Als
+o make sure that UID:GID 421:421 is assigned to plex:plex. Deleting plex:plex a
+nd reinstalling this package will do just that.
 "
   fi
 }
