@@ -1,48 +1,15 @@
 post_install() {
-  glib-compile-schemas usr/share/glib-2.0/schemas
+  glib-compile-schemas /usr/share/glib-2.0/schemas
   gtk-update-icon-cache -ftq usr/share/icons/hicolor
   update-desktop-database -q
-
-  cat << EOF
-
-  If you want to manually install runners you can choose from the list below and install the ones you wish to use.
-
-    * wine
-    * scummvm
-    * uae
-    * mednafen
-    * sdlmame
-    * snes9x-gtk
-    * gens-gs
-    * steam (using wine)
-    * atari800
-    * dolphin-emu
-    * frotz
-    * dosbox
-    * hatari
-    * jzintv
-    * mednafen
-    * mupen64plus
-    * nulldc (1.0.3 only, using wine)
-    * o2em
-    * openmsx
-    * osmose
-    * pcsxr
-    * scummvm
-
-EOF
 }
 
 post_upgrade() {
-  glib-compile-schemas usr/share/glib-2.0/schemas
-  gtk-update-icon-cache -ftq usr/share/icons/hicolor
-  update-desktop-database -q
+  post_install
 }
 
 post_remove() {
-  glib-compile-schemas usr/share/glib-2.0/schemas
-  gtk-update-icon-cache -ftq usr/share/icons/hicolor
-  update-desktop-database -q
+  post_install
 }
 
 # vim: ts=2 sw=2 et:
