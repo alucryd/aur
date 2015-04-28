@@ -8,6 +8,7 @@
 *.run
 *.src.tar.gz
 *.sig
+*.spk
 *.swp
 *.tar.bz2
 *.tar.gz
