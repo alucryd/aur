@@ -3,7 +3,7 @@
 # Contributor: erm67 <erm67@yahoo.it>
 
 pkgname=cairo-dock-git
-pkgver=3.4.0.r13.064f64f
+pkgver=3.4.1.r1.9e74374
 pkgrel=1
 pkgdesc='Light eye-candy fully themable animated dock'
 arch=('i686' 'x86_64')
@@ -20,7 +20,8 @@ sha256sums=('SKIP')
 pkgver() {
   cd cairo-dock
 
-  printf "%s" "$(git describe --tags | sed 's/v//; s/-/.r/; s/-g/./')"
+  tag='3.4.1'
+  echo "${tag}.r$(git rev-list --count ${tag}..HEAD).$(git rev-parse --short HEAD)"
 }
 
 build() {

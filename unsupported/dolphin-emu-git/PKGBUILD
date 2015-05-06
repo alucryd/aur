@@ -20,9 +20,8 @@ sha256sums=('SKIP')
 pkgver() {
   cd dolphin-emu
 
-  tag='4.0.2'
-
-  echo "${tag}.r$(git rev-list --count ${tag}..HEAD).$(git rev-parse --short HEAD)"
+  _tag='4.0.2'
+  echo "${_tag}.r$(git rev-list --count ${_tag}..HEAD).$(git rev-parse --short HEAD)"
 }
 
 build() {

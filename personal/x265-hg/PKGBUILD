@@ -4,7 +4,7 @@
 
 pkgbase=x265-hg
 pkgname=('x265-hg' 'libx265-hg' 'libx265-10bit-hg')
-pkgver=r7687.ed49f875ab20
+pkgver=r10369.f32e6464225a
 pkgrel=1
 arch=('i686' 'x86_64')
 url='https://bitbucket.org/multicoreware/x265'
@@ -33,7 +33,9 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake ../source -DCMAKE_INSTALL_PREFIX='/usr' -DENABLE_SHARED='FALSE'
+  cmake ../source \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DENABLE_SHARED='FALSE'
   make
 
   cd ../../libx265
@@ -43,7 +45,8 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake ../source -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake ../source \
+    -DCMAKE_INSTALL_PREFIX='/usr'
   make
 
   cd ../../x265-10bit
@@ -53,8 +56,10 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake ../source -DCMAKE_INSTALL_PREFIX='/usr' -DHIGH_BIT_DEPTH='TRUE' \
-                  -DENABLE_SHARED='FALSE'
+  cmake ../source \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DHIGH_BIT_DEPTH='TRUE' \
+    -DENABLE_SHARED='FALSE'
   make
 
   cd ../../libx265-10bit
@@ -64,7 +69,9 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake ../source -DCMAKE_INSTALL_PREFIX='/usr' -DHIGH_BIT_DEPTH='TRUE'
+  cmake ../source \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DHIGH_BIT_DEPTH='TRUE'
   make
 }
 
@@ -73,6 +80,7 @@ pkgdesc='CLI tools for encoding H265/HEVC video streams.'
 depends=('gcc-libs')
 provides=('x265')
 conflicts=('x265')
+
   cd x265/build
 
   make DESTDIR="${pkgdir}" install
@@ -87,6 +95,7 @@ pkgdesc='Library for encoding H265/HEVC video streams.'
 depends=('gcc-libs')
 provides=('libx265')
 conflicts=('libx265')
+
   cd libx265/build
 
   make DESTDIR="${pkgdir}" install
@@ -98,6 +107,7 @@ pkgdesc='Library for encoding H265/HEVC video streams.'
 depends=('gcc-libs')
 provides=('libx265')
 conflicts=('libx265')
+
   cd libx265-10bit/build
 
   make DESTDIR="${pkgdir}" install

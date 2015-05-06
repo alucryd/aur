@@ -2,7 +2,7 @@
 # Contributor: Gustavo Alvarez <sl1pkn07@gmail.com>
 
 pkgname=vapoursynth-plugin-fluxsmooth-git
-pkgver=1.0
+pkgver=1.0.r4.8f81346
 pkgrel=1
 pkgdesc='FluxSmooth plugin for VapourSynth'
 arch=('i686' 'x86_64')
@@ -18,7 +18,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd vapoursynth-plugin-fluxsmooth
 
-  printf "%s" "$(git describe --tags | sed 's/^v//; s/-/.r/; s/-g/./')"
+  echo "$(git describe --tags | sed 's/^v//; s/-/.r/; s/-g/./')"
 }
 
 build() {

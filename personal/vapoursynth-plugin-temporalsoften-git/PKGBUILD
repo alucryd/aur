@@ -10,27 +10,29 @@ url='https://github.com/dubhater/vapoursynth-temporalsoften'
 license=('None')
 depends=('vapoursynth')
 makedepends=('git')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
-source=("${pkgname%-*}::git+${url}.git")
+provides=('vapoursynth-plugin-temporalsoften')
+conflicts=('vapoursynth-plugin-temporalsoften')
+source=('vapoursynth-plugin-temporalsoften::git+https://github.com/dubhater/vapoursynth-temporalsoften.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd ${pkgname%-*}
+  cd vapoursynth-plugin-temporalsoften
 
-  printf "%s" "$(git describe --tags | sed 's/^v//; s/-/.r/; s/-g/./')"
+  echo "$(git describe --tags | sed 's/^v//; s/-/.r/; s/-g/./')"
 }
 
 build() {
-  cd ${pkgname%-*}
+  cd vapoursynth-plugin-temporalsoften
 
   ./autogen.sh
-  ./configure --prefix='/usr' --libdir='/usr/lib/vapoursynth'
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib/vapoursynth'
   make
 }
 
 package(){
-  cd ${pkgname%-*}
+  cd vapoursynth-plugin-temporalsoften
 
   make DESTDIR="${pkgdir}" install
   install -dm 755 "${pkgdir}"/usr/share/doc/vapoursynth/plugins/TemporalSoften

@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=ffms2-git
-pkgver=2.20.r18.7bffd50
+pkgver=2.20.r97.70e00fa
 pkgrel=1
 pkgdesc='A libav/ffmpeg based source library and Avisynth/Vapoursynth plugin for easy frame accurate access'
 url='https://github.com/FFMS/ffms2'
