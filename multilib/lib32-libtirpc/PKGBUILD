@@ -6,8 +6,8 @@
 # Contributor: josephgbr <rafael.f.f1@gmail.com>
 
 pkgname=lib32-libtirpc
-pkgver=0.2.5
-pkgrel=2
+pkgver=0.3.0
+pkgrel=1
 pkgdesc='Transport Independent RPC library (SunRPC replacement)'
 arch=('x86_64')
 url='http://libtirpc.sourceforge.net/'
@@ -15,7 +15,7 @@ license=('BSD')
 depends=('lib32-krb5' 'libtirpc')
 makedepends=('gcc-multilib')
 source=("http://downloads.sourceforge.net/sourceforge/libtirpc/libtirpc-${pkgver}.tar.bz2")
-sha256sums=('62f9de7c2c8686c568757730e1fef66502a0e00d6cacf33546d0267984e002db')
+sha256sums=('cafe59d561145b384bffd34d6614e9fe4c1d9157c30d2b6b022a0ef71de5a11d')
 
 build() {
   cd libtirpc-${pkgver}
