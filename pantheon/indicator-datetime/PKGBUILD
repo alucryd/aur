@@ -45,6 +45,10 @@ build() {
     --enable-systemd \
     --disable-schemas-compile \
     --disable-static
+  cd src
+  cat Makefile
+  make timedated.h
+  cd ..
   make
 }
 
