@@ -25,9 +25,7 @@ build() {
     --prefix='/usr' \
     --libexecdir='/usr/lib/libindicator' \
     --localstatedir='/var' \
-    --sysconfdir='/etc' \
-    --disable-static \
-    --disable-tests}
+    --sysconfdir='/etc'}
   make -j1
 
   cd ../libindicator-gtk2-${pkgver}
@@ -37,9 +35,7 @@ build() {
     --localstatedir='/var' \
     --libexecdir='/usr/lib/libindicator' \
     --sysconfdir='/etc' \
-    --with-gtk='2' \
-    --disable-static \
-    --disable-tests
+    --with-gtk='2' 
   make -j1
 }
 
