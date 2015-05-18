@@ -4,7 +4,7 @@
 # Contributor: tri1976 <trile7@gmail.com>
 # Contributor: snoopy33 <snoopy33@no-log.org>
 
-pkgname=cairo-dock-plugi-ins-git
+pkgname=cairo-dock-plug-ins-git
 pkgver=3.4.1.r7.88ae103
 pkgrel=1
 pkgdesc='Plugins for Cairo-Dock'
