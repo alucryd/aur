@@ -3,23 +3,22 @@
 
 pkgbase=vbam-svn
 pkgname=('vbam-sdl-svn' 'vbam-gtk-svn' 'vbam-wx-svn')
-pkgver=1.8.0.r1419
+pkgver=1.8.0.r1444
 pkgrel=1
 pkgdesc='Nintendo GameBoy Advance emulator'
 arch=('i686' 'x86_64')
 url='http://vba-m.com'
 license=('GPL2')
-makedepends=('cmake' 'desktop-file-utils' 'ffmpeg' 'freetype2' 'gtkglextmm'
-             'imagemagick' 'glew' 'libjpeg' 'libpng' 'libsndfile' 'libxrandr'
-             'openal' 'subversion' 'wxgtk2.8' 'zip')
+makedepends=('cmake' 'desktop-file-utils' 'ffmpeg' 'gtkglextmm' 'sdl' 'sfml'
+             'subversion' 'wxgtk2.8')
 makedepends_i686=('nasm')
-source=("vbam::svn+http://svn.code.sf.net/p/vbam/code/trunk")
+source=('vbam::svn+http://svn.code.sf.net/p/vbam/code/trunk')
 sha256sums=('SKIP')
 
 pkgver() {
   cd vbam
 
-  printf "1.8.0.r%s" "$(svnversion)"
+  printf "1.8.0.r%s" "$(svnversion | tr -d '[A-z]')"
 }
 
 prepare() {

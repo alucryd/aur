@@ -2,16 +2,16 @@
 # Contributor: Hexchain Tong <i@hexchain.org>
 
 pkgname=ttf-opensans
-pkgver=20140120
+pkgver=1.10
 pkgrel=1
 pkgdesc='Open Sans is a humanist sans serif typeface designed by Steve Matteson, Type Director of Ascender Corp.'
 arch=('any')
 url='http://en.wikipedia.org/wiki/Open_Sans'
 license=('Apache')
 depends=('fontconfig' 'xorg-fonts-encodings' 'xorg-font-utils')
-install="${pkgname}.install"
-source=("https://hexchain.org/pub/archlinux/ttf-opensans/opensans.tar.gz")
-md5sums=('82a1828670d0cd79148a19fbdac9d85f')
+install='ttf-opensans.install'
+source=("http://pkgbuild.com/~alucryd/ttf-opensans-${pkgver}.zip")
+sha256sums=('f14979b4a358311e51da601a2debb7f21a639912fa06d88825056c41d792871e')
 
 package() {
   install -dm 755 "${pkgdir}"/usr/share/fonts/TTF

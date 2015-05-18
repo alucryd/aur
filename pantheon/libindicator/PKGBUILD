@@ -27,7 +27,7 @@ build() {
     --localstatedir='/var' \
     --sysconfdir='/etc' \
     --disable-static \
-    --disable-tests}
+    --disable-tests
   make -j1
 
   cd ../libindicator-gtk2-${pkgver}
