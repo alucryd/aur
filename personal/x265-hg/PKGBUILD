@@ -76,6 +76,7 @@ package_x265-hg() {
 }
 
 package_libx265-hg() {
+  depends=('x265')
   pkgdesc='Library for encoding H265/HEVC video streams.'
   provides=('libx265')
   conflicts=('libx265')
@@ -90,6 +91,7 @@ package_libx265-hg() {
 }
 
 package_libx265-10bit-hg() {
+  depends=('x265')
   pkgdesc='Library for encoding H265/HEVC video streams.'
   provides=('libx265')
   conflicts=('libx265')
