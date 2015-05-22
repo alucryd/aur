@@ -7,7 +7,7 @@
 
 pkgbase=x264-git
 pkgname=('x264-git' 'libx264-git' 'libx264-10bit-git')
-pkgver=r2479.dd79a61
+pkgver=r2538.121396c
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.videolan.org/developers/x264.html'
@@ -17,25 +17,30 @@ source=('git://git.videolan.org/x264.git')
 md5sums=('SKIP')
 
 pkgver() {
-  cd ${pkgbase%-*}
+  cd x264
 
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 prepare() {
-  sed 's/install-lib-dev$//g' -i ${pkgbase%-*}/Makefile
-  cp -r ${pkgbase%-*}{,-10bit}
+  cp -r x264 x264-10bit
 }
 
 build() {
-  cd ${pkgbase%-*}
+  cd x264
 
-  ./configure --prefix='/usr' --bit-depth='8' --enable-shared
+  ./configure \
+    --prefix='/usr' \
+    --bit-depth='8' \
+    --enable-shared
   make
 
-  cd ../${pkgbase%-*}-10bit
+  cd ../x264-10bit
 
-  ./configure --prefix='/usr' --bit-depth='10' --enable-shared
+  ./configure \
+    --prefix='/usr' \
+    --bit-depth='10' \
+    --enable-shared
   make
 }
 
@@ -45,11 +50,12 @@ package_x264-git() {
   provides=('x264')
   conflicts=('x264')
 
-  cd ${pkgbase%-*}
+  cd x264
 
-  make DESTDIR="${pkgdir}" install-{cli,lib-dev}
+  make DESTDIR="${pkgdir}" install-cli
 
-  cd ../${pkgbase%-*}-10bit
+  cd ../x264-10bit
+
   install -m 755 x264 "${pkgdir}"/usr/bin/x264-10bit
 }
 
@@ -59,22 +65,22 @@ package_libx264-git() {
   provides=('libx264')
   conflicts=('libx264')
 
-  cd ${pkgbase%-*}
+  cd x264
 
-  install -dm 755 "$pkgdir"/usr/lib
-  make DESTDIR="$pkgdir" install-lib-shared
+  install -dm 755 "${pkgdir}"/usr/lib
+  make DESTDIR="${pkgdir}" install-lib-{dev,shared}
 }
 
 package_libx264-10bit-git() {
-  pkgdesc='Library for encoding H264/AVC video streams. 10bit-depth.'
+  pkgdesc='Library for encoding H264/AVC video streams.'
   depends=('glibc')
   provides=('libx264')
   conflicts=('libx264')
 
-  cd ${pkgbase%-*}-10bit
+  cd x264-10bit
 
-  install -dm 755 "$pkgdir"/usr/lib
-  make DESTDIR="$pkgdir" install-lib-shared
+  install -dm 755 "${pkgdir}"/usr/lib
+  make DESTDIR="${pkgdir}" install-lib-{dev,shared}
 }
 
 # vim: ts=2 sw=2 et:

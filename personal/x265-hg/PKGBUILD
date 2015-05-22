@@ -4,7 +4,7 @@
 
 pkgbase=x265-hg
 pkgname=('x265-hg' 'libx265-hg' 'libx265-10bit-hg')
-pkgver=1.7.r41.234bc93bd516
+pkgver=1.7.r51.a7bf7a150a70
 pkgrel=1
 arch=('i686' 'x86_64')
 url='https://bitbucket.org/multicoreware/x265'
@@ -53,6 +53,7 @@ build() {
 
 package_x265-hg() {
   pkgdesc='CLI tools for encoding H265/HEVC video streams.'
+  depends=('libx265')
   provides=('x265')
   conflicts=('x265')
 
@@ -72,37 +73,29 @@ package_x265-hg() {
   mv "${pkgdir}"/usr/lib/libx265{,_main10}.so.${_api}
   ln -s libx265_main10.so.${_api} "${pkgdir}"/usr/lib/libx265_main10.so
 
-  rm "${pkgdir}"/usr/lib/libx265.{a,so}
+  rm -rf "${pkgdir}"/usr/{include,lib/{libx265.{a,so},pkgconfig}}
 }
 
 package_libx265-hg() {
-  depends=('x265')
   pkgdesc='Library for encoding H265/HEVC video streams.'
   provides=('libx265')
   conflicts=('libx265')
 
-  cd x265
+  cd x265/build
 
-  _api="$(cat source/CMakeLists.txt | grep 'set(X265_BUILD [0-9]*)' | sed 's/set(X265_BUILD \([0-9]*\))/\1/')"
-
-  install -dm 755 "${pkgdir}"/usr/lib
-  ln -s libx265_main.so.${_api} "${pkgdir}"/usr/lib/libx265.so.${_api}
-  ln -s libx265.so.${_api} "${pkgdir}"/usr/lib/libx265.so
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/bin
 }
 
 package_libx265-10bit-hg() {
-  depends=('x265')
   pkgdesc='Library for encoding H265/HEVC video streams.'
   provides=('libx265')
   conflicts=('libx265')
 
-  cd x265-10bit
+  cd x265-10bit/build
 
-  _api="$(cat source/CMakeLists.txt | grep 'set(X265_BUILD [0-9]*)' | sed 's/set(X265_BUILD \([0-9]*\))/\1/')"
-
-  install -dm 755 "${pkgdir}"/usr/lib
-  ln -s libx265_main10.so.${_api} "${pkgdir}"/usr/lib/libx265.so.${_api}
-  ln -s libx265.so.${_api} "${pkgdir}"/usr/lib/libx265.so
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/bin
 }
 
 # vim: ts=2 sw=2 et:
