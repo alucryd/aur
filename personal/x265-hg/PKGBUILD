@@ -16,7 +16,6 @@ md5sums=('SKIP')
 pkgver() {
   cd x265
 
-
   echo "$(hg log -r. --template "{latesttag}").r$(hg log -r. --template "{latesttagdistance}").$(hg log -r. --template "{node|short}")"
 }
 
