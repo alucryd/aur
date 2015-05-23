@@ -1,0 +1,4 @@
+pkgname=('mingw-w64-pkg-config')
+arch=('any')
+
+# vim: ts=2 sw=2 et:

@@ -19,7 +19,7 @@ depends=('alsa-lib' 'bzip2' 'fontconfig' 'fribidi' 'gnutls' 'gsm' 'lame'
          'v4l-utils' 'xvidcore' 'zlib')
 makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
 source=("http://ffmpeg.org/releases/ffmpeg-${pkgver}.tar.bz2")
-sha256sums=('e2cc3c209f91393d35ab58598e41cf22')
+sha256sums=('59eb98c1b5896ac29abc0385f7c875d1b4942d695818818d418ee71eea1e0cfb')
 
 build() {
   cd ffmpeg-${pkgver}

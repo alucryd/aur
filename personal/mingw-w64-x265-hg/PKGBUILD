@@ -1,17 +1,18 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Karl-Felix Glatzer <karl.glatzer@gmx.de>
 # Contributor: kfgz <kfgz@interia.pl>
 # Contributor: Bartłomiej Piotrowski <nospam@bpiotrowski.pl>
 
-pkgname=x265-hg
+pkgname=mingw-w64-x265-hg
 pkgver=1.7.r51.a7bf7a150a70
 pkgrel=1
 pkgdesc='CLI tools for encoding H265/HEVC video streams.'
-arch=('i686' 'x86_64')
+arch=('x86_64')
 url='https://bitbucket.org/multicoreware/x265'
 license=('GPL')
-depends=('gcc-libs')
-provides=('libx265' 'x265')
-makedepends=('cmake' 'mercurial' 'yasm')
+makedepends=('mercurial' 'mingw-w64-cmake' 'mingw-w64-crt' 'mingw-w64-gcc'
+             'mingw-w64-pkg-config' 'yasm')
+options=('!buildflags' '!strip')
 source=('hg+https://bitbucket.org/multicoreware/x265')
 sha256sums=('SKIP')
 
@@ -33,8 +34,8 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake ../source \
-    -DCMAKE_INSTALL_PREFIX='/usr' \
+  x86_64-w64-mingw32-cmake ../source \
+    -DCMAKE_BUILD_TYPE='Release' \
     -DENABLE_SHARED='TRUE'
   make
 
@@ -45,26 +46,23 @@ build() {
   fi
   mkdir build && cd build
 
-  cmake ../source \
-    -DCMAKE_INSTALL_PREFIX='/usr' \
+  x86_64-w64-mingw32-cmake ../source \
+    -DCMAKE_BUILD_TYPE='Release' \
     -DHIGH_BIT_DEPTH='TRUE' \
-    -DENABLE_SHARED='TRUE'
+    -DENABLE_SHARED='FALSE'
   make
 }
 
 package() {
   cd x265/build
 
-  make DESTDIR="${pkgdir}" install
+  cp libx265.dll "${pkgdir}"/libx265_main.dll
 
   cd ../../x265-10bit/build
 
-  rename libx265 libx265_main10 libx265.so.*
-  ln -s libx265_main10.so.* libx265_main10.so
-  install -m 644 libx265_main10.so.* "${pkgdir}"/usr/lib/
-  mv libx265_main10.so "${pkgdir}"/usr/lib/
+  cp x265.exe "${pkgdir}"/
 
-  rm -rf "${pkgdir}"/usr/lib/libx265.a
+  x86_64-w64-mingw32-strip "${pkgdir}"/*
 }
 
 # vim: ts=2 sw=2 et:
