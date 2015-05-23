@@ -36,6 +36,8 @@ build() {
 
   x86_64-w64-mingw32-cmake ../source \
     -DCMAKE_BUILD_TYPE='Release' \
+    -DHIGH_BIT_DEPTH='FALSE' \
+    -DSTATIC_LINK_CRT='TRUE' \
     -DENABLE_SHARED='TRUE'
   make
 
@@ -49,6 +51,7 @@ build() {
   x86_64-w64-mingw32-cmake ../source \
     -DCMAKE_BUILD_TYPE='Release' \
     -DHIGH_BIT_DEPTH='TRUE' \
+    -DSTATIC_LINK_CRT='TRUE' \
     -DENABLE_SHARED='FALSE'
   make
 }
