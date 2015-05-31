@@ -3,13 +3,13 @@
 
 pkgname=lib32-libvpx
 pkgver=1.4.0
-pkgrel=2
+pkgrel=3
 pkgdesc='VP8 and VP9 codec'
 arch=('x86_64')
 url='http://www.webmproject.org/'
 license=('BSD')
 depends=('lib32-gcc-libs' 'libvpx')
-makedepends=('git' 'yasm')
+makedepends=('gcc-multilib' 'git' 'yasm')
 source=("libvpx::git+http://code.google.com/p/webm.libvpx#tag=v${pkgver}")
 sha256sums=('SKIP')
 

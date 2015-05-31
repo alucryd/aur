@@ -1,4 +1,4 @@
-pkgname=('x265-hg' 'libx265-hg' 'libx265-10bit-hg')
+pkgname=('x265-hg')
 
 check_hg $packagedir/x265-hg/x265
 

@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-terminal-bzr
-pkgver=r716
+pkgver=r733
 pkgrel=1
 pkgdesc='The Pantheon Terminal Emulator'
 arch=('i686' 'x86_64')
@@ -14,21 +14,13 @@ makedepends=('bzr' 'cmake' 'vala')
 provides=('pantheon-terminal')
 conflicts=('pantheon-terminal')
 install='pantheon-terminal.install'
-source=('pantheon-terminal::bzr+lp:pantheon-terminal'
-        'pantheon-terminal-bash-notify.patch')
-sha256sums=('SKIP'
-            'ea1d2257c0bedc11ec6616a5bab35a9a37d270c0e7d492692f057c9801d7a865')
+source=('pantheon-terminal::bzr+lp:pantheon-terminal')
+sha256sums=('SKIP')
 
 pkgver() {
   cd pantheon-terminal
 
   echo "r$(bzr revno)"
-}
-
-prepare() {
-  cd pantheon-terminal
-
-  patch -Np1 -i ../pantheon-terminal-bash-notify.patch
 }
 
 build() {

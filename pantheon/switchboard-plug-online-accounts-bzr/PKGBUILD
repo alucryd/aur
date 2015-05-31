@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-online-accounts-bzr
-pkgver=r185
+pkgver=r192
 pkgrel=1
 pkgdesc='Online Accounts plug for Switchboard'
 arch=('i686' 'x86_64')
@@ -15,21 +15,13 @@ makedepends=('bzr' 'cmake' 'vala')
 provides=('switchboard-plug-online-accounts')
 conflicts=('switchboard-plug-online-accounts')
 install='switchboard-plug-online-accounts.install'
-source=('switchboard-plug-online-accounts::bzr+lp:switchboard-plug-onlineaccounts'
-        'online-accounts-webkit2gtk-4.0.patch')
-sha256sums=('SKIP'
-            '53247397a09afa5fe402ebcecf965a5abdb4b374abbbd583bc14b1122aee3565')
+source=('switchboard-plug-online-accounts::bzr+lp:switchboard-plug-onlineaccounts')
+sha256sums=('SKIP')
 
 pkgver() {
   cd switchboard-plug-online-accounts
 
   echo "r$(bzr revno)"
-}
-
-prepare() {
-  cd switchboard-plug-online-accounts
-
-  patch -Np0 -i ../online-accounts-webkit2gtk-4.0.patch
 }
 
 build() {

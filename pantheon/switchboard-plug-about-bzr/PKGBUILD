@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-about-bzr
-pkgver=r295
+pkgver=r308
 pkgrel=1
 pkgdesc='About plug for Switchboard'
 arch=('i686' 'x86_64')
@@ -15,7 +15,7 @@ conflicts=('switchboard-plug-about')
 source=('bzr+lp:switchboard-plug-about'
         'about-archlinux.patch')
 sha256sums=('SKIP'
-            'b2baf0104c0ca75124d95a0a4b81b6847db79ff97c6032e6722ef712ad17d2a7')
+            '792efaed1c32a03f058581887fe8fb48e53a9edadc66a0addd5ffbc7c288ad65')
 
 pkgver() {
   cd switchboard-plug-about

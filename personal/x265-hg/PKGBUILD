@@ -3,7 +3,7 @@
 # Contributor: Bartłomiej Piotrowski <nospam@bpiotrowski.pl>
 
 pkgname=x265-hg
-pkgver=1.7.r51.a7bf7a150a70
+pkgver=1.7.r58.8ddc790790a4
 pkgrel=1
 pkgdesc='CLI tools for encoding H265/HEVC video streams.'
 arch=('i686' 'x86_64')
@@ -11,6 +11,7 @@ url='https://bitbucket.org/multicoreware/x265'
 license=('GPL')
 depends=('gcc-libs')
 provides=('libx265' 'x265')
+conflicts=('x265')
 makedepends=('cmake' 'mercurial' 'yasm')
 source=('hg+https://bitbucket.org/multicoreware/x265')
 sha256sums=('SKIP')
@@ -61,7 +62,7 @@ package() {
 
   rename libx265 libx265_main10 libx265.so.*
   ln -s libx265_main10.so.* libx265_main10.so
-  install -m 644 libx265_main10.so.* "${pkgdir}"/usr/lib/
+  install -m 755 libx265_main10.so.* "${pkgdir}"/usr/lib/
   mv libx265_main10.so "${pkgdir}"/usr/lib/
 
   rm -rf "${pkgdir}"/usr/lib/libx265.a

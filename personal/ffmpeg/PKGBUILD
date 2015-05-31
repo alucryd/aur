@@ -18,6 +18,8 @@ depends=('alsa-lib' 'bzip2' 'fontconfig' 'fribidi' 'gnutls' 'gsm' 'lame'
          'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl' 'speex'
          'v4l-utils' 'xvidcore' 'zlib')
 makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
+provides=('ffmpeg')
+conflicts=('ffmpeg')
 source=("http://ffmpeg.org/releases/ffmpeg-${pkgver}.tar.bz2")
 sha256sums=('59eb98c1b5896ac29abc0385f7c875d1b4942d695818818d418ee71eea1e0cfb')
 
