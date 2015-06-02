@@ -1,5 +1,4 @@
 pkgname=('pcsx2-git')
-builddeps=('lib32-wxgtk')
 
 check_git $packagedir/$pkgname/${pkgname%-*}
 
