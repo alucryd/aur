@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=rpcs3-git
-pkgver=0.0.0.5.r1011.9ca6bb9
+pkgver=0.0.0.5.r1801.e6df1dd
 pkgrel=1
 pkgdesc='A Sony PlayStation 3 emulator'
 arch=('x86_64')
@@ -37,6 +37,7 @@ build() {
   mkdir build && cd build
 
   cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
     -DCMAKE_INSTALL_PREFIX='/usr' \
     -DCMAKE_SKIP_RPATH='TRUE'
   make
