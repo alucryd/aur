@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+
+export RENPY_BASE='/usr/share/renpy'
+exec python2 /usr/share/renpy/renpy.py "$@"
