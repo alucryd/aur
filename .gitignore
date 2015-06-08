@@ -1,4 +1,5 @@
 .AURINFO
+.SRCINFO
 *.asc
 *.deb
 *.gem
