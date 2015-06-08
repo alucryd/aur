@@ -1,0 +1,129 @@
+[submodule "unsupported/aegisub-git"]
+	path = unsupported/aegisub-git
+	url = ssh://aur@aur4.archlinux.org/aegisub-git.git
+[submodule "unsupported/asmjit-git"]
+	path = unsupported/asmjit-git
+	url = ssh://aur@aur4.archlinux.org/asmjit-git.git
+[submodule "unsupported/bamf-bzr"]
+	path = unsupported/bamf-bzr
+	url = ssh://aur@aur4.archlinux.org/bamf-bzr.git
+[submodule "unsupported/bbswitch-hook"]
+	path = unsupported/bbswitch-hook
+	url = ssh://aur@aur4.archlinux.org/bbswitch-hook.git
+[submodule "unsupported/beat"]
+	path = unsupported/beat
+	url = ssh://aur@aur4.archlinux.org/beat.git
+[submodule "unsupported/cairo-dock-git"]
+	path = unsupported/cairo-dock-git
+	url = ssh://aur@aur4.archlinux.org/cairo-dock-git.git
+[submodule "unsupported/cairo-dock-plug-ins-git"]
+	path = unsupported/cairo-dock-plug-ins-git
+	url = ssh://aur@aur4.archlinux.org/cairo-dock-plug-ins-git.git
+[submodule "unsupported/cups-bjnp"]
+	path = unsupported/cups-bjnp
+	url = ssh://aur@aur4.archlinux.org/cups-bjnp.git
+[submodule "unsupported/dolphin-emu-git"]
+	path = unsupported/dolphin-emu-git
+	url = ssh://aur@aur4.archlinux.org/dolphin-emu-git.git
+[submodule "unsupported/firewalld-git"]
+	path = unsupported/firewalld-git
+	url = ssh://aur@aur4.archlinux.org/firewalld-git.git
+[submodule "unsupported/geary-devel"]
+	path = unsupported/geary-devel
+	url = ssh://aur@aur4.archlinux.org/geary-devel.git
+[submodule "unsupported/gens-gs-ii-git"]
+	path = unsupported/gens-gs-ii-git
+	url = ssh://aur@aur4.archlinux.org/gens-gs-ii-git.git
+[submodule "unsupported/lightdm-bzr"]
+	path = unsupported/lightdm-bzr
+	url = ssh://aur@aur4.archlinux.org/lightdm-bzr.git
+[submodule "unsupported/lightdm-devel"]
+	path = unsupported/lightdm-devel
+	url = ssh://aur@aur4.archlinux.org/lightdm-devel.git
+[submodule "unsupported/lightdm-gtk-greeter-bzr"]
+	path = unsupported/lightdm-gtk-greeter-bzr
+	url = ssh://aur@aur4.archlinux.org/lightdm-gtk-greeter-bzr.git
+[submodule "unsupported/lightdm-gtk-greeter-devel"]
+	path = unsupported/lightdm-gtk-greeter-devel
+	url = ssh://aur@aur4.archlinux.org/lightdm-gtk-greeter-devel.git
+[submodule "unsupported/light-locker-git"]
+	path = unsupported/light-locker-git
+	url = ssh://aur@aur4.archlinux.org/light-locker-git.git
+[submodule "unsupported/l-smash"]
+	path = unsupported/l-smash
+	url = ssh://aur@aur4.archlinux.org/l-smash.git
+[submodule "unsupported/lutris"]
+	path = unsupported/lutris
+	url = ssh://aur@aur4.archlinux.org/lutris.git
+[submodule "unsupported/lutris-git"]
+	path = unsupported/lutris-git
+	url = ssh://aur@aur4.archlinux.org/lutris-git.git
+[submodule "unsupported/numix-bevel-icon-theme-git"]
+	path = unsupported/numix-bevel-icon-theme-git
+	url = ssh://aur@aur4.archlinux.org/numix-bevel-icon-theme-git.git
+[submodule "unsupported/numix-circle-icon-theme-git"]
+	path = unsupported/numix-circle-icon-theme-git
+	url = ssh://aur@aur4.archlinux.org/numix-circle-icon-theme-git.git
+[submodule "unsupported/numix-icon-theme-git"]
+	path = unsupported/numix-icon-theme-git
+	url = ssh://aur@aur4.archlinux.org/numix-icon-theme-git.git
+[submodule "unsupported/numix-themes-git"]
+	path = unsupported/numix-themes-git
+	url = ssh://aur@aur4.archlinux.org/numix-themes-git.git
+[submodule "unsupported/nvidia-dkms"]
+	path = unsupported/nvidia-dkms
+	url = ssh://aur@aur4.archlinux.org/nvidia-dkms.git
+[submodule "unsupported/nvidia-hook"]
+	path = unsupported/nvidia-hook
+	url = ssh://aur@aur4.archlinux.org/nvidia-hook.git
+[submodule "unsupported/pcsxr-svn"]
+	path = unsupported/pcsxr-svn
+	url = ssh://aur@aur4.archlinux.org/pcsxr-svn.git
+[submodule "unsupported/plank-bzr"]
+	path = unsupported/plank-bzr
+	url = ssh://aur@aur4.archlinux.org/plank-bzr.git
+[submodule "unsupported/plank-theme-numix"]
+	path = unsupported/plank-theme-numix
+	url = ssh://aur@aur4.archlinux.org/plank-theme-numix.git
+[submodule "unsupported/plex-media-server"]
+	path = unsupported/plex-media-server
+	url = ssh://aur@aur4.archlinux.org/plex-media-server.git
+[submodule "unsupported/ppsspp-git"]
+	path = unsupported/ppsspp-git
+	url = ssh://aur@aur4.archlinux.org/ppsspp-git.git
+[submodule "unsupported/pyanimenc-git"]
+	path = unsupported/pyanimenc-git
+	url = ssh://aur@aur4.archlinux.org/pyanimenc-git.git
+[submodule "unsupported/rbutil-git"]
+	path = unsupported/rbutil-git
+	url = ssh://aur@aur4.archlinux.org/rbutil-git.git
+[submodule "unsupported/reicast"]
+	path = unsupported/reicast
+	url = ssh://aur@aur4.archlinux.org/reicast.git
+[submodule "unsupported/rpcs3-git"]
+	path = unsupported/rpcs3-git
+	url = ssh://aur@aur4.archlinux.org/rpcs3-git.git
+[submodule "unsupported/tlp-git"]
+	path = unsupported/tlp-git
+	url = ssh://aur@aur4.archlinux.org/tlp-git.git
+[submodule "unsupported/vapoursynth-editor"]
+	path = unsupported/vapoursynth-editor
+	url = ssh://aur@aur4.archlinux.org/vapoursynth-editor.git
+[submodule "unsupported/vbam-svn"]
+	path = unsupported/vbam-svn
+	url = ssh://aur@aur4.archlinux.org/vbam-svn.git
+[submodule "unsupported/vboxguest-hook"]
+	path = unsupported/vboxguest-hook
+	url = ssh://aur@aur4.archlinux.org/vboxguest-hook.git
+[submodule "unsupported/vboxhost-hook"]
+	path = unsupported/vboxhost-hook
+	url = ssh://aur@aur4.archlinux.org/vboxhost-hook.git
+[submodule "unsupported/vhba-dkms"]
+	path = unsupported/vhba-dkms
+	url = ssh://aur@aur4.archlinux.org/vhba-dkms.git
+[submodule "unsupported/vhba-hook"]
+	path = unsupported/vhba-hook
+	url = ssh://aur@aur4.archlinux.org/vhba-hook.git
+[submodule "unsupported/yuicompressor-git"]
+	path = unsupported/yuicompressor-git
+	url = ssh://aur@aur4.archlinux.org/yuicompressor-git.git
