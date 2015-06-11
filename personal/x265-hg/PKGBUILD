@@ -3,7 +3,7 @@
 # Contributor: Bartłomiej Piotrowski <nospam@bpiotrowski.pl>
 
 pkgname=x265-hg
-pkgver=1.7.r58.8ddc790790a4
+pkgver=1.7.r135.6245476add8f
 pkgrel=1
 pkgdesc='CLI tools for encoding H265/HEVC video streams.'
 arch=('i686' 'x86_64')
@@ -13,8 +13,10 @@ depends=('gcc-libs')
 provides=('libx265' 'x265')
 conflicts=('x265')
 makedepends=('cmake' 'mercurial' 'yasm')
-source=('hg+https://bitbucket.org/multicoreware/x265')
-sha256sums=('SKIP')
+source=('hg+https://bitbucket.org/multicoreware/x265'
+        'libx265_main10-soname.patch')
+sha256sums=('SKIP'
+            '8cd78f04ef35c2edc3319da4c1d98a3273d23581cb8dc80b7a87f3a888831068')
 
 pkgver() {
   cd x265
@@ -24,22 +26,14 @@ pkgver() {
 
 prepare() {
   cp -r x265 x265-10bit
+
+  cd x265-10bit
+
+  patch -Np1 -i ../libx265_main10-soname.patch
 }
 
 build() {
-  cd x265
-
-  if [[ -d build ]]; then
-    rm -rf build
-  fi
-  mkdir build && cd build
-
-  cmake ../source \
-    -DCMAKE_INSTALL_PREFIX='/usr' \
-    -DENABLE_SHARED='TRUE'
-  make
-
-  cd ../../x265-10bit
+  cd x265-10bit
 
   if [[ -d build ]]; then
     rm -rf build
@@ -51,19 +45,28 @@ build() {
     -DHIGH_BIT_DEPTH='TRUE' \
     -DENABLE_SHARED='TRUE'
   make
+
+  cd ../../x265
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake ../source \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DENABLE_SHARED='TRUE'
+  make
 }
 
 package() {
-  cd x265/build
+  cd x265-10bit/build
 
   make DESTDIR="${pkgdir}" install
 
-  cd ../../x265-10bit/build
+  cd ../../x265/build
 
-  rename libx265 libx265_main10 libx265.so.*
-  ln -s libx265_main10.so.* libx265_main10.so
-  install -m 755 libx265_main10.so.* "${pkgdir}"/usr/lib/
-  mv libx265_main10.so "${pkgdir}"/usr/lib/
+  make DESTDIR="${pkgdir}" install
 
   rm -rf "${pkgdir}"/usr/lib/libx265.a
 }
