@@ -5,8 +5,8 @@
 # Contributor: Paul Mattal <paul@archlinux.org>
 
 pkgname=ffmpeg-alucryd
-pkgver=2.6.3
-pkgrel=2
+pkgver=2.7
+pkgrel=1
 epoch=1
 pkgdesc='Complete and free Internet live audio and video broadcasting solution'
 arch=('i686' 'x86_64')
@@ -20,7 +20,7 @@ makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
 provides=('ffmpeg')
 conflicts=('ffmpeg')
 source=("http://ffmpeg.org/releases/ffmpeg-${pkgver}.tar.bz2")
-sha256sums=('59eb98c1b5896ac29abc0385f7c875d1b4942d695818818d418ee71eea1e0cfb')
+sha256sums=('a8bbc9ca0ad89a404e0b37cd32735c8d7f0421b8bd1715fd580d8835cc1a844a')
 
 build() {
   cd ffmpeg-${pkgver}
