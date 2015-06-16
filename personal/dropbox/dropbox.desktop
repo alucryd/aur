@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Dropbox
 GenericName=Network Storage
-Comment=Dropbox keeps your files safe, synced, and easy to share
+Comment=Keep your files safe, synced, and easy to share
 Exec=dropbox
 Icon=dropbox
 Terminal=false
