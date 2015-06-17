@@ -1,0 +1,31 @@
+pkgbase = dropbox
+	pkgdesc = Keep your files safe, synced, and easy to share
+	pkgver = 3.6.7
+	pkgrel = 2
+	url = http://www.dropbox.com
+	arch = i686
+	arch = x86_64
+	license = custom
+	makedepends = chrpath
+	depends = libxmu
+	depends = libxslt
+	optdepends = ufw-extras: UFW rules for Dropbox
+	optdepends = perl-file-mimeinfo: Open the Dropbox folder on some DEs
+	options = !strip
+	source = dropbox.desktop
+	source = dropbox.png
+	source = dropbox.service
+	source = dropbox@.service
+	source = terms.txt
+	sha256sums = 3daf27f16b3f11a435def3d2f4bb06702d330b01c35e46e07d8f01fa97070b36
+	sha256sums = e7d245f5d1a3d5322614b61400ae2913a8caef44bc86717ff7d8197a15dd7f01
+	sha256sums = 5ea25085d97708d9c9ffe3d0754dab3e09937ba8111a80b67e443dae3c15503e
+	sha256sums = 85ccabbe4e1f2dc67a480bc074d949578b148168a656dcb19860bb9c4f7b3e8a
+	sha256sums = c39d63bcfc0d40002a5df052298feb79f2e8dd3d93da27ef31eb672b8d2fc70e
+	source_i686 = https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86-3.6.7.tar.gz
+	sha256sums_i686 = fef77a453f67fc3208dcfe6a741a636c2ce79d703fee672006603ab810484d66
+	source_x86_64 = https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86_64-3.6.7.tar.gz
+	sha256sums_x86_64 = 081b2df9aacec681f92cc31a6e794c6c6e3f5408a4a6ab24e8550934f8cd9fcb
+
+pkgname = dropbox
+

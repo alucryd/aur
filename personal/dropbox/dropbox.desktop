@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Dropbox
+GenericName=Network Storage
+Comment=Keep your files safe, synced, and easy to share
+Exec=dropbox
+Icon=dropbox
+Terminal=false
+Type=Application
+Categories=Network;
+StartupNotify=false
