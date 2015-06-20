@@ -1,0 +1,46 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+
+pkgname=wingpanel-indicator-notifications-bzr
+pkgver=r34
+pkgrel=1
+pkgdesc='Power indicator for Wingpanel'
+arch=('i686' 'x86_64')
+url='https://launchpad.net/wingpanel-indicator-notifications'
+license=('GPL3')
+groups=('pantheon-unstable')
+depends=('wingpanel-rewrite-x11-bzr')
+makedepends=('bzr' 'cmake' 'vala')
+provides=('wingpanel-indicator-notifications')
+conflicts=('wingpanel-indicator-notifications')
+install='wingpanel-indicator-notifications.install'
+source=('bzr+lp:wingpanel-indicator-notifications')
+sha256sums=('SKIP')
+
+pkgver() {
+  cd wingpanel-indicator-notifications
+
+  echo "r$(bzr revno)"
+}
+
+build() {
+  cd wingpanel-indicator-notifications
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
+    -DGSETTINGS_COMPILE='FALSE'
+  make
+}
+
+package() {
+  cd wingpanel-indicator-notifications/build
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
