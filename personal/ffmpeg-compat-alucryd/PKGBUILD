@@ -1,76 +1,72 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
-# Contributor: Ionut Biru <ibiru@archlinux.org>
 # Contributor: Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
+# Contributor: Sergej Pupykin <pupykin.s+arch@gmail.com>
+# Contributor: Ionut Biru <ibiru@archlinux.org>
 # Contributor: Tom Newsom <Jeepster@gmx.co.uk>
 # Contributor: Paul Mattal <paul@archlinux.org>
 
-pkgname=ffmpeg-alucryd
-pkgver=2.7.1
+pkgname=ffmpeg-compat-alucryd
+pkgver=0.10.16
 pkgrel=1
-epoch=1
 pkgdesc='Complete and free Internet live audio and video broadcasting solution'
 arch=('i686' 'x86_64')
 url='http://ffmpeg.org/'
 license=('GPL')
-depends=('gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libmodplug' 'libpulse'
-         'libssh' 'libtheora' 'libva' 'libvdpau' 'libvpx' 'libx264' 'libx265'
-         'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl' 'speex'
-         'v4l-utils' 'xvidcore')
+depends=('gnutls' 'gsm' 'jack' 'lame' 'libass' 'libmodplug' 'libpulse'
+         'libtheora' 'libva' 'libvpx' 'libx264' 'opencore-amr' 'openjpeg'
+         'rtmpdump' 'schroedinger' 'sdl' 'speex' 'v4l-utils' 'xvidcore')
 makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
-provides=('ffmpeg')
-conflicts=('ffmpeg')
+provides=('ffmpeg-compat')
+conflicts=('ffmpeg-compat')
 source=("http://ffmpeg.org/releases/ffmpeg-${pkgver}.tar.bz2")
-sha256sums=('7e07b97d2415feeae9c9b5595e35e7b7aab33207e81bf9f8c0d1eece43f7f720')
+sha256sums=('e77823cbd58dfdb61f88059476070bc432d80e3821c14abcf804ef709d2f3fd1')
 
 build() {
-  cd ffmpeg-${pkgver}
+  cd ffmpeg-$pkgver
+
+  export CFLAGS="$CFLAGS -I/usr/include/openjpeg-1.5"
 
   ./configure \
     --prefix='/usr' \
+    --incdir='/usr/include/ffmpeg-compat' \
+    --libdir='/usr/lib/ffmpeg-compat' \
+    --shlibdir='/usr/lib/ffmpeg-compat' \
     --disable-debug \
     --disable-static \
     --disable-stripping \
-    --enable-avisynth \
-    --enable-avresample \
-    --enable-fontconfig \
     --enable-gnutls \
     --enable-gpl \
     --enable-libass \
-    --enable-libbluray \
     --enable-libfreetype \
-    --enable-libfribidi \
     --enable-libgsm \
     --enable-libmodplug \
     --enable-libmp3lame \
     --enable-libopencore_amrnb \
     --enable-libopencore_amrwb \
     --enable-libopenjpeg \
-    --enable-libopus \
     --enable-libpulse \
     --enable-libschroedinger \
     --enable-libspeex \
-    --enable-libssh \
     --enable-libtheora \
     --enable-libv4l2 \
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libx264 \
-    --enable-libx265 \
     --enable-libxvid \
     --enable-shared \
     --enable-version3 \
-    --enable-x11grab \
-
+    --enable-x11grab
   make
-  make tools/qt-faststart
-  make doc/ff{mpeg,play,server}.1
 }
 
 package() {
   cd ffmpeg-${pkgver}
 
-  make DESTDIR="${pkgdir}" install install-man
-  install -m 755 tools/qt-faststart "${pkgdir}"/usr/bin/
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/{bin,share}
+
+  install -dm 755 "${pkgdir}"/etc/ld.so.conf.d/
+  echo -e '/usr/lib/\n/usr/lib/ffmpeg-compat/' > "${pkgdir}"/etc/ld.so.conf.d/ffmpeg-compat.conf
 }
 
 # vim: ts=2 sw=2 et:

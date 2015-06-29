@@ -4,7 +4,7 @@
 # Contributor: Bartłomiej Piotrowski <nospam@bpiotrowski.pl>
 
 pkgname=mingw-w64-x265-hg
-pkgver=1.7.r51.a7bf7a150a70
+pkgver=1.7.r247.d64227e54233
 pkgrel=1
 pkgdesc='CLI tools for encoding H265/HEVC video streams.'
 arch=('x86_64')
