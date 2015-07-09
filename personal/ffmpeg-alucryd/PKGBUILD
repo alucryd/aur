@@ -6,16 +6,16 @@
 
 pkgname=ffmpeg-alucryd
 pkgver=2.7.1
-pkgrel=1
+pkgrel=2
 epoch=1
 pkgdesc='Complete and free Internet live audio and video broadcasting solution'
 arch=('i686' 'x86_64')
 url='http://ffmpeg.org/'
 license=('GPL')
-depends=('gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libmodplug' 'libpulse'
-         'libssh' 'libtheora' 'libva' 'libvdpau' 'libvpx' 'libx264' 'libx265'
-         'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl' 'speex'
-         'v4l-utils' 'xvidcore')
+depends=('dcadec' 'gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libmodplug'
+         'libpulse' 'libssh' 'libtheora' 'libva' 'libvdpau' 'libvpx' 'libx264'
+         'libx265' 'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl'
+         'speex' 'v4l-utils' 'xvidcore')
 makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
 provides=('ffmpeg')
 conflicts=('ffmpeg')
@@ -37,6 +37,7 @@ build() {
     --enable-gpl \
     --enable-libass \
     --enable-libbluray \
+    --enable-libdcadec \
     --enable-libfreetype \
     --enable-libfribidi \
     --enable-libgsm \
