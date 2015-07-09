@@ -6,16 +6,16 @@
 
 pkgname=ffmpeg-alucryd
 pkgver=2.7.1
-pkgrel=2
+pkgrel=3
 epoch=1
 pkgdesc='Complete and free Internet live audio and video broadcasting solution'
 arch=('i686' 'x86_64')
 url='http://ffmpeg.org/'
-license=('GPL')
-depends=('dcadec' 'gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libmodplug'
-         'libpulse' 'libssh' 'libtheora' 'libva' 'libvdpau' 'libvpx' 'libx264'
-         'libx265' 'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl'
-         'speex' 'v4l-utils' 'xvidcore')
+license=('GPL' 'custom')
+depends=('dcadec' 'gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libfdk-aac'
+         'libmodplug' 'libpulse' 'libssh' 'libtheora' 'libva' 'libvdpau'
+         'libvpx' 'libx264' 'libx265' 'opencore-amr' 'openjpeg' 'opus'
+         'schroedinger' 'sdl' 'speex' 'v4l-utils' 'xvidcore')
 makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
 provides=('ffmpeg')
 conflicts=('ffmpeg')
@@ -38,6 +38,7 @@ build() {
     --enable-libass \
     --enable-libbluray \
     --enable-libdcadec \
+    --enable-libfdk-aac \
     --enable-libfreetype \
     --enable-libfribidi \
     --enable-libgsm \
@@ -58,6 +59,7 @@ build() {
     --enable-libx264 \
     --enable-libx265 \
     --enable-libxvid \
+    --enable-nonfree \
     --enable-shared \
     --enable-version3 \
     --enable-x11grab \
@@ -72,6 +74,9 @@ package() {
 
   make DESTDIR="${pkgdir}" install install-man
   install -m 755 tools/qt-faststart "${pkgdir}"/usr/bin/
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses/ffmpeg
+  ln -s ../libfdk-aac "${pkgdir}"/share/licenses/ffmpeg/
 }
 
 # vim: ts=2 sw=2 et:
