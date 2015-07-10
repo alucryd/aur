@@ -1,0 +1,51 @@
+pkgname=wingpanel-0.4.x-bzr
+pkgver=r86
+pkgrel=1
+pkgdesc='Ayatana for wingpanel'
+arch=('i686' 'x86_64')
+url='https://launchpad.net/wingpanel'
+license=('GPL3')
+groups=('pantheon-unstable' 'pantheon-shell')
+depends=('gala-bzr')
+makedepends=('bzr' 'cmake' 'vala')
+optdepened
+provides=('wingpanel' 'wingpanel-bzr')
+conflicts=('wingpanel' 'wingpanel-bzr')
+install='wingpanel.install'
+source=('bzr+lp:wingpanel/0.4.x'
+        'wingpanel-fixes.patch')
+sha256sums=('SKIP'
+            '6f5101f8575a612f8e6c6b21ee9323c82ca1ec5c90fc1abf12a8f29ab2733fd7')
+pkgver() {
+  cd 0.4.x
+
+  echo "r$(bzr revno)"
+}
+
+prepare() {
+  cd 0.4.x
+
+  patch -Np1 -i ../wingpanel-fixes.patch
+}
+
+build() {
+  cd 0.4.x
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib' 
+  make
+}
+
+package() {
+  cd 0.4.x/build
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
