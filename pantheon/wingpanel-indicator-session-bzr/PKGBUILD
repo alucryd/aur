@@ -1,17 +1,18 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-session-bzr
-pkgver=r18
-pkgrel=3
+pkgver=r23
+pkgrel=1
 pkgdesc='Session indicator for Wingpanel'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/wingpanel-indicator-session'
 license=('GPL3')
 groups=('pantheon-unstable')
-depends=('accountsservice' 'wingpanel-rewrite-x11-bzr')
-makedepends=('bzr' 'cmake' 'gobject-introspection' 'vala')
+depends=('wingpanel-0.4.x-bzr' 'accountsservice')
+makedepends=('bzr' 'cmake' 'vala')
 provides=('wingpanel-indicator-session')
 conflicts=('wingpanel-indicator-session')
+install='wingpanel.install'
 source=('bzr+lp:wingpanel-indicator-session')
 sha256sums=('SKIP')
 
@@ -19,6 +20,13 @@ pkgver() {
   cd wingpanel-indicator-session
 
   echo "r$(bzr revno)"
+}
+
+prepare() {
+  cd wingpanel-indicator-session
+
+  mkdir vapi && cd vapi
+  cp /usr/share/vala-0.28/vapi/{gio,gobject}-2.0.vapi .
 }
 
 build() {

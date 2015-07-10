@@ -1,4 +1,4 @@
-pkgname=('wingpanel-indicator-network-bzr')
+pkgname=('wingpanel-indicator-power-bzr')
 builddeps=('granite-bzr' 'gala-bzr' 'wingpanel-rewrite-x11-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
