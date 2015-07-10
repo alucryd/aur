@@ -6,7 +6,7 @@
 
 pkgname=ffmpeg-alucryd
 pkgver=2.7.1
-pkgrel=3
+pkgrel=4
 epoch=1
 pkgdesc='Complete and free Internet live audio and video broadcasting solution'
 arch=('i686' 'x86_64')
@@ -75,8 +75,8 @@ package() {
   make DESTDIR="${pkgdir}" install install-man
   install -m 755 tools/qt-faststart "${pkgdir}"/usr/bin/
 
-  install -dm 755 "${pkgdir}"/usr/share/licenses/ffmpeg
-  ln -s ../libfdk-aac "${pkgdir}"/share/licenses/ffmpeg/
+  install -dm 755 "${pkgdir}"/usr/share/licenses/ffmpeg-alucryd
+  ln -s ../libfdk-aac "${pkgdir}"/usr/share/licenses/ffmpeg-alucryd/
 }
 
 # vim: ts=2 sw=2 et:
