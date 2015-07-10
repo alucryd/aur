@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-sound-bzr
-pkgver=r21
+pkgver=r24
 pkgrel=1
 pkgdesc='Sound indicator for Wingpanel'
 arch=('i686' 'x86_64')
