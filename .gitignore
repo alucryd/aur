@@ -22,6 +22,7 @@ src/
 srcpkg/
 pkg/
 community/
+packages/
 */*/nvidia
 */*/vboxhost
 */*/*/
