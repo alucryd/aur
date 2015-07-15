@@ -5,22 +5,22 @@
 # Contributor: Paul Mattal <paul@archlinux.org>
 
 pkgname=ffmpeg-alucryd
-pkgver=2.7
-pkgrel=1
+pkgver=2.7.1
+pkgrel=4
 epoch=1
 pkgdesc='Complete and free Internet live audio and video broadcasting solution'
 arch=('i686' 'x86_64')
 url='http://ffmpeg.org/'
-license=('GPL')
-depends=('gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libmodplug' 'libpulse'
-         'libssh' 'libtheora' 'libva' 'libvdpau' 'libvpx' 'libx264' 'libx265'
-         'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl' 'speex'
-         'v4l-utils' 'xvidcore')
+license=('GPL' 'custom')
+depends=('dcadec' 'gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libfdk-aac'
+         'libmodplug' 'libpulse' 'libssh' 'libtheora' 'libva' 'libvdpau'
+         'libvpx' 'libx264' 'libx265' 'opencore-amr' 'openjpeg' 'opus'
+         'schroedinger' 'sdl' 'speex' 'v4l-utils' 'xvidcore')
 makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
 provides=('ffmpeg')
 conflicts=('ffmpeg')
 source=("http://ffmpeg.org/releases/ffmpeg-${pkgver}.tar.bz2")
-sha256sums=('a8bbc9ca0ad89a404e0b37cd32735c8d7f0421b8bd1715fd580d8835cc1a844a')
+sha256sums=('7e07b97d2415feeae9c9b5595e35e7b7aab33207e81bf9f8c0d1eece43f7f720')
 
 build() {
   cd ffmpeg-${pkgver}
@@ -37,6 +37,8 @@ build() {
     --enable-gpl \
     --enable-libass \
     --enable-libbluray \
+    --enable-libdcadec \
+    --enable-libfdk-aac \
     --enable-libfreetype \
     --enable-libfribidi \
     --enable-libgsm \
@@ -57,6 +59,7 @@ build() {
     --enable-libx264 \
     --enable-libx265 \
     --enable-libxvid \
+    --enable-nonfree \
     --enable-shared \
     --enable-version3 \
     --enable-x11grab \
@@ -71,6 +74,9 @@ package() {
 
   make DESTDIR="${pkgdir}" install install-man
   install -m 755 tools/qt-faststart "${pkgdir}"/usr/bin/
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses/ffmpeg-alucryd
+  ln -s ../libfdk-aac "${pkgdir}"/usr/share/licenses/ffmpeg-alucryd/
 }
 
 # vim: ts=2 sw=2 et:
