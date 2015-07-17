@@ -64,7 +64,8 @@ package_x264-git() {
 package_libx264-git() {
   pkgdesc='Library for encoding H264/AVC video streams.'
   depends=('glibc')
-  provides=('libx264')
+  provides=('libx264'
+            'libx264.so')
   conflicts=('libx264')
 
   cd x264
@@ -76,7 +77,8 @@ package_libx264-git() {
 package_libx264-10bit-git() {
   pkgdesc='Library for encoding H264/AVC video streams.'
   depends=('glibc')
-  provides=('libx264')
+  provides=('libx264'
+            'libx264.so')
   conflicts=('libx264')
 
   cd x264-10bit

@@ -12,12 +12,16 @@ pkgdesc='Complete and free Internet live audio and video broadcasting solution'
 arch=('i686' 'x86_64')
 url='http://ffmpeg.org/'
 license=('GPL' 'custom')
-depends=('dcadec' 'gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libfdk-aac'
-         'libmodplug' 'libpulse' 'libssh' 'libtheora' 'libva' 'libvdpau'
-         'libvpx' 'libx264' 'libx265' 'opencore-amr' 'openjpeg' 'opus'
-         'schroedinger' 'sdl' 'speex' 'v4l-utils' 'xvidcore')
+depends=('gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libmodplug' 'libpulse'
+         'libssh' 'libtheora' 'libva' 'libvdpau' 'opencore-amr' 'openjpeg'
+         'opus' 'schroedinger' 'sdl' 'speex' 'v4l-utils' 'xvidcore'
+         'libdcadec.so' 'libfdk-aac.so' 'libvorbis.so' 'libvorbisenc.so'
+         'libvpx.so' 'libx264.so' 'libx265.so')
 makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
-provides=('ffmpeg')
+provides=('ffmpeg'
+          'libavcodec.so' 'libavdevice.so' 'libavfilter.so' 'libavformat.so'
+          'libavresample.so' 'libavutil.so' 'libpostproc.so' 'libswresample.so'
+          'libswscale.so')
 conflicts=('ffmpeg')
 source=("http://ffmpeg.org/releases/ffmpeg-${pkgver}.tar.bz2")
 sha256sums=('7e07b97d2415feeae9c9b5595e35e7b7aab33207e81bf9f8c0d1eece43f7f720')

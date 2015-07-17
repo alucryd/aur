@@ -16,7 +16,10 @@ depends=('gnutls' 'gsm' 'jack' 'lame' 'libass' 'libmodplug' 'libpulse'
          'libtheora' 'libva' 'libvpx' 'libx264' 'opencore-amr' 'openjpeg'
          'rtmpdump' 'schroedinger' 'sdl' 'speex' 'v4l-utils' 'xvidcore')
 makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
-provides=('ffmpeg-compat')
+provides=('ffmpeg-compat'
+          'libavcodec.so' 'libavdevice.so' 'libavfilter.so' 'libavformat.so'
+          'libavformat.so' 'libavutil.so' 'libpostproc.so' 'libswresample.so'
+          'libswscale.so')
 conflicts=('ffmpeg-compat')
 source=("http://ffmpeg.org/releases/ffmpeg-${pkgver}.tar.bz2")
 sha256sums=('e77823cbd58dfdb61f88059476070bc432d80e3821c14abcf804ef709d2f3fd1')

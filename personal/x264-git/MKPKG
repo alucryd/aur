@@ -1,5 +1,4 @@
 pkgname=('x264-git' 'libx264-git' 'libx264-10bit-git')
-builddeps=('l-smash')
 
 check_git $packagedir/x264-git/x264
 
