@@ -12,11 +12,12 @@ pkgdesc='Complete and free Internet live audio and video broadcasting solution'
 arch=('i686' 'x86_64')
 url='http://ffmpeg.org/'
 license=('GPL' 'custom')
-depends=('gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libmodplug' 'libpulse'
-         'libssh' 'libtheora' 'libva' 'libvdpau' 'opencore-amr' 'openjpeg'
-         'opus' 'schroedinger' 'sdl' 'speex' 'v4l-utils' 'xvidcore'
-         'libdcadec.so' 'libfdk-aac.so' 'libvorbis.so' 'libvorbisenc.so'
-         'libvpx.so' 'libx264.so' 'libx265.so')
+depends=('dcadec' 'gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libmodplug'
+         'libpulse' 'libsoxr' 'libssh' 'libtheora' 'libva' 'libvdpau'
+         'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl' 'speex'
+         'v4l-utils' 'xvidcore'
+         'libfdk-aac.so' 'libvorbis.so' 'libvorbisenc.so' 'libvpx.so'
+         'libx264.so' 'libx265.so')
 makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
 provides=('ffmpeg'
           'libavcodec.so' 'libavdevice.so' 'libavfilter.so' 'libavformat.so'
@@ -54,6 +55,7 @@ build() {
     --enable-libopus \
     --enable-libpulse \
     --enable-libschroedinger \
+    --enable-libsoxr \
     --enable-libspeex \
     --enable-libssh \
     --enable-libtheora \
