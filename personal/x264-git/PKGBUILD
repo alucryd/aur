@@ -7,13 +7,13 @@
 
 pkgbase=x264-git
 pkgname=('x264-git' 'libx264-git' 'libx264-10bit-git')
-pkgver=r2538.121396c
+pkgver=r2574.e6d2a36
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.videolan.org/developers/x264.html'
 license=('GPL')
 makedepends=('ffms2' 'git' 'l-smash' 'yasm')
-source=('git://git.videolan.org/x264.git')
+source=('x264::git://git.videolan.org/x264/x264-sandbox.git')
 md5sums=('SKIP')
 
 pkgver() {
@@ -32,7 +32,8 @@ build() {
   ./configure \
     --prefix='/usr' \
     --bit-depth='8' \
-    --enable-shared
+    --enable-shared \
+    --disable-avs
   make
 
   cd ../x264-10bit
@@ -40,13 +41,14 @@ build() {
   ./configure \
     --prefix='/usr' \
     --bit-depth='10' \
-    --enable-shared
+    --enable-shared \
+    --disable-avs
   make
 }
 
 package_x264-git() {
   pkgdesc='CLI tools for encoding H264/AVC video streams.'
-  depends=('ffms2' 'l-smash')
+  depends=('libffms2.so' 'liblsmash.so')
   provides=('x264')
   conflicts=('x264')
 
@@ -62,7 +64,8 @@ package_x264-git() {
 package_libx264-git() {
   pkgdesc='Library for encoding H264/AVC video streams.'
   depends=('glibc')
-  provides=('libx264')
+  provides=('libx264'
+            'libx264.so')
   conflicts=('libx264')
 
   cd x264
@@ -74,7 +77,8 @@ package_libx264-git() {
 package_libx264-10bit-git() {
   pkgdesc='Library for encoding H264/AVC video streams.'
   depends=('glibc')
-  provides=('libx264')
+  provides=('libx264'
+            'libx264.so')
   conflicts=('libx264')
 
   cd x264-10bit
