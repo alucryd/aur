@@ -8,7 +8,7 @@
 pkgname=ffmpeg-compat-alucryd
 pkgver=0.10.16
 pkgrel=1
-pkgdesc='Complete and free Internet live audio and video broadcasting solution'
+pkgdesc='complete, cross-platform solution to record, convert and stream audio and video'
 arch=('i686' 'x86_64')
 url='http://ffmpeg.org/'
 license=('GPL')
