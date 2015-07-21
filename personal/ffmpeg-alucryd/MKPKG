@@ -1,4 +1,0 @@
-pkgname=('ffmpeg-alucryd')
-builddeps=('dcadec-git' 'libx264-10bit-git' 'x265-hg')
-
-# vim: ts=2 sw=2 et:

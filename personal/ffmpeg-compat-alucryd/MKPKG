@@ -1,4 +1,0 @@
-pkgname=('ffmpeg-compat-alucryd')
-builddeps=('libx264-10bit-git')
-
-# vim: ts=2 sw=2 et:
