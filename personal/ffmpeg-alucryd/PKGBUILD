@@ -14,8 +14,8 @@ url='http://ffmpeg.org/'
 license=('GPL' 'custom')
 depends=('dcadec' 'gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libmodplug'
          'libpulse' 'libsoxr' 'libssh' 'libtheora' 'libva' 'libvdpau'
-         'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl' 'speex'
-         'v4l-utils' 'xvidcore'
+         'libwebp' 'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl'
+         'speex' 'v4l-utils' 'xvidcore'
          'libfdk-aac.so' 'libvorbis.so' 'libvorbisenc.so' 'libvpx.so'
          'libx264.so' 'libx265.so')
 makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
@@ -62,6 +62,7 @@ build() {
     --enable-libv4l2 \
     --enable-libvorbis \
     --enable-libvpx \
+    --enable-libwebp \
     --enable-libx264 \
     --enable-libx265 \
     --enable-libxvid \
