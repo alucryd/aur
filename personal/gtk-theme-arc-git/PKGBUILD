@@ -1,31 +1,36 @@
-# Maintainer: zach <zach {at} zach-adams {dot} com>
-# Contributor: Gordian Edenhofer <gordian.edenhofer[at]yahoo[dot]de
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: zach <zach@zach-adams.com>
+# Contributor: Gordian Edenhofer <gordian.edenhofer@yahoo.de>
 
 pkgname=gtk-theme-arc-git
-_pkgname=Arc-theme
-pkgver=156.12b1b29
+pkgver=r158.7a026ab
 pkgrel=1
-pkgdesc="A flat theme with transparent elements for GTK 3, GTK 2 and Gnome-Shell."
+pkgdesc='A flat theme with transparent elements'
 arch=('any')
-url="https://github.com/horst3180/${_pkgname}"
+url='https://github.com/horst3180/Arc-theme'
 license=('GPL3')
 depends=('gtk3' 'gtk-engine-murrine')
 makedepends=('git')
-source=(${_pkgname}::"git+https://github.com/horst3180/${_pkgname}.git")
+source=('gtk-theme-arc::git+https://github.com/horst3180/Arc-theme.git')
 sha256sums=('SKIP')
 
 pkgver() {
-	cd "${srcdir}/${_pkgname}"
-	echo "$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+  cd gtk-theme-arc
+
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 build() {
-	cd "${srcdir}/${_pkgname}"
-	./autogen.sh --prefix=/usr
+  cd gtk-theme-arc
+
+  ./autogen.sh \
+    --prefix='/usr'
 }
 
 package() {
-	cd "${srcdir}/${_pkgname}"
-	make DESTDIR="$pkgdir" install
-	rm -rf {.git,COPYING,README.md}
+  cd gtk-theme-arc
+
+  make DESTDIR="${pkgdir}" install
 }
+
+# vim: ts=2 sw=2 et:
