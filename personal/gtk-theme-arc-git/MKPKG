@@ -1,3 +1,4 @@
+arch=('any')
 pkgname=('gtk-theme-arc-git')
 
 check_git $packagedir/$pkgname/${pkgname%-*}
