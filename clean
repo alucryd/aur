@@ -2,7 +2,7 @@
 
 for repo in community multilib packages pantheon personal unsupported; do
   # Clean old packages
-  if [[ $repo != community || $repo != packages ]]; then
+  if [[ $repo != community && $repo != packages ]]; then
     for pkg in $(ls $repo); do
       if [[ ! -f $repo/$pkg/PKGBUILD ]]; then
         rm -rf $repo/$pkg
