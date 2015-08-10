@@ -1,0 +1,31 @@
+From 3ce42c6c610e70481459636de997597f4044182e Mon Sep 17 00:00:00 2001
+From: Maxime Gauduin <alucryd@archlinux.org>
+Date: Fri, 7 Aug 2015 11:40:41 +0200
+Subject: [PATCH 3/3] Use TLP_PLIB in tlp-nop
+
+---
+ tlp-nop.in | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/tlp-nop.in b/tlp-nop.in
+index 1c19d0b..5e1e45e 100755
+--- a/tlp-nop.in
++++ b/tlp-nop.in
+@@ -3,11 +3,11 @@
+ #       in /usr/lib*/pm-utils/power.d/
+ 
+ CONFFILE=@TLP_CONF@
+-LIBDIRS='/usr/lib /usr/lib64'
++LIBDIRS='/usr/lib/pm-utils /usr/lib64/pm-utils @TLP_PLIB@'
+ 
+ for d in ${LIBDIRS}; do
+-    if [ -d "${d}/pm-utils/power.d" ]; then
+-        blocked="${d}/pm-utils/power.d/${0##*/}"
++    if [ -d "${d}/power.d" ]; then
++        blocked="${d}/power.d/${0##*/}"
+         break
+     fi
+ done
+-- 
+2.5.0
+

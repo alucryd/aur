@@ -1,5 +1,5 @@
 pkgbase = tlp-git
-	pkgver = 0.7.r40.ce9e638
+	pkgver = 0.7.r41.6f7bca9
 	pkgrel = 1
 	url = http://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html
 	arch = any
@@ -7,9 +7,13 @@ pkgbase = tlp-git
 	license = GPL3
 	makedepends = git
 	source = tlp::git+https://github.com/linrunner/TLP.git#branch=devel
-	source = tlp-arch.patch
+	source = 0001-Modify-hardcoded-paths-via-Makefile.patch
+	source = 0002-Add-un-install-rule-for-manpages.patch
+	source = 0003-Use-TLP_PLIB-in-tlp-nop.patch
 	sha256sums = SKIP
-	sha256sums = 836a07ebb222d7d696ac33d8596a9b129debb70793bb4dbb6283ce8311ea303c
+	sha256sums = f3e49ebb857197678e265d4b5c9bd42780ea65530ea73a670c9d04c8210b3dde
+	sha256sums = 4424a21668586d34c76dd42b56d0469e881629e99ebfce6ad1c3fe07cb26b1c7
+	sha256sums = ae21a2e8ee11bc316fe246ff7b10f01d7003fddd02037befac1b0d07dbefccee
 
 pkgname = tlp-git
 	pkgdesc = Linux Advanced Power Management
