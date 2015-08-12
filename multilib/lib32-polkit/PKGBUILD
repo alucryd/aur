@@ -4,8 +4,8 @@
 # Contributor: GordonGR <gordongr@freemail.gr>
 
 pkgname=lib32-polkit
-pkgver=0.112
-pkgrel=5
+pkgver=0.113
+pkgrel=1
 pkgdesc='Application development toolkit for controlling system-wide privileges'
 arch=('x86_64')
 license=('LGPL')
@@ -13,7 +13,7 @@ url='http://www.freedesktop.org/wiki/Software/polkit'
 depends=('lib32-js17' 'lib32-pam' 'lib32-systemd' 'polkit')
 makedepends=('gcc-multilib' 'intltool' 'python2')
 source=("http://www.freedesktop.org/software/polkit/releases/polkit-${pkgver}.tar.gz")
-sha256sums=('d695f43cba4748a822fbe864dd32c4887c5da1c71694a47693ace5e88fcf6af6')
+sha256sums=('e1c095093c654951f78f8618d427faf91cf62abdefed98de40ff65eca6413c81')
 
 build() {
   cd polkit-${pkgver}
@@ -34,13 +34,12 @@ build() {
     --disable-introspection \
     --disable-man-pages \
     --disable-static \
-    --with-mozjs='mozjs-17.0' \
-    --with-systemdsystemunitdir='/usr/lib/systemd/system'
+    --with-os-type='redhat'
   make
 }
 
 package() {
-  cd polkit-$pkgver
+  cd polkit-${pkgver}
 
   make DESTDIR="${pkgdir}" install
   rm -rf "${pkgdir}"/{etc,usr/{bin,lib,include,share}}
