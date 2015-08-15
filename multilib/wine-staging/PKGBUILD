@@ -1,0 +1,138 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Anish Bhatt <anish@gatech.edu>
+# Contributor: Sven-Hendrik Haase <sh@lutzhaase.com>
+# Contributor: Jan "heftig" Steffens <jan.steffens@gmail.com>
+# Contributor: Eduardo Romero <eduardo@archlinux.org>
+# Contributor: Giovanni Scafora <giovanni@archlinux.org>
+
+pkgname=wine-staging
+pkgver=1.7.49
+pkgrel=1
+pkgdesc='A compatibility layer for running Windows programs'
+arch=('i686' 'x86_64')
+url='http://www.wine-staging.com/'
+license=('LGPL2.1')
+depends=('attr' 'desktop-file-utils' 'fontconfig' 'freetype2' 'gcc-libs'
+         'gettext' 'glu' 'libpcap' 'libsm' 'libxcursor' 'libxdamage' 'libxi'
+         'libxrandr')
+depends_x86_64=('lib32-attr' 'lib32-fontconfig' 'lib32-freetype2'
+                'lib32-gcc-libs' 'lib32-gettext' 'lib32-glu' 'lib32-libpcap'
+                'lib32-libsm' 'lib32-libxcursor' 'lib32-libxdamage'
+                'lib32-libxi' 'lib32-libxrandr')
+makedepends=('alsa-lib' 'autoconf' 'bison' 'flex' 'fontforge' 'giflib' 'git'
+             'gnutls' 'gtk3' 'lcms2' 'libcl' 'libgl' 'libice' 'libjpeg-turbo'
+             'libldap' 'libpng' 'libpulse' 'libtiff' 'libusb' 'libva'
+             'libxcomposite' 'libxext' 'libxinerama' 'libxml2' 'libxmu'
+             'libxrender' 'libxslt' 'libxt' 'libxv' 'libxxf86vm' 'mesa'
+             'mpg123' 'ncurses' 'openal' 'opencl-headers' 'openssl' 'perl'
+             'prelink' 'samba' 'v4l-utils')
+makedepends_x86_64=('gcc-multilib' 'lib32-alsa-lib' 'lib32-giflib'
+                    'lib32-gnutls' 'lib32-gtk3' 'lib32-lcms2' 'lib32-libcl'
+                    'lib32-libgl' 'lib32-libice' 'lib32-libjpeg-turbo'
+                    'lib32-libldap' 'lib32-libpng' 'lib32-libpulse'
+                    'lib32-libtiff' 'lib32-libusb' 'lib32-libva'
+                    'lib32-libxcomposite' 'lib32-libxcomposite' 'lib32-libxext'
+                    'lib32-libxinerama' 'lib32-libxml2' 'lib32-libxmu'
+                    'lib32-libxrender' 'lib32-libxslt' 'lib32-libxt'
+                    'lib32-libxv' 'lib32-libxxf86vm' 'lib32-mesa'
+                    'lib32-mpg123' 'lib32-ncurses' 'lib32-openal'
+                    'lib32-openssl' 'lib32-v4l-utils')
+optdepends=('alsa-lib' 'alsa-plugins' 'dosbox' 'giflib' 'gnutls' 'gtk3'
+            'lcms2' 'libcl' 'libjpeg-turbo' 'libldap' 'libpng' 'libpulse'
+            'libtxc_dxtn' 'libva' 'libxcomposite' 'libxinerama' 'libxml2'
+            'libxslt' 'mpg123' 'ncurses' 'openal' 'oss' 'pulseaudio' 'samba'
+            'v4l-utils')
+optdepends_x86_64=('lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-giflib'
+                   'lib32-gnutls' 'lib32-gtk3' 'lib32-lcms2' 'lib32-libcl'
+                   'lib32-libjpeg-turbo' 'lib32-libldap' 'lib32-libpng'
+                   'lib32-libpulse' 'lib32-libtxc_dxtn' 'lib32-libva'
+                   'lib32-libxcomposite' 'lib32-libxinerama'
+                   'lib32-libxml2' 'lib32-libxslt' 'lib32-mpg123'
+                   'lib32-ncurses' 'lib32-openal' 'lib32-v4l-utils')
+provides=('wine')
+conflicts=('wine')
+options=('staticlibs')
+install='wine-staging.install'
+source=("http://ftp.winehq.org/pub/wine/source/1.7/wine-${pkgver}.tar.bz2"
+        "wine-staging-${pkgver}.tar.gz::https://github.com/wine-compholio/wine-staging/archive/v${pkgver}.tar.gz"
+        '30-win32-aliases.conf')
+sha256sums=('c8a1589753493cb6b71b3772b730cdf90059fe0f29cbfb369fc9a2339766b789'
+            'a5623e78c1032cef691018712d855215402e42f054028c89fcf78c336821ca9f'
+            '9901a5ee619f24662b241672a7358364617227937d5f6d3126f70528ee5111e7')
+
+
+prepare() {
+  cd wine-${pkgver}
+
+  [[ -d 'build-32' ]] && rm -rf build-32
+  [[ -d 'build-64' ]] && rm -rf build-64
+
+  mkdir build-32
+  [[ $CARCH == 'x86_64' ]] && mkdir build-64
+
+  ../wine-staging-${pkgver}/patches/patchinstall.sh DESTDIR="${srcdir}/wine-${pkgver}" --all
+}
+
+build() {
+  cd wine-${pkgver}
+
+  export CPPFLAGS="${CPPFLAGS/-D_FORTIFY_SOURCE=2/-D_FORTIFY_SOURCE=0}"
+  export CFLAGS="${CFLAGS/-O2/-O0}"
+  export CXXFLAGS="${CPPLAGS/-O2/-O0}"
+
+  if [[ $CARCH == 'x86_64' ]]; then
+
+    cd build-64
+
+    ../configure \
+      --prefix='/usr' \
+      --libdir='/usr/lib' \
+      --with-x \
+      --with-xattr \
+      --without-gstreamer \
+      --enable-win64 \
+      --disable-tests
+    make
+
+    cd ../build-32
+
+    export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
+
+    ../configure \
+      --prefix='/usr' \
+      --libdir='/usr/lib32' \
+      --with-wine64="${srcdir}/wine-${pkgver}/build-64" \
+      --with-x \
+      --with-xattr \
+      --without-gstreamer \
+      --disable-tests
+    make
+
+  else
+
+    cd build-32
+
+    ../configure \
+      --prefix='/usr' \
+      --libdir='/usr/lib' \
+      --with-x \
+      --with-xattr \
+      --without-gstreamer \
+      --disable-tests
+    make
+
+  fi
+}
+
+package() {
+  cd wine-${pkgver}
+
+  make -C build-32 DESTDIR="${pkgdir}" install
+  [[ $CARCH == 'x86_64' ]] && make -C build-64 DESTDIR="${pkgdir}" install
+
+  install -dm 755 "${pkgdir}"/etc/fonts/conf.{avail,d}
+  install -m 644 "${srcdir}"/30-win32-aliases.conf "${pkgdir}"/etc/fonts/conf.avail/
+  ln -s ../conf.avail/30-win32-aliases.conf "${pkgdir}"/etc/fonts/conf.d/
+}
+
+# vim: ts=2 sw=2 et:
