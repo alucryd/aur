@@ -1,4 +1,4 @@
-pkgname('snes9x-git' 'snes9x-gtk-git')
+pkgname=('snes9x-git' 'snes9x-gtk-git')
 
 check_git $packagedir/snes9x-git/snes9x
 
