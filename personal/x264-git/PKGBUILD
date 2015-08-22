@@ -48,7 +48,8 @@ build() {
 
 package_x264-git() {
   pkgdesc='CLI tools for encoding H264/AVC video streams.'
-  depends=('libffms2.so' 'liblsmash.so')
+  depends=('libavcodec.so' 'libavformat.so' 'libavutil.so' 'libffms2.so'
+           'liblsmash.so')
   provides=('x264')
   conflicts=('x264')
 
