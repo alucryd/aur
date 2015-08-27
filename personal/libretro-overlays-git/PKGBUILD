@@ -1,0 +1,30 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+
+pkgname=libretro-overlays-git
+pkgver=r29.9b02884
+pkgrel=1
+pkgdesc='Collection of overlays for libretro'
+arch=('any')
+url='http://www.libretro.com/'
+license=('')
+groups=('libretro')
+makedepends=('git')
+provides=('libretro-overlays')
+conflicts=('libretro-overlays')
+source=('git+https://github.com/libretro/common-overlays.git')
+sha256sums=('SKIP')
+
+pkgver() {
+  cd common-overlays
+
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+package() {
+  cd common-overlays
+
+  install -dm 755 "${pkgdir}"/usr/share/libretro/overlays
+  cp -dr --no-preserve='ownership' * "${pkgdir}"/usr/share/libretro/overlays/
+}
+
+# vim: ts=2 sw=2 et:

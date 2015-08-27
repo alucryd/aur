@@ -1,0 +1,66 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Duck Hunt <vaporeon@tfwno.gf>
+
+pkgname=libretro-ppsspp-git
+pkgver=r17169.59e5e59
+pkgrel=1
+pkgdesc='PPSSPP libretro port'
+arch=('i686' 'x86_64')
+url='https://github.com/libretro/libretro-ppsspp'
+license=('GPL2')
+groups=('libretro')
+depends=('gcc-libs' 'glibc' 'libgl' 'zlib'
+         'libavcodec.so' 'libavformat.so' 'libavutil.so' 'libswresample.so'
+         'libswscale.so')
+makedepends=('cmake' 'git')
+provides=('libretro-ppsspp')
+conflicts=('libretro-ppsspp')
+source=('git+https://github.com/libretro/libretro-ppsspp.git'
+        'git+https://github.com/hrydgard/ppsspp-lang.git'
+        'libretro-ppsspp-native::git+https://github.com/libretro/ppsspp-native.git'
+        'ppsspp-armips::git+https://github.com/Kingcom/armips.git'
+        'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/ppsspp_libretro.info')
+sha256sums=('SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP'
+            '6d66503627cc1400f25aa366e83195a8afc57dc86730aec9341e5df62be0c8ef')
+
+pkgver() {
+  cd libretro-ppsspp
+
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  cd libretro-ppsspp
+
+  git submodule init lang
+  git submodule init native
+  git submodule init ext/armips
+  git config submodule.lang.url ../ppsspp-lang
+  git config submodule.native.url ../libretro-ppsspp-native
+  git config submodule.ext/armips.url ../ppsspp-armips
+  git submodule update lang
+  git submodule update native
+  git submodule update ext/armips
+}
+
+build() {
+  cd libretro-ppsspp/libretro
+
+  make
+}
+
+package() {
+  cd libretro-ppsspp/libretro
+
+  install -dm 755 "${pkgdir}"/usr/{lib/libretro,share/libretro/info}
+  install -m 644 ppsspp_libretro.so "${pkgdir}"/usr/lib/libretro/
+  install -m 644 ../../ppsspp_libretro.info "${pkgdir}"/usr/share/libretro/info/
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses/libretro-ppsspp-git
+  install -m 644 ../LICENSE.TXT "${pkgdir}"/usr/share/licenses/libretro-ppsspp-git/
+}
+
+# vim: ts=2 sw=2 et:

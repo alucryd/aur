@@ -1,0 +1,66 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Mike Swanson <mikeonthecomputer@gmail.com>
+# Contributor: Themaister <maister@archlinux.us>
+
+pkgname=retroarch-git
+pkgver=1.2.2.r374.b238421
+pkgrel=1
+pkgdesc='Reference frontend for the libretro API'
+arch=('i686' 'x86_64')
+url='http://www.libretro.com/'
+license=('GPL')
+groups=('libretro')
+depends=('alsa-lib' 'freetype2' 'glibc' 'libdrm' 'libgl' 'libpulse'
+         'libusb' 'libx11' 'libxext' 'libxinerama' 'libxkbcommon' 'libxv'
+         'libxxf86vm' 'mesa' 'nvidia-cg-toolkit' 'openal' 'python' 'sdl2'
+         'wayland' 'zlib'
+         'libavcodec.so' 'libavformat.so' 'libavutil.so' 'libswresample.so'
+         'libswscale.so' 'libudev.so')
+makedepends=('git')
+optdepends=('libretro-bsnes: Super Nintendo Entertainment System cores'
+            'libretro-gambatte: Nintendo Game Boy/Game Boy Color core'
+            'libretro-genesis-plus: Sega Master System/Genesis/Game Gear/CD/32X core'
+            'libretro-mgba: Nintendo Game Boy Advance core'
+            'libretro-mupen64plus: Nintendo 64 core'
+            'libretro-nestopia: Nintendo Entertainment System core'
+            'libretro-ppsspp: Sony Playstation Portable core'
+            'libretro-snes9x: Super Nintendo Entertainment System core'
+            'libretro-overlays: Collection of overlays'
+            'libretro-shaders: Collection of shaders')
+provides=('retroarch')
+conflicts=('retroarch')
+backup=('etc/retroarch.cfg')
+source=('git+https://github.com/libretro/RetroArch.git'
+        'git+https://github.com/libretro/retroarch-assets.git'
+        'git+https://github.com/libretro/retroarch-joypad-autoconfig.git')
+sha256sums=('SKIP'
+            'SKIP'
+            'SKIP')
+
+pkgver() {
+  cd RetroArch
+
+  git describe --tags | sed 's/v//; s/-/.r/; s/-g/./'
+}
+
+build() {
+  cd RetroArch
+
+  ./configure \
+    --prefix='/usr' \
+    --disable-jack \
+    --disable-oss
+  make
+}
+
+package() {
+  cd RetroArch
+
+  make DESTDIR="${pkgdir}" install
+
+  install -dm 755 "${pkgdir}"/usr/share/libretro/{assets,autoconfig}
+  cp -dr --no-preserve='ownership' ../retroarch-assets/* "${pkgdir}"/usr/share/libretro/assets/
+  cp -dr --no-preserve='ownership' ../retroarch-joypad-autoconfig/udev "${pkgdir}"/usr/share/libretro/autoconfig/
+}
+
+# vim: ts=2 sw=2 et:

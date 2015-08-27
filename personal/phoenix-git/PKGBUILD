@@ -1,0 +1,49 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+
+pkgname=phoenix-git
+pkgver=r747.3a2bed5
+pkgrel=1
+pkgdesc='A super-slick libretro frontend powered by Qt 5'
+arch=('i686' 'x86_64')
+url='http://phoenix.vg/'
+license=('GPL2')
+depends=('gcc-libs' 'glibc' 'libsamplerate' 'qt5-base' 'qt5-declarative'
+         'qt5-graphicaleffects' 'qt5-multimedia' 'qt5-quickcontrols' 'sdl2')
+provides=('phoenix')
+conflicts=('phoenix')
+source=("git+https://github.com/team-phoenix/Phoenix.git"
+        "git+https://github.com/team-phoenix/phoenix-backend.git")
+sha256sums=('SKIP'
+            'SKIP')
+
+pkgver() {
+  cd Phoenix
+
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  cd Phoenix
+
+  git submodule init
+  git config submodule.backend.url "${srcdir}"/phoenix-backend
+  git submodule update
+}
+
+build() {
+  cd Phoenix
+
+  export CONFIG='release'
+
+  qmake-qt5
+  make
+}
+
+package() {
+  cd Phoenix
+
+  install -dm 755 "${pkgdir}"/usr/bin
+  install -m 755 phoenix "${pkgdir}"/usr/bin/
+}
+
+# vim: ts=2 sw=2 et:

@@ -1,0 +1,38 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+
+pkgname=minir-git
+pkgver=r668.067ef62
+pkgrel=1
+pkgdesc='A libretro frontend focusing on a native look and a smooth out-of-the-box experience'
+arch=('i686' 'x86_64')
+url='https://github.com/Alcaro/minir'
+license=('custom')
+provides=('minir')
+conflicts=('minir')
+source=("git+https://github.com/Alcaro/minir.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd minir
+
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd minir
+
+  ./configure \
+    --prefix='/usr'
+  make
+}
+
+package() {
+  cd minir
+
+  make DESTDIR="${pkgdir}" install
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses/minir-git
+  install -m 644 COPYING "${pkgdir}"/usr/share/licenses/minir-git/
+}
+
+# vim: ts=2 sw=2 et:

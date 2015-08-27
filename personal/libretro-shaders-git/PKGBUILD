@@ -1,0 +1,30 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+
+pkgname=libretro-shaders-git
+pkgver=r500.befed9c
+pkgrel=1
+pkgdesc='Collection of shaders for libretro'
+arch=('any')
+url='http://www.libretro.com/'
+license=('')
+groups=('libretro')
+makedepends=('git')
+provides=('libretro-shaders')
+conflicts=('libretro-shaders')
+source=('git+https://github.com/libretro/common-shaders.git')
+sha256sums=('SKIP')
+
+pkgver() {
+  cd common-shaders
+
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+package() {
+  cd common-shaders
+
+  install -dm 755 "${pkgdir}"/usr/share/libretro/shaders
+  cp -dr --no-preserve='ownership' * "${pkgdir}"/usr/share/libretro/shaders/
+}
+
+# vim: ts=2 sw=2 et:
