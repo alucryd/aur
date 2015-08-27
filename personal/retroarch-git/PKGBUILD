@@ -18,13 +18,17 @@ depends=('alsa-lib' 'freetype2' 'glibc' 'libdrm' 'libgl' 'libpulse'
          'libswscale.so' 'libudev.so')
 makedepends=('git')
 optdepends=('libretro-bsnes: Super Nintendo Entertainment System cores'
+            'libretro-desmume: Nintendo DS core'
+            'libretro-dolphin: Nintendo GameCube/Wii core'
             'libretro-gambatte: Nintendo Game Boy/Game Boy Color core'
             'libretro-genesis-plus: Sega Master System/Genesis/Game Gear/CD/32X core'
             'libretro-mgba: Nintendo Game Boy Advance core'
             'libretro-mupen64plus: Nintendo 64 core'
             'libretro-nestopia: Nintendo Entertainment System core'
-            'libretro-ppsspp: Sony Playstation Portable core'
+            'libretro-pcsx-rearmed: Sony PlayStation core'
+            'libretro-ppsspp: Sony PlayStation Portable core'
             'libretro-snes9x: Super Nintendo Entertainment System core'
+            'libretro-yabause: Sega Saturn core'
             'libretro-overlays: Collection of overlays'
             'libretro-shaders: Collection of shaders')
 provides=('retroarch')

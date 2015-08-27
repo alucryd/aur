@@ -4,7 +4,7 @@
 pkgname=libretro-gambatte-git
 pkgver=r576.c72bbf8
 pkgrel=1
-pkgdesc='Gambatte libretro core'
+pkgdesc='Nintendo Game Boy/Game Boy Color core'
 arch=('i686' 'x86_64')
 url='https://github.com/libretro/gambatte-libretro'
 license=('GPL2')

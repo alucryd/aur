@@ -4,7 +4,7 @@
 pkgname=libretro-ppsspp-git
 pkgver=r17169.59e5e59
 pkgrel=1
-pkgdesc='PPSSPP libretro port'
+pkgdesc='Sony PlayStation Portable core'
 arch=('i686' 'x86_64')
 url='https://github.com/libretro/libretro-ppsspp'
 license=('GPL2')

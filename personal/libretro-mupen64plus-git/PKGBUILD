@@ -4,7 +4,7 @@
 pkgname=libretro-mupen64plus-git
 pkgver=r3207.3d3bbc9
 pkgrel=1
-pkgdesc='Mupen64 plus libretro core'
+pkgdesc='Nintendo 64 core'
 arch=('i686' 'x86_64')
 url='https://github.com/libretro/mupen64plus-libretro'
 license=('GPL2')

@@ -6,7 +6,7 @@
 pkgname=libretro-genesis-plus-gx-git
 pkgver=r942.46bb2e6
 pkgrel=1
-pkgdesc='Genesis Plus GX libretro core'
+pkgdesc='Sega Master System/Genesis/Game Gear/CD/32X core'
 arch=('i686' 'x86_64')
 url='https://github.com/libretro/Genesis-Plus-GX'
 license=('BSD' 'LGPL2.1')
