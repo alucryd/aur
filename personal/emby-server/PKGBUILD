@@ -1,39 +1,51 @@
-# Maintainer: Daniel Seymour <dannyseeless at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Daniel Seymour <dannyseeless@gmail.com>
 
 pkgname=emby-server
-pkgver=3.0.5641.4
+pkgver=3.0.5675.1
 pkgrel=1
-pkgdesc="Emby Server is a home media server built using other popular open source technologies." arch=('i686' 'x86_64' 'armv6h') url="http://emby.media" license=('GPL')
-groups=()
-depends=('mono' 'libmediainfo' 'sqlite' 'ffmpeg' 'imagemagick')
-makedepends=('imagemagick')
-optdepends=()
-conflicts=('emby-server-git' 'mediabrowser-server' 'emby-server-beta'
-           'mediabrowser-server-beta' 'mediabrowser-server-git')
-provides=('emby-server')
-install=emby-server.install
-source=("https://github.com/MediaBrowser/MediaBrowser/archive/${pkgver}.tar.gz"
-        "emby-server.service" "emby-server" "emby-server.conf")
-backup=("etc/conf.d/emby-server")
-md5sums=('8535ca3716891bb014fda907a7e699db'
-         '07948b362480a371c4be50c3b9854eeb'
-         '69d0ebc1fff9c8ac2f5ff4a6db20ce42'
-         '184f023f2a407be2fdd60b236e9f792e')
+pkgdesc='Bring together your videos, music, photos, and live television'
+arch=('i686' 'x86_64' 'armv6h')
+url='http://emby.media'
+license=('GPL2')
+depends=('ffmpeg' 'imagemagick' 'libmediainfo' 'mono' 'sqlite')
+replaces=('mediabrowser-server')
+install='emby-server.install'
+source=("emby-server-${pkgver}.tar.gz::https://github.com/MediaBrowser/MediaBrowser/archive/${pkgver}.tar.gz"
+        'emby-server'
+        'emby-server.conf'
+        'emby-server.service')
+backup=('etc/conf.d/emby-server')
+sha256sums=('afb3755ba9eebd8da5c5cdb3db4f4625dc2eee75de8dc0904ac9cbf8da4d2ad2'
+            '7a9c7859ce715a3d8474b0122aa3cff2791cc3695f5d098b12917e559d992081'
+            '064a82fb13816af5eb2a90bc8320d062ead0bf700715ee65df6afb347f890907'
+            '4a6606e32cd40c3bc5671c673611e51ebdf9b48024991510c02a1c678a430934')
 
 prepare() {
-  MAGICKWAND=$(ldconfig -p | grep MagickWand.*.so$ | cut -d" " -f4)
-  sed -i "s/libMagickWand-6.Q8.so/${MAGICKWAND##*/}/" ${srcdir}/MediaBrowser-${pkgver}/MediaBrowser.Server.Mono/ImageMagickSharp.dll.config
+  cd Emby-${pkgver}
+
+  sed 's/libMagickWand-6.Q8.so/libMagickWand-6.Q16HDRI.so/' MediaBrowser.Server.Mono/ImageMagickSharp.dll.config
 }
 
-build(){
-  cd ${srcdir}/MediaBrowser-${pkgver}
-  xbuild /p:Configuration="Release Mono" /p:Platform="Any CPU" /p:OutputPath="${srcdir}/usr/lib/emby-server" /t:build MediaBrowser.Mono.sln
-  rm -rf ${srcdir}/MediaBrowser-${pkgver}
+build() {
+  cd Emby-${pkgver}
+
+  xbuild \
+    /p:Configuration='Release Mono' \
+    /p:Platform='Any CPU' \
+    /p:OutputPath="${srcdir}/opt/emby-server" \
+    /t:build MediaBrowser.Mono.sln
 }
 
 package() {
-  install -Dm644 ${srcdir}/emby-server.conf ${pkgdir}/etc/conf.d/emby-server
-  install -Dm755 ${srcdir}/emby-server ${pkgdir}/usr/bin/emby-server
-  install -Dm644 ${srcdir}/emby-server.service ${pkgdir}/usr/lib/systemd/system/emby-server.service
-  cp -r ${srcdir}/usr/lib/emby-server ${pkgdir}/usr/lib
+  install -dm 755 "${pkgdir}"/{etc/conf.d,usr/{bin,lib/systemd/system}}
+  cp -dr --no-preserve='ownership' opt "${pkgdir}"/
+  install -m 755 emby-server "${pkgdir}"/usr/bin/
+  install -m 644 emby-server.service "${pkgdir}"/usr/lib/systemd/system/
+  install -m 644 emby-server.conf "${pkgdir}"/etc/conf.d/emby-server
+
+  install -dm 755 "${pkgdir}"/var/lib/emby
+  chown 422:422 -R "${pkgdir}"/var/lib/emby
 }
+
+# vim: ts=2 sw=2 et:
