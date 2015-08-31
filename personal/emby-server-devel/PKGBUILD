@@ -26,7 +26,7 @@ sha256sums=('SKIP'
 prepare() {
   cd Emby
 
-  sed 's/libMagickWand-6.Q8.so/libMagickWand-6.Q16HDRI.so/' MediaBrowser.Server.Mono/ImageMagickSharp.dll.config
+  sed 's/libMagickWand-6.Q8.so/libMagickWand-6.Q16HDRI.so/' -i MediaBrowser.Server.Mono/ImageMagickSharp.dll.config
 }
 
 build() {
