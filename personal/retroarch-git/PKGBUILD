@@ -3,7 +3,7 @@
 # Contributor: Themaister <maister@archlinux.us>
 
 pkgname=retroarch-git
-pkgver=1.2.2.r374.b238421
+pkgver=1.2.2.r393.0cd3a9e
 pkgrel=1
 pkgdesc='Reference frontend for the libretro API'
 arch=('i686' 'x86_64')
@@ -12,14 +12,12 @@ license=('GPL')
 groups=('libretro')
 depends=('alsa-lib' 'freetype2' 'glibc' 'libdrm' 'libgl' 'libpulse'
          'libusb' 'libx11' 'libxext' 'libxinerama' 'libxkbcommon' 'libxv'
-         'libxxf86vm' 'mesa' 'nvidia-cg-toolkit' 'openal' 'python' 'sdl2'
-         'wayland' 'zlib'
+         'libxxf86vm' 'mesa' 'openal' 'python' 'sdl2' 'wayland' 'zlib'
          'libavcodec.so' 'libavformat.so' 'libavutil.so' 'libswresample.so'
          'libswscale.so' 'libudev.so')
 makedepends=('git')
 optdepends=('libretro-bsnes: Super Nintendo Entertainment System cores'
             'libretro-desmume: Nintendo DS core'
-            'libretro-dolphin: Nintendo GameCube/Wii core'
             'libretro-gambatte: Nintendo Game Boy/Game Boy Color core'
             'libretro-genesis-plus: Sega Master System/Genesis/Game Gear/CD/32X core'
             'libretro-mgba: Nintendo Game Boy Advance core'
@@ -52,6 +50,7 @@ build() {
 
   ./configure \
     --prefix='/usr' \
+    --disable-cg \
     --disable-jack \
     --disable-oss
   make
