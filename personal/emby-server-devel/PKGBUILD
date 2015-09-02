@@ -19,7 +19,7 @@ source=("git+https://github.com/MediaBrowser/Emby.git#commit=${_commit}"
         'emby-server.service')
 backup=('etc/conf.d/emby-server')
 sha256sums=('SKIP'
-            '7a9c7859ce715a3d8474b0122aa3cff2791cc3695f5d098b12917e559d992081'
+            '1515d8d61ba903ed8ca73c1930fb9f14e2acaa9c2b456d85fd82c2254558eb85'
             '064a82fb13816af5eb2a90bc8320d062ead0bf700715ee65df6afb347f890907'
             '4a6606e32cd40c3bc5671c673611e51ebdf9b48024991510c02a1c678a430934')
 
