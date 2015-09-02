@@ -33,13 +33,13 @@ build() {
   xbuild \
     /p:Configuration='Release Mono' \
     /p:Platform='Any CPU' \
-    /p:OutputPath="${srcdir}/emby-server" \
+    /p:OutputPath="${srcdir}/build" \
     /t:build MediaBrowser.Mono.sln
 }
 
 package() {
   install -dm 755 "${pkgdir}"/{etc/conf.d,usr/{bin,lib/systemd/system}}
-  cp -dr --no-preserve='ownership' emby-server "${pkgdir}"/usr/lib/
+  cp -dr --no-preserve='ownership' build "${pkgdir}"/usr/lib/emby-server
   install -m 755 emby-server "${pkgdir}"/usr/bin/
   install -m 644 emby-server.service "${pkgdir}"/usr/lib/systemd/system/
   install -m 644 emby-server.conf "${pkgdir}"/etc/conf.d/emby-server
