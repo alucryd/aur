@@ -3,7 +3,7 @@ Description=Emby brings together your videos, music, photos, and live television
 
 [Service]
 EnvironmentFile=/etc/conf.d/emby-server
-WorkingDirectory=/opt/emby-server
+WorkingDirectory=/usr/lib/emby-server
 ExecStart=/usr/bin/emby-server
 User=emby
 Group=emby

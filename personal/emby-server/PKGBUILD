@@ -19,7 +19,7 @@ backup=('etc/conf.d/emby-server')
 sha256sums=('afb3755ba9eebd8da5c5cdb3db4f4625dc2eee75de8dc0904ac9cbf8da4d2ad2'
             '1515d8d61ba903ed8ca73c1930fb9f14e2acaa9c2b456d85fd82c2254558eb85'
             '064a82fb13816af5eb2a90bc8320d062ead0bf700715ee65df6afb347f890907'
-            '4a6606e32cd40c3bc5671c673611e51ebdf9b48024991510c02a1c678a430934')
+            '6992ff2537e159e6e4efd3739b95e67e2e2bfcf6d3915564617062c34d8bfa9f')
 
 prepare() {
   cd Emby-${pkgver}
