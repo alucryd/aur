@@ -5,19 +5,23 @@
 # Contributor: Paul Mattal <paul@archlinux.org>
 
 pkgname=ffmpeg-alucryd
-pkgver=2.7.2
+pkgver=2.8
 pkgrel=1
 epoch=1
 pkgdesc='complete, cross-platform solution to record, convert and stream audio and video'
 arch=('i686' 'x86_64')
 url='http://ffmpeg.org/'
 license=('GPL' 'custom')
-depends=('dcadec' 'gnutls' 'gsm' 'lame' 'libass' 'libbluray' 'libmodplug'
-         'libpulse' 'libsoxr' 'libssh' 'libtheora' 'libva' 'libvdpau'
-         'libwebp' 'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl'
-         'speex' 'v4l-utils' 'xvidcore'
-         'libfdk-aac.so' 'libvorbis.so' 'libvorbisenc.so' 'libvpx.so'
-         'libx264.so' 'libx265.so')
+depends=('alsa-lib' 'bzip2' 'dcadec' 'fontconfig' 'freetype2' 'fribidi' 'glibc'
+         'gmp' 'gnutls' 'gsm' 'jack' 'lame' 'libass' 'ladspa' 'libbluray'
+         'libmodplug' 'libpulse' 'libsoxr' 'libssh' 'libtheora' 'libva'
+         'libvdpau' 'libwebp' 'libx11' 'libxcb' 'libxext' 'libxv'
+         'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl' 'speex'
+         'v4l-utils' 'xz' 'zlib'
+         'libavcodec.so' 'libavdevice.so' 'libavfilter.so' 'libavformat.so'
+         'libavresample.so' 'libavutil.so' 'libfdk-aac.so' 'libpostproc.so'
+         'libswresample.so' 'libswscale.so' 'libvorbisenc.so' 'libvorbis.so'
+         'libvpx.so' 'libx264.so' 'libx265.so' 'libxvidcore.so')
 makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
 provides=('ffmpeg'
           'libavcodec.so' 'libavdevice.so' 'libavfilter.so' 'libavformat.so'
@@ -25,7 +29,7 @@ provides=('ffmpeg'
           'libswscale.so')
 conflicts=('ffmpeg')
 source=("http://ffmpeg.org/releases/ffmpeg-${pkgver}.tar.bz2")
-sha256sums=('7ceb7550ad628c526fa6c9ff23fdfb687a62f54d90c4a730998d8c2b417b9ef2')
+sha256sums=('9565236404d3515aab754283c687c0a001019003148bf7f708e643608c0690b8')
 
 build() {
   cd ffmpeg-${pkgver}
@@ -40,6 +44,7 @@ build() {
     --enable-fontconfig \
     --enable-gnutls \
     --enable-gpl \
+    --enable-ladspa \
     --enable-libass \
     --enable-libbluray \
     --enable-libdcadec \
