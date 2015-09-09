@@ -3,15 +3,16 @@
 # Contributor: flamelab <panosfilip@gmail.com>
 
 pkgname=wingpanel-rewrite-x11-bzr
-pkgver=r77
+pkgver=r90
 pkgrel=1
 pkgdesc='The Pantheon Panel'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/wingpanel'
 license=('GPL3')
 groups=('pantheon-unstable')
-depends=('gala-bzr')
-makedepends=('bzr' 'cmake' 'vala')
+depends=('clutter' 'cogl' 'glib2' 'glibc' 'gtk3' 'libgee' 'mutter'
+         'libgala.so' 'libgranite.so')
+makedepends=('bzr' 'cmake' 'gala-bzr' 'granite-bzr' 'vala')
 provides=('wingpanel' 'wingpanel-bzr')
 conflicts=('wingpanel' 'wingpanel-bzr')
 install='wingpanel.install'
