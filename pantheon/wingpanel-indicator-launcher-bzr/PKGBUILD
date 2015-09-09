@@ -2,13 +2,15 @@
 
 pkgname=wingpanel-indicator-launcher-bzr
 pkgver=r2
-pkgrel=1
+pkgrel=2
 pkgdesc='Launcher indicator for Wingpanel'
 arch=('i686' 'x86_64')
 url='https://code.launchpad.net/~parnold-x/+junk/wingpanel-indicator-launcher'
 license=('GPL3')
 groups=('pantheon-unstable')
-depends=('slingshot-launcher-bzr' 'wingpanel-rewrite-x11-bzr')
+depends=('glib2' 'glibc' 'gtk3' 'slingshot-launcher-bzr'
+         'wingpanel-rewrite-x11-bzr'
+         'libgranite.so')
 makedepends=('bzr' 'cmake' 'vala')
 install='wingpanel-indicator-launcher.install'
 source=('bzr+lp:~parnold-x/+junk/wingpanel-indicator-launcher')
