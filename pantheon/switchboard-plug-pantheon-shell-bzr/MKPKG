@@ -1,4 +1,4 @@
-pkgname=('switchboard-plug-pantheon-shell-bzr')
+pkgname=('switchboard-plug-desktop-bzr')
 builddeps=('granite-bzr' 'switchboard-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
