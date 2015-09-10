@@ -1,11 +1,10 @@
 pkgbase = libpng12
 	pkgdesc = A collection of routines used to create PNG format graphics files
 	pkgver = 1.2.53
-	pkgrel = 2
+	pkgrel = 3
 	url = http://www.libpng.org/pub/png/libpng.html
 	arch = i686
 	arch = x86_64
-	arch = armv7h
 	license = custom
 	depends = zlib
 	source = http://sourceforge.net/projects/libpng/files/libpng12/1.2.53/libpng-1.2.53.tar.xz
