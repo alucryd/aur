@@ -6,7 +6,7 @@
 # Contributor: Giovanni Scafora <giovanni@archlinux.org>
 
 pkgname=wine-staging
-pkgver=1.7.49
+pkgver=1.7.51
 pkgrel=1
 pkgdesc='A compatibility layer for running Windows programs'
 arch=('i686' 'x86_64')
@@ -56,8 +56,8 @@ install='wine-staging.install'
 source=("http://ftp.winehq.org/pub/wine/source/1.7/wine-${pkgver}.tar.bz2"
         "wine-staging-${pkgver}.tar.gz::https://github.com/wine-compholio/wine-staging/archive/v${pkgver}.tar.gz"
         '30-win32-aliases.conf')
-sha256sums=('c8a1589753493cb6b71b3772b730cdf90059fe0f29cbfb369fc9a2339766b789'
-            'a5623e78c1032cef691018712d855215402e42f054028c89fcf78c336821ca9f'
+sha256sums=('397fc95b463d6ae1b65ab0477d9fe5d0871e8e2a3322bc9d984e438f2c4d0f52'
+            '662cbfcca95405045ba063f312fa4f605d8c48b7b0930c951e2ebac817f3b763'
             '9901a5ee619f24662b241672a7358364617227937d5f6d3126f70528ee5111e7')
 
 
