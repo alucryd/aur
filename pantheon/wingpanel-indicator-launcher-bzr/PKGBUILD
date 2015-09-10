@@ -8,9 +8,8 @@ arch=('i686' 'x86_64')
 url='https://code.launchpad.net/~parnold-x/+junk/wingpanel-indicator-launcher'
 license=('GPL3')
 groups=('pantheon-unstable')
-depends=('glib2' 'glibc' 'gtk3' 'slingshot-launcher-bzr'
-         'wingpanel-rewrite-x11-bzr'
-         'libgranite.so')
+depends=('glib2' 'glibc' 'gtk3' 'slingshot-launcher'
+         'libgranite.so' 'libwingpanel-2.0.so')
 makedepends=('bzr' 'cmake' 'vala')
 install='wingpanel-indicator-launcher.install'
 source=('bzr+lp:~parnold-x/+junk/wingpanel-indicator-launcher')
@@ -22,13 +21,17 @@ pkgver() {
   echo "r$(bzr revno)"
 }
 
-build() {
+prepare() {
   cd wingpanel-indicator-launcher
 
   if [[ -d build ]]; then
     rm -rf build
   fi
-  mkdir build && cd build
+  mkdir build
+}
+
+build() {
+  cd wingpanel-indicator-launcher/build
 
   cmake .. \
     -DCMAKE_BUILD_TYPE='Release' \

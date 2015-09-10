@@ -1,5 +1,5 @@
 pkgname=('wingpanel-indicator-launcher-bzr')
-builddeps=('granite-bzr' 'gala-bzr' 'wingpanel-rewrite-x11-bzr' 'slingshot-launcher-bzr')
+builddeps=('granite-bzr' 'gala-bzr' 'wingpanel-bzr' 'slingshot-launcher-bzr')
 
 check_bzr $packagedir/$pkgname/${pkgname%-*}
 
