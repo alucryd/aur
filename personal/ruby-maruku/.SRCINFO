@@ -5,6 +5,7 @@ pkgbase = ruby-maruku
 	url = http://github.com/bhollis/maruku
 	arch = any
 	license = MIT
+	makedepends = rubygems
 	depends = ruby
 	noextract = maruku-0.7.2.gem
 	options = !emptydirs
