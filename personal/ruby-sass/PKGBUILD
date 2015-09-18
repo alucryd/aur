@@ -1,22 +1,29 @@
-# Maintainer: Jerome Leclanche <jerome@leclan.ch>
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Jerome Leclanche <jerome@leclan.ch>
 
-_pkgname=sass
-pkgname=ruby-$_pkgname
-pkgver=3.4.17
+pkgname=ruby-sass
+pkgver=3.4.18
 pkgrel=1
-pkgdesc="Tools and Ruby libraries for the CSS3 extension languages: Sass and SCSS."
-arch=("any")
-url="http://sass-lang.com/"
-license=("MIT")
-depends=("ruby-yard" "ruby-maruku")
-makedepends=("rubygems")
-source=("http://gems.rubyforge.org/gems/$_pkgname-$pkgver.gem")
-noextract=("$_pkgname-$pkgver.gem")
-sha256sums=("2d0fda87240e0133e04f2fd30d0184c0cb13f9b5235fbf3fc4efc038f1b3da58")
+pkgdesc='Tools and Ruby libraries for the CSS3 extension languages: SASS and SCSS.'
+arch=('any')
+url='http://sass-lang.com/'
+license=('MIT')
+depends=('ruby-yard' 'ruby-maruku')
+makedepends=('rubygems')
+options=('!emptydirs')
+source=("http://gems.rubyforge.org/gems/sass-${pkgver}.gem")
+noextract=("sass-${pkgver}.gem")
+sha256sums=('1dbc7edeef048ae9d7e48089c8d77841d97a6cbed1b6bc894dc126f94c43b0ea')
 
 
 package() {
-	local _gemdir="$(ruby -rubygems -e"puts Gem.default_dir")"
-	gem install --no-user-install --ignore-dependencies -i "$pkgdir$_gemdir" -n "$pkgdir/usr/bin" "$_pkgname-$pkgver.gem"
-	install -D "$pkgdir$_gemdir/gems/$_pkgname-$pkgver/MIT-LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  local _gemdir="$(ruby -e'puts Gem.default_dir')"
+
+  gem install --ignore-dependencies --no-user-install -N -i "${pkgdir}"/${_gemdir} -n "${pkgdir}"/usr/bin sass-${pkgver}.gem
+  find "${pkgdir}" -type f -name *.gem -delete
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses/ruby-sass
+  ln -s ${_gemdir}/gems/sass-${pkgver}/MIT-LICENSE "${pkgdir}"/usr/share/licenses/ruby-sass/
 }
+
+# vim: ts=2 sw=2 et:
