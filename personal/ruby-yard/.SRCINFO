@@ -8,6 +8,7 @@ pkgbase = ruby-yard
 	makedepends = rubygems
 	depends = ruby
 	noextract = yard-0.8.7.6.gem
+	options = !emptydirs
 	source = http://gems.rubyforge.org/gems/yard-0.8.7.6.gem
 	sha256sums = 3da10884b94fa25b7476f619b1d2cfb61290e10673965c545975630cd88a46b6
 
