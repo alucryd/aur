@@ -1,0 +1,5 @@
+arch=('any')
+pkgname=('ruby-sass')
+builddeps=('ruby-maruku' 'ruby-yard')
+
+# vim: ts=2 sw=2 et:
