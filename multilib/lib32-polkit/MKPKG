@@ -1,4 +1,0 @@
-pkgname=('lib32-polkit')
-builddeps=('lib32-js17' 'lib32-cracklib' 'lib32-libtirpc' 'lib32-pam')
-
-# vim: ts=2 sw=2 et:
