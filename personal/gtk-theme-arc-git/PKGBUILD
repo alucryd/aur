@@ -3,7 +3,7 @@
 # Contributor: Gordian Edenhofer <gordian.edenhofer@yahoo.de>
 
 pkgname=gtk-theme-arc-git
-pkgver=r158.7a026ab
+pkgver=r289.b890581
 pkgrel=1
 pkgdesc='A flat theme with transparent elements'
 arch=('any')

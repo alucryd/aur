@@ -1,4 +1,0 @@
-pkgname=('lib32-rest')
-builddeps=('lib32-libproxy' 'lib32-glib-networking' 'lib32-libsoup')
-
-# vim: ts=2 sw=2 et:
