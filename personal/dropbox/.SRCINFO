@@ -1,6 +1,6 @@
 pkgbase = dropbox
 	pkgdesc = Keep your files safe, synced, and easy to share
-	pkgver = 3.8.9
+	pkgver = 3.10.9
 	pkgrel = 1
 	url = http://www.dropbox.com
 	arch = i686
@@ -22,10 +22,10 @@ pkgbase = dropbox
 	sha256sums = 5ea25085d97708d9c9ffe3d0754dab3e09937ba8111a80b67e443dae3c15503e
 	sha256sums = 85ccabbe4e1f2dc67a480bc074d949578b148168a656dcb19860bb9c4f7b3e8a
 	sha256sums = c39d63bcfc0d40002a5df052298feb79f2e8dd3d93da27ef31eb672b8d2fc70e
-	source_i686 = https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86-3.8.9.tar.gz
-	sha256sums_i686 = c87375f2dccffbe0c0d967c6866d1cb0c43c14004df0f5f0a3554a810e842f3e
-	source_x86_64 = https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86_64-3.8.9.tar.gz
-	sha256sums_x86_64 = c2c672ab6e73e3e208661f9e2a7160e6144be6479f96fd178c9b44bc4e71b0d5
+	source_i686 = https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86-3.10.9.tar.gz
+	sha256sums_i686 = e9b8eebbcbdc755bd79443bf9177d51ea7b077d6407593252dbc08d28f4b5d9c
+	source_x86_64 = https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86_64-3.10.9.tar.gz
+	sha256sums_x86_64 = 4944ffbf845ee8b258641181b0612f8b598e53f9b113434ad0c3b8887ee8e6cd
 
 pkgname = dropbox
 
