@@ -3,6 +3,7 @@
 *.asc
 *.deb
 *.gem
+*.info
 *.log
 *.pkg.tar.xz
 *.rpm
