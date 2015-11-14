@@ -5,7 +5,7 @@
 # Contributor: Paul Mattal <paul@archlinux.org>
 
 pkgname=ffmpeg-alucryd
-pkgver=2.8
+pkgver=2.8.2
 pkgrel=1
 epoch=1
 pkgdesc='complete, cross-platform solution to record, convert and stream audio and video'
@@ -20,16 +20,24 @@ depends=('alsa-lib' 'bzip2' 'dcadec' 'fontconfig' 'freetype2' 'fribidi' 'glibc'
          'v4l-utils' 'xz' 'zlib'
          'libavcodec.so' 'libavdevice.so' 'libavfilter.so' 'libavformat.so'
          'libavresample.so' 'libavutil.so' 'libfdk-aac.so' 'libpostproc.so'
-         'libswresample.so' 'libswscale.so' 'libvorbisenc.so' 'libvorbis.so'
-         'libvpx.so' 'libx264.so' 'libx265.so' 'libxvidcore.so')
+         'libswresample.so' 'libswscale.so' 'libvidstab.so' 'libvorbisenc.so'
+         'libvorbis.so' 'libvpx.so' 'libx264.so' 'libx265.so' 'libxvidcore.so')
 makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
 provides=('ffmpeg'
           'libavcodec.so' 'libavdevice.so' 'libavfilter.so' 'libavformat.so'
           'libavresample.so' 'libavutil.so' 'libpostproc.so' 'libswresample.so'
           'libswscale.so')
 conflicts=('ffmpeg')
-source=("http://ffmpeg.org/releases/ffmpeg-${pkgver}.tar.bz2")
-sha256sums=('9565236404d3515aab754283c687c0a001019003148bf7f708e643608c0690b8')
+source=("http://ffmpeg.org/releases/ffmpeg-${pkgver}.tar.bz2"
+        'libvpxenc-remove-some-unused-ctrl-id-mappings.patch')
+sha256sums=('830ec647f7ad774fc0caf17ba47774bf5dee7a89cbd65894f364a87ba3ad21b2'
+            '54d0996af14b6c3b9cef6cc127ce1cebefc434481368991e40f9f6e2f9f703ee')
+
+prepare() {
+  cd ffmpeg-${pkgver}
+
+  patch -Np1 -i ../libvpxenc-remove-some-unused-ctrl-id-mappings.patch
+}
 
 build() {
   cd ffmpeg-${pkgver}
@@ -65,6 +73,7 @@ build() {
     --enable-libssh \
     --enable-libtheora \
     --enable-libv4l2 \
+    --enable-libvidstab \
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
@@ -74,7 +83,7 @@ build() {
     --enable-nonfree \
     --enable-shared \
     --enable-version3 \
-    --enable-x11grab \
+    --enable-x11grab
 
   make
   make tools/qt-faststart
