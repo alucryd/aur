@@ -48,7 +48,7 @@ package() {
 
   script/grunt install --build-dir "${srcdir}"/atom-build --install-dir "${pkgdir}"/usr
 
-  install -dm 755 "${pkgdir}"/usr/share/{applications,licenses/atom-editor-betai,pixmaps}
+  install -dm 755 "${pkgdir}"/usr/share/{applications,licenses/atom-editor-beta,pixmaps}
   install -m 644 resources/linux/Atom.desktop "${pkgdir}/"usr/share/applications/atom.desktop
   install -m 644 resources/app-icons/stable/png/1024.png "${pkgdir}"/usr/share/pixmaps/atom.png
   install -m 644 LICENSE.md "${pkgdir}"/usr/share/licenses/atom-editor-beta/
