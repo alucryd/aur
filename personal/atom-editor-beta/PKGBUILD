@@ -48,9 +48,10 @@ package() {
 
   script/grunt install --build-dir "${srcdir}"/atom-build --install-dir "${pkgdir}"/usr
 
-  install -Dm 644 resources/linux/Atom.desktop "${pkgdir}/"usr/share/applications/atom.desktop
-  install -Dm 644 resources/app-icons/stable/png/1024.png "${pkgdir}"/usr/share/pixmaps/atom.png
-  install -Dm 644 LICENSE.md "${pkgdir}"/usr/share/licenses/atom-editor-beta/
+  install -dm 755 "${pkgdir}"/usr/share/{applications,licenses/atom-editor-betai,pixmaps}
+  install -m 644 resources/linux/Atom.desktop "${pkgdir}/"usr/share/applications/atom.desktop
+  install -m 644 resources/app-icons/stable/png/1024.png "${pkgdir}"/usr/share/pixmaps/atom.png
+  install -m 644 LICENSE.md "${pkgdir}"/usr/share/licenses/atom-editor-beta/
 }
 
 # vim: ts=2 sw=2 et:
