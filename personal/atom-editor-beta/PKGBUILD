@@ -1,0 +1,57 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Sebastian Jug <sebastian.jug@gmail.com>
+# Contributor: John Reese <jreese@noswap.com>
+#
+pkgname=atom-editor-beta
+pkgver=1.4.0b3
+pkgrel=1
+pkgdesc='The hackable text editor'
+arch=('x86_64' 'i686')
+url='https://atom.io/'
+license=('MIT')
+depends=('alsa-lib' 'desktop-file-utils' 'gconf' 'gtk2' 'libgnome-keyring' 'libnotify' 'libxtst' 'nodejs' 'nss' 'python2')
+optdepends=('gvfs: file deletion support')
+makedepends=('git' 'npm')
+provides=('atom-editor')
+conflicts=('atom-editor')
+install='atom.install'
+source=("https://github.com/atom/atom/archive/v${pkgver/b/-beta}.tar.gz"
+        'atom-python.patch')
+sha256sums=('1385df2d885b5af6fb6d154bb2a5a5754ba3cd9bb11139c557803ec6038a958e'
+            'f3a1b7f032cd2d98cf56dc1d912d6a7791656a470514e316b0e6132eb5cf9dc0')
+
+prepare() {
+  cd atom-${pkgver/b/-beta}
+
+  patch -Np0 -i ../atom-python.patch
+
+  sed -i -e "/exception-reporting/d" \
+      -e "/metrics/d" package.json
+
+  sed -e "s/<%= description %>/${pkgdesc}/" \
+    -e "s|<%= appName %>|Atom|"\
+    -e "s|<%= installDir %>/share/<%= appFileName %>|/usr/bin|"\
+    -e "s|<%= iconPath %>|atom|"\
+    resources/linux/atom.desktop.in > resources/linux/Atom.desktop
+}
+
+build() {
+  cd atom-${pkgver/b/-beta}
+
+  export PYTHON='python2'
+
+  script/build --build-dir "${srcdir}"/atom-build
+}
+
+package() {
+  cd atom-${pkgver/b/-beta}
+
+  script/grunt install --build-dir "${srcdir}"/atom-build --install-dir "${pkgdir}"/usr
+
+  install -dm 755 "${pkgdir}"/usr/share/{applications,licenses/atom-editor-beta,pixmaps}
+  install -m 644 resources/linux/Atom.desktop "${pkgdir}/"usr/share/applications/atom.desktop
+  install -m 644 resources/app-icons/stable/png/1024.png "${pkgdir}"/usr/share/pixmaps/atom.png
+  install -m 644 LICENSE.md "${pkgdir}"/usr/share/licenses/atom-editor-beta/
+}
+
+# vim: ts=2 sw=2 et:
