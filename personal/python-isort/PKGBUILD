@@ -11,7 +11,7 @@ license=('MIT')
 depends=('python-pies' 'python-natsort')
 makedepends=('python-setuptools')
 source=("isort-${pkgver}.tar.gz::https://github.com/timothycrosley/isort/archive/${pkgver}.tar.gz")
-sha256sums=('70a186b5a4b837b524dc60080631cdf159ccc17616a4224644069cc364c9484a9db7941e9ab60681fa8f4066ea38c83c66cdcc17eac0329efd1d30ee011576a8')
+sha256sums=('b62c861814ee9587411f124437b2774d542cdf2935e12e579a1739ba6b41de82')
 
 package() {
   cd isort-${pkgver}
