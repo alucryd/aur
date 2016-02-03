@@ -1,0 +1,31 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Yaron de Leeuw <me@jarondl.net>
+
+pkgname=python-pies
+pkgver=2.6.7
+pkgrel=1
+pkgdesc='The simplest (and tastiest) way to write one program that runs on both Python 2.6+ and Python 3'
+arch=('any')
+url='https://github.com/timothycrosley/pies'
+license=('MIT')
+depends=('python')
+makedepends=('python-setuptools')
+source=("pies-${pkgver}.tar.gz::https://github.com/timothycrosley/pies/archive/${pkgver}.tar.gz")
+sha256sums=('ffb67104f2b4f2e5abf4f0ebb6e59420be4bacd9bb4b89ff47dfe6b535f51308')
+
+build() {
+  cd pies-${pkgver}
+
+  python setup.py build
+}
+
+package() {
+  cd pies-${pkgver}
+
+  python setup.py install --root="${pkgdir}" --optimize='1'
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses/python-pies
+  install -m 644 LICENSE "${pkgdir}"/usr/share/licenses/python-pies/
+}
+
+# vim: ts=2 sw=2 et:

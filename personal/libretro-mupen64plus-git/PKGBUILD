@@ -2,7 +2,7 @@
 # Contributor: Thomas Schneider <maxmusterm@gmail.com>
 
 pkgname=libretro-mupen64plus-git
-pkgver=r3207.3d3bbc9
+pkgver=r3339.558b9cc
 pkgrel=1
 pkgdesc='Nintendo 64 core'
 arch=('i686' 'x86_64')
@@ -10,7 +10,7 @@ url='https://github.com/libretro/mupen64plus-libretro'
 license=('GPL2')
 groups=('libretro')
 depends=('gcc-libs' 'glibc' 'libgl')
-makedepends=('git')
+makedepends=('git' 'mesa')
 provides=('libretro-mupen64plus')
 conflicts=('libretro-mupen64plus')
 source=('libretro-mupen64plus::git+https://github.com/libretro/mupen64plus-libretro.git'

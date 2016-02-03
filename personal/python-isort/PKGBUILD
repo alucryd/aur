@@ -1,0 +1,31 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Yaron de Leeuw <me@jarondl.net>
+
+pkgname=python-isort
+pkgver=4.2.2
+pkgrel=1
+pkgdesc='A Python utility/library to sort imports'
+arch=('any')
+url='https://github.com/timothycrosley/isort'
+license=('MIT')
+depends=('python-pies' 'python-natsort')
+makedepends=('python-setuptools')
+source=("isort-${pkgver}.tar.gz::https://github.com/timothycrosley/isort/archive/${pkgver}.tar.gz")
+sha256sums=('b62c861814ee9587411f124437b2774d542cdf2935e12e579a1739ba6b41de82')
+
+package() {
+  cd isort-${pkgver}
+
+  python setup.py build
+}
+
+package() {
+  cd isort-${pkgver}
+
+  python setup.py install --root="${pkgdir}" --optimize='1'
+
+  install -dm 755 "${pkgdir}"/usr/share/licenses/python-isort
+  install -m 644 LICENSE "${pkgdir}"/usr/share/licenses/python-isort/
+}
+
+# vim: ts=2 sw=2 et:
