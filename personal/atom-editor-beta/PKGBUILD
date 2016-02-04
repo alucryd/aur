@@ -3,7 +3,7 @@
 # Contributor: John Reese <jreese@noswap.com>
 #
 pkgname=atom-editor-beta
-pkgver=1.4.0b3
+pkgver=1.5.0b3
 pkgrel=1
 pkgdesc='The hackable text editor'
 arch=('x86_64' 'i686')
@@ -17,7 +17,7 @@ conflicts=('atom-editor')
 install='atom.install'
 source=("https://github.com/atom/atom/archive/v${pkgver/b/-beta}.tar.gz"
         'atom-python.patch')
-sha256sums=('1385df2d885b5af6fb6d154bb2a5a5754ba3cd9bb11139c557803ec6038a958e'
+sha256sums=('327ee22f709de65bf7b666371569a2094d04faf6dc983e32555d0bde80273da4'
             'f3a1b7f032cd2d98cf56dc1d912d6a7791656a470514e316b0e6132eb5cf9dc0')
 
 prepare() {
