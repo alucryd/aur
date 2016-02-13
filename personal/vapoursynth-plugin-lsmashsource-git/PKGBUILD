@@ -2,7 +2,7 @@
 # Contributor: Gustavo Alvarez <sl1pkn07@gmail.com>
 
 pkgname=vapoursynth-plugin-lsmashsource-git
-pkgver=r839.91aa4f0
+pkgver=r875.14b040e
 pkgrel=1
 pkgdesc='L-SMASH source plugin for Vapoursynth'
 arch=('i686' 'x86_64')
