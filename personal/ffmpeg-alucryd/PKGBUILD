@@ -1,43 +1,32 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
-# Contributor: Ionut Biru <ibiru@archlinux.org>
 # Contributor: Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
+# Contributor: Ionut Biru <ibiru@archlinux.org>
 # Contributor: Tom Newsom <Jeepster@gmx.co.uk>
 # Contributor: Paul Mattal <paul@archlinux.org>
 
 pkgname=ffmpeg-alucryd
-pkgver=2.8.2
+pkgver=2.8.6
 pkgrel=1
 epoch=1
-pkgdesc='complete, cross-platform solution to record, convert and stream audio and video'
+pkgdesc='Complete solution to record, convert and stream audio and video'
 arch=('i686' 'x86_64')
 url='http://ffmpeg.org/'
-license=('GPL' 'custom')
-depends=('alsa-lib' 'bzip2' 'dcadec' 'fontconfig' 'freetype2' 'fribidi' 'glibc'
-         'gmp' 'gnutls' 'gsm' 'jack' 'lame' 'libass' 'ladspa' 'libbluray'
-         'libmodplug' 'libpulse' 'libsoxr' 'libssh' 'libtheora' 'libva'
-         'libvdpau' 'libwebp' 'libx11' 'libxcb' 'libxext' 'libxv'
-         'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl' 'speex'
-         'v4l-utils' 'xz' 'zlib'
-         'libavcodec.so' 'libavdevice.so' 'libavfilter.so' 'libavformat.so'
-         'libavresample.so' 'libavutil.so' 'libfdk-aac.so' 'libpostproc.so'
-         'libswresample.so' 'libswscale.so' 'libvidstab.so' 'libvorbisenc.so'
-         'libvorbis.so' 'libvpx.so' 'libx264.so' 'libx265.so' 'libxvidcore.so')
-makedepends=('hardening-wrapper' 'libvdpau' 'yasm')
+license=('GPL3')
+depends=('alsa-lib' 'bzip2' 'fontconfig' 'fribidi' 'gnutls' 'gsm' 'lame'
+         'libass' 'libbluray' 'libmodplug' 'libpulse' 'libsoxr' 'libssh'
+         'libtheora' 'libva' 'libvdpau' 'libwebp' 'opencore-amr' 'openjpeg'
+         'opus' 'schroedinger' 'sdl' 'speex' 'v4l-utils' 'xvidcore' 'zlib'
+         'libdcadec.so' 'libfdk-aac.so' 'libvidstab.so' 'libvorbis.so'
+         'libvorbisenc.so' 'libvpx.so' 'libx264.so' 'libx265.so')
+makedepends=('hardening-wrapper' 'ladspa' 'libvdpau' 'yasm')
+optdepends=('ladspa: LADSPA filters')
 provides=('ffmpeg'
           'libavcodec.so' 'libavdevice.so' 'libavfilter.so' 'libavformat.so'
           'libavresample.so' 'libavutil.so' 'libpostproc.so' 'libswresample.so'
           'libswscale.so')
 conflicts=('ffmpeg')
-source=("http://ffmpeg.org/releases/ffmpeg-${pkgver}.tar.bz2"
-        'libvpxenc-remove-some-unused-ctrl-id-mappings.patch')
-sha256sums=('830ec647f7ad774fc0caf17ba47774bf5dee7a89cbd65894f364a87ba3ad21b2'
-            '54d0996af14b6c3b9cef6cc127ce1cebefc434481368991e40f9f6e2f9f703ee')
-
-prepare() {
-  cd ffmpeg-${pkgver}
-
-  patch -Np1 -i ../libvpxenc-remove-some-unused-ctrl-id-mappings.patch
-}
+source=("http://ffmpeg.org/releases/ffmpeg-${pkgver}.tar.bz2")
+sha256sums=('40611e329bc354592c6f8f1deb033c31b91f80e91f5707ca4f9afceca78d8e62')
 
 build() {
   cd ffmpeg-${pkgver}
