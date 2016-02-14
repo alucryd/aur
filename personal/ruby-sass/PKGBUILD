@@ -2,7 +2,7 @@
 # Contributor: Jerome Leclanche <jerome@leclan.ch>
 
 pkgname=ruby-sass
-pkgver=3.4.18
+pkgver=3.4.21
 pkgrel=1
 pkgdesc='Tools and Ruby libraries for the CSS3 extension languages: SASS and SCSS.'
 arch=('any')
@@ -13,7 +13,7 @@ makedepends=('rubygems')
 options=('!emptydirs')
 source=("http://gems.rubyforge.org/gems/sass-${pkgver}.gem")
 noextract=("sass-${pkgver}.gem")
-sha256sums=('1dbc7edeef048ae9d7e48089c8d77841d97a6cbed1b6bc894dc126f94c43b0ea')
+sha256sums=('05f907ae3bde56e0133298295ff0befcfec2cb29799ef4f40236eb7abb5173d2')
 
 
 package() {
