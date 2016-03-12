@@ -4,7 +4,7 @@
 # Contributor: David Manouchehri <d@32t.ca>
 
 pkgname=dropbox
-pkgver=3.12.5
+pkgver=3.16.1
 pkgrel=1
 pkgdesc='Keep your files safe, synced, and easy to share'
 arch=('i686' 'x86_64')
@@ -27,8 +27,8 @@ sha256sums=('3daf27f16b3f11a435def3d2f4bb06702d330b01c35e46e07d8f01fa97070b36'
             '5ea25085d97708d9c9ffe3d0754dab3e09937ba8111a80b67e443dae3c15503e'
             '85ccabbe4e1f2dc67a480bc074d949578b148168a656dcb19860bb9c4f7b3e8a'
             'c39d63bcfc0d40002a5df052298feb79f2e8dd3d93da27ef31eb672b8d2fc70e')
-sha256sums_i686=('52b17aa88798302d49ea5f17ecb4d96125eef3df59a027826bca7b5aa2a8c828')
-sha256sums_x86_64=('faac3768a8c0a141f3df61589ec8dbbba9bccd17991f27bf776de78d1610fea9')
+sha256sums_i686=('cdaee7e06ac205659069382ad67007a6e4b47f6cd6d40400837afa640451ed0f')
+sha256sums_x86_64=('d6855177ddd0851bd57da470d66c834d17a3862ff2dfb0a847b38b871918667f')
 
 prepare() {
   cd .dropbox-dist/dropbox-lnx.*-${pkgver}
