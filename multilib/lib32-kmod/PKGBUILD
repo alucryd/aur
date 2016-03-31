@@ -2,16 +2,17 @@
 # Maintainer: Jesse Jaara <jesse.jaara@gmail.com>
 
 pkgname=lib32-kmod
-pkgver=18
+pkgver=22
 pkgrel=1
 pkgdesc='Linux kernel module handling'
 arch=('x86_64')
 url='http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary'
 license=('GPL2')
-depends=('kmod' 'lib32-zlib')
+depends=('kmod' 'lib32-xz' 'lib32-zlib')
 makedepends=('gcc-multilib')
+provides=('libkmod.so')
 source=("https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-${pkgver}.tar.xz")
-md5sums=('82835c7f01983634e06ca72b4ee30cc6')
+sha256sums=('ba3b1ddea33228b473189fcb05b809024a3b86e9a7cf37d420cae06beb749f82')
 
 build() {
   cd kmod-${pkgver}
@@ -24,6 +25,8 @@ build() {
     --prefix='/usr' \
     --libdir='/usr/lib32' \
     --sysconfdir='/etc' \
+    --disable-tools \
+    --with-xz \
     --with-zlib
   make
 }
