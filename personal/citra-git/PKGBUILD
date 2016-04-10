@@ -1,57 +1,74 @@
-# Maintainer: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
 # Contributor: ceri
 
-_pkgbase='citra'
-pkgbase="$_pkgbase-git"
-pkgname=("$_pkgbase-git" "$_pkgbase-qt-git")
-pkgver=r3317.becb758
+pkgbase=citra-git
+pkgname=('citra-cli-git' 'citra-qt-git')
+pkgver=r3437.0b7efc2
 pkgrel=1
-pkgdesc="An experimental open-source Nintendo 3DS emulator/debugger"
+pkgdesc='A Nintendo 3DS emulator'
 arch=('i686' 'x86_64')
 url="https://github.com/citra-emu/citra/"
 license=('GPL2')
-makedepends=('git' 'cmake' 'sdl2' 'qt5-base' 'shared-mime-info' 'desktop-file-utils')
-source=("$_pkgbase::git+https://github.com/citra-emu/citra"
+makedepends=('cmake' 'desktop-file-utils' 'git' 'qt5-base' 'sdl2'
+             'shared-mime-info')
+source=("git+https://github.com/citra-emu/citra"
         'git+https://github.com/citra-emu/ext-boost'
         'git+https://github.com/svn2github/inih'
         'git+https://github.com/neobrain/nihstro')
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
+sha256sums=('SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP')
 install='citra.install'
 
 pkgver() {
-	cd "$srcdir/$_pkgbase"
-	echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+  cd citra
+
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 prepare() {
-	cd "$srcdir/$_pkgbase"
-	mkdir -p build
+  cd citra
 
-	git submodule init
-	git config submodule.boost.url "$srcdir/ext-boost"
-	git config submodule.inih.url "$srcdir/inih"
-	git config submodule.nihstro.url "$srcdir/nihstro"
-	git submodule update
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build
+
+  git submodule init
+  git config submodule.boost.url ../ext-boost
+  git config submodule.inih.url ../inih
+  git config submodule.nihstro.url ../nihstro
+  git submodule update
 }
 
 build() {
-	cd "$srcdir/$_pkgbase/build"
-	cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
-	make
+  cd citra/build
+
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr'
+  make
 }
 
-package_citra-git() {
-	depends=('sdl2' 'libpng')
+package_citra-cli-git() {
+  depends=('gcc-libs' 'glibc' 'libpng' 'sdl2')
 
-	install -Dm755 "$srcdir/$_pkgbase/build/src/citra/citra" "$pkgdir/usr/bin/$_pkgbase"
+  cd citra/build
+
+  install -dm 755 "${pkgdir}"/usr/bin
+  install -m 755 src/citra/citra "${pkgdir}"/usr/bin/
 }
 
 package_citra-qt-git() {
-	depends=('qt5-base' 'shared-mime-info' 'desktop-file-utils')
-	optdepends=('libxkbcommon-x11: for X11 support'
-	            'qt5-wayland: for Wayland support')
+  depends=('desktop-file-utils' 'gcc-libs' 'glibc' 'libpng' 'qt5-base'
+           'shared-mime-info')
 
-	cd "$srcdir/$_pkgbase/build"
-	make DESTDIR="$pkgdir/" install
-	rm "$pkgdir/usr/bin/$_pkgbase"
+  cd citra/build
+
+  make DESTDIR="${pkgdir}" install
+  rm "${pkgdir}"/usr/bin/citra
 }
+
+# vim: ts=2 sw=2 et:

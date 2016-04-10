@@ -1,0 +1,6 @@
+arch=('x86_64')
+pkgname=('citra-cli-git' 'citra-qt-git')
+
+check_git $packagedir/citra-git/citra
+
+# vim: ts=2 sw=2 et:
