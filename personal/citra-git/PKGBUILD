@@ -10,14 +10,12 @@ pkgdesc='A Nintendo 3DS emulator'
 arch=('i686' 'x86_64')
 url="https://github.com/citra-emu/citra/"
 license=('GPL2')
-makedepends=('cmake' 'desktop-file-utils' 'git' 'qt5-base' 'sdl2'
-             'shared-mime-info')
+makedepends=('boost' 'cmake' 'desktop-file-utils' 'git' 'mesa' 'qt5-base'
+             'sdl2' 'shared-mime-info')
 source=("git+https://github.com/citra-emu/citra"
-        'git+https://github.com/citra-emu/ext-boost'
         'git+https://github.com/svn2github/inih'
         'git+https://github.com/neobrain/nihstro')
 sha256sums=('SKIP'
-            'SKIP'
             'SKIP'
             'SKIP')
 install='citra.install'
@@ -37,7 +35,6 @@ prepare() {
   mkdir build
 
   git submodule init
-  git config submodule.boost.url ../ext-boost
   git config submodule.inih.url ../inih
   git config submodule.nihstro.url ../nihstro
   git submodule update
