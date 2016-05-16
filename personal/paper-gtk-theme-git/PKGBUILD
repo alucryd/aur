@@ -1,40 +1,40 @@
-# Maintainer: Gordian Edenhofer <gordian.edenhofer@gmail.com>
-# Submitter: Martin Wimpress <code@flexion.org>
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Gordian Edenhofer <gordian.edenhofer@gmail.com>
+# Contributor: Martin Wimpress <code@flexion.org>
 
 pkgname=paper-gtk-theme-git
-_pkgname=paper-gtk-theme
-pkgver=244.de443e3
+pkgver=r262.82503f8
 pkgrel=1
-pkgdesc="A modern desktop theme suite. Its design is mostly flat with a minimal use of shadows for depth."
+pkgdesc='A modern freedesktop icon theme whose design is based around the use of bold colours and simple geometric shapes to compose icons'
 arch=('any')
-url="http://samuelhewitt.com/paper/theme"
+url='http://samuelhewitt.com/paper/theme'
 license=('GPL3')
-optdepends=("gtk-engine-murrine: gtk2 bindings"
-	"gtk3: gtk3 bindings")
-# Optional dependencies for developers
-#optdepends=("python: scripts to simplify the rendering process"
-#	"inkscape: recommended editing software for theme assets")
+optdepends=('gtk-engine-murrine: GTK2 theme'
+            'gtk3: GTK3 theme')
 makedepends=('git')
-provides=("${_pkgname}")
-conflicts=("${_pkgname}")
-source=("${_pkgname}"::"git+https://github.com/snwh/${_pkgname}.git")
-md5sums=('SKIP')
+provides=("paper-gtk-theme")
+conflicts=("paper-gtk-theme")
+source=('git+https://github.com/snwh/paper-gtk-theme.git')
+sha256sums=('SKIP')
 
 pkgver() {
-	cd "${srcdir}/${_pkgname}"
-	echo $(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+  cd paper-gtk-theme
+
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 build() {
-	cd "${srcdir}/${_pkgname}"
+  cd paper-gtk-theme
 
-	chmod +x ./autogen.sh
-	./autogen.sh
-	make
+  chmod +x ./autogen.sh
+  ./autogen.sh
+  make
 }
 
 package() {
-	cd "${srcdir}/${_pkgname}"
+  cd paper-gtk-theme
 
-	make DESTDIR="${pkgdir}" install
+  make DESTDIR="${pkgdir}" install
 }
+
+# vim: ts=2 sw=2 et:
