@@ -5,7 +5,7 @@
 pkgname=paper-gtk-theme-git
 pkgver=r262.82503f8
 pkgrel=1
-pkgdesc='A modern freedesktop icon theme whose design is based around the use of bold colours and simple geometric shapes to compose icons'
+pkgdesc='A modern Linux desktop theme suite with a mostly flat with a subtle use of shadows and highlights for some added depth'
 arch=('any')
 url='http://samuelhewitt.com/paper/theme'
 license=('GPL3')
