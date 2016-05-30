@@ -3,7 +3,7 @@
 
 pkgname=libretro-ppsspp-git
 pkgver=r17170.ea17e27
-pkgrel=1
+pkgrel=2
 pkgdesc='Sony PlayStation Portable core'
 arch=('i686' 'x86_64')
 url='https://github.com/libretro/libretro-ppsspp'
@@ -12,19 +12,21 @@ groups=('libretro')
 depends=('gcc-libs' 'glibc' 'libgl' 'zlib'
          'libavcodec.so' 'libavformat.so' 'libavutil.so' 'libswresample.so'
          'libswscale.so')
-makedepends=('cmake' 'git')
+makedepends=('cmake' 'ffmpeg' 'git')
 provides=('libretro-ppsspp')
 conflicts=('libretro-ppsspp')
 source=('git+https://github.com/libretro/libretro-ppsspp.git'
         'git+https://github.com/hrydgard/ppsspp-lang.git#commit=70f23a30317c6fb3ac8aafcefa2185c7fcf8168a'
         'libretro-ppsspp-native::git+https://github.com/libretro/ppsspp-native.git#commit=9baedbcc2a07b3bccc6d8b8d170498111b990adc'
         'ppsspp-armips::git+https://github.com/Kingcom/armips.git#commit=8bd93be9ba715d2f5723857edacf936ae904d07c'
-        'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/ppsspp_libretro.info')
+        'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/ppsspp_libretro.info'
+        'libretro-ppsspp-ffmpeg30.patch')
 sha256sums=('SKIP'
             'SKIP'
             'SKIP'
             'SKIP'
-            '6d66503627cc1400f25aa366e83195a8afc57dc86730aec9341e5df62be0c8ef')
+            '6d66503627cc1400f25aa366e83195a8afc57dc86730aec9341e5df62be0c8ef'
+            '514955b9dc8fd36adae2a58e00f52ebe702c5f9fde45e6c0650aa6d5dbac8436')
 
 pkgver() {
   cd libretro-ppsspp
@@ -44,6 +46,8 @@ prepare() {
   git submodule update lang
   git submodule update native
   git submodule update ext/armips
+
+  patch -Np1 -i ../libretro-ppsspp-ffmpeg30.patch
 }
 
 build() {

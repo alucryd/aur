@@ -1,0 +1,24 @@
+diff -rupN libretro-ppsspp.orig/Core/HLE/sceMpeg.cpp libretro-ppsspp/Core/HLE/sceMpeg.cpp
+--- libretro-ppsspp.orig/Core/HLE/sceMpeg.cpp	2016-05-30 10:54:21.502159205 +0200
++++ libretro-ppsspp/Core/HLE/sceMpeg.cpp	2016-05-30 10:56:56.057586989 +0200
+@@ -768,10 +768,10 @@ static bool InitPmp(MpegContext * ctx){
+ 	// GE_CMODE_16BIT_ABGR5551 <--> AV_PIX_FMT_BGR555LE;
+ 	// GE_CMODE_16BIT_ABGR4444 <--> AV_PIX_FMT_BGR444LE;
+ 	// GE_CMODE_32BIT_ABGR8888 <--> AV_PIX_FMT_RGBA;
+-	pmp_want_pix_fmt = PIX_FMT_RGBA;
++	pmp_want_pix_fmt = AV_PIX_FMT_RGBA;
+ 
+ 	// Create H264 video codec
+-	AVCodec * pmp_Codec = avcodec_find_decoder(CODEC_ID_H264);
++	AVCodec * pmp_Codec = avcodec_find_decoder(AV_CODEC_ID_H264);
+ 	if (pmp_Codec == NULL){
+ 		ERROR_LOG(ME, "Can not find H264 codec, please update ffmpeg");
+ 		return false;
+diff -rupN libretro-ppsspp.orig/.git/FETCH_HEAD libretro-ppsspp/.git/FETCH_HEAD
+--- libretro-ppsspp.orig/.git/FETCH_HEAD	1970-01-01 01:00:00.000000000 +0100
++++ libretro-ppsspp/.git/FETCH_HEAD	2016-05-30 10:57:00.710203659 +0200
+@@ -0,0 +1,4 @@
++ea17e27fcf16b9f875718b6550fe7145c6257c06		branch 'master' of /home/alucryd/Packages/src/libretro-ppsspp
++f214a9ebddc265b15ba6467e27cbf20551a4cb9d	not-for-merge	branch 'minitrace-support' of /home/alucryd/Packages/src/libretro-ppsspp
++095a3d8ac72b6c2ed7cda7ef3daae7b6efcb56b8	not-for-merge	branch 'neon-vfpu' of /home/alucryd/Packages/src/libretro-ppsspp
++2f36eeb1ec7621afd3bed7e3dacb03633fa64bf1	not-for-merge	branch 'vao' of /home/alucryd/Packages/src/libretro-ppsspp
