@@ -39,8 +39,8 @@ package_libretro-mednafen-psx-git() {
   cd libretro-mednafen-psx
 
   install -dm 755 "${pkgdir}"/usr/{lib/libretro,share/libretro/info}
-  install -m 644 ../mednafen_psx_libretro.info "${pkgdir}"/usr/lib/libretro/
-  install -m 644 mednafen_psx_libretro.so "${pkgdir}"/usr/share/libretro/info/
+  install -m 644 mednafen_psx_libretro.so "${pkgdir}"/usr/lib/libretro/
+  install -m 644 ../mednafen_psx_libretro.info "${pkgdir}"/usr/share/libretro/info/
 }
 
 package_libretro-mednafen-psx-hw-git() {
@@ -51,8 +51,8 @@ package_libretro-mednafen-psx-hw-git() {
   cd libretro-mednafen-psx
 
   install -dm 755 "${pkgdir}"/usr/{lib/libretro,share/libretro/info}
-  install -m 644 ../mednafen_psx_hw_libretro.info "${pkgdir}"/usr/lib/libretro/
-  install -m 644 mednafen_psx_hw_libretro.so "${pkgdir}"/usr/share/libretro/info/
+  install -m 644 mednafen_psx_hw_libretro.so "${pkgdir}"/usr/lib/libretro/
+  install -m 644 ../mednafen_psx_hw_libretro.info "${pkgdir}"/usr/share/libretro/info/
 }
 
 # vim: ts=2 sw=2 et:
