@@ -1,0 +1,5 @@
+pkgname=('libretro-mednafen-psx-git' 'libretro-mednafen-psx-hw-git')
+
+check_git $packagedir/$pkgname/${pkgname%-*}
+
+# vim: ts=2 sw=2 et:

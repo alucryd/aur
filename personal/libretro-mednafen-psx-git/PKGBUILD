@@ -1,45 +1,59 @@
-# Maintainer: Mikuro Kagamine <mikurok@forgecrushing.com>
+# Maintainer: Maxime Gauduin <alucryd@ærchlinux.org>
+# Contributor: Mikuro Kagamine <mikurok@forgecrushing.com>
 
 pkgbase=libretro-mednafen-psx-git
 pkgname=('libretro-mednafen-psx-git' 'libretro-mednafen-psx-hw-git')
-_gitname=beetle-psx-libretro
-pkgver=1102.e2a4cef
+pkgver=r1134.ac31439
 pkgrel=1
-pkgdesc="libretro implementation of Mednafen PSX"
+pkgdesc='Sony playStation core'
 arch=('i686' 'x86_64')
 url="https://github.com/libretro/beetle-psx-libretro"
 license=('GPLv2')
+depends=('gcc-libs' 'glibc')
 makedepends=('git')
-conflicts=('libretro-super-git')
-source=("${_gitname}::git://github.com/libretro/${_gitname}.git"
-        "${_gitname}.info::https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/beetle_psx_libretro.info")
-md5sums=('SKIP'
-         'SKIP')
+source=('libretro-mednafen-psx::git+https://github.com/libretro/beetle-psx-libretro.git'
+        'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/mednafen_psx_libretro.info'
+        'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/mednafen_psx_hw_libretro.info')
+sha256sums=('SKIP'
+            '8517d3ddd709d6ffec1b41b2d05d91d0f60ba434ac2b029d834db405960e0a7d'
+            'aef5dc6381a382ea062132bc4dde322b619576a0975722327a1e0785b87ab4d6')
 
 pkgver() {
-  cd "${_gitname}"
-  echo $(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+  cd libretro-mednafen-psx
+
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
-build()
-{
-	cd "$_gitname"
-	make
-	sed -i "s/HAVE_OPENGL=0/HAVE_OPENGL=1/" Makefile
-	make
+build() {
+  cd libretro-mednafen-psx
+
+  make
+
+  sed 's/HAVE_OPENGL=0/HAVE_OPENGL=1/' -i Makefile
+  make
 }
 
-package_libretro-mednafen-psx-git()
-{
-	sed -ie "s/display_version =.*/display_version = \"${pkgver}\"/" $srcdir/$_gitname.info
-	install -v -Dm644 $srcdir/$_gitname.info $pkgdir/usr/lib/libretro/mednafen_psx_libretro.info
-	install -v -Dm644 $srcdir/$_gitname/mednafen_psx_libretro.so $pkgdir/usr/lib/libretro/mednafen_psx_libretro.so
+package_libretro-mednafen-psx-git() {
+  provides=('libretro-mednafen-psx')
+  conflicts=('libretro-mednafen-psx')
+
+  cd libretro-mednafen-psx
+
+  install -dm 755 "${pkgdir}"/usr/lib/libretro
+  install -m 644 ../mednafen_psx_libretro.info "${pkgdir}"/usr/lib/libretro/
+  install -m 644 mednafen_psx_libretro.so "${pkgdir}"/usr/lib/libretro/
 }
 
-package_libretro-mednafen-psx-hw-git()
-{
-	sed -ie "s/display_version =.*/display_version = \"${pkgver}\"/" $srcdir/$_gitname.info
-	sed -i 's/Beetle PSX/Beetle PSX HW/g' $srcdir/$_gitname.info
-	install -v -Dm644 $srcdir/$_gitname.info $pkgdir/usr/lib/libretro/mednafen_psx_hw_libretro.info
-	install -v -Dm644 $srcdir/$_gitname/mednafen_psx_hw_libretro.so $pkgdir/usr/lib/libretro/mednafen_psx_hw_libretro.so
+package_libretro-mednafen-psx-hw-git() {
+  depends+=('libgl')
+  provides=('libretro-mednafen-psx-hw')
+  conflicts=('libretro-mednafen-psx-hw')
+
+  cd libretro-mednafen-psx
+
+  install -dm 755 "${pkgdir}"/usr/lib/libretro
+  install -m 644 ../mednafen_psx_hw_libretro.info "${pkgdir}"/usr/lib/libretro/
+  install -m 644 mednafen_psx_hw_libretro.so "${pkgdir}"/usr/lib/libretro/
 }
+
+# vim: ts=2 sw=2 et:
