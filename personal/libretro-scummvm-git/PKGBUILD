@@ -12,7 +12,7 @@ groups=('libretro')
 depends=('gcc-libs' 'glibc')
 makedepends=('git')
 provides=('libretro-scummvm')
-conflcits=('libretro-scummvm')
+conflicts=('libretro-scummvm')
 source=('libretro-scummvm::git+https://github.com/libretro/scummvm.git'
         'https://raw.github.com/libretro/libretro-super/master/dist/info/scummvm_libretro.info')
 sha256sums=('SKIP'
