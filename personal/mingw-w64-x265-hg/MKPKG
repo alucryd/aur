@@ -1,6 +1,0 @@
-pkgname=('mingw-w64-h265-hg')
-builddeps=('mingw-w64-pkg-config' 'mingw-w64-cmake')
-
-check_hg $packagedir/mingw-w64-x265-hg/x265
-
-# vim: ts=2 sw=2 et:
