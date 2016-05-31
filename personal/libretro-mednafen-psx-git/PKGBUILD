@@ -11,7 +11,7 @@ url="https://github.com/libretro/beetle-psx-libretro"
 license=('GPLv2')
 groups=('libretro')
 depends=('gcc-libs' 'glibc')
-makedepends=('git' 'mesa')
+makedepends=('git' 'libgl' 'mesa')
 source=('libretro-mednafen-psx::git+https://github.com/libretro/beetle-psx-libretro.git'
         'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/mednafen_psx_libretro.info'
         'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/mednafen_psx_hw_libretro.info')
