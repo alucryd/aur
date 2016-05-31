@@ -8,6 +8,7 @@ pkgdesc='ScummVM core'
 arch=('i686' 'x86_64')
 url='https://github.com/libretro/scummvm'
 license=('GPL')
+groups=('libretro')
 depends=('gcc-libs' 'glibc')
 makedepends=('git')
 source=('libretro-scummvm::git+https://github.com/libretro/scummvm.git'
