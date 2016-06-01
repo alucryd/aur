@@ -33,10 +33,10 @@ build() {
 package() {
   cd libretro-scummvm/backends/platform/libretro/build
 
-  install -dm 755 "${pkgdir}"/usr/lib/libretro
+  install -dm 755 "${pkgdir}"/usr/{lib/libretro,share/libretro/info}
 
   install -m 644 scummvm_libretro.so "${pkgdir}"/usr/lib/libretro/
-  install -m 644 "${srcdir}"/scummvm_libretro.info "${pkgdir}"/usr/lib/libretro/
+  install -m 644 "${srcdir}"/scummvm_libretro.info "${pkgdir}"/usr/share/libretro/info/
 }
 
 # vim: ts=2 sw=2 et:

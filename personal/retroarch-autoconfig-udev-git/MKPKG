@@ -1,0 +1,5 @@
+pkgname=('retroarch-autoconfig-udev-git')
+
+check_git $packagedir/$pkgname/retroarch-joypad-autoconfig
+
+# vim: ts=2 sw=2 et:
