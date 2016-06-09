@@ -6,29 +6,29 @@
 # Contributor: Will Rea <sillywilly@gmail.com>
 # Contributor: Valentine Sinitsyn <e_val@inbox.ru>
 
-pkgname=lib32-libnm-glib46
-pkgver=0.9.8.10
-pkgrel=3
+pkgname=lib32-libnm-glib
+pkgver=1.2.2
+pkgrel=1
 pkgdesc='NetworkManager library'
 arch=('x86_64')
 url='http://www.gnome.org/projects/NetworkManager/'
 license=('GPL2' 'LGPL2.1')
 depends=('lib32-dbus-glib' 'lib32-glib2' 'lib32-glibc' 'lib32-libdbus'
          'lib32-libgudev' 'lib32-nspr' 'lib32-nss' 'lib32-util-linux')
-makedepends=('dhcpcd' 'dhclient' 'dhcp-client' 'gtk-doc' 'intltool' 'iproute2'
+makedepends=('dhclient' 'gcc-multilib' 'gtk-doc' 'intltool' 'iproute2'
              'iptables' 'lib32-libmm-glib' 'lib32-libndp' 'lib32-libnewt'
-             'lib32-libnl' 'lib32-polkit' 'lib32-libsoup' 'lib32-libteam'
-             'modemmanager' 'ppp' 'python2' 'vala' 'wpa_supplicant')
-replaces=('lib32-libnm-glib')
-source=("http://ftp.gnome.org/pub/gnome/sources/NetworkManager/${pkgver%.*.*}/NetworkManager-${pkgver}.tar.xz"
-        'disable_set_hostname.patch')
-sha256sums=('064d27223d3824859df12e1fb25b787fec1c68bbc864dc52a0289b9211c4c972'
-            '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460')
+             'lib32-libsoup' 'lib32-libteam' 'lib32-polkit' 'modemmanager'
+             'perl-yaml' 'ppp=2.4.7' 'python-gobject' 'rp-pppoe' 'systemd'
+             'vala' 'wpa_supplicant')
+conflicts=('lib32-libnm-glib46')
+source=("http://ftp.gnome.org/pub/gnome/sources/NetworkManager/${pkgver:0:3}/NetworkManager-${pkgver}.tar.xz")
+sha256sums=('41d8082e027f58bb5fa4181f93742606ab99c659794a18e2823eff22df0eecd9')
 
 prepare() {
   cd NetworkManager-$pkgver
 
-  patch -Np1 -i ../disable_set_hostname.patch
+  2to3 -w libnm src tools
+
   NOCONFIGURE=1 ./autogen.sh
 }
 
@@ -50,30 +50,37 @@ build() {
     --disable-doc \
     --disable-introspection \
     --disable-more-warnings \
-    --disable-qt \
     --disable-static \
     --disable-wimax \
     --with-crypto='nss' \
     --with-dhclient='/usr/bin/dhclient' \
-    --with-dhcpcd='/usr/bin/dhcpcd' \
     --with-dnsmasq='/usr/bin/dnsmasq' \
     --with-iptables='/usr/bin/iptables' \
     --with-modem-manager-1 \
+    --with-pppd='/usr/bin/pppd' \
+    --with-pppd-plugin-dir='/usr/lib32/pppd/2.4.7' \
+    --with-pppoe='/usr/bin/pppoe' \
+    --with-kernel-firmware-dir='/usr/lib/firmware' \
     --with-resolvconf='/usr/bin/resolvconf' \
     --with-systemdsystemunitdir='/usr/lib/systemd/system' \
     --with-udev-dir='/usr/lib32/udev' \
-    --with-session-tracking='no'
-  make -C libnm-util
-  make -C libnm-glib
+    --with-session-tracking='systemd' \
+    --without-dhcpcd
+
+  sed -e 's/ -shared / -Wl,-O1,--as-needed\0 /g' \
+      -e 's/    if test "$export_dynamic" = yes && test -n "$export_dynamic_flag_spec"; then/      func_append compile_command " -Wl,-O1,--as-needed"\n      func_append finalize_command " -Wl,-O1,--as-needed"\n\0/' \
+      -i libtool
+
+  make
 }
 
 package() {
   cd NetworkManager-$pkgver
 
+  make DESTDIR="${pkgdir}" -C libnm install
   make DESTDIR="${pkgdir}" -C libnm-util install
   make DESTDIR="${pkgdir}" -C libnm-glib install
-  rm -rf "${pkgdir}"/usr/{include,lib32/pkgconfig,share}
-  find "${pkgdir}" -type l -delete
+  rm -rf "${pkgdir}"/usr/{include,share}
 }
 
 # vim: ts=2 sw=2 et:
