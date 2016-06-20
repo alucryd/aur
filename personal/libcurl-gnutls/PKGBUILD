@@ -8,7 +8,7 @@ pkgdesc='An URL retrieval library'
 arch=('i686' 'x86_64')
 url='http://curl.haxx.se'
 license=('MIT')
-depends=('ca-certificates' 'glibc' 'gnutls' 'zlib'
+depends=('ca-certificates' 'glibc' 'gnutls' 'nettle' 'zlib'
          'libssh2.so')
 options=('strip')
 source=("http://curl.haxx.se/download/curl-${pkgver}.tar.gz"{,.asc})
