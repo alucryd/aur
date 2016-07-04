@@ -1,0 +1,54 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Jose Riha <jose1711@gmail.com>
+
+pkgname=libcurl-gnutls
+pkgver=7.49.1
+pkgrel=1
+pkgdesc='An URL retrieval library'
+arch=('i686' 'x86_64')
+url='http://curl.haxx.se'
+license=('MIT')
+depends=('ca-certificates' 'glibc' 'gnutls' 'nettle' 'zlib'
+         'libssh2.so')
+options=('strip')
+source=("http://curl.haxx.se/download/curl-${pkgver}.tar.gz"{,.asc})
+sha256sums=('ff3e80c1ca6a068428726cd7dd19037a47cc538ce58ef61c59587191039b2ca6'
+            'SKIP')
+validpgpkeys=('27EDEAF22F3ABCEB50DB9A125CC908FDB71E12C2') # Daniel Stenberg
+
+build() {
+  cd curl-${pkgver}
+
+  ./configure \
+    --prefix='/usr' \
+    --disable-ldap \
+    --disable-ldaps \
+    --disable-manual \
+    --disable-versioned-symbols \
+    --enable-ipv6 \
+    --enable-threaded-resolver \
+    --without-gssapi \
+    --without-libidn \
+    --without-ssl \
+    --with-gnutls='/usr' \
+    --with-random='/dev/urandom' \
+    --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt'
+
+  make -C lib
+}
+
+package() {
+  cd curl-${pkgver}
+
+  make -C lib DESTDIR="${pkgdir}" install
+
+  mv "${pkgdir}"/usr/lib/libcurl{,-gnutls}.so.4.4.0
+  rm "${pkgdir}"/usr/lib/libcurl.{a,so}*
+  for version in 3 4.0.0 4.1.0 4.2.0 4.3.0; do
+    ln -s libcurl-gnutls.so.4.4.0 "${pkgdir}"/usr/lib/libcurl-gnutls.so.${version}
+  done
+
+  install -Dm 644 COPYING -t "${pkgdir}"/usr/share/licenses/libcurl-gnutls/
+}
+
+# vim: ts=2 sw=2 et:
