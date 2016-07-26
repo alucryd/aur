@@ -1,0 +1,30 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Ivan Shapovalov <intelfx@intelfx.name>
+
+pkgname=python2-pycryptodomex
+pkgver=3.4.2
+pkgrel=1
+pkgdesc='Cryptographic library for Python / a self-contained Python package of low-level cryptographic primitives'
+arch=('i686' 'x86_64')
+url='https://pypi.python.org/pypi/pycryptodomex'
+license=('BSD')
+depends=('python2')
+makedepends=('python2-setuptools')
+source=("https://pypi.python.org/packages/source/p/pycryptodomex/pycryptodomex-${pkgver}.tar.gz")
+sha256sums=('66489980aa0dd97dce28171c5f42e9862d33cc354a518e52a7bad0699d9b402a')
+
+build() {
+  cd pycryptodomex-${pkgver}
+
+  python2 setup.py build
+}
+
+package_python2-pycryptodomex() {
+  cd pycryptodomex-${pkgver}
+
+  python2 setup.py install --root="${pkgdir}" --optimize='1' --skip-build
+
+  install -Dm 644 LICENSE.rst -t "${pkgdir}"/usr/share/licenses/python2-pycryptomodex/
+}
+
+# vim: ts=2 sw=2 et:
