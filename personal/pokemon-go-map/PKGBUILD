@@ -1,18 +1,35 @@
-# Maintainer: Grey Christoforo <first name [at] last name [dot] net>
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Grey Christoforo <grey@christoforo.net>
 
 pkgname=pokemon-go-map
 pkgver=2.0.0
-pkgrel=2
-pkgdesc='Live visualization of all the pokemon in your area... and more! (stable releases)'
+pkgrel=3
+pkgdesc='Live visualization of all the pokemon in your area... and more!'
 arch=('any')
 url='https://jz6.github.io/PoGoMap/'
-license=('GNU GPLv3+')
-depends=( 'python2' 'python2-protobuf-to-dict' 'python2-peewee' 'python2-s2sphere' 'python2-flask-cors' 'python2-flask' 'python2-geopy' 'python2-protobuf' 'python2-requests' 'python2-gpsoauth' 'python2-werkzeug')
-source=("https://github.com/AHAAAAAAA/PokemonGo-Map/archive/v${pkgver}.tar.gz")
-md5sums=('727944f36be1bbae765ea8e6b866a785')
+license=('AGPL3')
+depends=('python2-click' 'python2-crypto' 'python2-flask' 'python2-flask-cors'
+         'python2-geopy' 'python2-gpsoauth' 'python2-itsdangerous'
+         'python2-jinja' 'python2-markupsafe' 'python2-peewee'
+         'python2-protobuf-to-dict' 'python2-requests' 'python2-s2sphere'
+         'python2-werkzeug' 'python2-wsgiref')
+backup=('etc/conf.d/pokemon-go-map')
+install='pokemon-go-map.install'
+source=("https://github.com/AHAAAAAAA/PokemonGo-Map/archive/v${pkgver}.tar.gz"
+        'pokemon-go-map.conf'
+        'pokemon-go-map.service')
+sha256sums=('9897cd3816e231025f94b2ac8f7896dec45cd8738583cb8dfc8c0664b990beab'
+            '094d3b274f2b6da00d1491f1f0d0f8ca3a45d56e746272d7f591b3e11d6384bb'
+            'bbfb1f5e6df2538c5e13913bd4c66195c49967790857bcb25401b9f52b55e05a')
 
 package() {
-  cd "${srcdir}/PokemonGo-Map-${pkgver}"
-  mkdir -p "${pkgdir}/opt/${pkgname}"
-  cp -a * "${pkgdir}/opt/${pkgname}"
+  install -dm 755 "${pkgdir}"/{etc/conf.d,usr/lib/systemd/system/,opt}
+  cp -dr --no-preserve='ownership' PokemonGo-Map-${pkgver} "${pkgdir}"/opt/pokemon-go-map
+  install -m 644 pokemon-go-map.conf "${pkgdir}"/etc/conf.d/pokemon-go-map
+  install -m 644 pokemon-go-map.service "${pkgdir}"/usr/lib/systemd/system/
+
+  install -dm 755 "${pkgdir}"/var/lib/pokemon-go-map
+  chmod 721:721 "${pkgdir}"/var/lib/pokemon-go-map
 }
+
+# vim: ts=2 sw=2 et:

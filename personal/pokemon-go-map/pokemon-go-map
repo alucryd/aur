@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [[ -n $POKEGO_PTC_ACCOUNT ]]; then
+  python2 runserver.py -a ptc -u $POKEGO_PTC_ACCOUNT -p $POKEGO_PTC_PASSWORD -st $POKEGO_STEPS -k $POKEGO_GMAPS_API_KEY -l $POKEGO_LOCATION -D $POKEGO_DB_PATH
+else
+  python2 runserver.py -a google -u $POKEGO_GOOGLE_ACCOUNT -p $POKEGO_GOOGLE_PASSWORD -st $POKEGO_STEPS -k $POKEGO_GMAPS_API_KEY -l $POKEGO_LOCATION -D $POKEGO_DB_PATH
+fi
+
+# vim: ts=2 sw=2 et:
