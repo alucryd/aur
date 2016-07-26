@@ -1,0 +1,11 @@
+post_install() {
+  getent group pokemon-go-map > /dev/null 2>&1 || groupadd -g 721 pokemon-go-map
+  getent passwd pokemon-go-map > /dev/null 2>&1 || useradd -c 'Pokemon Go Map' -u 721 -g pokemon-go-map -d /var/lib/pokemon-go-map -s /usr/bin/nologin pokemon-go-map
+  passwd -l pokemon-go-map > /dev/null
+}
+
+post_upgrade() {
+  post_install
+}
+
+# vim: ts=2 sw=2 et:

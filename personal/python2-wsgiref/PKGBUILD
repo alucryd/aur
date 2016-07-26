@@ -1,0 +1,35 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Thomas Berryhill <tb01110100@gmail.com>
+# Contributor: Limao Luo <luolimao+AUR@gmail.com>
+
+pkgname=python2-wsgiref
+pkgver=0.1.2
+pkgrel=2
+pkgdesc='WSGI (PEP 333) Reference Library'
+arch=('any')
+url='http://cheeseshop.python.org/pypi/wsgiref'
+license=('PSF' 'ZPL')
+depends=('python2')
+makedepends=('python2-setuptools')
+source=("http://pypi.python.org/packages/source/w/wsgiref/wsgiref-${pkgver}.zip")
+sha256sums=('c7e610c800957046c04c8014aab8cce8f0b9f0495c8cd349e57c1f7cabf40e79')
+
+prepare() {
+  cd wsgiref-${pkgver}
+
+  find -name '*.py' -type f -exec sed -ri 's:^#!/usr/bin/(env )?python$:&2:' '{}' \;
+}
+
+build() {
+  cd wsgiref-${pkgver}
+
+  python2 setup.py build
+}
+
+package() {
+  cd wsgiref-${pkgver}
+
+  python2 setup.py install --root="${pkgdir}" --optimize='1'
+}
+
+# vim: ts=2 sw=2 et:
