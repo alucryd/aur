@@ -2,7 +2,6 @@
 Description=Live visualization of all the pokemon in your area... and more!
 
 [Service]
-EnvironmentFile=/etc/conf.d/pokemon-go-map
 WorkingDirectory=/var/lib/pokemon-go-map
 ExecStart=/usr/bin/pokemon-go-map
 User=pokemon-go-map

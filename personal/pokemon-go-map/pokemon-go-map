@@ -1,9 +1,5 @@
 #!/bin/sh
 
-if [[ -n $POGOM_PTC_ACCOUNT ]]; then
-  exec python2 /opt/pokemon-go-map/runserver.py -a ptc -u "$POGOM_PTC_ACCOUNT" -p "$POGOM_PTC_PASSWORD" -st "$POGOM_STEPS" -k "$POGOM_GMAPS_API_KEY" -l "$POGOM_LOCATION"
-else
-  exec python2 /opt/pokemon-go-map/runserver.py -a google -u "$POGOM_GOOGLE_ACCOUNT" -p "$POGOM_GOOGLE_PASSWORD" -st "$POGOM_STEPS" -k "$POGOM_GMAPS_API_KEY" -l "$POGOM_LOCATION"
-fi
+exec python2 /opt/pokemon-go-map/runserver.py
 
 # vim: ts=2 sw=2 et:
