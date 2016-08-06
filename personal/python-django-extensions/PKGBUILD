@@ -1,54 +1,60 @@
-# Maintainer: Jeremy "Ichimonji10" Audet <ichimonji10 at gmail dot com>
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Jeremy "Ichimonji10" Audet <ichimonji10 at gmail dot com>
 # Contributor: Dominik Kozaczko <dominik@kozaczko.info>
 # Contributor: Alper Kanat <alperkanat@raptiye.org>
 # Contributor: Apkawa <apkawa@gmail.com>
 # Contributor: Schnouki <thomas.jost@gmail.com>
-#
-# namcap incorrectly states that python{,2}-{django,six} are unnecessary deps.
 
 pkgbase=python-django-extensions
-_pkgbase="${pkgbase#python-}"
-pkgname=(python-django-extensions python2-django-extensions)
+pkgname=('python-django-extensions' 'python2-django-extensions')
 pkgver=1.6.7
 pkgrel=1
 pkgdesc='A collection of custom extensions for the Django Framework.'
-arch=(any)
+arch=('any')
 url='http://github.com/django-extensions/django-extensions'
-license=(MIT)
-makedepends=(
-  python-django
-  python-setuptools
-  python-six
-  python2-django
-  python2-setuptools
-  python2-six
-)
-options=(!emptydirs)
-source=("https://github.com/${_pkgbase}/${_pkgbase}/archive/${pkgver}.tar.gz")
+license=('MIT')
+makedepends=('python2-django' 'python2-setuptools' 'python2-six'
+             'python-django' 'python-setuptools' 'python-six')
+optdepends=('graphviz: graph_models')
+source=("https://github.com/django-extensions/django-extensions/archive/${pkgver}.tar.gz")
 sha256sums=('51bdf2cc175e032d6b60dac77f12b5ec77b1cc7e9dfbf7bbfc855abcf89e308f')
 
-package_python-django-extensions() {
-  depends=(python-django python-six)
-  optdepends=(
-    'graphviz: to graph Django models'
-    'python-werkzeug: to use the Werkzeug debugger in the embedded web server'
-  )
+prepare() {
+  cp -r {,python-}django-extensions-${pkgver}
+  mv {,python2-}django-extensions-${pkgver}
+}
 
-  cd "${srcdir}/${_pkgbase}-${pkgver}"
-  python setup.py install --root="${pkgdir}/" --optimize=1
-  install -Dm 644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+build() {
+  cd python-django-extensions-${pkgver}
+
+  python setup.py build
+
+  cd ../python2-django-extensions-${pkgver}
+
+  python2 setup.py build
+}
+
+package_python-django-extensions() {
+  depends=('python-django' 'python-six')
+  optdepends+=('ipython: shell_plus'
+               'python-werkzeug: runserver_plus')
+
+  cd python-django-extensions-${pkgver}
+
+  python setup.py install --root="${pkgdir}" --optimize='1'
+  install -Dm 644 LICENSE -t "${pkgdir}"/usr/share/licenses/python-django-extensions
 }
 
 package_python2-django-extensions() {
-  depends=(python2-django python2-six)
-  optdepends=(
-    'graphviz: to graph Django models'
-    'python2-werkzeug: to use the Werkzeug debugger in the embedded web server'
-  )
+  depends=('python2-django' 'python2-six')
+  optdepends+=('ipython2: shell_plus'
+               'python2-werkzeug: runserver_plus')
 
-  cd "${srcdir}/${_pkgbase}-${pkgver}"
-  python2 setup.py install --root="${pkgdir}/" --optimize=1
-  install -Dm 644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  cd python-django-extensions-${pkgver}
+
+  python2 setup.py install --root="${pkgdir}" --optimize='1'
+  install -Dm 644 LICENSE -t "${pkgdir}"/usr/share/licenses/python2-django-extensions
 }
 
-# vim:set ts=2 sw=2 et:
+# vim: ts=2 sw=2 et:
+
