@@ -9,12 +9,15 @@ arch=('any')
 url='https://jz6.github.io/PoGoMap/'
 license=('AGPL3')
 depends=('python2-configargparse' 'python2-click' 'python2-flask'
-         'python2-flask-cors' 'python2-flask-compress' 'python2-itsdangerous'
-         'python2-jinja' 'python2-markupsafe' 'python2-peewee' 'python2-pgoapi'
-         'python2-pymysql' 'python2-werkzeug' 'python2-wsgiref')
+         'python2-flask-cache-bust' 'python2-flask-cors'
+         'python2-flask-compress' 'python2-itsdangerous' 'python2-jinja'
+         'python2-latlon' 'python2-markupsafe' 'python2-peewee'
+         'python2-pgoapi' 'python2-pymysql' 'python2-recommonmark'
+         'python2-sphinx' 'python2-sphinx-autobuild' 'python2-sphinx_rtd_theme'
+         'python2-werkzeug' 'python2-wsgiref' 'python2-xxhash')
 makedepends=('git')
 install='pokemon-go-map.install'
-source=("git+https://github.com/AHAAAAAAA/PokemonGo-Map.git#branch=develop"
+source=("git+https://github.com/PokemonGoMap/PokemonGo-Map.git#branch=develop"
         'pokemon-go-map'
         'pokemon-go-map.service')
 sha256sums=('SKIP'
