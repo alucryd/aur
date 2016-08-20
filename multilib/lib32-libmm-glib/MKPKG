@@ -1,4 +1,0 @@
-pkgname=('lib32-libmm-glib')
-builddeps=('lib32-libmbim' 'lib32-libqmi')
-
-# vim: ts=2 sw=2 et:

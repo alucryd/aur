@@ -1,6 +1,0 @@
-pkgname=('lib32-libnm-glib')
-builddeps=('lib32-dbus-glib' 'lib32-libmm-glib' 'lib32-libndp' 'lib32-popt'
-           'lib32-slang' 'lib32-libnewt' 'lib32-jansson' 'lib32-libdaemon'
-           'lib32-libteam')
-
-# vim: ts=2 sw=2 et:
