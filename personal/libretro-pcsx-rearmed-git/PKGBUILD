@@ -4,7 +4,7 @@
 # Contributor: almostalive <almostalive2003@gmail.com>
 
 pkgname=libretro-pcsx-rearmed-git
-pkgver=r1137.33b8211
+pkgver=r1230.f82bcc6
 pkgrel=1
 pkgdesc='Sony PlayStation core'
 arch=('i686' 'x86_64')
@@ -18,7 +18,7 @@ conflicts=('libretro-pcsx-rearmed')
 source=('libretro-pcsx-rearmed::git+https://github.com/libretro/pcsx_rearmed.git'
         'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/pcsx_rearmed_libretro.info')
 sha256sums=('SKIP'
-            'e93b0475d7c6f422ad52af696205409423ddfa449109e76f36a95f17943bfa92')
+            'd9357cce679fed91a9f59021bbd19fb6d9dbc18e337b8db3ccf1913fb03457c9')
 
 pkgver() {
   cd libretro-pcsx-rearmed
@@ -28,6 +28,8 @@ pkgver() {
 
 build() {
   cd libretro-pcsx-rearmed
+
+  export LDFLAGS="$LDFLAGS -ldl"
 
   make -f Makefile.libretro
 }
