@@ -1,0 +1,41 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Yuval Adam <yuval@y3xz.com>
+
+pkgname=dotnet-coreclr
+pkgver=1.1.0
+pkgrel=1
+pkgdesc='The .NET Core Runtime'
+arch=('x86_64')
+url='https://github.com/dotnet/coreclr'
+license=('MIT')
+depends=('icu' 'libunwind' 'lldb' 'lttng-ust')
+makedepends=('clang' 'cmake' 'git' 'llvm' 'python2')
+optdepends=('mono: for building mscorlib.dll')
+provides=('coreclr')
+source=("dotnet-coreclr-${pkgver}.tar.gz::https://github.com/dotnet/coreclr/archive/v${pkgver}.tar.gz"
+        'dotnet-coreclr-clang39.patch')
+sha256sums=('edc1e416f07a71e2b3f70c1f1412e45a7396b3f0daac5bcb267d5f779b9d7444'
+            'SKIP')
+
+prepare() {
+  cd coreclr-${pkgver}
+
+  sed 's/$ID.$VERSION_ID/fedora.24/g' -i init-tools.sh
+  patch -Np1 -i ../dotnet-coreclr-clang39.patch
+}
+
+build() {
+  cd coreclr-${pkgver}
+
+  export PYTHON='/usr/bin/python2'
+
+  ./build.sh x64 release
+}
+
+package() {
+  cd coreclr-${pkgver}
+
+  install -Dm 644 bin/Product/Linux.x64.Release/*.so -t "${pkgdir}"/opt/dotnet-cli/shared/Microsoft.NETCore.App/1.1.0/
+}
+
+# vim: ts=2 sw=2 et:

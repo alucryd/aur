@@ -4,7 +4,7 @@
 
 pkgbase=citra-git
 pkgname=('citra-cli-git' 'citra-qt-git')
-pkgver=r3437.0b7efc2
+pkgver=r4008.fb13bfe
 pkgrel=1
 pkgdesc='A Nintendo 3DS emulator'
 arch=('i686' 'x86_64')
@@ -12,10 +12,20 @@ url="https://github.com/citra-emu/citra/"
 license=('GPL2')
 makedepends=('boost' 'cmake' 'desktop-file-utils' 'git' 'mesa' 'qt5-base'
              'sdl2' 'shared-mime-info')
-source=("git+https://github.com/citra-emu/citra"
-        'git+https://github.com/svn2github/inih'
-        'git+https://github.com/neobrain/nihstro')
+source=('git+https://github.com/citra-emu/citra'
+        'git+https://github.com/citra-emu/ext-soundtouch.git'
+        'git+https://github.com/fmtlib/fmt'
+        'git+https://github.com/herumi/xbyak.git'
+        'git+https://github.com/MerryMage/dynarmic'
+        'git+https://github.com/neobrain/nihstro'
+        'git+https://github.com/philsquared/Catch'
+        'git+https://github.com/svn2github/inih')
 sha256sums=('SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP'
             'SKIP'
             'SKIP')
 install='citra.install'
@@ -34,10 +44,20 @@ prepare() {
   fi
   mkdir build
 
-  git submodule init
+  git submodule init externals/{catch,dynarmic,inih/inih,nihstro,soundtouch}
+  git config submodule.catch.url ../Catch
+  git config submodule.dynarmic.url ../dynarmic
   git config submodule.inih.url ../inih
   git config submodule.nihstro.url ../nihstro
-  git submodule update
+  git config submodule.soundtouch.url ../ext-soundtouch
+  git submodule update externals/{catch,dynarmic,inih/inih,nihstro,soundtouch}
+
+  cd externals/dynarmic
+
+  git submodule init externals/{fmt,xbyak}
+  git config submodule.fmt.url ../fmt
+  git config submodule.xbyak.url ../xbyak
+  git submodule update externals/{fmt,xbyak}
 }
 
 build() {
