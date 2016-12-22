@@ -28,7 +28,6 @@ sha256sums=('SKIP'
             'SKIP'
             'SKIP'
             'SKIP')
-install='citra.install'
 
 pkgver() {
   cd citra
