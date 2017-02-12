@@ -2,7 +2,7 @@
 # Contributor: Duck Hunt <vaporeon@tfwno.gf>
 
 pkgname=libretro-mgba-git
-pkgver=r2636.d747bad
+pkgver=r4359.50defa2e
 pkgrel=1
 pkgdesc='Nintendo Game Boy Advance core'
 arch=('i686' 'x86_64')
@@ -17,7 +17,7 @@ conflicts=('libretro-mgba')
 source=('git+https://github.com/mgba-emu/mgba.git'
         'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/mgba_libretro.info')
 sha256sums=('SKIP'
-            'e3b17530cd57df5e5fe063cd87b611944bca34ecfd44ffc1eeddc80680306b64')
+            '82a7bafc29274aaed66fdab50f40b0759668d7114166a7f3bb70a538f67fb28b')
 
 pkgver() {
   #cd libretro-mgba
