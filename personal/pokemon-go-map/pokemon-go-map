@@ -1,5 +1,0 @@
-#!/bin/sh
-
-exec python2 /opt/pokemon-go-map/runserver.py
-
-# vim: ts=2 sw=2 et:
