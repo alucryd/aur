@@ -1,0 +1,44 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Tatsuyuki Ishi <ishitatsuyuki at gmail dot com>
+
+pkgbase=python-blessed
+pkgname=('python-blessed' 'python2-blessed')
+pkgver=1.14.1
+pkgrel=1
+pkgdesc='A thin, practical wrapper around terminal styling, screen positioning, and keyboard input'
+arch=('any')
+url='https://github.com/jquast/blessed'
+license=('GPL')
+makedepends=('python-setuptools' 'python2-setuptools')
+source=("python-blessed-${pkgver}.tar.gz::https://github.com/jquast/blessed/archive/${pkgver}.tar.gz")
+sha256sums=('8a7f4cdc1e9f952607f140f4f30e9a2e81a5cdece82dfcaa0346c27e9d1b64f7')
+
+prepare() {
+  cp -r {,python-}blessed-${pkgver}
+  mv {,python2-}blessed-${pkgver}
+}
+
+build() {
+  for py in python{,2}; do
+    pushd ${py}-blessed-${pkgver}
+    ${py} setup.py build
+    popd
+  done
+}
+package_python-blessed() {
+  depends=('python' 'python-dateutil' 'python-nose')
+
+  cd python-blessed-${pkgver}
+
+  python setup.py install --skip-build --root="${pkgdir}" --optimize='1'
+}
+
+package_python2-blessed() {
+  depends=('python2' 'python2-dateutil' 'python2-nose')
+
+  cd python2-blessed-${pkgver}
+
+  python2 setup.py install --skip-build --root="${pkgdir}" --optimize='1'
+}
+
+# vim: ts=2 sw=2 et:
