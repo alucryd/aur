@@ -9,8 +9,7 @@ arch=('i686' 'x86_64')
 url='https://github.com/libretro/mupen64plus-libretro'
 license=('GPL2')
 groups=('libretro')
-depends=('gcc-libs' 'glibc' 'libgl' 'libpng' 'zlib'
-         'libm.so')
+depends=('gcc-libs' 'glibc' 'libgl' 'libpng' 'zlib')
 makedepends=('git' 'mesa')
 provides=('libretro-mupen64plus')
 conflicts=('libretro-mupen64plus')
