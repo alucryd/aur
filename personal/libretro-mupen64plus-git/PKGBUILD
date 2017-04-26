@@ -17,7 +17,7 @@ conflicts=('libretro-mupen64plus')
 source=('libretro-mupen64plus::git+https://github.com/libretro/mupen64plus-libretro.git'
         'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/mupen64plus_libretro.info')
 sha256sums=('SKIP'
-            'a1d6b1190a3024b41bc8eb0b590bcdd651fd9cc3deb42c535d52ce3ab356cfee')
+            '2d064cc7428748bc60c7963800cd189815553cf4e3d72c80d15db610bdf9adfe')
 
 pkgver() {
   cd libretro-mupen64plus
