@@ -10,10 +10,9 @@ license=('GPL3')
 groups=('pantheon-unstable')
 depends=('bamf' 'glib2' 'glibc' 'gtk3' 'libgee' 'libgtop'
          'libgranite.so' 'libwingpanel-2.0.so')
-makedepends=('bzr' 'cmake' 'vala')
+makedepends=('bzr' 'cmake' 'vala' 'wingpanel-bzr')
 provides=('wingpanel-indicator-power')
 conflicts=('wingpanel-indicator-power')
-install='wingpanel-indicator-power.install'
 source=('bzr+lp:wingpanel-indicator-power')
 sha256sums=('SKIP')
 

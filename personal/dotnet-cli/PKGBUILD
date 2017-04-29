@@ -21,6 +21,7 @@ _coreclr_files=(
   'libsos.so'
   'libsosplugin.so'
   'System.Globalization.Native.so'
+  'sosdocsunix.txt'
 )
 
 _corefx_files=(

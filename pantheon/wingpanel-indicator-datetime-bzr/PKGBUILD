@@ -11,10 +11,9 @@ groups=('pantheon-unstable')
 depends=('cairo' 'evolution-data-server' 'glib2' 'glibc' 'gtk3' 'libgee'
          'libical'
          'libgranite.so' 'libwingpanel-2.0.so')
-makedepends=('bzr' 'cmake' 'vala')
+makedepends=('bzr' 'cmake' 'vala' 'wingpanel-bzr')
 provides=('wingpanel-indicator-datetime')
 conflicts=('wingpanel-indicator-datetime')
-install='wingpanel-indicator-datetime.install'
 source=('bzr+lp:wingpanel-indicator-datetime')
 sha256sums=('SKIP')
 

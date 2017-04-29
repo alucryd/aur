@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-network-bzr
-pkgver=r223
+pkgver=r334
 pkgrel=1
 pkgdesc='Network plug for Switchboard'
 arch=('i686' 'x86_64')
@@ -11,7 +11,7 @@ groups=('pantheon-unstable')
 depends=('glib2' 'glibc' 'gtk3' 'libgee' 'libnm-glib' 'nm-connection-editor'
          'polkit'
          'libgranite.so' 'libswitchboard-2.0.so')
-makedepends=('bzr' 'cmake' 'vala')
+makedepends=('bzr' 'cmake' 'switchboard-bzr' 'vala')
 provides=('switchboard-plug-network')
 conflicts=('switchboard-plug-network')
 source=('switchboard-plug-network::bzr+lp:switchboard-plug-networking')

@@ -13,10 +13,9 @@ depends=('glib2' 'glibc' 'gsignond-extension-pantheon-bzr'
          'json-glib' 'libaccounts-glib' 'libgee' 'libgsignon-glib' 'rest'
          'webkit2gtk'
          'libgranite.so' 'libswitchboard-2.0.so')
-makedepends=('bzr' 'cmake' 'vala')
+makedepends=('bzr' 'cmake' 'switchboard-bzr' 'vala')
 provides=('switchboard-plug-online-accounts')
 conflicts=('switchboard-plug-online-accounts')
-install='switchboard-plug-online-accounts.install'
 source=('switchboard-plug-online-accounts::bzr+lp:switchboard-plug-onlineaccounts')
 sha256sums=('SKIP')
 

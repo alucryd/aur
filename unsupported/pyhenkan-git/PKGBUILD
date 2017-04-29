@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pyhenkan-git
-pkgver=r83.2b4fb75
+pkgver=r89.1c90fb2
 pkgrel=1
 pkgdesc='Transcoding suite built around VapourSynth and FFmpeg'
 arch=('any')

@@ -11,10 +11,9 @@ groups=('pantheon-unstable')
 depends=('cairo' 'gdk-pixbuf2' 'glib2' 'glibc' 'gtk3' 'libcanberra' 'libgee'
          'libnotify' 'libpulse'
          'libgranite.so' 'libwingpanel-2.0.so')
-makedepends=('bzr' 'cmake' 'gobject-introspection' 'gtk2' 'vala')
+makedepends=('bzr' 'cmake' 'gobject-introspection' 'gtk2' 'vala' 'wingpanel-bzr')
 provides=('wingpanel-indicator-sound')
 conflicts=('wingpanel-indicator-sound')
-install='wingpanel-indicator-sound.install'
 source=('bzr+lp:wingpanel-indicator-sound')
 sha256sums=('SKIP')
 

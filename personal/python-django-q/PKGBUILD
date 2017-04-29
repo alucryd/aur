@@ -10,7 +10,7 @@ url='https://github.com/Koed00/django-q'
 license=('MIT')
 makedepends=('python2-django' 'python2-setuptools' 'python2-six'
              'python-django' 'python-setuptools' 'python-six')
-source=(django-q-${pkgver}.tar.gz::"https://github.com/Koed00/django-q/archive/v${pkgver}.tar.gz")
+source=("django-q-${pkgver}.tar.gz::https://github.com/Koed00/django-q/archive/v${pkgver}.tar.gz")
 sha256sums=('fdc6b4c64c85d8a7fa332f876a7db582a753667f125efa0a12811d886e2b2349')
 
 prepare() {
@@ -19,13 +19,11 @@ prepare() {
 }
 
 build() {
-  cd python-django-q-${pkgver}
-
-  python setup.py build
-
-  cd ../python2-django-q-${pkgver}
-
-  python2 setup.py build
+  for py in python{,2}; do
+    pushd ${py}-django-q-${pkgver}
+    ${py} setup.py build
+    popd
+  done
 }
 
 package_python-django-q() {
@@ -34,7 +32,7 @@ package_python-django-q() {
 
   cd python-django-q-${pkgver}
 
-  python setup.py install --root="${pkgdir}" --optimize='1'
+  python setup.py install --root="${pkgdir}" --optimize='1' --skip-build
   install -Dm 644 LICENSE -t "${pkgdir}"/usr/share/licenses/python-django-q
 }
 
@@ -44,7 +42,7 @@ package_python2-django-q() {
 
   cd python-django-q-${pkgver}
 
-  python2 setup.py install --root="${pkgdir}" --optimize='1'
+  python2 setup.py install --root="${pkgdir}" --optimize='1' --skip-build
   install -Dm 644 LICENSE -t "${pkgdir}"/usr/share/licenses/python2-django-q
 }
 
