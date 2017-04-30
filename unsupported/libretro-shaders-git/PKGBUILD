@@ -2,7 +2,7 @@
 
 pkgbase=libretro-shaders-git
 pkgname=('libretro-shaders-cg-git' 'libretro-shaders-glsl-git' 'libretro-shaders-slang-git')
-pkgver=r641.cce5285
+pkgver=r679.bd9e8ba
 pkgrel=1
 pkgdesc='Collection of shaders for libretro'
 arch=('any')
@@ -12,35 +12,35 @@ groups=('libretro')
 provides=('libretro-shaders-git')
 conflicts=('libretro-shaders-git')
 makedepends=('git' 'nvidia-cg-toolkit' 'python' 'retroarch')
-source=('git+https://github.com/libretro/common-shaders.git'
-        'git+https://github.com/libretro/slang-shaders.git')
+source=('libretro-shaders::git+https://github.com/libretro/common-shaders.git'
+        'libretro-shaders-slang::git+https://github.com/libretro/slang-shaders.git')
 sha256sums=('SKIP'
             'SKIP')
 
 pkgver() {
-  cd common-shaders
+  cd libretro-shaders
 
   echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 build() {
-  retroarch-cg2glsl common-shaders glsl-shaders
+  retroarch-cg2glsl libretro-shaders libretro-shaders-glsl
 }
 
 package_libretro-shaders-cg-git() {
   install -dm 755 "${pkgdir}"/usr/share/libretro
-  cp -dr --no-preserve='ownership' common-shaders "${pkgdir}"/usr/share/libretro/shaders
+  cp -dr --no-preserve='ownership' libretro-shaders "${pkgdir}"/usr/share/libretro/shaders
   rm -rf "${pkgdir}"/usr/share/libretro/shaders/.git
 }
 
 package_libretro-shaders-glsl-git() {
   install -dm 755 "${pkgdir}"/usr/share/libretro
-  cp -dr --no-preserve='ownership' glsl-shaders "${pkgdir}"/usr/share/libretro/shaders
+  cp -dr --no-preserve='ownership' libretro-shaders-glsl "${pkgdir}"/usr/share/libretro/shaders
 }
 
 package_libretro-shaders-slang-git() {
   install -dm 755 "${pkgdir}"/usr/share/libretro
-  cp -dr --no-preserve='ownership' slang-shaders "${pkgdir}"/usr/share/libretro/shaders
+  cp -dr --no-preserve='ownership' libretro-shaders-slang "${pkgdir}"/usr/share/libretro/shaders
   rm -rf "${pkgdir}"/usr/share/libretro/shaders/.git
 }
 
