@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=noise-player-bzr
-pkgver=r1984
+pkgver=r2062
 pkgrel=1
 pkgdesc='The Pantheon Music Player'
 arch=('i686' 'x86_64')
@@ -23,7 +23,7 @@ optdepends=('gst-plugins-base: "Base" plugin libraries'
 replaces=('noise-bzr')
 provides=('noise' 'noise-player')
 conflicts=('noise' 'noise-player')
-source=('bzr+lp:noise'
+source=('noise-player::bzr+lp:noise'
         'mesa-demos-conflict.patch'
         'noise-install-dirs.patch')
 sha256sums=('SKIP'
@@ -31,13 +31,13 @@ sha256sums=('SKIP'
             'd0ebc710a742d942e04a8df61d91dd75ae4b2aeafe7fece08f1fbc90c507f1df')
 
 pkgver() {
-  cd noise
+  cd noise-player
 
   echo "r$(bzr revno)"
 }
 
 prepare() {
-  cd noise
+  cd noise-player
 
   patch -Np1 -i ../mesa-demos-conflict.patch
   patch -Np1 -i ../noise-install-dirs.patch
@@ -49,7 +49,7 @@ prepare() {
 }
 
 build() {
-  cd noise/build
+  cd noise-player/build
 
   cmake .. \
     -DCMAKE_INSTALL_PREFIX='/usr' \
@@ -59,7 +59,7 @@ build() {
 }
 
 package() {
-  cd noise/build
+  cd noise-player/build
 
   make -j1 DESTDIR="${pkgdir}" install
 }
