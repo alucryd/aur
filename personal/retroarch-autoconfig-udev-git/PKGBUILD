@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=retroarch-autoconfig-udev-git
-pkgver=r684.923f1fb
+pkgver=r1172.d907d13
 pkgrel=1
 pkgdesc='udev joypad autoconfig for RetroArch'
 arch=('any')
@@ -12,17 +12,17 @@ depends=('retroarch')
 makedepends=('git')
 provides=('retroarch-autoconfig-udev')
 conflicts=('retroarch-autoconfig-udev')
-source=('git+https://github.com/libretro/retroarch-joypad-autoconfig.git')
+source=('retroarch-autoconfig-udev::git+https://github.com/libretro/retroarch-joypad-autoconfig.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd retroarch-joypad-autoconfig
+  cd retroarch-autoconfig-udev
 
   echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 package() {
-  cd retroarch-joypad-autoconfig
+  cd retroarch-autoconfig-udev
 
   install -dm 755 "${pkgdir}"/usr/share/libretro/autoconfig
   cp -dr --no-preserve='ownership' udev "${pkgdir}"/usr/share/libretro/autoconfig/
