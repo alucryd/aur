@@ -3,7 +3,7 @@
 # Contributor: flamelab <panosfilip@gmail.com>
 
 pkgname=wingpanel-bzr
-pkgver=r126
+pkgver=r108
 pkgrel=1
 epoch=1
 pkgdesc='The Pantheon Panel'
@@ -11,12 +11,11 @@ arch=('i686' 'x86_64')
 url='https://launchpad.net/wingpanel'
 license=('GPL3')
 groups=('pantheon-unstable')
-depends=('clutter' 'cogl' 'glib2' 'glibc' 'gtk3' 'libgee' 'mutter'
+depends=('glib2' 'glibc' 'gtk3' 'libgee' 'mutter'
          'libgala.so' 'libgranite.so')
-makedepends=('bzr' 'cmake' 'vala')
+makedepends=('bzr' 'cmake' 'gala-bzr' 'granite-bzr' 'vala')
 provides=('wingpanel' 'libwingpanel-2.0.so')
 conflicts=('wingpanel')
-install='wingpanel.install'
 source=('wingpanel::bzr+lp:wingpanel')
 sha256sums=('SKIP')
 
