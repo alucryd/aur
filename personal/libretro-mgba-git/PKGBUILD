@@ -2,7 +2,7 @@
 # Contributor: Duck Hunt <vaporeon@tfwno.gf>
 
 pkgname=libretro-mgba-git
-pkgver=r4461.95333584
+pkgver=r4304.1e95e891
 pkgrel=1
 pkgdesc='Nintendo Game Boy Advance core'
 arch=('i686' 'x86_64')
@@ -10,56 +10,35 @@ url='https://github.com/libretro/mgba'
 license=('custom:MPL2')
 groups=('libretro')
 depends=('glibc')
-makedepends=('cmake' 'git')
+makedepends=('git')
 provides=('libretro-mgba')
 conflicts=('libretro-mgba')
-#source=('libretro-mgba::git+https://github.com/libretro/mgba.git'
-source=('git+https://github.com/mgba-emu/mgba.git'
+source=('libretro-mgba::git+https://github.com/libretro/mgba.git'
         'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/mgba_libretro.info')
 sha256sums=('SKIP'
             '82a7bafc29274aaed66fdab50f40b0759668d7114166a7f3bb70a538f67fb28b')
 
 pkgver() {
-  #cd libretro-mgba
-  cd mgba
+  cd libretro-mgba
 
   echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
-prepare() {
-  #cd libretro-mgba
-  cd mgba
-
-  if [[ -d build ]]; then
-    rm -rf build
-  fi
-  mkdir build
-}
-
 build() {
-  #cd libretro-mgba/build
-  cd mgba/build
+  cd libretro-mgba
 
-  cmake .. \
-    -DCMAKE_BUILD_TYPE='Release' \
-    -DCMAKE_INSTALL_PREFIX='/usr' \
-    -DBUILD_LIBRETRO='TRUE' \
-    -DBUILD_QT='FALSE' \
-    -DBUILD_SDL='FALSE' \
-    -DBUILD_SHARED='FALSE'
-  make
+  make -f Makefile.libretro
 }
 
 package() {
-  #cd libretro-mgba/build
-  cd mgba/build
+  cd libretro-mgba
 
   install -dm 755 "${pkgdir}"/usr/{lib/libretro,share/libretro/info}
   install -m 644 mgba_libretro.so "${pkgdir}"/usr/lib/libretro/
-  install -m 644 ../../mgba_libretro.info "${pkgdir}"/usr/share/libretro/info/
+  install -m 644 ../mgba_libretro.info "${pkgdir}"/usr/share/libretro/info/
 
   install -dm 755 "${pkgdir}"/usr/share/licenses/libretro-mgba-git
-  install -m 644 ../LICENSE "${pkgdir}"/usr/share/licenses/libretro-mgba-git/
+  install -m 644 LICENSE "${pkgdir}"/usr/share/licenses/libretro-mgba-git/
 }
 
 # vim: ts=2 sw=2 et:
