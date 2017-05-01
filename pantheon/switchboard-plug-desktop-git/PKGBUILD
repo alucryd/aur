@@ -1,29 +1,28 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
-pkgname=switchboard-plug-desktop-bzr
-pkgver=r529
+pkgname=switchboard-plug-desktop-git
+pkgver=r741.c6dfa43
 pkgrel=1
-pkgdesc='Desktop plug for Switchboard'
+pkgdesc='Switchboard Desktop Plug'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/switchboard-plug-pantheon-shell'
+url='https://github.com/elementary/switchboard-plug-pantheon-shell'
 license=('GPL3')
 groups=('pantheon-unstable')
-depends=('cairo' 'gdk-pixbuf2' 'glib2' 'glibc' 'gnome-desktop' 'gtk3' 'libgee'
-         'plank'
+depends=('gdk-pixbuf2' 'glib2' 'glibc' 'gnome-desktop' 'gtk3' 'libgee' 'plank'
          'libgranite.so' 'libswitchboard-2.0.so')
-makedepends=('bzr' 'cmake' 'switchboard-bzr' 'vala')
-replaces=('switchboard-plug-pantheon-shell-bzr')
-provides=('switchboard-plug-desktop' 'switchboard-plug-pantheon-shell')
-conflicts=('switchboard-plug-desktop' 'switchboard-plug-pantheon-shell')
-source=('switchboard-plug-desktop::bzr+lp:switchboard-plug-pantheon-shell'
+makedepends=('cmake' 'git' 'granite-git' 'switchboard-git' 'vala')
+provides=('switchboard-plug-desktop')
+conflicts=('switchboard-plug-desktop')
+replaces=('switchboard-plug-desktop-bzr')
+source=('switchboard-plug-desktop::git+https://github.com/elementary/switchboard-plug-pantheon-shell.git'
         'switchboard-plug-desktop-paths.patch')
 sha256sums=('SKIP'
-            '0c6df0421b9ce72f8c4b95f0102400c01125ab5d2515a580132104773b836331')
+            '75353594da255ecc16b277e65f7a2bdc1a0aef17e6ab30a0be7b8636d60379c5')
 
 pkgver() {
   cd switchboard-plug-desktop
 
-  echo "r$(bzr revno)"
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 prepare() {

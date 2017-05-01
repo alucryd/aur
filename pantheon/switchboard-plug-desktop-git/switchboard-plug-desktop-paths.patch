@@ -1,6 +1,6 @@
-diff -rupN switchboard-plug-desktop.orig/src/Wallpaper.vala switchboard-plug-desktop/src/Wallpaper.vala
---- switchboard-plug-desktop.orig/src/Wallpaper.vala	2016-12-20 14:13:11.207917562 +0100
-+++ switchboard-plug-desktop/src/Wallpaper.vala	2016-12-20 14:13:47.472669721 +0100
+diff -rupN switchboard-plug-desktop.orig/src/Views/Wallpaper.vala switchboard-plug-desktop/src/Views/Wallpaper.vala
+--- switchboard-plug-desktop.orig/src/Views/Wallpaper.vala	2016-12-20 14:13:11.207917562 +0100
++++ switchboard-plug-desktop/src/Views/Wallpaper.vala	2016-12-20 14:13:47.472669721 +0100
 @@ -81,7 +81,7 @@ public class Wallpaper : Gtk.EventBox {
      // name of the default-wallpaper-link that we can prevent loading it again
      // (assumes that the defaultwallpaper is also in the system wallpaper directory)
