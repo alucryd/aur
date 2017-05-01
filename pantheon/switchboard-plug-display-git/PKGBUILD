@@ -1,35 +1,39 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
-pkgname=switchboard-plug-display-bzr
-pkgver=r107
+pkgname=switchboard-plug-display-git
+pkgver=r214.0e44078
 pkgrel=1
-pkgdesc='Display plug for Switchboard'
+pkgdesc=' Switchboard Displays Plug'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/switchboard-plug-display'
+url='https://github.com/elementary/switchboard-plug-display'
 license=('GPL3')
 groups=('pantheon-unstable')
-depends=('cairo' 'clutter' 'clutter-gtk' 'glib2' 'glibc' 'gnome-desktop' 'gtk3'
-         'libgee'
+depends=('glib2' 'glibc' 'gnome-desktop' 'gtk3' 'libgee'
          'libswitchboard-2.0.so')
-makedepends=('bzr' 'cmake' 'switchboard-bzr' 'vala')
+makedepends=('cmake' 'git' 'granite-git' 'switchboard-git' 'vala')
 provides=('switchboard-plug-display')
 conflicts=('switchboard-plug-display')
-source=('bzr+lp:switchboard-plug-display')
+replaces=('switchboard-plug-display-bzr')
+source=('git+https://github.com/elementary/switchboard-plug-display.git')
 sha256sums=('SKIP')
 
 pkgver() {
   cd switchboard-plug-display
 
-  echo "r$(bzr revno)"
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
-build() {
+prepare() {
   cd switchboard-plug-display
 
   if [[ -d build ]]; then
     rm -rf build
   fi
-  mkdir build && cd build
+  mkdir build
+}
+
+build() {
+  cd switchboard-plug-display/build
 
   cmake .. \
     -DCMAKE_BUILD_TYPE='Release' \
