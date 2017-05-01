@@ -1,40 +1,38 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
-pkgname=cerbere-bzr
-pkgver=r48
+pkgname=cerbere-git
+pkgver=r107.c11a2af
 pkgrel=1
 pkgdesc='The Pantheon Watchdog'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/cerbere'
+url='https://github.com/elementary/cerbere'
 license=('GPL2')
 groups=('pantheon-unstable')
-depends=('dconf' 'libgee')
-makedepends=('bzr' 'cmake' 'vala')
+depends=('dconf' 'glib2' 'glibc' 'libgee')
+makedepends=('cmake' 'git' 'vala')
 provides=('cerbere')
 conflicts=('cerbere')
-install='cerbere.install'
-source=('bzr+lp:cerbere')
+replaces=('cerbere-bzr')
+source=('git+https://github.com/elementary/cerbere.git')
 sha256sums=('SKIP')
 
 pkgver() {
   cd cerbere
 
-  echo "r$(bzr revno)"
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 prepare() {
   cd cerbere
 
-  sed "s/'wingpanel','plank','slingshot-launcher --silent'/'gala','wingpanel','plank','slingshot-launcher --silent'/" -i org.pantheon.cerbere.gschema.xml
-}
-
-build() {
-  cd cerbere
-
   if [[ -d build ]]; then
     rm -rf build
   fi
-  mkdir build && cd build
+  mkdir build
+}
+
+build() {
+  cd cerbere/build
 
   cmake .. \
     -DCMAKE_BUILD_TYPE='Release' \
