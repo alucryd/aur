@@ -1,32 +1,39 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
-pkgname=gsignond-extension-pantheon-bzr
-pkgver=r131
+pkgname=gsignond-extension-pantheon-git
+pkgver=r151.b90b0c9
 pkgrel=1
-pkgdesc='Pantheon extension for gSSO'
+pkgdesc='Pantheon extension for the GSignond daemon'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/gsignond-extension-pantheon'
+url='https://github.com/elementary/gsignond-extension-pantheon'
 license=('GPL3')
+depends=('glib2' 'glibc' 'libsecret'
+         'libgsignond-common.so')
 depends=('gsignond' 'libsecret')
-makedepends=('bzr' 'cmake' 'libaccounts-glib' 'vala')
+makedepends=('cmake' 'git' 'gsignond' 'vala')
 provides=('gsignond-extension-pantheon')
 conflicts=('gsignond-extension-pantheon')
-source=('bzr+lp:gsignond-extension-pantheon')
+replaces=('gsignond-extension-pantheon-bzr')
+source=('git+https://github.com/elementary/gsignond-extension-pantheon.git')
 sha256sums=('SKIP')
 
 pkgver() {
   cd gsignond-extension-pantheon
 
-  echo "r$(bzr revno)"
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
-build() {
+prepare() {
   cd gsignond-extension-pantheon
 
   if [[ -d build ]]; then
     rm -rf build
   fi
-  mkdir build && cd build
+  mkdir build
+}
+
+build() {
+  cd gsignond-extension-pantheon/build
 
   cmake .. \
     -DCMAKE_BUILD_TYPE='Release' \
