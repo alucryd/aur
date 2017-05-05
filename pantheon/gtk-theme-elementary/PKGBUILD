@@ -1,0 +1,21 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+
+pkgname=gtk-theme-elementary
+pkgver=5.0.4
+pkgrel=1
+pkgdesc='elementary GTK theme'
+arch=('any')
+url='https://github.com/elementary/stylesheet'
+license=('GPL3')
+groups=('pantheon')
+optdepends=('gtk-engine-murrine: GTK2 theme')
+source=("gtk-theme-elementary-${pkgver}.tar.gz::https://github.com/elementary/stylesheet/archive/${pkgver}.tar.gz")
+sha256sums=('54ae8276701393a67654c1b05ded2871a48373264caf3a9873f21853fb231cbe')
+
+package() {
+  install -dm 755 "${pkgdir}"/usr/share/themes
+  cp -dr --no-preserve='ownership' stylesheet-${pkgver} "${pkgdir}"/usr/share/themes/elementary
+  rm -rf "${pkgdir}"/usr/share/themes/elementary/{.git,.gitignore,.stylelintrc.json,.travis.yml}
+}
+
+# vim: ts=2 sw=2 et:
