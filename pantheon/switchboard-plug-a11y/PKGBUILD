@@ -7,7 +7,7 @@ pkgdesc='Switchboard Accessibility Plug'
 arch=('i686' 'x86_64')
 url='https://github.com/elementary/switchboard-plug-a11y'
 license=('GPL3')
-groups=('pantheon-unstable')
+groups=('pantheon')
 depends=('glib2' 'glibc' 'gtk3' 'libgee'
          'libgranite.so' 'libswitchboard-2.0.so')
 makedepends=('cmake' 'switchboard' 'vala')
