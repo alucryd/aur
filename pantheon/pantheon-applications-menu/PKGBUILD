@@ -7,7 +7,7 @@ pkgdesc='The Pantheon Application Menu'
 arch=('i686' 'x86_64')
 url='https://github.com/elementary/applications-menu'
 license=('GPL3')
-groups=('pantheon-unstable')
+groups=('pantheon')
 depends=('appstream' 'gdk-pixbuf2' 'glib2' 'glibc' 'gnome-menus' 'gtk3'
          'json-glib' 'libgee' 'libsoup' 'plank' 'zeitgeist'
          'libgranite.so' 'libswitchboard-2.0.so' 'libwingpanel-2.0.so')
