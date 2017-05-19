@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-locale
-pkgver=0.2.1
+pkgver=0.2.2
 pkgrel=1
 pkgdesc='Locale plug for Switchboard'
 arch=('i686' 'x86_64')
@@ -12,7 +12,7 @@ depends=('accountsservice' 'glib2' 'glibc' 'gnome-desktop' 'gtk3' 'ibus'
          'libgranite.so' 'libswitchboard-2.0.so')
 makedepends=('cmake' 'switchboard' 'vala')
 source=("https://launchpad.net/switchboard-plug-locale/loki/${pkgver}/+download/switchboard-plug-locale-${pkgver}.tar.xz")
-sha256sums=('6bcc7e6f3a2d118a8eb37327fd723aa1cdbebbb0e2afdfe3cbb5af4ea889868a')
+sha256sums=('a1e6cb57c0e9c336fa6b00ad535c00c5a438b06e2de6258d6f092eed1d16e0c5')
 
 prepare() {
   cd switchboard-plug-locale-${pkgver}
