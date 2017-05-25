@@ -3,7 +3,7 @@
 # Contributor: Themaister <maister@archlinux.us>
 
 pkgname=retroarch-git
-pkgver=1.5.0.r1078.25210d5f2
+pkgver=1.5.0.r1080.056af331a
 pkgrel=1
 pkgdesc='Reference frontend for the libretro API'
 arch=('i686' 'x86_64')
@@ -33,10 +33,8 @@ provides=('retroarch')
 conflicts=('retroarch')
 backup=('etc/retroarch.cfg')
 source=('retroarch::git+https://github.com/libretro/RetroArch.git'
-        'retroarch-gcc710.patch::https://github.com/alucryd/RetroArch/commit/f3453500d4fe01e6fde347d2e28e376cb8ea5c82.patch'
         'retroarch-paths.patch')
 sha256sums=('SKIP'
-            '564c543e6fe8e95691c8ef47848a95035fc52af9cd8a2dcdf66375a9a4a09035'
             'a8449fc210b3f55e2189e8b1106e5a8adaa359916e692af424d838b468ab3da0')
 
 pkgver() {
@@ -48,7 +46,6 @@ pkgver() {
 prepare() {
   cd retroarch
 
-  patch -Np1 -i ../retroarch-gcc710.patch
   patch -Np1 -i ../retroarch-paths.patch
 }
 
