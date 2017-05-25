@@ -28,7 +28,9 @@ optdepends=('libretro-bsnes: Super Nintendo Entertainment System cores'
             'libretro-snes9x: Super Nintendo Entertainment System core'
             'libretro-yabause: Sega Saturn core'
             'libretro-overlays: Collection of overlays'
-            'libretro-shaders: Collection of shaders')
+            'libretro-shaders-cg: Collection of Cg shaders'
+            'libretro-shaders-glsl: Collection of GLSL shaders'
+            'libretro-shaders-slang: Collection of Vulkan shaders')
 provides=('retroarch')
 conflicts=('retroarch')
 backup=('etc/retroarch.cfg')
