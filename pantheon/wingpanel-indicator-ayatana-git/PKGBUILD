@@ -1,25 +1,26 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
-pkgname=wingpanel-indicator-ayatana-bzr
-pkgver=r12
+pkgname=wingpanel-indicator-ayatana-git
+pkgver=r36.8533b03
 pkgrel=1
-pkgdesc='Ayatana indicator for Wingpanel'
+pkgdesc='Wingpanel Ayatana-Compatibility Indicator'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/wingpanel-indicator-ayatana'
+url='https://github.com/elementary/wingpanel-indicator-ayatana'
 license=('GPL3')
 groups=('pantheon-unstable')
-depends=('gdk-pixbuf2' 'glib2' 'glibc' 'gtk3' 'libgee' 'libindicator-gtk3'
+depends=('gdk-pixbuf2' 'glib2' 'glibc' 'gtk3' 'libgee' 'libindicator-gtk3-ubuntu'
          'libwingpanel-2.0.so')
-makedepends=('bzr' 'cmake' 'vala')
+makedepends=('cmake' 'git' 'gobject-introspection' 'vala')
 provides=('wingpanel-indicator-ayatana')
 conflicts=('wingpanel-indicator-ayatana')
-source=('bzr+lp:wingpanel-indicator-ayatana')
+replaces=('wingpanel-indicator-ayatana-bzr')
+source=('git+https://github.com/elementary/wingpanel-indicator-ayatana.git')
 sha256sums=('SKIP')
 
 pkgver() {
   cd wingpanel-indicator-ayatana
 
-  echo "r$(bzr revno)"
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 prepare() {
