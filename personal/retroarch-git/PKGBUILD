@@ -3,7 +3,7 @@
 # Contributor: Themaister <maister@archlinux.us>
 
 pkgname=retroarch-git
-pkgver=1.5.0.r471.2009d359c
+pkgver=1.5.0.r1080.056af331a
 pkgrel=1
 pkgdesc='Reference frontend for the libretro API'
 arch=('i686' 'x86_64')
@@ -28,17 +28,27 @@ optdepends=('libretro-bsnes: Super Nintendo Entertainment System cores'
             'libretro-snes9x: Super Nintendo Entertainment System core'
             'libretro-yabause: Sega Saturn core'
             'libretro-overlays: Collection of overlays'
-            'libretro-shaders: Collection of shaders')
+            'libretro-shaders-cg: Collection of Cg shaders'
+            'libretro-shaders-glsl: Collection of GLSL shaders'
+            'libretro-shaders-slang: Collection of Vulkan shaders')
 provides=('retroarch')
 conflicts=('retroarch')
 backup=('etc/retroarch.cfg')
-source=('retroarch::git+https://github.com/libretro/RetroArch.git')
-sha256sums=('SKIP')
+source=('retroarch::git+https://github.com/libretro/RetroArch.git'
+        'retroarch-paths.patch')
+sha256sums=('SKIP'
+            'a8449fc210b3f55e2189e8b1106e5a8adaa359916e692af424d838b468ab3da0')
 
 pkgver() {
   cd retroarch
 
   git describe --tags | sed 's/v//; s/-/.r/; s/-g/./'
+}
+
+prepare() {
+  cd retroarch
+
+  patch -Np1 -i ../retroarch-paths.patch
 }
 
 build() {
