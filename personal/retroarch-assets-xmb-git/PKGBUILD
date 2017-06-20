@@ -2,15 +2,17 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=retroarch-assets-xmb-git
-pkgver=r433.92c58f0
+pkgver=r444.a198a8a
 pkgrel=1
 pkgdesc='XMB menu assets for RetroArch'
 arch=('any')
 url='http://www.libretro.com/'
 license=('GPL')
-groups=('libretro')
+groups=('libretro-unstable')
 depends=('retroarch')
 makedepends=('git')
+provides=('retroarch-assets-xmb')
+conflicts=('retroarch-assets-xmb')
 source=("git+https://github.com/libretro/retroarch-assets.git")
 sha256sums=('SKIP')
 
