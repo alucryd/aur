@@ -8,7 +8,7 @@ pkgdesc='Sony PlayStation Portable core'
 arch=('i686' 'x86_64')
 url='https://github.com/libretro/libretro-ppsspp'
 license=('GPL2')
-groups=('libretro')
+groups=('libretro-unstable')
 depends=('gcc-libs' 'glibc' 'libgl' 'zlib'
          'libavcodec.so' 'libavformat.so' 'libavutil.so' 'libswresample.so'
          'libswscale.so')

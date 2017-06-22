@@ -9,7 +9,7 @@ pkgdesc='Reference frontend for the libretro API'
 arch=('i686' 'x86_64')
 url='http://www.libretro.com/'
 license=('GPL')
-groups=('libretro')
+groups=('libretro-unstable')
 depends=('alsa-lib' 'freetype2' 'glibc' 'libdrm' 'libgl' 'libpulse'
          'libusb' 'libx11' 'libxext' 'libxinerama' 'libxkbcommon' 'libxv'
          'libxxf86vm' 'mesa' 'openal' 'python' 'sdl2' 'wayland' 'zlib'
