@@ -3,19 +3,20 @@
 # Contributor: Themaister <maister@archlinux.us>
 
 pkgname=retroarch-git
-pkgver=1.5.0.r1080.056af331a
+pkgver=1.6.1.r5.e7d623f97
 pkgrel=1
 pkgdesc='Reference frontend for the libretro API'
 arch=('i686' 'x86_64')
 url='http://www.libretro.com/'
 license=('GPL')
-groups=('libretro')
-depends=('alsa-lib' 'freetype2' 'glibc' 'libdrm' 'libgl' 'libpulse'
-         'libusb' 'libx11' 'libxext' 'libxinerama' 'libxkbcommon' 'libxv'
-         'libxxf86vm' 'mesa' 'openal' 'python' 'sdl2' 'wayland' 'zlib'
-         'libavcodec.so' 'libavformat.so' 'libavutil.so' 'libswresample.so'
-         'libswscale.so' 'libudev.so')
-makedepends=('git')
+groups=('libretro-unstable')
+depends=('alsa-lib' 'dbus' 'gcc-libs' 'glibc' 'libdrm' 'libgl' 'libpulse'
+         'libx11' 'libxcb' 'libxext' 'libxinerama' 'libxkbcommon' 'libxv'
+         'libxxf86vm' 'mesa' 'openal' 'sdl2' 'v4l-utils' 'wayland' 'zlib'
+         'libass.so' 'libavcodec.so' 'libavformat.so' 'libavutil.so'
+         'libfreetype.so' 'libswresample.so' 'libswscale.so' 'libudev.so'
+         'libusb-1.0.so')
+makedepends=('git' 'vulkan-icd-loader')
 optdepends=('libretro-bsnes: Super Nintendo Entertainment System cores'
             'libretro-desmume: Nintendo DS core'
             'libretro-gambatte: Nintendo Game Boy/Game Boy Color core'
