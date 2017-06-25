@@ -1,5 +1,5 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
-# Contributor: yubimusubi <possum+aur@possum.cc
+# Contributor: yubimusubi <possum+aur@possum.cc>
 
 pkgname='3dstool'
 pkgver=1.0.26
