@@ -2,7 +2,7 @@
 # Contributor: nyorain <nyorain@gmail.com>
 
 pkgname=skia
-pkgver=r28451.334781463a
+pkgver=r28715.6a0feba05b
 pkgrel=1
 pkgdesc='A complete 2D graphic library for drawing text, geometries, and images'
 arch=('any')
@@ -10,7 +10,7 @@ url='https://github.com/google/skia'
 license=('BSD')
 depends=()
 makedepends=('git' 'python2')
-_commit='334781463a8d9221a7b7adf1137bedc9d7c8d4cb' # chrome/m60 HEAD
+_commit='6a0feba05bd57e84103cebc695d4a217ec9e472e' # HEAD
 source=("git+https://github.com/google/skia.git#commit=${_commit}")
 sha256sums=('SKIP')
 
@@ -32,7 +32,7 @@ prepare() {
   export PATH="${srcdir}/path:$PATH"
   sed '/^#!.*python$/ s/python/python2/' -i $(grep -rl '^#!.*python$')
 
-  bin/gn gen out/Release --args='is_official_build=true is_component_build=true is_debug=false'
+  bin/gn gen out/Release --args='is_official_build=true is_component_build=true is_debug=false extra_cflags=["-Wno-implicit-fallthrough", "-Wno-unused-function", "-Wno-unitialized"]'
 }
 
 build() {
