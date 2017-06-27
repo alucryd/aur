@@ -1,0 +1,38 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+
+pkgname=dotnet-corefx
+pkgver=1.1.0
+pkgrel=1
+pkgdesc='The .NET Core foundational libraries'
+arch=('x86_64')
+url='https://github.com/dotnet/corefx'
+license=('MIT')
+depends=('icu' 'libunwind' 'lldb' 'lttng-ust')
+makedepends=('clang' 'cmake' 'git' 'llvm' 'python2')
+optdepends=('mono: for building mscorlib.dll')
+source=("dotnet-corefx-${pkgver}.tar.gz::https://github.com/dotnet/corefx/archive/v${pkgver}.tar.gz"
+        'dotnet-coreclr-clang39.patch')
+sha256sums=('ca48ad090c72129ef145ef9b414767408a8fc1249e94a14dc6d4255b1e0b8648'
+            '1360b2b238e4d4a325dc138ccaf94666d99a96f3707a155d1f94945a83436ae0')
+
+prepare() {
+  cd corefx-${pkgver}
+
+  #patch -Np1 -i ../dotnet-coreclr-clang39.patch
+}
+
+build() {
+  cd corefx-${pkgver}
+
+  export PYTHON='/usr/bin/python2'
+
+  ./build.sh native x64 release
+}
+
+package() {
+  install -dm 755 "${pkgdir}"/opt/dotnet-cli/shared/Microsoft.NETCore.App
+  cp -dr --no-preserve='ownership' corefx-${pkgver}/bin/Product/Linux.x64.Release/Native "${pkgdir}"/opt/dotnet-cli/shared/Microsoft.NETCore.App/${pkgver}
+  find "${pkgdir}" -type f -name '*.dbg' -delete
+}
+
+# vim: ts=2 sw=2 et:
