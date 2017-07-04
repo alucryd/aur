@@ -1,0 +1,49 @@
+# $Id: PKGBUILD 295976 2017-05-14 08:49:18Z daniel $
+# Maintainer: Daniel Isenmann <daniel@archlinux.org>
+# Contributor: Brice Carpentier <brice@dlfp.org>
+
+pkgname=mono
+pkgver=5.0.1.1
+pkgrel=1
+pkgdesc='Free implementation of the .NET platform including runtime and compiler'
+arch=('i686' 'x86_64')
+license=('GPL' 'LGPL2.1' 'MPL')
+url='http://www.mono-project.com/'
+depends=('ca-certificates' 'libgdiplus' 'python' 'sh' 'zlib')
+makedepends=('cmake')
+provides=('monodoc')
+conflicts=('monodoc')
+install='mono.install'
+source=("https://download.mono-project.com/sources/mono/${pkgname}-${pkgver}.tar.bz2"
+        'mono.conf')
+sha256sums=('48d6ae71d593cd01bf0f499de569359d45856cda325575e1bacb5fabaa7e9718'
+            '9a657fc153ef4ce23bf5fc369a26bf4a124e9304bde3744d04c583c54ca47425')
+
+build() {
+  cd mono-${pkgver}
+
+  ./configure \
+    --prefix='/usr' \
+    --sysconfdir='/etc' \
+    --bindir='/usr/bin' \
+    --sbindir='/usr/bin' \
+    --with-mcs-docs='no'
+  make
+  make -C mcs/jay
+}
+
+package() {
+  cd mono-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  make -C mcs/jay DESTDIR="${pkgdir}" prefix='/usr' INSTALL="${srcdir}/mono-${pkgver}/install-sh" install
+
+  # install binfmt conf file and pathes
+  install -Dm 644 ../mono.conf -t "${pkgdir}"/usr/lib/binfmt.d/
+
+  #fix .pc file to be able to request mono on what it depends, fixes #go-oo build
+  sed -i -e "s:#Requires:Requires:" "${pkgdir}"/usr/lib/pkgconfig/mono.pc
+  sed -i -e "s:/2.0/:/4.5/:g" "${pkgdir}"/usr/lib/pkgconfig/mono-nunit.pc
+}
+
+# vim: ts=2 sw=2 et:
