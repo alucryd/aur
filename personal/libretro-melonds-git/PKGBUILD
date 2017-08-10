@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=libretro-melonds-git
-pkgver=r315.4130dfe
+pkgver=r429.f1ef314
 pkgrel=1
 pkgdesc='Nintendo DS core'
 arch=('i686' 'x86_64')
@@ -25,6 +25,8 @@ pkgver() {
 
 build() {
   cd libretro-melonds
+
+  export LDFLAGS="$LDFLAGS -lpthread"
 
   make
 }
