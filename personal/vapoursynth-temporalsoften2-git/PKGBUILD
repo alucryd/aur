@@ -1,0 +1,40 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+
+pkgname=vapoursynth-temporalsoften2-git
+pkgver=0.1.1
+pkgrel=1
+pkgdesc='Temporal Soften plugin for Vapoursynth (version 2)'
+arch=('i686' 'x86_64')
+url='http://forum.doom9.org/showthread.php?t=166769'
+license=('LGPL2.1')
+depends=('vapoursynth-scenechange-git')
+makedepends=('git')
+provides=("${pkgname%-*}")
+conflicts=("${pkgname%-*}")
+source=("git+https://github.com/alucryd/${pkgname%-*}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "%s" "$(git describe --tags | sed 's/-/.r/; s/-g/./; s/^v//')"
+}
+
+build() {
+  cd ${pkgname%-*}
+
+  ./configure --install="${pkgdir}/usr/lib/vapoursynth"
+  make
+}
+
+package(){
+  cd ${pkgname%-*}
+
+  make install
+
+  install -dm 755 "${pkgdir}"/usr/{lib/python3.3/site-packages,share/doc/vapoursynth/plugins/temporalsoften2}
+  install -m 644 temporalsoften2.py "${pkgdir}"/usr/lib/python3.3/site-packages/
+  install -m 644 README.md "${pkgdir}"/usr/share/doc/vapoursynth/plugins/temporalsoften2/
+}
+
+# vim: ts=2 sw=2 et:

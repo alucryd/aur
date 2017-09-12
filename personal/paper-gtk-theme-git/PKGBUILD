@@ -1,0 +1,40 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Gordian Edenhofer <gordian.edenhofer@gmail.com>
+# Contributor: Martin Wimpress <code@flexion.org>
+
+pkgname=paper-gtk-theme-git
+pkgver=r262.82503f8
+pkgrel=1
+pkgdesc='A modern Linux desktop theme suite with a mostly flat with a subtle use of shadows and highlights for some added depth'
+arch=('any')
+url='http://samuelhewitt.com/paper/theme'
+license=('GPL3')
+optdepends=('gtk-engine-murrine: GTK2 theme'
+            'gtk3: GTK3 theme')
+makedepends=('git')
+provides=("paper-gtk-theme")
+conflicts=("paper-gtk-theme")
+source=('git+https://github.com/snwh/paper-gtk-theme.git')
+sha256sums=('SKIP')
+
+pkgver() {
+  cd paper-gtk-theme
+
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd paper-gtk-theme
+
+  chmod +x ./autogen.sh
+  ./autogen.sh
+  make
+}
+
+package() {
+  cd paper-gtk-theme
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:

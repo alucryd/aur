@@ -1,0 +1,28 @@
+#!/bin/sh
+
+for repo in community extra multilib pantheon personal unsupported; do
+  # Clean old packages
+  if [[ $repo != community && $repo != extra ]]; then
+    for pkg in $(ls $repo); do
+      if [[ ! -f $repo/$pkg/PKGBUILD ]]; then
+        rm -rf $repo/$pkg
+      fi
+    done
+  fi
+  # Clean build files
+  find $repo -maxdepth 3 -type d -name pkg -exec rm -rf {} +
+  find $repo -maxdepth 3 -type d -name src -exec rm -rf {} +
+  find $repo -maxdepth 3 -name *.pkg.tar.xz -delete
+  find $repo -maxdepth 3 -name *.pkg.tar.xz.sig -delete
+  # Clean sources
+  find $repo -maxdepth 3 -name *.tar.bz2 -delete
+  find $repo -maxdepth 3 -name *.tar.gz -delete
+  find $repo -maxdepth 3 -name *.tar.xz -delete
+  find $repo -maxdepth 3 -name *.deb -delete
+  find $repo -maxdepth 3 -name *.rpm -delete
+  # Correct permissions
+  find $repo -maxdepth 3 -type d -exec chmod 755 {} +
+  find $repo -maxdepth 3 -type f -exec chmod 644 {} +
+done
+
+# vim: ts=2 sw=2 et:

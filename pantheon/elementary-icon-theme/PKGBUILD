@@ -1,0 +1,25 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+
+pkgname=elementary-icon-theme
+pkgver=4.1.0
+pkgrel=1
+pkgdesc='Named, vector icons for elementary OS'
+arch=('any')
+url='https://github.com/elementary/icons'
+license=('GPL3')
+groups=('pantheon')
+depends=('hicolor-icon-theme')
+provides=('elementary-icon-theme')
+conflicts=('elementary-icon-theme')
+options=('!emptydirs')
+source=("elementary-icon-theme-${pkgver}.tar.gz::https://github.com/elementary/icons/archive/4.1.0.tar.gz")
+sha256sums=('91ba2d11e5c9a11de440d3c6b25611dcf1e1f0346600eff2cd8ccbd88eb79ae8')
+
+package() {
+  rm -rf icons-${pkgver}/{.git*,AUTHORS,CONTRIBUTORS,COPYING,README.md,icons/elementary/icon-theme.cache}
+  install -dm 755 "${pkgdir}"/usr/share/icons
+  cp -dr --no-preserve='ownership' icons-${pkgver} "${pkgdir}"/usr/share/icons/elementary
+}
+
+# vim: ts=2 sw=2 et:
+

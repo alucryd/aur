@@ -1,0 +1,91 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+# Contributor: ceri
+
+pkgbase=citra-git
+pkgname=('citra-cli-git' 'citra-qt-git')
+pkgver=r4281.17d74029
+pkgrel=1
+pkgdesc='A Nintendo 3DS emulator'
+arch=('i686' 'x86_64')
+url="https://github.com/citra-emu/citra/"
+license=('GPL2')
+makedepends=('boost' 'cmake' 'desktop-file-utils' 'git' 'mesa' 'qt5-base'
+             'sdl2' 'shared-mime-info')
+source=('git+https://github.com/citra-emu/citra'
+        'git+https://github.com/citra-emu/ext-soundtouch.git'
+        'git+https://github.com/fmtlib/fmt'
+        'git+https://github.com/herumi/xbyak.git'
+        'git+https://github.com/MerryMage/dynarmic'
+        'git+https://github.com/neobrain/nihstro'
+        'git+https://github.com/philsquared/Catch'
+        'git+https://github.com/svn2github/inih')
+sha256sums=('SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP')
+
+pkgver() {
+  cd citra
+
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  cd citra
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build
+
+  git submodule init externals/{catch,dynarmic,inih/inih,nihstro,soundtouch,xbyak}
+  git config submodule.catch.url ../Catch
+  git config submodule.dynarmic.url ../dynarmic
+  git config submodule.inih.url ../inih
+  git config submodule.nihstro.url ../nihstro
+  git config submodule.soundtouch.url ../ext-soundtouch
+  git config submodule.xbyak.url ../xbyak
+  git submodule update externals/{catch,dynarmic,inih/inih,nihstro,soundtouch,xbyak}
+
+  cd externals/dynarmic
+
+  git submodule init externals/{fmt,xbyak}
+  git config submodule.fmt.url ../fmt
+  git config submodule.xbyak.url ../xbyak
+  git submodule update externals/{fmt,xbyak}
+}
+
+build() {
+  cd citra/build
+
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr'
+  make
+}
+
+package_citra-cli-git() {
+  depends=('gcc-libs' 'glibc' 'libpng' 'sdl2')
+
+  cd citra/build
+
+  install -dm 755 "${pkgdir}"/usr/bin
+  install -m 755 src/citra/citra "${pkgdir}"/usr/bin/
+}
+
+package_citra-qt-git() {
+  depends=('desktop-file-utils' 'gcc-libs' 'glibc' 'libpng' 'qt5-base'
+           'shared-mime-info')
+
+  cd citra/build
+
+  make DESTDIR="${pkgdir}" install
+  rm "${pkgdir}"/usr/bin/citra
+}
+
+# vim: ts=2 sw=2 et:

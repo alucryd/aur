@@ -1,0 +1,41 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Maintainer: Jesse Jaara <jesse.jaara@gmail.com>
+
+pkgname=lib32-kmod
+pkgver=22
+pkgrel=1
+pkgdesc='Linux kernel module handling'
+arch=('x86_64')
+url='http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary'
+license=('GPL2')
+depends=('kmod' 'lib32-xz' 'lib32-zlib')
+makedepends=('gcc-multilib')
+provides=('libkmod.so')
+source=("https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-${pkgver}.tar.xz")
+sha256sums=('ba3b1ddea33228b473189fcb05b809024a3b86e9a7cf37d420cae06beb749f82')
+
+build() {
+  cd kmod-${pkgver}
+
+  export CC='gcc -m32'
+  export CXX='g++ -m32'
+  export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
+
+  ./configure \
+    --prefix='/usr' \
+    --libdir='/usr/lib32' \
+    --sysconfdir='/etc' \
+    --disable-tools \
+    --with-xz \
+    --with-zlib
+  make
+}
+
+package() {
+  cd kmod-${pkgver}
+
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}"/usr/{bin,include,share}
+}
+
+# vim: ts=2 sw=2 et:

@@ -1,0 +1,28 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Gustavo Alvarez <sl1pkn07@gmail.com>
+
+pkgname=vapoursynth-plugin-finesharp-git
+pkgver=r2.7ab7231
+pkgrel=1
+pkgdesc='FineSharp plugin for VapourSynth'
+arch=('i686' 'x86_64')
+url='http://forum.doom9.org/showthread.php?t=166524'
+license=('GPL')
+depends=('vapoursynth')
+source=("${pkgname%-*}::git+https://gist.github.com/f18df5dd9b1f8c9a28c3.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${pkgname%-*}
+
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package(){
+  cd ${pkgname%-*}
+
+  install -dm 755 "${pkgdir}"/usr/lib/python3.3/site-packages
+  install -m 644 finesharp.py "${pkgdir}"/usr/lib/python3.3/site-packages/
+}
+
+# vim: ts=2 sw=2 et:
