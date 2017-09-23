@@ -1,0 +1,22 @@
+pkgbase = switchboard-plug-elementary-tweaks
+	pkgdesc = Elementary Tweaks plug for Switchboard
+	pkgver = 0.0.1
+	pkgrel = 1
+	url = https://github.com/elementary-tweaks/elementary-tweaks
+	arch = i686
+	arch = x86_64
+	license = GPL3
+	makedepends = cmake
+	makedepends = vala
+	depends = gconf
+	depends = glib2
+	depends = glibc
+	depends = gtk3
+	depends = libgee
+	depends = libgranite.so
+	depends = libswitchboard-2.0.so
+	source = switchboard-plug-elementary-tweaks-0.0.1.tar.gz::https://github.com/elementary-tweaks/elementary-tweaks/archive/0.0.1.tar.gz
+	sha512sums = c8bbdc5d5fd27af5840341f85722f99e73e58a7c41f403f8cb7a23d840cad99c550fc89b9582ea57eb30b92e0176efbf084ba9a355a73ada747b3e1b06b37dd6
+
+pkgname = switchboard-plug-elementary-tweaks
+

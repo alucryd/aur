@@ -1,0 +1,35 @@
+# Maintainer: NicoHood <archlinux {cat} nicohood {dog} de>
+
+pkgname=switchboard-plug-elementary-tweaks
+_pkgname=elementary-tweaks
+pkgver=0.0.1
+pkgrel=1
+pkgdesc='Elementary Tweaks plug for Switchboard'
+arch=('i686' 'x86_64')
+url='https://github.com/elementary-tweaks/elementary-tweaks'
+license=('GPL3')
+depends=('gconf' 'glib2' 'glibc' 'gtk3' 'libgee'
+         'libgranite.so' 'libswitchboard-2.0.so')
+makedepends=('cmake' 'vala')
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/elementary-tweaks/${_pkgname}/archive/${pkgver}.tar.gz")
+sha512sums=('c8bbdc5d5fd27af5840341f85722f99e73e58a7c41f403f8cb7a23d840cad99c550fc89b9582ea57eb30b92e0176efbf084ba9a355a73ada747b3e1b06b37dd6')
+
+build() {
+  cd ${_pkgname}-${pkgver}
+  mkdir -p build
+  cd build
+
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib'
+  make
+}
+
+package() {
+  cd ${_pkgname}-${pkgver}/build
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:

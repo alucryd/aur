@@ -1,31 +1,24 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: NicoHood <archlinux {cat} nicohood {dog} de>
 
 pkgname=wingpanel-indicator-datetime
-pkgver=2.0.1
+pkgver=2.0.2
 pkgrel=1
 pkgdesc='Date & Time indicator for Wingpanel'
 arch=('i686' 'x86_64')
-url='https://launchpad.net/wingpanel-indicator-datetime'
+url='https://github.com/elementary/wingpanel-indicator-datetime'
 license=('GPL3')
 groups=('pantheon')
 depends=('cairo' 'evolution-data-server' 'glib2' 'glibc' 'gtk3' 'libgee'
-         'libical'
-         'libgranite.so' 'libwingpanel-2.0.so')
+         'libical' 'libgranite.so' 'libwingpanel-2.0.so')
 makedepends=('cmake' 'vala' 'wingpanel')
-source=("https://launchpad.net/wingpanel-indicator-datetime/loki/${pkgver}/+download/wingpanel-indicator-datetime-${pkgver}.tar.xz")
-sha256sums=('87d996186ce2cf4ab09be7e8a5bea8f5f37608e98f0bdd7e22ac90280278d22b')
-
-prepare() {
-  cd wingpanel-indicator-datetime-${pkgver}
-
-  if [[ -d build ]]; then
-    rm -rf build
-  fi
-  mkdir build
-}
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/elementary/${pkgname}/archive/${pkgver}.tar.gz")
+sha512sums=('d9723ccc6dc8d346ff7caad7defb01a9b7dae2d4958fd1576a23a25813431c47ee8edb3aa636f88a81ce099c2bc0107b11c2cb94e83eb665adf90694a8f8aecb')
 
 build() {
-  cd wingpanel-indicator-datetime-${pkgver}/build
+  cd ${pkgname}-${pkgver}
+  mkdir -p build
+  cd build
 
   cmake .. \
     -DCMAKE_BUILD_TYPE='Release' \
@@ -35,7 +28,7 @@ build() {
 }
 
 package() {
-  cd wingpanel-indicator-datetime-${pkgver}/build
+  cd ${pkgname}-${pkgver}/build
 
   make DESTDIR="${pkgdir}" install
 }

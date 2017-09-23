@@ -1,4 +1,5 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: NicoHood <archlinux {cat} nicohood {dog} de>
 
 pkgname=wingpanel-indicator-bluetooth
 pkgver=2.0.3
@@ -11,29 +12,23 @@ groups=('pantheon')
 depends=('bluez' 'glib2' 'glibc' 'gtk3'
          'libgranite.so' 'libwingpanel-2.0.so')
 makedepends=('cmake' 'vala' 'wingpanel')
-source=("wingpanel-indicator-bluetooth-${pkgver}.tar.gz::https://github.com/elementary/wingpanel-indicator-bluetooth/archive/${pkgver}.tar.gz")
-sha256sums=('b0d86f97715d350f9602dd029e187c4408d9370182d0e7061e8d304a5d551f1d')
-
-prepare() {
-  if [[ -d build ]]; then
-    rm -rf build
-  fi
-  mkdir build
-}
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/elementary/${pkgname}/archive/${pkgver}.tar.gz")
+sha512sums=('221f6ff732d45716622956a2b960516c3e51cf9ee389b9e900603f7516aa64963f0071079032d0ec3a153871c9d478990ac87d3ddaf9014493d9a18dc5c3fd4d')
 
 build() {
+  cd ${pkgname}-${pkgver}
+  mkdir -p build
   cd build
 
-  cmake ../wingpanel-indicator-bluetooth-${pkgver} \
+  cmake .. \
     -DCMAKE_BUILD_TYPE='Release' \
     -DCMAKE_INSTALL_PREFIX='/usr' \
-    -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
-    -DGSETTINGS_COMPILE='FALSE'
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib'
   make
 }
 
 package() {
-  cd build
+  cd ${pkgname}-${pkgver}/build
 
   make DESTDIR="${pkgdir}" install
 }
