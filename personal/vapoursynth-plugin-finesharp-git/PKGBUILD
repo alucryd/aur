@@ -5,7 +5,7 @@ pkgname=vapoursynth-plugin-finesharp-git
 pkgver=r2.7ab7231
 pkgrel=1
 pkgdesc='FineSharp plugin for VapourSynth'
-arch=('i686' 'x86_64')
+arch=('x86_64')
 url='http://forum.doom9.org/showthread.php?t=166524'
 license=('GPL')
 depends=('vapoursynth')

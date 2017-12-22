@@ -4,7 +4,7 @@ pkgname=vapoursynth-temporalsoften2-git
 pkgver=0.1.1
 pkgrel=1
 pkgdesc='Temporal Soften plugin for Vapoursynth (version 2)'
-arch=('i686' 'x86_64')
+arch=('x86_64')
 url='http://forum.doom9.org/showthread.php?t=166769'
 license=('LGPL2.1')
 depends=('vapoursynth-scenechange-git')

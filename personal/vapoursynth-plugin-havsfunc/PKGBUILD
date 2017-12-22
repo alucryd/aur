@@ -5,7 +5,7 @@ pkgname=vapoursynth-plugin-havsfunc
 pkgver=r6
 pkgrel=1
 pkgdesc='havsfunc plugin for Vapoursynth'
-arch=('i686' 'x86_64')
+arch=('x86_64')
 url='http://forum.doom9.org/showthread.php?t=166582'
 license=('GPL')
 depends=('vapoursynth')

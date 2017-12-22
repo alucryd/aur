@@ -4,7 +4,7 @@ pkgname=vapoursynth-scenechange-git
 pkgver=0.2.0
 pkgrel=1
 pkgdesc='Scene change plugin for Vapoursynth'
-arch=('i686' 'x86_64')
+arch=('x86_64')
 url='http://forum.doom9.org/showthread.php?t=166769'
 license=('LGPL2.1')
 depends=('vapoursynth')
