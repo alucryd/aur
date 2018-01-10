@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
-pkgname=maya-calendar
-pkgver=0.4.0.2
+pkgname=pantheon-calendar
+pkgver=0.4.1
 pkgrel=1
 pkgdesc='The Pantheon Calendar'
 arch=('x86_64')
@@ -13,13 +13,14 @@ depends=('cairo' 'clutter' 'clutter-gtk' 'contractor' 'evolution-data-server'
          'libchamplain' 'libgee' 'libical' 'libnotify' 'libsoup'
          'libgranite.so')
 makedepends=('cmake' 'intltool' 'vala')
-source=("https://launchpad.net/maya/loki/${pkgver}/+download/maya-calendar-${pkgver}.tar.xz")
-sha256sums=('853164e291e9cf4e705c413a7dae13c810a248d9d3ee263fbf56d785e941170b')
+conflicts=('maya-calendar')
+provides=('maya-calendar')
+replaces=('maya-calendar')
+source=("pantheon-calendar-${pkgver}.tar.gz::https://github.com/elementary/calendar/archive/${pkgver}.tar.gz")
+sha256sums=('3f9b2207ee59083ad09d0a409b81b9f4e8fb5b40aa7342c333c05e1edd04cdd3')
 
 prepare() {
-  cd maya-calendar-${pkgver}
-
-  sed 's|${CMAKE_INSTALL_FULL_LIBDIR}|${CMAKE_INSTALL_PREFIX}/lib|g' -i $(grep -rl CMAKE_INSTALL_FULL_LIBDIR)
+  #sed 's|${CMAKE_INSTALL_FULL_LIBDIR}|${CMAKE_INSTALL_PREFIX}/lib|g' -i $(grep -rl CMAKE_INSTALL_FULL_LIBDIR)
 
   if [[ -d build ]]; then
     rm -rf build
@@ -28,17 +29,18 @@ prepare() {
 }
 
 build() {
-  cd maya-calendar-${pkgver}/build
+  cd build
 
-  cmake .. \
+  cmake ../calendar-${pkgver} \
     -DCMAKE_BUILD_TYPE='Release' \
     -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
     -DGSETTINGS_COMPILE='FALSE'
   make
 }
 
 package() {
-  cd maya-calendar-${pkgver}/build
+  cd build
 
   make DESTDIR="${pkgdir}" install
 }
