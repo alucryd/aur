@@ -8,8 +8,8 @@ arch=('x86_64')
 url='https://github.com/elementary/wingpanel-indicator-sound'
 license=('GPL3')
 groups=('pantheon-unstable')
-depends=('cairo' 'gdk-pixbuf2' 'glib2' 'glibc' 'gtk3' 'libcanberra' 'libgee'
-         'libnotify' 'libpulse'
+depends=('cairo' 'gdk-pixbuf2' 'glib2' 'glibc' 'gtk2' 'gtk3' 'libcanberra'
+         'libgee' 'libnotify' 'libpulse'
          'libgranite.so' 'libwingpanel-2.0.so')
 makedepends=('cmake' 'git' 'gobject-introspection' 'granite-git' 'gtk2' 'vala'
              'wingpanel-git')
