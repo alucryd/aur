@@ -8,14 +8,12 @@ arch=('x86_64')
 url='https://github.com/libretro/melonDS'
 license=('GPL2')
 groups=('libretro-unstable')
-depends=('gcc-libs' 'glibc')
+depends=('gcc-libs' 'glibc' 'libretro-core-info')
 makedepends=('git')
 provides=('libretro-melonds')
 conflicts=('libretro-melonds')
-source=('libretro-melonds::git+https://github.com/libretro/melonDS.git'
-        'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/melonds_libretro.info')
-sha256sums=('SKIP'
-            '75dccee87bfaba67884963dfb1171fd106219e6f757a8aae297270f9bd2d964b')
+source=('libretro-melonds::git+https://github.com/libretro/melonDS.git')
+sha256sums=('SKIP')
 
 pkgver() {
   cd libretro-melonds
@@ -35,7 +33,6 @@ package() {
   cd libretro-melonds
 
   install -Dm 644 melonds_libretro.so -t "${pkgdir}"/usr/lib/libretro/
-  install -Dm 644 ../melonds_libretro.info -t "${pkgdir}"/usr/share/libretro/info/
 }
 
 # vim: ts=2 sw=2 et:
