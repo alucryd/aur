@@ -5,85 +5,44 @@
 # Contributor: damir <damir@archlinux.org>
 # Contributor: Paul Mattal <paul@archlinux.org>
 
-pkgbase=x264-git
-pkgname=('x264-git' 'libx264-git' 'libx264-10bit-git')
-pkgver=r2582.57031da
+pkgname=x264-git
+pkgver=r2893.b00bcafe
 pkgrel=1
+pkgdesc='A free software library and application for encoding video streams into the H.264/MPEG-4 AVC compression format'
 arch=('x86_64')
 url='http://www.videolan.org/developers/x264.html'
-license=('GPL')
-makedepends=('ffms2' 'git' 'l-smash' 'yasm')
-source=('git://git.videolan.org/x264/x264-sandbox.git#branch=stable')
+license=('GPL2')
+depends=('glibc'
+         'libavcodec.so' 'libavformat.so' 'libavutil.so' 'libffms2.so'
+         'liblsmash.so' 'libswscale.so')
+makedepends=('ffms2' 'git' 'l-smash' 'nasm')
+provides=('libx264' 'x264'
+          'libx264.so')
+conflicts=('libx264' 'x264')
+source=('git+https://git.videolan.org/git/x264.git')
 md5sums=('SKIP')
 
 pkgver() {
-  cd x264-sandbox
+  cd x264
 
   echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
-prepare() {
-  cp -r x264-sandbox x264-sandbox-10bit
-}
-
 build() {
-  cd x264-sandbox
+  cd x264
 
   ./configure \
     --prefix='/usr' \
-    --bit-depth='8' \
     --enable-shared \
-    --disable-avs
-  make
-
-  cd ../x264-sandbox-10bit
-
-  ./configure \
-    --prefix='/usr' \
-    --bit-depth='10' \
-    --enable-shared \
+    --enable-lto \
     --disable-avs
   make
 }
 
-package_x264-git() {
-  pkgdesc='CLI tools for encoding H264/AVC video streams.'
-  depends=('libavcodec.so' 'libavformat.so' 'libavutil.so' 'libffms2.so'
-           'liblsmash.so')
-  provides=('x264')
-  conflicts=('x264')
+package() {
+  cd x264
 
-  cd x264-sandbox
-
-  make DESTDIR="${pkgdir}" install-cli
-
-  cd ../x264-sandbox-10bit
-
-  install -m 755 x264 "${pkgdir}"/usr/bin/x264-10bit
-}
-
-package_libx264-git() {
-  pkgdesc='Library for encoding H264/AVC video streams.'
-  depends=('glibc')
-  provides=('libx264' 'libx264.so')
-  conflicts=('libx264')
-
-  cd x264-sandbox
-
-  install -dm 755 "${pkgdir}"/usr/lib
-  make DESTDIR="${pkgdir}" install-lib-{dev,shared}
-}
-
-package_libx264-10bit-git() {
-  pkgdesc='Library for encoding H264/AVC video streams.'
-  depends=('glibc')
-  provides=('libx264' 'libx264.so')
-  conflicts=('libx264')
-
-  cd x264-sandbox-10bit
-
-  install -dm 755 "${pkgdir}"/usr/lib
-  make DESTDIR="${pkgdir}" install-lib-{dev,shared}
+  make DESTDIR="${pkgdir}" install
 }
 
 # vim: ts=2 sw=2 et:
