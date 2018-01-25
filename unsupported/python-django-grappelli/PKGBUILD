@@ -10,7 +10,7 @@ license=('custom')
 depends=('python-django')
 makedepends=('python-setuptools')
 makedepends=('git')
-source=("django-grappeli-${pkgver}.tar.gz::https://github.com/sehmaschine/django-grappelli/archive/${pkgver}.tar.gz")
+source=("django-grappelli-${pkgver}.tar.gz::https://github.com/sehmaschine/django-grappelli/archive/${pkgver}.tar.gz")
 sha256sums=('e8a3cd40f0b65b1c463d3a2f427cfcf1ab11d18b3f3987086fccf042cbcce22a')
 
 build() {
