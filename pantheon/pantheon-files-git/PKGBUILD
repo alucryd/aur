@@ -2,41 +2,42 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-files-bzr
-pkgver=r2107
+pkgver=r5585.a3cc3db4
 pkgrel=1
-pkgdesc='The Pantheon File Manager'
+pkgdesc='The Pantheon File Browser'
 arch=('x86_64')
-url='https://launchpad.net/pantheon-files'
+url='https://github.com/elementary/files'
 license=('GPL3')
 groups=('pantheon-unstable')
 depends=('atk' 'cairo' 'dbus-glib' 'desktop-file-utils' 'gdk-pixbuf2' 'glib2'
          'glibc' 'gtk3' 'libcanberra' 'libgee' 'libnotify' 'pango' 'plank'
          'sqlite' 'zeitgeist'
          'libgranite.so')
-makedepends=('bzr' 'cmake' 'gnome-common' 'granite-git' 'vala')
-optdepends=('contractor-bzr: Various context menu entries'
+makedepends=('cmake' 'git' 'gnome-common' 'granite-git' 'vala')
+optdepends=('contractor-git: Various context menu entries'
             'tumbler: Thumbnails generation')
 provides=('pantheon-files')
 conflicts=('pantheon-files')
-install='pantheon-files.install'
-source=('bzr+lp:pantheon-files')
+source=('pantheon-files::git+https://github.com/elementary/files.git')
 sha256sums=('SKIP')
 
 pkgver() {
   cd pantheon-files
 
-  echo "r$(bzr revno)"
+  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
-build() {
-  cd pantheon-files
-
+prepare() {
   if [[ -d build ]]; then
     rm -rf build
   fi
-  mkdir build && cd build
+  mkdir build
+}
 
-  cmake .. \
+build() {
+  cd build
+
+  cmake ../pantheon-files \
     -DCMAKE_BUILD_TYPE='Release' \
     -DCMAKE_INSTALL_PREFIX='/usr' \
     -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
@@ -46,7 +47,7 @@ build() {
 }
 
 package() {
-  cd pantheon-files/build
+  cd build
 
   make DESTDIR="${pkgdir}" install
 }
