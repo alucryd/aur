@@ -1,9 +1,9 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
-pkgname=scratch-text-editor-git
+pkgname=pantheon-code-git
 pkgver=r2826.e3686e34
 pkgrel=1
-pkgdesc='The Pantheon Text Editor'
+pkgdesc='The Pantheon Code Editor'
 arch=('x86_64')
 url='https://github.com/elementary/scratch'
 license=('GPL3')
@@ -17,13 +17,14 @@ optdepends=('gtkspell3: Spell Check extension'
             'vala: Outline extension'
             'vte3: Terminal extension'
             'webkit2gtk: Browser Preview extension')
-provides=('scratch-text-editor')
-conflicts=('scratch-text-editor')
-source=('scratch-text-editor::git+https://github.com/elementary/scratch.git')
+provides=('pantheon-code' 'scratch-text-editor')
+conflicts=('pantheon-code' 'scratch-text-editor')
+replaces=('scratch-text-editor-git')
+source=('pantheon-code::git+https://github.com/elementary/code.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd scratch-text-editor
+  cd pantheon-code
 
   echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
@@ -34,13 +35,13 @@ prepare() {
   fi
   mkdir build
 
-  sed 's/libvala-0.36/libvala-0.38/' -i scratch-text-editor/plugins/outline/meson.build
+  sed 's/libvala-0.36/libvala-0.38/' -i pantheon-code/plugins/outline/meson.build
 }
 
 build() {
   cd build
 
-  arch-meson ../scratch-text-editor
+  arch-meson ../pantheon-code
   ninja
 }
 
