@@ -8,6 +8,7 @@ arch=('any')
 url='https://github.com/elementary/dpms-helper'
 license=('GPL')
 groups=('pantheon-unstable')
+depends=('bash' 'dconf')
 makedepends=('desktop-file-utils' 'git' 'meson')
 provides=('elementary-dpms-helper' 'pantheon-dpms-helper')
 conflicts=('elementary-dpms-helper' 'pantheon-dpms-helper')
