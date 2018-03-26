@@ -4,21 +4,19 @@
 # Contributor: almostalive <almostalive2003@gmail.com>
 
 pkgname=libretro-desmume-git
-pkgver=r5105.5622ebe
+pkgver=r5884.e25b33bcb
 pkgrel=1
 pkgdesc='Nintendo DS core'
 arch=('x86_64')
 url='https://github.com/libretro/desmume'
 license=('GPL2')
 groups=('libretro-unstable')
-depends=('gcc-libs' 'glibc')
+depends=('gcc-libs' 'glibc' 'libretro-core-info')
 makedepends=('git')
 provides=('libretro-desmume')
 conflicts=('libretro-desmume')
-source=('libretro-desmume::git+https://github.com/libretro/desmume.git'
-        'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/desmume_libretro.info')
-sha256sums=('SKIP'
-            'a851e34cacb4714006d74f722ec67a0f252e900d60afdb74d4f75dd7461fbaa8')
+source=('libretro-desmume::git+https://github.com/libretro/desmume.git')
+sha256sums=('SKIP')
 
 pkgver() {
   cd libretro-desmume
@@ -27,17 +25,15 @@ pkgver() {
 }
 
 build() {
-  cd libretro-desmume/desmume
+  cd libretro-desmume/desmume/src/frontend/libretro
 
   make -f Makefile.libretro
 }
 
 package() {
-  cd libretro-desmume/desmume
+  cd libretro-desmume/desmume/src/frontend/libretro
 
-  install -dm 755 "${pkgdir}"/usr/{lib/libretro,share/libretro/info}
-  install -m 644 desmume_libretro.so "${pkgdir}"/usr/lib/libretro/
-  install -m 644 ../../desmume_libretro.info "${pkgdir}"/usr/share/libretro/info/
+  install -Dm 644 desmume_libretro.so -t "${pkgdir}"/usr/lib/libretro/
 }
 
 # vim: ts=2 sw=2 et:
