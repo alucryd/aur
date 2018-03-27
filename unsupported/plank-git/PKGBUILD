@@ -2,26 +2,25 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 # Contributor: dcelasun <dcelasun@gmail.com>
 
-pkgname=plank-bzr
-pkgver=r1551
+pkgname=plank-git
+pkgver=0.11.4.r19.42cb5e3
 pkgrel=1
 pkgdesc='Elegant, simple, clean dock'
 arch=('x86_64')
 url='https://launchpad.net/plank'
 license=('GPL3')
-depends=('atk' 'bamf' 'cairo' 'gdk-pixbuf2' 'glib2' 'glibc' 'gtk3'
-         'libgee' 'libwnck3' 'libx11' 'libxfixes' 'libxi' 'pango')
-makedepends=('bzr' 'gnome-common' 'intltool' 'vala')
+depends=('atk' 'bamf' 'cairo' 'gdk-pixbuf2' 'glib2' 'glibc' 'gnome-menus'
+         'gtk3' 'libgee' 'libwnck3' 'libx11' 'libxfixes' 'libxi' 'pango')
+makedepends=('gnome-common' 'git' 'intltool' 'vala')
 provides=('plank')
 conflicts=('plank')
-install='plank.install'
-source=('bzr+lp:plank')
+source=('git+https://github.com/ricotz/plank.git')
 sha256sums=('SKIP')
 
 pkgver() {
   cd plank
 
-  echo "r$(bzr revno)"
+  echo "$(git describe --tags | sed 's/^v//; s/-/.r/; s/-g/./')"
 }
 
 build() {
