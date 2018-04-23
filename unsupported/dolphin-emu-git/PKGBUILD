@@ -50,6 +50,7 @@ build() {
 package_dolphin-emu-git() {
   provides=('dolphin-emu')
   conflicts=('dolphin-emu')
+  depends=('qt5-base')
 
   cd dolphin-emu/build
 

@@ -46,6 +46,7 @@ pkgbase = dolphin-emu-git
 	sha256sums = SKIP
 
 pkgname = dolphin-emu-git
+	depends = qt5-base
 	provides = dolphin-emu
 	conflicts = dolphin-emu
 
