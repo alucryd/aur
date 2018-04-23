@@ -2,8 +2,8 @@
 # Contributor: Lightning <sgsdxzy@gmail.com>
 
 pkgbase=dolphin-emu-git
-pkgname=('dolphin-emu-git' 'dolphin-emu-cli-git' 'dolphin-emu-qt-git')
-pkgver=5.0.r5739.91dac03c45
+pkgname=('dolphin-emu-git' 'dolphin-emu-cli-git' 'dolphin-emu-wx-git')
+pkgver=5.0.r7082.c51c044142
 pkgrel=1
 pkgdesc='A GameCube / Wii / Triforce emulator'
 arch=('x86_64')
@@ -54,7 +54,7 @@ package_dolphin-emu-git() {
   cd dolphin-emu/build
 
   make DESTDIR="${pkgdir}" install
-  rm -rf "${pkgdir}"/usr/bin/dolphin-emu-{nogui,qt2}
+  rm -rf "${pkgdir}"/usr/bin/dolphin-emu-{nogui,wx}
 
   install -Dm 644 ../Data/51-usb-device.rules -t "${pkgdir}"/usr/lib/udev/rules.d/
 }
@@ -68,13 +68,13 @@ package_dolphin-emu-cli-git() {
   install -m 755 Binaries/dolphin-emu-nogui "${pkgdir}"/usr/bin/dolphin-emu-cli
 }
 
-package_dolphin-emu-qt-git() {
-  depends=('dolphin-emu-git' 'qt5-base')
+package_dolphin-emu-wx-git() {
+  depends=('dolphin-emu-git')
 
   cd dolphin-emu/build
 
   install -dm 755 "${pkgdir}"/usr/bin
-  install -m 755 Binaries/dolphin-emu-qt2 "${pkgdir}"/usr/bin/
+  install -m 755 Binaries/dolphin-emu-wx "${pkgdir}"/usr/bin/
 }
 
 # vim: ts=2 sw=2 et:
