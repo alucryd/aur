@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-terminal-git
-pkgver=r1638.25f359a
+pkgver=r1674.53a15da
 pkgrel=1
 pkgdesc='The Pantheon Terminal Emulator'
 arch=('x86_64')
@@ -13,8 +13,10 @@ depends=('desktop-file-utils' 'glib2' 'glibc' 'gtk3' 'libnotify' 'pango' 'vte3'
 makedepends=('appstream' 'git' 'granite-git' 'intltool' 'meson' 'vala')
 provides=('pantheon-terminal')
 conflicts=('pantheon-terminal')
-source=('pantheon-terminal::git+https://github.com/elementary/terminal.git')
-sha256sums=('SKIP')
+source=('pantheon-terminal::git+https://github.com/elementary/terminal.git'
+        'https://raw.githubusercontent.com/Heather/gentoo-gnome/master/x11-terms/pantheon-terminal/files/no-appstream.patch')
+sha256sums=('SKIP'
+            'f061b596afbada17b88e29b9f97d68b0fcbac1d440025e744b452ba32fe4a41d')
 
 pkgver() {
   cd pantheon-terminal
@@ -27,6 +29,9 @@ prepare() {
     rm -rf build
   fi
   mkdir build
+  cd pantheon-terminal
+  patch -Np1 -i ../no-appstream.patch
+  
 }
 
 build() {
