@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=elementary-icon-theme-git
-pkgver=r2159.22235cb7
+pkgver=r2173.b7716139
 pkgrel=1
 pkgdesc='Named, vector icons for elementary OS'
 arch=('any')
