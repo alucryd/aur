@@ -1,6 +1,6 @@
 pkgbase = pantheon-dpms-helper-git
 	pkgdesc = DPMS helper for Pantheon
-	pkgver = r5.d155841
+	pkgver = r6.6e0d292
 	pkgrel = 1
 	url = https://github.com/elementary/dpms-helper
 	arch = any
@@ -11,8 +11,8 @@ pkgbase = pantheon-dpms-helper-git
 	makedepends = meson
 	depends = bash
 	depends = dconf
-	provides = elementary-dpms-helper
 	provides = pantheon-dpms-helper
+	provides = elementary-dpms-helper
 	conflicts = elementary-dpms-helper
 	conflicts = pantheon-dpms-helper
 	source = pantheon-dpms-helper::git+https://github.com/elementary/dpms-helper.git
