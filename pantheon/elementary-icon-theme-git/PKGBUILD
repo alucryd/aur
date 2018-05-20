@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=elementary-icon-theme-git
-pkgver=r2173.b7716139
+pkgver=r2235.3e79cc28
 pkgrel=1
 pkgdesc='Named, vector icons for elementary OS'
 arch=('any')
@@ -22,19 +22,11 @@ pkgver() {
   echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
-prepare() {
-  if [[ -d build ]]; then
-    rm -rf build
-  fi
-  mkdir build
-}
-
 package() {
-  cd build
+  cd elementary-icon-theme
 
-  cmake ../elementary-icon-theme \
-    -DCMAKE_INSTALL_PREFIX='/usr'
-  make DESTDIR="${pkgdir}" install
+  arch-meson build
+  DESTDIR="${pkgdir}" ninja -C build install
 }
 
 # vim: ts=2 sw=2 et:
