@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-user-accounts-git
-pkgver=r349.051bb8e
+pkgver=r564.e7afe2f
 pkgrel=1
 pkgdesc='Switchboard User Accounts Plug'
 arch=('x86_64')

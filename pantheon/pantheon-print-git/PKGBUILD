@@ -1,7 +1,13 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-print-git
+<<<<<<< HEAD
+pkgver=r20.0be9b4c
+||||||| merged common ancestors
+pkgver=r18.b526ae8
+=======
 pkgver=r26.28f2600
+>>>>>>> upstream/master
 pkgrel=1
 pkgdesc='Simple shim for printing support via Contractor'
 arch=('x86_64')

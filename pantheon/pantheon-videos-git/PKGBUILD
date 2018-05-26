@@ -1,7 +1,13 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-videos-git
+<<<<<<< HEAD
+pkgver=r1324.c0866a1
+||||||| merged common ancestors
+pkgver=r1246.715b8c6
+=======
 pkgver=r1325.b0e05b8
+>>>>>>> upstream/master
 pkgrel=1
 pkgdesc='The Pantheon Video Player'
 arch=('x86_64')
@@ -23,6 +29,18 @@ pkgver() {
   echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
+<<<<<<< HEAD
+||||||| merged common ancestors
+prepare() {
+  cd pantheon-videos
+
+  if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build
+}
+
+=======
 prepare() {
   if [[ -d build ]]; then
     rm -rf build
@@ -30,17 +48,44 @@ prepare() {
   mkdir build
 }
 
+>>>>>>> upstream/master
 build() {
+<<<<<<< HEAD
+  cd pantheon-videos
+  arch-meson build
+  ninja -C build
+||||||| merged common ancestors
+  cd pantheon-videos/build
+
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DGSETTINGS_COMPILE='OFF'
+  make
+=======
   cd build
 
   arch-meson ../pantheon-videos
   ninja
+>>>>>>> upstream/master
 }
 
 package() {
+<<<<<<< HEAD
+  cd pantheon-videos
+||||||| merged common ancestors
+  cd pantheon-videos/build
+=======
   cd build
+>>>>>>> upstream/master
 
+<<<<<<< HEAD
+  DESTDIR="${pkgdir}" ninja -C build install
+||||||| merged common ancestors
+  make DESTDIR="${pkgdir}" install
+=======
   DESTDIR="${pkgdir}" ninja install
+>>>>>>> upstream/master
 }
 
 # vim: ts=2 sw=2 et:
