@@ -14,8 +14,7 @@ depends=('appstream' 'gdk-pixbuf2' 'glib2' 'glibc' 'gnome-menus' 'gtk3'
 makedepends=('cmake' 'git' 'granite-git' 'switchboard-git' 'vala'
              'wingpanel-git')
 provides=('pantheon-applications-menu')
-conflicts=('pantheon-applications-menu' 'slingshot-launcher')
-replaces=('slingshot-launcher-bzr')
+conflicts=('pantheon-applications-menu')
 source=('pantheon-applications-menu::git+https://github.com/elementary/applications-menu.git')
 sha256sums=('SKIP')
 
