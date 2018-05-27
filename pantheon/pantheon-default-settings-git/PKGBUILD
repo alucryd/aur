@@ -21,17 +21,22 @@ pkgver() {
 }
 
 prepare() {
+   if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build
 
   cd pantheon-default-settings
+
 
   patch -Np1 -i ../0001-arch-tweaks.patch
 }
 
 build() {
-  cd pantheon-default-settings
+  cd build
 
-  arch-meson build
-  ninja -C build
+  arch-meson ../pantheon-default-settings
+  ninja
 }
 
 package_elementary-dpms-helper-git() {
@@ -54,10 +59,10 @@ package_pantheon-default-settings-git() {
   provides=('pantheon-default-settings')
   conflicts=('pantheon-default-settings')
 
-  cd pantheon-default-settings
-  DESTDIR=${pkgdir} ninja -C build install
+  cd build
+  DESTDIR=${pkgdir} ninja install
 
-  install -Dm 644 debian/elementary-default-settings.gsettings-override "${pkgdir}"/usr/share/glib-2.0/schemas/25_pantheon-default-settings.gschema.override
+  install -Dm 644 $srcdir/pantheon-default-settings/debian/elementary-default-settings.gsettings-override "${pkgdir}"/usr/share/glib-2.0/schemas/25_pantheon-default-settings.gschema.override
   rm $pkgdir/etc/lightdm/lightdm.conf
   rm -rf $pkgdir/usr/share/cups/data
 

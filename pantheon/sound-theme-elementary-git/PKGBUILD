@@ -1,7 +1,8 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=sound-theme-elementary-git
-pkgver=r21.8278adb
+pkgver=r23.5519eaf
+epoch=1
 pkgrel=1
 pkgdesc='A bespoke sound for your theme'
 arch=('x86_64')
