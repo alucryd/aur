@@ -28,7 +28,6 @@ pkgbase = lightdm-pantheon-greeter-git
 	depends = libwingpanel-2.0.so
 	provides = lightdm-pantheon-greeter
 	conflicts = lightdm-pantheon-greeter
-	replaces = lightdm-pantheon-greeter-bzr
 	source = lightdm-pantheon-greeter::git+https://github.com/elementary/greeter.git
 	source = 0001-bin-not-sbin.patch
 	sha256sums = SKIP
