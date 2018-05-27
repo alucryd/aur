@@ -2,7 +2,7 @@
 # Contributor: Solomon Choina <shlomochoina@gmail.com>
 _pkgname=pantheon-dpms-helper
 pkgname=pantheon-dpms-helper-git
-pkgver=r6.6e0d292
+pkgver=r8.e2547fd
 pkgrel=1
 pkgdesc='DPMS helper for Pantheon'
 arch=('any')
@@ -21,21 +21,27 @@ pkgver() {
 
   echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
+prepare(){
+ if [[ -d build ]]; then
+    rm -rf build
+  fi
+  mkdir build
 
+}
 
 build() {
-  cd $_pkgname
+  cd build
 
-  arch-meson build
-  ninja -C build
+  arch-meson ../$_pkgname
+  ninja 
 }
 
 package() {
-  cd $_pkgname
+  cd build
 
-  DESTDIR="${pkgdir}" ninja -C build install
+  DESTDIR="${pkgdir}" ninja install
   install -dm 755 "${pkgdir}"/etc/xdg/autostart
-  install -m 644 data/io.elementary.dpms-helper.desktop "${pkgdir}"/etc/xdg/autostart/pantheon-dpms-helper.desktop
+  install -m 644 $srcdir/$_pkgname/data/io.elementary.dpms-helper.desktop "${pkgdir}"/etc/xdg/autostart/pantheon-dpms-helper.desktop
 
 
 }
