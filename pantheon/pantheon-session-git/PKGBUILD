@@ -23,6 +23,12 @@ pkgver() {
   echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
+prepare() {
+  cd pantheon-session/gnome-session
+
+  sed 's/gnome-settings-daemon;//' -i *
+}
+
 package() {
   cd pantheon-session
 
@@ -30,7 +36,11 @@ package() {
   cp -dr --no-preserve='ownership' applications "${pkgdir}"/usr/share/pantheon/
   cp -dr --no-preserve='ownership' autostart "${pkgdir}"/etc/xdg/
   cp -dr --no-preserve='ownership' gnome-session "${pkgdir}"/usr/share/gnome-session/sessions
+  cp -dr --no-preserve='ownership' wayland-sessions "${pkgdir}"/usr/share/
   cp -dr --no-preserve='ownership' xsessions "${pkgdir}"/usr/share/
+
+  find "${pkgdir}" -type d -exec chmod 755 {} +
+  find "${pkgdir}" -type f -exec chmod 644 {} +
 }
 
 # vim: ts=2 sw=2 et:
