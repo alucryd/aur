@@ -1,8 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
-# Contributor: Solomon Choina <shlomochoina@gmail.com>
-_pkgname=pantheon-dpms-helper
+
 pkgname=pantheon-dpms-helper-git
-pkgver=r8.e2547fd
+pkgver=r2.601b7f0
 pkgrel=1
 pkgdesc='DPMS helper for Pantheon'
 arch=('any')
@@ -11,39 +10,35 @@ license=('GPL')
 groups=('pantheon-unstable')
 depends=('bash' 'dconf')
 makedepends=('desktop-file-utils' 'git' 'meson')
-provides=("${_pkgname}" 'elementary-dpms-helper')
-conflicts=('elementary-dpms-helper' "${_pkgname}")
+provides=('elementary-dpms-helper' 'pantheon-dpms-helper')
+conflicts=('elementary-dpms-helper' 'pantheon-dpms-helper')
 source=('pantheon-dpms-helper::git+https://github.com/elementary/dpms-helper.git')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd $_pkgname
+  cd pantheon-dpms-helper
 
   echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
-prepare(){
- if [[ -d build ]]; then
+
+prepare() {
+  if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build
-
 }
 
 build() {
   cd build
 
-  arch-meson ../$_pkgname
-  ninja 
+  arch-meson ../pantheon-dpms-helper
+  ninja
 }
 
 package() {
   cd build
 
   DESTDIR="${pkgdir}" ninja install
-  install -dm 755 "${pkgdir}"/etc/xdg/autostart
-  install -m 644 $srcdir/$_pkgname/data/io.elementary.dpms-helper.desktop "${pkgdir}"/etc/xdg/autostart/pantheon-dpms-helper.desktop
-
-
 }
 
 # vim: ts=2 sw=2 et:

@@ -1,6 +1,6 @@
 pkgbase = gsignond-git
 	pkgdesc = gSSO glib daemon
-	pkgver = 1.0.6.r31.adc8904
+	pkgver = 1.0.6.r26.20b9f80
 	pkgrel = 1
 	url = https://01.org/gsso
 	arch = x86_64

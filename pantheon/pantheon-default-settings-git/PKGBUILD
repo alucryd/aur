@@ -2,17 +2,17 @@
 
 pkgbase=pantheon-default-settings-git
 pkgname=('elementary-dpms-helper-git' 'pantheon-default-settings-git')
-pkgver=r340.09ae797
+pkgver=r308.d2722d3
 pkgrel=1
 arch=('any')
 url='https://github.com/elementary/default-settings'
 license=('GPL')
 groups=('pantheon-unstable')
 makedepends=('git')
-source=('pantheon-default-settings::git+https://github.com/elementary/default-settings.git#branch=meson'
-        '0001-arch-tweaks.patch')
+source=('pantheon-default-settings::git+https://github.com/elementary/default-settings.git'
+        'arch-tweaks.patch')
 sha256sums=('SKIP'
-            '778bd3cf1c3c2f52e01eb19c6aeca4fa42b29b3244af9d4651f056c5ac3bbecf')
+            '431f0fc13d562806db6724837c58c90cb9225d0fb53a85c7d687be4e2acef8bb')
 
 pkgver() {
   cd pantheon-default-settings
@@ -21,29 +21,31 @@ pkgver() {
 }
 
 prepare() {
-   if [[ -d build ]]; then
+  if [[ -d build ]]; then
     rm -rf build
   fi
   mkdir build
 
   cd pantheon-default-settings
 
-
-  patch -Np1 -i ../0001-arch-tweaks.patch
+  patch -Np1 -i ../arch-tweaks.patch
 }
 
 build() {
   cd build
 
-  arch-meson ../pantheon-default-settings
-  ninja
+  cmake ../pantheon-default-settings \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DGSETTINGS_COMPILE='OFF'
+  make
 }
 
 package_elementary-dpms-helper-git() {
   pkgdesc='DPMS helper for Pantheon'
   depends=('gnome-settings-daemon')
-  provides=('elementary-dpms-helper' 'pantheon-dpms-helper-git')
-  conflicts=('elementary-dpms-helper' 'pantheon-dpms-helper')
+  provides=('elementary-dpms-helper')
+  conflicts=('elementary-dpms-helper')
 
   cd pantheon-default-settings/dpms
 
@@ -59,13 +61,14 @@ package_pantheon-default-settings-git() {
   provides=('pantheon-default-settings')
   conflicts=('pantheon-default-settings')
 
-  cd build
-  DESTDIR=${pkgdir} ninja install
+  cd pantheon-default-settings
 
-  install -Dm 644 $srcdir/pantheon-default-settings/debian/elementary-default-settings.gsettings-override "${pkgdir}"/usr/share/glib-2.0/schemas/25_pantheon-default-settings.gschema.override
-  rm $pkgdir/etc/lightdm/lightdm.conf
-  rm -rf $pkgdir/usr/share/cups/data
-
+  install -Dm 644 debian/elementary-default-settings.gsettings-override "${pkgdir}"/usr/share/glib-2.0/schemas/25_pantheon-default-settings.gschema.override
+  install -Dm 644 policykit.desktop -t "${pkgdir}"/usr/share/applications/
+  install -Dm 644 settings.ini -t "${pkgdir}"/etc/gtk-3.0/
+  install -dm 755 "${pkgdir}"/etc/skel/.config
+  cp -dr --no-preserve='ownership' plank "${pkgdir}"/etc/skel/.config/
+  cp -dr --no-preserve='ownership' profile.d "${pkgdir}"/etc/
 }
 
 # vim: ts=2 sw=2 et:

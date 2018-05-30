@@ -1,13 +1,13 @@
 pkgbase = lightdm-pantheon-greeter-git
 	pkgdesc = Pantheon greeter for LightDM
-	pkgver = r830.4e73eef
+	pkgver = r815.940975c
 	pkgrel = 1
 	url = https://github.com/elementary/greeter
 	install = lightdm-pantheon-greeter.install
 	arch = x86_64
 	groups = pantheon-unstable
 	license = GPL
-	makedepends = cmake
+	makedepends = meson
 	makedepends = git
 	makedepends = granite-git
 	makedepends = libxfixes
@@ -31,7 +31,7 @@ pkgbase = lightdm-pantheon-greeter-git
 	source = lightdm-pantheon-greeter::git+https://github.com/elementary/greeter.git
 	source = 0001-bin-not-sbin.patch
 	sha256sums = SKIP
-	sha256sums = f1fd5a443caa80cf95ee36a05421f3418cb1bc86714e47f1314c61128b77054b
+	sha256sums = aaf0d9ba865bc5c25e463d2bcd2732fb1fa50e3e40a22021fd370f31e258c185
 
 pkgname = lightdm-pantheon-greeter-git
 
