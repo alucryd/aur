@@ -15,7 +15,6 @@ pkgbase = switchboard-plug-online-accounts-git
 	makedepends = vala
 	depends = glib2
 	depends = glibc
-	depends = gsignond-extension-pantheon-git
 	depends = gsignond-plugin-oauth-git
 	depends = gsignond-plugin-sasl-git
 	depends = gtk3
