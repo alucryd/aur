@@ -3,7 +3,7 @@
 # Contributor: Themaister <maister@archlinux.us>
 
 pkgname=retroarch-git
-pkgver=1.6.1.r5.e7d623f97
+pkgver=1.7.3.r450.ca3b8149a8
 pkgrel=1
 pkgdesc='Reference frontend for the libretro API'
 arch=('x86_64')
@@ -38,7 +38,7 @@ backup=('etc/retroarch.cfg')
 source=('retroarch::git+https://github.com/libretro/RetroArch.git'
         'retroarch-paths.patch')
 sha256sums=('SKIP'
-            'a8449fc210b3f55e2189e8b1106e5a8adaa359916e692af424d838b468ab3da0')
+            'cca7003d0cd3f7b5dbca03c746e7f334b8805537cfec90e2c31492f784dbd358')
 
 pkgver() {
   cd retroarch

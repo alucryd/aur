@@ -1,20 +1,14 @@
-diff -rupN RetroArch-1.5.0.orig/retroarch.cfg RetroArch-1.5.0/retroarch.cfg
---- RetroArch-1.5.0.orig/retroarch.cfg	2017-05-19 15:30:11.834029610 +0200
-+++ RetroArch-1.5.0/retroarch.cfg	2017-05-19 15:38:31.090191050 +0200
-@@ -41,10 +41,10 @@
- # libretro_path = "/path/to/libretro.so"
- 
- # A directory for where to search for libretro core implementations.
--# libretro_directory =
-+libretro_directory = /usr/lib/libretro
- 
- # A directory for where to search for libretro core information.
--# libretro_info_path =
-+libretro_info_path = /usr/share/libretro/info
- 
- # Sets log level for libretro cores (GET_LOG_INTERFACE).
- # If a log level issued by a libretro core is below libretro_log_level, it is ignored.
-@@ -104,7 +104,7 @@
+diff -rupN retroarch.orig/.git/FETCH_HEAD retroarch/.git/FETCH_HEAD
+--- retroarch.orig/.git/FETCH_HEAD	1970-01-01 01:00:00.000000000 +0100
++++ retroarch/.git/FETCH_HEAD	2018-06-18 15:15:23.328877310 +0200
+@@ -0,0 +1,3 @@
++ca3b8149a80a7b3802f19104a8f6c3feb415d307		branch 'master' of /home/alucryd/packages/src/retroarch
++ca3b8149a80a7b3802f19104a8f6c3feb415d307	not-for-merge	branch 'coverity_scan' of /home/alucryd/packages/src/retroarch
++f3f79c1a4a64e2d9ac7ea220aa27caaa6561d297	not-for-merge	branch 'index_parse' of /home/alucryd/packages/src/retroarch
+diff -rupN retroarch.orig/retroarch.cfg retroarch/retroarch.cfg
+--- retroarch.orig/retroarch.cfg	2018-06-18 15:12:44.907736627 +0200
++++ retroarch/retroarch.cfg	2018-06-18 15:15:23.232209948 +0200
+@@ -750,7 +750,7 @@
  
  # Assets directory. This location is queried by default when menu interfaces try to look for
  # loadable assets, etc.
@@ -23,21 +17,25 @@ diff -rupN RetroArch-1.5.0.orig/retroarch.cfg RetroArch-1.5.0/retroarch.cfg
  
  # Dynamic wallpapers directory. The place to store the wallpapers dynamically
  # loaded by the menu depending on context.
-@@ -235,7 +235,7 @@
- # video_shader_enable = false
+@@ -763,10 +763,10 @@
+ # rgui_browser_directory =
+ 
+ # Core directory for libretro core implementations.
+-# libretro_directory =
++libretro_directory = /usr/lib/libretro
+ 
+ # Core info directory for libretro core information.
+-# libretro_info_path =
++libretro_info_path = /usr/share/libretro/info
+ 
+ # Path to content database directory.
+ # content_database_path =
+@@ -784,7 +784,7 @@
+ # audio_filter_dir =
  
  # Defines a directory where shaders (Cg, CGP, GLSL) are kept for easy access.
 -# video_shader_dir =
 +video_shader_dir = /usr/share/libretro/shaders
  
- # CPU-based video filter. Path to a dynamic library.
- # video_filter =
-@@ -404,7 +404,7 @@
- # Input binds which are made explicit (input_playerN_*_btn/axis) will take priority over autoconfigs.
- # Autoconfigs can be created with retroarch-joyconfig, manually, or with a frontend.
- # Requires input_autodetect_enable to be enabled.
--# joypad_autoconfig_dir =
-+joypad_autoconfig_dir = /usr/share/retroarch/autoconfig
- 
- # Sets which libretro device is used for a user.
- # Devices are indentified with a number.
+ # Recording output directory. Where recordings are saved.
+ # recording_output_directory =
