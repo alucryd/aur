@@ -2,13 +2,13 @@
 # Contributor: gaelic <gaelic@luchmhor.net>
 
 pkgname=paper-icon-theme-git
-pkgver=r420.2a913e4
+pkgver=r801.a62a937e
 pkgrel=1
 pkgdesc='A modern freedesktop icon theme whose design is based around the use of bold colours and simple geometric shapes to compose icons'
 arch=('any')
 url='https://github.com/snwh/paper-icon-theme'
 license=('custom: CC BY-SA 4.0')
-makedepends=('git' 'automake')
+makedepends=('git' 'meson')
 provides=('paper-icon-theme')
 conflicts=('paper-icon-theme')
 source=('git+https://github.com/snwh/paper-icon-theme.git')
@@ -21,18 +21,13 @@ pkgver() {
 }
 
 build() {
-  cd paper-icon-theme
-
-  ./autogen.sh \
-    --prefix='/usr'
-  make
+  arch-meson paper-icon-theme build
+  ninja -C build
 }
 
 package() {
-  cd paper-icon-theme
-
-  make DESTDIR="${pkgdir}" install
-  rm -f "${pkgdir}"/usr/share/icons/gnome/icon-theme.cache
+  DESTDIR="${pkgdir}" ninja -C build install
+  install -Dm 644 paper-icon-theme/LICENSE -t "${pkgdir}"/usr/share/licenses/paper-icon-theme-git/
 }
 
 # vim: ts=2 sw=2 et:
