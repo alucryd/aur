@@ -1,10 +1,3 @@
-diff -rupN retroarch.orig/.git/FETCH_HEAD retroarch/.git/FETCH_HEAD
---- retroarch.orig/.git/FETCH_HEAD	1970-01-01 01:00:00.000000000 +0100
-+++ retroarch/.git/FETCH_HEAD	2018-06-18 15:15:23.328877310 +0200
-@@ -0,0 +1,3 @@
-+ca3b8149a80a7b3802f19104a8f6c3feb415d307		branch 'master' of /home/alucryd/packages/src/retroarch
-+ca3b8149a80a7b3802f19104a8f6c3feb415d307	not-for-merge	branch 'coverity_scan' of /home/alucryd/packages/src/retroarch
-+f3f79c1a4a64e2d9ac7ea220aa27caaa6561d297	not-for-merge	branch 'index_parse' of /home/alucryd/packages/src/retroarch
 diff -rupN retroarch.orig/retroarch.cfg retroarch/retroarch.cfg
 --- retroarch.orig/retroarch.cfg	2018-06-18 15:12:44.907736627 +0200
 +++ retroarch/retroarch.cfg	2018-06-18 15:15:23.232209948 +0200
