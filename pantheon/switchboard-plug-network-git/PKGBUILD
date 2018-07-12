@@ -9,7 +9,7 @@ url='https://github.com/elementary/switchboard-plug-networking'
 license=('GPL3')
 groups=('pantheon-unstable')
 depends=('glib2' 'glibc' 'gtk3' 'libgee' 'libnm-glib' 'nm-connection-editor'
-         'libgranite.so' 'libswitchboard-2.0.so')
+         'networkmanager' 'libgranite.so' 'libswitchboard-2.0.so')
 makedepends=('git' 'granite-git' 'meson' 'switchboard-git' 'vala')
 provides=('switchboard-plug-network')
 conflicts=('switchboard-plug-network')
