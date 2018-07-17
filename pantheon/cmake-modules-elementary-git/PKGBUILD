@@ -1,17 +1,17 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=cmake-modules-elementary-git
-pkgver=r37.319ec53
+pkgver=r34.90ad19e
 pkgrel=1
 pkgdesc='elementary CMake Modules'
 arch=('any')
-url='https://github.com/elementary/junk/tree/cmake-modules'
+url='https://github.com/elementary/cmake-modules'
 license=('GPL3')
 depends=('cmake')
 makedepends=('git')
 provides=('cmake-modules-elementary')
 conflicts=('cmake-modules-elementary')
-source=('cmake-modules-elementary::git+https://github.com/elementary/junk.git#branch=cmake-modules')
+source=('cmake-modules-elementary::git+https://github.com/elementary/cmake-modules.git')
 sha256sums=('SKIP')
 
 pkgver() {
