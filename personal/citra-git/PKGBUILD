@@ -4,27 +4,30 @@
 
 pkgbase=citra-git
 pkgname=('citra-cli-git' 'citra-qt-git')
-pkgver=r6117.e48662196
+pkgver=r6444.78685065c
 pkgrel=1
 pkgdesc='A Nintendo 3DS emulator'
 arch=('x86_64')
 url="https://github.com/citra-emu/citra/"
 license=('GPL2')
-makedepends=('boost' 'cmake' 'git' 'mesa' 'qt5-base' 'qt5-multimedia'
-             'sdl2')
+makedepends=('cmake' 'git' 'mesa' 'qt5-base' 'qt5-multimedia' 'sdl2')
 source=('git+https://github.com/citra-emu/citra'
         'citra-boost::git+https://github.com/citra-emu/ext-boost.git'
         'git+https://github.com/philsquared/Catch.git'
         'git+https://github.com/weidai11/cryptopp.git'
+        'git+https://github.com/kinetiknz/cubeb.git'
         'git+https://github.com/MerryMage/dynarmic.git'
         'git+https://github.com/lsalzman/enet.git'
         'git+https://github.com/fmtlib/fmt.git'
         'git+https://github.com/svn2github/inih.git'
         'citra-libressl::git+https://github.com/citra-emu/ext-libressl-portable.git'
         'git+https://github.com/neobrain/nihstro.git'
+        'git+https://github.com/arsenm/sanitizers-cmake.git'
         'citra-soundtouch::git+https://github.com/citra-emu/ext-soundtouch.git'
         'git+https://github.com/herumi/xbyak.git')
 sha256sums=('SKIP'
+            'SKIP'
+            'SKIP'
             'SKIP'
             'SKIP'
             'SKIP'
@@ -51,7 +54,7 @@ prepare() {
 
   cd citra
 
-  for submodule in externals/{catch,cryptopp/cryptopp,dynarmic,enet,fmt,inih/inih,libressl,nihstro,xbyak}; do
+  for submodule in externals/{catch,cryptopp/cryptopp,cubeb,dynarmic,enet,fmt,inih/inih,libressl,nihstro,xbyak}; do
     git submodule init ${submodule}
     git config submodule.${submodule}.url ../${submodule##*/}
     git submodule update
@@ -61,6 +64,15 @@ prepare() {
     git config submodule.${submodule}.url ../citra-${submodule##*/}
     git submodule update
   done
+
+  cd externals/cubeb
+
+  for submodule in cmake/sanitizers-cmake; do
+    git submodule init ${submodule}
+    git config submodule.${submodule}.url ../../../${submodule##*/}
+    git submodule update
+  done
+
 }
 
 build() {
@@ -73,13 +85,13 @@ build() {
 }
 
 package_citra-cli-git() {
-  depends=('gcc-libs' 'glibc' 'libpng' 'sdl2')
+  depends=('alsa-lib' 'sdl2')
 
   install -Dm 755 build/src/citra/citra -t "${pkgdir}"/usr/bin/
 }
 
 package_citra-qt-git() {
-  depends=('gcc-libs' 'glibc' 'libpng' 'qt5-base' 'qt5-multimedia')
+  depends=('alsa-lib' 'hicolor-icon-theme' 'qt5-base' 'qt5-multimedia' 'sdl2')
 
   make DESTDIR="${pkgdir}" -C build install
   rm "${pkgdir}"/usr/bin/citra
