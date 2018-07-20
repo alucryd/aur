@@ -8,7 +8,8 @@ arch=('x86_64')
 url='https://launchpad.net/wingpanel-indicator-network'
 license=('GPL3')
 groups=('pantheon')
-depends=('glib2' 'glibc' 'gtk3' 'libgee' 'libnm-glib' 'nm-connection-editor'
+depends=('glib2' 'glibc' 'gtk3' 'libgee' 'libnm-glib' 'networkmanager'
+         'nm-connection-editor'
          'libgranite.so' 'libwingpanel-2.0.so')
 makedepends=('cmake' 'vala' 'wingpanel')
 source=("wingpanel-indicator-network-${pkgver}.tar.gz::https://github.com/elementary/wingpanel-indicator-network/archive/${pkgver}.tar.gz")
