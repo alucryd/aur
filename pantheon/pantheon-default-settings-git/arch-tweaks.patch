@@ -1,15 +1,18 @@
 diff -rupN pantheon-default-settings.orig/debian/elementary-default-settings.gsettings-override pantheon-default-settings/debian/elementary-default-settings.gsettings-override
 --- pantheon-default-settings.orig/debian/elementary-default-settings.gsettings-override	2016-09-12 15:40:03.128022316 +0200
 +++ pantheon-default-settings/debian/elementary-default-settings.gsettings-override	2016-09-12 15:41:11.141869826 +0200
-@@ -1,14 +1,13 @@
+@@ -1,17 +1,16 @@
  [net.launchpad.plank.dock.settings]
--dock-items=['gala-multitaskingview.dockitem','epiphany.dockitem','org.pantheon.mail.dockitem','org.pantheon.maya.dockitem','org.pantheon.noise.dockitem','org.pantheon.audience.dockitem','org.pantheon.photos.dockitem','org.pantheon.switchboard.dockitem','io.elementary.appcenter.dockitem']
-+dock-items=['gala-multitaskingview.dockitem','epiphany.dockitem','org.pantheon.mail.dockitem','org.pantheon.maya.dockitem','org.pantheon.noise.dockitem','org.pantheon.audience.dockitem','org.pantheon.photos.dockitem','org.pantheon.switchboard.dockitem']
+-dock-items=['gala-multitaskingview.dockitem','org.gnome.Epiphany.dockitem','org.pantheon.mail.dockitem','io.elementary.calendar.dockitem','io.elementary.music.dockitem','io.elementary.videos.dockitem','io.elementary.photos.dockitem','io.elementary.switchboard.dockitem','io.elementary.appcenter.dockitem']
++dock-items=['gala-multitaskingview.dockitem','org.gnome.Epiphany.dockitem','org.pantheon.mail.dockitem','io.elementary.calendar.dockitem','io.elementary.music.dockitem','io.elementary.videos.dockitem','io.elementary.photos.dockitem','io.elementary.switchboard.dockitem']
  hide-delay=250
  hide-mode='window-dodge'
  show-dock-item=false
  theme='Gtk+'
  
+ [org.freedesktop.ibus.general.hotkey]
+ triggers=['<Control>space']
+
  [org.gnome.desktop.background]
 -draw-background=true
  picture-options='zoom'
@@ -42,25 +45,3 @@ diff -rupN pantheon-default-settings.orig/plank/dock1/launchers/io.elementary.ap
 -Launcher=file:///usr/share/applications/io.elementary.appcenter.desktop
 -
 -
-diff -rupN pantheon-default-settings.orig/policykit.desktop pantheon-default-settings/policykit.desktop
---- pantheon-default-settings.orig/policykit.desktop	2016-09-12 15:40:03.138027788 +0200
-+++ pantheon-default-settings/policykit.desktop	2016-09-12 15:40:37.940389932 +0200
-@@ -1,6 +1,6 @@
- [Desktop Entry]
- Name=Authentication Dialog
--Exec=/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-+Exec=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
- Icon=dialog-password
- Terminal=false
- Type=Application
-diff -rupN pantheon-default-settings.orig/settings.ini pantheon-default-settings/settings.ini
---- pantheon-default-settings.orig/settings.ini	2016-09-12 15:40:03.138027788 +0200
-+++ pantheon-default-settings/settings.ini	2016-09-12 15:40:37.940389932 +0200
-@@ -2,6 +2,6 @@
- gtk-theme-name = elementary
- gtk-icon-theme-name = elementary
- gtk-fallback-icon-theme = gnome
--gtk-sound-theme-name = ubuntu
-+gtk-sound-theme-name = freedesktop
- gtk-icon-sizes = panel-menu-bar=24,24
- gtk-font-name = Open Sans 9
