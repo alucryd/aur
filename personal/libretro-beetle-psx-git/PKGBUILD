@@ -22,20 +22,15 @@ pkgver() {
 }
 
 build() {
-  cd libretro-beetle-psx
-
-  make
-  make HAVE_OPENGL=1
+  make -C libretro-beetle-psx
+  make HAVE_OPENGL=1 -C libretro-beetle-psx
 }
 
 package_libretro-beetle-psx-git() {
   provides=('libretro-beetle-psx')
   conflicts=('libretro-beetle-psx')
 
-  cd libretro-beetle-psx
-
-  install -dm 755 "${pkgdir}"/usr/{lib/libretro,share/libretro/info}
-  install -m 644 mednafen_psx_libretro.so "${pkgdir}"/usr/lib/libretro/
+  install -Dm 644 libretro-beetle-psx/mednafen_psx_libretro.so -t "${pkgdir}"/usr/lib/libretro/
 }
 
 package_libretro-beetle-psx-hw-git() {
@@ -45,8 +40,7 @@ package_libretro-beetle-psx-hw-git() {
 
   cd libretro-beetle-psx
 
-  install -dm 755 "${pkgdir}"/usr/{lib/libretro,share/libretro/info}
-  install -m 644 mednafen_psx_hw_libretro.so "${pkgdir}"/usr/lib/libretro/
+  install -Dm 644 libretro-beetle-psx/mednafen_psx_hw_libretro.so -t "${pkgdir}"/usr/lib/libretro/
 }
 
 # vim: ts=2 sw=2 et:
