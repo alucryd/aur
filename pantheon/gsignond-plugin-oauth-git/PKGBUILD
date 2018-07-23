@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=gsignond-plugin-oauth-git
-pkgver=r106.b36060b
+pkgver=r111.43fee49
 pkgrel=1
 pkgdesc='OAuth plugin for gSSO'
 arch=('x86_64')
@@ -9,7 +9,7 @@ url='https://01.org/gsso'
 license=('LGPL2.1')
 depends=('glib2' 'glibc' 'gnutls' 'json-glib' 'libsoup'
          'libgsignond-common.so')
-makedepends=('check' 'git' 'gobject-introspection' 'gsignond' 'gtk-doc' 'meson')
+makedepends=('check' 'git' 'gobject-introspection' 'gsignond' 'meson')
 provides=('gsignond-plugin-oauth')
 conflicts=('gsignond-plugin-oauth')
 source=('gsignond-plugin-oauth::git+https://gitlab.com/accounts-sso/gsignond-plugin-oa.git')
@@ -22,23 +22,16 @@ pkgver() {
 }
 
 prepare() {
-  if [[ -d build ]]; then
-    rm -rf build
-  fi
-  mkdir build
+  sed -i "/subdir('docs')/d" gsignond-plugin-oauth/meson.build
 }
 
 build() {
-  cd build
-
-  arch-meson ../gsignond-plugin-oauth
-  ninja
+  arch-meson gsignond-plugin-oauth build
+  ninja -C build
 }
 
 package() {
-  cd build
-
-  DESTDIR="${pkgdir}" ninja install
+  DESTDIR="${pkgdir}" ninja -C build install
 }
 
 # vim: ts=2 sw=2 et:

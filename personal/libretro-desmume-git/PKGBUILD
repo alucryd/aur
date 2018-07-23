@@ -4,7 +4,7 @@
 # Contributor: almostalive <almostalive2003@gmail.com>
 
 pkgname=libretro-desmume-git
-pkgver=r5884.e25b33bcb
+pkgver=r5912.5a9058b9
 pkgrel=1
 pkgdesc='Nintendo DS core'
 arch=('x86_64')

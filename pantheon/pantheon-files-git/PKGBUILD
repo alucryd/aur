@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-files-bzr
-pkgver=r5585.a3cc3db4
+pkgver=r5937.475dd854
 pkgrel=1
 pkgdesc='The Pantheon File Browser'
 arch=('x86_64')

@@ -2,7 +2,7 @@
 # Contributor: gaelic <gaelic@luchmhor.net>
 
 pkgname=paper-icon-theme-git
-pkgver=r801.a62a937e
+pkgver=r802.c7cd013f
 pkgrel=1
 pkgdesc='A modern freedesktop icon theme whose design is based around the use of bold colours and simple geometric shapes to compose icons'
 arch=('any')
