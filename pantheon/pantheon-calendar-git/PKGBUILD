@@ -4,6 +4,7 @@ gitname=calendar
 auxname=("pantheon-${gitname}")
 pkgname=("${auxname}-git")
 pkgver=r1770.7ec952ee
+pkgver=r1773.b6f1b2d8
 pkgrel=1
 pkgdesc='The Pantheon Calendar'
 arch=('x86_64')

@@ -2,21 +2,19 @@
 # Contributor: Lauri Niskanen <ape@ape3000.com>
 
 pkgname=libretro-gambatte-git
-pkgver=r618.d5af1d7
+pkgver=r760.7722012
 pkgrel=1
 pkgdesc='Nintendo Game Boy/Game Boy Color core'
 arch=('x86_64')
 url='https://github.com/libretro/gambatte-libretro'
 license=('GPL2')
 groups=('libretro-unstable')
-depends=('gcc-libs' 'glibc')
+depends=('libretro-core-info')
 makedepends=('git')
 provides=('libretro-gambatte')
 conflicts=('libretro-gambatte')
-source=('libretro-gambatte::git+https://github.com/libretro/gambatte-libretro.git'
-        'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/gambatte_libretro.info')
-sha256sums=('SKIP'
-            '4e8d6d21f9baec7df47a5057781eaa7f14c020463b6efb10d1ef9d496a22419b')
+source=('libretro-gambatte::git+https://github.com/libretro/gambatte-libretro.git')
+sha256sums=('SKIP')
 
 pkgver() {
   cd libretro-gambatte
@@ -25,17 +23,11 @@ pkgver() {
 }
 
 build() {
-  cd libretro-gambatte
-
-  make -f Makefile.libretro
+  make -C libretro-gambatte -f Makefile.libretro
 }
 
 package() {
-  cd libretro-gambatte
-
-  install -dm 755 "${pkgdir}"/usr/{lib/libretro,share/libretro/info}
-  install -m 644 gambatte_libretro.so "${pkgdir}"/usr/lib/libretro/
-  install -m 644 ../gambatte_libretro.info "${pkgdir}"/usr/share/libretro/info/
+  install -Dm 644 libretro-gambatte/gambatte_libretro.so -t "${pkgdir}"/usr/lib/libretro/
 }
 
 # vim: ts=2 sw=2 et:

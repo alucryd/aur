@@ -3,21 +3,17 @@
 
 pkgbase=libretro-beetle-psx-git
 pkgname=('libretro-beetle-psx-git' 'libretro-beetle-psx-hw-git')
-pkgver=r1578.09d2a02
+pkgver=r1966.b1cb46f
 pkgrel=1
 pkgdesc='Sony playStation core'
 arch=('x86_64')
 url="https://github.com/libretro/beetle-psx-libretro"
 license=('GPLv2')
 groups=('libretro-unstable')
-depends=('gcc-libs' 'glibc')
-makedepends=('git' 'libgl' 'mesa')
-source=('libretro-beetle-psx::git+https://github.com/libretro/beetle-psx-libretro.git'
-        'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/mednafen_psx_libretro.info'
-        'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/mednafen_psx_hw_libretro.info')
-sha256sums=('SKIP'
-            '62a5cc23016b0de899e3a5014540d39d912f08c34b20ed6e10ddae8c11f1ba5d'
-            '0eacb7ea75df0bb6f458754290ed7ab21e197e170fe3e80579b8161782963df1')
+depends=('libretro-core-info')
+makedepends=('git' 'libglvnd' 'mesa')
+source=('libretro-beetle-psx::git+https://github.com/libretro/beetle-psx-libretro.git')
+sha256sums=('SKIP')
 
 pkgver() {
   cd libretro-beetle-psx
@@ -26,21 +22,15 @@ pkgver() {
 }
 
 build() {
-  cd libretro-beetle-psx
-
-  make
-  make HAVE_OPENGL=1
+  make -C libretro-beetle-psx
+  make HAVE_OPENGL=1 -C libretro-beetle-psx
 }
 
 package_libretro-beetle-psx-git() {
   provides=('libretro-beetle-psx')
   conflicts=('libretro-beetle-psx')
 
-  cd libretro-beetle-psx
-
-  install -dm 755 "${pkgdir}"/usr/{lib/libretro,share/libretro/info}
-  install -m 644 mednafen_psx_libretro.so "${pkgdir}"/usr/lib/libretro/
-  install -m 644 ../mednafen_psx_libretro.info "${pkgdir}"/usr/share/libretro/info/
+  install -Dm 644 libretro-beetle-psx/mednafen_psx_libretro.so -t "${pkgdir}"/usr/lib/libretro/
 }
 
 package_libretro-beetle-psx-hw-git() {
@@ -50,9 +40,7 @@ package_libretro-beetle-psx-hw-git() {
 
   cd libretro-beetle-psx
 
-  install -dm 755 "${pkgdir}"/usr/{lib/libretro,share/libretro/info}
-  install -m 644 mednafen_psx_hw_libretro.so "${pkgdir}"/usr/lib/libretro/
-  install -m 644 ../mednafen_psx_hw_libretro.info "${pkgdir}"/usr/share/libretro/info/
+  install -Dm 644 libretro-beetle-psx/mednafen_psx_hw_libretro.so -t "${pkgdir}"/usr/lib/libretro/
 }
 
 # vim: ts=2 sw=2 et:

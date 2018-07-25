@@ -2,21 +2,19 @@
 # Contributor: Lauri Niskanen <ape@ape3000.com>
 
 pkgname=libretro-reicast-git
-pkgver=r2598.75105bb4
+pkgver=r3048.992b5aa6
 pkgrel=1
 pkgdesc='Sega Dreamcast core'
 arch=('x86_64')
 url='https://github.com/libretro/reicast-emulator'
 license=('GPL2')
 groups=('libretro-unstable')
-depends=('gcc-libs' 'glibc' 'libgl')
-makedepends=('git')
+depends=('libgl' 'libretro-core-info')
+makedepends=('git' 'libglvnd')
 provides=('libretro-reicast')
 conflicts=('libretro-reicast')
-source=('libretro-reicast::git+https://github.com/libretro/reicast-emulator.git'
-        'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/reicast_libretro.info')
-sha256sums=('SKIP'
-            '88f14753a85e7beefdec6bba7edc2a1719cc09f88c77ead67112cc62b742fe3e')
+source=('libretro-reicast::git+https://github.com/libretro/reicast-emulator.git')
+sha256sums=('SKIP')
 
 pkgver() {
   cd libretro-reicast
@@ -25,16 +23,11 @@ pkgver() {
 }
 
 build() {
-  cd libretro-reicast
-
-  make
+  make -C libretro-reicast
 }
 
 package() {
-  cd libretro-reicast
-
-  install -Dm 644 reicast_libretro.so -t "${pkgdir}"/usr/lib/libretro/
-  install -Dm 644 ../reicast_libretro.info -t "${pkgdir}"/usr/share/libretro/info/
+  install -Dm 644 libretro-reicast/reicast_libretro.so -t "${pkgdir}"/usr/lib/libretro/
 }
 
 # vim: ts=2 sw=2 et:

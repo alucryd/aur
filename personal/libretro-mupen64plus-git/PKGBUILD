@@ -2,21 +2,19 @@
 # Contributor: Thomas Schneider <maxmusterm@gmail.com>
 
 pkgname=libretro-mupen64plus-git
-pkgver=r608.eda9d168
+pkgver=r647.d2abd0c
 pkgrel=1
 pkgdesc='Nintendo 64 core'
 arch=('x86_64')
 url='https://github.com/libretro/mupen64plus-libretro'
 license=('GPL2')
 groups=('libretro-unstable')
-depends=('gcc-libs' 'glibc' 'libgl' 'libpng' 'zlib')
-makedepends=('git' 'mesa')
+depends=('libgl' 'libpng' 'libretro-core-info' 'zlib')
+makedepends=('git' 'libglvnd' 'mesa')
 provides=('libretro-mupen64plus')
 conflicts=('libretro-mupen64plus')
-source=('libretro-mupen64plus::git+https://github.com/libretro/mupen64plus-libretro.git'
-        'https://raw.githubusercontent.com/libretro/libretro-super/master/dist/info/mupen64plus_libretro.info')
-sha256sums=('SKIP'
-            '2d064cc7428748bc60c7963800cd189815553cf4e3d72c80d15db610bdf9adfe')
+source=('libretro-mupen64plus::git+https://github.com/libretro/mupen64plus-libretro.git')
+sha256sums=('SKIP')
 
 pkgver() {
   cd libretro-mupen64plus
@@ -25,18 +23,11 @@ pkgver() {
 }
 
 build() {
-  cd libretro-mupen64plus
-
-  [[ $CARCH = 'i686' ]] && make WITH_DYNAREC='x86'
-  [[ $CARCH = 'x86_64' ]] && make WITH_DYNAREC='x86_64'
+  make WITH_DYNAREC='x86_64' -C libretro-mupen64plus
 }
 
 package() {
-  cd libretro-mupen64plus
-
-  install -dm 755 "${pkgdir}"/usr/{lib/libretro,share/libretro/info}
-  install -m 644 mupen64plus_libretro.so "${pkgdir}"/usr/lib/libretro/
-  install -m 644 ../mupen64plus_libretro.info "${pkgdir}"/usr/share/libretro/info/
+  install -Dm 644 libretro-mupen64plus/mupen64plus_libretro.so -t "${pkgdir}"/usr/lib/libretro/
 }
 
 # vim: ts=2 sw=2 et:

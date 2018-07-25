@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=libretro-bsnes-git
-pkgver=r543.a4800add
+pkgver=r552.729872dd
 pkgrel=1
 pkgdesc='Super Nintendo Entertainment System cores'
 arch=('x86_64')

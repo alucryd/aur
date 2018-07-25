@@ -9,7 +9,7 @@ url='https://01.org/gsso'
 license=('LGPL2.1')
 depends=('glib2' 'glibc' 'gsasl'
          'libgsignond-common.so')
-makedepends=('check' 'git' 'gobject-introspection' 'gsignond' 'gtk-doc' 'meson')
+makedepends=('check' 'git' 'gobject-introspection' 'gsignond' 'meson')
 provides=('gsignond-plugin-sasl')
 conflicts=('gsignond-plugin-sasl')
 source=('git+https://gitlab.com/accounts-sso/gsignond-plugin-sasl.git')
@@ -22,23 +22,16 @@ pkgver() {
 }
 
 prepare() {
-  if [[ -d build ]]; then
-    rm -rf build
-  fi
-  mkdir build
+  sed -i "/subdir('docs')/d" gsignond-plugin-sasl/meson.build
 }
 
 build() {
-  cd build
-
-  arch-meson ../gsignond-plugin-sasl
-  ninja
+  arch-meson gsignond-plugin-sasl build
+  ninja -C build
 }
 
 package() {
-  cd build
-
-  DESTDIR="${pkgdir}" ninja install
+  DESTDIR="${pkgdir}" ninja -C build install
 }
 
 # vim: ts=2 sw=2 et:

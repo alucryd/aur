@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=cerbere-git
-pkgver=r117.e44a9dd
+pkgver=r119.23d15fd
 pkgrel=1
 pkgdesc='The Pantheon Watchdog'
 arch=('x86_64')

@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=libretro-redream-git
-pkgver=r1077.e032445a
+pkgver=r1081.4e901e00
 pkgrel=1
 pkgdesc='Sega Dreamcast core'
 arch=('x86_64')
