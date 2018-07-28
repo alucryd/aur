@@ -10,11 +10,12 @@ url='https://github.com/elementary/files'
 license=('GPL3')
 groups=('pantheon-unstable')
 depends=('atk' 'cairo' 'dbus-glib' 'desktop-file-utils' 'gdk-pixbuf2' 'glib2'
-         'glibc' 'gtk3' 'libcanberra' 'libgee' 'libnotify' 'pango' 'plank'
-         'sqlite' 'zeitgeist'
+         'glibc' 'gtk3' 'libcanberra' 'libgee' 'libnotify' 'pango'
+         'plank' 'sqlite' 'zeitgeist'
          'libgranite.so')
 makedepends=('cmake' 'git' 'gnome-common' 'granite-git' 'vala')
 optdepends=('contractor-git: Various context menu entries'
+            'gvfs: Virtual filesystem implementation for GIO' 
             'tumbler: Thumbnails generation')
 provides=('pantheon-files')
 conflicts=('pantheon-files')

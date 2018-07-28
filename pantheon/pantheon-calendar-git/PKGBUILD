@@ -1,36 +1,42 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
-pkgname=pantheon-calendar-git
+gitname=calendar
+auxname=("pantheon-${gitname}")
+pkgname=("${auxname}-git")
+pkgver=r1770.7ec952ee
 pkgver=r1773.b6f1b2d8
 pkgrel=1
 pkgdesc='The Pantheon Calendar'
 arch=('x86_64')
-url='https://github.com/elementary/calendar'
+url="https://github.com/elementary/${gitname}"
 license=('GPL3')
 groups=('pantheon-unstable')
 depends=('cairo' 'clutter' 'clutter-gtk' 'evolution-data-server' 'folks'
          'gdk-pixbuf2' 'geocode-glib' 'glib2' 'glibc' 'gtk3' 'libchamplain'
          'libgee' 'libical' 'libnotify' 'libsoup'
          'libgranite.so')
-makedepends=('git' 'granite-git' 'intltool' 'meson' 'vala')
-provides=('pantheon-calendar')
-conflicts=('pantheon-calendar')
-source=('pantheon-calendar::git+https://github.com/elementary/calendar.git')
+makedepends=('cmake' 'git' 'granite-git' 'intltool' 'vala')
+provides=("${auxname}")
+conflicts=('maya-calendar' "${auxname}")
+replaces=('maya-calendar-bzr')
+source=("${auxname}::git+${url}.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd pantheon-calendar
-
-  echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+    cd "${auxname}"
+    ( set -o pipefail
+        git describe --long 2>/dev/null | sed 's/\([^-]*-g\)/r\1/;s/-/./g' ||
+        printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+    )
 }
 
 build() {
-  arch-meson pantheon-calendar build
-  ninja -C build
+    cd "${auxname}/"
+    meson . _build --prefix=/usr
+    ninja -C _build
 }
 
 package() {
-  DESTDIR="${pkgdir}" ninja -C build install
+    cd "${auxname}/"
+    DESTDIR="${pkgdir}" ninja -C _build install
 }
-
-# vim: ts=2 sw=2 et:
