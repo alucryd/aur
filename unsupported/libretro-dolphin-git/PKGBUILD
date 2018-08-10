@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=libretro-dolphin-git
-pkgver=r28923.535df63ca9
+pkgver=r28926.0197fbb429
 pkgrel=1
 pkgdesc='Nintendo GC/Wii core'
 arch=('x86_64')
