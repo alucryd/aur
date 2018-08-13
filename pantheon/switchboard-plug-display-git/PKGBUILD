@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-display-git
-pkgver=r313.f7c133e
+pkgver=r314.6b2c7b6
 pkgrel=1
 pkgdesc='Switchboard Display Plug'
 arch=('x86_64')

@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-network-git
-pkgver=r466.b783491
+pkgver=r467.ea3c400
 pkgrel=1
 pkgdesc='Network indicator for Wingpanel'
 arch=('x86_64')

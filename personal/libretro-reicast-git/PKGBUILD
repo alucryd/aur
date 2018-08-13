@@ -2,7 +2,7 @@
 # Contributor: Lauri Niskanen <ape@ape3000.com>
 
 pkgname=libretro-reicast-git
-pkgver=r3095.d2ed33bd
+pkgver=r3136.aec479ad
 pkgrel=1
 pkgdesc='Sega Dreamcast core'
 arch=('x86_64')
