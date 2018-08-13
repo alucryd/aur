@@ -13,7 +13,6 @@ depends=('libretro-core-info')
 makedepends=('git')
 provides=('libretro-beetle-ngp' 'libretro-mednafen-ngp-git')
 conflicts=('libretro-beetle-ngp' 'libretro-mednafen-ngp-git')
-
 source=('libretro-beetle-ngp::git+https://github.com/libretro/beetle-ngp-libretro.git')
 sha256sums=('SKIP')
 
