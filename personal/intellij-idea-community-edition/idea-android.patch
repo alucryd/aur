@@ -1,0 +1,27 @@
+diff -rupN intellij-community-idea-182.3911.36.orig/build/groovy/org/jetbrains/intellij/build/BaseIdeaProperties.groovy intellij-community-idea-182.3911.36/build/groovy/org/jetbrains/intellij/build/BaseIdeaProperties.groovy
+--- intellij-community-idea-182.3911.36.orig/build/groovy/org/jetbrains/intellij/build/BaseIdeaProperties.groovy	2018-08-13 13:35:25.654406002 +0200
++++ intellij-community-idea-182.3911.36/build/groovy/org/jetbrains/intellij/build/BaseIdeaProperties.groovy	2018-08-13 13:37:41.988902860 +0200
+@@ -43,9 +43,9 @@ abstract class BaseIdeaProperties extend
+     "intellij.tasks.core", "intellij.tasks.java",
+     "intellij.maven", "intellij.gradle",
+     "intellij.vcs.git", "intellij.platform.remoteServers.git", "intellij.java.remoteServers.git", "intellij.vcs.svn", "intellij.vcs.hg", "intellij.vcs.github", "intellij.vcs.cvs",
+-    "intellij.groovy", "intellij.junit", "intellij.testng", "intellij.xpath", "intellij.xslt.debugger", "intellij.android.plugin", "intellij.javaFX.community",
++    "intellij.groovy", "intellij.junit", "intellij.testng", "intellij.xpath", "intellij.xslt.debugger", "intellij.javaFX.community",
+     "intellij.java.i18n", "intellij.ant", "intellij.java.guiForms.designer", "intellij.java.byteCodeViewer", "intellij.java.coverage", "intellij.java.decompiler", "intellij.devkit", "intellij.eclipse",
+-    "intellij.platform.langInjection", "intellij.java.langInjection", "intellij.xml.langInjection", "intellij.java.langInjection.jps", "intellij.java.debugger.streams", "intellij.android.smali"
++    "intellij.platform.langInjection", "intellij.java.langInjection", "intellij.xml.langInjection", "intellij.java.langInjection.jps", "intellij.java.debugger.streams"
+   ]
+ 
+   BaseIdeaProperties() {
+diff -rupN intellij-community-idea-182.3911.36.orig/intellij.idea.community.main.iml intellij-community-idea-182.3911.36/intellij.idea.community.main.iml
+--- intellij-community-idea-182.3911.36.orig/intellij.idea.community.main.iml	2018-08-13 13:35:25.931074953 +0200
++++ intellij-community-idea-182.3911.36/intellij.idea.community.main.iml	2018-08-13 13:37:18.375364308 +0200
+@@ -119,7 +119,6 @@
+     <orderEntry type="module" module-name="intellij.java.jps.javacRefScanner8" scope="RUNTIME" />
+     <orderEntry type="module" module-name="intellij.platform.buildScripts" scope="TEST" />
+     <orderEntry type="module" module-name="intellij.platform.images.build" scope="TEST" />
+-    <orderEntry type="module" module-name="intellij.android.plugin" />
+     <orderEntry type="module" module-name="intellij.statsCollector" />
+     <orderEntry type="module" module-name="intellij.java.debugger.streams" />
+     <orderEntry type="library" scope="RUNTIME" name="jgoodies-common" level="project" />
+
