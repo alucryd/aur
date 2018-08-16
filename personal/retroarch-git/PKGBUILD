@@ -3,7 +3,7 @@
 # Contributor: Themaister <maister@archlinux.us>
 
 pkgname=retroarch-git
-pkgver=1.7.3.r933.0c658debbf
+pkgver=1.7.3.r1000.0175effb00
 pkgrel=1
 pkgdesc='Reference frontend for the libretro API'
 arch=('x86_64')
