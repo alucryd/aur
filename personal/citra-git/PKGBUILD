@@ -4,7 +4,7 @@
 
 pkgbase=citra-git
 pkgname=('citra-cli-git' 'citra-qt-git')
-pkgver=r6662.96c025e4c
+pkgver=r6670.47025552c
 pkgrel=1
 pkgdesc='A Nintendo 3DS emulator'
 arch=('x86_64')
@@ -16,6 +16,7 @@ source=('git+https://github.com/citra-emu/citra'
         'git+https://github.com/philsquared/Catch.git'
         'git+https://github.com/weidai11/cryptopp.git'
         'git+https://github.com/kinetiknz/cubeb.git'
+        'git+https://github.com/discordapp/discord-rpc.git'
         'git+https://github.com/MerryMage/dynarmic.git'
         'git+https://github.com/lsalzman/enet.git'
         'git+https://github.com/fmtlib/fmt.git'
@@ -26,6 +27,7 @@ source=('git+https://github.com/citra-emu/citra'
         'citra-soundtouch::git+https://github.com/citra-emu/ext-soundtouch.git'
         'git+https://github.com/herumi/xbyak.git')
 sha256sums=('SKIP'
+            'SKIP'
             'SKIP'
             'SKIP'
             'SKIP'
@@ -54,7 +56,7 @@ prepare() {
 
   cd citra
 
-  for submodule in externals/{catch,cryptopp/cryptopp,cubeb,dynarmic,enet,fmt,inih/inih,libressl,nihstro,xbyak}; do
+  for submodule in externals/{catch,cryptopp/cryptopp,cubeb,discord-rpc,dynarmic,enet,fmt,inih/inih,libressl,nihstro,xbyak}; do
     git submodule init ${submodule}
     git config submodule.${submodule}.url ../${submodule##*/}
     git submodule update
