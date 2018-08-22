@@ -23,7 +23,8 @@ pkgver() {
 }
 
 build() {
-  arch-meson -Dubuntu-bionic-patched-vte=false pantheon-terminal build
+  arch-meson pantheon-terminal build \
+    -Dubuntu-bionic-patched-vte='false'
   ninja -C build
 }
 
