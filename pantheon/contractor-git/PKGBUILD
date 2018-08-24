@@ -1,18 +1,17 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=contractor-git
-pkgver=r225.fe6f23e
+pkgver=0.3.4
 pkgrel=1
 pkgdesc=' A desktop-wide extension service'
 arch=('x86_64')
 url='https://github.com/elementary/contractor'
 license=('GPL3')
 groups=('pantheon-unstable')
-depends=('glib2' 'glibc' 'libgee')
+depends=('glib2' 'libgee')
 makedepends=('git' 'meson' 'vala')
 provides=('contractor')
 conflicts=('contractor')
-replaces=('contractor-bzr')
 source=('git+https://github.com/elementary/contractor.git')
 sha256sums=('SKIP')
 
@@ -23,7 +22,7 @@ pkgver() {
 }
 
 build() {
-  arch-meson ../contractor build
+  arch-meson contractor build
   ninja -C build
 }
 
