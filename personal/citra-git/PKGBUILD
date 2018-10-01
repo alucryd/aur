@@ -4,7 +4,7 @@
 
 pkgbase=citra-git
 pkgname=('citra-cli-git' 'citra-qt-git')
-pkgver=r6819.2ba62ec19
+pkgver=r6947.b2bfcfcbd
 pkgrel=1
 pkgdesc='A Nintendo 3DS emulator'
 arch=('x86_64')
@@ -93,7 +93,7 @@ build() {
 package_citra-cli-git() {
   depends=('alsa-lib' 'sdl2')
 
-  install -Dm 755 build/src/citra/citra -t "${pkgdir}"/usr/bin/
+  install -Dm 755 build/bin/citra -t "${pkgdir}"/usr/bin/
 }
 
 package_citra-qt-git() {
