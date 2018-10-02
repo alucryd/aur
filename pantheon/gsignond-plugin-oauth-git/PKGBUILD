@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=gsignond-plugin-oauth-git
-pkgver=r111.43fee49
+pkgver=r112.bc15487
 pkgrel=1
 pkgdesc='OAuth plugin for gSSO'
 arch=('x86_64')

@@ -25,9 +25,15 @@ pkgver() {
   git describe --tags | sed 's/-/.r/; s/-g/./'
 }
 
+prepare() {
+  cd gala
+
+  git cherry-pick -n 543c1e36014621bd2ceb446ef8bc5207fa179303
+}
+
 build() {
   arch-meson gala build
-  ninja
+  ninja -C build
 }
 
 package() {

@@ -8,13 +8,14 @@ arch=('any')
 url='https://github.com/elementary/stylesheet'
 license=('GPL3')
 groups=('pantheon')
+makedepends=('git')
 optdepends=('gtk-engine-murrine: GTK2 theme')
-source=("gtk-theme-elementary-${pkgver}.tar.gz::https://github.com/elementary/stylesheet/archive/${pkgver}.tar.gz")
-sha256sums=('81854f27e9cbfe72c2f188b3f5045e22795279f4dfaecf39c9298747dc49360f')
+source=("gtk-theme-elementary::git+https://github.com/elementary/stylesheet.git#tag=${pkgver}")
+sha256sums=('SKIP')
 
 package() {
   install -dm 755 "${pkgdir}"/usr/share/themes
-  cp -dr --no-preserve='ownership' stylesheet-${pkgver} "${pkgdir}"/usr/share/themes/elementary
+  cp -dr --no-preserve='ownership' gtk-theme-elementary "${pkgdir}"/usr/share/themes/elementary
   rm -rf "${pkgdir}"/usr/share/themes/elementary/{.git,.gitignore,.stylelintrc.json,.travis.yml}
 }
 

@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-keyboard-git
-pkgver=r941.1e98b10
+pkgver=r984.5f3977a
 pkgrel=1
 pkgdesc='Switchboard Keyboard Plug'
 arch=('x86_64')

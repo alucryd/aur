@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-datetime-git
-pkgver=r361.164dfaf
+pkgver=r373.72c0573
 pkgrel=1
 pkgdesc='Date & Time indicator for Wingpanel'
 arch=('x86_64')

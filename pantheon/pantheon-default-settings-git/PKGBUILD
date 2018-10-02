@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-default-settings-git
-pkgver=r352.16b9add
+pkgver=r367.c13dcc6
 pkgrel=1
 pkgdesc='Default settings for Pantheon'
 arch=('any')

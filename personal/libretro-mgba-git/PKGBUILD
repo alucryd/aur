@@ -2,7 +2,7 @@
 # Contributor: Duck Hunt <vaporeon@tfwno.gf>
 
 pkgname=libretro-mgba-git
-pkgver=r5579.abf712f0
+pkgver=r5753.426934d8
 pkgrel=1
 pkgdesc='Nintendo Game Boy Advance core'
 arch=('x86_64')
