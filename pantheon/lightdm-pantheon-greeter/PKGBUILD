@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=lightdm-pantheon-greeter
-pkgver=3.2.0
+pkgver=3.3.0
 pkgrel=1
 pkgdesc='Pantheon greeter for LightDM'
 arch=('x86_64')
@@ -11,38 +11,17 @@ groups=('pantheon')
 depends=('cairo' 'clutter' 'clutter-gtk' 'gdk-pixbuf2' 'glib2' 'gtk3' 'libgee'
          'libgl' 'libx11' 'lightdm'
          'libgranite.so' 'libwingpanel-2.0.so')
-makedepends=('cmake' 'git' 'vala' 'wingpanel')
-source=("lightdm-pantheon-greeter::git+https://github.com/elementary/greeter.git#tag=${pkgver}"
-        'lightdm-pantheon-greeter-paths.patch')
-sha256sums=('SKIP'
-            '64911a77369693a85563459ff372c4f7daba09825e7f66f2b98b60ab2b7ecd76')
-
-prepare() {
-  if [[ -d build ]]; then
-    rm -rf build
-  fi
-  mkdir build
-
-  cd lightdm-pantheon-greeter
-
-  patch -Np1 -i ../lightdm-pantheon-greeter-paths.patch
-
-}
+makedepends=('git' 'meson' 'vala' 'wingpanel')
+source=("lightdm-pantheon-greeter::git+https://github.com/elementary/greeter.git#tag=${pkgver}")
+sha256sums=('SKIP')
 
 build() {
-  cd build
-
-  cmake ../lightdm-pantheon-greeter \
-    -DCMAKE_BUILD_TYPE='Release' \
-    -DCMAKE_INSTALL_PREFIX='/usr' \
-    -DGSETTINGS_COMPILE='FALSE'
-  make
+  arch-meson lightdm-pantheon-greeter build
+  ninja -C build
 }
 
 package() {
-  cd build
-
-  make DESTDIR="${pkgdir}" install
+  DESTDIR="${pkgdir}" ninja -C build install
 }
 
 # vim: ts=2 sw=2 et:
