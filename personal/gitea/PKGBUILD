@@ -25,8 +25,8 @@ source=("git+https://github.com/go-gitea/gitea.git#tag=v${pkgver}"
         'gitea.service'
         'gitea-ldflags.patch')
 sha256sums=('SKIP'
-            'f186aceae5f4e4104f6a977478717e3bf50b2c5d17fd58450141efdca1492227'
-            'c8633ddb7208dc253ff05ba54d2ce2e4b8d2ee56c2adaad17bc3623a051e6782'
+            '4bcddd5d05ce17968866beb5690517710e040554c9a555a7af06ca549be8c3b0'
+            '4bc8d49f6eb79d881cfb124a0be7e5c1336bfd0e1842fab98d76972c2a0d2e03'
             '8d02a510dc7d8d27e0a0ac67e8a8a2bf7868c1cc494426969bd2b4d6d74e71ac')
 
 prepare() {
