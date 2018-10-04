@@ -23,7 +23,8 @@ backup=('etc/gitea/app.ini')
 source=("git+https://github.com/go-gitea/gitea.git#tag=v${pkgver}"
         'gitea.tmpfiles'
         'gitea.service'
-        'gitea-ldflags.patch')
+        'gitea-ldflags.patch'
+        'gitea-disable-u2f.patch')
 sha256sums=('SKIP'
             '4bcddd5d05ce17968866beb5690517710e040554c9a555a7af06ca549be8c3b0'
             '4bc8d49f6eb79d881cfb124a0be7e5c1336bfd0e1842fab98d76972c2a0d2e03'
@@ -35,6 +36,7 @@ prepare() {
 
   cd gitea
   patch -Np1 -i ../gitea-ldflags.patch
+  patch -Np1 -i ../gitea-disable-u2f.patch
 }
 
 build() {
