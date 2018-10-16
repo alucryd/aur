@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-music-git
-pkgver=r3661.f70f7c24
+pkgver=r3678.2eea3779
 pkgrel=1
 pkgdesc='The Pantheon Music Player'
 arch=('x86_64')
@@ -9,8 +9,8 @@ url='https://github.com/elementary/music'
 license=('GPL3')
 depends=('cairo' 'gdk-pixbuf2' 'glib2' 'glibc' 'gst-plugins-base-libs'
          'gstreamer' 'gtk3' 'json-glib' 'libaccounts-glib' 'libgda' 'libgee'
-         'libgpod' 'libgsignon-glib' 'libpeas' 'libsoup' 'pango' 'taglib'
-         'zeitgeist'
+         'libgpod' 'libgsignon-glib' 'libpeas' 'libsignon-glib' 'libsoup'
+         'pango' 'taglib' 'zeitgeist'
          'libgranite.so')
 makedepends=('appstream' 'git' 'gobject-introspection' 'granite-git' 'intltool'
              'meson' 'vala')
@@ -34,24 +34,13 @@ pkgver() {
   echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
-prepare() {
-  if [[ -d build ]]; then
-    rm -rf build
-  fi
-  mkdir build
-}
-
 build() {
-  cd build
-
-  arch-meson ../pantheon-music
-  ninja
+  arch-meson pantheon-music build
+  ninja -C build
 }
 
 package() {
-  cd build
-
-  DESTDIR="${pkgdir}" ninja install
+  DESTDIR="${pkgdir}" ninja -C build install
 }
 
 # vim: ts=2 sw=2 et:
