@@ -18,6 +18,7 @@ depends=(
   gdk-pixbuf2
   glib2
   gnome-desktop
+  gnome-settings-daemon
   gobject-introspection-runtime
   gtk3
   json-glib
