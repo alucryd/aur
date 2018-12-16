@@ -33,20 +33,17 @@ prepare() {
 }
 
 build() {
-  cd wingpanel/build
-
-  cmake .. \
-    -DCMAKE_BUILD_TYPE='Release' \
-    -DCMAKE_INSTALL_PREFIX='/usr' \
-    -DCMAKE_INSTALL_LIBDIR='lib' \
-    -DGSETTINGS_COMPILE='FALSE'
-  make
+  cd wingpanel
+  meson build --prefix=/usr
+  
+  cd build
+  ninja
 }
 
 package() {
   cd wingpanel/build
 
-  make DESTDIR="${pkgdir}" install
+  DESTDIR="${pkgdir}" ninja install
 }
 
 # vim: ts=2 sw=2 et:
