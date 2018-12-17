@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-about-git
-pkgver=r757.a6a4dfe
+pkgver=r778.1209dd8
 pkgrel=1
 pkgdesc='Switchboard About Plug'
 arch=('x86_64')

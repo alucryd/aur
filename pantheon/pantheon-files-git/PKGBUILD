@@ -2,25 +2,43 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-files-git
-pkgver=r6077.b4312340
+pkgver=r6166.e7f5cd1d
 pkgrel=1
 pkgdesc='The Pantheon File Browser'
-arch=('x86_64')
+arch=(x86_64)
 url='https://github.com/elementary/files'
-license=('GPL3')
-groups=('pantheon-unstable')
-depends=('atk' 'cairo' 'dbus-glib' 'desktop-file-utils' 'gdk-pixbuf2' 'glib2'
-         'glibc' 'gtk3' 'libcanberra' 'libgee' 'libnotify' 'pango' 'plank'
-         'sqlite' 'zeitgeist'
-         'libgranite.so')
-makedepends=('cmake' 'git' 'gnome-common' 'granite-git' 'vala')
-optdepends=('contractor-git: Various context menu entries'
-            'gvfs: Cleaner devices section'
-            'tumbler: Thumbnails generation')
-provides=('pantheon-files')
-conflicts=('pantheon-files')
-source=('pantheon-files::git+https://github.com/elementary/files.git')
-sha256sums=('SKIP')
+license=(GPL3)
+groups=(pantheon-unstable)
+depends=(
+  atk
+  cairo
+  gdk-pixbuf2
+  glib2
+  gtk3
+  libcanberra
+  libgee
+  libgranite.so
+  libnotify
+  pango
+  sqlite
+  zeitgeist
+)
+makedepends=(
+  git
+  gnome-common
+  granite-git
+  meson
+  vala
+)
+optdepends=(
+  'contractor-git: Various context menu entries'
+  'gvfs: Cleaner devices section'
+  'tumbler: Thumbnails generation'
+)
+provides=(pantheon-files)
+conflicts=(pantheon-files)
+source=(pantheon-files::git+https://github.com/elementary/files.git)
+sha256sums=(SKIP)
 
 pkgver() {
   cd pantheon-files
@@ -28,29 +46,14 @@ pkgver() {
   echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
-prepare() {
-  if [[ -d build ]]; then
-    rm -rf build
-  fi
-  mkdir build
-}
-
 build() {
-  cd build
-
-  cmake ../pantheon-files \
-    -DCMAKE_BUILD_TYPE='Release' \
-    -DCMAKE_INSTALL_PREFIX='/usr' \
-    -DCMAKE_INSTALL_LIBDIR='/usr/lib' \
-    -DCMAKE_SKIP_RPATH='TRUE' \
-    -DGSETTINGS_COMPILE='FALSE'
-  make
+  arch-meson pantheon-files build \
+    -D with-unity='false'
+  ninja -C build
 }
 
 package() {
-  cd build
-
-  make DESTDIR="${pkgdir}" install
+  DESTDIR="${pkgdir}" ninja -C build install
 }
 
 # vim: ts=2 sw=2 et:

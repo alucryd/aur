@@ -3,7 +3,7 @@
 
 pkgbase=libretro-beetle-psx-git
 pkgname=('libretro-beetle-psx-git' 'libretro-beetle-psx-hw-git')
-pkgver=r2001.70449aa
+pkgver=r2050.beeee12
 pkgrel=1
 pkgdesc='Sony playStation core'
 arch=('x86_64')

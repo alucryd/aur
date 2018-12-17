@@ -1,12 +1,13 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-music-git
-pkgver=r3678.2eea3779
+pkgver=r3782.305ed7ee
 pkgrel=1
 pkgdesc='The Pantheon Music Player'
 arch=('x86_64')
 url='https://github.com/elementary/music'
 license=('GPL3')
+groups=(pantheon-unstable)
 depends=('cairo' 'gdk-pixbuf2' 'glib2' 'glibc' 'gst-plugins-base-libs'
          'gstreamer' 'gtk3' 'json-glib' 'libaccounts-glib' 'libgda' 'libgee'
          'libgpod' 'libgsignon-glib' 'libpeas' 'libsignon-glib' 'libsoup'

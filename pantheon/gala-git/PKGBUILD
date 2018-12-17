@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=gala-git
-pkgver=0.3.0.r187.15f722a
+pkgver=0.3.0.r204.7f1e392
 pkgrel=1
 pkgdesc='The Pantheon Window Manager'
 arch=('x86_64')
@@ -11,7 +11,7 @@ groups=('pantheon-unstable')
 depends=('atk' 'bamf' 'cairo' 'gdk-pixbuf2' 'glib2' 'gnome-desktop' 'gtk3'
          'json-glib' 'libdrm' 'libgee' 'libgl' 'libx11' 'libxcomposite'
          'libxdamage' 'libxext' 'libxfixes' 'libxi' 'libxrandr' 'libxtst'
-         'mesa' 'mutter' 'pango' 'plank' 'wayland'
+         'mesa' 'libmutter2' 'pango' 'plank' 'wayland'
          'libgranite.so')
 makedepends=('git' 'gnome-common' 'granite-git' 'intltool' 'meson' 'vala')
 provides=('gala' 'libgala.so')
@@ -23,12 +23,6 @@ pkgver() {
   cd gala
 
   git describe --tags | sed 's/-/.r/; s/-g/./'
-}
-
-prepare() {
-  cd gala
-
-  git cherry-pick -n 543c1e36014621bd2ceb446ef8bc5207fa179303
 }
 
 build() {

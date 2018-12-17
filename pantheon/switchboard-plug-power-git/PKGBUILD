@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-power-git
-pkgver=r733.91f9bf4
+pkgver=r754.1d6c4a5
 pkgrel=1
 pkgdesc='Switchboard Power Plug'
 arch=('x86_64')

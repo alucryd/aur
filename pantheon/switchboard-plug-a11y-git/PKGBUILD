@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-a11y-git
-pkgver=r279.6f5f816
+pkgver=r321.f6662ac
 pkgrel=1
 pkgdesc='Switchboard Universal Access Plug'
 arch=('x86_64')
