@@ -1,0 +1,5 @@
+--- a/lightdm-pantheon-greeter/meson_options.txt
++++ b/lightdm-pantheon-greeter/meson_options.txt
+@@ -1 +1 @@
+-option('ubuntu-patched-gsd', type: 'boolean', value: true) 
++option('ubuntu-patched-gsd', type: 'boolean', value: false) 
