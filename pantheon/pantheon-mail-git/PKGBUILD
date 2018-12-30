@@ -2,7 +2,7 @@
 # Contributor: Riley Trautman <asonix@tamu.edu>
 
 pkgname=pantheon-mail-git
-pkgver=r140.592caf46
+pkgver=r145.fb068e4b
 pkgrel=1
 pkgdesc='The Pantheon Mail Client'
 arch=('x86_64')
