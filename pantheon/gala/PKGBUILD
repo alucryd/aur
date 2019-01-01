@@ -1,0 +1,64 @@
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+
+pkgname=gala
+pkgver=0.3.0.r204.7f1e392
+pkgrel=1
+pkgdesc='The Pantheon Window Manager'
+arch=(x86_64)
+url='https://github.com/elementary/gala'
+license=(GPL3)
+groups=(pantheon-unstable)
+depends=(
+  atk
+  bamf
+  cairo
+  gdk-pixbuf2
+  glib2
+  gnome-desktop
+  gtk3
+  json-glib
+  libdrm
+  libgee
+  libgl
+  libgranite.so
+  libmutter2
+  libx11
+  libxcomposite
+  libxdamage
+  libxext
+  libxfixes
+  libxi
+  libxrandr
+  libxtst
+  mesa
+  pango
+  plank
+  wayland
+)
+makedepends=(
+  git
+  gnome-common
+  intltool
+  meson
+  vala
+)
+provides=(libgala.so)
+source=(git+https://github.com/elementary/gala.git#commit=7f1e392e03000df0bd47e7832bb3adab81f39ae5)
+sha256sums=(SKIP)
+
+pkgver() {
+  cd gala
+
+  git describe --tags | sed 's/-/.r/; s/-g/./'
+}
+
+build() {
+  arch-meson gala build
+  ninja -C build
+}
+
+package() {
+  DESTDIR="${pkgdir}" ninja -C build install
+}
+
+# vim: ts=2 sw=2 et:
