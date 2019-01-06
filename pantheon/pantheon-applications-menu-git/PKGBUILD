@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-applications-menu-git
-pkgver=2.4.1.r26.6ea0fa7
+pkgver=2.4.1.r27.7e357c0
 pkgrel=1
 pkgdesc='The Pantheon Application Menu'
 arch=('x86_64')

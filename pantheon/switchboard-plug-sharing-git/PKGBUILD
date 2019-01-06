@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-sharing-git
-pkgver=r267.ad7a0ec
+pkgver=r269.439e745
 pkgrel=1
 pkgdesc='Switchboard Sharing Plug'
 arch=('x86_64')

@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-keyboard-git
-pkgver=r199.f0e73f6
+pkgver=r201.d4b3012
 pkgrel=1
 pkgdesc='Keyboard indicator for Wingpanel'
 arch=('x86_64')

@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=libretro-citra-git
-pkgver=r6959.a0c222c0
+pkgver=r6960.d4543ac9
 pkgrel=1
 pkgdesc='Nintendo 3DS core'
 arch=('x86_64')
