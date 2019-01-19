@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-screenshot-git
-pkgver=r756.a848d33
+pkgver=r757.9c5218f
 pkgrel=1
 pkgdesc='The Pantheon Screenshot Tool'
 arch=('x86_64')
