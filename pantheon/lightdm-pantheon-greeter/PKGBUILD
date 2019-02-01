@@ -4,18 +4,38 @@ pkgname=lightdm-pantheon-greeter
 pkgver=3.3.0
 pkgrel=1
 pkgdesc='Pantheon greeter for LightDM'
-arch=('x86_64')
+arch=(x86_64)
 url='https://github.com/elementary/greeter'
-license=('GPL')
-groups=('pantheon')
-depends=('cairo' 'clutter' 'clutter-gtk' 'gdk-pixbuf2' 'glib2' 'gtk3' 'libgee'
-         'libgl' 'libx11' 'lightdm'
-         'libgranite.so' 'libwingpanel-2.0.so')
-makedepends=('git' 'meson' 'vala' 'wingpanel')
-source=("lightdm-pantheon-greeter::git+https://github.com/elementary/greeter.git#tag=${pkgver}"
-        '0001-bin-not-sbin.patch')
-sha256sums=('SKIP'
-            'f1fd5a443caa80cf95ee36a05421f3418cb1bc86714e47f1314c61128b77054b')
+license=(GPL)
+groups=(pantheon)
+depends=(
+  cairo
+  clutter
+  clutter-gtk
+  gdk-pixbuf2
+  glib2
+  gtk3
+  libgee
+  libgl
+  libgranite.so
+  libwingpanel-2.0.so
+  libx11
+  lightdm
+)
+makedepends=(
+  git
+  meson
+  vala
+  wingpanel
+)
+source=(
+  lightdm-pantheon-greeter::git+https://github.com/elementary/greeter.git#tag=${pkgver}
+  0001-bin-not-sbin.patch
+)
+sha256sums=(
+  SKIP
+  f1fd5a443caa80cf95ee36a05421f3418cb1bc86714e47f1314c61128b77054b
+)
 
 prepare() {
   cd lightdm-pantheon-greeter
@@ -24,12 +44,13 @@ prepare() {
 }
 
 build() {
-  arch-meson lightdm-pantheon-greeter build
+  arch-meson lightdm-pantheon-greeter build \
+    -D b_pie=false
   ninja -C build
 }
 
 package() {
-  DESTDIR="${pkgdir}" ninja -C build install
+  DESTDIR="${pkgdir}" meson install -C build
 }
 
 # vim: ts=2 sw=2 et:
