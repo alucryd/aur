@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=gala
-pkgver=0.3.0.r204.7f1e392
+pkgver=0.3.0.r206.6654145
 pkgrel=1
 pkgdesc='The Pantheon Window Manager'
 arch=(x86_64)
@@ -43,7 +43,7 @@ makedepends=(
   vala
 )
 provides=(libgala.so)
-source=(git+https://github.com/elementary/gala.git#commit=7f1e392e03000df0bd47e7832bb3adab81f39ae5)
+source=(git+https://github.com/elementary/gala.git#commit=6654145bb2d53062e6ade1cb8901ff382bbc0e78)
 sha256sums=(SKIP)
 
 pkgver() {
@@ -53,12 +53,13 @@ pkgver() {
 }
 
 build() {
-  arch-meson gala build
+  arch-meson gala build \
+    -D b_pie=false
   ninja -C build
 }
 
 package() {
-  DESTDIR="${pkgdir}" ninja -C build install
+  DESTDIR="${pkgdir}" meson install -C build
 }
 
 # vim: ts=2 sw=2 et:
