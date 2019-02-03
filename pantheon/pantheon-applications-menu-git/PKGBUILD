@@ -33,13 +33,25 @@ makedepends=(
 )
 provides=(pantheon-applications-menu)
 conflicts=(pantheon-applications-menu)
-source=(pantheon-applications-menu::git+https://github.com/elementary/applications-menu.git)
-sha256sums=(SKIP)
+source=(
+  pantheon-applications-menu::git+https://github.com/elementary/applications-menu.git
+  pantheon-applications-menu-plank.patch
+)
+sha256sums=(
+  SKIP
+  bf9c6e4eb7bb236e3d740ca8a2e86558ede3efe460a0a44a7ef14a84090b9d5a
+)
 
 pkgver() {
   cd pantheon-applications-menu
 
   git describe --tags | sed 's/-/.r/; s/-g/./'
+}
+
+prepare() {
+  cd pantheon-applications-menu
+
+  patch -Np1 -i ../pantheon-applications-menu-plank.patch
 }
 
 build() {
