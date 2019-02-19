@@ -7,7 +7,7 @@ pkgname=(
   citra-cli-git
   citra-qt-git
 )
-pkgver=r7543.f620c862f
+pkgver=r7608.f6d0e43c7
 pkgrel=1
 pkgdesc='A Nintendo 3DS emulator'
 arch=(x86_64)
@@ -26,7 +26,6 @@ source=(
   citra-boost::git+https://github.com/citra-emu/ext-boost.git
   git+https://github.com/philsquared/Catch.git
   git+https://github.com/arun11299/cpp-jwt.git
-  git+https://github.com/zeromq/cppzmq.git
   git+https://github.com/weidai11/cryptopp.git
   git+https://github.com/kinetiknz/cubeb.git
   git+https://github.com/discordapp/discord-rpc.git
@@ -35,7 +34,6 @@ source=(
   git+https://github.com/fmtlib/fmt.git
   git+https://github.com/svn2github/inih.git
   citra-libressl::git+https://github.com/citra-emu/ext-libressl-portable.git
-  git+https://github.com/zeromq/libzmq.git
   git+https://github.com/neobrain/nihstro.git
   git+https://github.com/arsenm/sanitizers-cmake.git
   citra-soundtouch::git+https://github.com/citra-emu/ext-soundtouch.git
@@ -43,8 +41,6 @@ source=(
   git+https://github.com/herumi/xbyak.git
 )
 sha256sums=(
-  SKIP
-  SKIP
   SKIP
   SKIP
   SKIP
@@ -78,7 +74,7 @@ prepare() {
 
   cd citra
 
-  for submodule in externals/{catch,cpp-jwt,cppzmq,cryptopp/cryptopp,cubeb,discord-rpc,dynarmic,enet,fmt,inih/inih,libressl,libzmq,nihstro,teakra,xbyak}; do
+  for submodule in externals/{catch,cpp-jwt,cryptopp/cryptopp,cubeb,discord-rpc,dynarmic,enet,fmt,inih/inih,libressl,nihstro,teakra,xbyak}; do
     git submodule init ${submodule}
     git config submodule.${submodule}.url ../${submodule##*/}
     git submodule update
