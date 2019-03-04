@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-network-git
-pkgver=r980.09f5ed1
+pkgver=r981.0f2bc14
 pkgrel=1
 pkgdesc='Network plug for Switchboard'
 arch=('x86_64')
