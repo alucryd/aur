@@ -23,7 +23,6 @@ depends=(
 makedepends=(
   git
   granite-git
-  libgexiv2
   meson
   switchboard-git
   vala
