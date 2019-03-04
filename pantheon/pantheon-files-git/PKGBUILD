@@ -2,11 +2,11 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-files-git
-pkgver=r6398.14ab6db4
+pkgver=r6405.3556bde8
 pkgrel=1
 pkgdesc='The Pantheon File Browser'
 arch=(x86_64)
-url='https://github.com/elementary/files'
+url=https://github.com/elementary/files
 license=(GPL3)
 groups=(pantheon-unstable)
 depends=(
@@ -48,7 +48,7 @@ pkgver() {
 
 build() {
   arch-meson pantheon-files build \
-    -D with-unity='false'
+    -D with-unity=false
   ninja -C build
 }
 
