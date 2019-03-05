@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-photos-git
-pkgver=r4897.395bc342
+pkgver=r4898.be2d32a7
 pkgrel=1
 pkgdesc='The Pantheon Photos Manager'
 arch=('x86_64')
