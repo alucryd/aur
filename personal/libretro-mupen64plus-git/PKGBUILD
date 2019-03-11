@@ -2,7 +2,7 @@
 # Contributor: Thomas Schneider <maxmusterm@gmail.com>
 
 pkgname=libretro-mupen64plus-git
-pkgver=r695.563565d
+pkgver=r696.be81697
 pkgrel=1
 pkgdesc='Nintendo 64 core'
 arch=('x86_64')
