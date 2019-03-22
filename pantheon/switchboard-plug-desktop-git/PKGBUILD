@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-desktop-git
-pkgver=r1039.473a199
+pkgver=r1041.449b462
 pkgrel=1
 pkgdesc='Switchboard Desktop Plug'
 arch=(x86_64)
