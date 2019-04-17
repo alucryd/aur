@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=granite-git
-pkgver=5.2.3.r32.e11a7b15
+pkgver=5.2.3.r33.fb8ca089
 pkgrel=1
 pkgdesc='Library that extends Gtk+'
 arch=(x86_64)
