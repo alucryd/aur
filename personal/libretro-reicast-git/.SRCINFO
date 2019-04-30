@@ -1,6 +1,6 @@
 pkgbase = libretro-reicast-git
 	pkgdesc = Sega Dreamcast core
-	pkgver = r3606.b3e5f0c0
+	pkgver = r3611.02711846
 	pkgrel = 1
 	url = https://github.com/libretro/reicast-emulator
 	arch = x86_64
