@@ -3,17 +3,26 @@
 
 pkgname=gsignond
 pkgver=1.2.0
-pkgrel=1
+pkgrel=2
 pkgdesc='gSSO glib daemon'
-arch=('x86_64')
-url='https://01.org/gsso'
-license=('LGPL2.1')
-depends=('glib2' 'glibc' 'sqlite')
-makedepends=('git' 'gobject-introspection' 'meson' 'vala')
-provides=('libgsignond-common.so')
-backup=('etc/gsignond.conf')
-source=("git+https://gitlab.com/accounts-sso/gsignond.git#tag=${pkgver}")
-sha256sums=('SKIP')
+arch=(x86_64)
+url=https://01.org/gsso
+license=(LGPL2.1)
+depends=(
+  glib2
+  glibc
+  sqlite
+)
+makedepends=(
+  git
+  gobject-introspection
+  meson
+  vala
+)
+provides=(libgsignond-common.so)
+backup=(etc/gsignond.conf)
+source=(git+https://gitlab.com/accounts-sso/gsignond.git#tag=${pkgver})
+sha256sums=(SKIP)
 
 prepare() {
   cd gsignond
@@ -23,12 +32,13 @@ prepare() {
 
 build() {
   arch-meson gsignond build \
-    -D documentation='false'
+    -D documentation=false
   ninja -C build
 }
 
 package() {
   DESTDIR="${pkgdir}" ninja -C build install
+  find "${pkgdir}" -type f -name com.google.code.AccountsSSO.SingleSignOn.* -delete
 }
 
 # vim: ts=2 sw=2 et:
