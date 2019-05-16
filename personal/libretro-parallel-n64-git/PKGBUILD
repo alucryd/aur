@@ -2,7 +2,7 @@
 # Contributor: Thomas Schneider <maxmusterm@gmail.com>
 
 pkgname=libretro-parallel-n64-git
-pkgver=r5038.701224c1
+pkgver=r5040.68d89c77
 pkgrel=1
 pkgdesc='Nintendo 64 core'
 arch=('x86_64')

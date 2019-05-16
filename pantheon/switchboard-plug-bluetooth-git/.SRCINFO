@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-bluetooth-git
 	pkgdesc = Switchboard Bluetooth Plug
-	pkgver = r291.90ab186
+	pkgver = r335.ae52a1f
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-bluetooth
 	arch = x86_64

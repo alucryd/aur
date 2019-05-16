@@ -1,6 +1,6 @@
 pkgbase = libretro-parallel-n64-git
 	pkgdesc = Nintendo 64 core
-	pkgver = r5038.701224c1
+	pkgver = r5040.68d89c77
 	pkgrel = 1
 	url = https://github.com/libretro/parallel-n64
 	arch = x86_64

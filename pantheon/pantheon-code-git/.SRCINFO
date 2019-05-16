@@ -1,6 +1,6 @@
 pkgbase = pantheon-code-git
 	pkgdesc = The Pantheon Code Editor
-	pkgver = r3679.c37c374a
+	pkgver = r3688.8e61a9b6
 	pkgrel = 1
 	url = https://github.com/elementary/code
 	arch = x86_64

@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-files-git
-pkgver=r6458.bfabe590
+pkgver=r6462.1c869f64
 pkgrel=1
 pkgdesc='The Pantheon File Browser'
 arch=(x86_64)

@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-shortcut-overlay-git
-pkgver=r299.0b5d868
+pkgver=r301.2e29bbc
 pkgrel=1
 pkgdesc='A native, OS-wide shortcut overlay'
 arch=('x86_64')
