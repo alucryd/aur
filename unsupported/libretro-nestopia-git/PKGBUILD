@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=libretro-nestopia-git
-pkgver=r954.e924416
+pkgver=r955.7e288bb
 pkgrel=1
 pkgdesc='Nintendo Entertainment System core'
 arch=('x86_64')

@@ -1,6 +1,6 @@
 pkgbase = pantheon-mail-git
 	pkgdesc = The Pantheon Mail Client
-	pkgver = r254.16af6af9
+	pkgver = r256.e612aa05
 	pkgrel = 1
 	url = https://github.com/elementary/mail
 	arch = x86_64

@@ -1,6 +1,6 @@
 pkgbase = pantheon-files-git
 	pkgdesc = The Pantheon File Browser
-	pkgver = r6462.1c869f64
+	pkgver = r6469.b5a06bb8
 	pkgrel = 1
 	url = https://github.com/elementary/files
 	arch = x86_64

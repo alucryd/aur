@@ -1,6 +1,6 @@
 pkgbase = libretro-dolphin-git
 	pkgdesc = Nintendo GC/Wii core
-	pkgver = r29741.1d973f4170
+	pkgver = r29746.e8f27d0c34
 	pkgrel = 1
 	url = https://github.com/libretro/dolphin
 	arch = x86_64
