@@ -3,7 +3,7 @@
 # Contributor: Themaister <maister@archlinux.us>
 
 pkgname=retroarch-git
-pkgver=1.7.7.r266.086b3ccfb7
+pkgver=1.7.7.r301.22320a4a91
 pkgrel=1
 pkgdesc='Reference frontend for the libretro API'
 arch=(x86_64)
@@ -12,7 +12,6 @@ license=(GPL)
 groups=(libretro-unstable)
 depends=(
   alsa-lib
-  dbus
   libass.so
   libavcodec.so
   libavformat.so
@@ -25,6 +24,16 @@ depends=(
   libswscale.so
   libudev.so
   libusb-1.0.so
+  mbedtls
+  mesa
+  miniupnpc
+  openal
+  sdl2
+  v4l-utils
+  zlib
+)
+makedepends=(
+  git
   libx11
   libxcb
   libxext
@@ -33,16 +42,10 @@ depends=(
   libxrandr
   libxv
   libxxf86vm
-  mesa
-  openal
-  sdl2
-  v4l-utils
-  wayland
-  zlib
-)
-makedepends=(
-  git
+  qt5-base
   vulkan-icd-loader
+  wayland
+  wayland-protocols
 )
 optdepends=(
   'libretro-bsnes: Super Nintendo Entertainment System cores'
@@ -60,6 +63,12 @@ optdepends=(
   'libretro-shaders-cg: Collection of Cg shaders'
   'libretro-shaders-glsl: Collection of GLSL shaders'
   'libretro-shaders-slang: Collection of Vulkan shaders'
+  'libxinerama: X11 support'
+  'libxrandr: X11 support'
+  'python: retroarch-cg2glsl'
+  'qt5-base: WIMP GUI'
+  'retroarch-assets-xmb: XMB menu assets'
+  'wayland: Wayland support'
 )
 provides=(retroarch)
 conflicts=(retroarch)
@@ -90,16 +99,27 @@ build() {
 
   ./configure \
     --prefix='/usr' \
+    --disable-builtinflac \
+    --disable-builtinmbedtls \
+    --disable-builtinminiupnpc \
+    --disable-builtinzlib \
     --disable-cg \
     --disable-jack \
-    --disable-oss
+    --disable-oss \
+    --disable-sdl \
+    --enable-egl\
+    --enable-zlib
   make
+  make -C libretro-common/audio/dsp_filters
+  make -C gfx/video_filters
 }
 
 package() {
   cd retroarch
 
   make DESTDIR="${pkgdir}" install
+  install -Dm 644 libretro-common/audio/dsp_filters/*.{dsp,so} -t "${pkgdir}"/usr/lib/retroarch/filters/audio/
+  install -Dm 644 gfx/video_filters/*.{filt,so} -t "${pkgdir}"/usr/lib/retroarch/filters/video/
 }
 
 # vim: ts=2 sw=2 et:
