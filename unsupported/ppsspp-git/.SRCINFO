@@ -1,6 +1,6 @@
 pkgbase = ppsspp-git
 	pkgdesc = A PSP emulator written in C++
-	pkgver = 1.8.0.r230.4b124a734
+	pkgver = 1.8.0.r237.d0d8ea3fb
 	pkgrel = 1
 	url = http://www.ppsspp.org/
 	arch = x86_64
