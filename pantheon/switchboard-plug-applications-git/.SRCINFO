@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-applications-git
 	pkgdesc = Switchboard Applications Plug
-	pkgver = r400.05bc42a
+	pkgver = r401.01fe346
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-applications
 	arch = x86_64
