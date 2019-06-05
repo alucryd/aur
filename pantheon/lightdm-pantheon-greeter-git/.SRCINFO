@@ -1,6 +1,6 @@
 pkgbase = lightdm-pantheon-greeter-git
 	pkgdesc = Pantheon greeter for LightDM
-	pkgver = 3.3.1.r112.f0f179b
+	pkgver = 3.3.1.r118.665d211
 	pkgrel = 1
 	url = https://github.com/elementary/greeter
 	install = lightdm-pantheon-greeter.install

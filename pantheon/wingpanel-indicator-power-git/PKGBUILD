@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-power-git
-pkgver=r460.d83767c
+pkgver=r461.eda20fd
 pkgrel=1
 pkgdesc='Power indicator for Wingpanel'
 arch=('x86_64')

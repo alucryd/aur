@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-camera-git
-pkgver=r840.93a1621
+pkgver=r841.eac800e
 pkgrel=1
 pkgdesc='The Pantheon Camera Application'
 arch=('x86_64')

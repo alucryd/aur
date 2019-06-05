@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-session-git
-pkgver=r359.8610dfc
+pkgver=r364.b08a8c8
 pkgrel=1
 pkgdesc='Session indicator for Wingpanel'
 arch=('x86_64')

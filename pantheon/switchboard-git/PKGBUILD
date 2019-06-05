@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-git
-pkgver=r1310.03c4cc6
+pkgver=r1311.7a78a3c
 pkgrel=1
 pkgdesc='The Pantheon Control Center'
 arch=('x86_64')
