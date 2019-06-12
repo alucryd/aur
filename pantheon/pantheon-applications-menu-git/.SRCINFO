@@ -1,6 +1,6 @@
 pkgbase = pantheon-applications-menu-git
 	pkgdesc = The Pantheon Application Menu
-	pkgver = 2.4.3.r2.bb90bdc
+	pkgver = 2.4.3.r4.3ac7d6b
 	pkgrel = 1
 	url = https://github.com/elementary/applications-menu
 	arch = x86_64

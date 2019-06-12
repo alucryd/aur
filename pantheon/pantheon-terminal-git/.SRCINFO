@@ -1,6 +1,6 @@
 pkgbase = pantheon-terminal-git
 	pkgdesc = The Pantheon Terminal Emulator
-	pkgver = r1942.a3eee4b
+	pkgver = r1943.65ad21e
 	pkgrel = 1
 	url = https://github.com/elementary/terminal
 	arch = x86_64

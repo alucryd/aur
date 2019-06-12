@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-power-git
 	pkgdesc = Switchboard Power Plug
-	pkgver = r781.14fc12f
+	pkgver = r782.0475cf3
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-power
 	arch = x86_64
