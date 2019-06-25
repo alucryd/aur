@@ -2,7 +2,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=retroarch-assets-xmb-git
-pkgver=r219.1bb7ddee
+pkgver=r223.8d609101
 pkgrel=1
 pkgdesc='XMB menu assets for RetroArch'
 arch=('any')
