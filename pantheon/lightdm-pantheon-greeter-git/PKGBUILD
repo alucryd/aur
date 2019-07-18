@@ -2,7 +2,7 @@
 # Contributor: sh4nks <sh4nks7@gmail.com
 
 pkgname=lightdm-pantheon-greeter-git
-pkgver=3.3.1.r121.a03f08c
+pkgver=3.3.1.r161.851f43a
 pkgrel=1
 pkgdesc='Pantheon greeter for LightDM'
 arch=(x86_64)

@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-applications-git
-pkgver=r403.c9dc303
+pkgver=r412.16556cd
 pkgrel=1
 pkgdesc='Switchboard Applications Plug'
 arch=('x86_64')

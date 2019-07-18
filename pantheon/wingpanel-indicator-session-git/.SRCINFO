@@ -1,6 +1,6 @@
 pkgbase = wingpanel-indicator-session-git
 	pkgdesc = Session indicator for Wingpanel
-	pkgver = r364.b08a8c8
+	pkgver = r372.2a8657b
 	pkgrel = 1
 	url = https://github.com/elementary/wingpanel-indicator-session
 	arch = x86_64

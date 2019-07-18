@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-mouse-touchpad-git
-pkgver=r488.b1d55b8
+pkgver=r504.5d66710
 pkgrel=1
 pkgdesc='Switchboard Mouse & Touchpad Plug'
 arch=('x86_64')

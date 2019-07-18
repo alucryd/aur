@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=libretro-core-info-git
-pkgver=r48.13a966e
+pkgver=r50.3ff6fa2
 pkgrel=1
 pkgdesc='Libretro core info files'
 arch=('any')

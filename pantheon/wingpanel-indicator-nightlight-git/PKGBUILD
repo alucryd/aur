@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-nightlight-git
-pkgver=r143.f609a0a
+pkgver=r144.9391435
 pkgrel=1
 pkgdesc='Winganel Nightlight Indicator'
 arch=('x86_64')
