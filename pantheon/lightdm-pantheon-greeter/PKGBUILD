@@ -3,7 +3,7 @@
 
 pkgname=lightdm-pantheon-greeter
 pkgver=3.3.1
-pkgrel=1
+pkgrel=2
 pkgdesc='Pantheon greeter for LightDM'
 arch=(x86_64)
 url=https://github.com/elementary/greeter
@@ -15,12 +15,12 @@ depends=(
   gdk-pixbuf2
   glib2
   gtk3
-  libmutter2
   libgee
   libgl
   libgranite.so
   libx11
   lightdm
+  mutter
 )
 makedepends=(
   meson
@@ -41,13 +41,12 @@ pkgver() {
 
 build() {
   arch-meson lightdm-pantheon-greeter build \
-    -D b_pie=false \
     -D ubuntu-patched-gsd=false
   ninja -C build
 }
 
 package() {
-  DESTDIR="${pkgdir}" meson install -C build
+  DESTDIR="${pkgdir}" ninja -C build install
 }
 
 # vim: ts=2 sw=2 et:
