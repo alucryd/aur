@@ -1,6 +1,6 @@
 pkgbase = wingpanel-indicator-datetime-git
 	pkgdesc = Date & Time indicator for Wingpanel
-	pkgver = r432.46b239b
+	pkgver = r450.9cd3ecc
 	pkgrel = 1
 	url = https://github.com/elementary/wingpanel-indicator-datetime
 	arch = x86_64

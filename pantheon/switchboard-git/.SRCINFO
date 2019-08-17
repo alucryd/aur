@@ -1,6 +1,6 @@
 pkgbase = switchboard-git
 	pkgdesc = The Pantheon Control Center
-	pkgver = r1315.ff331c4
+	pkgver = r1318.ff1c003
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard
 	arch = x86_64

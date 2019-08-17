@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-about-git
 	pkgdesc = Switchboard About Plug
-	pkgver = r872.a703761
+	pkgver = r882.6ff63b8
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-about
 	arch = x86_64

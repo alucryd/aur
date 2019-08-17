@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-a11y-git
 	pkgdesc = Switchboard Universal Access Plug
-	pkgver = r356.6d030ee
+	pkgver = r361.ddd550e
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-a11y
 	arch = x86_64

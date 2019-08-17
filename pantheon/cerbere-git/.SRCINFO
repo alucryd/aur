@@ -1,6 +1,6 @@
 pkgbase = cerbere-git
 	pkgdesc = The Pantheon Watchdog
-	pkgver = 2.5.0
+	pkgver = 2.5.0.r1.9d95176
 	pkgrel = 1
 	url = https://github.com/elementary/cerbere
 	arch = x86_64
