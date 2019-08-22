@@ -1,6 +1,6 @@
 pkgbase = libretro-shaders-slang-git
 	pkgdesc = Collection of shaders for libretro
-	pkgver = r660.4904f5c
+	pkgver = r662.bf0dfe4
 	pkgrel = 1
 	url = https://www.libretro.com/
 	arch = any

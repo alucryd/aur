@@ -1,6 +1,6 @@
 pkgbase = libretro-desmume-git
 	pkgdesc = Nintendo DS core
-	pkgver = r6318.c5a899af
+	pkgver = r6319.ae862a83
 	pkgrel = 1
 	url = https://github.com/libretro/desmume
 	arch = x86_64

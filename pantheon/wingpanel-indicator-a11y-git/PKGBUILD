@@ -5,15 +5,26 @@ pkgver=r13.b3009f5
 pkgrel=1
 pkgdesc='Universal Access indicator for Wingpanel'
 arch=(x86_64)
-url='https://github.com/elementary/wingpanel-indicator-a11y'
+url=https://github.com/elementary/wingpanel-indicator-a11y
 license=(GPL3)
 groups=(pantheon-unstable)
-depends=(glib2 gtk3 libgranite.so libwingpanel-2.0.so)
-makedepends=(git granite-git meson vala wingpanel-git)
+depends=(
+  glib2
+  gtk3
+  libgranite.so
+  libwingpanel-2.0.so
+)
+makedepends=(
+  git
+  granite-git
+  meson
+  vala
+  wingpanel-git
+)
 provides=(wingpanel-indicator-a11y)
 conflicts=(wingpanel-indicator-a11y)
-source=('git+https://github.com/elementary/wingpanel-indicator-a11y.git')
-sha256sums=('SKIP')
+source=(git+https://github.com/elementary/wingpanel-indicator-a11y.git)
+sha256sums=(SKIP)
 
 pkgver() {
   cd wingpanel-indicator-a11y
