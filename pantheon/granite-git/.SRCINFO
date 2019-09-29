@@ -1,6 +1,6 @@
 pkgbase = granite-git
 	pkgdesc = Library that extends Gtk+
-	pkgver = 5.2.4.r29.c25b405a
+	pkgver = 5.2.5.r9.3cc81092
 	pkgrel = 1
 	url = https://github.com/elementary/granite
 	arch = x86_64

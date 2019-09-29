@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-display-git
 	pkgdesc = Switchboard Display Plug
-	pkgver = r479.7f69c5c
+	pkgver = r494.18bbcbc
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-display
 	arch = x86_64

@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-online-accounts-git
 	pkgdesc = Switchboard Online Accounts Plug
-	pkgver = r717.5735d12
+	pkgver = r732.5bcd165
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-onlineaccounts
 	arch = x86_64

@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-printers-git
 	pkgdesc = Switchboard Printers Plug
-	pkgver = r500.e9d791e
+	pkgver = r518.f299633
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-printers
 	arch = x86_64

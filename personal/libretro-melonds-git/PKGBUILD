@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=libretro-melonds-git
-pkgver=r1043.5d66040
+pkgver=r1069.42c1acd
 pkgrel=1
 pkgdesc='Nintendo DS core'
 arch=(x86_64)

@@ -1,6 +1,6 @@
 pkgbase = pantheon-files-git
 	pkgdesc = The Pantheon File Browser
-	pkgver = r6545.1d3fe5d9
+	pkgver = r6592.6efd84b0
 	pkgrel = 1
 	url = https://github.com/elementary/files
 	arch = x86_64
@@ -17,6 +17,7 @@ pkgbase = pantheon-files-git
 	depends = glib2
 	depends = gtk3
 	depends = libcanberra
+	depends = libcloudproviders
 	depends = libgee
 	depends = libgranite.so
 	depends = libnotify

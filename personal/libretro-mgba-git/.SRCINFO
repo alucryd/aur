@@ -1,6 +1,6 @@
 pkgbase = libretro-mgba-git
 	pkgdesc = Nintendo Game Boy Advance core
-	pkgver = r6168.8cf7b434
+	pkgver = r6170.4865aaab
 	pkgrel = 1
 	url = https://github.com/libretro/mgba
 	arch = x86_64

@@ -1,6 +1,6 @@
 pkgbase = libretro-melonds-git
 	pkgdesc = Nintendo DS core
-	pkgver = r1043.5d66040
+	pkgver = r1069.42c1acd
 	pkgrel = 1
 	url = https://github.com/libretro/melonDS
 	arch = x86_64

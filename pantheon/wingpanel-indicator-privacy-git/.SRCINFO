@@ -1,6 +1,6 @@
 pkgbase = wingpanel-indicator-privacy-git
 	pkgdesc = Privacy indicator for Wingpanel
-	pkgver = r102.44cb7eb
+	pkgver = r119.1cad373
 	pkgrel = 1
 	url = https://github.com/elementary/wingpanel-indicator-privacy
 	arch = x86_64

@@ -2,7 +2,7 @@
 # Contributor: Ner0 <darkelfdarkelf666@yahoo.co.uk>
 
 pkgname=pantheon-files-git
-pkgver=r6545.1d3fe5d9
+pkgver=r6592.6efd84b0
 pkgrel=1
 pkgdesc='The Pantheon File Browser'
 arch=(x86_64)
@@ -16,6 +16,7 @@ depends=(
   glib2
   gtk3
   libcanberra
+  libcloudproviders
   libgee
   libgranite.so
   libnotify

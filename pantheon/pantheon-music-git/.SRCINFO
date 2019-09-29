@@ -1,6 +1,6 @@
 pkgbase = pantheon-music-git
 	pkgdesc = The Pantheon Music Player
-	pkgver = r3873.c277aa76
+	pkgver = r3899.ab9c7031
 	pkgrel = 1
 	url = https://github.com/elementary/music
 	arch = x86_64
