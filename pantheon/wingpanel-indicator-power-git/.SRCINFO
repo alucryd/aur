@@ -1,6 +1,6 @@
 pkgbase = wingpanel-indicator-power-git
 	pkgdesc = Power indicator for Wingpanel
-	pkgver = r467.7e02f4f
+	pkgver = r470.38a38fb
 	pkgrel = 1
 	url = https://github.com/elementary/wingpanel-indicator-power
 	arch = x86_64

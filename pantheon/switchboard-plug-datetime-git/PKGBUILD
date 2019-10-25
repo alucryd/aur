@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-datetime-git
-pkgver=r569.6818985
+pkgver=r579.0dc1759
 pkgrel=1
 pkgdesc='Switchboard Date & Time Plug'
 arch=('x86_64')

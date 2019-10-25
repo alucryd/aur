@@ -1,6 +1,6 @@
 pkgbase = libretro-citra-git
 	pkgdesc = Nintendo 3DS core
-	pkgver = r6961.37192ff3
+	pkgver = r6962.84f31e95
 	pkgrel = 1
 	url = https://github.com/libretro/citra
 	arch = x86_64

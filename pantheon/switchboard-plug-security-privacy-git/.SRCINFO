@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-security-privacy-git
 	pkgdesc = Switchboard Security & Privacy Plug
-	pkgver = r857.6021dbd
+	pkgver = r878.e40f489
 	pkgrel = 1
 	url = https://launchpad.net/switchboard-plug-security-privacy
 	arch = x86_64

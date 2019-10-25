@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-desktop-git
 	pkgdesc = Switchboard Desktop Plug
-	pkgver = r1083.8cd0654
+	pkgver = r1095.b262c8c
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-pantheon-shell
 	arch = x86_64

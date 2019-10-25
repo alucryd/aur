@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-videos-git
-pkgver=r1491.9303a9a
+pkgver=r1511.04c9e03
 pkgrel=1
 pkgdesc='The Pantheon Video Player'
 arch=('x86_64')

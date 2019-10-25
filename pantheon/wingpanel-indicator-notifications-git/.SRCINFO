@@ -1,6 +1,6 @@
 pkgbase = wingpanel-indicator-notifications-git
 	pkgdesc = Notifications indicator for Wingpanel
-	pkgver = r340.6a215a6
+	pkgver = r343.93a0ab0
 	pkgrel = 1
 	url = https://github.com/elementary/wingpanel-indicator-notifications
 	arch = x86_64

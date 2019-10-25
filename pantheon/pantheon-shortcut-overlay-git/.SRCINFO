@@ -1,6 +1,6 @@
 pkgbase = pantheon-shortcut-overlay-git
 	pkgdesc = A native, OS-wide shortcut overlay
-	pkgver = r321.14bfcce
+	pkgver = r324.806923a
 	pkgrel = 1
 	url = https://github.com/elementary/shortcut-overlay
 	arch = x86_64
