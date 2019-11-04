@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=gala
-pkgver=0.3.0.r235.14e2ff6
+pkgver=0.3.0.r238.0f0724c
 pkgrel=1
 pkgdesc='The Pantheon Window Manager'
 arch=(x86_64)
@@ -43,7 +43,7 @@ makedepends=(
   vala
 )
 provides=(libgala.so)
-source=(git+https://github.com/elementary/gala.git#commit=14e2ff690a83c2b3bb36a32b4c36e2a4c91bb5f7)
+source=(git+https://github.com/elementary/gala.git#commit=)
 sha256sums=(SKIP)
 
 pkgver() {
