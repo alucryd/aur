@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-polkit-agent-git
-pkgver=0.1.6.r42.4ad703c
+pkgver=0.1.6.r43.31ef514
 pkgrel=1
 pkgdesc='Pantheon Polkit Agent'
 arch=(x86_64)

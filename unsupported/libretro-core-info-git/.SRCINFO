@@ -1,6 +1,6 @@
 pkgbase = libretro-core-info-git
 	pkgdesc = Libretro core info files
-	pkgver = r60.d1b976b
+	pkgver = r63.080b28a
 	pkgrel = 1
 	url = https://github.com/libretro/libretro-core-info
 	arch = any
