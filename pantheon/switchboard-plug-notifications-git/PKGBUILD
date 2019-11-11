@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-notifications-git
-pkgver=r456.d43ed37
+pkgver=r466.540bd3b
 pkgrel=1
 pkgdesc='Switchboard Notifications Plug'
 arch=('x86_64')

@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-parental-controls-git
 	pkgdesc = Switchboard Parental Controls Plug
-	pkgver = r670.c7c8f6a
+	pkgver = r682.f7a08d1
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-parental-controls
 	arch = x86_64

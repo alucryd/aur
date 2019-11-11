@@ -1,6 +1,6 @@
 pkgbase = pantheon-screenshot-git
 	pkgdesc = The Pantheon Screenshot Tool
-	pkgver = r841.18334aa
+	pkgver = r847.4f8df77
 	pkgrel = 1
 	url = https://github.com/elementary/screenshot-tool
 	arch = x86_64

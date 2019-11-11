@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-sound-git
 	pkgdesc = Switchboard Sound Plug
-	pkgver = r434.1e163b3
+	pkgver = r443.2dddaad
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-sound
 	arch = x86_64

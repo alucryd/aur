@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-keyboard-git
 	pkgdesc = Switchboard Keyboard Plug
-	pkgver = r1155.34cba8b
+	pkgver = r1167.13c855f
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-keyboard
 	arch = x86_64

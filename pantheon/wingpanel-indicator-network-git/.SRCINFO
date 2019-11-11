@@ -1,6 +1,6 @@
 pkgbase = wingpanel-indicator-network-git
 	pkgdesc = Network indicator for Wingpanel
-	pkgver = r522.72408cd
+	pkgver = r629.9d4a132
 	pkgrel = 1
 	url = https://github.com/elementary/wingpanel-indicator-network
 	arch = x86_64

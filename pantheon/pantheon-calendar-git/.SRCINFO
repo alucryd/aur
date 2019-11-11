@@ -1,6 +1,6 @@
 pkgbase = pantheon-calendar-git
 	pkgdesc = The Pantheon Calendar
-	pkgver = r2254.02745471
+	pkgver = r2260.9bf852c7
 	pkgrel = 1
 	url = https://github.com/elementary/calendar
 	arch = x86_64

@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-notifications-git
 	pkgdesc = Switchboard Notifications Plug
-	pkgver = r456.d43ed37
+	pkgver = r466.540bd3b
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-notifications
 	arch = x86_64

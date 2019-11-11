@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-sound-git
-pkgver=r434.1e163b3
+pkgver=r443.2dddaad
 pkgrel=1
 pkgdesc='Switchboard Sound Plug'
 arch=('x86_64')

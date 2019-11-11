@@ -1,6 +1,6 @@
 pkgbase = wingpanel-indicator-sound-git
 	pkgdesc = Sound indicator for Wingpanel
-	pkgver = r318.3357812
+	pkgver = r327.6248284
 	pkgrel = 1
 	url = https://github.com/elementary/wingpanel-indicator-sound
 	arch = x86_64

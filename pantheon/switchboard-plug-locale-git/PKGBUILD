@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-locale-git
-pkgver=r683.912868b
+pkgver=r703.75190c7
 pkgrel=1
 pkgdesc='Switchboard Locale Plug'
 arch=('x86_64')

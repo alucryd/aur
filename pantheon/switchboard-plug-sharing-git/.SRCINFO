@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-sharing-git
 	pkgdesc = Switchboard Sharing Plug
-	pkgver = r315.180065c
+	pkgver = r322.5e2bb9c
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-sharing
 	arch = x86_64

@@ -1,6 +1,6 @@
 pkgbase = pantheon-videos-git
 	pkgdesc = The Pantheon Video Player
-	pkgver = r1512.6005c95
+	pkgver = r1523.cffaf64
 	pkgrel = 1
 	url = https://github.com/elementary/videos
 	arch = x86_64

@@ -1,6 +1,6 @@
 pkgbase = wingpanel-indicator-nightlight-git
 	pkgdesc = Winganel Nightlight Indicator
-	pkgver = r152.81ab061
+	pkgver = r161.44a692d
 	pkgrel = 1
 	url = https://github.com/elementary/wingpanel-indicator-nightlight
 	arch = x86_64
