@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-calculator-git
-pkgver=r734.2dde5da
+pkgver=r745.c93fb33
 pkgrel=1
 pkgdesc='The Pantheon Calculator'
 arch=('x86_64')

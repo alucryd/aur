@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-parental-controls-git
-pkgver=r682.f7a08d1
+pkgver=r687.5e7551e
 pkgrel=1
 pkgdesc='Switchboard Parental Controls Plug'
 arch=('x86_64')

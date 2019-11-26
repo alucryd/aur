@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-locale-git
 	pkgdesc = Switchboard Locale Plug
-	pkgver = r703.75190c7
+	pkgver = r712.c82c4af
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-locale
 	arch = x86_64

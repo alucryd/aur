@@ -1,6 +1,6 @@
 pkgbase = pantheon-camera-git
 	pkgdesc = The Pantheon Camera Application
-	pkgver = r880.5682237
+	pkgver = r897.7a86ec1
 	pkgrel = 1
 	url = https://github.com/elementary/camera
 	arch = x86_64

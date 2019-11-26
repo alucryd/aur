@@ -1,6 +1,6 @@
 pkgbase = elementary-icon-theme-git
 	pkgdesc = Named, vector icons for elementary OS
-	pkgver = 5.1.0.r2.a5537e63
+	pkgver = 5.1.0.r4.1d0a04b4
 	pkgrel = 1
 	url = https://github.com/elementary/icons
 	arch = any

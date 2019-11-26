@@ -1,6 +1,6 @@
 pkgbase = pantheon-session-git
 	pkgdesc = Session settings for Pantheon
-	pkgver = r135.ae48b89
+	pkgver = r136.f9d5afe
 	pkgrel = 1
 	url = https://github.com/elementary/session-settings
 	arch = any

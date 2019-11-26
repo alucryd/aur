@@ -1,6 +1,6 @@
 pkgbase = gtk-theme-elementary-git
 	pkgdesc = elementary GTK theme
-	pkgver = 5.3.0.r4.44d0c15
+	pkgver = 5.3.0.r8.049c119
 	pkgrel = 1
 	url = https://github.com/elementary/stylesheet
 	arch = any

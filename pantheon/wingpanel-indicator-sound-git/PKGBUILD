@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-sound-git
-pkgver=r327.6248284
+pkgver=r331.002003d
 pkgrel=1
 pkgdesc='Sound indicator for Wingpanel'
 arch=('x86_64')
