@@ -1,6 +1,6 @@
 pkgbase = wingpanel-indicator-keyboard-git
 	pkgdesc = Keyboard indicator for Wingpanel
-	pkgver = r342.800d493
+	pkgver = r343.8c5b98b
 	pkgrel = 1
 	url = https://github.com/elementary/wingpanel-indicator-keyboard
 	arch = x86_64

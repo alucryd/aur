@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-security-privacy-git
-pkgver=r894.8004a5a
+pkgver=r897.3b7f6fa
 pkgrel=1
 pkgdesc='Switchboard Security & Privacy Plug'
 arch=(x86_64)

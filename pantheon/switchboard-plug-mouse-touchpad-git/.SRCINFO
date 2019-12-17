@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-mouse-touchpad-git
 	pkgdesc = Switchboard Mouse & Touchpad Plug
-	pkgver = r644.277229d
+	pkgver = r651.1b9440e
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-mouse-touchpad
 	arch = x86_64

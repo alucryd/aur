@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=libretro-flycast-git
-pkgver=r3952.64cd7e1d
+pkgver=r4001.c3ba9dc2
 pkgrel=1
 pkgdesc='Sega Dreamcast core'
 arch=(x86_64)

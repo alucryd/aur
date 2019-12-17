@@ -1,6 +1,6 @@
 pkgbase = wingpanel-indicator-bluetooth-git
 	pkgdesc = Bluetooth indicator for Wingpanel
-	pkgver = r393.64ac0db
+	pkgver = r399.6cd477f
 	pkgrel = 1
 	url = https://github.com/elementary/wingpanel-indicator-bluetooth
 	arch = x86_64
