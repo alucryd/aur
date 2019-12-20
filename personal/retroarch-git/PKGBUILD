@@ -3,7 +3,7 @@
 # Contributor: Themaister <maister@archlinux.us>
 
 pkgname=retroarch-git
-pkgver=1.8.1.r471.aa537310ad
+pkgver=1.8.1.r485.64597e47c6
 pkgrel=1
 pkgdesc='Reference frontend for the libretro API'
 arch=(x86_64)
@@ -46,6 +46,7 @@ makedepends=(
   vulkan-icd-loader
   wayland
   wayland-protocols
+  xorgproto
 )
 optdepends=(
   'libretro-bsnes: Super Nintendo Entertainment System cores'

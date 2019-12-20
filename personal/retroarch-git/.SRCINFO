@@ -1,6 +1,6 @@
 pkgbase = retroarch-git
 	pkgdesc = Reference frontend for the libretro API
-	pkgver = 1.8.1.r471.aa537310ad
+	pkgver = 1.8.1.r485.64597e47c6
 	pkgrel = 1
 	url = http://www.libretro.com/
 	arch = x86_64
@@ -19,6 +19,7 @@ pkgbase = retroarch-git
 	makedepends = vulkan-icd-loader
 	makedepends = wayland
 	makedepends = wayland-protocols
+	makedepends = xorgproto
 	depends = alsa-lib
 	depends = libass.so
 	depends = libavcodec.so
