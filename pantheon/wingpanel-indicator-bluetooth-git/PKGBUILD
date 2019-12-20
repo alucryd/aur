@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-bluetooth-git
-pkgver=r399.6cd477f
+pkgver=r405.f04c2d3
 pkgrel=1
 pkgdesc='Bluetooth indicator for Wingpanel'
 arch=('x86_64')

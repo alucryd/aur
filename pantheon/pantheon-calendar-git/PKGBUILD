@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-calendar-git
-pkgver=r2284.21a246b2
+pkgver=r2288.2bcbb83c
 pkgrel=1
 pkgdesc='The Pantheon Calendar'
 arch=(x86_64)

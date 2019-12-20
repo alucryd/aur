@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-notifications-git
-pkgver=r479.8b9b8f8
+pkgver=r490.12c90d2
 pkgrel=1
 pkgdesc='Notifications indicator for Wingpanel'
 arch=('x86_64')

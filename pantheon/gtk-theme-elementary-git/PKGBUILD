@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=gtk-theme-elementary-git
-pkgver=5.3.0.r9.af50e4d
+pkgver=5.3.0.r10.7303bef
 pkgrel=1
 pkgdesc='elementary GTK theme'
 arch=('any')

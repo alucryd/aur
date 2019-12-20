@@ -1,6 +1,6 @@
 pkgbase = gala
 	pkgdesc = The Pantheon Window Manager
-	pkgver = 0.3.0.r407.fd3af53
+	pkgver = 0.3.0.r417.3ab1e82
 	pkgrel = 1
 	url = https://github.com/elementary/gala
 	arch = x86_64
