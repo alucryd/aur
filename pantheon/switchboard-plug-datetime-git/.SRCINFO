@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-datetime-git
 	pkgdesc = Switchboard Date & Time Plug
-	pkgver = r597.08e2484
+	pkgver = r603.22513a5
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-datetime
 	arch = x86_64

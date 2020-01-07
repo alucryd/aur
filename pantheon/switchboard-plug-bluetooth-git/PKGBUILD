@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-bluetooth-git
-pkgver=r401.b6c4d61
+pkgver=r410.4ded6da
 pkgrel=1
 pkgdesc='Switchboard Bluetooth Plug'
 arch=('x86_64')

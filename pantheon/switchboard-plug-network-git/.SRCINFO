@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-network-git
 	pkgdesc = Network plug for Switchboard
-	pkgver = r1122.6e31578
+	pkgver = r1131.5075875
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-networking
 	arch = x86_64

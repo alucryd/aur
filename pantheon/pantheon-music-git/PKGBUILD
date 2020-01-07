@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-music-git
-pkgver=r3948.ea597cc3
+pkgver=r3954.c89ca76f
 pkgrel=1
 pkgdesc='The Pantheon Music Player'
 arch=(x86_64)
