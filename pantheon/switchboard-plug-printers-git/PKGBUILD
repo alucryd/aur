@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=switchboard-plug-printers-git
-pkgver=r688.74a4c1f
+pkgver=r690.9f115c2
 pkgrel=1
 pkgdesc='Switchboard Printers Plug'
 arch=('x86_64')

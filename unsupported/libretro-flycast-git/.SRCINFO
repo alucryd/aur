@@ -1,6 +1,6 @@
 pkgbase = libretro-flycast-git
 	pkgdesc = Sega Dreamcast core
-	pkgver = r4016.87a3d6f7
+	pkgver = r4037.bc2a12c5
 	pkgrel = 1
 	url = https://github.com/libretro/flycast
 	arch = x86_64

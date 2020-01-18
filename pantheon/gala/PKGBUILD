@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=gala
-pkgver=0.3.0.r422.a4d51ee
+pkgver=3.2.0.r15.2aa417cd
 pkgrel=1
 pkgdesc='The Pantheon Window Manager'
 arch=(x86_64)

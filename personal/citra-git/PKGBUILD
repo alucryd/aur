@@ -7,7 +7,7 @@ pkgname=(
   citra-cli-git
   citra-qt-git
 )
-pkgver=r8196.01686f78f
+pkgver=r8204.cd86c9b04
 pkgrel=1
 pkgdesc='A Nintendo 3DS emulator'
 arch=(x86_64)

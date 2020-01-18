@@ -1,6 +1,6 @@
 pkgbase = pantheon-geoclue2-agent-git
 	pkgdesc = Pantheon Geoclue2 Agent
-	pkgver = r221.2b6f99f
+	pkgver = r223.27ac182
 	pkgrel = 1
 	url = https://github.com/elementary/pantheon-agent-geoclue2
 	arch = x86_64

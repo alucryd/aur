@@ -1,6 +1,6 @@
 pkgbase = pantheon-calculator-git
 	pkgdesc = The Pantheon Calculator
-	pkgver = r773.33f3e5c
+	pkgver = r774.d6c8dd4
 	pkgrel = 1
 	url = https://github.com/elementary/calculator
 	arch = x86_64

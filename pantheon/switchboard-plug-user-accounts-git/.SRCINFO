@@ -1,6 +1,6 @@
 pkgbase = switchboard-plug-user-accounts-git
 	pkgdesc = Switchboard User Accounts Plug
-	pkgver = r819.1338c93
+	pkgver = r820.37fa4a4
 	pkgrel = 1
 	url = https://github.com/elementary/switchboard-plug-useraccounts
 	arch = x86_64

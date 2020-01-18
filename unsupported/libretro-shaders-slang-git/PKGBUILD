@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=libretro-shaders-slang-git
-pkgver=r691.66bda5d
+pkgver=r697.722823b
 pkgrel=1
 pkgdesc='Collection of shaders for libretro'
 arch=(any)

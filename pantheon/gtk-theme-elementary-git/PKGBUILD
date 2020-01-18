@@ -1,19 +1,22 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=gtk-theme-elementary-git
-pkgver=5.4.0.r1.e812c60
+pkgver=5.4.0.r2.47cab29
 pkgrel=1
 pkgdesc='elementary GTK theme'
-arch=('any')
-url='https://github.com/elementary/stylesheet'
-license=('GPL3')
-groups=('pantheon-unstable')
+arch=(any)
+url=https://github.com/elementary/stylesheet
+license=(GPL3)
+groups=(pantheon-unstable)
+makedepends=(
+  git
+  meson
+)
 optdepends=('gtk-engine-murrine: GTK2 theme')
-makedepends=('git' 'meson')
-provides=('gtk-theme-elementary')
-conflicts=('gtk-theme-elementary')
-source=('gtk-theme-elementary::git+https://github.com/elementary/stylesheet.git')
-sha256sums=('SKIP')
+provides=(gtk-theme-elementary)
+conflicts=(gtk-theme-elementary)
+source=(gtk-theme-elementary::git+https://github.com/elementary/stylesheet.git)
+sha256sums=(SKIP)
 
 pkgver() {
   cd gtk-theme-elementary

@@ -1,6 +1,6 @@
 pkgbase = retroarch-git
 	pkgdesc = Reference frontend for the libretro API
-	pkgver = 1.8.2.r205.da4c95531e
+	pkgver = 1.8.4.r3.dbe0705880
 	pkgrel = 1
 	url = http://www.libretro.com/
 	arch = x86_64
