@@ -1,6 +1,6 @@
 pkgbase = libretro-nestopia-git
 	pkgdesc = Nintendo Entertainment System core
-	pkgver = r13.b3a2245
+	pkgver = r15.70c53f0
 	pkgrel = 1
 	url = https://github.com/libretro/nestopia
 	arch = x86_64
