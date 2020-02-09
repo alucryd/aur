@@ -1,20 +1,19 @@
 pkgbase = vlang
 	pkgdesc = Simple, fast, safe language created for developing maintainable software
-	pkgver = 0.1.20
-	pkgrel = 2
+	pkgver = 0.1.24
+	pkgrel = 1
 	url = https://vlang.io
 	arch = x86_64
 	license = MIT
+	makedepends = git
 	depends = glibc
 	optdepends = glfw
 	optdepends = libfreetype.so
 	optdepends = libcurl.so
-	conflicts = v
-	conflicts = vlang-git
-	source = v-0.1.20.tar.gz::https://github.com/vlang/v/archive/0.1.20.tar.gz
-	source = vc-0.1.20.tar.gz::https://github.com/vlang/vc/archive/0.1.20.tar.gz
-	md5sums = 36901aa42c873d1abf82ef0d7a48c5b2
-	md5sums = f8d86e9c4585278596c7f2779ce57997
+	source = git+https://github.com/vlang/v.git#tag=526f12feff629228785c88f052db91d4fb8510ca
+	source = git+https://github.com/vlang/vc.git#commit=b9ea14b1f384b584b146ee59a8b179a1e2d68299
+	sha256sums = SKIP
+	sha256sums = SKIP
 
 pkgname = vlang
 
