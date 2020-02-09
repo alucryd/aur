@@ -1,34 +1,55 @@
-# Maintainer: gee
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: gee <john.ettedgui@gmail.com>
 
 pkgname=nkit
 pkgver=1.4
 pkgrel=1
-pkgdesc='A Nintendo ToolKit that can Recover and Preserve Wii and GameCube disc images'
-arch=('x86_64')
-url='http://wiki.gbatemp.net/wiki/NKit'
-license=('MIT')
-depends=('mono')
-source=("nkit-$pkgver.zip::https://gbatemp.net/download/nkit.36157/download?version=36607")
-sha256sums=('e600b0a2dbacf784779ce33b01259f197c5f8cfc7135f1831160d3f98bb431c6')
+pkgdesc='A Nintendo toolkit that can recover and preserve Wii and GameCube disc images'
+arch=(any)
+url=https://wiki.gbatemp.net/wiki/NKit
+license=(MIT)
+depends=(mono)
+makedepends=(
+  git
+  mono-msbuild
+  nuget
+)
+source=(
+  git+https://github.com/Nanook/NKit.git#commit=31ac76828e6533ba3981eeda79ebfba2f16102af
+  nkit-config.patch
+  nkit-sharpcompress.patch
+)
+backup=(etc/nkit/NKit.dll.config)
+options=(!emptydirs)
+sha256sums=('SKIP'
+            '56b7ccf62aee80edbbe6227a24a74fba5bfe6c7b40e4d958dda95ac289235235'
+            '2253f5354be07ef419d8537f13327c1911e2ce6c4cb2dbf30c51b2cc1aeffaa3')
 
 prepare() {
-  cd "${srcdir}"
-  sed -i 's|%exe\\Processed|~/.local/share/NKit/Processed|' NKit.dll.config
-  sed -i 's|%exe\\Recovery|~/.local/share/NKit/Recovery|' NKit.dll.config
-  sed -i 's|key="WaitForKeyAfterProcessing" value="true"|key="WaitForKeyAfterProcessing" value="false"|' NKit.dll.config
-  sed -i 's|key="NkitFormat" value="gcz"|key="NkitFormat" value="iso"|' NKit.dll.config
-  sed -i 's|key="MaskRename" value="true"|key="MaskRename" value="false"|' NKit.dll.config
+  cd NKit
+
+  patch -Np1 -i ../nkit-config.patch
+  patch -Np1 -i ../nkit-sharpcompress.patch
+}
+
+build() {
+  cd NKit
+
+  nuget restore
+  msbuild -p:Configuration=Release
+  find -name *.pdb -delete
 }
 
 package() {
-  install -m755  -d "${pkgdir}/usr/lib/nkit"
-  mv "${srcdir}"/* "${pkgdir}/usr/lib/nkit/"
-  rm "${pkgdir}/usr/lib/nkit/nkit-$pkgver.zip"
-  cd "${pkgdir}/usr/lib/nkit"
-  install -m755 -d "${pkgdir}/usr/bin"
-  for exe in *exe;
-  do
-    echo "mono /usr/lib/nkit/$exe \"\$@\"" > "${pkgdir}/usr/bin/${exe:0:-4}"
-    chmod 755 "${pkgdir}/usr/bin/${exe:0:-4}"
+  install -dm 755 "${pkgdir}"/{etc/nkit/Dats/{GameTdb,{Custom,Redump}/{GameCube,Wii}},usr/{bin,lib/nkit}}
+  for d in ConvertToISO ConvertToNKit NKitExtractionApp NKitProcessingApp RecoverToISO RecoverToNKit RecoveryExtract; do
+    cp -dr --no-preserve=ownership NKit/$d/bin/Release/* "${pkgdir}"/usr/lib/nkit/
+    echo "mono /usr/lib/nkit/$d.exe \"\$@\"" > "${pkgdir}"/usr/bin/$d
+    chmod +x "${pkgdir}"/usr/bin/$d
   done
+  mv "${pkgdir}"/usr/lib/nkit/NKit.dll.config "${pkgdir}"/etc/nkit/
+  ln -s /etc/nkit/NKit.dll.config "${pkgdir}"/usr/lib/nkit/
+  install -Dm 644 NKit/LICENSE -t "${pkgdir}"/usr/share/licenses/nkit/
 }
+
+# vim: ts=2 sw=2 et:
