@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=pantheon-geoclue2-agent-git
-pkgver=r223.27ac182
+pkgver=r226.06684e3
 pkgrel=1
 pkgdesc='Pantheon Geoclue2 Agent'
 arch=('x86_64')

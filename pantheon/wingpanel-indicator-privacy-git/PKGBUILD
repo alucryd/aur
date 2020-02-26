@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-privacy-git
-pkgver=r123.6a4cab4
+pkgver=r125.e071377
 pkgrel=1
 pkgdesc='Privacy indicator for Wingpanel'
 arch=('x86_64')

@@ -29,6 +29,7 @@ build() {
 
   cc $CFLAGS -std=gnu11 -w -o v ../vc/v.c $LDFLAGS -lm
   ./v -prod -cflags $CFLAGS -o v v.v
+  find tools -name '*.v' -exec ./v -prod -cflags $CFLAGS {} \;
 }
 
 package() {
@@ -38,7 +39,7 @@ package() {
   install -Dm 644 LICENSE -t "${pkgdir}"/usr/share/licenses/vlang/
   install -m 755 v -t "${pkgdir}"/usr/lib/vlang/
   ln -s /usr/lib/vlang/v "${pkgdir}"/usr/bin/v
-  cp -dr --no-preserve=ownership vlib thirdparty "${pkgdir}"/usr/lib/vlang/
+  cp -dr --no-preserve=ownership vlib thirdparty tools "${pkgdir}"/usr/lib/vlang/
   cp -dr --no-preserve=ownership examples "${pkgdir}"/usr/share/vlang/
 }
 

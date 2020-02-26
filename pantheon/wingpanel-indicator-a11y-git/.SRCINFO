@@ -1,6 +1,6 @@
 pkgbase = wingpanel-indicator-a11y-git
 	pkgdesc = Universal Access indicator for Wingpanel
-	pkgver = r60.2ac80b9
+	pkgver = r61.91cfb6f
 	pkgrel = 1
 	url = https://github.com/elementary/wingpanel-indicator-a11y
 	arch = x86_64
