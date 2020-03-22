@@ -1,7 +1,7 @@
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
 pkgname=wingpanel-indicator-a11y-git
-pkgver=r62.93fa309
+pkgver=r64.3192b52
 pkgrel=1
 pkgdesc='Universal Access indicator for Wingpanel'
 arch=(x86_64)

@@ -1,6 +1,6 @@
 pkgbase = dolphin-emu-git
 	pkgdesc = A GameCube / Wii / Triforce emulator
-	pkgver = 5.0.r11763.c86832849a
+	pkgver = 5.0.r11790.62707986b7
 	pkgrel = 1
 	url = http://www.dolphin-emu.org/
 	arch = x86_64
