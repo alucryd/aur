@@ -1,0 +1,34 @@
+pkgbase = gerbera
+	pkgdesc = UPnP Media Server (Based on MediaTomb)
+	pkgver = 1.4.0
+	pkgrel = 1
+	url = https://github.com/gerbera/gerbera
+	install = gerbera.install
+	arch = i686
+	arch = x86_64
+	arch = armv7h
+	license = GPL2
+	makedepends = cmake
+	depends = taglib
+	depends = curl
+	depends = sqlite
+	depends = file
+	depends = gcc-libs
+	depends = libupnp18
+	depends = duktape
+	depends = libexif
+	depends = expat
+	depends = ffmpeg
+	depends = ffmpegthumbnailer
+	depends = libmatroska
+	optdepends = libmariadbclient
+	options = emptydirs
+	source = gerbera-1.4.0.tar.gz::https://github.com/gerbera/gerbera/archive/v1.4.0.tar.gz
+	source = gerbera.sysusers
+	source = gerbera.tmpfiles
+	sha256sums = 904a9031c85ac805e4c139f363510226952683d7257acd1dee25ba1e97fd7651
+	sha256sums = 0b55a4e1886f7aad0528446658433327815fd3f4d06e260518423f86dbe32dcc
+	sha256sums = 452f5d4b5661e0262cb4a48d62a54f5f26d53c6d3aebf502cde072214a8b30d8
+
+pkgname = gerbera
+
